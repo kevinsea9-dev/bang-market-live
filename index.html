@@ -43,9 +43,27 @@ li{margin-bottom:6px}
 .footer{text-align:center;color:#8fa1b8;font-size:12px;margin:18px 0 8px;line-height:1.6}
 .note{font-size:13px;color:#5c6b84}
 .spark{display:inline-block;vertical-align:middle;margin-left:8px}
+#pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
+#pinGate h2{font-size:20px;margin-bottom:6px}
+#pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
+#pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
+#pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
 </style>
 </head>
 <body>
+
+<!-- PIN-GATE-START : khối khóa mã vào cửa — KHÔNG XÓA khi viết lại bảng -->
+<div id="pinGate">
+  <div class="box">
+    <h2>🔐 Bảng Market Live</h2>
+    <div class="sub">Khu vực test riêng của Tom — nhập mã vào cửa</div>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off">
+    <button onclick="checkPin()">Mở bảng</button>
+    <div class="err" id="pinErr"></div>
+  </div>
+</div>
+<!-- PIN-GATE-END -->
 
 <div class="head">
   <h1>📊 BẢNG MARKET LIVE</h1>
@@ -79,6 +97,27 @@ function toggleShareBtn(){
   applySharePref();
 }
 applySharePref();
+// PIN GATE — khóa mã vào cửa (khóa lịch sự, chống người tò mò)
+var BOARD_PIN='7563';
+function checkPin(){
+  var v=document.getElementById('pinInput').value.trim();
+  if(v===BOARD_PIN){
+    localStorage.setItem('boardPinOk','1');
+    document.getElementById('pinGate').style.display='none';
+  }else{
+    document.getElementById('pinErr').textContent='Mã chưa đúng — thử lại nhé';
+    document.getElementById('pinInput').value='';
+  }
+}
+(function(){
+  if(localStorage.getItem('boardPinOk')==='1'){
+    var g=document.getElementById('pinGate');
+    if(g) g.style.display='none';
+  }else{
+    var inp=document.getElementById('pinInput');
+    if(inp) inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkPin();});
+  }
+})();
 </script>
 
 <div class="sec">
