@@ -46,7 +46,19 @@ li{margin-bottom:6px}
 <div class="head">
   <h1>📊 BẢNG MARKET LIVE</h1>
   <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
-  <span class="updated">🟢 Cập nhật lần cuối: 13/10/2026 ~12:37 PT (pre-close)</span>
+  <div style="margin-top:8px">
+    <span class="updated">🟢 Cập nhật lần cuối: 13/10/2026 ~12:37 PT (pre-close)</span>
+    <button onclick="shareBoard()" style="margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer">📤 Chia sẻ</button>
+  </div>
+<script>
+function shareBoard(){
+  var url='https://kevinsea9-dev.github.io/bang-market-live/';
+  var data={title:'📊 Bảng Market Live — Iggy × Tom',text:'Bảng market live: tin tức, vùng giá, tín hiệu vùng — cập nhật 7 lần/ngày',url:url};
+  if(navigator.share){navigator.share(data).catch(function(){});}
+  else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){alert('Đã copy link bảng — dán gửi cho bạn bè là xong!');});}
+  else{prompt('Copy link này để chia sẻ:',url);}
+}
+</script>
 </div>
 
 <div class="sec">
