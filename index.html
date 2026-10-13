@@ -12,6 +12,7 @@ h1{font-size:22px;letter-spacing:1px}
 .sub{color:#8fa1b8;font-size:12px;margin-top:4px}
 .head{background:linear-gradient(135deg,#0e2233,#12283f);border:1px solid #1e3a5c;border-radius:14px;padding:16px;margin-bottom:14px}
 .updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:12px;padding:5px 10px;border-radius:20px}
+.sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
 .card .lbl{font-size:11px;color:#8fa1b8}
@@ -31,6 +32,7 @@ td{padding:8px 6px;border-bottom:1px solid #1a2438}
 .b-near{background:#3d3312;color:#facc15}
 .b-out{background:#2a2f3d;color:#9aa7bd}
 .b-cut{background:#471b1b;color:#f87171}
+.b-new{background:#1e2a5c;color:#93c5fd}
 .zone{color:#9aa7bd;font-size:12px}
 .cut{color:#f87171;font-size:12px}
 ul{padding-left:18px;font-size:14px;line-height:1.7}
@@ -47,44 +49,45 @@ li{margin-bottom:6px}
   <h1>📊 BẢNG MARKET LIVE</h1>
   <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
   <div style="margin-top:8px">
-    <span class="updated">🟢 Cập nhật lần cuối: 13/10/2026 ~14:22 PT (Cú Đêm — quét châu Á)</span>
-    <button onclick="shareBoard()" style="margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer">📤 Chia sẻ</button>
+    <span class="updated">🟢 Cập nhật lần cuối: 13/10/2026 ~14:24 PT (tổng hợp)</span>
+    <button class="sharebtn" onclick="shareBoard()">📤 Chia sẻ</button>
   </div>
+</div>
 <script>
 function shareBoard(){
   var url='https://kevinsea9-dev.github.io/bang-market-live/';
-  var data={title:'📊 Bảng Market Live — Iggy × Tom',text:'Bảng market live: tin tức, vùng giá, tín hiệu vùng — cập nhật 7 lần/ngày',url:url};
+  var data={title:'📊 Bảng Market Live — Iggy × Tom',text:'Bảng market live: tin tức, vùng giá, tín hiệu vùng — cập nhật 11 lần/ngày',url:url};
   if(navigator.share){navigator.share(data).catch(function(){});}
   else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){alert('Đã copy link bảng — dán gửi cho bạn bè là xong!');});}
   else{prompt('Copy link này để chia sẻ:',url);}
 }
 </script>
-</div>
 
 <div class="sec">
-  <h2>🌍 THỊ TRƯỜNG NGAY BÂY GIỜ (01:37 PT — châu Âu vừa mở + premarket Mỹ)</h2>
+  <h2>🌍 THỊ TRƯỜNG NGAY BÂY GIỜ (đóng cửa 13/10)</h2>
   <div class="grid">
-    <div class="card"><div class="lbl">S&amp;P 500 futures</div><div class="val flat">gần phẳng <span style="font-size:12px">−0.08%</span></div></div>
-    <div class="card"><div class="lbl">Nasdaq futures</div><div class="val down">−0.6% <span style="font-size:12px">chip rout ngày 2</span></div></div>
-    <div class="card"><div class="lbl">Dow futures</div><div class="val up">+0.6–0.9% <span style="font-size:12px">bank earnings + UNH</span></div></div>
-    <div class="card"><div class="lbl">Châu Âu mở cửa</div><div class="val up">mixed <span style="font-size:12px">FTSE +0.86%, DAX +0.3%, CAC −0.13%</span></div></div>
-    <div class="card"><div class="lbl">Vàng futures</div><div class="val up">$4,210 <span style="font-size:12px">+0.5%</span></div></div>
-    <div class="card"><div class="lbl">WTI</div><div class="val down">~$92.2 <span style="font-size:12px">−1.6%</span></div></div>
+    <div class="card"><div class="lbl">Dow</div><div class="val down">~51,700 <span style="font-size:12px">−0.3%</span></div></div>
+    <div class="card"><div class="lbl">S&amp;P 500</div><div class="val flat">gần phẳng</div></div>
+    <div class="card"><div class="lbl">Nasdaq</div><div class="val down">−0.2%</div></div>
+    <div class="card"><div class="lbl">Lợi suất 10Y</div><div class="val flat">5.22%</div></div>
+    <div class="card"><div class="lbl">Vàng</div><div class="val flat">~$4,165</div></div>
+    <div class="card"><div class="lbl">WTI</div><div class="val up">~$94</div></div>
   </div>
-  <div class="note">Giá futures/premarket <b>thanh khoản mỏng</b> — chỉ tham khảo, không phải giá khớp chắc. Premarket Mỹ: MU −5%, WDC −7.4% (CXMT chip dày hơn); UNH +5.2% (beat + nâng outlook ≥$20.50); GS +3.5% (doanh thu $18.68B vượt $16.71B); JPM miss (sáng nay trước mở cửa). Châu Á: KOSPI −5.46% kích hoạt sidecar, SK hynix −10.09%. 10Y ~5.19–5.24%, Bitcoin ~$83,100, EUR/USD ~1.1157 (đáy 17 tháng).</div>
+  <div class="note">Nguồn: cùng ngày 13/10/2026, đã verify. Board tự tải lại mỗi 5 phút; dữ liệu mới được nạp 11 lần/ngày (7 lượt phiên Mỹ + 4 trạm Cú Đêm).</div>
 </div>
 
 <div class="sec">
   <h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>
-  <div class="alert good"><b>MRVL ~$267 (+0.4%)</b> — RECLAIM XÁC NHẬN, giữ vững trong vùng Sổ 2 $260–270 (pre-close 13/10). Sáng thủng tới $248.45 rồi lấy lại. Tin mới: Stifel giữ Buy, PT $370 — chip Maia 300 của Microsoft có thể là chương trình "auxiliary processing unit" ramp năm sau. Chốt $310→$338 / Cắt dưới $240.<br><span class="t">Sổ 2 swing • vùng Tom duyệt • quyết định của Tom</span></div>
-  <div class="alert"><b>JPM ~$335 (+0.3%)</b> — Cả ngày TRÊN vùng $323–333, chưa lọt vào (pre-close 13/10). Miss earnings nhưng giá đứng vững. Chốt $351→$363 / Cắt dưới $315.70.<br><span class="t">Sổ 2 swing • vùng Tom duyệt • canh 09:37 mai báo nếu lọt vùng</span></div>
-  <div class="alert hot"><b>Chip selloff NGÀY 2:</b> MU −5%, AMAT −8.5% dẫn đầu phe giảm, DRAM ETF −4% (dư âm CXMT + Musk cảnh báo Trung Quốc). Dao rơi — đứng ngoài.<br><span class="t">13/10 • Sổ 2 của Tom: MU/SNDK đều xa vùng</span></div>
-  <div class="alert good"><b>NOC ~$484</b> — TÁI VÀO vùng gom Sổ 1 $480–505 (pre-close 13/10). Earnings Q3 20/10.<br><span class="t">Sổ 1 dài hạn</span></div>
-  <div class="alert hot"><b>ASTS ~$47.3 (−8%)</b> — SÂU DƯỚI vùng $50–55 và mốc cắt $49. Piper Sandler hạ Neutral, PT $98→$54 sáng nay; Deutsche Bank hôm qua nâng Buy PT $93 — analyst chia đôi.<br><span class="t">Sổ 3 • Tom không giữ • đứng ngoài</span></div>
-  <div class="alert"><b>RKLB ~$63.9</b> — DƯỚI tier bắt đáy $64–66, TRÊN cắt cứng $61.50. CFO bán $9.9M ngày 1/10 theo kế hoạch đặt trước (không phải panic sell).<br><span class="t">Sổ 3 • Tom không giữ • đứng ngoài</span></div>
-  <div class="alert"><b>TMUS ~$154</b> — Raymond James NÂNG PT lên $170. Giá kẹt giữa mốc cắt $150 và vùng $155–165.<br><span class="t">Sổ 2 đề xuất • tin tốt nhưng chưa vào vùng</span></div>
-  <div class="alert"><b>IREN ~$33.9</b> — Dưới nền $35 (vị thế thật của Tom). Cú pop hôm qua do tin đồn Anthropic CHƯA XÁC NHẬN — hôm nay tin xì hơi, không phải tin xấu công ty.<br><span class="t">Vị thế thật • thesis chưa gãy, nền $35 đang bị test</span></div>
+  <div class="alert good"><b>KLAC $184.00</b> — <span class="badge b-new">MỚI</span> VÀO vùng gom Sổ 1 <b>$170–185</b> (đóng cửa 13/10). Đây là vùng gom anh đã duyệt — quyết định là của anh.<br><span class="t">Sổ 1 dài hạn • báo lần đầu 13:39 PT</span></div>
+  <div class="alert good"><b>HWM $216.84</b> — <span class="badge b-new">MỚI</span> VÀO vùng gom Sổ 1 <b>$200–220</b> (đóng cửa 13/10). Đây là vùng gom anh đã duyệt — quyết định là của anh.<br><span class="t">Sổ 1 dài hạn • báo lần đầu 13:39 PT</span></div>
+  <div class="alert good"><b>MRVL ~$267 (+0.4%)</b> — RECLAIM THÀNH CÔNG, giữ vững trong vùng Sổ 2 $260–270 sau khi sáng thủng về $248.45. Stifel giữ Buy, PT $370 — chip Maia 300 của Microsoft có thể là chương trình Marvell ramp năm sau. Chốt $310 → $338 / Cắt thủng $240.<br><span class="t">Sổ 2 swing • vùng Tom duyệt • không phải lệnh mua/bán</span></div>
+  <div class="alert good"><b>NOC ~$484</b> — TÁI VÀO vùng gom Sổ 1 $480–505 (giữa phiên 13/10). Earnings Q3 20/10 trước giờ mở cửa.<br><span class="t">Sổ 1 dài hạn</span></div>
+  <div class="alert"><b>JPM ~$335 (+0.3%)</b> — Cả ngày TRÊN vùng Sổ 2 $323–333, chưa lọt vào. Q3: GAAP EPS $5.57 vs kỳ vọng $5.93 (trượt). Chốt $351 → $363 / Cắt dưới $315.70.<br><span class="t">Sổ 2 swing</span></div>
+  <div class="alert hot"><b>ASTS ~$47.33 (−8%)</b> — GÃY vùng $50–55 và mốc cắt $49. Piper Sandler hạ Neutral, PT $98→$54 (13/10); Deutsche Bank hôm qua nâng Buy PT $93 — analyst chia đôi.<br><span class="t">Sổ 3 • Tom không giữ • đứng ngoài</span></div>
+  <div class="alert"><b>RKLB ~$63.94 (−2.7%)</b> — RỚT KHỎI tier bắt đáy $64–66. Cắt cứng $61.50 còn cách ~3%. CFO bán $9.9M ngày 1/10 theo kế hoạch đặt trước (không phải panic sell).<br><span class="t">Sổ 3 • Tom không giữ • đứng ngoài</span></div>
   <div class="alert"><b>SMMT ~$15.81 (−7.7%)</b> — Tiến SÁT mốc cắt tham chiếu $15.48 (chỉ còn ~2%). Bóng ma dilution: ATM còn hạn mức + AZN $2B chuyển đổi ở $18.36 (~12–14% pha loãng). FDA 14/11 là biến số nhị phân.<br><span class="t">Sổ 3 binary • không tin xấu mới hôm nay</span></div>
+  <div class="alert"><b>TMUS ~$154.07</b> — Raymond James NÂNG PT lên $170. Giá kẹt giữa mốc cắt $150 và vùng $155–165.<br><span class="t">Sổ 2 đề xuất • tin tốt nhưng chưa vào vùng</span></div>
+  <div class="alert"><b>IREN ~$33.9</b> — Dưới nền $35 (vị thế thật của Tom). Cú pop hôm qua do tin đồn hợp đồng cloud với Anthropic CHƯA XÁC NHẬN — hôm nay tin xì hơi.<br><span class="t">Vị thế thật • thesis chưa gãy, nền $35 đang bị test</span></div>
 </div>
 
 <div class="sec">
@@ -95,22 +98,20 @@ function shareBoard(){
 
 <div class="sec">
   <h2>🌙 CÚ ĐÊM — OVERNIGHT / CHÂU Á / CHÂU ÂU</h2>
-  <div class="alert hot"><b>14:22 PT — Cú Đêm (quét phiên châu Á 13/10):</b> Kospi đóng <span class="down">−5.5~−6.3%</span> (~5,982, intraday từng −7.4% — thấp nhất từ cuối tháng 7; sidecar kích hoạt). Ngòi nổ: CXMT (TQ) tuyên bố đột phá DRAM <b>4F²</b> — kiến trúc cell mới, dự kiến ship DDR5 RDIMM cho server trước cuối 2026; CXMT chiếm ~10% doanh thu DRAM toàn cầu Q2/2026 (từ 4% năm ngoái, theo Counterpoint), Samsung đặt mục tiêu sản xuất tương tự 2028. Seoul: Samsung −7.7%, SK Hynix −8.8%. Tokyo: Kioxia −12% intraday (margin ratio 23× → call đè thêm), Advantest −5%, SoftBank −8%; TSMC −1.8%. Nikkei <span class="down">−2~−2.7%</span> (~67,190). Hang Seng hồi từ lỗ sâu, đóng <span class="up">+0.2~+0.3%</span> (~24,230, ngày tăng thứ 3); Shanghai <span class="down">−0.3~−0.9%</span> (~3,765, thấp 3 tháng); CSI300 −0.6% (thấp nhất từ 8/2025). Thêm lửa: CEO Broadcom (Hock Tan) nói nhiều khoản đầu tư AI là "đánh bạc". <b>Premarket Mỹ (thanh khoản mỏng):</b> MU −2.8%, WDC/SNDK/STX −3.5~−4.5%, NVDA −0.5%, AMD −1.2%, <b>MRVL −2.4% (~$259–260, chạm rìa dưới vùng $260–270 — 09:37 mai xác nhận)</b>; ngân hàng +0.4~1.4% (JPM/G S/C/WFC earnings sáng); Meta +1.8%; <b>IREN +5%</b> (tin cloud với Anthropic); CCC +8.3% (tin mua lại). Dầu: Brent ~$105.7, WTI ~$92.2–92.7 — Saudi bị tấn công sân bay cuối tuần (12 người chết); Trump tuyên bố "ngừng bắn năng lượng" Nga–Ukraine nhưng 2 bên chưa nhận; TQ cắt hoàn thuế VAT xuất khẩu xe điện mới từ 13%→9%.<br><span class="t">13/10 • số post-close còn vênh giữa các nguồn — lấy khoảng, không dựng số tuyệt đối • premarket thanh khoản mỏng</span></div>
-  <div class="alert"><b>01:37 PT — Cú đêm 3:</b> Châu Âu mở cửa: FTSE 100 mở <span class="up">+0.86%</span> (10,748, nhờ commodity stocks), DAX <span class="up">+0.3%</span>, CAC/Euronext <span class="down">−0.13%</span> — mixed. Châu Á bán chip ngày 2: CXMT (Trung Quốc) công bố tiến bộ memory chip dày hơn → KOSPI −5.46% (kích hoạt sidecar), Nikkei −1.82%, SK hynix −10.09% ở Seoul. Futures Mỹ: Nasdaq −0.6→−0.75%, S&amp;P gần phẳng, Dow +0.6–0.9% (GS +3.5% beat, UNH +5.2% beat + nâng outlook, JPM miss — earnings sáng nay trước mở cửa: JPM, GS, C, WFC). IMF outlook hôm nay: global 2026 nâng lên 3.1%, eurozone 1.1%, Pháp chỉ +0.4% (bị hạ mạnh). Tin đêm cần theo dõi: 2 tàu bị drone tấn công ngoài khơi Bulgaria (Biển Đen), 1 chìm, 11 thủy thủ mất tích; Houthi tấn công sân bay Riyadh cuối tuần, Trump cân nhắc tham gia strikes với Saudi. <b>Không có còi tin lớn</b> → Tom ngủ tiếp, xem bảng khi thức dậy.<br><span class="t">13/10 • giá premarket thanh khoản mỏng • chỉ tham khảo</span></div>
-  <div class="alert"><b>Trạm đêm đầu tiên chạy tối nay 17:37 PT.</b> Dãy này ghi lại: mã chạy after-hours, diễn biến châu Á (Nikkei/Kospi/Hang Seng), châu Âu mở cửa, premarket sớm — và tin đêm đủ sức lay thị trường.<br><span class="t">Giá overnight/premarket thanh khoản mỏng — chỉ tham khảo, không phải giá khớp chắc</span></div>
+  <div class="alert"><b>Trạm đêm đầu tiên chạy tối nay 17:37 PT.</b> 3 trạm mới: 🌆 17:37 after-hours + earnings tối · 🌏 20:37 châu Á mở cửa · 🌍 01:37 châu Âu + premarket sớm. Dãy này sẽ ghi lại mã chạy đêm, diễn biến Nikkei/Kospi/Hang Seng/DAX, và tin đêm đủ sức lay thị trường.<br><span class="t">Giá overnight/premarket thanh khoản mỏng — chỉ tham khảo, không phải giá khớp chắc</span></div>
 </div>
 
 <div class="sec">
   <h2>📗 SỔ 2 — SWING (20%)</h2>
   <table>
     <tr><th>Mã</th><th>Giá</th><th>Vùng</th><th>Trạng thái</th></tr>
-    <tr><td><b>MRVL</b></td><td>~$267 <span class="up">+0.4%</span></td><td><span class="zone">Vào $260–270 • Chốt $310→$338 • <span class="cut">Cắt dưới $240</span></span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
-    <tr><td><b>JPM</b></td><td>~$335 <span class="up">+0.3%</span></td><td><span class="zone">Vào $323–333 • Chốt $351→$363 • <span class="cut">Cắt dưới $315.70</span></span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
-    <tr><td><b>TMUS</b></td><td>~$154</td><td><span class="zone">Vùng đề xuất $155–165 • <span class="cut">Cắt dưới $150</span></span></td><td><span class="badge b-near">🟡 KẸT GIỮA</span></td></tr>
+    <tr><td><b>MRVL</b></td><td>$267 <span class="up">+0.4%</span></td><td><span class="zone">Vào $260–270 • Chốt $310→$338 • <span class="cut">Cắt dưới $240</span></span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
+    <tr><td><b>JPM</b></td><td>$335 <span class="up">+0.3%</span></td><td><span class="zone">Vào $323–333 • Chốt $351→$363 • <span class="cut">Cắt dưới $315.70</span></span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>TMUS</b></td><td>$154.07 <span class="up">+1.5%</span></td><td><span class="zone">Vùng đề xuất $155–165 • <span class="cut">Cắt dưới $150</span></span></td><td><span class="badge b-near">🟡 KẸT GIỮA</span></td></tr>
     <tr><td><b>HOOD</b></td><td>$111.58</td><td><span class="zone">Vào $105–108 • <span class="cut">đã cắt tuần 9/28–10/2</span></span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
     <tr><td><b>AMZN</b></td><td>$260.84</td><td><span class="zone">Vùng $246–250 • đang canh</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
-    <tr><td><b>MU</b></td><td><span class="down">−5.0%</span></td><td><span class="zone">Vùng cũ $1,050–1,065</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
-    <tr><td><b>SNDK</b></td><td><span class="down">−3.0%</span></td><td><span class="zone">Vùng $1,700–1,740</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
+    <tr><td><b>MU</b></td><td>$934.34 <span class="down">−5.5%</span></td><td><span class="zone">Vùng cũ $1,050–1,065</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
+    <tr><td><b>SNDK</b></td><td>$1,444.55 <span class="down">−2.9%</span></td><td><span class="zone">Vùng $1,700–1,740</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
   </table>
 </div>
 
@@ -118,11 +119,17 @@ function shareBoard(){
   <h2>📘 SỔ 1 — DÀI HẠN (70%)</h2>
   <table>
     <tr><th>Mã</th><th>Giá</th><th>Vùng gom</th><th>Trạng thái</th></tr>
-    <tr><td><b>NOC</b></td><td>~$484</td><td><span class="zone">Gom $480–505</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
-    <tr><td><b>NVDA</b></td><td>~$226</td><td><span class="zone">Gom $205–218</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>KLAC</b></td><td>$184.00</td><td><span class="zone">Gom $170–185</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span> <span class="badge b-new">MỚI</span></td></tr>
+    <tr><td><b>HWM</b></td><td>$216.84</td><td><span class="zone">Gom $200–220</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span> <span class="badge b-new">MỚI</span></td></tr>
+    <tr><td><b>NOC</b></td><td>$484 <span class="down">−0.2%</span></td><td><span class="zone">Gom $480–505 • earnings 20/10</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
+    <tr><td><b>NVDA</b></td><td>$226.54 <span class="up">+0.1%</span></td><td><span class="zone">Gom $205–218</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
     <tr><td><b>AVGO</b></td><td>$355.61 <span class="up">+0.3%</span></td><td><span class="zone">Gom $320–350</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
-    <tr><td><b>GOOGL</b></td><td colspan="2"><span class="zone">Gom $320–342 • chờ giá mới hôm nay</span></td><td><span class="badge b-out">⚪ CHỜ</span></td></tr>
-    <tr><td><b>TSM</b></td><td colspan="2"><span class="zone">Gom $405–425 • earnings 15/10</span></td><td><span class="badge b-out">⚪ CHỜ</span></td></tr>
+    <tr><td><b>GOOGL</b></td><td>$353.78</td><td><span class="zone">Gom $320–342</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>TSM</b></td><td>$445.12</td><td><span class="zone">Gom $405–425 • earnings 15/10</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>VST</b></td><td>$162.36</td><td><span class="zone">Gom $133–140</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>GD</b></td><td>$332.42</td><td><span class="zone">Gom $310–330 • hết vùng, chờ quay lại</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>CRDO</b></td><td>$198.31</td><td><span class="zone">Gom $165–190</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
+    <tr><td><b>RTX</b></td><td>$183.02</td><td><span class="zone">Gom $170–180</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
   </table>
 </div>
 
@@ -130,10 +137,10 @@ function shareBoard(){
   <h2>📒 SỔ 3 — ĐẦU CƠ (10%)</h2>
   <table>
     <tr><th>Mã</th><th>Giá</th><th>Vùng</th><th>Trạng thái</th></tr>
-    <tr><td><b>RKLB</b></td><td>~$63.9</td><td><span class="zone">Bắt đáy $64–66 • <span class="cut">Cắt dưới $61.50</span></span></td><td><span class="badge b-near">🟡 DƯỚI TIER</span></td></tr>
-    <tr><td><b>ASTS</b></td><td>~$47.3 <span class="down">−8.0%</span></td><td><span class="zone">Vùng $50–55 • <span class="cut">Cắt dưới $49</span></span></td><td><span class="badge b-cut">🔴 GÃY VÙNG</span></td></tr>
+    <tr><td><b>RKLB</b></td><td>$63.94 <span class="down">−2.7%</span></td><td><span class="zone">Bắt đáy $64–66 • <span class="cut">Cắt dưới $61.50</span></span></td><td><span class="badge b-near">🟡 DƯỚI TIER</span></td></tr>
+    <tr><td><b>ASTS</b></td><td>$47.33 <span class="down">−8.0%</span></td><td><span class="zone">Vùng $50–55 • <span class="cut">Cắt dưới $49</span></span></td><td><span class="badge b-cut">🔴 GÃY VÙNG</span></td></tr>
     <tr><td><b>SMMT</b></td><td>$15.81 <span class="down">−7.7%</span></td><td><span class="zone">Vào $16.00–16.80 • <span class="cut">Cắt dưới $15.48</span> • FDA 14/11</span></td><td><span class="badge b-near">🟡 SÁT CẮT</span></td></tr>
-    <tr><td><b>IREN</b></td><td>~$33.9</td><td><span class="zone">Vị thế thật của Tom ~$35</span></td><td><span class="badge b-near">🟡 DƯỚI NỀN</span></td></tr>
+    <tr><td><b>IREN</b></td><td>$33.9</td><td><span class="zone">Vị thế thật của Tom ~$35</span></td><td><span class="badge b-near">🟡 DƯỚI NỀN</span></td></tr>
     <tr><td><b>NFLX</b></td><td>$71.28</td><td><span class="zone">Vùng quan tâm $65–70 • <span class="cut">Cắt dưới $63</span> • earnings 20/10</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
     <tr><td><b>HIMS</b></td><td>$30.00</td><td><span class="zone">Vùng $27–28.50 • <span class="cut">Cắt dưới $26</span></span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
   </table>
@@ -142,14 +149,13 @@ function shareBoard(){
 <div class="sec">
   <h2>📰 TIN LỚN HÔM NAY (13/10)</h2>
   <ul>
-    <li><b>Phe dump thắng ở chip, ngày 2:</b> dư âm CXMT (+ Musk cảnh báo Trung Quốc) — MU −5%, SNDK −3%, DRAM ETF −4%, AMAT −8.5% dẫn đầu phe giảm. Nasdaq −0.2%, S&amp;P gần phẳng, Dow −0.3% (~51,700).</li>
-    <li><b>Bank earnings mixed cứu không nổi:</b> JPM miss (EPS $5.57 vs ~$5.93) nhưng +0.3% — cả ngày trên vùng $323–333; GS beat mà mờ dần +0.5%; C beat vẫn đỏ −3.2%; JNJ −6% đè nặng nhất.</li>
-    <li><b>Rotation đỡ phe bullish:</b> năng lượng +1.6%, WTI vọt ~$94.</li>
+    <li><b>Memory/chip selloff ngày 2:</b> dư âm CXMT — Kospi −5.5% và tạm ngừng, Samsung −7.4%, SK Hynix −10%, ASML −3.2%. MU −5.5%, SNDK −2.9%, AMAT −8.5%.</li>
+    <li><b>JPM trượt earnings:</b> GAAP EPS $5.57 vs kỳ vọng $5.93; doanh thu $50.9B vs $51.22B.</li>
+    <li><b>Ngân hàng beat nhưng mờ:</b> GS beat +30% EPS surprise, UNH beat-and-raise — giá đều mờ dần khi vào phiên. Thị trường "trừng phạt tin xấu, không thưởng tin tốt".</li>
     <li><b>ASTS bị hạ hạng:</b> Piper Sandler → Neutral, PT $98→$54 (lo ngại SpaceX direct-to-cell sau deal Grain). Deutsche Bank hôm qua nâng Buy PT $93.</li>
-    <li><b>TMUS được nâng:</b> Raymond James nâng PT lên $170.</li>
-    <li><b>Tin đồn xì hơi:</b> IREN pop hôm qua do tin đồn hợp đồng cloud với Anthropic chưa được xác nhận — hôm nay giá trả lại, không phải tin xấu công ty.</li>
-    <li><b>Rebound radar:</b> META +2.4% (model Muse Wonder ra tối qua — bật theo tin 1 ngày, đu dễ hớ); Fermi +21% (thỏa thuận với AMD — small-cap, biến động khủng); ACI +2.5% (sau earnings, nhóm phòng thủ).</li>
-    <li><b>Nhìn trước:</b> tối nay không tên lớn báo cáo. Mai 14/10: CPI 8:30 sáng ET + BAC/MS earnings + Beige Book 2pm. 15/10: TSM earnings + PPI + retail sales. FOMC 27–28/10.</li>
+    <li><b>TMUS được nâng:</b> Raymond James nâng PT lên $170. <b>MRVL:</b> Stifel giữ Buy PT $370 (chip Maia 300).</li>
+    <li><b>Tin đồn xì hơi:</b> IREN pop hôm qua do tin đồn hợp đồng cloud với Anthropic chưa được xác nhận.</li>
+    <li><b>Năng lượng đỡ thị trường:</b> +1.6%, WTI vọt ~$94.</li>
   </ul>
 </div>
 
@@ -157,14 +163,14 @@ function shareBoard(){
   <h2>📅 LỊCH TUẦN NÀY</h2>
   <div class="cal"><div class="d">Thứ 4 · 14/10</div><div>CPI 8:30 AM ET · BAC, MS earnings · Beige Book 2 PM</div></div>
   <div class="cal"><div class="d">Thứ 5 · 15/10</div><div>TSM earnings · PPI + retail sales</div></div>
-  <div class="cal"><div class="d">Thứ 2 · 20/10</div><div>NFLX earnings (est, sau giờ đóng) · NOC Q3 earnings (trước giờ mở)</div></div>
+  <div class="cal"><div class="d">Thứ 2 · 20/10</div><div>NFLX earnings (est) · NOC Q3 earnings (trước giờ mở)</div></div>
   <div class="cal"><div class="d">T2–T4 · 27–28/10</div><div>FOMC</div></div>
   <div class="cal"><div class="d">Thứ 7 · 14/11</div><div>SMMT FDA decision (binary)</div></div>
 </div>
 
 <div class="footer">
   ⚠️ Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.<br>
-  <span class="note">Dữ liệu đã verify. Board tự tải lại mỗi 5 phút; nội dung mới được nạp ~7 lần mỗi ngày giao dịch (04:37 → 14:37 PT) + 3 trạm đêm (17:37 / 20:37 / 01:37) khi có tín hiệu vùng.</span>
+  <span class="note">Dữ liệu cùng ngày 13/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút; nội dung mới được nạp 11 lần mỗi ngày (7 lượt phiên Mỹ + 4 trạm Cú Đêm).</span>
 </div>
 
 </body>
