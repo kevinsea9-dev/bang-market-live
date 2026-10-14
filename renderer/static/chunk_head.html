@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>BẢNG MARKET LIVE — Iggy × Tom</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1220;color:#e8edf5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px;max-width:900px;margin:0 auto;font-size:15px;line-height:1.55}
+h1{font-size:23px;letter-spacing:1px}
+.sub{color:#bccbe4;font-size:13.5px;margin-top:4px}
+.head{background:linear-gradient(135deg,#0e2233,#12283f);border:1px solid #1e3a5c;border-radius:14px;padding:16px;margin-bottom:14px}
+.updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:13px;padding:5px 10px;border-radius:20px}
+.sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
+.eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
+.tabbar{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer;text-decoration:none;display:block}
+.tab small{display:block;font-weight:400;font-size:12px;color:#bccbe4;margin-top:2px}
+.tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
+.tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
+.tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
+.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
+.card .lbl{font-size:13px;color:#bccbe4}
+.card .val{font-size:19px;font-weight:700;margin-top:2px}
+.up{color:#4ade80}.down{color:#f87171}.flat{color:#facc15}
+.sec{background:#101829;border:1px solid #22304b;border-radius:14px;padding:14px;margin-bottom:14px}
+.sec h2{font-size:17px;margin-bottom:10px}
+.alert{background:#131c2e;border-left:4px solid #facc15;border-radius:8px;padding:10px;margin-bottom:8px;font-size:15px}
+.alert.hot{border-left-color:#f87171;background:linear-gradient(90deg,rgba(248,113,113,.10),#131c2e 60%)}
+.alert.good{border-left-color:#4ade80;background:linear-gradient(90deg,rgba(74,222,128,.10),#131c2e 60%)}
+.alert .t{font-size:12.5px;color:#bccbe4}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:#bccbe4;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
+td{padding:9px 6px;border-bottom:1px solid #1a2438}
+.badge{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
+.b-in{background:#123c26;color:#4ade80}
+.b-near{background:#3d3312;color:#facc15}
+.b-out{background:#2a2f3d;color:#c2cfe6}
+.b-cut{background:#471b1b;color:#f87171}
+.b-new{background:#1e2a5c;color:#93c5fd}
+.zone{color:#c2cfe6;font-size:12px}
+.cut{color:#f87171;font-size:12px}
+ul{padding-left:18px;font-size:14px;line-height:1.7}
+li{margin-bottom:6px}
+.cal{display:grid;grid-template-columns:86px 1fr;gap:6px;font-size:14px;margin-bottom:6px}
+.cal .d{color:#facc15;font-weight:700}
+.footer{text-align:center;color:#bccbe4;font-size:12px;margin:18px 0 8px;line-height:1.6}
+.note{font-size:13px;color:#a9bcd6}
+.spark{display:inline-block;vertical-align:middle;margin-left:8px}
+#pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
+#pinGate h2{font-size:20px;margin-bottom:6px}
+#pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
+#pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
+#pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<!-- PIN-GATE-START : khối khóa mã vào cửa — KHÔNG XÓA khi viết lại bảng -->
+<div id="pinGate">
+  <div class="box">
+    <h2>🔐 Bảng Market Live</h2>
+    <div class="sub">Khu vực test riêng của Tom — nhập mã vào cửa</div>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off">
+    <button onclick="checkPin()">Mở bảng</button>
+    <div class="err" id="pinErr"></div>
+  </div>
+</div>
+<!-- PIN-GATE-END -->
+
+<div class="head" id="top">
+  <h1>📊 BẢNG MARKET LIVE</h1>
+  <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
+  <div style="margin-top:8px">
+    <span class="updated">

@@ -1,0 +1,770 @@
+{
+ "meta": {
+  "badge": "🟢 Cập nhật lần cuối: 14/10/2026 ~05:37 PT (Watchlist 3-trong-1: CPI nóng 3.7% + bank earnings BAC miss/MS & BLK beat, radar COMBO META)",
+  "footer_note": "Dữ liệu cùng ngày 14/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút; nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm)."
+ },
+ "market": {
+  "title": "🌍 THỊ TRƯỜNG SÁNG NAY — CPI NÓNG + BANK EARNINGS (14/10, ~9:00 AM ET)",
+  "cards": [
+   {
+    "label": "Dow E-mini",
+    "dir": "down",
+    "val_html": "−0.2% <span style=\"font-size:12px\">post-CPI</span>"
+   },
+   {
+    "label": "S&amp;P 500 E-mini",
+    "dir": "down",
+    "val_html": "−0.3% <span style=\"font-size:12px\">post-CPI</span>"
+   },
+   {
+    "label": "Nasdaq-100 E-mini",
+    "dir": "down",
+    "val_html": "−0.6% <span style=\"font-size:12px\">post-CPI</span>"
+   },
+   {
+    "label": "Lợi suất 10Y",
+    "dir": "down",
+    "val_html": "5.26–5.29% <span style=\"font-size:12px\">+~4bps</span>"
+   },
+   {
+    "label": "Vàng",
+    "dir": "down",
+    "val_html": "$4,165 <span style=\"font-size:12px\">−0.2%</span>"
+   },
+   {
+    "label": "WTI",
+    "dir": "up",
+    "val_html": "$95.30 <span style=\"font-size:12px\">+1.2%</span>"
+   }
+  ],
+  "note_html": "Nguồn: WSJ / Barron's / Investopedia / Reuters, đã verify sáng 14/10/2026 (~9:00 AM ET). 🔥 <b>CPI tháng 9 ĐÃ RA (8:30 AM ET): headline 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%, từ 3.4% tháng 8), <b>core 2.6%</b> (nóng hơn kỳ vọng 2.5%, từ 2.4%) — futures quay đầu đỏ sau số liệu: Dow E-mini <span class=\"down\">−0.2%</span>, S&amp;P E-mini <span class=\"down\">−0.3%</span>, Nasdaq-100 E-mini <span class=\"down\">−0.6%</span>; 10Y vọt <b>5.26–5.29%</b> (từ 5.19% trước khi công bố); cược Fed <b>hike ngày 28/10 nhảy lên 39%</b> (từ 22%, CME FedWatch). 🏦 <b>Bank earnings sáng nay:</b> <b>BAC MISS</b> (EPS $0.91 vs kỳ vọng $1.10 — gánh phạt <b>$1.21B</b> vụ rửa tiền/sanctions; doanh thu $29.96B cũng miss) → <span class=\"down\">−4% premarket</span>; <b>MS BEAT</b> (EPS $3.03 vs ~$2.93, doanh thu $20.34B; equity trading +41%, wealth kỷ lục $9.07B) → <span class=\"up\">+0.65% premarket</span>; <b>BLK BEAT MẠNH</b> (adj EPS $15.93 vs ~$14.3, doanh thu $7.75B +19%, AUM <b>$15.49T</b>, inflow $205B) → <span class=\"up\">+3–4% premarket ~$1,100</span>. 🇪🇺 Châu Âu: Stoxx 600 +0.3% nhờ <b>ASML nâng guidance cả năm lần thứ 3</b> (Q3: doanh thu €11.70B, lãi ròng €4.96B). 🌏 Châu Á đóng: Nikkei lấy lại 68,000; KOSPI bật mạnh bắt đáy memory sau cú −5.5%. Vàng $4,165 (giữ số cũ, chưa verify mới); WTI ~$95 (giữ số cũ) — Brent &gt;$106 sau vụ Houthi tấn công Aramco + 2 tàu ở eo Hormuz. BTC ~$83,300. Board tự tải lại mỗi 5 phút; dữ liệu mới được nạp 10 lần/ngày."
+ },
+ "zone_signals": {
+  "alerts": [
+   {
+    "tone": "plain",
+    "html": "<b>NFLX $70.46 (−0.2%)</b> — <span class=\"badge b-new\">MỚI</span> <b>Huber Research hạ 2 bậc xuống Sell</b>, PT $85 → $70 (13/10, lo ngại cắt giảm nhân sự + engagement chững); KeyBanc giữ Overweight nhưng hạ PT $92 → $85. Giá ngay trên vùng quan tâm <b>$65–70</b> của anh — earnings 20/10 AMC sẽ quyết định. Chưa vào vùng, tiếp tục canh.",
+    "time": "Sổ 3 rebound • vùng Tom duyệt • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "good",
+    "html": "<b>CTVA $13.33 (+0.08%)</b> — <span class=\"badge b-new\">MỚI</span> <b>KeyCorp nâng lên Overweight, PT $17</b> (7/10). Vị thế thật của Tom mua $12.1 — đang lãi nhẹ; Chốt $14–14.44 / Cắt $11.94. Ước tính Q3 EPS $0.09.",
+    "time": "Vị thế thật • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "hot",
+    "html": "<b>🔥 CPI THÁNG 9 NÓNG HƠN KỲ VỌNG (ra 8:30 AM ET):</b> headline <b>3.7% y/y</b> (kỳ vọng 3.6%, tháng 8 là 3.4%), core <b>2.6%</b> (kỳ vọng 2.5%, tháng 8 là 2.4%). Futures quay đầu đỏ: Dow −0.2%, S&amp;P −0.3%, Nasdaq-100 −0.6%; 10Y vọt 5.26–5.29%; cược Fed <b>hike 28/10 lên 39%</b> (từ 22%). Cả phiên hôm nay giao dịch theo CPI — tránh lệnh lớn, daytrade size nhỏ nhất.",
+    "time": "14/10 • WSJ/Barron's/Investopedia • số liệu chính thức BLS"
+   },
+   {
+    "tone": "good",
+    "html": "<b>🏦 BANK EARNINGS SÁNG NAY:</b> <b>BAC MISS</b> — EPS $0.91 vs kỳ vọng $1.10 (gánh phạt $1.21B rửa tiền/sanctions), doanh thu $29.96B miss → <span class=\"down\">−4% premarket</span> (daytrade quan sát, không bắt dao). <b>MS BEAT</b> — EPS $3.03 vs ~$2.93, doanh thu $20.34B, equity trading +41%, wealth kỷ lục → <span class=\"up\">+0.65% premarket</span>. <b>BLK BEAT MẠNH</b> — adj EPS $15.93 vs ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T, inflow $205B → <span class=\"up\">+3–4% premarket ~$1,100</span> (không đuổi gap).",
+    "time": "14/10 • Reuters/Barron's/WSJ • premarket thanh khoản mỏng"
+   },
+   {
+    "tone": "good",
+    "html": "<b>MRVL ~$263.3 (−2% premarket)</b> — VẪN TRONG vùng Sổ 2 <b>$260–270</b> nhưng đang test mép dưới sau CPI nóng (đóng 13/10 $268.73, hôm qua từng thủng về $248.45 rồi hồi full). Chốt $310 → $338 / Cắt thủng $240. Mua của Tom vẫn chưa confirm fill.",
+    "time": "Sổ 2 swing • vùng Tom duyệt • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "hot",
+    "html": "<b>MU ~$939.8 (−1.4% premarket)</b> <span class=\"badge b-new\">NGÀY 4</span> — Sóng CXMT chưa dứt, vẫn dưới MA50. Tối qua Musk khen chiến lược giá của Micron trên X (\"smart move\") — tin tốt dài hạn nhưng chưa cứu được giá ngắn hạn. Vùng cũ $1,050–1,065 còn xa — đứng ngoài.",
+    "time": "Sổ 2 • Barron's/public.com • đứng ngoài"
+   },
+   {
+    "tone": "good",
+    "html": "<b>🎯 RADAR DÒNG TIỀN LỚN — quét 04:00 (mới nhất):</b> 5 mã đạt ≥2 tín hiệu (1 <b>COMBO</b> tiền lớn + uptrend mạnh): <b>META $762.5</b> (options PUT-heavy + uptrend, mega-cap → theo dõi cho <b>Sổ 2/Sổ 1</b>, lưu ý flow phòng thủ); <b>EXEL $59.51</b>, <b>IOVA $14.5</b>, <b>PCRX $36.31</b>, <b>SNDX $13.95</b> (uptrend + catalyst nhị phân → chỉ <b>Sổ 3</b>). Hôm nay <b>không có kèo options đạt chuẩn</b> (cần earnings 3–14 ngày + flow bất thường + giá trên SMA20) → bảng kèo ghi \"đứng ngoài\".",
+    "time": "14/10 • radar quét 163 mã • tín hiệu kỹ thuật, không phải lệnh mua/bán"
+   },
+   {
+    "tone": "good",
+    "html": "<b>JPM $331.43</b> — <span class=\"badge b-new\">MỚI</span> LỌT VÙNG Sổ 2 <b>$323–333</b> (đóng cửa 13/10). Cả ngày trên vùng, fade vào cuối phiên sau tin trượt earnings. Q3: GAAP EPS $5.57 vs kỳ vọng ~$5.93 — lần trượt đầu tiên ~3 năm. Chốt $351 → $363 / Cắt dưới $315.70. Đây là vùng vào anh đã duyệt — quyết định là của anh.",
+    "time": "Sổ 2 swing • báo lần đầu 14:37 PT • vùng Tom duyệt • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "good",
+    "html": "<b>RKLB $64.22</b> — <span class=\"badge b-new\">MỚI</span> HỒI VÀO tier bắt đáy Sổ 3 <b>$64–66</b> (low $63.08 dip dưới vùng, hồi đóng cửa ở trong). Cắt cứng $61.50 còn cách ~4%. Sổ 3 của anh — quyết định là của anh.",
+    "time": "Sổ 3 đầu cơ • báo lần đầu 14:37 PT • Tom không giữ vị thế • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "good",
+    "html": "<b>MRVL $268.73 (+1.1%)</b> — Đóng CHẮC TRONG vùng Sổ 2 $260–270 (sáng thủng về $248.45 rồi hồi full). Stifel hôm nay reiterate Buy, PT $370 — chip Maia 300 của Microsoft nhiều khả năng là chương trình \"auxiliary processing unit\" Marvell ramp năm sau. Chốt $310 → $338 / Cắt thủng $240. Mua của Tom vẫn chưa confirm fill.",
+    "time": "Sổ 2 swing • vùng Tom duyệt • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "good",
+    "html": "<b>NOC $481.38 (−0.75%)</b> — Đóng cửa TRONG vùng gom Sổ 1 $480–505 (low $479.00 nhúng dưới, hồi đóng trong). Earnings Q3 ngày 20/10 trước giờ mở cửa, kỳ vọng EPS $7.16 / revenue $11.14B.",
+    "time": "Sổ 1 dài hạn • vùng Tom duyệt • không phải lệnh mua/bán"
+   },
+   {
+    "tone": "hot",
+    "html": "<b>ASTS $47.07 (−8.5%)</b> — Đáy 52 tuần MỚI $46.23 trong phiên. Piper Sandler hôm nay hạ Overweight → Neutral, cắt PT $98 → $54 (lo ngại pace phóng vệ tinh 2026–27 sau khi SpaceX mua spectrum Grain $8B); Clear Street vẫn reiterate constructive (AST dẫn trước SpaceX ~6 tháng ở direct-to-cell). Vùng Sổ 3 $50–55 đã gãy.",
+    "time": "Sổ 3 • Tom không giữ • đứng ngoài"
+   },
+   {
+    "tone": "good",
+    "html": "<b>KLAC $184.00</b> — <span class=\"badge b-new\">MỚI</span> VÀO vùng gom Sổ 1 <b>$170–185</b> (đóng cửa 13/10). Đây là vùng gom anh đã duyệt — quyết định là của anh.",
+    "time": "Sổ 1 dài hạn • báo lần đầu 13:39 PT"
+   },
+   {
+    "tone": "good",
+    "html": "<b>HWM $216.84</b> — <span class=\"badge b-new\">MỚI</span> VÀO vùng gom Sổ 1 <b>$200–220</b> (đóng cửa 13/10). Đây là vùng gom anh đã duyệt — quyết định là của anh.",
+    "time": "Sổ 1 dài hạn • báo lần đầu 13:39 PT"
+   },
+   {
+    "tone": "plain",
+    "html": "<b>TMUS $153.73 (+1.2%)</b> — Raymond James NÂNG PT lên $170. Giá kẹt giữa mốc cắt $150 và vùng $155–165 — chưa vào vùng.",
+    "time": "Sổ 2 đề xuất • tin tốt nhưng chưa vào vùng"
+   },
+   {
+    "tone": "plain",
+    "html": "<b>IREN $34.80</b> — Đóng phẳng, dưới nền $35 (vị thế thật của Tom). Cú pop hôm qua do tin đồn hợp đồng cloud với Anthropic CHƯA XÁC NHẬN — hôm nay tin xì hơi.",
+    "time": "Vị thế thật • thesis chưa gãy, nền $35 đang bị test"
+   },
+   {
+    "tone": "plain",
+    "html": "<b>SMMT ~$15.81 (−7.7%)</b> — Tiến SÁT mốc cắt tham chiếu $15.48 (chỉ còn ~2%). Bóng ma dilution: ATM còn hạn mức + AZN $2B chuyển đổi ở $18.36 (~12–14% pha loãng). FDA 14/11 là biến số nhị phân.",
+    "time": "Sổ 3 binary • không tin xấu mới hôm nay"
+   },
+   {
+    "tone": "plain",
+    "html": "<b>MU ~$950 (−4%)</b> — DAO RƠI ngày 4: đóng dưới đường MA50 ($953.22). CXMT (TQ) tuyên bố đột phá DRAM 4F², ship DDR5 RDIMM server trước cuối 2026. AMAT −6.5% dẫn đầu S&amp;P decliners; DRAM ETF −3.5%. Vùng cũ $1,050–1,065 — đứng ngoài.",
+    "time": "Sổ 2 • đứng ngoài"
+   },
+   {
+    "tone": "plain",
+    "html": "<b>SNDK $1,482 (−0.3%)</b> — Hồi mạnh: mở cửa −5% rồi lội về gần phẳng. Vẫn dưới vùng $1,700–1,740 — đứng ngoài.",
+    "time": "Sổ 2 • đứng ngoài"
+   }
+  ]
+ },
+ "top_attention": {
+  "title_suffix": "sáng 14/10, post-CPI",
+  "alerts": [
+   {
+    "tone": "hot",
+    "html": "<b>🔥 CPI NÓNG 3.7% (core 2.6%)</b> — Vượt kỳ vọng cả 2 đầu. Futures đỏ (Nasdaq-100 −0.6%), 10Y vọt 5.26–5.29%, cược hike 28/10 lên 39%. Hôm nay là phiên của CPI — nhóm tăng trưởng/chip chịu áp lực, tránh lệnh lớn.",
+    "time": null
+   },
+   {
+    "tone": "good",
+    "html": "<b>BLK ~$1,100 (+3–4% premarket)</b> — Beat mạnh nhất nhóm bank: adj EPS $15.93 (+38% YoY), AUM $15.49T, inflow $205B. Không đuổi gap sáng CPI nóng — chờ pullback.",
+    "time": null
+   },
+   {
+    "tone": "hot",
+    "html": "<b>BAC −4% premarket</b> — Miss EPS ($0.91 vs $1.10) vì phạt $1.21B rửa tiền/sanctions. NII $16.45B vẫn đạt. Quan sát, không bắt dao khi tin xấu còn nóng.",
+    "time": null
+   },
+   {
+    "tone": "hot",
+    "html": "<b>MU ~$939.8 (−1.4%) ❄️ memory ngày 4</b> — Sóng CXMT chưa dứt, dưới MA50; Musk khen chiến lược giá trên X nhưng chưa cứu được giá. <b>MRVL ~$263.3 (−2%)</b> vẫn TRONG vùng Sổ 2 $260–270 nhưng test mép dưới.",
+    "time": null
+   }
+  ],
+  "note": "Strip này mỗi lượt quét tự viết lại — 3-4 setup đáng nhìn nhất của ngày, anh không cần lội hết bảng."
+ },
+ "hunt2": {
+  "title": "🎯 HUNT LẦN 2 (13/10) — 15 mã momentum mới, canh vùng tự động",
+  "intro_html": "Quét ~60 mã toàn sector tối 13/10 — mỗi mã đủ 3 chân: momentum + Wall Street bullish + catalyst có ngày. Cron <b>hunt2-zone-watch</b> canh chạm vùng mỗi sáng, im lặng khi chưa có gì mới.",
+  "table_head": "<tr><th>Mã</th><th>Giá 13/10</th><th>Vùng canh (Vào → Chốt / Cắt)</th><th>Sổ</th></tr>",
+  "rows": [
+   {
+    "ticker": "PCVX",
+    "price_html": "$66.80 <span class=\"down\">−5.5%</span>",
+    "zone": "Vào $60–63 → Chốt $73.82 → $90.75 / Cắt &lt;$56.48",
+    "book": 3
+   },
+   {
+    "ticker": "RCL",
+    "price_html": "$281.50 <span class=\"up\">+0.3%</span>",
+    "zone": "Vào $275–282 → Chốt $330 → $357 / Cắt &lt;$257",
+    "book": 2
+   },
+   {
+    "ticker": "VLO",
+    "price_html": "$456.63 <span class=\"up\">+4.7%</span> 🔥đỉnh 52w",
+    "zone": "Đang trên PT cũ — chờ pullback, chưa vẽ vùng",
+    "book": 2
+   },
+   {
+    "ticker": "MELI",
+    "price_html": "$1,875.90 <span class=\"down\">−0.9%</span>",
+    "zone": "Vào $1,860–1,890 → Chốt $2,240–2,300 / Cắt &lt;$1,695",
+    "book": 2
+   },
+   {
+    "ticker": "VST",
+    "price_html": "$162.36 <span class=\"up\">+2.7%</span>",
+    "zone": "Strong Buy PT $210 — chờ vẽ vùng",
+    "book": 2
+   },
+   {
+    "ticker": "BIIB",
+    "price_html": "$228.93 <span class=\"down\">−0.2%</span>",
+    "zone": "Vào $218–224 → Chốt $238 → $300 / Cắt &lt;$215.73",
+    "book": 2
+   },
+   {
+    "ticker": "IOVA",
+    "price_html": "$14.56 <span class=\"down\">−0.4%</span>",
+    "zone": "Chờ pullback $12.3–13 → Chốt $15.11 → $18 / Cắt &lt;$11.17",
+    "book": 2
+   },
+   {
+    "ticker": "FIGS",
+    "price_html": "$18.00 <span class=\"up\">+1.5%</span> 🔥phá đỉnh 52w",
+    "zone": "Vào $17.50–18 (retest) → Chốt $19.18 / Cắt &lt;$17.48",
+    "book": 2
+   },
+   {
+    "ticker": "GEV",
+    "price_html": "$1,004.04 <span class=\"up\">+0.7%</span>",
+    "zone": "Buy PT $1,225 — chờ vẽ vùng",
+    "book": 2
+   },
+   {
+    "ticker": "COHR",
+    "price_html": "$289.98 <span class=\"up\">+0.7%</span>",
+    "zone": "Buy PT $412 — đang pullback, chờ ổn định",
+    "book": 2
+   },
+   {
+    "ticker": "ALAB",
+    "price_html": "$325.41 <span class=\"up\">+0.4%</span>",
+    "zone": "Buy PT $392 — chờ vẽ vùng",
+    "book": 2
+   },
+   {
+    "ticker": "FRSH",
+    "price_html": "$13.90 <span class=\"down\">−0.1%</span>",
+    "zone": "Vào $13.60–14 → Chốt $14.37 → $14.79 / Cắt &lt;$12.70",
+    "book": 2
+   },
+   {
+    "ticker": "ZS",
+    "price_html": "$228.66 <span class=\"up\">+1.3%</span>",
+    "zone": "Buy nhưng PT chỉ còn +2% upside — quan sát",
+    "book": 2
+   },
+   {
+    "ticker": "ENTG",
+    "price_html": "$161.16 <span class=\"up\">+0.7%</span>",
+    "zone": "Buy PT $178 — chờ vẽ vùng",
+    "book": 2
+   },
+   {
+    "ticker": "CEG",
+    "price_html": "$295.79 <span class=\"up\">+0.7%</span>",
+    "zone": "Moderate Buy PT $352 — chờ vẽ vùng",
+    "book": 2
+   }
+  ],
+  "note": "Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom."
+ },
+ "sector_map": {
+  "title_suffix": "13/10",
+  "cards": [
+   {
+    "icon": "💾",
+    "name": "Chip / Memory",
+    "accent": "red",
+    "dir": "down",
+    "val_html": "SOXX −0.2% · DRAM ETF −3.5%",
+    "note": "Sóng CXMT ngày 2 — tiền tháo chạy khỏi memory"
+   },
+   {
+    "icon": "🛢️",
+    "name": "Năng lượng",
+    "accent": "green",
+    "dir": "up",
+    "val_html": "+1.6% · WTI ~$94",
+    "note": "Căng thẳng Trung Đông (Brent ~$106) — nơi trú ẩn của ngày"
+   },
+   {
+    "icon": "🏦",
+    "name": "Ngân hàng",
+    "accent": "none",
+    "dir": "flat",
+    "val_html": "Phân hóa",
+    "note": "GS beat, JPM miss, C giảm sâu nhất — beat cũng không cứu được giá"
+   },
+   {
+    "icon": "💻",
+    "name": "Big Tech",
+    "accent": "none",
+    "dir": "flat",
+    "val_html": "META +2.4% · AAPL +1.0%",
+    "note": "Vài tên lớn gánh — META nhờ model Muse Wonder"
+   },
+   {
+    "icon": "🚀",
+    "name": "Hàng không / Quốc phòng",
+    "accent": "none",
+    "dir": "flat",
+    "val_html": "NOC giữ vùng · BA −1.6%",
+    "note": "BA: 161 máy bay giao Q3 — quốc phòng vẫn là theme dài"
+   },
+   {
+    "icon": "💊",
+    "name": "Dược / Healthcare",
+    "accent": "red",
+    "dir": "down",
+    "val_html": "JNJ −5.7%",
+    "note": "JNJ đè Dow nặng nhất — UNH beat-and-raise nhưng giá mờ dần"
+   }
+  ],
+  "note": "Đọc theo dòng tiền: khi chip/memory đỏ mà năng lượng xanh = rotation phòng thủ, không phải panic toàn thị trường."
+ },
+ "market_pulse": {
+  "title_suffix": "13/10",
+  "hot_html": "META +2.4%<br>AMD +1.9%<br>NVDA +1.0%<br>AAPL +0.95%",
+  "cold_html": "ASTS −8.0%<br>SMMT −7.7%<br>AMAT −6.5%<br>WDC −6.0%",
+  "note": "Tự xếp hạng mỗi lượt quét từ % biến động đã verify cùng ngày. Phe bán thắng ở chip/memory (sóng CXMT ngày 2); phe mua co cụm ở vài tên lớn."
+ },
+ "hot_tickers": {
+  "title_suffix": "14/10",
+  "alerts": [
+   {
+    "tone": "good",
+    "head": "BLK ~$1,100 (+3–4% premarket)",
+    "spark_pct": null,
+    "body": "Beat mạnh nhất nhóm bank sáng nay: adj EPS $15.93 vs kỳ vọng ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T (+15%), inflow $205B, margin 47.8%. Daytrade: chờ xác nhận trên vùng mở cửa, không đuổi gap giữa phiên CPI nóng.",
+    "time": "14/10 • Barron's/WSJ/Reuters • premarket thanh khoản mỏng"
+   },
+   {
+    "tone": "hot",
+    "head": "BAC −4% premarket",
+    "spark_pct": null,
+    "body": "Miss kép: EPS $0.91 vs kỳ vọng $1.10 (gánh phạt $1.21B vì rửa tiền/sanctions, trừ $0.17/cp), doanh thu $29.96B vs ~$30.58B kỳ vọng; NII $16.45B vẫn đạt. Daytrade: quan sát, không bắt dao khi tin xấu còn nóng — kháng cự = giá đóng cửa hôm qua, hỗ trợ = đáy premarket.",
+    "time": "14/10 • Barron's/Reuters • premarket thanh khoản mỏng"
+   },
+   {
+    "tone": "hot",
+    "head": "MU ~$939.8 (−1.4% premarket)",
+    "spark_pct": null,
+    "body": "Sóng CXMT ngày thứ 4, vẫn dưới MA50. Tối qua Musk khen chiến lược giá của Micron trên X — tin tốt dài hạn, chưa cứu được giá ngắn hạn. Daytrade: kháng cự $953 (MA50) / hỗ trợ đáy premarket ~$938.",
+    "time": "14/10 • Barron's/public.com • đứng ngoài ở vùng cũ $1,050–1,065"
+   },
+   {
+    "tone": "plain",
+    "head": "MS premarket đảo chiều âm sau CPI",
+    "spark_pct": null,
+    "body": "Beat: EPS $3.03 vs ~$2.93, doanh thu $20.34B (+12%); equity trading +41% lên $5.8B, wealth kỷ lục $9.07B, ROTCE 22.6%. Đầu phiên Barron's ghi +0.65%, nhưng sau số CPI nóng các nguồn khác ghi −0.5%~−1.8% — beat không cứu được giá khi cả thị trường đỏ. Daytrade: chờ xác nhận, không FOMO.",
+    "time": "14/10 • Barron's/WSJ/Seeking Alpha • premarket thanh khoản mỏng, số liệu vênh giữa các nguồn"
+   },
+   {
+    "tone": "hot",
+    "head": "AMAT ~$465 (−6.5%)",
+    "spark_pct": -6.5,
+    "body": "Tệ nhất Nasdaq 100 hôm nay. Nghịch lý: đúng ngày Investor Day công bố trung tâm R&amp;D <b>$5B EPIC Center</b> + chiến lược 2030 (thêm 2 điểm % thị phần, dịch vụ &gt;$12B/năm) mà giá vẫn bị bán — \"sell the news\" giữa sóng chip đỏ. Rơi 6 phiên liên tiếp, −14.2%/5 ngày.",
+    "time": "13/10 • SEMICON West sáng nay • earnings 12/11"
+   },
+   {
+    "tone": "hot",
+    "head": "WDC ~−6%",
+    "spark_pct": -6.0,
+    "body": "Dẫn đầu phe giảm S&amp;P 500/Nasdaq 100. Không tin xấu riêng — dính sóng CXMT chung ngành memory.",
+    "time": "13/10 • sóng ngành ngày 2"
+   },
+   {
+    "tone": "hot",
+    "head": "SNDK ~−4.3%",
+    "spark_pct": -4.3,
+    "body": "Ngày thứ 2 bị bán theo sóng CXMT. DRAM ETF −3.5%.",
+    "time": "13/10 • sóng ngành ngày 2"
+   },
+   {
+    "tone": "hot",
+    "head": "MU ~$989 (−4.5%)",
+    "spark_pct": -4.5,
+    "body": "4 phiên đỏ liên tiếp, thấp nhất từ 16/9. Sóng CXMT + chốt lời sau đợt tăng nóng.",
+    "time": "13/10 • sóng ngành ngày 2"
+   },
+   {
+    "tone": "hot",
+    "head": "SK Hynix (Seoul) −10%",
+    "spark_pct": -10.0,
+    "body": "Rơi theo tin đồn <b>chưa verify</b> về Nvidia cắt spec HBM4 (số liệu giao hàng thực tế đi ngược tin đồn). Kospi có lúc bị tạm ngừng. Cantor: \"tin xấu hơn thực tế\" — CXMT mới chiếm 9.5% thị phần DRAM vs Samsung 39.4%.",
+    "time": "13/10 • tin đồn chưa xác thực, đọc kỹ trước khi sợ"
+   },
+   {
+    "tone": "plain",
+    "head": "NVDA $228.52 (+1.0%)",
+    "spark_pct": 1.0,
+    "body": "Giữ giá tốt nhất nhóm chip giữa ngày đỏ. Tin ngược: thị phần chip AI tại Trung Quốc rơi còn <b>34%</b> (Huawei vớt lên 28%, IDC H1/2026) — xuất khẩu bị siết, đối thủ nội địa lên.",
+    "time": "13/10 • Finnhub"
+   },
+   {
+    "tone": "plain",
+    "head": "TSLA ~$375 (−0.74%)",
+    "spark_pct": -0.74,
+    "body": "Yên ắng sau cú deliveries Q3 vượt kỳ vọng (486,532 xe vs 463,761 est) cuối tuần trước. Musk úp mở Terafab: Tesla + SpaceX muốn thử 10 thiết kế chip/năm. Earnings Q3 ngày 21/10.",
+    "time": "Chờ catalyst 21/10"
+   },
+   {
+    "tone": "hot",
+    "head": "SPCX $156.54 (−4.2%)",
+    "spark_pct": -4.2,
+    "body": "FAA vừa mở đánh giá môi trường cho kế hoạch <b>456 lần phóng Starship/năm</b> ở Starbase (tin ra 13/10). Consensus Strong Buy, PT tb $235.10.",
+    "time": "13/10 • Finnhub • FAA review = thủ tục, chưa phải cấm"
+   },
+   {
+    "tone": "plain",
+    "head": "AAPL ~$344.22 (+0.95%)",
+    "spark_pct": 0.95,
+    "body": "Sát đỉnh 52 tuần $345.34, IBD gọi là điểm mua 345.34. Vùng canh của anh $310–320 còn xa — đứng ngoài, không đuổi đỉnh.",
+    "time": "13/10 • Finnhub"
+   },
+   {
+    "tone": "plain",
+    "head": "TSM $445.12 (+0.17%)",
+    "spark_pct": 0.17,
+    "body": "Trên vùng gom $405–425. Earnings <b>thứ 5 (15/10)</b> — sự kiện của tuần cho cả ngành chip. Musk xác nhận đang đàm phán với TSMC về fab ở Texas (Terafab).",
+    "time": "Sổ 1 • chờ earnings 15/10"
+   },
+   {
+    "tone": "plain",
+    "head": "BA $186.49 (−1.6%)",
+    "spark_pct": -1.6,
+    "body": "Công bố <b>161 máy bay giao trong Q3</b> (13/10). Barclays vừa khởi tạo Overweight, PT $300 (12/10); thêm hợp đồng logistics Indo-Pacific. Earnings 27/10.",
+    "time": "13/10 • Finnhub • Moderate Buy, PT tb ~$270"
+   },
+   {
+    "tone": "plain",
+    "head": "AMD $605.53 (+1.9%)",
+    "spark_pct": 1.9,
+    "body": "Bật lại giữa ngày chip đỏ. Fermi +21% nhờ thỏa thuận với AMD. P/E ~154 — đắt, chỉ hợp Sổ 3 momentum. Earnings 3/11.",
+    "time": "13/10 • Finnhub • vùng đề xuất $590–610 chưa được duyệt"
+   },
+   {
+    "tone": "plain",
+    "head": "DELL $572.47 (−0.7%)",
+    "spark_pct": -0.7,
+    "body": "Lình xình dưới đỉnh 52 tuần $595.51. GS PT $570 đang dưới giá thị trường. Bản nháp vùng pullback $530–560 của em vẫn chờ anh duyệt.",
+    "time": "13/10 • Finnhub • chưa có watch"
+   },
+   {
+    "tone": "plain",
+    "head": "AVGO $355.61 (+0.3%)",
+    "spark_pct": 0.3,
+    "body": "Trên vùng gom $320–350. CEO Hock Tan ví đầu tư AI như \"đánh bạc\" (13/10) làm cả ngành chao đảo — nhưng cũng chính ông nâng target doanh thu FY28 lên $20B.",
+    "time": "Sổ 1 • 13/10"
+   },
+   {
+    "tone": "good",
+    "head": "ASML báo cáo Q3 (14/10 sáng)",
+    "spark_pct": 5.0,
+    "body": "Doanh thu Q3 <b>€11.70B</b>, lãi ròng <b>€4.96B</b>, <b>nâng outlook cả năm</b>, khẳng định nhu cầu AI quá lớn \"không đáp ứng đủ 2027–2028\". ASML +1.8% ở châu Âu, kéo tech EU +0.8% — tin tốt cho cả nhóm chip/memory của anh (MU, SNDK, NVDA, AMD, MRVL) trước giờ mở cửa. Options traders trước đó pricing ~±5.5% (~$94) cho post-earnings.",
+    "time": "14/10 • Reuters/ad-hoc • earnings đã ra sáng nay trước CPI"
+   }
+  ]
+ },
+ "options": {
+  "main_html": "<b>Hôm nay (14/10, soát lại 05:37): chưa có kèo nào đạt chuẩn.</b> Chuẩn radar: earnings trong 3–14 ngày + dòng tiền options bất thường + giá trên SMA20. Radar 04:00 đã quét xong — 5 mã đạt ≥2 tín hiệu nhưng không mã nào thỏa cả 3 chân cùng lúc. Không đạt thì bảng để trống — thà chán một hôm còn hơn cháy một tuần.",
+  "main_time": "Đang ngắm: TSM earnings 15/10, NFLX 20/10, NOC 20/10 — radar sáng mai soi flow tiếp",
+  "note_html": "Mỗi kèo (khi có) hiện 1 dòng: lệnh + strike + ngày hết hạn + giải thích tiếng Việt ai cũng hiểu. Ví dụ mẫu: <b>BUY CALL NVDA $345 — 31/12</b> = cược NVDA tăng, lãi khi NVDA trên $345 trước 31/12. Options có bẫy: mất giá theo thời gian, hết hạn về 0, IV sụp sau tin — chỉ dùng tiền Sổ 3."
+ },
+ "night_owl": {
+  "alerts": [
+   {
+    "tone": "plain",
+    "title": "01:37 PT — Cú Đêm 3 (châu Âu mở cửa + ASML báo cáo):",
+    "body": "🇪🇺 <b>CHÂU ÂU MỞ CỬA 14/10:</b> Stoxx 600 <span class=\"up\">+0.32%</span> (636.99, Reuters), FTSE ~+0.2%, DAX ~+0.5%, CAC ~+0.5% — hồi từ đỏ hôm qua. 🌏 Châu Á đóng: Nikkei +0.7%, Kospi +0.9% (bắt đáy sau −5.5%), Hang Seng +0.6%, Shanghai −0.3%. 🇺🇸 <b>Futures Mỹ (thanh khoản mỏng):</b> Dow gần phẳng, S&amp;P +0.1%, Nasdaq-100 +0.2% — ngần ngừ trước <b>CPI 8:30 AM ET</b> (dự báo headline +0.6% m/m → 3.6% y/y, core +0.2% m/m; số nóng = cược hike 10/28 tăng). <b>TIN ĐÊM:</b> <b>ASML báo Q3: doanh thu €11.70B, lãi ròng €4.96B, NÂNG outlook cả năm</b> — nói nhu cầu AI quá lớn \"không đáp ứng đủ 2027–2028\"; ASML +1.8%, tech EU +0.8% — tin tốt cho cả nhóm chip Mỹ (MU/SNDK/NVDA/AMD/MRVL) trước giờ mở. Orsted <span class=\"down\">−4.2%</span> (Mỹ re-evaluate permit điện gió Rhode Island). Hôm nay: <b>BAC, Morgan Stanley, BlackRock</b> báo cáo trước mở cửa + Beige Book 2 PM ET. Dầu: Brent &gt;$106 — sáng nay 2 tàu bị tấn công ở eo Hormuz (chưa thay đổi thesis Trung Đông hiện có). <b>ECB + BOE quyết định lãi suất ngày mai 15/10.</b> <b>Không có còi tin lớn</b> → im lặng, Tom xem bảng khi thức dậy.",
+    "time": "14/10 • số châu Âu đầu phiên (Reuters) • futures/premarket thanh khoản mỏng • chỉ tham khảo"
+   },
+   {
+    "tone": "plain",
+    "title": "20:37 PT — Cú Đêm 2 (châu Á sáng 14/10, đang giao dịch):",
+    "body": "🌏 <b>CHÂU Á BẮT ĐÁY MEMORY</b> — sau ngày máu 13/10 vì CXMT, phiên sáng nay: KOSPI <span class=\"up\">+1.3~+1.75%</span> (~6,140; Samsung +3.34% ở 240,000 won, SK Hynix +2.84% ở 1.484 triệu won); Nikkei <span class=\"up\">+0.2~+0.5%</span> (~67,900–68,000; SoftBank +2.41%, Kioxia +2.24%); Hang Seng −0.1%, Shanghai +0.1% — cả khu vực chờ <b>CPI Mỹ 8:30 AM ET</b> (kỳ vọng headline 3.6–3.7% y/y) + số TQ. Nhắc phiên 13/10 vừa đóng: KOSPI <span class=\"down\">−5.4~−5.5%</span> (sidecar), Nikkei −1.8%, Taiex −2.0%, HSI +0.3%, Shanghai +0.1%. <b>Futures Mỹ</b> (thanh khoản mỏng): Dow nhích, S&amp;P +0.1%, Nasdaq-100 +0.25% — ngần ngừ trước CPI. Tin nổi: <b>BAC bị phạt $1.21B</b> (rửa tiền/sanctions, earnings sáng mai); Burry cảnh báo \"bull trap\"; CEO Broadcom ví đầu tư AI như \"đánh bạc\"; thị phần AI TQ của NVDA rơi còn 34% (IDC). <b>Không có còi tin lớn mới</b> → im lặng, Tom xem bảng khi thức dậy.",
+    "time": "13/10 • châu Á đang giao dịch, số còn thay đổi • futures thanh khoản mỏng • chỉ tham khảo"
+   },
+   {
+    "tone": "plain",
+    "title": "17:37 PT — Cú Đêm 1 (after-hours đang chạy):",
+    "body": "PHIÊN ĐÊM YÊN. Không tên lớn nào báo cáo sau giờ đóng tối nay (bank + UNH + JNJ đã báo hết sáng nay; mai là BAC/MS/BLK/ASML); không mã nào trên watchlist chạy &gt;±5% after-hours → <b>không còi</b>. Futures sau khi mở lại: Dow futures <span class=\"down\">nhẹ xuống</span>, S&amp;P 500 futures phẳng, Nasdaq-100 futures <span class=\"up\">nhích lên</span> — cả 3 ngần ngừ trước <b>CPI 8:30 AM ET</b> (dự báo headline +0.6% m/m, 3.7% y/y; core +0.2% m/m, 2.5% y/y). Tin chiều: <b>Citi hạ US stocks</b> (bỏ overweight, chỉ báo POLLS ở mức đỉnh lịch sử — chưa chuyển bearish) sau khi GS hôm qua nâng global stocks lên overweight; Houthi dọa \"đáp trả nhanh và đau đớn\" nếu Mỹ gia nhập chiến dịch Saudi; Trump cáo buộc Houthi cố đẩy giá dầu trước bầu cử giữa kỳ, úp mở nhờ Erdogan (Thổ) đánh Houthi giúp Saudi — chưa có quyết định tấn công của Mỹ, <b>chưa đủ lay thị trường → không còi</b>. Dầu: Brent ~$106, WTI ~$93–94.",
+    "time": "13/10 • giá futures/after-hours thanh khoản mỏng • chỉ tham khảo • sáng mai CPI + BAC/MS/BLK/ASML = ngày lớn nhất tuần"
+   },
+   {
+    "tone": "hot",
+    "title": "~14:35 PT — Cú Đêm 2 (phiên châu Á 13/10, lượt 20:37 chạy trễ):",
+    "body": "🚨 <b>KOSPI −5.5~−6.3%</b> (~5,982, intraday từng −7.4% — thấp nhất từ cuối tháng 7; sidecar kích hoạt). Ngòi nổ: CXMT (TQ) tuyên bố đột phá DRAM <b>4F²</b> — kiến trúc cell mới, dự kiến ship DDR5 RDIMM cho server trước cuối 2026; CXMT chiếm ~10% doanh thu DRAM toàn cầu Q2/2026 (từ 4% năm ngoái, theo Counterpoint); Samsung đặt mục tiêu sản xuất tương tự 2028. Seoul: Samsung −7.7%, SK Hynix −8.8%. Tokyo: Kioxia −12% intraday (margin ratio 23× → call đè thêm), Advantest −5%, SoftBank −8%; TSMC −1.8%. Nikkei <span class=\"down\">−2~−2.7%</span> (~67,190). Hang Seng hồi từ lỗ sâu, đóng <span class=\"up\">+0.2~+0.3%</span> (~24,230, ngày tăng thứ 3); Shanghai <span class=\"down\">−0.3~−0.9%</span> (~3,765, thấp 3 tháng); CSI300 −0.6% (thấp nhất từ 8/2025). Đổ thêm lửa: CEO Broadcom (Hock Tan) nói nhiều khoản đầu tư AI là \"đánh bạc\". <b>Premarket Mỹ (thanh khoản mỏng):</b> MU −2.8%, WDC/SNDK/STX −3.5~−4.5%, NVDA −0.5%, AMD −1.2%, <b>MRVL −2.4% (~$259–260, chạm rìa dưới vùng $260–270 — 09:37 mai xác nhận)</b>; ngân hàng +0.4~1.4% (JPM/GS/C/WFC earnings sáng); Meta +1.8%; <b>IREN +5%</b> (tin cloud với Anthropic); CCC +8.3% (tin mua lại). Dầu: Brent ~$105.7, WTI ~$92.2–92.7 — vụ tấn công sân bay Saudi cuối tuần (12–13 người chết); Trump tuyên bố \"ngừng bắn năng lượng\" Nga–Ukraine nhưng 2 bên chưa nhận; TQ cắt hoàn thuế VAT xuất khẩu xe điện mới từ 13%→9%.",
+    "time": "13/10 • số châu Á post-close còn vênh giữa các nguồn — lấy khoảng, không dựng số tuyệt đối • premarket thanh khoản mỏng"
+   },
+   {
+    "tone": "plain",
+    "title": "01:37 PT — Cú đêm 3 (châu Âu mở cửa + premarket sớm):",
+    "body": "FTSE 100 mở <span class=\"up\">+0.86%</span> (10,748, nhờ commodity stocks), DAX <span class=\"up\">+0.3%</span>, Euronext 100 <span class=\"down\">−0.13%</span> — châu Âu mở cửa <b>mixed</b> (đóng hôm qua: Dax +0.72% ở 25,268; FTSE +0.99% ở 10,656; CAC +0.38% ở 7,833). Châu Á bán chip tiếp: CXMT (Trung Quốc) công bố tiến bộ memory chip dày hơn → KOSPI <span class=\"down\">−5.46%</span> (kích hoạt sidecar), Nikkei −1.82% (trở lại sau long weekend), SK hynix −10.09% ở Seoul; TQ cắt VAT rebate xuất khẩu xe điện còn 9%. Futures Mỹ: Nasdaq <span class=\"down\">−0.6→−0.75%</span>, S&amp;P gần phẳng −0.08%, Dow <span class=\"up\">+0.6–0.9%</span> — bank earnings phân cực: UNH <span class=\"up\">+5.2%</span> (beat + nâng outlook ≥$20.50), GS <span class=\"up\">+3.5%</span> (doanh thu $18.68B vượt $16.71B), JPM miss. Sáng nay trước mở cửa: JPM, GS, C, WFC + UNH + JNJ. IMF hôm nay: global 2026 nâng lên 3.1%, eurozone 1.1%, <b>Pháp chỉ +0.4%</b> (hạ mạnh nhất); EUR/USD đáy 17 tháng ~1.1157. Tin đêm cần theo dõi: 2 tàu bị drone tấn công ngoài khơi Bulgaria (Biển Đen), 1 chìm, 11 thủy thủ mất tích. <b>Không có còi tin lớn</b> → im lặng, Tom xem bảng khi thức dậy.",
+    "time": "13/10 • giá premarket/futures thanh khoản mỏng • chỉ tham khảo"
+   },
+   {
+    "tone": "plain",
+    "title": "14:28 PT — Cú đêm 1 (after-hours đang chạy):",
+    "body": "PHIÊN ĐÊM YÊN. Không tên lớn nào báo cáo sau giờ đóng tối nay (chỉ FBK, ngân hàng vùng — không phải mã Tom theo); không mã nào trên watchlist chạy &gt;±5% after-hours → <b>không có còi</b>. Tin mới tối nay: Trump cảnh báo Houthi, úp mở nhờ Erdogan (Thổ Nhĩ Kỳ) đánh Houthi giúp Saudi sau vụ tấn công sân bay Riyadh (12–13 người chết, có 1 công dân Mỹ); liên quân Saudi đánh kho nhiên liệu ngoài Sanaa. Brent ~$105, WTI ~$94 — dầu vẫn là biến số chính. Ethiopia–Eritrea: Reuters nói quân Ethiopia vào Zalambessa, chưa xác nhận giao tranh — theo dõi, chưa đủ lay market. Futures Mỹ mở lại 15:00 PT (18:00 ET). <b>Ngày mai mới là ngày lớn: CPI 8:30 AM ET + BAC/MS/BLK earnings trước giờ mở.</b>",
+    "time": "13/10 • giá after-hours thanh khoản mỏng • chỉ tham khảo"
+   }
+  ],
+  "note": "3 trạm đêm đang chạy mỗi đêm Mỹ: 🌆 17:37 after-hours + earnings tối · 🌏 20:37 châu Á mở cửa · 🌍 01:37 châu Âu + premarket sớm. Giá overnight/premarket thanh khoản mỏng — chỉ tham khảo, không phải giá khớp chắc."
+ },
+ "book2": {
+  "table_head": "<tr><th>Mã</th><th>Giá</th><th>Vùng</th><th>Trạng thái</th></tr>",
+  "rows": [
+   {
+    "ticker": "JPM",
+    "price_html": "$331.43 <span class=\"down\">−0.9%</span>",
+    "zone_html": "Vào $323–333 • Chốt $351→$363 • <span class=\"cut\">Cắt dưới $315.70</span>",
+    "status": "in",
+    "status_label": "🟢 TRONG VÙNG",
+    "is_new": true
+   },
+   {
+    "ticker": "MRVL",
+    "price_html": "~$263.3 <span class=\"down\">−2%</span> (premarket)",
+    "zone_html": "Vào $260–270 • Chốt $310→$338 • <span class=\"cut\">Cắt dưới $240</span> — test mép dưới vùng sau CPI nóng",
+    "status": "in",
+    "status_label": "🟢 TRONG VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "TMUS",
+    "price_html": "$153.73 <span class=\"up\">+1.2%</span>",
+    "zone_html": "Vùng đề xuất $155–165 • <span class=\"cut\">Cắt dưới $150</span>",
+    "status": "near",
+    "status_label": "🟡 KẸT GIỮA",
+    "is_new": false
+   },
+   {
+    "ticker": "HOOD",
+    "price_html": "$110.60",
+    "zone_html": "Vào $105–108 • <span class=\"cut\">đã cắt tuần 9/28–10/2</span>",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "AMZN",
+    "price_html": "$260.84 (sáng)",
+    "zone_html": "Vùng $246–250 • đang canh",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "MU",
+    "price_html": "~$939.8 <span class=\"down\">−1.4%</span> (premarket)",
+    "zone_html": "Vùng cũ $1,050–1,065 • dưới MA50 • sóng CXMT ngày 4 — Musk khen chiến lược giá trên X nhưng chưa cứu được giá — đứng ngoài",
+    "status": "cut",
+    "status_label": "🔴 DAO RƠI",
+    "is_new": false
+   },
+   {
+    "ticker": "SNDK",
+    "price_html": "$1,482 <span class=\"down\">−0.3%</span>",
+    "zone_html": "Vùng $1,700–1,740 • hồi từ −5% • châu Á sáng nay bắt đáy memory + ASML beat báo cáo (nâng outlook) — xem premarket",
+    "status": "cut",
+    "status_label": "🔴 DAO RƠI",
+    "is_new": false
+   }
+  ]
+ },
+ "book1": {
+  "table_head": "<tr><th>Mã</th><th>Giá</th><th>Vùng gom</th><th>Trạng thái</th></tr>",
+  "rows": [
+   {
+    "ticker": "NOC",
+    "price_html": "$481.38 <span class=\"down\">−0.8%</span>",
+    "zone_html": "Gom $480–505 • earnings 20/10",
+    "status": "in",
+    "status_label": "🟢 TRONG VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "KLAC",
+    "price_html": "$184.00",
+    "zone_html": "Gom $170–185",
+    "status": "in",
+    "status_label": "🟢 TRONG VÙNG",
+    "is_new": true
+   },
+   {
+    "ticker": "HWM",
+    "price_html": "$216.84",
+    "zone_html": "Gom $200–220",
+    "status": "in",
+    "status_label": "🟢 TRONG VÙNG",
+    "is_new": true
+   },
+   {
+    "ticker": "NVDA",
+    "price_html": "$228.52 <span class=\"up\">+1.0%</span>",
+    "zone_html": "Gom $205–218",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "AVGO",
+    "price_html": "$357.31 <span class=\"up\">+0.7%</span>",
+    "zone_html": "Gom $320–350",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "GOOGL",
+    "price_html": "$353.78",
+    "zone_html": "Gom $320–342",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "TSM",
+    "price_html": "$445.12",
+    "zone_html": "Gom $405–425 • earnings 15/10",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "VST",
+    "price_html": "$162.36",
+    "zone_html": "Gom $133–140",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "GD",
+    "price_html": "$332.42",
+    "zone_html": "Gom $310–330 • hết vùng, chờ quay lại",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "CRDO",
+    "price_html": "$198.31",
+    "zone_html": "Gom $165–190",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "RTX",
+    "price_html": "$183.02",
+    "zone_html": "Gom $170–180",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   }
+  ]
+ },
+ "book3": {
+  "table_head": "<tr><th>Mã</th><th>Giá</th><th>Vùng</th><th>Trạng thái</th></tr>",
+  "rows": [
+   {
+    "ticker": "RKLB",
+    "price_html": "$64.22 <span class=\"down\">−2.3%</span>",
+    "zone_html": "Bắt đáy $64–66 • Chốt $70–72→$75 • <span class=\"cut\">Cắt dưới $61.50</span>",
+    "status": "in",
+    "status_label": "🟢 TRONG TIER",
+    "is_new": true
+   },
+   {
+    "ticker": "ASTS",
+    "price_html": "$47.07 <span class=\"down\">−8.5%</span>",
+    "zone_html": "Vùng $50–55 • <span class=\"cut\">Cắt dưới $49</span> • 52wk low $46.23",
+    "status": "cut",
+    "status_label": "🔴 GÃY VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "SMMT",
+    "price_html": "$15.81 <span class=\"down\">−7.7%</span>",
+    "zone_html": "Vào $16.00–16.80 • <span class=\"cut\">Cắt dưới $15.48</span> • FDA 14/11",
+    "status": "near",
+    "status_label": "🟡 SÁT CẮT",
+    "is_new": false
+   },
+   {
+    "ticker": "IREN",
+    "price_html": "$34.80",
+    "zone_html": "Vị thế thật của Tom ~$35",
+    "status": "near",
+    "status_label": "🟡 DƯỚI NỀN",
+    "is_new": false
+   },
+   {
+    "ticker": "NFLX",
+    "price_html": "$70.46 <span class=\"down\">−0.2%</span>",
+    "zone_html": "Vùng quan tâm $65–70 • <span class=\"cut\">Cắt dưới $63</span> • earnings 20/10 (AMC) • Huber hạ 2 bậc xuống Sell PT $70 (13/10)",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   },
+   {
+    "ticker": "HIMS",
+    "price_html": "$30.00 (giữa phiên)",
+    "zone_html": "Vùng $27–28.50 • <span class=\"cut\">Cắt dưới $26</span> • earnings est 2/11",
+    "status": "out",
+    "status_label": "⚪ TRÊN VÙNG",
+    "is_new": false
+   }
+  ]
+ },
+ "big_news": {
+  "title_suffix": "14/10 — sáng, post-CPI",
+  "items": [
+   "<li><b>RTX:</b> Raytheon trúng <b>hợp đồng counter-drone $729M</b> (Mỹ, Qatar, Jordan) hôm 13/10; Barclays PT $223; earnings 20/10 (ước tính EPS $1.77). <b>MRVL:</b> thêm <b>TD Cowen nâng PT lên $350</b> (bên cạnh Stifel Buy PT $370 về chip Maia 300).</li>",
+   "<li><b>🔥 CPI tháng 9 ĐÃ RA (8:30 AM ET): headline 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%, từ 3.4% tháng 8), <b>core 2.6%</b> (nóng hơn kỳ vọng 2.5%, từ 2.4%) — nguồn WSJ/Barron's/Investopedia. Futures quay đầu đỏ: Dow −0.2%, S&amp;P −0.3%, Nasdaq-100 −0.6%; 10Y vọt <b>5.26–5.29%</b>; cược Fed <b>hike 28/10 lên 39%</b> (từ 22%, CME FedWatch). Chủ tịch Fed Kevin Warsh: không quyết định theo 1 tháng số liệu, nhưng quan chức tháng trước đã hike lần đầu sau 3 năm và đa số muốn hike thêm 1 lần năm nay.</li>",
+   "<li><b>🏦 Earnings trước mở cửa:</b> <b>BAC MISS</b> — EPS $0.91 vs kỳ vọng $1.10 (phạt $1.21B rửa tiền/sanctions trừ $0.17/cp), doanh thu $29.96B miss → <span class=\"down\">−4% premarket</span>. <b>MS BEAT</b> — EPS $3.03 vs ~$2.93, doanh thu $20.34B (+12%), equity trading +41%, wealth kỷ lục $9.07B, ROTCE 22.6% → <span class=\"up\">+0.65% premarket</span>. <b>BLK BEAT MẠNH</b> — adj EPS $15.93 vs ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T, inflow $205B → <span class=\"up\">+3–4% premarket ~$1,100</span>.</li>",
+   "<li><b>⭐ Futures sáng (5:41 AM ET, Reuters):</b> Dow E-mini <span class=\"up\">+234 (+0.45%)</span>, S&amp;P E-mini <span class=\"up\">+16.25 (+0.21%)</span>, Nasdaq-100 E-mini <span class=\"down\">−9 (−0.03%)</span> — AI/chip đứng lại sau selloff (NVDA +0.2%, Mag7 nhích đồng loạt, GOOGL +0.7%), dầu cao kéo tâm lý chờ <b>CPI 8:30 AM ET</b>.</li>",
+   "<li><b>🕣 CPI hôm nay 8:30 AM ET:</b> Reuters poll: headline tăng <b>3.6% y/y</b>, core +0.2% m/m — số nóng = cược hike FOMC 27–28/10 tăng (FedWatch ~22% trước khi công bố). NY Fed Williams đêm qua: Fed có thể phải hike <b>thêm 1 lần nữa trong năm nay</b>, 2027 thì không cần; Barkin + Beige Book chiều nay.</li>",
+   "<li><b>Earnings trước mở cửa hôm nay:</b> <b>BAC</b> (−1.5% premarket vì bị phạt $1.21B vụ rửa tiền/sanctions), <b>Morgan Stanley</b> (+0.7%), <b>BlackRock</b> (+4% sau beat), State Street.</li>",
+   "<li><b>Châu Âu mở:</b> Stoxx 600 +0.31%, ASML <span class=\"up\">+3%</span> (nâng guidance cả năm lần thứ 3 dù Q3 sales miss) — tech EU hồi theo châu Á. <b>Châu Á đóng:</b> Nikkei lấy lại 68,000; KOSPI bật mạnh; ASX đỏ; HSI/Shanghai phẳng. Số TQ: CPI 9/2026 chỉ 0.9% y/y (mềm), PPI 5.0% (nóng), xuất khẩu <b>+36.3% y/y</b> (vượt xa kỳ vọng).</li>",
+   "<li><b>Dầu nóng:</b> Brent <b>$106.50</b> (+0.8%), WTI <b>$95.30</b> (+1.2%) — Houthi tấn công tòa nhà Aramco + 2 tàu ở eo Hormuz. 10Y <b>5.2%</b> (−2bps); vàng $4,165 (−0.2%); BTC ~$83,300.</li>",
+   "<li><b>Memory/chip selloff ngày 3:</b> MU −3.6% premarket ($953.19, dưới MA50), SNDK/SKHY đỏ theo sóng CXMT — dù ASML nâng outlook cả năm.</li>",
+   "<li><b>⭐ ASML báo Q3 sáng nay:</b> doanh thu €11.70B, lãi ròng €4.96B, <b>nâng outlook cả năm</b>; nhu cầu AI quá lớn \"không đáp ứng đủ 2027–2028\" — ASML +1.8%, tech châu Âu +0.8%. Châu Âu mở: Stoxx 600 +0.32%, FTSE ~+0.2%, DAX ~+0.5%, CAC ~+0.5%. Tin tốt cho nhóm chip/memory Mỹ (MU, SNDK, NVDA, AMD, MRVL) trước giờ mở.</li>",
+   "<li><b>🕣 CPI 8:30 AM ET hôm nay:</b> dự báo headline +0.6% m/m (→ 3.6% y/y), core +0.2% m/m — số nóng = cược hike 28/10 tăng (FedWatch ~22% trước khi công bố). Beige Book 2 PM ET.</li>",
+   "<li><b>Earnings hôm nay:</b> BAC (bị phạt $1.21B vì rửa tiền/sanctions), Morgan Stanley, BlackRock trước mở cửa. ECB + BOE quyết định lãi suất <b>ngày mai 15/10</b>; TSM earnings thứ 5.</li>",
+   "<li><b>Dầu nóng sáng:</b> Brent &gt;$106 — 2 tàu bị tấn công ở eo Hormuz; Houthi vẫn dọa đáp trả Saudi/Mỹ. WTI ~$94–95.</li>",
+   "<li><b>Orsted −4.2%:</b> Mỹ re-evaluate giấy phép điện gió Rhode Island.</li>",
+   "<li><b>🌏 Châu Á sáng nay (14/10) bắt đáy memory:</b> KOSPI +1.3~+1.75% sau cú −5.4% vì CXMT; Samsung +3.3%, SK Hynix +2.8%, Nikkei +0.2~+0.5% — xem MU/SNDK/WDC Mỹ có hưởng ứng khi mở cửa không.</li>",
+   "<li><b>BAC bị phạt $1.21B:</b> vi phạm rửa tiền + sanctions (US regulators) — đúng sáng mai BAC báo earnings cùng MS, BLK, ASML + CPI.</li>",
+   "<li><b>Memory/chip selloff ngày 2:</b> dư âm CXMT (TQ) — MU −4% (đóng dưới MA50 $953.22), SNDK −0.3% (hồi từ −5% về $1,482), AMAT −6.5% dẫn đầu S&amp;P decliners, SOXX −0.2%, DRAM ETF −3.5%.</li>",
+   "<li><b>JPM trượt earnings:</b> GAAP EPS $5.57 vs kỳ vọng ~$5.93 — lần trượt đầu tiên ~3 năm; giá fade −0.9% về $331.43 (lọt vùng $323–333). Bank beat mà mờ: GS beat, C −5.5%, WFC trượt NII, UNH beat-and-raise nhưng mờ dần.</li>",
+   "<li><b>JNJ −5.7% ($248.6):</b> beat EPS nhưng MedTech trượt, nâng guidance, bóng ma litigation — cắt Dow ~96 điểm. CAT −3.5%: thủng MA200 lần đầu từ 6/2025.</li>",
+   "<li><b>ASTS bị hạ hạng:</b> Piper Sandler → Neutral, PT $98→$54 (lo SpaceX direct-to-cell sau deal spectrum Grain $8B); Deutsche Bank hôm qua nâng Buy PT $93 — analyst chia đôi. Clear Street: AST dẫn SpaceX ~6 tháng ở direct-to-cell.</li>",
+   "<li><b>MRVL:</b> Stifel reiterate Buy PT $370 (chip Maia 300 = chương trình \"auxiliary processing unit\" ramp năm sau). <b>TMUS:</b> Raymond James nâng PT lên $170.</li>",
+   "<li><b>BMBL +57%:</b> đồng ý bán cho Ithaca Holdings $6.05/cp (deal $1.3B). <b>FRMI +18%:</b> thỏa thuận tín dụng với AMD. FORM × Teradyne collab ($300M stock purchase); AMAT mở trung tâm R&amp;D $5B với Intel/TSMC/Samsung/Micron/SK hynix.</li>",
+   "<li><b>META +2.9% ($764.71):</b> model Muse Wonder ra tối 10/12. <b>AAPL +0.8%:</b> lấy lại buy point. <b>QCOM +1.4%:</b> dứt chuỗi 4 phiên đỏ.</li>",
+   "<li><b>Tin đồn xì hơi:</b> IREN pop hôm qua do tin đồn hợp đồng cloud với Anthropic chưa được xác nhận.</li>",
+   "<li><b>Năng lượng đỡ thị trường:</b> +1.6%, WTI vọt $94.67. GS nâng global stocks lên overweight (3-month view).</li>"
+  ]
+ },
+ "calendar": {
+  "rows": [
+   {
+    "day": "Thứ 4 · 14/10",
+    "html": "CPI <b>ĐÃ RA: 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%), core 2.6% — cược hike 28/10 lên 39% · BAC miss / MS beat / BLK beat mạnh · Barkin phát biểu + Beige Book 2 PM ET"
+   },
+   {
+    "day": "Thứ 5 · 15/10",
+    "html": "TSM earnings (pre-open) · PPI + retail sales + jobless claims · ECB + BOE quyết định lãi suất"
+   },
+   {
+    "day": "Thứ 2 · 20/10",
+    "html": "NFLX earnings (est, sau giờ đóng) · NOC Q3 (trước giờ mở)"
+   },
+   {
+    "day": "T2–T4 · 27–28/10",
+    "html": "FOMC"
+   },
+   {
+    "day": "Thứ 7 · 14/11",
+    "html": "SMMT FDA decision (binary)"
+   }
+  ]
+ }
+}
