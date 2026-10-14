@@ -76,7 +76,7 @@ li{margin-bottom:6px}
   <h1>📊 BẢNG MARKET LIVE</h1>
   <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
   <div style="margin-top:8px">
-    <span class="updated">🟢 Cập nhật lần cuối: 14/10/2026 ~04:37 PT (Quét sớm — futures nhích nhẹ trước CPI, radar dòng tiền có 5 mã)</span>
+    <span class="updated">🟢 Cập nhật lần cuối: 14/10/2026 ~05:37 PT (Watchlist 3-trong-1: CPI nóng 3.7% + bank earnings BAC miss/MS & BLK beat, radar COMBO META)</span>
     <button class="sharebtn" id="shareBtn" onclick="shareBoard()">📤 Chia sẻ</button>
     <button class="eyebtn" id="eyeBtn" onclick="toggleShareBtn()" title="Bật/tắt nút Chia sẻ">👁️</button>
   </div>
@@ -134,20 +134,24 @@ function checkPin(){
 </div>
 
 <div class="sec">
-  <h2>🌍 THỊ TRƯỜNG SÁNG NAY — FUTURES + CPI (14/10, 5:41 AM ET)</h2>
+  <h2>🌍 THỊ TRƯỜNG SÁNG NAY — CPI NÓNG + BANK EARNINGS (14/10, ~9:00 AM ET)</h2>
   <div class="grid">
-    <div class="card"><div class="lbl">Dow E-mini</div><div class="val up">+234 <span style="font-size:12px">+0.45%</span></div></div>
-    <div class="card"><div class="lbl">S&amp;P 500 E-mini</div><div class="val up">+16.25 <span style="font-size:12px">+0.21%</span></div></div>
-    <div class="card"><div class="lbl">Nasdaq-100 E-mini</div><div class="val flat">−9 <span style="font-size:12px">−0.03%</span></div></div>
-    <div class="card"><div class="lbl">Lợi suất 10Y</div><div class="val down">5.20% <span style="font-size:12px">−2bps</span></div></div>
+    <div class="card"><div class="lbl">Dow E-mini</div><div class="val down">−0.2% <span style="font-size:12px">post-CPI</span></div></div>
+    <div class="card"><div class="lbl">S&amp;P 500 E-mini</div><div class="val down">−0.3% <span style="font-size:12px">post-CPI</span></div></div>
+    <div class="card"><div class="lbl">Nasdaq-100 E-mini</div><div class="val down">−0.6% <span style="font-size:12px">post-CPI</span></div></div>
+    <div class="card"><div class="lbl">Lợi suất 10Y</div><div class="val down">5.26–5.29% <span style="font-size:12px">+~4bps</span></div></div>
     <div class="card"><div class="lbl">Vàng</div><div class="val down">$4,165 <span style="font-size:12px">−0.2%</span></div></div>
     <div class="card"><div class="lbl">WTI</div><div class="val up">$95.30 <span style="font-size:12px">+1.2%</span></div></div>
   </div>
-  <div class="note">Nguồn: Reuters (5:41 AM ET) + Investopedia, đã verify sáng 14/10/2026. Dow futures E-mini <span class="up">+234 pts (+0.45%)</span>, S&amp;P E-mini <span class="up">+16.25 (+0.21%)</span>, Nasdaq-100 E-mini <span class="down">−9 (−0.03%)</span> — AI/chip đứng lại sau selloff (NVDA +0.2%, Mag7 đồng loạt nhích, GOOGL +0.7%), dầu cao kéo tâm lý chờ <b>CPI 8:30 AM ET</b> (Reuters poll: headline tăng <b>3.6% y/y</b>, core +0.2% m/m; số nóng = cược hike FOMC 27–28/10 tăng, FedWatch ~22%). 🇪🇺 <b>Châu Âu mở cửa:</b> Stoxx 600 <span class="up">+0.31%</span> (636), FTSE +0.2%, DAX +0.5%, CAC +0.5% — nhờ <b>ASML nâng guidance cả năm lần thứ 3</b> (dù Q3 sales miss), ASML +3%, tech EU hồi. 🌏 <b>Châu Á đóng:</b> Nikkei lấy lại 68,000 (tech thở phào), KOSPI bật mạnh (tech rebound), ASX 200 đỏ (financials), Hang Seng/Shanghai phẳng. Số TQ: CPI 9/2026 chỉ 0.9% y/y (mềm hơn kỳ vọng 1%), PPI 5.0% (nóng hơn kỳ vọng 4.5%), xuất khẩu <span class="up">+36.3% y/y</span> (vượt xa kỳ vọng +25.5%), thặng dư $133.53B. Brent <b>$106.50</b> (+0.8%), WTI <b>$95.30</b> (+1.2%) — Houthi tấn công tòa nhà Aramco + 2 tàu ở eo Hormuz. 🗣️ NY Fed Williams đêm qua: Fed có thể phải hike <b>thêm 1 lần nữa trong năm nay</b>, 2027 thì không cần; Barkin + Beige Book chiều nay. BTC ~$83,300; DXY 102.23. Board tự tải lại mỗi 5 phút; dữ liệu mới được nạp 10 lần/ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm).</div>
+  <div class="note">Nguồn: WSJ / Barron's / Investopedia / Reuters, đã verify sáng 14/10/2026 (~9:00 AM ET). 🔥 <b>CPI tháng 9 ĐÃ RA (8:30 AM ET): headline 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%, từ 3.4% tháng 8), <b>core 2.6%</b> (nóng hơn kỳ vọng 2.5%, từ 2.4%) — futures quay đầu đỏ sau số liệu: Dow E-mini <span class="down">−0.2%</span>, S&amp;P E-mini <span class="down">−0.3%</span>, Nasdaq-100 E-mini <span class="down">−0.6%</span>; 10Y vọt <b>5.26–5.29%</b> (từ 5.19% trước khi công bố); cược Fed <b>hike ngày 28/10 nhảy lên 39%</b> (từ 22%, CME FedWatch). 🏦 <b>Bank earnings sáng nay:</b> <b>BAC MISS</b> (EPS $0.91 vs kỳ vọng $1.10 — gánh phạt <b>$1.21B</b> vụ rửa tiền/sanctions; doanh thu $29.96B cũng miss) → <span class="down">−4% premarket</span>; <b>MS BEAT</b> (EPS $3.03 vs ~$2.93, doanh thu $20.34B; equity trading +41%, wealth kỷ lục $9.07B) → <span class="up">+0.65% premarket</span>; <b>BLK BEAT MẠNH</b> (adj EPS $15.93 vs ~$14.3, doanh thu $7.75B +19%, AUM <b>$15.49T</b>, inflow $205B) → <span class="up">+3–4% premarket ~$1,100</span>. 🇪🇺 Châu Âu: Stoxx 600 +0.3% nhờ <b>ASML nâng guidance cả năm lần thứ 3</b> (Q3: doanh thu €11.70B, lãi ròng €4.96B). 🌏 Châu Á đóng: Nikkei lấy lại 68,000; KOSPI bật mạnh bắt đáy memory sau cú −5.5%. Vàng $4,165 (giữ số cũ, chưa verify mới); WTI ~$95 (giữ số cũ) — Brent &gt;$106 sau vụ Houthi tấn công Aramco + 2 tàu ở eo Hormuz. BTC ~$83,300. Board tự tải lại mỗi 5 phút; dữ liệu mới được nạp 10 lần/ngày.</div>
 </div>
 
 <div class="sec" id="sec-swing">
   <h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>
+  <div class="alert hot"><b>🔥 CPI THÁNG 9 NÓNG HƠN KỲ VỌNG (ra 8:30 AM ET):</b> headline <b>3.7% y/y</b> (kỳ vọng 3.6%, tháng 8 là 3.4%), core <b>2.6%</b> (kỳ vọng 2.5%, tháng 8 là 2.4%). Futures quay đầu đỏ: Dow −0.2%, S&amp;P −0.3%, Nasdaq-100 −0.6%; 10Y vọt 5.26–5.29%; cược Fed <b>hike 28/10 lên 39%</b> (từ 22%). Cả phiên hôm nay giao dịch theo CPI — tránh lệnh lớn, daytrade size nhỏ nhất.<br><span class="t">14/10 • WSJ/Barron's/Investopedia • số liệu chính thức BLS</span></div>
+  <div class="alert good"><b>🏦 BANK EARNINGS SÁNG NAY:</b> <b>BAC MISS</b> — EPS $0.91 vs kỳ vọng $1.10 (gánh phạt $1.21B rửa tiền/sanctions), doanh thu $29.96B miss → <span class="down">−4% premarket</span> (daytrade quan sát, không bắt dao). <b>MS BEAT</b> — EPS $3.03 vs ~$2.93, doanh thu $20.34B, equity trading +41%, wealth kỷ lục → <span class="up">+0.65% premarket</span>. <b>BLK BEAT MẠNH</b> — adj EPS $15.93 vs ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T, inflow $205B → <span class="up">+3–4% premarket ~$1,100</span> (không đuổi gap).<br><span class="t">14/10 • Reuters/Barron's/WSJ • premarket thanh khoản mỏng</span></div>
+  <div class="alert good"><b>MRVL ~$263.3 (−2% premarket)</b> — VẪN TRONG vùng Sổ 2 <b>$260–270</b> nhưng đang test mép dưới sau CPI nóng (đóng 13/10 $268.73, hôm qua từng thủng về $248.45 rồi hồi full). Chốt $310 → $338 / Cắt thủng $240. Mua của Tom vẫn chưa confirm fill.<br><span class="t">Sổ 2 swing • vùng Tom duyệt • không phải lệnh mua/bán</span></div>
+  <div class="alert hot"><b>MU ~$939.8 (−1.4% premarket)</b> <span class="badge b-new">NGÀY 4</span> — Sóng CXMT chưa dứt, vẫn dưới MA50. Tối qua Musk khen chiến lược giá của Micron trên X ("smart move") — tin tốt dài hạn nhưng chưa cứu được giá ngắn hạn. Vùng cũ $1,050–1,065 còn xa — đứng ngoài.<br><span class="t">Sổ 2 • Barron's/public.com • đứng ngoài</span></div>
   <div class="alert good"><b>🎯 RADAR DÒNG TIỀN LỚN — quét 04:00 (mới nhất):</b> 5 mã đạt ≥2 tín hiệu (1 <b>COMBO</b> tiền lớn + uptrend mạnh): <b>META $762.5</b> (options PUT-heavy + uptrend, mega-cap → theo dõi cho <b>Sổ 2/Sổ 1</b>, lưu ý flow phòng thủ); <b>EXEL $59.51</b>, <b>IOVA $14.5</b>, <b>PCRX $36.31</b>, <b>SNDX $13.95</b> (uptrend + catalyst nhị phân → chỉ <b>Sổ 3</b>). Hôm nay <b>không có kèo options đạt chuẩn</b> (cần earnings 3–14 ngày + flow bất thường + giá trên SMA20) → bảng kèo ghi "đứng ngoài".<br><span class="t">14/10 • radar quét 163 mã • tín hiệu kỹ thuật, không phải lệnh mua/bán</span></div>
   <div class="alert good"><b>JPM $331.43</b> — <span class="badge b-new">MỚI</span> LỌT VÙNG Sổ 2 <b>$323–333</b> (đóng cửa 13/10). Cả ngày trên vùng, fade vào cuối phiên sau tin trượt earnings. Q3: GAAP EPS $5.57 vs kỳ vọng ~$5.93 — lần trượt đầu tiên ~3 năm. Chốt $351 → $363 / Cắt dưới $315.70. Đây là vùng vào anh đã duyệt — quyết định là của anh.<br><span class="t">Sổ 2 swing • báo lần đầu 14:37 PT • vùng Tom duyệt • không phải lệnh mua/bán</span></div>
   <div class="alert good"><b>RKLB $64.22</b> — <span class="badge b-new">MỚI</span> HỒI VÀO tier bắt đáy Sổ 3 <b>$64–66</b> (low $63.08 dip dưới vùng, hồi đóng cửa ở trong). Cắt cứng $61.50 còn cách ~4%. Sổ 3 của anh — quyết định là của anh.<br><span class="t">Sổ 3 đầu cơ • báo lần đầu 14:37 PT • Tom không giữ vị thế • không phải lệnh mua/bán</span></div>
@@ -164,11 +168,11 @@ function checkPin(){
 </div>
 
 <div class="sec">
-  <h2>🔔 ĐÁNG CHÚ Ý NHẤT — 4 mã cần nhìn đầu tiên (sáng 14/10, premarket)</h2>
-  <div class="alert hot"><b>MU $953.19 (−3.6%) ❄️ memory ngày 3</b> — Premarket vẫn bị bán theo sóng CXMT (dù châu Á đã bắt đáy + ASML nâng outlook). Dưới MA50 ($953.22) — đứng ngoài, vùng cũ $1,050–1,065 còn xa.</div>
-  <div class="alert good"><b>MRVL $268.73 (+1.1%)</b> — Premarket nhích, giữ CHẮC TRONG vùng Sổ 2 <b>$260–270</b>. Chốt $310 → $338 / Cắt thủng $240. Mua của Tom vẫn chưa confirm fill.</div>
-  <div class="alert good"><b>JPM $331.43</b> — MỚI lọt vùng Sổ 2 <b>$323–333</b> sau cú miss earnings đầu tiên ~3 năm. Sáng nay thêm vòng bank earnings (BAC/MS/BLK/STT) sẽ định hướng ngành.</div>
-  <div class="alert good"><b>META $762.5</b> — Radar 04:00: COMBO tiền lớn + uptrend mạnh (flow options PUT-heavy = phe phòng thủ). Theo dõi Sổ 2/Sổ 1 — lưu ý dòng tiền đang cược giảm.</div>
+  <h2>🔔 ĐÁNG CHÚ Ý NHẤT — 4 mã cần nhìn đầu tiên (sáng 14/10, post-CPI)</h2>
+  <div class="alert hot"><b>🔥 CPI NÓNG 3.7% (core 2.6%)</b> — Vượt kỳ vọng cả 2 đầu. Futures đỏ (Nasdaq-100 −0.6%), 10Y vọt 5.26–5.29%, cược hike 28/10 lên 39%. Hôm nay là phiên của CPI — nhóm tăng trưởng/chip chịu áp lực, tránh lệnh lớn.</div>
+  <div class="alert good"><b>BLK ~$1,100 (+3–4% premarket)</b> — Beat mạnh nhất nhóm bank: adj EPS $15.93 (+38% YoY), AUM $15.49T, inflow $205B. Không đuổi gap sáng CPI nóng — chờ pullback.</div>
+  <div class="alert hot"><b>BAC −4% premarket</b> — Miss EPS ($0.91 vs $1.10) vì phạt $1.21B rửa tiền/sanctions. NII $16.45B vẫn đạt. Quan sát, không bắt dao khi tin xấu còn nóng.</div>
+  <div class="alert hot"><b>MU ~$939.8 (−1.4%) ❄️ memory ngày 4</b> — Sóng CXMT chưa dứt, dưới MA50; Musk khen chiến lược giá trên X nhưng chưa cứu được giá. <b>MRVL ~$263.3 (−2%)</b> vẫn TRONG vùng Sổ 2 $260–270 nhưng test mép dưới.</div>
   <div class="note">Strip này mỗi lượt quét tự viết lại — 3-4 setup đáng nhìn nhất của ngày, anh không cần lội hết bảng.</div>
 </div>
 
@@ -219,7 +223,11 @@ function checkPin(){
 </div>
 
 <div class="sec" id="sec-daytrade">
-  <h2>🔥 MÃ NÓNG HÔM NAY — mỗi mã một vị (13/10)</h2>
+  <h2>🔥 MÃ NÓNG HÔM NAY — mỗi mã một vị (14/10)</h2>
+  <div class="alert good"><b>BLK ~$1,100 (+3–4% premarket)</b> — Beat mạnh nhất nhóm bank sáng nay: adj EPS $15.93 vs kỳ vọng ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T (+15%), inflow $205B, margin 47.8%. Daytrade: chờ xác nhận trên vùng mở cửa, không đuổi gap giữa phiên CPI nóng.<br><span class="t">14/10 • Barron's/WSJ/Reuters • premarket thanh khoản mỏng</span></div>
+  <div class="alert hot"><b>BAC −4% premarket</b> — Miss kép: EPS $0.91 vs kỳ vọng $1.10 (gánh phạt $1.21B vì rửa tiền/sanctions, trừ $0.17/cp), doanh thu $29.96B vs ~$30.58B kỳ vọng; NII $16.45B vẫn đạt. Daytrade: quan sát, không bắt dao khi tin xấu còn nóng — kháng cự = giá đóng cửa hôm qua, hỗ trợ = đáy premarket.<br><span class="t">14/10 • Barron's/Reuters • premarket thanh khoản mỏng</span></div>
+  <div class="alert hot"><b>MU ~$939.8 (−1.4% premarket)</b> — Sóng CXMT ngày thứ 4, vẫn dưới MA50. Tối qua Musk khen chiến lược giá của Micron trên X — tin tốt dài hạn, chưa cứu được giá ngắn hạn. Daytrade: kháng cự $953 (MA50) / hỗ trợ đáy premarket ~$938.<br><span class="t">14/10 • Barron's/public.com • đứng ngoài ở vùng cũ $1,050–1,065</span></div>
+  <div class="alert"><b>MS +0.65% premarket</b> — Beat: EPS $3.03 vs ~$2.93, doanh thu $20.34B (+12%); equity trading +41% lên $5.8B, wealth kỷ lục $9.07B, ROTCE 22.6%. Daytrade: beat nhưng CPI nóng đè cả nhóm bank — chờ xác nhận, không FOMO.<br><span class="t">14/10 • Barron's/WSJ • premarket thanh khoản mỏng</span></div>
   <div class="alert hot"><b>AMAT ~$465 (−6.5%)</b> <svg class="spark" width="70" height="22" viewBox="0 0 70 22"><line x1="2" y1="11" x2="68" y2="11" stroke="#3a4a63" stroke-width="1"/><polyline points="4,11 66,16" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/><circle cx="66" cy="16" r="3" fill="#f87171"/></svg> — Tệ nhất Nasdaq 100 hôm nay. Nghịch lý: đúng ngày Investor Day công bố trung tâm R&amp;D <b>$5B EPIC Center</b> + chiến lược 2030 (thêm 2 điểm % thị phần, dịch vụ &gt;$12B/năm) mà giá vẫn bị bán — "sell the news" giữa sóng chip đỏ. Rơi 6 phiên liên tiếp, −14.2%/5 ngày.<br><span class="t">13/10 • SEMICON West sáng nay • earnings 12/11</span></div>
   <div class="alert hot"><b>WDC ~−6%</b> <svg class="spark" width="70" height="22" viewBox="0 0 70 22"><line x1="2" y1="11" x2="68" y2="11" stroke="#3a4a63" stroke-width="1"/><polyline points="4,11 66,16" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/><circle cx="66" cy="16" r="3" fill="#f87171"/></svg> — Dẫn đầu phe giảm S&amp;P 500/Nasdaq 100. Không tin xấu riêng — dính sóng CXMT chung ngành memory.<br><span class="t">13/10 • sóng ngành ngày 2</span></div>
   <div class="alert hot"><b>SNDK ~−4.3%</b> <svg class="spark" width="70" height="22" viewBox="0 0 70 22"><line x1="2" y1="11" x2="68" y2="11" stroke="#3a4a63" stroke-width="1"/><polyline points="4,11 66,14" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/><circle cx="66" cy="14" r="3" fill="#f87171"/></svg> — Ngày thứ 2 bị bán theo sóng CXMT. DRAM ETF −3.5%.<br><span class="t">13/10 • sóng ngành ngày 2</span></div>
@@ -239,7 +247,7 @@ function checkPin(){
 
 <div class="sec">
   <h2>🎰 KÈO OPTIONS TRONG NGÀY — Sổ 3, tiền mất được</h2>
-  <div class="alert"><b>Hôm nay (14/10): chưa có kèo nào đạt chuẩn.</b> Chuẩn radar: earnings trong 3–14 ngày + dòng tiền options bất thường + giá trên SMA20. Radar 04:00 đã quét xong — 5 mã đạt ≥2 tín hiệu nhưng không mã nào thỏa cả 3 chân cùng lúc. Không đạt thì bảng để trống — thà chán một hôm còn hơn cháy một tuần.<br><span class="t">Đang ngắm: TSM earnings 15/10, NFLX 20/10, NOC 20/10 — radar sáng nay sẽ soi flow tiếp (ASML đã báo cáo sáng nay, không tính nữa)</span></div>
+  <div class="alert"><b>Hôm nay (14/10, soát lại 05:37): chưa có kèo nào đạt chuẩn.</b> Chuẩn radar: earnings trong 3–14 ngày + dòng tiền options bất thường + giá trên SMA20. Radar 04:00 đã quét xong — 5 mã đạt ≥2 tín hiệu nhưng không mã nào thỏa cả 3 chân cùng lúc. Không đạt thì bảng để trống — thà chán một hôm còn hơn cháy một tuần.<br><span class="t">Đang ngắm: TSM earnings 15/10, NFLX 20/10, NOC 20/10 — radar sáng mai soi flow tiếp</span></div>
   <div class="note">Mỗi kèo (khi có) hiện 1 dòng: lệnh + strike + ngày hết hạn + giải thích tiếng Việt ai cũng hiểu. Ví dụ mẫu: <b>BUY CALL NVDA $345 — 31/12</b> = cược NVDA tăng, lãi khi NVDA trên $345 trước 31/12. Options có bẫy: mất giá theo thời gian, hết hạn về 0, IV sụp sau tin — chỉ dùng tiền Sổ 3.</div>
 </div>
 
@@ -259,11 +267,11 @@ function checkPin(){
   <table>
     <tr><th>Mã</th><th>Giá</th><th>Vùng</th><th>Trạng thái</th></tr>
     <tr><td><b>JPM</b></td><td>$331.43 <span class="down">−0.9%</span></td><td><span class="zone">Vào $323–333 • Chốt $351→$363 • <span class="cut">Cắt dưới $315.70</span></span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span> <span class="badge b-new">MỚI</span></td></tr>
-    <tr><td><b>MRVL</b></td><td>$268.73 <span class="up">+1.1%</span></td><td><span class="zone">Vào $260–270 • Chốt $310→$338 • <span class="cut">Cắt dưới $240</span></span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
+    <tr><td><b>MRVL</b></td><td>~$263.3 <span class="down">−2%</span> (premarket)</td><td><span class="zone">Vào $260–270 • Chốt $310→$338 • <span class="cut">Cắt dưới $240</span> — test mép dưới vùng sau CPI nóng</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
     <tr><td><b>TMUS</b></td><td>$153.73 <span class="up">+1.2%</span></td><td><span class="zone">Vùng đề xuất $155–165 • <span class="cut">Cắt dưới $150</span></span></td><td><span class="badge b-near">🟡 KẸT GIỮA</span></td></tr>
     <tr><td><b>HOOD</b></td><td>$110.60</td><td><span class="zone">Vào $105–108 • <span class="cut">đã cắt tuần 9/28–10/2</span></span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
     <tr><td><b>AMZN</b></td><td>$260.84 (sáng)</td><td><span class="zone">Vùng $246–250 • đang canh</span></td><td><span class="badge b-out">⚪ TRÊN VÙNG</span></td></tr>
-    <tr><td><b>MU</b></td><td>$953.19 <span class="down">−3.6%</span> (premarket)</td><td><span class="zone">Vùng cũ $1,050–1,065 • dưới MA50 ($953.22) • premarket Mỹ vẫn bị bán theo sóng CXMT ngày 3 dù châu Á bắt đáy memory + ASML nâng outlook — đứng ngoài</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
+    <tr><td><b>MU</b></td><td>~$939.8 <span class="down">−1.4%</span> (premarket)</td><td><span class="zone">Vùng cũ $1,050–1,065 • dưới MA50 • sóng CXMT ngày 4 — Musk khen chiến lược giá trên X nhưng chưa cứu được giá — đứng ngoài</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
     <tr><td><b>SNDK</b></td><td>$1,482 <span class="down">−0.3%</span></td><td><span class="zone">Vùng $1,700–1,740 • hồi từ −5% • châu Á sáng nay bắt đáy memory + ASML beat báo cáo (nâng outlook) — xem premarket</span></td><td><span class="badge b-cut">🔴 DAO RƠI</span></td></tr>
   </table>
 </div>
@@ -300,8 +308,10 @@ function checkPin(){
 </div>
 
 <div class="sec">
-  <h2>📰 TIN LỚN (14/10 — đêm + rạng sáng)</h2>
+  <h2>📰 TIN LỚN (14/10 — sáng, post-CPI)</h2>
   <ul>
+    <li><b>🔥 CPI tháng 9 ĐÃ RA (8:30 AM ET): headline 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%, từ 3.4% tháng 8), <b>core 2.6%</b> (nóng hơn kỳ vọng 2.5%, từ 2.4%) — nguồn WSJ/Barron's/Investopedia. Futures quay đầu đỏ: Dow −0.2%, S&amp;P −0.3%, Nasdaq-100 −0.6%; 10Y vọt <b>5.26–5.29%</b>; cược Fed <b>hike 28/10 lên 39%</b> (từ 22%, CME FedWatch). Chủ tịch Fed Kevin Warsh: không quyết định theo 1 tháng số liệu, nhưng quan chức tháng trước đã hike lần đầu sau 3 năm và đa số muốn hike thêm 1 lần năm nay.</li>
+    <li><b>🏦 Earnings trước mở cửa:</b> <b>BAC MISS</b> — EPS $0.91 vs kỳ vọng $1.10 (phạt $1.21B rửa tiền/sanctions trừ $0.17/cp), doanh thu $29.96B miss → <span class="down">−4% premarket</span>. <b>MS BEAT</b> — EPS $3.03 vs ~$2.93, doanh thu $20.34B (+12%), equity trading +41%, wealth kỷ lục $9.07B, ROTCE 22.6% → <span class="up">+0.65% premarket</span>. <b>BLK BEAT MẠNH</b> — adj EPS $15.93 vs ~$14.3 (+38% YoY), doanh thu $7.75B +19%, AUM $15.49T, inflow $205B → <span class="up">+3–4% premarket ~$1,100</span>.</li>
     <li><b>⭐ Futures sáng (5:41 AM ET, Reuters):</b> Dow E-mini <span class="up">+234 (+0.45%)</span>, S&amp;P E-mini <span class="up">+16.25 (+0.21%)</span>, Nasdaq-100 E-mini <span class="down">−9 (−0.03%)</span> — AI/chip đứng lại sau selloff (NVDA +0.2%, Mag7 nhích đồng loạt, GOOGL +0.7%), dầu cao kéo tâm lý chờ <b>CPI 8:30 AM ET</b>.</li>
     <li><b>🕣 CPI hôm nay 8:30 AM ET:</b> Reuters poll: headline tăng <b>3.6% y/y</b>, core +0.2% m/m — số nóng = cược hike FOMC 27–28/10 tăng (FedWatch ~22% trước khi công bố). NY Fed Williams đêm qua: Fed có thể phải hike <b>thêm 1 lần nữa trong năm nay</b>, 2027 thì không cần; Barkin + Beige Book chiều nay.</li>
     <li><b>Earnings trước mở cửa hôm nay:</b> <b>BAC</b> (−1.5% premarket vì bị phạt $1.21B vụ rửa tiền/sanctions), <b>Morgan Stanley</b> (+0.7%), <b>BlackRock</b> (+4% sau beat), State Street.</li>
@@ -329,7 +339,7 @@ function checkPin(){
 
 <div class="sec">
   <h2>📅 LỊCH TUẦN NÀY</h2>
-  <div class="cal"><div class="d">Thứ 4 · 14/10</div><div>CPI 8:30 AM ET (quyết định hướng tuần — nóng = hike bets tăng) · BAC, MS, BLK, STT earnings · Barkin phát biểu + Beige Book 2 PM ET</div></div>
+  <div class="cal"><div class="d">Thứ 4 · 14/10</div><div>CPI <b>ĐÃ RA: 3.7% y/y</b> (nóng hơn kỳ vọng 3.6%), core 2.6% — cược hike 28/10 lên 39% · BAC miss / MS beat / BLK beat mạnh · Barkin phát biểu + Beige Book 2 PM ET</div></div>
   <div class="cal"><div class="d">Thứ 5 · 15/10</div><div>TSM earnings (pre-open) · PPI + retail sales + jobless claims · ECB + BOE quyết định lãi suất</div></div>
   <div class="cal"><div class="d">Thứ 2 · 20/10</div><div>NFLX earnings (est, sau giờ đóng) · NOC Q3 (trước giờ mở)</div></div>
   <div class="cal"><div class="d">T2–T4 · 27–28/10</div><div>FOMC</div></div>
