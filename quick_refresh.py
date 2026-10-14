@@ -22,7 +22,9 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
 # ticker -> Yahoo symbol suffix (mặc định .us không cần cho Yahoo, dùng symbol trần)
 TICKER_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "refresh-tickers.txt")
 
-ZONES = {
+# zones.json là NGUỒN CHÂN LÝ DUY NHẤT (29 vùng đã duyệt, Tom cấp quyền tự động 14/10).
+# Dict cứng bên dưới chỉ là fallback khi file mất.
+ZONES_FALLBACK = {
     "AMZN": {"entry": (246, 250), "book": "Sổ 2"},
     "MRVL": {"entry": (260, 270), "reclaim": (275, 285), "cut": 240, "book": "Sổ 2",
              "pos": "2 shares @ ~$266–267"},
@@ -36,6 +38,22 @@ ZONES = {
     "KLAC": {"entry": (170, 185), "book": "Sổ 1"},
     "HWM":  {"entry": (200, 220), "book": "Sổ 1"},
 }
+
+ZONES = {}
+
+
+def load_zones(repo_dir):
+    """Đọc zones.json; rớt về fallback nếu file mất."""
+    global ZONES
+    zp = os.path.join(repo_dir, "zones.json")
+    try:
+        raw = json.load(open(zp, encoding="utf-8"))
+        ZONES = {t: v for t, v in raw.items() if not t.startswith("_")}
+        print(f"zones: {len(ZONES)} vùng từ zones.json", flush=True)
+    except Exception as e:
+        ZONES = dict(ZONES_FALLBACK)
+        print(f"zones: dùng fallback ({e})", file=sys.stderr, flush=True)
+    return ZONES
 
 # Còi báo động market — Tom lệnh 14/10: tự phát hiện market pump/dump, không chờ ai nhắc
 MARKET_ETFS = ["SPY", "QQQ", "DIA"]
@@ -252,6 +270,66 @@ def refresh_nhip(h, all_prices):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# DÒNG TIỀN SECTOR — Tom lệnh 14/10: "tự động gắn cron cho tất cả sectors và nguồn tiền đi đâu".
+# Mỗi lượt 5 phút lấy % của 6 ETF đại diện, xếp hạng lại BẢN ĐỒ SECTOR.
+SECTOR_CARDS = [
+    ("💾 Chip / Memory", "SOXX"),
+    ("🛢️ Năng lượng", "XLE"),
+    ("🏦 Ngân hàng", "XLF"),
+    ("💻 Big Tech", "XLK"),
+    ("🚀 Hàng không / Quốc phòng", "ITA"),
+    ("💊 Dược / Healthcare", "XLV"),
+]
+
+
+def refresh_sectors(h, sec_prices):
+    """Làm tươi 🗺️ BẢN ĐỒ SECTOR mỗi lượt — tiền đang chạy đi đâu."""
+    got = {etf: pc for etf, (px, pc) in sec_prices.items()
+           if isinstance(pc, (int, float))}
+    if len(got) < 4:
+        return h, "skip (thiếu ETF)"
+    date_s = now_pt().strftime("%d/%m")
+    h, c0 = re.subn(r"🗺️ BẢN ĐỒ SECTOR — tiền đang chạy đi đâu \(\d{2}/\d{2}\)",
+                    f"🗺️ BẢN ĐỒ SECTOR — tiền đang chạy đi đâu ({date_s})", h, count=1)
+    n = c0
+    for label, etf in SECTOR_CARDS:
+        pc = got.get(etf)
+        if pc is None:
+            continue
+        cls = "up" if pc > 0.3 else "down" if pc < -0.3 else "flat"
+        border = ("#2c7a4b" if pc > 0.3 else "#7a2c2c" if pc < -0.3 else "#444")
+        val = f"{etf} {fmt_pct(pc)}"
+        # thay nội dung val + class + màu viền của đúng card này
+        pat = (r'(<div class="card" style="border-color:#[0-9a-f]{6}"><div class="lbl">'
+               + re.escape(label) + r'</div><div class="val )(down|up|flat)(" style="font-size:14px">).*?(</div>)')
+        h2, c = re.subn(pat, r"\g<1>" + cls + r"\g<3>" + val + r"\g<4>", h, count=1, flags=re.S)
+        if c == 0:  # card không có border-color (flat)
+            pat2 = (r'(<div class="card"><div class="lbl">' + re.escape(label)
+                    + r'</div><div class="val )(down|up|flat)(" style="font-size:14px">).*?(</div>)')
+            h2, c = re.subn(pat2, r"\g<1>" + cls + r"\g<3>" + val + r"\g<4>", h, count=1, flags=re.S)
+            if c:
+                h2 = h2.replace(f'<div class="card"><div class="lbl">{label}</div>',
+                                f'<div class="card" style="border-color:{border}"><div class="lbl">{label}</div>', 1)
+        else:
+            h2 = re.sub(r'(<div class="card" style="border-color:)[0-9a-f#]{7}("><div class="lbl">'
+                        + re.escape(label) + r'</div>)',
+                        r"\g<1>" + border + r"\g<2>", h2, count=1)
+        h, n2 = h2, c
+        n += n2
+    # note dòng tiền dưới cùng
+    ranked = sorted(got.items(), key=lambda x: x[1], reverse=True)
+    best, best_pc = ranked[0]
+    worst, worst_pc = ranked[-1]
+    lbl_best = next((l for l, e in SECTOR_CARDS if e == best), best)
+    lbl_worst = next((l for l, e in SECTOR_CARDS if e == worst), worst)
+    note = (f"Tiền đang chạy: mạnh nhất {lbl_best} ({fmt_pct(best_pc)}), "
+            f"yếu nhất {lbl_worst} ({fmt_pct(worst_pc)}). "
+            f"Tự xếp hạng mỗi 5 phút từ ETF cùng ngày (Yahoo).")
+    h, c1 = re.subn(r'(🗺️ BẢN ĐỒ SECTOR — tiền đang chạy đi đâu \(\d{2}/\d{2}\).*?</div>\s*<div class="note">).*?(</div>)',
+                    r"\g<1>" + note + r"\g<2>", h, count=1, flags=re.S)
+    return h, f"{n} card, mạnh nhất {best} {fmt_pct(best_pc)}"
+
+
 def market_klaxon(h, repo_dir):
     """Tự phát hiện market pump/dump qua SPY/QQQ/DIA — dựng banner đầu bảng.
     Không chờ cron phân tích, không chờ Tom nhắc."""
@@ -320,13 +398,18 @@ def git_push(repo_dir, msg):
     run("git", "pull", "--rebase", "origin", "main")
     # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
     run("git", "add", "index.html", "zone_state.json", "market_state.json",
-        "quick_refresh.py", "refresh-tickers.txt")
+        "quick_refresh.py", "refresh-tickers.txt", "zones.json")
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
     run("git", "-c", "user.email=tom@local", "-c", "user.name=Tom", "commit", "-qm", msg)
     for i in range(3):
-        r = run("git", "push", "origin", "main")
+        try:
+            r = run("git", "push", "origin", "main")
+        except subprocess.TimeoutExpired:
+            print("  ! push timeout, thử lại", file=sys.stderr)
+            time.sleep(30)
+            continue
         if r.returncode == 0:
             return "pushed"
         time.sleep(30)
@@ -343,6 +426,8 @@ def main():
     if not in_window():
         print("ngoài giờ giao dịch — thoát im lặng")
         return 0
+
+    load_zones(a.repo_dir)
 
     tickers = discover_tickers(open(a.html, encoding="utf-8").read())
     print(f"quét thấy {len(tickers)} mã trên bảng", flush=True)
@@ -369,6 +454,15 @@ def main():
         nhip_extra = {}
     h, nn = refresh_nhip(h, {**prices, **nhip_extra})
     print(f"nhịp thị trường: {nn}", flush=True)
+
+    # BẢN ĐỒ SECTOR — dòng tiền đi đâu, mỗi lượt
+    try:
+        sec_prices = fetch_prices([etf for _, etf in SECTOR_CARDS])
+    except Exception as e:
+        print(f"  ! sector: {e}", file=sys.stderr)
+        sec_prices = {}
+    h, ns = refresh_sectors(h, sec_prices)
+    print(f"bản đồ sector: {ns}", flush=True)
 
     tag = "giá"
     if a.mode == "full":
