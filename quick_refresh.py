@@ -266,6 +266,47 @@ def badge_text(st):
             "BROKEN": "🔴 GÃY VÙNG", "ABOVE": "⚪ TRÊN VÙNG"}[st]
 
 
+DRAM_TICKERS = {"MU", "SNDK", "WDC", "STX"}
+
+
+def add_dram_signals(h, events):
+    """Tom lệnh 14/10: DRAM có dòng tín hiệu RIÊNG trong mục DRAM —
+    mã nào chạm vùng mua/cắt/chốt là báo ngay tại chỗ, không lẫn tín hiệu chung."""
+    dram_events = [e for e in events if e[0] in DRAM_TICKERS]
+    if not dram_events:
+        return h
+    ts = now_pt().strftime("%H:%M")
+    today = now_pt().strftime("%d/%m")
+    block = ""
+    for t, prev, st, px, pc in dram_events:
+        z = ZONES[t]
+        desc = {"IN": "mới vào vùng mua", "BELOW": "rớt khỏi vùng",
+                "BROKEN": "THỦNG CẮT", "ABOVE": "vượt lên trên vùng"}[st]
+        block += (f'  <div class="alert"><b>💾 {t} — {desc} {z["book"]}</b> — '
+                  f'{fmt_price(px)} ({fmt_pct(pc)}) lúc {ts} PT.<br>'
+                  f'<span class="t">Tín hiệu DRAM • {today} • giá intraday</span></div>\n')
+    anchor = 'id="sec-dram"'
+    i = h.find(anchor)
+    if i == -1:
+        return h
+    j = h.find("</h2>", i) + len("</h2>")
+    # xóa tín hiệu DRAM cũ trong mục (mỗi mã 1 dòng mới nhất)
+    k = h.find("</table>", j)
+    sec = h[j:k]
+    seen = set()
+
+    def keep_first(m):
+        t = m.group(1)
+        if t in seen:
+            return ""
+        seen.add(t)
+        return m.group(0)
+
+    sec = re.sub(r'<div class="alert"><b>💾 ([A-Z]{2,5})\b.*?</div>',
+                 keep_first, block + sec, flags=re.S)
+    return h[:j] + "\n" + sec + h[k:]
+
+
 def add_signals(h, events):
     if not events:
         return h
@@ -550,6 +591,7 @@ def main():
         h, events = update_zone_badges(h, prices, state_path)
         if events:
             h = add_signals(h, events)
+            h = add_dram_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
 

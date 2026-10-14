@@ -48,6 +48,22 @@ def main():
         r'(<h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>)\s*((?:<div class="alert">.*?</div>\s*)+)',
         sig_old, h, flags=re.S)
 
+    # 1b. Xóa tín hiệu DRAM cũ (không phải hôm nay) trong mục DRAM
+    def dram_sig_old(m):
+        block = m.group(0)
+        keep = re.findall(r'<div class="alert">(.*?)</div>', block, flags=re.S)
+        kept = [a for a in keep if today in a]
+        if kept:
+            return (m.group(1) + "\n" +
+                    "".join(f'<div class="alert">{a}</div>\n' for a in kept))
+        if keep:
+            actions.append(f"xóa {len(keep)} tín hiệu DRAM cũ")
+        return m.group(1) + "\n"
+
+    h = re.sub(
+        r'(id="sec-dram">\s*<h2>.*?</h2>)\s*((?:<div class="alert">.*?</div>\s*)+)',
+        dram_sig_old, h, flags=re.S)
+
     # 2. Archive mục hunt cũ hơn 3 ngày: <h2>🎯 HUNT ... (DD/MM) ...
     def hunt_old(m):
         d, mo = int(m.group(1)), int(m.group(2))
