@@ -268,7 +268,9 @@ def git_push(repo_dir, msg):
     def run(*a):
         return subprocess.run(a, cwd=repo_dir, capture_output=True, text=True, timeout=120)
     run("git", "pull", "--rebase", "origin", "main")
-    run("git", "add", "-A")
+    # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
+    run("git", "add", "index.html", "zone_state.json", "market_state.json",
+        "quick_refresh.py", "refresh-tickers.txt")
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
@@ -277,7 +279,7 @@ def git_push(repo_dir, msg):
         r = run("git", "push", "origin", "main")
         if r.returncode == 0:
             return "pushed"
-        time.sleep(120)
+        time.sleep(30)
     return "push-failed"
 
 
