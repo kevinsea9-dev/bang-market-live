@@ -37,6 +37,11 @@ ZONES = {
     "HWM":  {"entry": (200, 220), "book": "Sổ 1"},
 }
 
+# Còi báo động market — Tom lệnh 14/10: tự phát hiện market pump/dump, không chờ ai nhắc
+MARKET_ETFS = ["SPY", "QQQ", "DIA"]
+MKT_DUMP_AT = -1.5   # S&P 500 <= -1.5% trong ngày -> banner đỏ
+MKT_PUMP_AT = 1.5    # S&P 500 >= +1.5% trong ngày -> banner xanh
+
 BADGES = {
     "IN":     '<span class="badge b-in">🟢 TRONG VÙNG</span>',
     "BELOW":  '<span class="badge b-near">🟡 DƯỚI VÙNG</span>',
@@ -197,6 +202,59 @@ def bump_badge(h, tag):
     return h2 if c else h
 
 
+def market_klaxon(h, repo_dir):
+    """Tự phát hiện market pump/dump qua SPY/QQQ/DIA — dựng banner đầu bảng.
+    Không chờ cron phân tích, không chờ Tom nhắc."""
+    try:
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            mkt = dict(ex.map(fetch_one, MARKET_ETFS))
+    except Exception as e:
+        print(f"  ! market fetch: {e}", file=sys.stderr)
+        return h, None
+    mkt = {k: v for k, v in mkt.items() if v}
+    if "SPY" not in mkt:
+        return h, None
+    spy_px, spy_pc = mkt["SPY"]
+    qqq_pc = mkt.get("QQQ", (0, 0))[1]
+    dia_pc = mkt.get("DIA", (0, 0))[1]
+
+    state_path = os.path.join(repo_dir, "market_state.json")
+    try:
+        prev = json.load(open(state_path)) if os.path.exists(state_path) else {}
+    except Exception:
+        prev = {}
+    prev_regime = prev.get("regime")
+
+    if spy_pc <= MKT_DUMP_AT:
+        regime = "DUMP"
+    elif spy_pc >= MKT_PUMP_AT:
+        regime = "PUMP"
+    else:
+        regime = None
+
+    # xóa banner cũ (nếu có)
+    h = re.sub(r'  <div class="alert mkt" id="mkt-klaxon">.*?</div>\n', "", h, flags=re.S)
+
+    banner = None
+    if regime:
+        last_pc = prev.get("pc")
+        # chỉ dựng/cập nhật khi mới xuất hiện hoặc biến động thêm ±0.5%
+        if prev_regime != regime or (isinstance(last_pc, (int, float)) and abs(spy_pc - last_pc) >= 0.5):
+            icon = "🔴" if regime == "DUMP" else "🟢"
+            word = "DUMP" if regime == "DUMP" else "PUMP"
+            cls = "hot" if regime == "DUMP" else "good"
+            banner = (f'  <div class="alert mkt {cls}" id="mkt-klaxon"><b>{icon} MARKET {word} '
+                      f"— S&P 500 ({fmt_pct(spy_pc)}), Nasdaq ({fmt_pct(qqq_pc)}), Dow ({fmt_pct(dia_pc)})</b> — "
+                      f"tự phát hiện lúc {now_pt().strftime('%H:%M')} PT. Vùng mua có thể thành dao rơi — "
+                      f"chỉ canh cắt cứng.<br>"
+                      f'<span class="t">Còi báo động tự động • giá intraday</span></div>\n')
+            # chèn ngay sau dòng badge cập nhật
+            h = re.sub(r'(<span class="updated">.*?</span>)', r"\1\n" + banner, h, count=1)
+    json.dump({"regime": regime, "pc": round(spy_pc, 2),
+               "time": now_pt().isoformat()}, open(state_path, "w"))
+    return h, regime
+
+
 def validate(h):
     for t in ["div", "table", "tr", "script"]:
         if len(re.findall(f"<{t}[ >]", h)) != h.count(f"</{t}>"):
@@ -255,6 +313,12 @@ def main():
             h = add_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
+
+    # còi báo động market — chạy mọi mode, không chờ ai nhắc
+    h, regime = market_klaxon(h, a.repo_dir)
+    if regime:
+        tag = "còi market"
+        print(f"market klaxon: {regime}", flush=True)
 
     h = bump_badge(h, tag)
     ok, why = validate(h)
