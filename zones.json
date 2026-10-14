@@ -1,1 +1,401 @@
-{"AMD":{"book":"Sổ 2","cut":520,"entry":[535,560],"targets":[613,658]},"AMZN":{"book":"Sổ 2","entry":[246,250]},"ASTS":{"book":"Sổ 3","cut":49,"entry":[50,55],"targets":[65,75]},"BIIB":{"book":"Sổ 2","cut":215.73,"entry":[218,224],"targets":[238.24,300]},"CEG":{"book":"Sổ 3","cut":265,"entry":[270,280],"targets":[302,310]},"COHR":{"book":"Sổ 3","cut":228,"entry":[240,255],"targets":[294,303]},"CRDO":{"book":"Sổ 2","cut":178,"entry":[185,195],"targets":[220,240]},"ENTG":{"book":"Sổ 2","cut":140,"entry":[145,152],"targets":[167,175]},"FIGS":{"book":"Sổ 2","cut":17.48,"entry":[17.5,18],"targets":[19.18,19.18]},"FRSH":{"book":"Sổ 2","cut":12.7,"entry":[13.6,14],"targets":[14.37,14.79]},"GEV":{"book":"Sổ 3","cut":890,"entry":[900,935],"targets":[967,1050]},"HIMS":{"book":"Sổ 3","cut":26,"entry":[27,28.5],"targets":[32.43,33.67]},"HWM":{"book":"Sổ 1","entry":[200,220]},"IOVA":{"book":"Sổ 2","cut":11.17,"entry":[12.3,13],"targets":[15.11,18]},"JPM":{"book":"Sổ 2","cut":315.7,"entry":[323,333],"targets":[351,363]},"KLAC":{"book":"Sổ 1","entry":[170,185]},"MELI":{"book":"Sổ 2","cut":1695,"entry":[1860,1890],"targets":[2240,2300]},"MRVL":{"book":"Sổ 2","cut":240,"entry":[260,270],"pos":"2 shares @ ~$266–267","reclaim":[275,285]},"NFLX":{"book":"Sổ 3","cut":63,"entry":[65,70],"targets":[80,94.7]},"NOC":{"book":"Sổ 1","entry":[480,505]},"PCVX":{"book":"Sổ 3","cut":56.48,"entry":[60,63],"targets":[73.82,90.75]},"RCL":{"book":"Sổ 2","cut":257,"entry":[275,282],"targets":[330,357]},"RKLB":{"book":"Sổ 3","cut":61.5,"entry":[64,66],"reclaim":[70,72]},"SNDK":{"book":"Sổ 2","cut":1650,"entry":[1700,1740]},"TMUS":{"book":"Sổ 2","cut":150,"entry":[155,165],"targets":[185,200]},"VLO":{"book":"Sổ 2","cut":420,"entry":[430,440],"note":"hoặc breakout đóng cửa >$465","targets":[480,500]},"VSAT":{"book":"Sổ 3","cut":64,"entry":[66,70],"targets":[80,93]},"VST":{"book":"Sổ 3","cut":140,"entry":[144,150],"targets":[163,169]},"ZS":{"book":"Sổ 2","cut":205,"entry":[215,222],"targets":[235,250]},"_note":"NGUỒN CHÂN LÝ DUY NHẤT cho mọi vùng đã duyệt — script 5 phút đọc file này để phát hiện tín hiệu vùng. Tom cấp quyền tự động 14/10/2026: mã nào vào vùng rẻ/đẹp → Iggy tự thêm vùng vào đây, không cần hỏi."}
+{
+ "AMD": {
+  "book": "Sổ 2",
+  "cut": 520,
+  "entry": [
+   535,
+   560
+  ],
+  "targets": [
+   613,
+   658
+  ]
+ },
+ "AMZN": {
+  "book": "Sổ 2",
+  "entry": [
+   246,
+   250
+  ]
+ },
+ "ASTS": {
+  "book": "Sổ 3",
+  "cut": 49,
+  "entry": [
+   50,
+   55
+  ],
+  "targets": [
+   65,
+   75
+  ]
+ },
+ "BIIB": {
+  "book": "Sổ 2",
+  "cut": 215.73,
+  "entry": [
+   218,
+   224
+  ],
+  "targets": [
+   238.24,
+   300
+  ]
+ },
+ "CEG": {
+  "book": "Sổ 3",
+  "cut": 265,
+  "entry": [
+   270,
+   280
+  ],
+  "targets": [
+   302,
+   310
+  ]
+ },
+ "COHR": {
+  "book": "Sổ 3",
+  "cut": 228,
+  "entry": [
+   240,
+   255
+  ],
+  "targets": [
+   294,
+   303
+  ]
+ },
+ "CRDO": {
+  "book": "Sổ 2",
+  "cut": 178,
+  "entry": [
+   185,
+   195
+  ],
+  "targets": [
+   220,
+   240
+  ]
+ },
+ "ENTG": {
+  "book": "Sổ 2",
+  "cut": 140,
+  "entry": [
+   145,
+   152
+  ],
+  "targets": [
+   167,
+   175
+  ]
+ },
+ "FIGS": {
+  "book": "Sổ 2",
+  "cut": 17.48,
+  "entry": [
+   17.5,
+   18
+  ],
+  "targets": [
+   19.18,
+   19.18
+  ]
+ },
+ "FRSH": {
+  "book": "Sổ 2",
+  "cut": 12.7,
+  "entry": [
+   13.6,
+   14
+  ],
+  "targets": [
+   14.37,
+   14.79
+  ]
+ },
+ "GEV": {
+  "book": "Sổ 3",
+  "cut": 890,
+  "entry": [
+   900,
+   935
+  ],
+  "targets": [
+   967,
+   1050
+  ]
+ },
+ "HIMS": {
+  "book": "Sổ 3",
+  "cut": 26,
+  "entry": [
+   27,
+   28.5
+  ],
+  "targets": [
+   32.43,
+   33.67
+  ]
+ },
+ "HWM": {
+  "book": "Sổ 1",
+  "entry": [
+   200,
+   220
+  ]
+ },
+ "IOVA": {
+  "book": "Sổ 2",
+  "cut": 11.17,
+  "entry": [
+   12.3,
+   13
+  ],
+  "targets": [
+   15.11,
+   18
+  ]
+ },
+ "JPM": {
+  "book": "Sổ 2",
+  "cut": 315.7,
+  "entry": [
+   323,
+   333
+  ],
+  "targets": [
+   351,
+   363
+  ]
+ },
+ "KLAC": {
+  "book": "Sổ 1",
+  "entry": [
+   170,
+   185
+  ]
+ },
+ "MELI": {
+  "book": "Sổ 2",
+  "cut": 1695,
+  "entry": [
+   1860,
+   1890
+  ],
+  "targets": [
+   2240,
+   2300
+  ]
+ },
+ "MRVL": {
+  "book": "Sổ 2",
+  "cut": 240,
+  "entry": [
+   260,
+   270
+  ],
+  "pos": "2 shares @ ~$266–267",
+  "reclaim": [
+   275,
+   285
+  ]
+ },
+ "NFLX": {
+  "book": "Sổ 3",
+  "cut": 63,
+  "entry": [
+   65,
+   70
+  ],
+  "targets": [
+   80,
+   94.7
+  ]
+ },
+ "NOC": {
+  "book": "Sổ 1",
+  "entry": [
+   480,
+   505
+  ]
+ },
+ "PCVX": {
+  "book": "Sổ 3",
+  "cut": 56.48,
+  "entry": [
+   60,
+   63
+  ],
+  "targets": [
+   73.82,
+   90.75
+  ]
+ },
+ "RCL": {
+  "book": "Sổ 2",
+  "cut": 257,
+  "entry": [
+   275,
+   282
+  ],
+  "targets": [
+   330,
+   357
+  ]
+ },
+ "RKLB": {
+  "book": "Sổ 3",
+  "cut": 61.5,
+  "entry": [
+   64,
+   66
+  ],
+  "reclaim": [
+   70,
+   72
+  ]
+ },
+ "SNDK": {
+  "book": "Sổ 2",
+  "cut": 1650,
+  "entry": [
+   1700,
+   1740
+  ]
+ },
+ "TMUS": {
+  "book": "Sổ 2",
+  "cut": 150,
+  "entry": [
+   155,
+   165
+  ],
+  "targets": [
+   185,
+   200
+  ]
+ },
+ "VLO": {
+  "book": "Sổ 2",
+  "cut": 420,
+  "entry": [
+   430,
+   440
+  ],
+  "note": "hoặc breakout đóng cửa >$465",
+  "targets": [
+   480,
+   500
+  ]
+ },
+ "VSAT": {
+  "book": "Sổ 3",
+  "cut": 64,
+  "entry": [
+   66,
+   70
+  ],
+  "targets": [
+   80,
+   93
+  ]
+ },
+ "VST": {
+  "book": "Sổ 3",
+  "cut": 140,
+  "entry": [
+   144,
+   150
+  ],
+  "targets": [
+   163,
+   169
+  ]
+ },
+ "ZS": {
+  "book": "Sổ 2",
+  "cut": 205,
+  "entry": [
+   215,
+   222
+  ],
+  "targets": [
+   235,
+   250
+  ]
+ },
+ "_note": "NGUỒN CHÂN LÝ DUY NHẤT cho mọi vùng đã duyệt — script 5 phút đọc file này để phát hiện tín hiệu vùng. Tom cấp quyền tự động 14/10/2026: mã nào vào vùng rẻ/đẹp → Iggy tự thêm vùng vào đây, không cần hỏi.",
+ "VOO": {
+  "entry": [
+   680,
+   700
+  ],
+  "cut": 665,
+  "targets": [
+   718,
+   750
+  ],
+  "book": "Sổ 1"
+ },
+ "QQQ": {
+  "entry": [
+   700,
+   725
+  ],
+  "cut": 680,
+  "targets": [
+   763,
+   800
+  ],
+  "book": "Sổ 1"
+ },
+ "SMH": {
+  "entry": [
+   535,
+   560
+  ],
+  "cut": 510,
+  "targets": [
+   620,
+   672
+  ],
+  "book": "Sổ 1"
+ },
+ "SCHD": {
+  "entry": [
+   32.5,
+   33.5
+  ],
+  "cut": 31.5,
+  "targets": [
+   35,
+   37
+  ],
+  "book": "Sổ 1"
+ },
+ "XLE": {
+  "entry": [
+   63,
+   65
+  ],
+  "cut": 60,
+  "targets": [
+   70,
+   75
+  ],
+  "book": "Sổ 1"
+ },
+ "IBIT": {
+  "entry": [
+   43,
+   45
+  ],
+  "cut": 40,
+  "targets": [
+   55,
+   66
+  ],
+  "book": "Sổ 1"
+ }
+}
