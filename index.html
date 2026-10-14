@@ -14,6 +14,12 @@ h1{font-size:23px;letter-spacing:1px}
 .updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:13px;padding:5px 10px;border-radius:20px}
 .sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
 .eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
+.tabbar{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer}
+.tab small{display:block;font-weight:400;font-size:12px;color:#bccbe4;margin-top:2px}
+.tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
+.tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
+.tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
 .card .lbl{font-size:13px;color:#bccbe4}
@@ -120,6 +126,14 @@ function checkPin(){
 })();
 </script>
 
+<div class="tabbar">
+  <button class="tab dt" onclick="goSec('sec-daytrade')">⚡ DAYTRADE<small>mã nóng • kèo options hôm nay</small></button>
+  <button class="tab sw" onclick="goSec('sec-swing')">🌊 SWING<small>tín hiệu vùng • hunt momentum</small></button>
+  <button class="tab lt" onclick="goSec('sec-longterm')">🌱 DÀI HẠN<small>vùng gom Sổ 1</small></button>
+</div>
+<script>
+function goSec(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
 <div class="sec">
   <h2>🌍 THỊ TRƯỜNG NGAY BÂY GIỜ (đóng cửa 13/10)</h2>
   <div class="grid">
@@ -133,7 +147,7 @@ function checkPin(){
   <div class="note">Nguồn: đóng cửa 13/10/2026, đã verify (Investor's Business Daily, Investopedia, Reuters). Russell 2000: 2,783.6 (−0.39%) • VIX 15.28 • BTC ~$83,171. Châu Á sáng 14/10 (đang giao dịch): KOSPI +1.3~+1.75% (Samsung +3.3%, SK Hynix +2.8% — bắt đáy sau cú CXMT), Nikkei +0.2~+0.5%, HSI −0.1%, Shanghai +0.1%. Futures Mỹ (thanh khoản mỏng): Dow nhích • S&amp;P +0.1% • Nasdaq-100 +0.25% — ngần ngừ trước CPI 8:30 AM ET. Board tự tải lại mỗi 5 phút; dữ liệu mới được nạp 10 lần/ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm).</div>
 </div>
 
-<div class="sec">
+<div class="sec" id="sec-swing">
   <h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>
   <div class="alert good"><b>JPM $331.43</b> — <span class="badge b-new">MỚI</span> LỌT VÙNG Sổ 2 <b>$323–333</b> (đóng cửa 13/10). Cả ngày trên vùng, fade vào cuối phiên sau tin trượt earnings. Q3: GAAP EPS $5.57 vs kỳ vọng ~$5.93 — lần trượt đầu tiên ~3 năm. Chốt $351 → $363 / Cắt dưới $315.70. Đây là vùng vào anh đã duyệt — quyết định là của anh.<br><span class="t">Sổ 2 swing • báo lần đầu 14:37 PT • vùng Tom duyệt • không phải lệnh mua/bán</span></div>
   <div class="alert good"><b>RKLB $64.22</b> — <span class="badge b-new">MỚI</span> HỒI VÀO tier bắt đáy Sổ 3 <b>$64–66</b> (low $63.08 dip dưới vùng, hồi đóng cửa ở trong). Cắt cứng $61.50 còn cách ~4%. Sổ 3 của anh — quyết định là của anh.<br><span class="t">Sổ 3 đầu cơ • báo lần đầu 14:37 PT • Tom không giữ vị thế • không phải lệnh mua/bán</span></div>
@@ -204,7 +218,7 @@ function checkPin(){
   <div class="note">Tự xếp hạng mỗi lượt quét từ % biến động đã verify cùng ngày. Phe bán thắng ở chip/memory (sóng CXMT ngày 2); phe mua co cụm ở vài tên lớn.</div>
 </div>
 
-<div class="sec">
+<div class="sec" id="sec-daytrade">
   <h2>🔥 MÃ NÓNG HÔM NAY — mỗi mã một vị (13/10)</h2>
   <div class="alert hot"><b>AMAT ~$465 (−6.5%)</b> <svg class="spark" width="70" height="22" viewBox="0 0 70 22"><line x1="2" y1="11" x2="68" y2="11" stroke="#3a4a63" stroke-width="1"/><polyline points="4,11 66,16" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/><circle cx="66" cy="16" r="3" fill="#f87171"/></svg> — Tệ nhất Nasdaq 100 hôm nay. Nghịch lý: đúng ngày Investor Day công bố trung tâm R&amp;D <b>$5B EPIC Center</b> + chiến lược 2030 (thêm 2 điểm % thị phần, dịch vụ &gt;$12B/năm) mà giá vẫn bị bán — "sell the news" giữa sóng chip đỏ. Rơi 6 phiên liên tiếp, −14.2%/5 ngày.<br><span class="t">13/10 • SEMICON West sáng nay • earnings 12/11</span></div>
   <div class="alert hot"><b>WDC ~−6%</b> <svg class="spark" width="70" height="22" viewBox="0 0 70 22"><line x1="2" y1="11" x2="68" y2="11" stroke="#3a4a63" stroke-width="1"/><polyline points="4,11 66,16" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"/><circle cx="66" cy="16" r="3" fill="#f87171"/></svg> — Dẫn đầu phe giảm S&amp;P 500/Nasdaq 100. Không tin xấu riêng — dính sóng CXMT chung ngành memory.<br><span class="t">13/10 • sóng ngành ngày 2</span></div>
@@ -253,7 +267,7 @@ function checkPin(){
   </table>
 </div>
 
-<div class="sec">
+<div class="sec" id="sec-longterm">
   <h2>📘 SỔ 1 — DÀI HẠN (70%)</h2>
   <table>
     <tr><th>Mã</th><th>Giá</th><th>Vùng gom</th><th>Trạng thái</th></tr>
