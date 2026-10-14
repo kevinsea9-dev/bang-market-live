@@ -532,10 +532,6 @@ def main():
 
     # tự dọn mã trùng / chết — cho đúng Live
     h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
-    # mỗi mã một vị trong mục tín hiệu vùng + mã nóng (giữ cái mới nhất)
-    h, c1 = dedup_section_alerts(h, "🚨 TÍN HIỆU VÙNG")
-    h, c2 = dedup_section_alerts(h, "🔥 MÃ NÓNG")
-    cleaned += c1 + c2
     if cleaned:
         print(f"tự dọn: {', '.join(cleaned)}", flush=True)
 
@@ -556,6 +552,13 @@ def main():
             h = add_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
+
+    # mỗi mã một vị trong mục tín hiệu vùng + mã nóng (giữ cái mới nhất) —
+    # chạy SAU khi chèn tín hiệu mới để trùng trong cùng lượt cũng biến mất
+    h, c1 = dedup_section_alerts(h, "🚨 TÍN HIỆU VÙNG")
+    h, c2 = dedup_section_alerts(h, "🔥 MÃ NÓNG")
+    if c1 or c2:
+        print(f"tự dọn trùng: {', '.join(c1 + c2)}", flush=True)
 
     if a.mode == "close":
         h = close_headers(h)
