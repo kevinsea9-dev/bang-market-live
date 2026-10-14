@@ -453,14 +453,24 @@ def git_push(repo_dir, msg):
     return "push-failed"
 
 
+def close_headers(h):
+    """Chốt phiên 13:05 — đổi header intraday thành đóng cửa cho đúng ngày."""
+    today = now_pt().strftime("%d/%m")
+    h = h.replace("GIỮA PHIÊN", "ĐÓNG CỬA")
+    h = h.replace("giữa phiên", "chốt phiên")
+    h = re.sub(r"\(14/10 — giữa phiên sáng\)", f"({today} — chốt phiên)", h)
+    h = re.sub(r"\(\d{2}/\d{2} — giữa phiên sáng\)", f"({today} — chốt phiên)", h)
+    return h
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--html", required=True)
     ap.add_argument("--repo-dir", required=True)
-    ap.add_argument("--mode", default="price", choices=["price", "full"])
+    ap.add_argument("--mode", default="price", choices=["price", "full", "close"])
     a = ap.parse_args()
 
-    if not in_window():
+    if a.mode != "close" and not in_window():
         print("ngoài giờ giao dịch — thoát im lặng")
         return 0
 
@@ -507,13 +517,18 @@ def main():
     print(f"bản đồ sector: {ns}", flush=True)
 
     tag = "giá"
-    if a.mode == "full":
+    if a.mode in ("full", "close"):
         state_path = os.path.join(a.repo_dir, "zone_state.json")
         h, events = update_zone_badges(h, prices, state_path)
         if events:
             h = add_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
+
+    if a.mode == "close":
+        h = close_headers(h)
+        tag = "chốt phiên"
+        print("đã đổi header sang đóng cửa", flush=True)
 
     # còi báo động market — chạy mọi mode, không chờ ai nhắc
     h, regime = market_klaxon(h, a.repo_dir)
