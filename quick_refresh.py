@@ -154,6 +154,34 @@ def update_tables(h, prices):
     return h, n
 
 
+def dedup_section_alerts(h, section_marker):
+    """Trong một mục alert (tín hiệu vùng / mã nóng): mỗi ticker chỉ giữ 1 —
+    cái mới nhất (đầu tiên, vì tín hiệu mới chèn lên đầu). Tom lệnh 14/10:
+    'mỗi mã một vị', trùng thì tự biến mất."""
+    i = h.find(section_marker)
+    if i == -1:
+        return h, []
+    j = h.find("</h2>", i) + len("</h2>")
+    k = h.find('<div class="sec">', j)
+    if k == -1:
+        k = len(h)
+    sec = h[j:k]
+    seen = set()
+    removed = []
+
+    def keep_first(m):
+        t = m.group(1)
+        if t in seen:
+            removed.append(f"{t}(alert trùng)")
+            return ""
+        seen.add(t)
+        return m.group(0)
+
+    sec2 = re.sub(r'<div class="alert[^"]*"><b>(?:🚨 )?([A-Z]{2,5})\b.*?</div>',
+                  keep_first, sec, flags=re.S)
+    return h[:j] + sec2 + h[k:], removed
+
+
 def auto_cleanup(h, prices, tickers, repo_dir):
     """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
     - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
@@ -504,6 +532,10 @@ def main():
 
     # tự dọn mã trùng / chết — cho đúng Live
     h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
+    # mỗi mã một vị trong mục tín hiệu vùng + mã nóng (giữ cái mới nhất)
+    h, c1 = dedup_section_alerts(h, "🚨 TÍN HIỆU VÙNG")
+    h, c2 = dedup_section_alerts(h, "🔥 MÃ NÓNG")
+    cleaned += c1 + c2
     if cleaned:
         print(f"tự dọn: {', '.join(cleaned)}", flush=True)
 
