@@ -202,6 +202,44 @@ def bump_badge(h, tag):
     return h2 if c else h
 
 
+# NHỊP THỊ TRƯỜNG — mục focus #1 của Tom (14/10): phải xếp hạng lại MỖI lượt,
+# không để nằm lì như sáng 14/10 (kẹt ở 13/10 cả buổi)
+NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC"]
+
+
+def refresh_nhip(h, all_prices):
+    """Xếp hạng lại ⚡ NHỊP THỊ TRƯỜNG (nóng/lạnh nhất) từ % cùng ngày."""
+    ranked = sorted(((t, pc) for t, (px, pc) in all_prices.items() if isinstance(pc, (int, float))),
+                    key=lambda x: x[1], reverse=True)
+    if len(ranked) < 8:
+        return h, "skip (thiếu mã)"
+    hot, cold = ranked[:4], ranked[-4:][::-1]
+    hot_html = "<br>".join(f"{t} {fmt_pct(pc)}" for t, pc in hot)
+    cold_html = "<br>".join(f"{t} {fmt_pct(pc)}" for t, pc in cold)
+    n_up = sum(1 for _, pc in ranked if pc > 0)
+    n_dn = sum(1 for _, pc in ranked if pc < 0)
+    if n_dn >= n_up + 5:
+        mood = "Phe bán áp đảo — ưu tiên phòng thủ, chỉ canh cắt cứng."
+    elif n_up >= n_dn + 5:
+        mood = "Phe mua chiếm ưu thế — canh vùng vào."
+    else:
+        mood = "Hai phe giằng co."
+    note = (f"Tự xếp hạng mỗi 5 phút từ % biến động cùng ngày (Yahoo). "
+            f"Hôm nay: {n_up} xanh / {n_dn} đỏ trên {len(ranked)} mã quét. {mood}")
+    date_s = now_pt().strftime("%d/%m")
+    h, c0 = re.subn(r"⚡ NHỊP THỊ TRƯỜNG — ai nóng ai lạnh \(\d{2}/\d{2}\)",
+                    f"⚡ NHỊP THỊ TRƯỜNG — ai nóng ai lạnh ({date_s})", h, count=1)
+    h, c1 = re.subn(r'(🔥 NÓNG NHẤT</div><div class="val up" style="font-size:14px;line-height:1.9">).*?(</div>)',
+                    r"\g<1>" + hot_html + r"\g<2>", h, count=1, flags=re.S)
+    h, c2 = re.subn(r'(❄️ LẠNH NHẤT</div><div class="val down" style="font-size:14px;line-height:1.9">).*?(</div>)',
+                    r"\g<1>" + cold_html + r"\g<2>", h, count=1, flags=re.S)
+    h, c3 = re.subn(r'(❄️ LẠNH NHẤT</div><div class="val down" style="font-size:14px;line-height:1.9">.*?</div></div>\s*</div>\s*<div class="note">).*?(</div>)',
+                    r"\g<1>" + note + r"\g<2>", h, count=1, flags=re.S)
+    ok = (c0 + c1 + c2 + c3) == 4
+    return h, (f"nóng: {', '.join(t for t, _ in hot)} / lạnh: {', '.join(t for t, _ in cold)}"
+               if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
+
+
 def market_klaxon(h, repo_dir):
     """Tự phát hiện market pump/dump qua SPY/QQQ/DIA — dựng banner đầu bảng.
     Không chờ cron phân tích, không chờ Tom nhắc."""
@@ -306,6 +344,15 @@ def main():
     h, n1 = update_hot_entries(h, prices)
     h, n2 = update_tables(h, prices)
     print(f"đã sửa {n1} hot entries, {n2} table cells", flush=True)
+
+    # NHỊP THỊ TRƯỜNG — xếp hạng lại mỗi lượt (mục focus #1)
+    try:
+        nhip_extra = fetch_prices(NHIP_EXTRA)
+    except Exception as e:
+        print(f"  ! nhip extra: {e}", file=sys.stderr)
+        nhip_extra = {}
+    h, nn = refresh_nhip(h, {**prices, **nhip_extra})
+    print(f"nhịp thị trường: {nn}", flush=True)
 
     tag = "giá"
     if a.mode == "full":
