@@ -154,6 +154,43 @@ def update_tables(h, prices):
     return h, n
 
 
+def auto_cleanup(h, prices, tickers, repo_dir):
+    """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
+    - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
+    - Trùng: giữ dòng đầu, xóa các dòng sau."""
+    removed = []
+    fail_path = os.path.join(repo_dir, "fetch_failures.json")
+    try:
+        fails = json.load(open(fail_path)) if os.path.exists(fail_path) else {}
+    except Exception:
+        fails = {}
+    for t in tickers:
+        if t not in prices:
+            fails[t] = fails.get(t, 0) + 1
+        else:
+            fails.pop(t, None)
+    for t, n in list(fails.items()):
+        if n >= 3:
+            h, c = re.subn(r'\s*<tr><td><b>' + re.escape(t) + r'</b></td>.*?</tr>',
+                           '', h, flags=re.S)
+            if c:
+                removed.append(f"{t}(chết)")
+            fails.pop(t, None)
+    json.dump(fails, open(fail_path, "w"))
+    seen = set()
+
+    def dedup_row(m):
+        t = m.group(1)
+        if t in seen:
+            removed.append(f"{t}(trùng)")
+            return ""
+        seen.add(t)
+        return m.group(0)
+
+    h = re.sub(r'<tr><td><b>([A-Z]{2,5})</b></td>.*?</tr>', dedup_row, h, flags=re.S)
+    return h, removed
+
+
 def zone_state(t, px):
     z = ZONES[t]
     lo, hi = z["entry"]
@@ -398,7 +435,7 @@ def git_push(repo_dir, msg):
     run("git", "pull", "--rebase", "origin", "main")
     # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
     run("git", "add", "index.html", "zone_state.json", "market_state.json",
-        "quick_refresh.py", "refresh-tickers.txt", "zones.json")
+        "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json")
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
@@ -454,6 +491,11 @@ def main():
         nhip_extra = {}
     h, nn = refresh_nhip(h, {**prices, **nhip_extra})
     print(f"nhịp thị trường: {nn}", flush=True)
+
+    # tự dọn mã trùng / chết — cho đúng Live
+    h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
+    if cleaned:
+        print(f"tự dọn: {', '.join(cleaned)}", flush=True)
 
     # BẢN ĐỒ SECTOR — dòng tiền đi đâu, mỗi lượt
     try:
