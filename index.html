@@ -15,7 +15,7 @@ h1{font-size:23px;letter-spacing:1px}
 .sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
 .eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
 .tabbar{display:flex;gap:8px;margin:12px 0}
-.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer}
+.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer;text-decoration:none;display:block}
 .tab small{display:block;font-weight:400;font-size:12px;color:#bccbe4;margin-top:2px}
 .tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
 .tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
@@ -127,12 +127,10 @@ function checkPin(){
 </script>
 
 <div class="tabbar">
-  <button class="tab dt" onclick="goSec('sec-daytrade')">⚡ DAYTRADE<small>mã nóng • kèo options hôm nay</small></button>
-  <button class="tab sw" onclick="goSec('sec-swing')">🌊 SWING<small>tín hiệu vùng • hunt momentum</small></button>
-  <button class="tab lt" onclick="goSec('sec-longterm')">🌱 DÀI HẠN<small>vùng gom Sổ 1</small></button>
+  <a class="tab dt" href="#sec-daytrade">⚡ DAYTRADE<small>mã nóng • kèo options hôm nay</small></a>
+  <a class="tab sw" href="#sec-swing">🌊 SWING<small>tín hiệu vùng • hunt momentum</small></a>
+  <a class="tab lt" href="#sec-longterm">🌱 DÀI HẠN<small>vùng gom Sổ 1</small></a>
 </div>
-<script>
-function goSec(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 
 <div class="sec">
   <h2>🌍 THỊ TRƯỜNG NGAY BÂY GIỜ (đóng cửa 13/10)</h2>
