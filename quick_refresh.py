@@ -109,6 +109,13 @@ def update_hot_entries(h, prices):
     return h, n
 
 
+def discover_tickers(h):
+    """Tự quét TẤT CẢ mã trong các bảng của board — board thêm mã nào, script theo mã đó.
+    Fix 14/10: trước đây chỉ 15 mã cố định nên các mã hunt (PCVX, RCL...) nằm lì."""
+    found = re.findall(r"<tr><td><b>([A-Z]{2,5})</b></td>", h)
+    return sorted(set(found) | set(ZONES.keys()))
+
+
 def update_tables(h, prices):
     """<tr><td><b>TICKER</b></td><td>$X <span class=down/up>Y%</span> — sửa số + class."""
     n = 0
@@ -121,6 +128,11 @@ def update_tables(h, prices):
             return f"{m.group(1)}{px:,.2f}{m.group(2)}{cls}{m.group(4)}{fmt_pct(pc)}{m.group(5)}"
         h, c = pat.subn(rep, h)
         n += c
+        # ô giá không có % (vd HOOD $110.60) — chỉ thay số
+        pat2 = re.compile(
+            r"(<tr><td><b>" + re.escape(t) + r"</b></td>\s*<td>~?\$?)([\d,]+(?:\.\d+)?)(</td>)")
+        h, c2 = pat2.subn(lambda m: f"{m.group(1)}{px:,.2f}{m.group(3)}", h)
+        n += c2
     return h, n
 
 
@@ -332,7 +344,8 @@ def main():
         print("ngoài giờ giao dịch — thoát im lặng")
         return 0
 
-    tickers = [l.strip() for l in open(TICKER_FILE) if l.strip() and not l.startswith("#")]
+    tickers = discover_tickers(open(a.html, encoding="utf-8").read())
+    print(f"quét thấy {len(tickers)} mã trên bảng", flush=True)
     print(f"lấy giá {len(tickers)} mã...", flush=True)
     prices = fetch_prices(tickers)
     print(f"ok {len(prices)}/{len(tickers)}", flush=True)
@@ -341,6 +354,9 @@ def main():
         return 1
 
     h = open(a.html, encoding="utf-8").read()
+    # header ngày của cột giá theo đúng hôm nay (fix 14/10: kẹt "Giá 13/10")
+    h = re.sub(r"<th>Giá \d{2}/\d{2}</th>",
+               f"<th>Giá {now_pt().strftime('%d/%m')}</th>", h)
     h, n1 = update_hot_entries(h, prices)
     h, n2 = update_tables(h, prices)
     print(f"đã sửa {n1} hot entries, {n2} table cells", flush=True)
