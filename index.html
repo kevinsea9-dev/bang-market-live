@@ -9,14 +9,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0b1220;color:#e8edf5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px;max-width:900px;margin:0 auto;font-size:15px;line-height:1.55}
 h1{font-size:23px;letter-spacing:1px}
-.sub{color:#8fa1b8;font-size:13.5px;margin-top:4px}
+.sub{color:#bccbe4;font-size:13.5px;margin-top:4px}
 .head{background:linear-gradient(135deg,#0e2233,#12283f);border:1px solid #1e3a5c;border-radius:14px;padding:16px;margin-bottom:14px}
 .updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:13px;padding:5px 10px;border-radius:20px}
 .sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
 .eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
-.card .lbl{font-size:13px;color:#8fa1b8}
+.card .lbl{font-size:13px;color:#bccbe4}
 .card .val{font-size:19px;font-weight:700;margin-top:2px}
 .up{color:#4ade80}.down{color:#f87171}.flat{color:#facc15}
 .sec{background:#101829;border:1px solid #22304b;border-radius:14px;padding:14px;margin-bottom:14px}
@@ -24,24 +24,24 @@ h1{font-size:23px;letter-spacing:1px}
 .alert{background:#131c2e;border-left:4px solid #facc15;border-radius:8px;padding:10px;margin-bottom:8px;font-size:15px}
 .alert.hot{border-left-color:#f87171;background:linear-gradient(90deg,rgba(248,113,113,.10),#131c2e 60%)}
 .alert.good{border-left-color:#4ade80;background:linear-gradient(90deg,rgba(74,222,128,.10),#131c2e 60%)}
-.alert .t{font-size:12.5px;color:#8fa1b8}
+.alert .t{font-size:12.5px;color:#bccbe4}
 table{width:100%;border-collapse:collapse;font-size:14px}
-th{color:#8fa1b8;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
+th{color:#bccbe4;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
 td{padding:9px 6px;border-bottom:1px solid #1a2438}
 .badge{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
 .b-in{background:#123c26;color:#4ade80}
 .b-near{background:#3d3312;color:#facc15}
-.b-out{background:#2a2f3d;color:#9aa7bd}
+.b-out{background:#2a2f3d;color:#c2cfe6}
 .b-cut{background:#471b1b;color:#f87171}
 .b-new{background:#1e2a5c;color:#93c5fd}
-.zone{color:#9aa7bd;font-size:12px}
+.zone{color:#c2cfe6;font-size:12px}
 .cut{color:#f87171;font-size:12px}
 ul{padding-left:18px;font-size:14px;line-height:1.7}
 li{margin-bottom:6px}
 .cal{display:grid;grid-template-columns:86px 1fr;gap:6px;font-size:14px;margin-bottom:6px}
 .cal .d{color:#facc15;font-weight:700}
-.footer{text-align:center;color:#8fa1b8;font-size:12px;margin:18px 0 8px;line-height:1.6}
-.note{font-size:13px;color:#5c6b84}
+.footer{text-align:center;color:#bccbe4;font-size:12px;margin:18px 0 8px;line-height:1.6}
+.note{font-size:13px;color:#a9bcd6}
 .spark{display:inline-block;vertical-align:middle;margin-left:8px}
 #pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
 #pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
@@ -147,6 +147,15 @@ function checkPin(){
   <div class="alert"><b>SMMT ~$15.81 (−7.7%)</b> — Tiến SÁT mốc cắt tham chiếu $15.48 (chỉ còn ~2%). Bóng ma dilution: ATM còn hạn mức + AZN $2B chuyển đổi ở $18.36 (~12–14% pha loãng). FDA 14/11 là biến số nhị phân.<br><span class="t">Sổ 3 binary • không tin xấu mới hôm nay</span></div>
   <div class="alert"><b>MU ~$950 (−4%)</b> — DAO RƠI ngày 4: đóng dưới đường MA50 ($953.22). CXMT (TQ) tuyên bố đột phá DRAM 4F², ship DDR5 RDIMM server trước cuối 2026. AMAT −6.5% dẫn đầu S&amp;P decliners; DRAM ETF −3.5%. Vùng cũ $1,050–1,065 — đứng ngoài.<br><span class="t">Sổ 2 • đứng ngoài</span></div>
   <div class="alert"><b>SNDK $1,482 (−0.3%)</b> — Hồi mạnh: mở cửa −5% rồi lội về gần phẳng. Vẫn dưới vùng $1,700–1,740 — đứng ngoài.<br><span class="t">Sổ 2 • đứng ngoài</span></div>
+</div>
+
+<div class="sec">
+  <h2>🔔 ĐÁNG CHÚ Ý NHẤT — 4 mã cần nhìn đầu tiên (13/10)</h2>
+  <div class="alert hot"><b>VLO ~$456.63 (+4.7%) 🔥 đỉnh 52 tuần mới</b> — Momentum mạnh nhất đợt hunt. Earnings <b>22/10 (9 ngày nữa)</b> — catalyst gần nhất. Đuổi đỉnh thì rủi ro, chờ pullback mới đẹp.</div>
+  <div class="alert good"><b>PCVX ~$66.80 (−5.5%)</b> — Vừa điều chỉnh về gần vùng Vào <b>$60–63</b> (Sổ 3 binary). Phase 3 thắng Pfizer, PT tb $110 (+65%). Cắt cứng $56.48.</div>
+  <div class="alert good"><b>RCL $281.50</b> — Đang trong vùng Vào <b>$275–282</b> (Sổ 2). Vừa nâng guidance, earnings 27/10. Cắt $257.</div>
+  <div class="alert"><b>MELI ~$1,875.90</b> — Sát vùng Vào <b>$1,860–1,890</b> (Sổ 2). Strong Buy 28 analyst, Burry gom vùng $1,600s, earnings 4/11. Cắt $1,695.</div>
+  <div class="note">Strip này mỗi lượt quét tự viết lại — 3-4 setup đáng nhìn nhất của ngày, anh không cần lội hết bảng.</div>
 </div>
 
 <div class="sec">
