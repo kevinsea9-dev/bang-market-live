@@ -411,7 +411,10 @@ NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC",
               "MSFT", "META", "ORCL", "PLTR", "UBER", "SHOP", "DIS",
               "INTC", "AAOI", "SOXL",
               "AVAV", "KTOS", "IONQ", "OKLO",
-              "LMT", "IBM", "DELL"]
+              "LMT", "IBM", "DELL",
+              "CRWD", "APLD", "BROS", "TOST", "NKE", "DDOG", "TTD",
+              "SBUX", "PANW", "CRWV", "ABNB", "MSTR", "OKTA",
+              "BABA", "MRNA", "UPST"]
 
 
 def refresh_nhip(h, all_prices, spy_pc=None):
