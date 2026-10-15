@@ -63,6 +63,10 @@ h1{font-size:23px;letter-spacing:1px}
 .tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
 .tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
 .tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
+.topnav{position:sticky;top:0;z-index:8000;display:flex;gap:6px;padding:8px;background:rgba(10,15,26,.96);backdrop-filter:blur(6px);border-bottom:1px solid #22304b;margin:-6px -6px 12px;overflow-x:auto}
+.tnav{flex:1;min-width:72px;text-align:center;padding:10px 6px;border-radius:10px;background:#131c2e;border:1px solid #2a3a5c;color:#dbe7ff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.tnav.hot{background:linear-gradient(180deg,#7f1d1d,#450a0a);border-color:#ef4444;color:#fff;animation:hotGlow 1.6s ease-in-out infinite}
+@keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
 .totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
@@ -143,12 +147,25 @@ li{margin-bottom:6px}
     <button class="eyebtn" id="eyeBtn" onclick="toggleShareBtn()" title="Bật/tắt nút Chia sẻ">👁️</button>
   </div>
 </div>
+<div class="topnav" id="topnav">
+  <a href="#sec-hot" class="tnav hot">🔥 HOT</a>
+  <a href="#sec-daytrade" class="tnav">⚡ Daytrade</a>
+  <a href="#sec-swing" class="tnav">📗 Swing</a>
+  <a href="#sec-longterm" class="tnav">📘 Sổ 1</a>
+  <a href="#sec-etf" class="tnav">📊 ETF</a>
+</div>
 <div class="quicknav">🔎 <a href="#sec-swing">🚨 Tín hiệu</a> · <a href="#sec-dram">💾 DRAM</a> · <a href="#sec-etf">📊 ETF</a> · <a href="#sec-daytrade">Daytrade</a> · <a href="#sec-longterm">📘 Sổ 1</a> · <a href="#top">⬆️ Đầu trang</a></div>
 
 <div class="sec" id="sec-live">
   <h2><span class="livedot"></span>LIVE — giá trực tiếp <span id="liveWhen" style="font-size:12px;color:#9fc5ff;font-weight:400"></span></h2>
   <div id="liveStrip" class="livestrip"><span class="note">Đang tải giá live…</span></div>
   <div class="note" style="margin-top:8px">Tự cập nhật mỗi 60 giây (Yahoo Finance, % so với đóng cửa hôm trước). Chỉ tham khảo — quyết định là của Tom.</div>
+</div>
+
+<div class="sec" id="sec-hot">
+  <h2>🔥 HOT HÔM NAY — tin nóng + mã nóng kiếm tiền <span class="badge b-hot">🔥 HOT</span></h2>
+  <div id="hotFeed"><div class="note">Đang gom tin hot…</div></div>
+  <div class="note" style="margin-top:8px">Tự gom từ các mục bên dưới — tin/mã nào gắn HOT là hiện lên đây. Chạm là nhảy tới chỗ gốc.</div>
 </div>
 
 <div class="sec" id="sec-plan">
@@ -160,6 +177,38 @@ li{margin-bottom:6px}
   <div class="alert good"><b>📘 DÀI HẠN (Sổ 1) — TSM beat = tin tốt:</b> AI demand "vượt xa nguồn cung" (chủ tịch Wei) → thesis dài hạn cho <b>KLAC/AMAT</b> (thiết bị) còn nguyên. Memory dump (MU/SNDK −4~5%) trông giống <b>fear hơn fundamental</b> — TSM vừa chứng minh nhu cầu thật. NOC/KLAC/HWM vẫn trong vùng gom.<br><span class="t">Thesis dài hạn • 15/10 • không phải lệnh mua/bán</span></div>
 </div>
 <script>
+// 🔥 HOT FEED — tự gom tin/mã HOT từ khắp bảng lên đầu
+function buildHotFeed(){
+  var feed=document.getElementById('hotFeed');
+  if(!feed) return;
+  var seen={}; var html='';
+  // 1. Gom alert có badge HOT hoặc class hot
+  var alerts=document.querySelectorAll('#sec-plan .alert, .sec .alert');
+  alerts.forEach(function(a){
+    if(a.closest('#sec-hot')) return;
+    var isHot=a.classList.contains('hot')||a.querySelector('.b-hot');
+    if(!isHot) return;
+    var key=a.textContent.slice(0,60);
+    if(seen[key]) return; seen[key]=1;
+    var clone=a.cloneNode(true);
+    html+='<div class="alert hot">'+clone.innerHTML+'</div>';
+  });
+  // 2. Gom mã chạy ≥3% từ dải LIVE
+  var chips=document.querySelectorAll('#liveStrip .chip');
+  var movers=[];
+  chips.forEach(function(c){
+    var pc=c.querySelector('.pc');
+    if(!pc) return;
+    var v=parseFloat(pc.textContent.replace('%','').replace('+',''));
+    if(Math.abs(v)>=3) movers.push({t:c.querySelector('.tk').textContent,v:v,up:v>0});
+  });
+  movers.sort(function(a,b){return Math.abs(b.v)-Math.abs(a.v)});
+  movers.slice(0,5).forEach(function(m){
+    html+='<div class="alert hot"><b>🔥 '+m.t+' chạy <span class="'+(m.up?'up':'down')+'">'+(m.up?'+':'')+m.v.toFixed(1)+'%</span></b> trong phiên — mã nóng, canh vùng.<br><span class="t">Dải LIVE • cập nhật 60s</span></div>';
+  });
+  feed.innerHTML=html||'<div class="note">Chưa có tin HOT — có là tự hiện lên đây.</div>';
+}
+document.addEventListener('DOMContentLoaded',function(){setTimeout(buildHotFeed,1500);setInterval(buildHotFeed,60000);});
 function shareBoard(){
   var url='https://kevinsea9-dev.github.io/bang-market-live/';
   var data={title:'📊 Bảng Market Live — Iggy × Tom',text:'Bảng market live: tin tức, vùng giá, tín hiệu vùng — cập nhật 10 lần/ngày',url:url};
