@@ -48,7 +48,14 @@ function toggleNews(e){
   if(d.style.display==='none'){
     var items=document.querySelectorAll('#sec-news ul li');
     var html='<ul>';
-    items.forEach(function(li,i){ if(i<8) html+='<li>'+li.innerHTML+'</li>'; });
+    items.forEach(function(li,i){
+      if(i>=8) return;
+      var inner=li.innerHTML;
+      var badges='';
+      if(i===0) badges+='<span class="nnew">🆕 MỚI NHẤT</span>';
+      if(/🔥/.test(li.textContent)) badges+='<span class="nhot">🔥 HOT</span>';
+      html+='<li>'+badges+inner+'</li>';
+    });
     body.innerHTML=html+'</ul>';
     d.style.display='block';
   } else {
@@ -110,6 +117,9 @@ h1{font-size:23px;letter-spacing:1px}
 .newsdrawer .nd-head a{font-size:12px;font-weight:400}
 .newsdrawer ul{margin:0;padding-left:18px}
 .newsdrawer li{margin-bottom:8px;font-size:13.5px}
+.nnew{background:#16a34a;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px;animation:nnewPulse 1.2s infinite}
+@keyframes nnewPulse{0%,100%{opacity:1}50%{opacity:.55}}
+.nhot{background:#dc2626;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px}
 .tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
 @keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
 @keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
@@ -179,7 +189,7 @@ li{margin-bottom:6px}
 @keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
 .guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
 </style>
-<meta name="board-v" content="20261015213031">
+<meta name="board-v" content="20261015213147">
 </head>
 <body>
 
