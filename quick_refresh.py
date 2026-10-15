@@ -91,23 +91,26 @@ def fetch_one(ticker):
         prev = float(d.get("chartPreviousClose") or d.get("previousClose") or price)
         pct = (price - prev) / prev * 100 if prev else 0.0
         low = float(d.get("regularMarketDayLow") or 0)
-        return ticker, (round(price, 2), round(pct, 2), round(low, 2))
+        high52 = float(d.get("fiftyTwoWeekHigh") or 0)
+        return ticker, (round(price, 2), round(pct, 2), round(low, 2), round(high52, 2))
     except Exception as e:
         print(f"  ! {ticker}: {e}", file=sys.stderr)
         return ticker, None
 
 
 def fetch_prices(tickers):
-    """Trả về (prices, daylows): prices[t]=(giá, %) giữ nguyên để code cũ không vỡ;
-    daylows[t]=đáy ngày phục vụ dò bounce."""
-    out, lows = {}, {}
+    """Trả về (prices, daylows, highs52): prices[t]=(giá, %) giữ nguyên để code cũ không vỡ;
+    daylows[t]=đáy ngày phục vụ dò bounce; highs52[t]=đỉnh 52 tuần phục vụ săn hàng giảm giá."""
+    out, lows, highs = {}, {}, {}
     with ThreadPoolExecutor(max_workers=10) as ex:
         for t, v in ex.map(fetch_one, tickers):
             if v:
                 out[t] = (v[0], v[1])
                 if v[2]:
                     lows[t] = v[2]
-    return out, lows
+                if len(v) > 3 and v[3]:
+                    highs[t] = v[3]
+    return out, lows, highs
 
 
 def fmt_price(p):
@@ -916,7 +919,7 @@ def main():
     tickers = discover_tickers(open(a.html, encoding="utf-8").read())
     print(f"quét thấy {len(tickers)} mã trên bảng", flush=True)
     print(f"lấy giá {len(tickers)} mã...", flush=True)
-    prices, daylows = fetch_prices(tickers)
+    prices, daylows, highs52 = fetch_prices(tickers)
     print(f"ok {len(prices)}/{len(tickers)}", flush=True)
     if not prices:
         print("không lấy được giá nào — thoát", file=sys.stderr)
@@ -932,13 +935,13 @@ def main():
 
     # NHỊP THỊ TRƯỜNG — xếp hạng lại mỗi lượt (mục focus #1)
     try:
-        nhip_extra, nhip_lows = fetch_prices(NHIP_EXTRA)
+        nhip_extra, nhip_lows, nhip_highs = fetch_prices(NHIP_EXTRA)
     except Exception as e:
         print(f"  ! nhip extra: {e}", file=sys.stderr)
         nhip_extra, nhip_lows = {}, {}
     # 💪 lấy % SPY để dò relative strength (mã khỏe hơn market)
     try:
-        _mkt, _ = fetch_prices(["SPY"])
+        _mkt, _, _ = fetch_prices(["SPY"])
         spy_pc = _mkt.get("SPY", (0, 0))[1]
     except Exception:
         spy_pc = None
@@ -963,7 +966,7 @@ def main():
 
     # BẢN ĐỒ SECTOR — dòng tiền đi đâu, mỗi lượt
     try:
-        sec_prices, _ = fetch_prices([etf for _, etf in SECTOR_CARDS])
+        sec_prices, _, _ = fetch_prices([etf for _, etf in SECTOR_CARDS])
     except Exception as e:
         print(f"  ! sector: {e}", file=sys.stderr)
         sec_prices = {}
