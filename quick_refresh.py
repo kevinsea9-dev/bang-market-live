@@ -1117,6 +1117,16 @@ def main():
     print(f"dòng tiền: {', '.join(f'{t} {r}x' for t, r, *_ in flows[:5]) or 'chưa có vol spike'}",
           flush=True)
 
+    # 📡 RADAR WATCHLIST — Tom lệnh 15/10: signal chậm = đu đỉnh. Radar 3 phút
+    # chỉ quét mã đang yếu (đỏ ≥3%) để bắt tier SỚM (+1.5% từ đáy), không chờ xác nhận.
+    try:
+        watch = [t for t, (px, pc) in all_px.items() if pc <= -3.0][:25]
+        json.dump({"date": now_pt().strftime("%Y-%m-%d"),
+                   "time": now_pt().isoformat(), "tickers": watch},
+                  open(os.path.join(a.repo_dir, "radar_watchlist.json"), "w"))
+    except Exception as e:
+        print(f"  ! radar watchlist: {e}", file=sys.stderr)
+
     # 😱→🛒 CAPITULATION — Tom lệnh 15/10 (Buffett): hoảng loạn + tay to đỡ = lúc gom hàng
     try:
         caps = detect_capitulation(all_px, all_low, a.repo_dir)
