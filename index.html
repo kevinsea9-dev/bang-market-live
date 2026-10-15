@@ -40,18 +40,7 @@ function refreshFresh(){
 }
 setInterval(refreshFresh,60000);
 setTimeout(refreshFresh,3000);
-// ⬆️ NÚT VỀ ĐẦU TRANG — Tom 15/10 (~14:45): hay bấm nhầm ở góc phải.
-// Chỉ hiện khi cuộn xuống sâu (>600px), nhỏ + mờ để khỏi vướng.
-(function(){
-  var b=document.getElementById('toTopBtn');
-  if(!b) return;
-  function onScroll(){
-    if(window.scrollY>600) b.classList.add('show');
-    else b.classList.remove('show');
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-})();
+
 // 📰 NEWS DRAWER — Tom 15/10 (~14:30): icon tin tức đầu bảng, bấm xổ panel tin mới nhất.
 function toggleNews(e){
   if(e) e.preventDefault();
@@ -136,8 +125,7 @@ h1{font-size:23px;letter-spacing:1px}
 .tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
 @keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
 @keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
-.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:opacity .3s}
-.totop.show{opacity:.65;visibility:visible}
+.totop{position:fixed;bottom:18px;left:14px;z-index:9000;background:#1d4ed8;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5);opacity:.6}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
 .card .lbl{font-size:13px;color:#bccbe4}
@@ -203,7 +191,7 @@ li{margin-bottom:6px}
 @keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
 .guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
 </style>
-<meta name="board-v" content="20261015214330">
+<meta name="board-v" content="20261015214510">
 </head>
 <body>
 
@@ -223,7 +211,7 @@ li{margin-bottom:6px}
   <h1>📊 BẢNG MARKET LIVE</h1>
   <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
   <div style="margin-top:8px">
-    <span class="updated">🔴 Cập nhật lần cuối: 15/10/2026 ~13:05 PT (chốt phiên)</span>
+    <span class="updated">🔴 Cập nhật lần cuối: 15/10/2026 ~14:37 PT (sau giờ — đã có số AMC)</span>
 <div class="note" id="vix-gauge">😐 <b>VIX 16.4</b> — bình tĩnh <span class="t">Thước đo nỗi sợ • Buffett: tham lam khi người khác sợ hãi</span></div>
 
 
@@ -664,6 +652,7 @@ function checkPin(){
 
 <div class="sec" id="sec-swing">
   <h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>
+  <div class="alert hot"><b>🔄 14:37 PT — CHỐT PHIÊN 15/10 (Finnhub/official close):</b><br>• <b>MRVL $241.24 <span class="down">−1.65%</span></b> — giữ TRÊN cắt <b>$240</b> (low $227.31, bounce +6.1% off đáy); vẫn DƯỚI vùng $260–270 — Tom 2 cổ @~$266–267 → âm <b>~−9.5%</b> (~$51)<br>• <b>CRDO $178.50 <span class="down">−0.40%</span></b> — giữ TRÊN cắt <b>$178</b> (low $166.50, bounce +7.2% off đáy); swing $185–195 vẫn dưới vùng — NHƯNG <b>TRONG gom Sổ 1 $165–190</b> 🟢<br>• <b>AMD $562.23 <span class="down">−1.50%</span></b> — TRÊN vùng $535–560 (Sổ 2), bounce +6.1% từ low $530.09<br>• <b>COHR $250.60 <span class="down">−4.83%</span></b> — TRONG vùng $240–255 (Sổ 3), bounce +6.4% từ low $235.55<br>• <b>HIMS $29.38 <span class="up">+5.99%</span></b> — TRÊN vùng $27–28.50 (Sổ 3) ⚪ — đứng ngoài, chờ quay lại<br>• <b>TSM $422.25 <span class="down">−1.80%</span></b> — giữ TRONG gom Sổ 1 $405–425 🟢 · <b>ENTG $146.87 <span class="down">−4.06%</span></b> trong vùng $145–152 · <b>GEV $926.44 <span class="down">−1.63%</span></b> trong vùng $900–935 · <b>VST $154.17 <span class="up">+1.57%</span></b> trên vùng ⚪ · <b>AMZN $254.76 <span class="up">+0.27%</span></b> trên vùng ⚪<br>• <b>NFLX $72.61 <span class="up">+2.89%</span></b> — trên vùng, đứng ngoài tới earnings 20/10 · <b>RKLB $55.25 <span class="down">−6.64%</span></b> — dao rơi dưới cắt $61.50, đứng ngoài · <b>IREN $30.39 <span class="down">−0.56%</span></b> (Tom ~$35 → âm ~−13.2%; low $26.60 = đáy 52 tuần, hồi +14.3%) · <b>ASTS $44.46 <span class="up">+5.51%</span></b> — vẫn dưới cắt $49, rủi ro cao<br><span class="t">15/10 14:37 PT • Finnhub/official close • vùng là tham chiếu kỹ thuật, không phải lệnh — quyết định là của Tom</span></div>
   <div class="alert"><b>🚨 WDC — mới vào vùng Sổ 3</b> — $355.42 (−2.4%) lúc 12:54 PT.<br><span class="t">Tín hiệu vùng tự động • 15/10 • giá intraday</span></div>
 
   <div class="alert hot"><b>🔄 12:37 PT — KIỂM CUỐI PHIÊN (3:40 PM ET, Yahoo intraday)</b>:<br>• <b>MRVL $241.80 <span class="down">−1.2%</span></b> — ĐÃ LẤY LẠI trên cắt <b>$240</b> (low $227.31 gãy mép trong ngày rồi bật +6.4% off đáy); vẫn DƯỚI vùng $260–270 — Tom 2 cổ @~$266–267 → âm <b>~−9.2%</b><br>• <b>CRDO $179.09 <span class="up">+0.2%</span></b> — ĐÃ LẤY LẠI trên cắt <b>$178</b> (low $166.50, bounce +7.6% off đáy); swing $185–195 vẫn dưới vùng — NHƯNG <b>TRONG gom Sổ 1 $165–190</b> 🟢<br>• <b>AMD $567.03 <span class="down">−0.7%</span></b> — vượt lên TRÊN vùng $535–560 (Sổ 2) sau cú bật <b>+6.9%</b> từ low $530.09 giờ chót<br>• <b>COHR $250.37 <span class="down">−4.6%</span></b> — TRONG vùng $240–255 (Sổ 3), bounce +6.2% từ low $235.55 (sáng chạm sát cắt $228)<br>• <b>HIMS $29.30 <span class="up">+6.8%</span></b> — ĐÃ VƯỢT lên trên vùng $27–28.50 (Sổ 3) ⚪ — đứng ngoài, chờ quay lại<br>• <b>TSM $422.94 <span class="down">−1.6%</span></b> — giữ TRONG gom Sổ 1 $405–425 ✅ · <b>ENTG $149.09 <span class="down">−2.6%</span></b> trong vùng $145–152 · <b>GEV $929.01 <span class="down">−1.4%</span></b> trong vùng $900–935 · <b>VST $153.85 <span class="up">+1.4%</span></b> trên vùng ⚪<br><span class="t">15/10 12:37 PT • Yahoo intraday • vùng là tham chiếu kỹ thuật, không phải lệnh — quyết định là của Tom</span></div>
