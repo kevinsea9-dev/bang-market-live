@@ -1037,6 +1037,25 @@ def market_klaxon(h, repo_dir):
     return h, regime
 
 
+def stamp_version(h, repo_dir):
+    """Tom lệnh 15/10 (~12:30): bạn bè không nhận được update — cache kẹt.
+    Mỗi lượt ghi version.json + đóng dấu meta board-v vào HTML.
+    JS trên bảng fetch version.json mỗi 60s + khi tab hiện lại: thấy version
+    mới là tự tải lại sạch. Không còn chuyện kẹt bản cũ."""
+    import datetime
+    v = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d%H%M%S")
+    try:
+        json.dump({"v": v}, open(os.path.join(repo_dir, "version.json"), "w"))
+    except Exception as e:
+        print(f"  ! version.json: {e}", file=sys.stderr)
+    if '<meta name="board-v"' in h:
+        h = re.sub(r'<meta name="board-v" content="[^"]*">',
+                   f'<meta name="board-v" content="{v}">', h, count=1)
+    else:
+        h = h.replace("</head>", f'<meta name="board-v" content="{v}">\n</head>', 1)
+    return h, v
+
+
 def validate(h):
     for t in ["div", "table", "tr", "script"]:
         if len(re.findall(f"<{t}[ >]", h)) != h.count(f"</{t}>"):
@@ -1052,7 +1071,8 @@ def git_push(repo_dir, msg):
     run("git", "pull", "--rebase", "origin", "main")
     # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
     run("git", "add", "index.html", "zone_state.json", "market_state.json",
-        "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json")
+        "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
+        "version.json")
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
@@ -1252,6 +1272,12 @@ def main():
 
     # copy sang repo nếu khác file
     repo_html = os.path.join(a.repo_dir, "index.html")
+    if os.path.abspath(a.html) != os.path.abspath(repo_html):
+        open(repo_html, "w", encoding="utf-8").write(h)
+
+    # đóng dấu version để bảng tự phát hiện bản mới (fix kẹt cache — Tom 15/10)
+    h, _ = stamp_version(h, a.repo_dir)
+    open(a.html, "w", encoding="utf-8").write(h)
     if os.path.abspath(a.html) != os.path.abspath(repo_html):
         open(repo_html, "w", encoding="utf-8").write(h)
 
