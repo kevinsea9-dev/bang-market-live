@@ -440,25 +440,33 @@ def refresh_nhip(h, all_prices):
 
 
 # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: "market rebound mạnh, phải bắt kịp signal".
-# Mã hồi ≥3% từ đáy ngày -> card riêng trong NHỊP THỊ TRƯỜNG, không chờ vào vùng.
+# Hai tầng: ĐANG BOUNCE (hồi ≥3% từ đáy ngày, đã xác nhận) và CHUẨN BỊ BOUNCE
+# (đỏ sâu ≥4% trong ngày + đã ngóc ≥1.5% từ đáy — tín hiệu sớm, KHÔNG phải dự đoán chắc chắn).
 def refresh_bounce(h, prices, daylows):
-    rows = []
+    bouncing, watching = [], []
     for t, (px, pc) in prices.items():
         low = daylows.get(t)
-        if low and low > 0:
-            b = (px - low) / low * 100
-            if b >= 3.0:
-                rows.append((t, b))
-    rows.sort(key=lambda x: x[1], reverse=True)
-    top = rows[:4]
-    if top:
-        body = "<br>".join(f"{t} +{b:.1f}% từ đáy" for t, b in top)
-        names = ", ".join(t for t, _ in top)
-    else:
-        body = "Chưa có mã hồi ≥3% từ đáy ngày"
-        names = "chưa có"
+        if not (low and low > 0):
+            continue
+        b = (px - low) / low * 100
+        if b >= 3.0:
+            bouncing.append((t, b))
+        elif pc <= -4.0 and b >= 1.5:
+            watching.append((t, b, pc))
+    bouncing.sort(key=lambda x: x[1], reverse=True)
+    watching.sort(key=lambda x: x[1], reverse=True)
+    top_b, top_w = bouncing[:4], watching[:4]
+    parts = []
+    if top_b:
+        parts.append("<br>".join(f"🔄 {t} +{b:.1f}% từ đáy" for t, b in top_b))
+    if top_w:
+        parts.append("<br>".join(f"🔶 {t} ngóc +{b:.1f}% từ đáy (hôm nay {pc:+.1f}%)"
+                                 for t, b, pc in top_w))
+    body = "<br>".join(parts) if parts else "Chưa có mã hồi ≥3% từ đáy ngày"
+    names = ", ".join(t for t, _ in top_b) or "chưa có"
+    watch_names = ", ".join(t for t, _, _ in top_w) or "không"
     card = (f'<div class="card" style="border-color:#8a6d1f">'
-            f'<div class="lbl">🔄 ĐANG BOUNCE</div>'
+            f'<div class="lbl">🔄 BOUNCE / CHUẨN BỊ</div>'
             f'<div class="val up" style="font-size:14px;line-height:1.9">{body}</div></div>')
     anchor = "⚡ NHỊP THỊ TRƯỜNG"
     i = h.find(anchor)
@@ -468,17 +476,21 @@ def refresh_bounce(h, prices, daylows):
     if j == -1:
         return h, "skip (không thấy note)"
     sec = h[i:j]
-    sec2, c1 = re.subn(r'<div class="grid" style="grid-template-columns:1fr 1fr">',
-                       r'<div class="grid" style="grid-template-columns:1fr 1fr 1fr">',
-                       sec, count=1)
+    # dọn card bounce cũ (nếu có) để không trùng khi chạy lại
+    sec = re.sub(r'<div class="card" style="border-color:#8a6d1f">.*?</div></div>',
+                 '', sec, count=1, flags=re.S)
+    # grid 3 cột (idempotent)
+    sec = re.sub(r'grid-template-columns:1fr 1fr( 1fr)?',
+                 'grid-template-columns:1fr 1fr 1fr', sec, count=1)
+    # chèn card bounce mới sau card LẠNH NHẤT
     sec2, c2 = re.subn(
         r'(❄️ LẠNH NHẤT</div><div class="val down" style="font-size:14px;line-height:1.9">'
         r'.*?</div></div>)',
-        r"\g<1>" + card, sec2, count=1, flags=re.S)
-    if (c1 + c2) == 2:
+        r"\g<1>" + card, sec, count=1, flags=re.S)
+    if c2 == 1:
         h = h[:i] + sec2 + h[j:]
-        return h, f"bounce: {names}"
-    return h, f"thiếu pattern ({c1}{c2})"
+        return h, f"bounce: {names} | chuẩn bị: {watch_names}"
+    return h, "thiếu pattern card LẠNH"
 
 
 # DÒNG TIỀN SECTOR — Tom lệnh 14/10: "tự động gắn cron cho tất cả sectors và nguồn tiền đi đâu".
