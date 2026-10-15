@@ -229,6 +229,58 @@ def dedup_urgentbox(h):
     return h[:j] + box2 + h[k:], removed
 
 
+def zone_tp_line(t):
+    """Dòng vùng/Chốt/Cắt gọn cho alert khẩn + HOT feed.
+    Tom góp ý 15/10 (~13:00): alert nào cũng phải thấy ngay chốt ở đâu.
+    -> '🎯 Chốt $613→$658 · Cắt <$520' (Sổ 2)"""
+    z = ZONES.get(t)
+    if not z or not isinstance(z, dict):
+        return ""
+    parts = []
+    tg = z.get("targets") or []
+    if tg:
+        parts.append("Chốt $" + "→$".join(f"{x:g}" for x in tg))
+    cut = z.get("cut")
+    if cut:
+        parts.append(f"Cắt <${cut:g}")
+    if not parts:
+        return ""
+    book = z.get("book", "")
+    suffix = f" ({book})" if book else ""
+    return f"🎯 {' · '.join(parts)}{suffix}"
+
+
+def attach_zone_tp(h):
+    """Tom lệnh 15/10 (~13:00): gắn vùng giá + TP vào mọi alert khẩn.
+    Chạy SAU dedup để không phá logic trùng. HOT feed (JS buildHotFeed)
+    clone alert nên tự có dòng này theo. Alert đã có dòng thì bỏ qua."""
+    i = h.find('id="urgentBox"')
+    if i == -1:
+        return h
+    j = h.find(">", i) + 1
+    k = h.find('<div class="sec"', j)
+    if k == -1:
+        k = len(h)
+    box = h[j:k]
+
+    def add_tp(m):
+        full, inner = m.group(0), m.group(1)
+        if "🎯" in inner:
+            return full
+        txt = re.sub(r'<[^>]+>', ' ', inner).strip()
+        mt = re.search(r'\b([A-Z]{2,5})\b', txt)
+        if not mt:
+            return full
+        line = zone_tp_line(mt.group(1))
+        if not line:
+            return full
+        return full.replace("</div>",
+                            f'<br><span class="zt">{line}</span></div>', 1)
+
+    box2 = re.sub(r'<div class="alert urgent">(.*?)</div>', add_tp, box, flags=re.S)
+    return h[:j] + box2 + h[k:]
+
+
 def auto_cleanup(h, prices, tickers, repo_dir):
     """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
     - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
@@ -1251,6 +1303,10 @@ def main():
     h, c3 = dedup_urgentbox(h)
     if c1 or c2 or c3:
         print(f"tự dọn trùng: {', '.join(c1 + c2 + c3)}", flush=True)
+
+    # 🎯 GẮN VÙNG GIÁ + TP vào alert khẩn — Tom góp ý 15/10 (~13:00):
+    # HOT feed clone alert nên tự có dòng Chốt/Cắt theo.
+    h = attach_zone_tp(h)
 
     if a.mode == "close":
         h = close_headers(h)
