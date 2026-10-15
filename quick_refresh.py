@@ -443,6 +443,13 @@ SECTOR_CARDS = [
     ("💻 Big Tech", "XLK"),
     ("🚀 Hàng không / Quốc phòng", "ITA"),
     ("💊 Dược / Healthcare", "XLV"),
+    ("🛒 Tiêu dùng thiết yếu", "XLP"),
+    ("🎯 Tiêu dùng không thiết yếu", "XLY"),
+    ("🏭 Công nghiệp", "XLI"),
+    ("⛏️ Vật liệu", "XLB"),
+    ("💡 Tiện ích", "XLU"),
+    ("🏠 Bất động sản", "XLRE"),
+    ("📡 Viễn thông", "XLC"),
 ]
 
 
