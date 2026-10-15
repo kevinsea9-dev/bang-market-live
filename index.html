@@ -11,19 +11,22 @@
 // Cách hoạt động: mỗi 5 phút hỏi server "file mới nhất lúc nào" (Last-Modified).
 // Nếu server có bản mới hơn lúc trang được tải → ép tải lại sạch (phá cache).
 // Cùng một link mãi mãi — không bao giờ cần link mới.
-var pageLoadedAt = Date.now();
-function checkServerVersion(){
-  fetch(location.pathname + '?_=' + Date.now(), {method: 'HEAD', cache: 'no-store'})
-    .then(function(r){
-      var lm = r.headers.get('Last-Modified');
-      if(lm && new Date(lm).getTime() > pageLoadedAt + 60000){
-        location.href = location.pathname + '?v=' + Date.now();
+// TỰ PHÁT HIỆN BẢN MỚI — Tom lệnh 15/10: không để ai kẹt bản cũ.
+// Mỗi lượt cron ghi version.json mới; trang này fetch mỗi 60s + mỗi lần tab hiện lại.
+// Thấy version khác là tự tải lại sạch — bạn bè luôn thấy bản mới nhất, không cần refresh tay.
+var BOARD_V=(document.querySelector('meta[name="board-v"]')||{}).content||'';
+function checkBoardVersion(){
+  fetch('version.json?_='+Date.now(),{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(j){
+      if(j&&j.v&&BOARD_V&&j.v!==BOARD_V){
+        location.href=location.pathname+'?v='+Date.now();
       }
-    }).catch(function(){/* mạng lỗi thì thôi, thử lại kỳ sau */});
+    }).catch(function(){});
 }
-setInterval(checkServerVersion, 300000);
-// Fallback: sau 5 phút tự tải lại kèm phá cache (cho trường hợp HEAD bị chặn)
-setTimeout(function(){location.href=location.pathname+'?v='+Date.now();},300000);
+setInterval(checkBoardVersion,60000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(checkBoardVersion,1500);});
+setTimeout(checkBoardVersion,10000);
 // Hiện "cách đây X phút" cạnh badge cập nhật để biết bản đang xem cũ hay mới
 (function(){
   try{
@@ -130,6 +133,7 @@ li{margin-bottom:6px}
 @keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
 .guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
 </style>
+<meta name="board-v" content="20261015192929">
 </head>
 <body>
 
