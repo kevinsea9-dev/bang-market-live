@@ -697,6 +697,40 @@ def discount_card(h, prices, highs52):
     return h, f"giảm giá: {names}"
 
 
+# 🎓 ĐIỂM TIN CẬY SIGNAL — Tom lệnh 15/10 (~14:00): nâng bảng lên PRO.
+# signal_score.py chấm mỗi chiều, ghi vào market_state.json. Alert khẩn gắn
+# điểm loại tín hiệu: "🎓 đúng 82% (225/276 • 30 ngày)". Có số mẫu để trung thực.
+TRUST = {}
+
+def load_trust(repo_dir):
+    global TRUST
+    try:
+        ms = json.load(open(os.path.join(repo_dir, "market_state.json")))
+        TRUST = (ms.get("signal_score") or {}).get("by_type", {}) or {}
+    except Exception:
+        TRUST = {}
+
+def trust_line(sig):
+    d = TRUST.get(sig)
+    if not d or not d.get("n"):
+        return ""
+    n = d["n"]; w = d["winrate"]
+    wins = round(n * w / 100)
+    return f"🎓 Đúng {w:.0f}% ({wins}/{n} • 30 ngày)"
+
+# 🦈 TẦNG CÁ MẬP — Tom lệnh 15/10 (~14:00): xếp hạng tín hiệu cho dễ nhìn.
+# 🦈🦈🦈 mạnh nhất (tiền lớn xác nhận) -> 🦈🦈 -> 🦈 bình thường.
+TIER_MAP = {
+    "UBS": ("🦈🦈🦈", "bounce"),       # bounce ≥8%
+    "UB":  ("🦈🦈", "bounce"),        # bounce 5-8%
+    "UR":  ("🦈", "urgent"),          # +4% trong ngày
+    "UMF": ("🦈🦈", "money_flow"),    # dòng tiền vào
+    "UCP": ("🦈🦈🦈", "capitulation"), # hoảng loạn + tay to đỡ
+    "URV": ("🦈🦈🦈", "reversal"),     # đảo chiều xác nhận
+    "UI":  ("🦈", None),              # vào vùng
+}
+
+
 # 💰 DÒNG TIỀN VÀO — Tom lệnh 15/10: script PRO phải bắt dòng tiền ngay lập tức.
 # Volume hôm nay (annualized theo phần phiên đã trôi qua) so với trung bình 20 phiên.
 # Chỉ quét mã đang có đà (bounce ≥3% / ngày ≥+2% / đỏ sâu đang ngóc) để kịp chu kỳ 5 phút.
@@ -791,18 +825,30 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
         if mark in h or key in seen:
             continue
         seen.add(key)
-        fresh.append((mark, t, html))
+        fresh.append((mark, key, t, html))
         if len(fresh) >= URGENT_MAX:
             break
     if not fresh:
         return h, "khẩn: không có signal mới (giữ alert cũ)"
-    for mark, t, html in fresh:
+    for mark, key, t, html in fresh:
         px = prices.get(t, (0, 0))[0]
         journal_signal(repo_dir, "urgent", t, px, html[:60])
-    new_alerts = "".join(
-        f'{mark}<div class="alert urgent"><b>{html}</b><br>'
-        f'<span class="t">🦈 Cá mập • {date_s} • tiền lớn đang chạy • chỉ tham khảo</span></div>\n'
-        for mark, _, html in fresh)
+    ts_now = now_pt().isoformat(timespec="seconds")
+    def tier_of(key):
+        for pre in ("UBS", "UMF", "UCP", "URV", "UB", "UR", "UI"):
+            if key.startswith(pre):
+                return TIER_MAP[pre]
+        return ("🦈", None)
+    def build_alert(mark, key, t, html):
+        # 🦈 tầng + 🎓 điểm tin cậy + ⏱️ độ tươi (JS tự cập nhật "cách đây X phút")
+        tier, sig = tier_of(key)
+        trust = trust_line(sig) if sig else ""
+        trust_html = f'<br><span class="trust">{trust}</span>' if trust else ""
+        return (
+            f'{mark}<div class="alert urgent" data-ts="{ts_now}"><b>{tier} {html}</b><br>'
+            f'<span class="t">🦈 Cá mập • {date_s} <span class="fresh"></span> • tiền lớn đang chạy • chỉ tham khảo</span>'
+            f'{trust_html}</div>\n')
+    new_alerts = "".join(build_alert(mark, key, t, html) for mark, key, t, html in fresh)
     # box đang là note trống -> thay note; đã có alert -> prepend, giữ alert cũ
     h2, c1 = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',
                      r"\g<1>" + new_alerts, h, count=1, flags=re.S)
@@ -1287,6 +1333,7 @@ def main():
 
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
     # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION + ĐẢO CHIỀU
+    load_trust(a.repo_dir)  # 🎓 điểm tin cậy 30 ngày cho alert khẩn
     h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps, revs)
     print(f"tín hiệu khẩn: {nu}", flush=True)
 
