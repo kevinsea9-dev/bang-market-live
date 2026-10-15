@@ -122,6 +122,8 @@ li{margin-bottom:6px}
 #pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
 #pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
 #pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
+#sec-hot .alert.hot{animation:hotBlink 1.8s ease-in-out infinite;border-left:4px solid #ef4444}
+@keyframes hotBlink{0%,100%{background:#131c2e}50%{background:#3a1212}}
 </style>
 </head>
 <body>
@@ -156,17 +158,18 @@ li{margin-bottom:6px}
 </div>
 <div class="quicknav">🔎 <a href="#sec-swing">🚨 Tín hiệu</a> · <a href="#sec-dram">💾 DRAM</a> · <a href="#sec-etf">📊 ETF</a> · <a href="#sec-daytrade">Daytrade</a> · <a href="#sec-longterm">📘 Sổ 1</a> · <a href="#top">⬆️ Đầu trang</a></div>
 
+<div class="sec" id="sec-hot">
+  <h2>🔥 HOT HÔM NAY — tin nóng + mã nóng kiếm tiền <span class="badge b-hot">🔥 HOT</span></h2>
+  <div id="hotFeed"><div class="note">Đang gom tin hot…</div></div>
+  <div class="note" style="margin-top:8px">Tự gom từ các mục bên dưới — tin/mã nào gắn HOT là hiện lên đây. Chạm là nhảy tới chỗ gốc.</div>
+</div>
+
 <div class="sec" id="sec-live">
   <h2><span class="livedot"></span>LIVE — giá trực tiếp <span id="liveWhen" style="font-size:12px;color:#9fc5ff;font-weight:400"></span></h2>
   <div id="liveStrip" class="livestrip"><span class="note">Đang tải giá live…</span></div>
   <div class="note" style="margin-top:8px">Tự cập nhật mỗi 60 giây (Yahoo Finance, % so với đóng cửa hôm trước). Chỉ tham khảo — quyết định là của Tom.</div>
 </div>
 
-<div class="sec" id="sec-hot">
-  <h2>🔥 HOT HÔM NAY — tin nóng + mã nóng kiếm tiền <span class="badge b-hot">🔥 HOT</span></h2>
-  <div id="hotFeed"><div class="note">Đang gom tin hot…</div></div>
-  <div class="note" style="margin-top:8px">Tự gom từ các mục bên dưới — tin/mã nào gắn HOT là hiện lên đây. Chạm là nhảy tới chỗ gốc.</div>
-</div>
 
 <div class="sec" id="sec-plan">
   <h2>🎯 KẾ HOẠCH HÔM NAY — Thứ 5, 15/10 <span class="badge b-new">MỚI</span> <span class="badge b-hot">🔥 HOT</span></h2>
