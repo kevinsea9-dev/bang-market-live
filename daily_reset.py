@@ -33,10 +33,10 @@ def main():
 
     # 1. Xóa tín hiệu vùng KHÔNG phải hôm nay — ngày mới, tín hiệu mới
     #    (giữ lại tín hiệu của hôm nay nếu script chạy muộn)
+    #    FIX 15/10: match div.alert CÓ class (alert hot/good) chứ không chỉ div.alert trơn
     def sig_old(m):
         block = m.group(0)
-        # giữ các alert có date = hôm nay
-        keep = re.findall(r'<div class="alert">(.*?)</div>', block, flags=re.S)
+        keep = re.findall(r'<div class="alert[^"]*">(.*?)</div>', block, flags=re.S)
         kept = [a for a in keep if today in a]
         if kept:
             return (m.group(1) + "\n" +
@@ -45,13 +45,13 @@ def main():
         return m.group(1) + "\n"
 
     h = re.sub(
-        r'(<h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>)\s*((?:<div class="alert">.*?</div>\s*)+)',
+        r'(<h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>)\s*((?:<div class="alert[^"]*">.*?</div>\s*)+)',
         sig_old, h, flags=re.S)
 
     # 1b. Xóa tín hiệu DRAM cũ (không phải hôm nay) trong mục DRAM
     def dram_sig_old(m):
         block = m.group(0)
-        keep = re.findall(r'<div class="alert">(.*?)</div>', block, flags=re.S)
+        keep = re.findall(r'<div class="alert[^"]*">(.*?)</div>', block, flags=re.S)
         kept = [a for a in keep if today in a]
         if kept:
             return (m.group(1) + "\n" +
@@ -61,8 +61,26 @@ def main():
         return m.group(1) + "\n"
 
     h = re.sub(
-        r'(id="sec-dram">\s*<h2>.*?</h2>)\s*((?:<div class="alert">.*?</div>\s*)+)',
+        r'(id="sec-dram">\s*<h2>.*?</h2>)\s*((?:<div class="alert[^"]*">.*?</div>\s*)+)',
         dram_sig_old, h, flags=re.S)
+
+    # 1c. Dọn TIN LỚN + MÃ NÓNG + ĐÁNG CHÚ Ý: chỉ giữ tin hôm nay và entry Cú Đêm
+    #     (FIX 15/10: Tom lệnh "tin cũ phải biến mất" — trước đây không dọn các mục này)
+    def news_old(m):
+        block = m.group(0)
+        alerts = re.findall(r'(<div class="alert[^"]*">.*?</div>)\s*', block, flags=re.S)
+        kept = [a for a in alerts if today in a or 'Cú Đêm' in a or 'CÚ ĐÊM' in a]
+        if kept:
+            actions.append(f"dọn {m.group(1)[:30]}: giữ {len(kept)}/{len(alerts)}")
+            return m.group(1) + "\n" + "\n".join(kept) + "\n"
+        if alerts:
+            actions.append(f"xóa {len(alerts)} tin cũ {m.group(1)[:30]}")
+        return m.group(1) + "\n"
+
+    for h2pat in [r'📰 TIN LỚN', r'🔥 MÃ NÓNG HÔM NAY', r'🔔 ĐÁNG CHÚ Ý NHẤT']:
+        h = re.sub(
+            r'(<h2>' + h2pat + r'.*?</h2>)\s*((?:<div class="alert[^"]*">.*?</div>\s*)+)',
+            news_old, h, flags=re.S)
 
     # 2. Archive mục hunt cũ hơn 3 ngày: <h2>🎯 HUNT ... (DD/MM) ...
     def hunt_old(m):
