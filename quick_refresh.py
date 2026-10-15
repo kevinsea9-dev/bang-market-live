@@ -409,7 +409,9 @@ def bump_badge(h, tag):
 NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC",
               "CRM", "AAP", "TGTX", "WMT", "TGT", "BA", "COIN", "AAPL",
               "MSFT", "META", "ORCL", "PLTR", "UBER", "SHOP", "DIS",
-              "INTC", "AAOI", "SOXL"]
+              "INTC", "AAOI", "SOXL",
+              "AVAV", "KTOS", "IONQ", "OKLO",
+              "LMT", "IBM", "DELL"]
 
 
 def refresh_nhip(h, all_prices, spy_pc=None):
