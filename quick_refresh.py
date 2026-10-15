@@ -408,7 +408,8 @@ def bump_badge(h, tag):
 # Không cần hàng trên bảng — vẫn bắt được mover/bounce/gap/RS.
 NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC",
               "CRM", "AAP", "TGTX", "WMT", "TGT", "BA", "COIN", "AAPL",
-              "MSFT", "META", "ORCL", "PLTR", "UBER", "SHOP", "DIS"]
+              "MSFT", "META", "ORCL", "PLTR", "UBER", "SHOP", "DIS",
+              "INTC", "AAOI", "SOXL"]
 
 
 def refresh_nhip(h, all_prices, spy_pc=None):
