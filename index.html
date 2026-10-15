@@ -88,6 +88,8 @@ tr.subhead td{background:#1c2942;color:#ffd479;font-weight:700;font-size:13.5px;
 .b-out{background:#2a2f3d;color:#c2cfe6}
 .b-cut{background:#471b1b;color:#f87171}
 .b-new{background:#f59e0b;color:#0b1220;animation:blinkNew 1.15s infinite}
+.b-hot{background:#dc2626;color:#fff;animation:blinkHot .8s infinite;font-size:13px;padding:4px 10px}
+@keyframes blinkHot{0%,100%{opacity:1;box-shadow:0 0 8px #dc2626}50%{opacity:.45;box-shadow:none}}
 @keyframes blinkNew{0%,100%{opacity:1}50%{opacity:.3}}
 .livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#f87171;margin-right:6px;animation:blinkNew 1.4s infinite}
 .livestrip{display:flex;flex-wrap:wrap;gap:8px}
@@ -227,7 +229,8 @@ function checkPin(){
         var flash='';
         if(prev[r.sym]!==undefined&&prev[r.sym]!==r.price){flash=r.price>prev[r.sym]?' fup':' fdn';}
         prev[r.sym]=r.price;
-        html+='<div class="livechip'+flash+'"><div class="lt">'+r.sym+'</div>'
+        var hot=Math.abs(ch)>=3?' <span class="badge b-hot">🔥 HOT</span>':'';
+        html+='<div class="livechip'+flash+'"><div class="lt">'+r.sym+hot+'</div>'
           +'<div class="lp">'+fmt(r.price)+'</div>'
           +'<div class="lc '+cls+'">'+arrow+' '+Math.abs(ch).toFixed(2)+'%</div></div>';
       });
@@ -281,6 +284,19 @@ function checkPin(){
         sec.appendChild(btn);
       }
     }
+  });
+})();
+// ===== TỰ GẮN BADGE HOT: mã/tin nào hot là có chữ HOT đỏ nhấp nháy =====
+// Áp dụng mọi .alert.hot trên bảng (daytrade/swing/Sổ 1/ETF) — không cần sửa tay từng mục
+(function(){
+  document.querySelectorAll('div.alert.hot').forEach(function(a){
+    if(a.querySelector('.b-hot')) return;
+    var b=document.createElement('span');
+    b.className='badge b-hot';
+    b.textContent='🔥 HOT';
+    var t=a.querySelector('b');
+    if(t){t.insertAdjacentHTML('afterend',' ');t.parentNode.insertBefore(b,t.nextSibling.nextSibling);}
+    else{a.insertBefore(b,a.firstChild);}
   });
 })();
 </script>
