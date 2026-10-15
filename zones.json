@@ -461,5 +461,31 @@
    280
   ],
   "cut": 200
+ },
+ "SPCX": {
+  "book": "Sổ 3",
+  "entry": [
+   125,
+   130
+  ],
+  "targets": [
+   180,
+   220
+  ],
+  "cut": 118,
+  "note": "SpaceX; catalyst: Tesla merger (Barron's <1h)"
+ },
+ "TSLA": {
+  "book": "Sổ 2",
+  "entry": [
+   300,
+   310
+  ],
+  "targets": [
+   400,
+   450
+  ],
+  "cut": 290,
+  "note": "Tesla; catalyst: SpaceX merger (Barron's <1h)"
  }
 }
