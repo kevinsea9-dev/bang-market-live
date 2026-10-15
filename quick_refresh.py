@@ -219,6 +219,50 @@ def auto_cleanup(h, prices, tickers, repo_dir):
     return h, removed
 
 
+def prune_old_alerts(h):
+    """Tom lệnh 15/10: tin cũ TỰ BIẾN MẤT — chạy mỗi 5 phút, không chờ daily reset.
+    - Xóa alert có ngày KHÔNG phải hôm nay (trừ Cú Đêm — xử riêng).
+    - Cú Đêm: chỉ giữ 3 entry mới nhất.
+    - Xóa alert không có ngày nào (tin rác, trừ mô tả ngắn)."""
+    import datetime
+    now = now_pt()
+    today = now.strftime("%d/%m")
+    removed = [0]
+
+    def check_alert(m):
+        full, inner = m.group(0), m.group(1)
+        # Cú Đêm: để hàm riêng xử, không đụng ở đây
+        if 'Cú Đêm' in inner:
+            return full
+        # Giữ tin hôm nay
+        if today in inner:
+            return full
+        # Xóa tin có ngày cũ
+        if re.search(r'\d{1,2}/\d{1,2}', inner):
+            removed[0] += 1
+            return ''
+        # Tin không ngày: giữ nếu là mô tả ngắn, xóa nếu dài (tin rác)
+        if len(inner) < 200:
+            return full
+        removed[0] += 1
+        return ''
+
+    h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', check_alert, h, flags=re.S)
+
+    # Cú Đêm: chỉ giữ 3 mới nhất
+    def trim_cudem(m):
+        header, body = m.group(1), m.group(2)
+        alerts = re.findall(r'(<div class="alert[^"]*">.*?</div>)\s*', body, re.S)
+        if len(alerts) > 3:
+            removed[0] += len(alerts) - 3
+            return header + '\n'.join(alerts[:3]) + '\n</div>\n'
+        return m.group(0)
+
+    h = re.sub(r'(<div class="sec"[^>]*>\s*<h2>🌙 CÚ ĐÊM.*?</h2>)(.*?)(?=<div class="sec"|<div class="footer")',
+               trim_cudem, h, flags=re.S)
+    return h, removed[0]
+
+
 def zone_state(t, px):
     z = ZONES[t]
     lo, hi = z["entry"]
@@ -575,6 +619,11 @@ def main():
     h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
     if cleaned:
         print(f"tự dọn: {', '.join(cleaned)}", flush=True)
+
+    # tự dọn TIN CŨ — Tom lệnh 15/10: tin cũ phải biến mất, xử tự động mỗi 5 phút
+    h, n_pruned = prune_old_alerts(h)
+    if n_pruned:
+        print(f"dọn tin cũ: {n_pruned} tin", flush=True)
 
     # BẢN ĐỒ SECTOR — dòng tiền đi đâu, mỗi lượt
     try:
