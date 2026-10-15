@@ -299,6 +299,26 @@ function checkPin(){
     else{a.insertBefore(b,a.firstChild);}
   });
 })();
+// ===== MÃ MỚI NHẤP NHÁY: mã nào lần đầu xuất hiện là cả dòng chớp vàng =====
+// (chỉ chớp 1 lượt tải trang ~5 phút, lần sau đã quen thì thôi)
+(function(){
+  try{
+    var seenRaw=localStorage.getItem('boardSeenTickers');
+    var seen=seenRaw?JSON.parse(seenRaw):null;
+    var current=[];
+    document.querySelectorAll('td b').forEach(function(b){
+      var t=b.textContent.trim();
+      if(/^[A-Z]{1,6}$/.test(t)){
+        if(current.indexOf(t)===-1) current.push(t);
+        if(seen&&seen.indexOf(t)===-1){
+          var tr=b.closest('tr');
+          if(tr){tr.style.animation='blinkNew 1.15s infinite';tr.style.background='rgba(245,158,11,.10)';}
+        }
+      }
+    });
+    localStorage.setItem('boardSeenTickers',JSON.stringify(current));
+  }catch(e){}
+})();
 // ===== TIN CŨ TỰ BIẾN MẤT: nhường chỗ cho tin mới (luật của Tom) =====
 // - Tin từ 2 ngày trước trở lên → xóa hẳn khỏi bảng
 // - Tin hôm qua → làm mờ (phân biệt với tin hôm nay)
@@ -314,7 +334,6 @@ function checkPin(){
       if(!m) return;
       var y=m[3]?Number(m[3]):now.getFullYear();
       var d=new Date(y,Number(m[2])-1,Number(m[1]));
-      // Trường hợp qua năm mới (VD: tin 30/12 mà nay là 2/1) → lùi năm lại
       if(d>todayStart) d=new Date(y-1,Number(m[2])-1,Number(m[1]));
       var dayDiff=Math.floor((todayStart-d)/86400000);
       if(dayDiff>=2){a.remove();}
