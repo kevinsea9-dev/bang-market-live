@@ -69,6 +69,8 @@ h1{font-size:23px;letter-spacing:1px}
 .topnav{position:sticky;top:0;z-index:8000;display:flex;gap:6px;padding:8px;background:rgba(10,15,26,.96);backdrop-filter:blur(6px);border-bottom:1px solid #22304b;margin:-6px -6px 12px;overflow-x:auto}
 .tnav{flex:1;min-width:72px;text-align:center;padding:10px 6px;border-radius:10px;background:#131c2e;border:1px solid #2a3a5c;color:#dbe7ff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .tnav.hot{background:linear-gradient(180deg,#7f1d1d,#450a0a);border-color:#ef4444;color:#fff;animation:hotGlow 1.6s ease-in-out infinite}
+.tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
+@keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
 @keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
 .totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
@@ -98,7 +100,7 @@ tr.subhead td{background:#1c2942;color:#ffd479;font-weight:700;font-size:13.5px;
 .b-new{background:#f59e0b;color:#0b1220;animation:blinkNew 1.15s infinite}
 .b-hot{background:#dc2626;color:#fff;animation:blinkHot .8s infinite;font-size:13px;padding:4px 10px}
 @keyframes blinkHot{0%,100%{opacity:1;box-shadow:0 0 8px #dc2626}50%{opacity:.45;box-shadow:none}}
-/* 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp mạnh nhất bảng, không thể bỏ lỡ */
+/* 🦈 CÁ MẬP GOM HÀNG — Tom lệnh 15/10: gold glow sang, không máu me */
 .alert.urgent{border-left:5px solid #ffc94d;background:linear-gradient(90deg,rgba(255,201,77,.13),#141007 65%);animation:sharkPulse 1.8s ease-in-out infinite;font-size:15px}
 @keyframes sharkPulse{0%,100%{box-shadow:0 0 8px rgba(255,201,77,.30);transform:scale(1)}50%{box-shadow:0 0 24px rgba(255,201,77,.70);background:rgba(60,45,10,.35);transform:scale(1.008)}}
 .b-urgent{background:linear-gradient(135deg,#ffc94d,#e8a020);color:#1a1206;animation:sharkPulse 1.8s infinite;font-size:14px;padding:5px 12px;font-weight:800}
@@ -191,7 +193,7 @@ li{margin-bottom:6px}
   </div>
 </div>
 <div class="topnav" id="topnav">
-  <a href="#sec-urgent" class="tnav hot">🚨 KHẨN</a>
+  <a href="#sec-urgent" class="tnav shark">🦈 CÁ MẬP</a>
   <a href="#sec-hot" class="tnav hot">🔥 HOT</a>
   <a href="#sec-daytrade" class="tnav">⚡ Daytrade</a>
   <a href="#sec-swing" class="tnav">📗 Swing</a>
