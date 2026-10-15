@@ -801,7 +801,7 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
         journal_signal(repo_dir, "urgent", t, px, html[:60])
     new_alerts = "".join(
         f'{mark}<div class="alert urgent"><b>{html}</b><br>'
-        f'<span class="t">Tín hiệu khẩn • {date_s} • chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>\n'
+        f'<span class="t">🦈 Cá mập • {date_s} • tiền lớn đang chạy • chỉ tham khảo</span></div>\n'
         for mark, _, html in fresh)
     # box đang là note trống -> thay note; đã có alert -> prepend, giữ alert cũ
     h2, c1 = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',

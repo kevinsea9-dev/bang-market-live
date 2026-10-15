@@ -99,9 +99,9 @@ tr.subhead td{background:#1c2942;color:#ffd479;font-weight:700;font-size:13.5px;
 .b-hot{background:#dc2626;color:#fff;animation:blinkHot .8s infinite;font-size:13px;padding:4px 10px}
 @keyframes blinkHot{0%,100%{opacity:1;box-shadow:0 0 8px #dc2626}50%{opacity:.45;box-shadow:none}}
 /* 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp mạnh nhất bảng, không thể bỏ lỡ */
-.alert.urgent{border-left:5px solid #ff2d2d;background:linear-gradient(90deg,rgba(255,45,45,.22),#1a0f0f 65%);animation:urgentBlink .7s ease-in-out infinite;font-size:15px}
-@keyframes urgentBlink{0%,100%{box-shadow:0 0 6px rgba(255,45,45,.5);transform:scale(1)}50%{box-shadow:0 0 26px rgba(255,45,45,1);background:rgba(120,20,20,.55);transform:scale(1.015)}}
-.b-urgent{background:#ff2d2d;color:#fff;animation:blinkHot .7s infinite;font-size:14px;padding:5px 12px;font-weight:800}
+.alert.urgent{border-left:5px solid #ffc94d;background:linear-gradient(90deg,rgba(255,201,77,.13),#141007 65%);animation:sharkPulse 1.8s ease-in-out infinite;font-size:15px}
+@keyframes sharkPulse{0%,100%{box-shadow:0 0 8px rgba(255,201,77,.30);transform:scale(1)}50%{box-shadow:0 0 24px rgba(255,201,77,.70);background:rgba(60,45,10,.35);transform:scale(1.008)}}
+.b-urgent{background:linear-gradient(135deg,#ffc94d,#e8a020);color:#1a1206;animation:sharkPulse 1.8s infinite;font-size:14px;padding:5px 12px;font-weight:800}
 @keyframes blinkNew{0%,100%{opacity:1}50%{opacity:.3}}
 .livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#f87171;margin-right:6px;animation:blinkNew 1.4s infinite}
 .livestrip{display:flex;flex-wrap:wrap;gap:8px}
@@ -201,7 +201,7 @@ li{margin-bottom:6px}
 <div class="quicknav">🔎 <a href="#sec-swing">🚨 Tín hiệu</a> · <a href="#sec-dram">💾 DRAM</a> · <a href="#sec-etf">📊 ETF</a> · <a href="#sec-daytrade">Daytrade</a> · <a href="#sec-longterm">📘 Sổ 1</a> · <a href="#top">⬆️ Đầu trang</a></div>
 
 <div class="sec" id="sec-urgent">
-  <h2>🚨 TÍN HIỆU KHẨN — chớp nhanh, tiền đang chạy <span class="badge b-urgent">🚨 KHẨN</span></h2>
+  <h2>🦈 CÁ MẬP GOM HÀNG — tiền lớn đang chạy <span class="badge b-urgent">🦈 CÁ MẬP</span></h2>
   <div id="urgentBox"><!-- URG-URVVSAT-15/10 --><div class="alert urgent"><b>🔄 <b>VSAT ĐẢO CHIỀU XÁC NHẬN</b> — đáy -5.7%, hồi +5.6%, vol 1.6x. Bắt đáy có tay to đỡ</b><br><span class="t">Tín hiệu khẩn • 15/10 • chớp nhanh, tiền đang chạy • chỉ tham khảo</span><br><span class="zt">🎯 Chốt $80→$93 · Cắt <$64 (Sổ 3)</span></div>
 <!-- URG-URVENTG-15/10 --><div class="alert urgent"><b>🔄 <b>ENTG ĐẢO CHIỀU XÁC NHẬN</b> — đáy -8.1%, hồi +4.4%, vol 1.8x. Bắt đáy có tay to đỡ</b><br><span class="t">Tín hiệu khẩn • 15/10 • chớp nhanh, tiền đang chạy • chỉ tham khảo</span><br><span class="zt">🎯 Chốt $167→$175 · Cắt <$140 (Sổ 2)</span></div>
 <!-- URG-URSBUX-15/10 --><div class="alert urgent"><b>🚨 <b>SBUX +4.0% trong ngày</b> — đang chạy, canh vùng chốt</b><br><span class="t">Tín hiệu khẩn • 15/10 • chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>
