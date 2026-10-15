@@ -473,24 +473,79 @@ def refresh_nhip(h, all_prices, spy_pc=None):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# 💰 DÒNG TIỀN VÀO — Tom lệnh 15/10: script PRO phải bắt dòng tiền ngay lập tức.
+# Volume hôm nay (annualized theo phần phiên đã trôi qua) so với trung bình 20 phiên.
+# Chỉ quét mã đang có đà (bounce ≥3% / ngày ≥+2% / đỏ sâu đang ngóc) để kịp chu kỳ 5 phút.
+def fetch_vol_ratio(ticker):
+    try:
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=1mo"
+        req = Request(url, headers=UA)
+        with urlopen(req, timeout=10) as r:
+            res = json.load(r)["chart"]["result"][0]
+        vols = [v for v in res["indicators"]["quote"][0]["volume"] if v]
+        if len(vols) < 22:
+            return ticker, None
+        avg = sum(vols[-21:-1]) / 20
+        today = vols[-1]
+        n = now_pt()
+        el = (n.hour * 60 + n.minute - 390) / 390  # 6:30 -> 13:00 PT
+        el = max(0.1, min(el, 1.0))
+        ratio = (today / el) / avg if avg else 0
+        return ticker, round(ratio, 1)
+    except Exception:
+        return ticker, None
+
+
+def detect_money_flow(prices, daylows, repo_dir=None):
+    """Trả về [(ticker, vol_x, bounce_%, day_%, price)] cho mã vol ≥2x TB đang có đà."""
+    cands = []
+    for t, (px, pc) in prices.items():
+        low = daylows.get(t)
+        b = (px - low) / low * 100 if low else 0
+        if b >= 3.0 or pc >= 2.0 or (pc <= -4.0 and b >= 1.5):
+            cands.append(t)
+    cands = cands[:25]
+    flows = []
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for t, r in ex.map(fetch_vol_ratio, cands):
+            if r and r >= 2.0:
+                px, pc = prices[t]
+                low = daylows.get(t, 0)
+                b = (px - low) / low * 100 if low else 0
+                flows.append((t, r, b, pc, px))
+                if repo_dir:
+                    journal_signal(repo_dir, "money_flow", t, px, f"vol {r}x, bounce +{b:.1f}%")
+    flows.sort(key=lambda x: x[1], reverse=True)
+    return flows
+
+
 # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: "phải có tín hiệu chớp nháy khẩn, cho mọi người kiếm tiền".
 # Chỉ signal mạnh nhất mới lên đây: bounce ≥5% từ đáy / tăng ≥4% trong ngày /
 # vào vùng mới. Tối đa 3, dedup theo ngày — tránh chớp loạn gây nhiễu.
+# PRO 15/10: thêm tầng 🔥 BOUNCE MẠNH (≥8% từ đáy) + 💰 DÒNG TIỀN VÀO (vol ≥2.5x).
 URGENT_MAX = 3
 
 
-def refresh_urgent(h, prices, daylows, events, repo_dir):
+def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None):
     date_s = now_pt().strftime("%d/%m")
     cands = []  # (key, ticker, html)
     for t, (px, pc) in prices.items():
         low = daylows.get(t)
         b = (px - low) / low * 100 if low else 0
-        if b >= 5.0:
+        if b >= 8.0:
+            cands.append((f"UBS{t}", t,
+                          f"🔥 <b>{t} BOUNCE MẠNH +{b:.1f}% từ đáy ngày</b> — tiền vào cực mạnh, canh đà"))
+        elif b >= 5.0:
             cands.append((f"UB{t}", t,
                           f"🚨 <b>{t} bounce +{b:.1f}% từ đáy ngày</b> — tiền vào mạnh, canh đà"))
         elif pc >= 4.0:
             cands.append((f"UR{t}", t,
                           f"🚨 <b>{t} +{pc:.1f}% trong ngày</b> — đang chạy, canh vùng chốt"))
+    # 💰 DÒNG TIỀN VÀO — vol ≥2.5x + đang bounce → tiền thật, ưu tiên khẩn
+    for t, r, b, pc, px in flows or []:
+        if r >= 2.5 and b >= 3.0:
+            cands.append((f"UMF{t}", t,
+                          f"💰 <b>{t} DÒNG TIỀN VÀO</b> — vol {r}x TB, bounce +{b:.1f}% từ đáy"))
     for ev in events or []:
         t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
         if st == "IN":
@@ -927,8 +982,21 @@ def main():
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
 
+    # 💰 DÒNG TIỀN VÀO — Tom lệnh 15/10: script PRO bắt tiền thật ngay lập tức.
+    # Quét vol spike trên toàn vũ trụ 115+ mã, chỉ mã đang có đà.
+    all_px = {**prices, **nhip_extra}
+    all_low = {**daylows, **nhip_lows}
+    try:
+        flows = detect_money_flow(all_px, all_low, a.repo_dir)
+    except Exception as e:
+        print(f"  ! money flow: {e}", file=sys.stderr)
+        flows = []
+    print(f"dòng tiền: {', '.join(f'{t} {r}x' for t, r, *_ in flows[:5]) or 'chưa có vol spike'}",
+          flush=True)
+
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
-    h, nu = refresh_urgent(h, prices, daylows, zone_events, a.repo_dir)
+    # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN
+    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows)
     print(f"tín hiệu khẩn: {nu}", flush=True)
 
     # 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: bounce lan rộng + đa số sector
