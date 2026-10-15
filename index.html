@@ -4,6 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="300">
+<script>
+// Tự tải lại mỗi 5 phút, kèm cache-buster để luôn lấy bản mới nhất (tránh trình duyệt giữ bản cũ)
+setTimeout(function(){location.href=location.pathname+'?v='+Date.now();},300000);
+// Hiện "cách đây X phút" cạnh badge cập nhật để biết bản đang xem cũ hay mới
+(function(){
+  try{
+    var el=document.querySelector('span.updated');
+    if(!el) return;
+    var m=el.textContent.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})\s*~(\d{1,2}):(\d{2})\s*PT/);
+    if(!m) return;
+    // m: [.., day, month, year, hour, min] — giờ PT
+    var months={'1':0,'2':1,'3':2,'4':3,'5':4,'6':5,'7':6,'8':7,'9':8,'10':9,'11':10,'12':11};
+    var pt=new Date(Number(m[3]),months[String(Number(m[2]))],Number(m[1]),Number(m[4]),Number(m[5]));
+    // Đổi giờ PT sang timestamp: lấy offset PT hiện tại
+    var now=new Date();
+    var ptNow=new Date(now.toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));
+    var diffMin=Math.max(0,Math.round((ptNow-pt)/60000));
+    var age=diffMin<1?'vừa xong':(diffMin<60?diffMin+' phút trước':Math.floor(diffMin/60)+'h'+(diffMin%60)+' trước');
+    var s=document.createElement('span');
+    s.style.cssText='margin-left:6px;font-size:12px;color:#9fc5ff';
+    s.textContent='· bản này '+age;
+    el.appendChild(s);
+  }catch(e){}
+})();
+</script>
 <title>BẢNG MARKET LIVE — Iggy × Tom</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -479,7 +504,7 @@ function checkPin(){
 
 <div class="footer">
   ⚠️ Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.<br>
-  <span class="note">Dữ liệu cùng ngày 14/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút; nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm).</span>
+  <span class="note">Dữ liệu cùng ngày 14/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút (luôn lấy bản mới nhất, không giữ cache cũ); nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm). Bản mới mất ~10–25 phút để hiện trên web sau khi đẩy — nếu badge "Cập nhật lần cuối" cũ hơn, cứ để trang tự tải lại.</span>
 </div>
 
 <a href="#top" class="totop" title="Về đầu trang">⬆️</a>
