@@ -193,8 +193,11 @@ function buildHotFeed(){
     if(!isHot) return;
     var key=a.textContent.slice(0,60);
     if(seen[key]) return; seen[key]=1;
-    var clone=a.cloneNode(true);
-    html+='<div class="alert hot">'+clone.innerHTML+'</div>';
+    // Gọn: chỉ lấy headline, không copy nguyên tin (tránh trùng lặp)
+    var headline=a.querySelector('b');
+    var txt=headline?headline.textContent:a.textContent.slice(0,80);
+    var secId=a.closest('.sec')?(a.closest('.sec').id||''):'';
+    html+='<div class="alert hot" style="padding:8px 10px;cursor:pointer" onclick="document.getElementById(\''+secId+'\').scrollIntoView({behavior:\'smooth\'})">🔥 <b>'+txt.slice(0,90)+'</b> <span style="font-size:12px;color:#9fc5ff">— chạm để xem chi tiết ↓</span></div>';
   });
   // 2. Gom mã chạy ≥3% từ dải LIVE
   var chips=document.querySelectorAll('#liveStrip .chip');

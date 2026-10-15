@@ -249,6 +249,20 @@ def prune_old_alerts(h):
 
     h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', check_alert, h, flags=re.S)
 
+    # Chống TRÙNG LẶP nội dung — Tom lệnh 15/10: "đừng để bị trùng lặp"
+    seen_text = set()
+    def dedup_content(m):
+        full, inner = m.group(0), m.group(1)
+        # Chuẩn hóa: lấy 80 ký tự đầu của text thuần
+        txt = re.sub(r'<[^>]+>', '', inner).strip()[:80].lower()
+        txt = re.sub(r'\s+', ' ', txt)
+        if txt in seen_text:
+            removed[0] += 1
+            return ''
+        seen_text.add(txt)
+        return full
+    h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', dedup_content, h, flags=re.S)
+
     # Cú Đêm: chỉ giữ 3 mới nhất
     def trim_cudem(m):
         header, body = m.group(1), m.group(2)
