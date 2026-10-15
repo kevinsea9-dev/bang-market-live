@@ -493,28 +493,27 @@ def refresh_urgent(h, prices, daylows, events, repo_dir):
         fresh.append((mark, t, html))
         if len(fresh) >= URGENT_MAX:
             break
-    if fresh:
-        for mark, t, html in fresh:
-            px = prices.get(t, (0, 0))[0]
-            journal_signal(repo_dir, "urgent", t, px, html[:60])
-        box = "".join(
-            f'{mark}<div class="alert urgent"><b>{html}</b><br>'
-            f'<span class="t">Tín hiệu khẩn • {date_s} • chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>\n'
-            for mark, _, html in fresh)
+    if not fresh:
+        return h, "khẩn: không có signal mới (giữ alert cũ)"
+    for mark, t, html in fresh:
+        px = prices.get(t, (0, 0))[0]
+        journal_signal(repo_dir, "urgent", t, px, html[:60])
+    new_alerts = "".join(
+        f'{mark}<div class="alert urgent"><b>{html}</b><br>'
+        f'<span class="t">Tín hiệu khẩn • {date_s} • chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>\n'
+        for mark, _, html in fresh)
+    # box đang là note trống -> thay note; đã có alert -> prepend, giữ alert cũ
+    h2, c1 = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',
+                     r"\g<1>" + new_alerts, h, count=1, flags=re.S)
+    if c1:
+        h = h2
     else:
-        box = '<div class="note">Chưa có tín hiệu khẩn — khi nào tiền chạy mạnh, signal sẽ chớp ở đây.</div>'
-    h2, c = re.subn(r'(<div id="urgentBox">).*?(</div>\s*</div>)',
-                    r"\g<1>" + box + r"\g<2>", h, count=1, flags=re.S)
-    if c != 1:
-        # section chưa có (bản cũ) -> chèn trước sec-hot
-        sec = ('<div class="sec" id="sec-urgent">\n'
-               '  <h2>🚨 TÍN HIỆU KHẨN — chớp nhanh, tiền đang chạy '
-               '<span class="badge b-urgent">🚨 KHẨN</span></h2>\n'
-               f'  <div id="urgentBox">{box}</div>\n</div>\n\n')
-        h2, c = re.subn(r'(<div class="sec" id="sec-hot">)', sec + r"\g<1>",
+        h, c2 = re.subn(r'(<div id="urgentBox">)', r"\g<1>" + new_alerts,
                         h, count=1)
-    names = ", ".join(t for _, t, _ in fresh) or "không có"
-    return (h2 if c else h), f"khẩn: {names}"
+        if not c2:
+            return h, "khẩn: thiếu #urgentBox"
+    names = ", ".join(t for _, t, _ in fresh)
+    return h, f"khẩn mới: {names}"
 
 
 # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: "market rebound mạnh, phải bắt kịp signal".
@@ -838,14 +837,20 @@ def main():
     print(f"bản đồ sector: {ns}", flush=True)
 
     tag = "giá"
+    zone_events = None
     if a.mode in ("full", "close"):
         state_path = os.path.join(a.repo_dir, "zone_state.json")
         h, events = update_zone_badges(h, prices, state_path)
+        zone_events = events
         if events:
             h = add_signals(h, events)
             h = add_dram_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
+
+    # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
+    h, nu = refresh_urgent(h, prices, daylows, zone_events, a.repo_dir)
+    print(f"tín hiệu khẩn: {nu}", flush=True)
 
     # mỗi mã một vị trong mục tín hiệu vùng + mã nóng (giữ cái mới nhất) —
     # chạy SAU khi chèn tín hiệu mới để trùng trong cùng lượt cũng biến mất
