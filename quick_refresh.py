@@ -476,6 +476,85 @@ def refresh_nhip(h, all_prices, spy_pc=None):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# 😱→🛒 CAPITULATION DETECTOR — Tom lệnh 15/10: "khi mọi người hoảng loạn,
+# là lúc mình gom hàng" (Buffett). Hoảng loạn thật = rớt sâu (≥6%) + volume tháo
+# chạy (≥2.5x TB) + đã có tay to đỡ (ngóc ≥2% từ đáy). Đây là setup gom hàng,
+# KHÔNG phải dự đoán đáy — cắt cứng vẫn bắt buộc.
+def detect_capitulation(prices, daylows, repo_dir=None):
+    cands = [t for t, (px, pc) in prices.items() if pc <= -6.0][:25]
+    caps = []
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for t, r in ex.map(fetch_vol_ratio, cands):
+            if r and r >= 2.5:
+                px, pc = prices[t]
+                low = daylows.get(t, 0)
+                b = (px - low) / low * 100 if low else 0
+                if b >= 2.0:
+                    caps.append((t, pc, r, b, px))
+                    if repo_dir:
+                        journal_signal(repo_dir, "capitulation", t, px,
+                                       f"{pc:+.1f}%, vol {r}x, ngóc +{b:.1f}%")
+    caps.sort(key=lambda x: x[2], reverse=True)
+    return caps
+
+
+# 😨 VIX FEAR GAUGE — Tom lệnh 15/10: đo nỗi sợ market theo Buffett.
+# VIX ≥30 hoảng loạn cực độ (lúc gom), 25–30 sợ hãi cao, 20–25 căng thẳng, <20 bình tĩnh.
+def fear_gauge(h):
+    try:
+        _t, v = fetch_one("^VIX")
+        vix = v[0] if v else 0
+    except Exception:
+        vix = 0
+    if not vix:
+        return h, "VIX: không lấy được"
+    if vix >= 30:
+        label, icon = "HOẢNG LOẠN CỰC ĐỘ — lúc gom hàng", "😱"
+    elif vix >= 25:
+        label, icon = "sợ hãi cao — canh gom", "😨"
+    elif vix >= 20:
+        label, icon = "căng thẳng", "😟"
+    else:
+        label, icon = "bình tĩnh", "😐"
+    h = re.sub(r'<div class="note" id="vix-gauge">.*?</div>\n', "", h)
+    gauge = (f'<div class="note" id="vix-gauge">{icon} <b>VIX {vix:.1f}</b> — {label} '
+             f'<span class="t">Thước đo nỗi sợ • Buffett: tham lam khi người khác sợ hãi</span></div>\n')
+    h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)
+    if c:
+        h = h2
+    return h, f"VIX {vix:.1f} ({label})"
+
+
+# 🏷️ HÀNG GIẢM GIÁ — Tom lệnh 15/10: mã tốt đang discount sâu vs đỉnh 52w = shopping list lúc hoảng loạn.
+# Chỉ quét mã trên bảng (đã lọc kỹ), discount ≥20%.
+def discount_card(h, prices, highs52):
+    deals = []
+    for t, (px, pc) in prices.items():
+        h52 = highs52.get(t)
+        if h52 and h52 > 0:
+            d = (px - h52) / h52 * 100
+            if d <= -20:
+                deals.append((t, d, px))
+    deals.sort(key=lambda x: x[1])
+    top = deals[:6]
+    if top:
+        body = "<br>".join(f"🏷️ {t} <b>{d:.0f}%</b> so với đỉnh 52w (${px:,.2f})"
+                           for t, d, px in top)
+    else:
+        body = "Chưa có mã giảm ≥20% so với đỉnh 52 tuần"
+    card = (f'<div class="card" style="border-color:#1f6d4a">'
+            f'<div class="lbl">🏷️ HÀNG GIẢM GIÁ — discount vs đỉnh 52w</div>'
+            f'<div class="val" style="font-size:14px;line-height:1.9">{body}</div></div>')
+    h = re.sub(r'<div class="card" style="border-color:#1f6d4a">.*?</div></div>',
+               '', h, count=1, flags=re.S)
+    h2, c = re.subn(r'(<div class="card" style="border-color:#8a6d1f">.*?</div></div>)',
+                    r"\g<1>" + card, h, count=1, flags=re.S)
+    if c:
+        h = h2
+    names = ", ".join(f"{t} {d:.0f}%" for t, d, _ in top) or "chưa có"
+    return h, f"giảm giá: {names}"
+
+
 # 💰 DÒNG TIỀN VÀO — Tom lệnh 15/10: script PRO phải bắt dòng tiền ngay lập tức.
 # Volume hôm nay (annualized theo phần phiên đã trôi qua) so với trung bình 20 phiên.
 # Chỉ quét mã đang có đà (bounce ≥3% / ngày ≥+2% / đỏ sâu đang ngóc) để kịp chu kỳ 5 phút.
@@ -529,7 +608,7 @@ def detect_money_flow(prices, daylows, repo_dir=None):
 URGENT_MAX = 3
 
 
-def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None):
+def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None):
     date_s = now_pt().strftime("%d/%m")
     cands = []  # (key, ticker, html)
     for t, (px, pc) in prices.items():
@@ -549,6 +628,10 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None):
         if r >= 2.5 and b >= 3.0:
             cands.append((f"UMF{t}", t,
                           f"💰 <b>{t} DÒNG TIỀN VÀO</b> — vol {r}x TB, bounce +{b:.1f}% từ đáy"))
+    # 😱→🛒 CAPITULATION — hoảng loạn + tay to đỡ = lúc gom (Buffett)
+    for t, pc, r, b, px in caps or []:
+        cands.append((f"UCP{t}", t,
+                      f"😱→🛒 <b>{t} HOẢNG LOẠN {pc:+.1f}%, vol {r}x</b> — đã ngóc +{b:.1f}% từ đáy, tay to đang đỡ, canh gom"))
     for ev in events or []:
         t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
         if st == "IN":
@@ -997,9 +1080,26 @@ def main():
     print(f"dòng tiền: {', '.join(f'{t} {r}x' for t, r, *_ in flows[:5]) or 'chưa có vol spike'}",
           flush=True)
 
+    # 😱→🛒 CAPITULATION — Tom lệnh 15/10 (Buffett): hoảng loạn + tay to đỡ = lúc gom hàng
+    try:
+        caps = detect_capitulation(all_px, all_low, a.repo_dir)
+    except Exception as e:
+        print(f"  ! capitulation: {e}", file=sys.stderr)
+        caps = []
+    print(f"capitulation: {', '.join(f'{t} {r}x' for t, _, r, _, _ in caps) or 'chưa có'}",
+          flush=True)
+
+    # 😨 VIX FEAR GAUGE — thước đo nỗi sợ market
+    h, nvix = fear_gauge(h)
+    print(f"fear gauge: {nvix}", flush=True)
+
+    # 🏷️ HÀNG GIẢM GIÁ — shopping list lúc hoảng loạn (discount vs đỉnh 52w)
+    h, nd = discount_card(h, prices, {**highs52, **nhip_highs})
+    print(f"hàng giảm giá: {nd}", flush=True)
+
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
-    # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN
-    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows)
+    # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION
+    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps)
     print(f"tín hiệu khẩn: {nu}", flush=True)
 
     # 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: bounce lan rộng + đa số sector
