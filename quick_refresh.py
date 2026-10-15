@@ -232,8 +232,19 @@ def dedup_urgentbox(h):
 def auto_cleanup(h, prices, tickers, repo_dir):
     """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
     - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
-    - Trùng: giữ dòng đầu, xóa các dòng sau."""
+    - Trùng: giữ dòng đầu, xóa các dòng sau.
+    - Tom lệnh 15/10: mã trong zones.json["_excluded"] (trung lập) -> xóa dòng,
+      không cho cron/worker phục hồi lại."""
     removed = []
+    try:
+        excluded = json.load(open(os.path.join(repo_dir, "zones.json"))).get("_excluded", [])
+    except Exception:
+        excluded = []
+    for t in excluded:
+        h, c = re.subn(r'\s*<tr><td><b>' + re.escape(t) + r'</b></td>.*?</tr>',
+                       '', h, flags=re.S)
+        if c:
+            removed.append(f"{t}(loại theo lệnh Tom)")
     fail_path = os.path.join(repo_dir, "fetch_failures.json")
     try:
         fails = json.load(open(fail_path)) if os.path.exists(fail_path) else {}
@@ -344,7 +355,14 @@ def update_zone_badges(h, prices, state_path):
         old = {}
     new_state = dict(old)
     events = []
+    try:
+        excluded = set(json.load(open(os.path.join(os.path.dirname(state_path), "zones.json"))).get("_excluded", []))
+    except Exception:
+        excluded = set()
     for t in ZONES:
+        if t in excluded:
+            new_state.pop(t, None)
+            continue
         if t not in prices:
             continue
         px, pc = prices[t]

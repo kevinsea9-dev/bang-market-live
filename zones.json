@@ -487,5 +487,10 @@
   ],
   "cut": 290,
   "note": "Tesla; catalyst: SpaceX merger (Barron's <1h)"
- }
+ },
+ "_excluded": [
+  "PCVX",
+  "XLE"
+ ],
+ "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded."
 }
