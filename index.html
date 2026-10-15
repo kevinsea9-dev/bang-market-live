@@ -299,6 +299,29 @@ function checkPin(){
     else{a.insertBefore(b,a.firstChild);}
   });
 })();
+// ===== TIN CŨ TỰ BIẾN MẤT: nhường chỗ cho tin mới (luật của Tom) =====
+// - Tin từ 2 ngày trước trở lên → xóa hẳn khỏi bảng
+// - Tin hôm qua → làm mờ (phân biệt với tin hôm nay)
+// - Tin hôm nay → hiện đầy đủ
+(function(){
+  try{
+    var now=new Date();
+    var todayStart=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    document.querySelectorAll('div.sec div.alert').forEach(function(a){
+      var tEl=a.querySelector('.t');
+      if(!tEl) return;
+      var m=tEl.textContent.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{4}))?/);
+      if(!m) return;
+      var y=m[3]?Number(m[3]):now.getFullYear();
+      var d=new Date(y,Number(m[2])-1,Number(m[1]));
+      // Trường hợp qua năm mới (VD: tin 30/12 mà nay là 2/1) → lùi năm lại
+      if(d>todayStart) d=new Date(y-1,Number(m[2])-1,Number(m[1]));
+      var dayDiff=Math.floor((todayStart-d)/86400000);
+      if(dayDiff>=2){a.remove();}
+      else if(dayDiff===1){a.style.opacity='0.5';}
+    });
+  }catch(e){}
+})();
 </script>
 
 <div class="tabbar">
