@@ -90,19 +90,24 @@ def fetch_one(ticker):
         price = float(d["regularMarketPrice"])
         prev = float(d.get("chartPreviousClose") or d.get("previousClose") or price)
         pct = (price - prev) / prev * 100 if prev else 0.0
-        return ticker, (round(price, 2), round(pct, 2))
+        low = float(d.get("regularMarketDayLow") or 0)
+        return ticker, (round(price, 2), round(pct, 2), round(low, 2))
     except Exception as e:
         print(f"  ! {ticker}: {e}", file=sys.stderr)
         return ticker, None
 
 
 def fetch_prices(tickers):
-    out = {}
+    """Trả về (prices, daylows): prices[t]=(giá, %) giữ nguyên để code cũ không vỡ;
+    daylows[t]=đáy ngày phục vụ dò bounce."""
+    out, lows = {}, {}
     with ThreadPoolExecutor(max_workers=10) as ex:
         for t, v in ex.map(fetch_one, tickers):
             if v:
-                out[t] = v
-    return out
+                out[t] = (v[0], v[1])
+                if v[2]:
+                    lows[t] = v[2]
+    return out, lows
 
 
 def fmt_price(p):
@@ -434,6 +439,48 @@ def refresh_nhip(h, all_prices):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# 🔄 ĐANG BOUNCE — Tom lệnh 15/10: "market rebound mạnh, phải bắt kịp signal".
+# Mã hồi ≥3% từ đáy ngày -> card riêng trong NHỊP THỊ TRƯỜNG, không chờ vào vùng.
+def refresh_bounce(h, prices, daylows):
+    rows = []
+    for t, (px, pc) in prices.items():
+        low = daylows.get(t)
+        if low and low > 0:
+            b = (px - low) / low * 100
+            if b >= 3.0:
+                rows.append((t, b))
+    rows.sort(key=lambda x: x[1], reverse=True)
+    top = rows[:4]
+    if top:
+        body = "<br>".join(f"{t} +{b:.1f}% từ đáy" for t, b in top)
+        names = ", ".join(t for t, _ in top)
+    else:
+        body = "Chưa có mã hồi ≥3% từ đáy ngày"
+        names = "chưa có"
+    card = (f'<div class="card" style="border-color:#8a6d1f">'
+            f'<div class="lbl">🔄 ĐANG BOUNCE</div>'
+            f'<div class="val up" style="font-size:14px;line-height:1.9">{body}</div></div>')
+    anchor = "⚡ NHỊP THỊ TRƯỜNG"
+    i = h.find(anchor)
+    if i == -1:
+        return h, "skip (không thấy NHỊP)"
+    j = h.find('<div class="note">', i)
+    if j == -1:
+        return h, "skip (không thấy note)"
+    sec = h[i:j]
+    sec2, c1 = re.subn(r'<div class="grid" style="grid-template-columns:1fr 1fr">',
+                       r'<div class="grid" style="grid-template-columns:1fr 1fr 1fr">',
+                       sec, count=1)
+    sec2, c2 = re.subn(
+        r'(❄️ LẠNH NHẤT</div><div class="val down" style="font-size:14px;line-height:1.9">'
+        r'.*?</div></div>)',
+        r"\g<1>" + card, sec2, count=1, flags=re.S)
+    if (c1 + c2) == 2:
+        h = h[:i] + sec2 + h[j:]
+        return h, f"bounce: {names}"
+    return h, f"thiếu pattern ({c1}{c2})"
+
+
 # DÒNG TIỀN SECTOR — Tom lệnh 14/10: "tự động gắn cron cho tất cả sectors và nguồn tiền đi đâu".
 # Mỗi lượt 5 phút lấy % của 6 ETF đại diện, xếp hạng lại BẢN ĐỒ SECTOR.
 SECTOR_CARDS = [
@@ -513,7 +560,7 @@ def market_klaxon(h, repo_dir):
     mkt = {k: v for k, v in mkt.items() if v}
     if "SPY" not in mkt:
         return h, None
-    spy_px, spy_pc = mkt["SPY"]
+    spy_px, spy_pc = mkt["SPY"][:2]
     qqq_pc = mkt.get("QQQ", (0, 0))[1]
     dia_pc = mkt.get("DIA", (0, 0))[1]
 
@@ -613,7 +660,7 @@ def main():
     tickers = discover_tickers(open(a.html, encoding="utf-8").read())
     print(f"quét thấy {len(tickers)} mã trên bảng", flush=True)
     print(f"lấy giá {len(tickers)} mã...", flush=True)
-    prices = fetch_prices(tickers)
+    prices, daylows = fetch_prices(tickers)
     print(f"ok {len(prices)}/{len(tickers)}", flush=True)
     if not prices:
         print("không lấy được giá nào — thoát", file=sys.stderr)
@@ -629,12 +676,17 @@ def main():
 
     # NHỊP THỊ TRƯỜNG — xếp hạng lại mỗi lượt (mục focus #1)
     try:
-        nhip_extra = fetch_prices(NHIP_EXTRA)
+        nhip_extra, nhip_lows = fetch_prices(NHIP_EXTRA)
     except Exception as e:
         print(f"  ! nhip extra: {e}", file=sys.stderr)
-        nhip_extra = {}
+        nhip_extra, nhip_lows = {}, {}
     h, nn = refresh_nhip(h, {**prices, **nhip_extra})
     print(f"nhịp thị trường: {nn}", flush=True)
+
+    # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: market rebound phải bắt kịp signal.
+    # Mã hồi ≥3% từ đáy ngày -> card riêng, không chờ vào vùng.
+    h, nb = refresh_bounce(h, {**prices, **nhip_extra}, {**daylows, **nhip_lows})
+    print(f"bounce: {nb}", flush=True)
 
     # tự dọn mã trùng / chết — cho đúng Live
     h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
@@ -648,7 +700,7 @@ def main():
 
     # BẢN ĐỒ SECTOR — dòng tiền đi đâu, mỗi lượt
     try:
-        sec_prices = fetch_prices([etf for _, etf in SECTOR_CARDS])
+        sec_prices, _ = fetch_prices([etf for _, etf in SECTOR_CARDS])
     except Exception as e:
         print(f"  ! sector: {e}", file=sys.stderr)
         sec_prices = {}
