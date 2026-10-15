@@ -476,6 +476,39 @@ def refresh_nhip(h, all_prices, spy_pc=None):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# 🔄 ĐẢO CHIỀU XÁC NHẬN — Tom lệnh 15/10: "lỡ chuyến đò rồi, từ giờ canh bắt đáy,
+# ăn cú rebound mạnh". Đáy xác nhận = đã rớt sâu (đáy ngày ≤-5%) + đang hồi mạnh
+# (≥4% từ đáy) + có volume (≥1.5x TB) = tay to vào gom thật, không phải bull trap nhỏ.
+# Đây là trigger bắt đáy, đi thẳng vào chat Tom ngay lập tức (không chờ bảng).
+def detect_reversal(prices, daylows, repo_dir=None):
+    cands = []
+    for t, (px, pc) in prices.items():
+        low = daylows.get(t)
+        if not (low and low > 0):
+            continue
+        prev = px / (1 + pc / 100) if pc != -100 else px
+        low_pc = (low - prev) / prev * 100 if prev else 0
+        b = (px - low) / low * 100
+        if low_pc <= -5.0 and b >= 4.0:
+            cands.append(t)
+    cands = cands[:25]
+    revs = []
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for t, r in ex.map(fetch_vol_ratio, cands):
+            if r and r >= 1.5:
+                px, pc = prices[t]
+                low = daylows.get(t, 0)
+                b = (px - low) / low * 100 if low else 0
+                prev = px / (1 + pc / 100) if pc != -100 else px
+                low_pc = (low - prev) / prev * 100 if prev else 0
+                revs.append((t, low_pc, b, r, px, pc))
+                if repo_dir:
+                    journal_signal(repo_dir, "reversal", t, px,
+                                   f"đáy {low_pc:+.1f}%, hồi +{b:.1f}%, vol {r}x")
+    revs.sort(key=lambda x: x[2], reverse=True)
+    return revs
+
+
 # 😱→🛒 CAPITULATION DETECTOR — Tom lệnh 15/10: "khi mọi người hoảng loạn,
 # là lúc mình gom hàng" (Buffett). Hoảng loạn thật = rớt sâu (≥6%) + volume tháo
 # chạy (≥2.5x TB) + đã có tay to đỡ (ngóc ≥2% từ đáy). Đây là setup gom hàng,
@@ -608,7 +641,7 @@ def detect_money_flow(prices, daylows, repo_dir=None):
 URGENT_MAX = 3
 
 
-def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None):
+def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, revs=None):
     date_s = now_pt().strftime("%d/%m")
     cands = []  # (key, ticker, html)
     for t, (px, pc) in prices.items():
@@ -632,6 +665,10 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None):
     for t, pc, r, b, px in caps or []:
         cands.append((f"UCP{t}", t,
                       f"😱→🛒 <b>{t} HOẢNG LOẠN {pc:+.1f}%, vol {r}x</b> — đã ngóc +{b:.1f}% từ đáy, tay to đang đỡ, canh gom"))
+    # 🔄 ĐẢO CHIỀU XÁC NHẬN — trigger bắt đáy: rớt sâu + hồi mạnh + volume
+    for t, low_pc, b, r, px, pc in revs or []:
+        cands.append((f"URV{t}", t,
+                      f"🔄 <b>{t} ĐẢO CHIỀU XÁC NHẬN</b> — đáy {low_pc:+.1f}%, hồi +{b:.1f}%, vol {r}x. Bắt đáy có tay to đỡ"))
     for ev in events or []:
         t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
         if st == "IN":
@@ -1089,6 +1126,18 @@ def main():
     print(f"capitulation: {', '.join(f'{t} {r}x' for t, _, r, _, _ in caps) or 'chưa có'}",
           flush=True)
 
+    # 🔄 ĐẢO CHIỀU XÁC NHẬN — Tom lệnh 15/10: lỡ chuyến đò sáng, từ giờ canh bắt đáy
+    try:
+        revs = detect_reversal(all_px, all_low, a.repo_dir)
+    except Exception as e:
+        print(f"  ! reversal: {e}", file=sys.stderr)
+        revs = []
+    print(f"đảo chiều: {', '.join(f'{t} +{b:.1f}%' for t, _, b, _, _, _ in revs) or 'chưa có'}",
+          flush=True)
+    if revs or caps:
+        print(f"🎯 BOTTOM SIGNAL: {[t for t, *_ in revs] + [t for t, *_ in caps]} — báo chat Tom ngay",
+              flush=True)
+
     # 😨 VIX FEAR GAUGE — thước đo nỗi sợ market
     h, nvix = fear_gauge(h)
     print(f"fear gauge: {nvix}", flush=True)
@@ -1098,8 +1147,8 @@ def main():
     print(f"hàng giảm giá: {nd}", flush=True)
 
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
-    # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION
-    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps)
+    # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION + ĐẢO CHIỀU
+    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps, revs)
     print(f"tín hiệu khẩn: {nu}", flush=True)
 
     # 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: bounce lan rộng + đa số sector
