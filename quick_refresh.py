@@ -530,6 +530,71 @@ def refresh_urgent(h, prices, daylows, events, repo_dir):
     return h, f"khẩn mới: {names}"
 
 
+# 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: "khi tất cả các mã và các sector
+# có tín hiệu rebounce mạnh, phải báo khẩn nhanh, kiếm tiền".
+# Điều kiện: bounce lan rộng (≥8 mã hồi ≥3% từ đáy ngày) + đa số sector xanh (≥8/13).
+# Quét toàn vũ trụ 115+ mã (không chỉ 51 mã bảng). Báo KHẨN ngay vào #urgentBox,
+# kèm top mã dẫn đầu để hành động. Watermark: chỉ báo lại khi số bounce tăng ≥3
+# hoặc sang ngày mới — tránh chớp loạn.
+def broad_rebound_klaxon(h, prices, daylows, sec_prices, repo_dir):
+    date_s = now_pt().strftime("%d/%m")
+    today = now_pt().strftime("%Y-%m-%d")
+    bouncing = []
+    prepping = []
+    for t, (px, pc) in prices.items():
+        low = daylows.get(t)
+        if not (low and low > 0):
+            continue
+        b = (px - low) / low * 100
+        if b >= 3.0:
+            bouncing.append((t, b))
+        elif pc <= -4.0 and b >= 1.5:
+            prepping.append((t, b))
+    bouncing.sort(key=lambda x: x[1], reverse=True)
+    n_green = 0
+    for _lbl, etf in SECTOR_CARDS:
+        pc = sec_prices.get(etf, (0, 0))[1]
+        if isinstance(pc, (int, float)) and pc > 0:
+            n_green += 1
+    n_b = len(bouncing)
+    broad = (n_b >= 8 and n_green >= 8) or (n_b + len(prepping) >= 14 and n_green >= 8)
+    if not broad:
+        return h, f"rebound rộng: chưa đạt ({n_b} bounce, {n_green}/13 sector xanh)"
+    sp = os.path.join(repo_dir, "broad_rebound.json")
+    prev = {}
+    try:
+        if os.path.exists(sp):
+            prev = json.load(open(sp, encoding="utf-8"))
+    except Exception:
+        prev = {}
+    if prev.get("date") == today and n_b < prev.get("n_bounce", 0) + 3:
+        return h, f"rebound rộng: đã báo hôm nay ({n_b} bounce)"
+    leaders = ", ".join(f"{t} +{b:.1f}%" for t, b in bouncing[:5])
+    html = (f"🔥 <b>REBOUND TOÀN MARKET</b> — {n_b} mã đang bounce ≥3% từ đáy, "
+            f"{n_green}/13 sector xanh. Dẫn đầu: {leaders}. "
+            f"Tiền đang chạy — canh đà, chỉ tham khảo kỹ thuật")
+    mark = f"<!-- URG-BROAD-{today} -->"
+    if mark in h:
+        return h, "rebound rộng: đã có trên bảng"
+    journal_signal(repo_dir, "broad_rebound", "MARKET", 0,
+                   f"{n_b} bounce, {n_green}/13 xanh")
+    new_alert = (f'{mark}<div class="alert urgent"><b>{html}</b><br>'
+                 f'<span class="t">Còi rebound toàn market • {date_s} • '
+                 f'chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>\n')
+    h2, c1 = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',
+                     r"\g<1>" + new_alert, h, count=1, flags=re.S)
+    if c1:
+        h = h2
+    else:
+        h, c2 = re.subn(r'(<div id="urgentBox">)', r"\g<1>" + new_alert,
+                        h, count=1)
+        if not c2:
+            return h, "rebound rộng: thiếu #urgentBox"
+    json.dump({"date": today, "n_bounce": n_b, "n_green": n_green,
+               "time": now_pt().isoformat()}, open(sp, "w"))
+    return h, f"🔥 REBOUND TOÀN MARKET: {n_b} bounce, {n_green}/13 sector xanh"
+
+
 # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: "market rebound mạnh, phải bắt kịp signal".
 # Hai tầng: ĐANG BOUNCE (hồi ≥3% từ đáy ngày, đã xác nhận) và CHUẨN BỊ BOUNCE
 # (đỏ sâu ≥4% trong ngày + đã ngóc ≥1.5% từ đáy — tín hiệu sớm, KHÔNG phải dự đoán chắc chắn).
@@ -865,6 +930,12 @@ def main():
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
     h, nu = refresh_urgent(h, prices, daylows, zone_events, a.repo_dir)
     print(f"tín hiệu khẩn: {nu}", flush=True)
+
+    # 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: bounce lan rộng + đa số sector
+    # xanh thì báo KHẨN ngay, không chờ ai nhắc. Quét toàn vũ trụ 115+ mã.
+    h, nbr = broad_rebound_klaxon(h, {**prices, **nhip_extra},
+                                  {**daylows, **nhip_lows}, sec_prices, a.repo_dir)
+    print(f"còi rebound rộng: {nbr}", flush=True)
 
     # mỗi mã một vị trong mục tín hiệu vùng + mã nóng (giữ cái mới nhất) —
     # chạy SAU khi chèn tín hiệu mới để trùng trong cùng lượt cũng biến mất
