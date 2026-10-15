@@ -406,8 +406,9 @@ def bump_badge(h, tag):
 NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC"]
 
 
-def refresh_nhip(h, all_prices):
-    """Xếp hạng lại ⚡ NHỊP THỊ TRƯỜNG (nóng/lạnh nhất) từ % cùng ngày."""
+def refresh_nhip(h, all_prices, spy_pc=None):
+    """Xếp hạng lại ⚡ NHỊP THỊ TRƯỜNG (nóng/lạnh nhất) từ % cùng ngày.
+    spy_pc: % của SPY -> dò 💪 KHỎE HƠN MARKET (mã xanh vượt SPY ≥3%: leader lúc thị trường yếu)."""
     ranked = sorted(((t, pc) for t, (px, pc) in all_prices.items() if isinstance(pc, (int, float))),
                     key=lambda x: x[1], reverse=True)
     if len(ranked) < 8:
@@ -425,6 +426,25 @@ def refresh_nhip(h, all_prices):
         mood = "Hai phe giằng co."
     note = (f"Tự xếp hạng mỗi 5 phút từ % biến động cùng ngày (Yahoo). "
             f"Hôm nay: {n_up} xanh / {n_dn} đỏ trên {len(ranked)} mã quét. {mood}")
+    # 💪 KHỎE HƠN MARKET — kỹ năng kiếm tiền #1 của pro: lúc market đỏ,
+    # mã nào xanh và vượt SPY ≥3% là leader — tiền thông minh đang gom.
+    if spy_pc is not None:
+        rs = sorted(((t, pc - spy_pc) for t, (px, pc) in all_prices.items()
+                     if isinstance(pc, (int, float)) and pc > 0 and (pc - spy_pc) >= 3.0),
+                    key=lambda x: x[1], reverse=True)[:3]
+        if rs:
+            note += " 💪 Khỏe hơn market: " + ", ".join(f"{t} (+{d:.1f})" for t, d in rs)
+    # 🎓 điểm signal 30 ngày (signal_score.py chấm cuối phiên) — script tự học
+    try:
+        ms_path = os.path.join(os.path.expanduser("~/workspace/market-board"),
+                               "market_state.json")
+        if os.path.exists(ms_path):
+            ms = json.load(open(ms_path, encoding="utf-8"))
+            sc = ms.get("signal_score", {})
+            if sc.get("line"):
+                note += f'<br><span class="t">{sc["line"]} • cập nhật {sc.get("updated", "")}</span>'
+    except Exception:
+        pass
     date_s = now_pt().strftime("%d/%m")
     h, c0 = re.subn(r"⚡ NHỊP THỊ TRƯỜNG — ai nóng ai lạnh \(\d{2}/\d{2}\)",
                     f"⚡ NHỊP THỊ TRƯỜNG — ai nóng ai lạnh ({date_s})", h, count=1)
@@ -439,10 +459,68 @@ def refresh_nhip(h, all_prices):
                if ok else f"thiếu pattern ({c0}{c1}{c2}{c3})")
 
 
+# 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: "phải có tín hiệu chớp nháy khẩn, cho mọi người kiếm tiền".
+# Chỉ signal mạnh nhất mới lên đây: bounce ≥5% từ đáy / tăng ≥4% trong ngày /
+# vào vùng mới. Tối đa 3, dedup theo ngày — tránh chớp loạn gây nhiễu.
+URGENT_MAX = 3
+
+
+def refresh_urgent(h, prices, daylows, events, repo_dir):
+    date_s = now_pt().strftime("%d/%m")
+    cands = []  # (key, ticker, html)
+    for t, (px, pc) in prices.items():
+        low = daylows.get(t)
+        b = (px - low) / low * 100 if low else 0
+        if b >= 5.0:
+            cands.append((f"UB{t}", t,
+                          f"🚨 <b>{t} bounce +{b:.1f}% từ đáy ngày</b> — tiền vào mạnh, canh đà"))
+        elif pc >= 4.0:
+            cands.append((f"UR{t}", t,
+                          f"🚨 <b>{t} +{pc:.1f}% trong ngày</b> — đang chạy, canh vùng chốt"))
+    for ev in events or []:
+        t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
+        if st == "IN":
+            cands.append((f"UI{t}", t,
+                          f"🚨 <b>{t} VÀO VÙNG</b> — ${px:,.2f}, vùng giá rẻ/đẹp"))
+    # dedup + giới hạn
+    fresh = []
+    seen = set()
+    for key, t, html in cands:
+        mark = f"<!-- URG-{key}-{date_s} -->"
+        if mark in h or key in seen:
+            continue
+        seen.add(key)
+        fresh.append((mark, t, html))
+        if len(fresh) >= URGENT_MAX:
+            break
+    if fresh:
+        for mark, t, html in fresh:
+            px = prices.get(t, (0, 0))[0]
+            journal_signal(repo_dir, "urgent", t, px, html[:60])
+        box = "".join(
+            f'{mark}<div class="alert urgent"><b>{html}</b><br>'
+            f'<span class="t">Tín hiệu khẩn • {date_s} • chớp nhanh, tiền đang chạy • chỉ tham khảo</span></div>\n'
+            for mark, _, html in fresh)
+    else:
+        box = '<div class="note">Chưa có tín hiệu khẩn — khi nào tiền chạy mạnh, signal sẽ chớp ở đây.</div>'
+    h2, c = re.subn(r'(<div id="urgentBox">).*?(</div>\s*</div>)',
+                    r"\g<1>" + box + r"\g<2>", h, count=1, flags=re.S)
+    if c != 1:
+        # section chưa có (bản cũ) -> chèn trước sec-hot
+        sec = ('<div class="sec" id="sec-urgent">\n'
+               '  <h2>🚨 TÍN HIỆU KHẨN — chớp nhanh, tiền đang chạy '
+               '<span class="badge b-urgent">🚨 KHẨN</span></h2>\n'
+               f'  <div id="urgentBox">{box}</div>\n</div>\n\n')
+        h2, c = re.subn(r'(<div class="sec" id="sec-hot">)', sec + r"\g<1>",
+                        h, count=1)
+    names = ", ".join(t for _, t, _ in fresh) or "không có"
+    return (h2 if c else h), f"khẩn: {names}"
+
+
 # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: "market rebound mạnh, phải bắt kịp signal".
 # Hai tầng: ĐANG BOUNCE (hồi ≥3% từ đáy ngày, đã xác nhận) và CHUẨN BỊ BOUNCE
 # (đỏ sâu ≥4% trong ngày + đã ngóc ≥1.5% từ đáy — tín hiệu sớm, KHÔNG phải dự đoán chắc chắn).
-def refresh_bounce(h, prices, daylows):
+def refresh_bounce(h, prices, daylows, repo_dir=None, journal=True):
     bouncing, watching = [], []
     for t, (px, pc) in prices.items():
         low = daylows.get(t)
@@ -450,21 +528,39 @@ def refresh_bounce(h, prices, daylows):
             continue
         b = (px - low) / low * 100
         if b >= 3.0:
-            bouncing.append((t, b))
+            bouncing.append((t, b, px))
         elif pc <= -4.0 and b >= 1.5:
-            watching.append((t, b, pc))
+            watching.append((t, b, pc, px))
     bouncing.sort(key=lambda x: x[1], reverse=True)
     watching.sort(key=lambda x: x[1], reverse=True)
     top_b, top_w = bouncing[:4], watching[:4]
     parts = []
     if top_b:
-        parts.append("<br>".join(f"🔄 {t} +{b:.1f}% từ đáy" for t, b in top_b))
+        parts.append("<br>".join(f"🔄 {t} +{b:.1f}% từ đáy" for t, b, _ in top_b))
     if top_w:
         parts.append("<br>".join(f"🔶 {t} ngóc +{b:.1f}% từ đáy (hôm nay {pc:+.1f}%)"
-                                 for t, b, pc in top_w))
+                                 for t, b, pc, _ in top_w))
     body = "<br>".join(parts) if parts else "Chưa có mã hồi ≥3% từ đáy ngày"
-    names = ", ".join(t for t, _ in top_b) or "chưa có"
-    watch_names = ", ".join(t for t, _, _ in top_w) or "không"
+    names = ", ".join(t for t, _, _ in top_b) or "chưa có"
+    watch_names = ", ".join(t for t, _, _, _ in top_w) or "không"
+    # 📓 ghi signal MỚI vào journal để học (so với trạng thái lượt trước)
+    if journal and repo_dir:
+        try:
+            sp = os.path.join(repo_dir, "bounce_state.json")
+            prev = {}
+            if os.path.exists(sp):
+                prev = json.load(open(sp, encoding="utf-8"))
+            cur = {"b": [t for t, _, _ in bouncing], "w": [t for t, _, _, _ in watching]}
+            for t, b, px in bouncing:
+                if t not in prev.get("b", []) and t not in prev.get("w", []):
+                    journal_signal(repo_dir, "bounce", t, px, f"+{b:.1f}% từ đáy")
+            for t, b, pc, px in watching:
+                if t not in prev.get("b", []) and t not in prev.get("w", []):
+                    journal_signal(repo_dir, "bounce_watch", t, px,
+                                   f"ngóc +{b:.1f}%, ngày {pc:+.1f}%")
+            json.dump(cur, open(sp, "w", encoding="utf-8"))
+        except Exception as e:
+            print(f"  ! bounce journal: {e}", file=sys.stderr)
     card = (f'<div class="card" style="border-color:#8a6d1f">'
             f'<div class="lbl">🔄 BOUNCE / CHUẨN BỊ</div>'
             f'<div class="val up" style="font-size:14px;line-height:1.9">{body}</div></div>')
@@ -491,6 +587,21 @@ def refresh_bounce(h, prices, daylows):
         h = h[:i] + sec2 + h[j:]
         return h, f"bounce: {names} | chuẩn bị: {watch_names}"
     return h, "thiếu pattern card LẠNH"
+
+
+# 📓 NHẬT KÝ SIGNAL — Tom lệnh 15/10: script phải HỌC, biết signal nào ăn tiền.
+# Mỗi signal mới được ghi {thời điểm, mã, loại, giá}; cuối phiên signal_score.py
+# chấm điểm (giá đóng cửa vs giá lúc báo) -> bảng điểm theo loại signal.
+def journal_signal(repo_dir, sig_type, ticker, price, extra=""):
+    try:
+        p = os.path.join(repo_dir, "signal_journal.jsonl")
+        rec = {"ts": now_pt().isoformat(), "date": now_pt().strftime("%Y-%m-%d"),
+               "type": sig_type, "ticker": ticker,
+               "price": round(float(price), 2), "extra": extra}
+        with open(p, "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec) + "\n")
+    except Exception as e:
+        print(f"  ! journal: {e}", file=sys.stderr)
 
 
 # DÒNG TIỀN SECTOR — Tom lệnh 14/10: "tự động gắn cron cho tất cả sectors và nguồn tiền đi đâu".
@@ -692,12 +803,19 @@ def main():
     except Exception as e:
         print(f"  ! nhip extra: {e}", file=sys.stderr)
         nhip_extra, nhip_lows = {}, {}
-    h, nn = refresh_nhip(h, {**prices, **nhip_extra})
+    # 💪 lấy % SPY để dò relative strength (mã khỏe hơn market)
+    try:
+        _mkt, _ = fetch_prices(["SPY"])
+        spy_pc = _mkt.get("SPY", (0, 0))[1]
+    except Exception:
+        spy_pc = None
+    h, nn = refresh_nhip(h, {**prices, **nhip_extra}, spy_pc)
     print(f"nhịp thị trường: {nn}", flush=True)
 
     # 🔄 ĐANG BOUNCE — Tom lệnh 15/10: market rebound phải bắt kịp signal.
     # Mã hồi ≥3% từ đáy ngày -> card riêng, không chờ vào vùng.
-    h, nb = refresh_bounce(h, {**prices, **nhip_extra}, {**daylows, **nhip_lows})
+    h, nb = refresh_bounce(h, {**prices, **nhip_extra}, {**daylows, **nhip_lows},
+                         a.repo_dir)
     print(f"bounce: {nb}", flush=True)
 
     # tự dọn mã trùng / chết — cho đúng Live
