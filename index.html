@@ -40,6 +40,18 @@ function refreshFresh(){
 }
 setInterval(refreshFresh,60000);
 setTimeout(refreshFresh,3000);
+// ⬆️ NÚT VỀ ĐẦU TRANG — Tom 15/10 (~14:45): hay bấm nhầm ở góc phải.
+// Chỉ hiện khi cuộn xuống sâu (>600px), nhỏ + mờ để khỏi vướng.
+(function(){
+  var b=document.getElementById('toTopBtn');
+  if(!b) return;
+  function onScroll(){
+    if(window.scrollY>600) b.classList.add('show');
+    else b.classList.remove('show');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
 // 📰 NEWS DRAWER — Tom 15/10 (~14:30): icon tin tức đầu bảng, bấm xổ panel tin mới nhất.
 function toggleNews(e){
   if(e) e.preventDefault();
@@ -124,7 +136,8 @@ h1{font-size:23px;letter-spacing:1px}
 .tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
 @keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
 @keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
-.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:opacity .3s}
+.totop.show{opacity:.65;visibility:visible}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
 .card .lbl{font-size:13px;color:#bccbe4}
@@ -190,7 +203,7 @@ li{margin-bottom:6px}
 @keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
 .guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
 </style>
-<meta name="board-v" content="20261015213355">
+<meta name="board-v" content="20261015214129">
 </head>
 <body>
 
@@ -1109,7 +1122,7 @@ function checkPin(){
   <span class="note">Dữ liệu cùng ngày 15/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút (luôn lấy bản mới nhất, không giữ cache cũ); nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm). Bản mới mất ~10–25 phút để hiện trên web sau khi đẩy — nếu badge "Cập nhật lần cuối" cũ hơn, cứ để trang tự tải lại.</span>
 </div>
 
-<a href="#top" class="totop" title="Về đầu trang">⬆️</a>
+<a href="#top" class="totop" id="toTopBtn" title="Về đầu trang">⬆️</a>
 
 </body>
 </html>
