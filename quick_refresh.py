@@ -190,6 +190,45 @@ def dedup_section_alerts(h, section_marker):
     return h[:j] + sec2 + h[k:], removed
 
 
+def dedup_urgentbox(h):
+    """Tom lệnh 15/10 (~11:25): bảng KHẨN bị trùng lặp — mỗi mã một alert mới nhất.
+    Urgent alert không bọc <b> quanh ticker (🔥 TTD BOUNCE...) nên regex cũ
+    của dedup_section_alerts không bắt được. Hàm này tách ticker = token
+    HOA đầu tiên trong alert, giữ cái mới nhất (alert mới chèn lên đầu)."""
+    i = h.find('id="urgentBox"')
+    if i == -1:
+        return h, []
+    j = h.find(">", i) + 1
+    k = h.find('<div class="sec"', j)
+    if k == -1:
+        k = len(h)
+    box = h[j:k]
+    seen_tk = set()
+    seen_no_tk = set()
+    removed = []
+
+    def keep_first(m):
+        full, inner = m.group(0), m.group(1)
+        txt = re.sub(r'<[^>]+>', ' ', inner).strip()
+        mt = re.search(r'\b([A-Z]{2,5})\b', txt)
+        if mt:
+            t = mt.group(1)
+            if t in seen_tk:
+                removed.append(f"{t}(khẩn trùng)")
+                return ""
+            seen_tk.add(t)
+            return full
+        norm = re.sub(r'\s+', ' ', txt).strip()[:60].lower()
+        if norm in seen_no_tk:
+            removed.append("(khẩn trùng nội dung)")
+            return ""
+        seen_no_tk.add(norm)
+        return full
+
+    box2 = re.sub(r'<div class="alert urgent">(.*?)</div>', keep_first, box, flags=re.S)
+    return h[:j] + box2 + h[k:], removed
+
+
 def auto_cleanup(h, prices, tickers, repo_dir):
     """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
     - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
@@ -1171,8 +1210,9 @@ def main():
     # chạy SAU khi chèn tín hiệu mới để trùng trong cùng lượt cũng biến mất
     h, c1 = dedup_section_alerts(h, "🚨 TÍN HIỆU VÙNG")
     h, c2 = dedup_section_alerts(h, "🔥 MÃ NÓNG")
-    if c1 or c2:
-        print(f"tự dọn trùng: {', '.join(c1 + c2)}", flush=True)
+    h, c3 = dedup_urgentbox(h)
+    if c1 or c2 or c3:
+        print(f"tự dọn trùng: {', '.join(c1 + c2 + c3)}", flush=True)
 
     if a.mode == "close":
         h = close_headers(h)
