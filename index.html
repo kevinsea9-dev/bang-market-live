@@ -27,6 +27,19 @@ function checkBoardVersion(){
 setInterval(checkBoardVersion,60000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(checkBoardVersion,1500);});
 setTimeout(checkBoardVersion,10000);
+// ⏱️ ĐỘ TƯƠI SIGNAL — Tom 15/10: alert nào cũng hiện "cách đây X phút".
+// Signal nguội thì đừng đuổi. JS đọc data-ts trên alert, tự cập nhật mỗi 60s.
+function refreshFresh(){
+  var now=Date.now();
+  document.querySelectorAll('.alert.urgent[data-ts] .fresh').forEach(function(el){
+    var ts=new Date(el.closest('.alert').getAttribute('data-ts')).getTime();
+    if(!ts) return;
+    var m=Math.max(0,Math.round((now-ts)/60000));
+    el.textContent = m<2 ? '• vừa xong' : (m<60 ? '• cách đây '+m+' phút' : '• cách đây '+Math.floor(m/60)+' giờ '+(m%60)+' phút');
+  });
+}
+setInterval(refreshFresh,60000);
+setTimeout(refreshFresh,3000);
 // Hiện "cách đây X phút" cạnh badge cập nhật để biết bản đang xem cũ hay mới
 (function(){
   try{
@@ -85,6 +98,8 @@ h1{font-size:23px;letter-spacing:1px}
 .alert.good{border-left-color:#4ade80;background:linear-gradient(90deg,rgba(74,222,128,.10),#131c2e 60%)}
 .alert .t{font-size:12.5px;color:#bccbe4}
 .alert .zt{font-size:13px;color:#ffd76a;font-weight:600}
+.alert .trust{font-size:12px;color:#9fd8a8}
+.alert .fresh{font-size:12px;color:#ffb066;font-weight:600}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th{color:#bccbe4;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
 td{padding:9px 6px;border-bottom:1px solid #1a2438}
@@ -970,6 +985,7 @@ function checkPin(){
 
 <div class="sec">
   <h2>📰 TIN LỚN (15/10 — cuối phiên)</h2> <ul>
+    <li><b>📉 AFTER-HOURS 15/10 — AI BÁN THÁO LAN RỘNG:</b> Nikkei <b>−5%</b>, Kospi <b>−9.1%</b> (Samsung/SK Hynix −10%+), Nasdaq futures tiếp tục rơi sau giờ. Tâm điểm: <b>nợ AI</b> (CoreWeave lợi suất trái phiếu &gt;15%, Oracle) + TSMC dù lãi kỷ lục vẫn <b>thận trọng cho 2027</b> vì bất ổn vĩ mô. PPI nóng → cược Fed hike 28/10 tăng. <b>Tối nay 11:30 PM ET:</b> Chủ tịch Fed Warsh phát biểu tại IMF Bangkok (fireside với Georgieva) — phát ngôn cuối trước blackout, Citi cảnh báo nguy cơ diều hâu.<br><span class="t">15/10 after-hours • Reuters/WSJ/MarketWatch • chỉ tham khảo</span></li>
     <li><b>🔥 CUỐI PHIÊN 3:40 PM ET — PHE BULL THẮNG GIỜ CHÓT:</b> Dow <b>+1.1% (+550 pts)</b> (NKE/UNH/CRM dẫn), S&amp;P 500 <b>+0.3%</b> (~7,742), Nasdaq <b>xanh nhẹ giờ chót</b> — xóa sạch −1.3% lúc mở (short squeeze AI/chip: AMD +6.9% từ đáy, ASTS +5.9%, NBIS +15.2% từ đáy, CRWV +4.6%). PPI nóng (+1.3% m/m) đã tiêu hóa; cược Fed hike 28/10 <b>27%</b>, tháng 12 <b>~89%</b> (CME FedWatch). 10Y <b>5.09%</b>; vàng <b>$4,182 (+1.8%)</b>; WTI <b>$96.30 (+2.6%)</b>. <b>TỐI NAY:</b> AMC earnings <b>AA, IBKR, JBHT, SFNC</b> + <b>11:30 PM ET: Chủ tịch Fed Warsh</b> nói ở IMF Bangkok (fireside với Georgieva — phát ngôn cuối trước blackout thứ 7; Citi cảnh báo nguy cơ nghe diều hâu). <b>Mai 16/10:</b> import/export prices + industrial production (8:30/9:15 AM ET); earnings Truist Financial, M&amp;T Bank; hết hạn options tháng 10.<br><span class="t">15/10 12:37 PT • Investopedia/MarketWatch/WSJ/Reuters • market-moving</span></li>
     <li><b>🔥 ĐÓNG CỬA 1:30 PM ET — Dow +0.8–0.9% (>52,000), S&amp;P +0.1% (~7,724), Nasdaq −0.4–0.5% (~26,579):</b> AI rout dịu (Nasdaq hồi từ −1.3% lúc mở). 10Y quanh <b>5.09–5.21%</b> (số lệch nhau giữa các nguồn trong phiên); vàng <b>$4,170 (+1.5%)</b>; WTI <b>~$98.25 (+3%)</b>; BTC ~$81,900. Breadth: NYSE tăng/giảm ~3:1, Nasdaq ~3:2 — phe mua thắng trên cả hai sàn. <b>TỐI NAY 11:30 PM ET: Chủ tịch Fed Warsh phát biểu</b> (fireside với Georgieva tại IMF Bangkok) — phát ngôn cuối trước blackout thứ 7; Citi cảnh báo nguy cơ nghe diều hâu nếu nhấn mạnh lạm phát trên mục tiêu. CME FedWatch: cược hike 28/10 <b>27%</b>, đến cuối tháng 12 <b>90%</b>.<br><span class="t">15/10 10:43 PT • Investors.com/MarketWatch/Investopedia/Reuters • market-moving</span></li>
     <li><b>🏚️ FMC Corp −33% về ~$5.40:</b> cắt guidance Q3 — từ lãi EBITDA $120–140M thành <b>lỗ −$510~565M</b>. <b>PAG +8.5%:</b> bán tư nhân <b>$212/cp tiền mặt</b> (~$16.3B EV) cho Penske Corp (64%) + Mitsui (36%), dự đóng Q1/2027. <b>KOSPI đóng −7.6% @ 5,554.22</b> — kích hoạt <b>circuit breaker 20 phút</b> (Samsung −9.5%, SK Hynix −11.1%; −20% trong 6 phiên). <b>CRWV bật +2.4% ~$67.34</b> trong phiên sau −15.5% hôm qua (bond 2031 yield ~16%, nợ ~$50B — tâm điểm nỗi sợ nợ AI).<br><span class="t">15/10 10:43 PT • Finnhub/Reuters/StockStory • market-moving</span></li>
