@@ -403,7 +403,12 @@ def bump_badge(h, tag):
 
 # NHỊP THỊ TRƯỜNG — mục focus #1 của Tom (14/10): phải xếp hạng lại MỖI lượt,
 # không để nằm lì như sáng 14/10 (kẹt ở 13/10 cả buổi)
-NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC"]
+# Tom lệnh 15/10: bảng 51 mã quá hẹp, miss CRM/AAP/TGTX/WMT/TGT đang rebound.
+# Vũ trụ mở rộng: quét thêm các mã Tom hay hỏi + mega-cap thanh khoản lớn.
+# Không cần hàng trên bảng — vẫn bắt được mover/bounce/gap/RS.
+NHIP_EXTRA = ["SKHY", "ASTS", "SMMT", "AMAT", "WDC",
+              "CRM", "AAP", "TGTX", "WMT", "TGT", "BA", "COIN", "AAPL",
+              "MSFT", "META", "ORCL", "PLTR", "UBER", "SHOP", "DIS"]
 
 
 def refresh_nhip(h, all_prices, spy_pc=None):
