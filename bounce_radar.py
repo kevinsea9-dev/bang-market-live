@@ -123,6 +123,18 @@ def main():
     # ngưỡng thường vs crash
     _pc_thr = -3.0 if crash_mode else -4.0
     _b_thr = 1.0 if crash_mode else 1.5
+    # Tom 16/10: chế độ dump CHỈ săn hàng chất lượng — có vùng duyệt hoặc blue-chip,
+    # không săn rác (penny, pre-revenue, meme)
+    try:
+        _zones = json.load(open(os.path.join(REPO, "zones.json")))
+        _quality = set(_zones.keys()) | {
+            "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "AVGO", "TSM",
+            "JPM", "V", "MA", "JNJ", "UNH", "XOM", "PG", "COST", "HD",
+            "SPY", "QQQ", "DIA", "SMH", "SOXX", "XLE", "XLF",
+        }
+        _quality.discard("_excluded")
+    except Exception:
+        _quality = set()
     sigs = []
     with ThreadPoolExecutor(max_workers=10) as ex:
         results = list(ex.map(fetch_one, tickers))
@@ -168,7 +180,7 @@ def main():
             if r and r >= 1.5:
                 tier = ("sprout_vol",
                         f"🌱💰 <b>{t} NGÓC ĐẦU CÓ VOLUME</b> +{b:.1f}% từ đáy, vol {r}x (đang {pc:+.1f}%) — tay to vào sớm")
-            elif crash_mode:
+            elif crash_mode and t in _quality:
                 tier = ("wave",
                         f"🌊 <b>{t} SÓNG HỒI</b> +{b:.1f}% từ đáy (đang {pc:+.1f}%) — CHẾ ĐỘ DUMP, ăn nhanh chốt nhanh")
             else:
