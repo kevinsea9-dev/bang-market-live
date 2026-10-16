@@ -134,6 +134,55 @@ def main():
         i += 2
     h = ''.join(out)
 
+    # 2c. Dọn mục 🦈 CÁ MẬP (urgentBox): chỉ giữ alert hôm nay, xóa mã excluded (FIX 16/10:
+    #     Tom phàn nàn 61 alert hôm qua che hết bảng — urgentBox chưa từng được dọn.
+    #     Dùng depth-counting vì alert lồng nhau, regex non-greedy cắt sai.)
+    def find_balanced(s, start):
+        depth = 0
+        for m in re.finditer(r'</?div', s[start:]):
+            if m.group(0) == '<div':
+                depth += 1
+            else:
+                depth -= 1
+                if depth == 0:
+                    return start + m.end() + 1
+        return None
+
+    ub = h.find('<div id="urgentBox">')
+    if ub != -1:
+        ub_end = find_balanced(h, ub)
+        if ub_end:
+            box = h[ub:ub_end]
+            alerts = []
+            pos = 0
+            while True:
+                i = box.find('<div class="alert urgent"', pos)
+                if i == -1:
+                    break
+                ae = find_balanced(box, i)
+                if not ae:
+                    break
+                alerts.append(box[i:ae])
+                pos = ae
+            excl = json.loads(open('/home/hatch/workspace/market-board/zones.json', encoding='utf-8').read()).get('_excluded', [])
+            kept = [a for a in alerts
+                    if today in a and not any(re.search(r'\b' + t + r'\b', a) for t in excl)]
+            if len(kept) < len(alerts):
+                actions.append(f"dọn urgentBox: giữ {len(kept)}/{len(alerts)} alert hôm nay")
+                first = box.find('<div class="alert urgent"')
+                last_end = None
+                p2 = 0
+                while True:
+                    j = box.find('<div class="alert urgent"', p2)
+                    if j == -1:
+                        break
+                    last_end = find_balanced(box, j)
+                    p2 = last_end
+                empty = ('<div class="alert" style="opacity:.75">🦈 Chưa có tín hiệu cá mập hôm nay — radar đang quét, có là báo ngay.</div>'
+                         if not kept else '\n'.join(kept))
+                new_box = box[:first] + empty + box[last_end:]
+                h = h[:ub] + new_box + h[ub_end:]
+
     # 3. Header ngày của cột giá theo đúng hôm nay
     h = re.sub(r"<th>Giá \d{2}/\d{2}</th>", f"<th>Giá {today}</th>", h)
 
