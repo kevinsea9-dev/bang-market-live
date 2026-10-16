@@ -102,6 +102,38 @@ def main():
         r'<div class="sec">\s*<h2>🎯 HUNT[^<]*\((\d{2})/(\d{2})\)[^<]*</h2>.*?</table>\s*</div>',
         hunt_old, h, flags=re.S)
 
+    # 2b. Dọn MỌI section có ngày trong h2 mà cũ từ 2 ngày trở lên (FIX 16/10:
+    #     Tom phàn nàn section DRAM 14/10, HUNT 13/10 nằm chình ình vì chỉ dọn
+    #     hunt >3 ngày. Từ giờ: section nào có (DD/MM) trong h2 mà >=2 ngày là archive + xóa.)
+    def sec_date_old(h2txt):
+        m = re.search(r'\((\d{1,2})/(\d{1,2})\)', h2txt)
+        if not m:
+            return None
+        try:
+            sec_date = datetime.date(now.year, int(m.group(2)), int(m.group(1)))
+        except ValueError:
+            return None
+        return (now.date() - sec_date).days
+
+    parts = re.split(r'(<div class="sec">)', h)
+    out = [parts[0]]
+    i = 1
+    while i < len(parts):
+        tag, body = parts[i], parts[i + 1] if i + 1 < len(parts) else ''
+        block = tag + body
+        m2 = re.search(r'<h2>([^<]*)</h2>', block)
+        age = sec_date_old(m2.group(1)) if m2 else None
+        if age is not None and age >= 2:
+            arc = os.path.join(
+                a.hidden_dir,
+                f"archived-sec-{now.strftime('%m%d')}-{re.sub(r'[^A-Za-z0-9]+', '-', m2.group(1)[:20]).strip('-')}.html")
+            open(arc, "w", encoding="utf-8").write(block)
+            actions.append(f"archive section cũ '{m2.group(1)[:30]}' ({age} ngày)")
+        else:
+            out.append(block)
+        i += 2
+    h = ''.join(out)
+
     # 3. Header ngày của cột giá theo đúng hôm nay
     h = re.sub(r"<th>Giá \d{2}/\d{2}</th>", f"<th>Giá {today}</th>", h)
 
