@@ -490,7 +490,11 @@
  },
  "_excluded": [
   "PCVX",
-  "XLE"
+  "XLE",
+  "HOOD",
+  "VSAT",
+  "RKLB",
+  "GD"
  ],
  "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded.",
  "AXON": {
@@ -505,5 +509,44 @@
   "cut": 385,
   "book": 3,
   "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 3/11."
+ },
+ "IREN": {
+  "book": "Sổ 3",
+  "entry": [
+   28.5,
+   30.0
+  ],
+  "targets": [
+   34.0,
+   36.5
+  ],
+  "cut": 26.5,
+  "note": "Tom giữ @~$35. Đảo chiều xác nhận 15/10: đáy -13%, hồi +10.3%, vol 2.8x. Sóng 4 - lung lay."
+ },
+ "CRML": {
+  "book": "Sổ 3",
+  "entry": [
+   6.4,
+   6.7
+  ],
+  "targets": [
+   7.5,
+   8.2
+  ],
+  "cut": 5.85,
+  "note": "Bounce +15.6% từ đáy 15/10, đóng $6.95 gần đỉnh 5 phiên. Chờ pullback, không đuổi đỉnh."
+ },
+ "USAR": {
+  "book": "Sổ 3",
+  "entry": [
+   10.3,
+   10.8
+  ],
+  "targets": [
+   12.0,
+   12.79
+  ],
+  "cut": 9.75,
+  "note": "Bounce +10.8% từ đáy 15/10, đóng $11.09. Rare earth momentum."
  }
 }
