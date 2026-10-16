@@ -570,6 +570,81 @@ def shark_of_day(h, repo_dir):
     return h, "cá mập của ngày: " + ", ".join(t for _, t, *_ in cands[:3])
 
 
+
+def sweep_stale_tickers(h, repo_dir):
+    """Tom lệnh 16/10 (~09:35): MÃ CŨ KHÔNG ĐỦ ĐIỀU KIỆN TỰ ĐỘNG XÓA.
+    Không đủ điều kiện (luật 3 chân của Tom):
+    - ABOVE vùng >15% suốt 3 lượt (chạy xa, không còn rẻ/đẹp), hoặc
+    - BROKEN >5 ngày không reclaim (setup chết),
+    VÀ không có signal khẩn nào trong 24h qua,
+    VÀ KHÔNG trong danh sách bảo vệ (vị thế Tom đang giữ + mã Tom chỉ định).
+    3 lượt stale liên tiếp mới xóa (tránh xóa nhầm lúc biến động).
+    Xóa = thêm vào zones.json["_excluded"] -> auto_cleanup() xóa dòng."""
+    import datetime
+    removed = []
+    try:
+        zones = json.load(open(os.path.join(repo_dir, "zones.json")))
+        zs = json.load(open(os.path.join(repo_dir, "zone_state.json")))
+    except Exception:
+        return h, removed
+    # BẢO VỆ: vị thế thật + mã Tom đang theo dõi sát — không bao giờ tự xóa
+    protected = {"MRVL", "IREN", "CTVA", "CRDO", "COHR", "GEV", "AMD",
+                 "QQQ", "QQQM", "TSLA", "NVDA", "SOXL", "OII", "CMBT"}
+    tracker_path = os.path.join(repo_dir, "stale_tracker.json")
+    try:
+        tracker = json.load(open(tracker_path)) if os.path.exists(tracker_path) else {}
+    except Exception:
+        tracker = {}
+    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-7)))
+    # signal khẩn 24h qua theo data-ticker
+    recent_sig = set()
+    for m in re.finditer(r'<div class="alert urgent" data-ticker="([A-Z]{2,6})"[^>]*data-ts="([^"]*)"',
+                         h):
+        t, ts = m.group(1), m.group(2)
+        try:
+            dt = datetime.datetime.fromisoformat(ts)
+            if (now - dt).total_seconds() < 86400:
+                recent_sig.add(t)
+        except Exception:
+            recent_sig.add(t)
+    excluded = zones.get("_excluded", [])
+    for t, v in zs.items():
+        if t in protected or t in excluded:
+            tracker.pop(t, None)
+            continue
+        state = v.get("state")
+        stale = False
+        reason = ""
+        if state == "ABOVE":
+            entry = (zones.get(t) or {}).get("entry", [0, 0])
+            px = v.get("price") or 0
+            if entry and entry[1] and px:
+                over = (px - entry[1]) / entry[1]
+                if over > 0.15:
+                    stale, reason = True, f"chạy xa vùng +{over*100:.0f}%"
+        elif state == "BROKEN":
+            try:
+                bt = datetime.datetime.fromisoformat(v.get("time", ""))
+                if (now - bt).days >= 5:
+                    stale, reason = True, f"gãy { (now-bt).days } ngày không reclaim"
+            except Exception:
+                pass
+        if stale and t in recent_sig:
+            stale, reason = False, ""  # có signal mới -> còn sống
+        if stale:
+            tracker[t] = tracker.get(t, 0) + 1
+            if tracker[t] >= 3:
+                excluded.append(t)
+                removed.append(f"{t}({reason})")
+                tracker.pop(t, None)
+        else:
+            tracker.pop(t, None)
+    if removed:
+        zones["_excluded"] = excluded
+        json.dump(zones, open(os.path.join(repo_dir, "zones.json"), "w"), indent=1)
+    json.dump(tracker, open(tracker_path, "w"))
+    return h, removed
+
 def auto_cleanup(h, prices, tickers, repo_dir):
     """Tom lệnh 14/10: mã nào trùng / chết (không update được) thì TỰ BIẾN MẤT cho đúng Live.
     - Chết: fetch fail 3 lượt liên tiếp -> xóa dòng.
@@ -1604,6 +1679,15 @@ def main():
     h, cleaned = auto_cleanup(h, prices, tickers, a.repo_dir)
     if cleaned:
         print(f"tự dọn: {', '.join(cleaned)}", flush=True)
+
+    # QUÉT MÃ CŨ KHÔNG ĐỦ ĐIỀU KIỆN — Tom lệnh 16/10: tự động xóa, không cần nhắc
+    h, swept = sweep_stale_tickers(h, a.repo_dir)
+    if swept:
+        print(f"quét mã cũ: xóa {', '.join(swept)}", flush=True)
+        # chạy lại auto_cleanup để xóa dòng của mã vừa bị loại
+        h, cleaned2 = auto_cleanup(h, prices, tickers, a.repo_dir)
+        if cleaned2:
+            print(f"tự dọn: {', '.join(cleaned2)}", flush=True)
 
     # tự dọn TIN CŨ — Tom lệnh 15/10: tin cũ phải biến mất, xử tự động mỗi 5 phút
     h, n_pruned = prune_old_alerts(h)
