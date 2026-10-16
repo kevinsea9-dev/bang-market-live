@@ -277,8 +277,283 @@ def attach_zone_tp(h):
         return full.replace("</div>",
                             f'<br><span class="zt">{line}</span></div>', 1)
 
-    box2 = re.sub(r'<div class="alert urgent">(.*?)</div>', add_tp, box, flags=re.S)
+    box2 = re.sub(r'<div class="alert urgent"[^>]*>(.*?)</div>', add_tp, box, flags=re.S)
     return h[:j] + box2 + h[k:]
+
+
+# ============================================================================
+# 🦈 CÁ MẬP x3 — Tom duyệt tối 15/10 ("Ok em"):
+#   1. 🔔 ĐÃ VỀ ĐIỂM CHỜ — mã 🟡 CHỜ PULLBACK quay về ±1% giá signal -> badge
+#   2. 🔢 Sóng thứ mấy — đếm alert cá mập/mã/ngày, sóng ≥3 cảnh báo đu đỉnh
+#   3. 👑 Cá mập của ngày — top 3 theo tier × tin cậy × độ tươi
+# ============================================================================
+SHARK_CSS = (
+    ".backwait{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;"
+    "padding:3px 10px;margin:2px 4px 2px 0;background:rgba(34,211,238,.18);color:#67e8f9;"
+    "border:1px solid #22d3ee;animation:heatBlink 1.2s infinite}"
+    ".wave{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;"
+    "padding:2px 9px;margin:2px 4px 2px 0;background:rgba(167,139,250,.15);color:#c4b5fd;"
+    "border:1px solid #8b5cf6}"
+    ".wave.warn{background:rgba(220,38,38,.18);color:#fca5a5;border-color:#dc2626}"
+    ".sharkday{border:2px solid #ffc94d;border-radius:12px;padding:10px 12px;margin:8px 0;"
+    "background:linear-gradient(135deg,rgba(255,201,77,.14),rgba(20,16,7,.6))}"
+    ".sharkday h3{margin:0 0 6px;font-size:15px;color:#ffd76a}"
+    ".sharkday .sd-row{font-size:13.5px;padding:3px 0;color:#e8eefc}"
+    ".sharkday .sd-why{color:#9fb3d9;font-size:12.5px}"
+)
+
+
+def ensure_shark_css(h):
+    """Chèn CSS 3 tính năng cá mập nếu chưa có (idempotent).
+    Check '.backwait{' (khai báo CSS), không phải 'backwait' (trùng class trong badge HTML)."""
+    if ".backwait{" in h or "</style>" not in h:
+        return h
+    return h.replace("</style>", SHARK_CSS + "\n</style>", 1)
+
+
+def _journal_latest(repo_dir, ticker, today):
+    """(sig_px, sig_ts) mới nhất của ticker hôm nay từ journal — fallback cho alert cũ."""
+    jp = os.path.join(repo_dir, "signal_journal.jsonl")
+    px, ts = None, None
+    try:
+        with open(jp, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
+                if d.get("ticker") != ticker or str(d.get("date", "")) != today:
+                    continue
+                try:
+                    if d.get("price"):
+                        px = float(d["price"])
+                except Exception:
+                    pass
+                if d.get("ts"):
+                    ts = d["ts"]
+    except Exception:
+        pass
+    return px, ts
+
+
+def mark_back_to_wait(h, prices, repo_dir):
+    """🔔 ĐÃ VỀ ĐIỂM CHỜ — Tom duyệt 15/10 tối.
+    Alert 🟡 CHỜ PULLBACK nào có giá hiện tại quay về trong ±1% giá lúc
+    alert -> gắn badge '🔔 ĐÃ VỀ ĐIỂM CHỜ'. Mỗi mã 1 lần/ngày (state file)."""
+    today = now_pt().strftime("%Y-%m-%d")
+    sp = os.path.join(repo_dir, "back_to_wait_state.json")
+    state = {}
+    try:
+        if os.path.exists(sp):
+            state = json.load(open(sp, encoding="utf-8"))
+    except Exception:
+        state = {}
+    if state.get("date") != today:
+        state = {"date": today, "ticked": []}
+    ticked = set(state.get("ticked", []))
+
+    i = h.find('id="urgentBox"')
+    if i == -1:
+        return h, "về điểm chờ: thiếu #urgentBox"
+    j = h.find(">", i) + 1
+    k = h.find('<div class="sec"', j)
+    if k == -1:
+        k = len(h)
+    box = h[j:k]
+    n = [0]
+
+    def check(m):
+        full, inner = m.group(0), m.group(1)
+        if "heat-yellow" not in inner or "ĐÃ VỀ ĐIỂM CHỜ" in inner:
+            return full
+        mt = re.search(r'data-ticker="([A-Z]{1,6})"', full)
+        if not mt:
+            return full
+        t = mt.group(1)
+        if t in ticked:
+            return full
+        ms = re.search(r'data-sig-px="([\d.]+)"', full)
+        sig_px = float(ms.group(1)) if ms else None
+        if not sig_px:
+            sig_px, _ = _journal_latest(repo_dir, t, today)
+        if not sig_px:
+            return full
+        px = (prices.get(t) or (0, 0))[0]
+        if not px or abs(px - sig_px) / sig_px > 0.01:
+            return full
+        ticked.add(t)
+        n[0] += 1
+        badge = '<span class="backwait">🔔 ĐÃ VỀ ĐIỂM CHỜ</span>'
+        full2 = re.sub(r'(<span class="heat heat-yellow">.*?</span>)',
+                       r"\1" + badge, full, count=1, flags=re.S)
+        return full2 if full2 != full else full.replace("</div>", badge + "</div>", 1)
+
+    box2 = re.sub(r'<div class="alert urgent"[^>]*>(.*?)</div>', check, box, flags=re.S)
+    if n[0]:
+        state["ticked"] = sorted(ticked)
+        try:
+            json.dump(state, open(sp, "w", encoding="utf-8"))
+        except Exception as e:
+            print(f"  ! back_to_wait_state: {e}", file=sys.stderr)
+    h = ensure_shark_css(h[:j] + box2 + h[k:])
+    return h, f"về điểm chờ: {n[0]} mã" if n[0] else "về điểm chờ: chưa mã nào về"
+
+
+def mark_wave_count(h, repo_dir):
+    """🔢 Sóng thứ mấy — Tom duyệt 15/10 tối.
+    Đếm số alert cá mập (journal type=urgent) của mỗi mã trong ngày
+    -> badge '🌊 Sóng N'; sóng ≥3 thêm '⚠️ coi chừng đu đỉnh'."""
+    today = now_pt().strftime("%Y-%m-%d")
+    waves = {}
+    jp = os.path.join(repo_dir, "signal_journal.jsonl")
+    try:
+        with open(jp, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
+                if str(d.get("date", "")) != today or d.get("type") != "urgent":
+                    continue
+                t = d.get("ticker")
+                if t:
+                    waves[t] = waves.get(t, 0) + 1
+    except Exception as e:
+        return h, f"sóng: không đọc được journal ({e})"
+    if not waves:
+        return h, "sóng: journal hôm nay trống"
+
+    i = h.find('id="urgentBox"')
+    if i == -1:
+        return h, "sóng: thiếu #urgentBox"
+    j = h.find(">", i) + 1
+    k = h.find('<div class="sec"', j)
+    if k == -1:
+        k = len(h)
+    box = h[j:k]
+    n = [0]
+
+    def check(m):
+        full, inner = m.group(0), m.group(1)
+        mt = re.search(r'data-ticker="([A-Z]{1,6})"', full)
+        if not mt:
+            return full
+        wv = waves.get(mt.group(1), 0)
+        if wv < 2:
+            new_full = re.sub(r'<span class="wave[^"]*">.*?</span>', "", full, flags=re.S)
+            return new_full
+        warn = wv >= 3
+        badge = (f'<span class="wave{" warn" if warn else ""}">🌊 Sóng {wv}'
+                 + (" ⚠️ coi chừng đu đỉnh" if warn else "") + "</span>")
+        if re.search(r'<span class="wave[^"]*">', full):
+            # đã có badge: chỉ thay nội dung (sóng có thể tăng), không chèn thêm
+            new_full = re.sub(r'<span class="wave[^"]*">.*?</span>', badge, full, flags=re.S)
+        else:
+            new_full = re.sub(r'(<span class="heat[^"]*">.*?</span>)',
+                              r"\1" + badge, full, count=1, flags=re.S)
+            if new_full == full:
+                new_full = full.replace("<b>", badge + "<b>", 1)
+        if new_full != full:
+            n[0] += 1
+        return new_full
+
+    box2 = re.sub(r'<div class="alert urgent"[^>]*>(.*?)</div>', check, box, flags=re.S)
+    h = ensure_shark_css(h[:j] + box2 + h[k:])
+    return h, f"sóng: đã gắn {n[0]} alert"
+
+
+def _remove_balanced_div(box, marker):
+    """Xóa cả khối <div ...marker...>...</div> cân bằng (kể cả div lồng nhau)."""
+    i = box.find(marker)
+    if i == -1:
+        return box
+    j = box.find(">", i) + 1
+    depth, k = 1, j
+    while depth > 0:
+        no, nc = box.find("<div", k), box.find("</div>", k)
+        if nc == -1:
+            return box
+        if no != -1 and no < nc:
+            depth += 1
+            k = no + 4
+        else:
+            depth -= 1
+            k = nc + 6
+    return box[:i] + box[k:].lstrip()
+
+
+def shark_of_day(h, repo_dir):
+    """👑 Cá mập của ngày — Tom duyệt 15/10 tối.
+    Top 3 alert trong #urgentBox theo điểm = tier_weight × tin cậy × độ tươi.
+    tier: 🦈🦈🦈=3, 🦈🦈=2, 🦈=1 (đếm ở headline). Tin cậy: parse 'Đúng X%'.
+    Tươi: từ data-ts (fallback journal), decay theo giờ."""
+    today = now_pt().strftime("%Y-%m-%d")
+    i = h.find('id="urgentBox"')
+    if i == -1:
+        return h, "cá mập của ngày: thiếu #urgentBox"
+    j = h.find(">", i) + 1
+    k = h.find('<div class="sec"', j)
+    if k == -1:
+        k = len(h)
+    box = h[j:k]
+    now = now_pt()
+    cands = []
+    for m in re.finditer(r'<div class="alert urgent"[^>]*>(.*?)</div>', box, flags=re.S):
+        full, inner = m.group(0), m.group(1)
+        mt = re.search(r'data-ticker="([A-Z]{1,6})"', full)
+        if not mt:
+            continue
+        t = mt.group(1)
+        mh_tier = re.search(r"<b>(🦈+)", inner)
+        tier_n = len(mh_tier.group(1)) if mh_tier else 1
+        tier_w = 3 if tier_n >= 3 else (2 if tier_n == 2 else 1)
+        mtr = re.search(r"Đúng (\d+)%", inner)
+        trust = (int(mtr.group(1)) / 100) if mtr else 0.5
+        age_h = None
+        mts = re.search(r'data-ts="([^"]+)"', full)
+        if mts:
+            try:
+                age_h = max(0, (now - datetime.fromisoformat(mts.group(1))).total_seconds() / 3600)
+            except Exception:
+                age_h = None
+        if age_h is None:
+            _, jts = _journal_latest(repo_dir, t, today)
+            if jts:
+                try:
+                    age_h = max(0, (now - datetime.fromisoformat(jts)).total_seconds() / 3600)
+                except Exception:
+                    age_h = None
+        if age_h is None:
+            age_h = 12.0
+        fresh = 1 / (1 + age_h)
+        score = tier_w * trust * fresh
+        mh = re.search(r"<b>(.*?)</b>", inner, flags=re.S)
+        why = re.sub(r"<[^>]+>", "", mh.group(1)).strip()[:70] if mh else ""
+        cands.append((score, t, tier_w, trust, age_h, why))
+    box = _remove_balanced_div(box, '<div class="sharkday" id="sharkOfDay"')
+    if not cands:
+        h = ensure_shark_css(h[:j] + box + h[k:])
+        return h, "cá mập của ngày: chưa có alert"
+    cands.sort(reverse=True, key=lambda x: x[0])
+    medals = ["🥇", "🥈", "🥉"]
+    rows = []
+    for idx, (score, t, tier_w, trust, age_h, why) in enumerate(cands[:3]):
+        age_txt = f"{int(age_h * 60)}p trước" if age_h < 1 else f"{age_h:.1f}h trước"
+        rows.append(
+            f'<div class="sd-row">{medals[idx]} <b>{t}</b> {"🦈" * tier_w} '
+            f'<span class="sd-why">— {why} (tin cậy {trust:.0%}, {age_txt})</span></div>')
+    sd = ('<div class="sharkday" id="sharkOfDay">'
+          "<h3>👑 CÁ MẬP CỦA NGÀY — top 3 dòng tiền mạnh nhất</h3>"
+          + "".join(rows) + "</div>\n")
+    box = sd + box
+    h = ensure_shark_css(h[:j] + box + h[k:])
+    return h, "cá mập của ngày: " + ", ".join(t for _, t, *_ in cands[:3])
 
 
 def auto_cleanup(h, prices, tickers, repo_dir):
@@ -880,11 +1155,13 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
         return ("🦈", None)
     def build_alert(mark, key, t, html):
         # 🦈 tầng + 🎓 điểm tin cậy + ⏱️ độ tươi (JS tự cập nhật "cách đây X phút")
+        # + data-ticker/data-sig-px cho máy đo "còn kịp" và 3 tính năng cá mập x3
         tier, sig = tier_of(key)
         trust = trust_line(sig) if sig else ""
         trust_html = f'<br><span class="trust">{trust}</span>' if trust else ""
+        sig_px = prices.get(t, (0, 0))[0]
         return (
-            f'{mark}<div class="alert urgent" data-ts="{ts_now}"><b>{tier} {html}</b><br>'
+            f'{mark}<div class="alert urgent" data-ticker="{t}" data-sig-px="{sig_px:.2f}" data-ts="{ts_now}"><b>{tier} {html}</b><br>'
             f'<span class="t">🦈 Cá mập • {date_s} <span class="fresh"></span> • tiền lớn đang chạy • chỉ tham khảo</span>'
             f'{trust_html}</div>\n')
     new_alerts = "".join(build_alert(mark, key, t, html) for mark, key, t, html in fresh)
@@ -1209,7 +1486,7 @@ def git_push(repo_dir, msg):
     # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
     run("git", "add", "index.html", "zone_state.json", "market_state.json",
         "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
-        "version.json")
+        "version.json", "back_to_wait_state.json")
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
@@ -1393,6 +1670,14 @@ def main():
     # 🎯 GẮN VÙNG GIÁ + TP vào alert khẩn — Tom góp ý 15/10 (~13:00):
     # HOT feed clone alert nên tự có dòng Chốt/Cắt theo.
     h = attach_zone_tp(h)
+
+    # 🦈 CÁ MẬP x3 — Tom duyệt 15/10 tối: ĐÃ VỀ ĐIỂM CHỜ + Sóng thứ mấy + Cá mập của ngày
+    h, nwait = mark_back_to_wait(h, all_px, a.repo_dir)
+    print(f"về điểm chờ: {nwait}", flush=True)
+    h, nwave = mark_wave_count(h, a.repo_dir)
+    print(f"sóng: {nwave}", flush=True)
+    h, ntop = shark_of_day(h, a.repo_dir)
+    print(f"cá mập của ngày: {ntop}", flush=True)
 
     if a.mode == "close":
         h = close_headers(h)
