@@ -138,6 +138,17 @@ def main():
             issues.append(f"trùng id {_id} x{_c}")
             h = re.sub(f'<div[^>]*id="{_id}">.*?</div>', "", h, count=_c-1, flags=re.S)
 
+    # 5d. Tom 16/10: mã IN zone phải có dòng trong bảng (từng sót 5 mã)
+    try:
+        _zs = json.load(open(os.path.join(REPO, "zone_state.json")))
+        _missing = [t for t, s in _zs.items()
+                    if s.get("state") == "IN"
+                    and not re.search(rf'<tr><td><b>{t}</b></td>', h)]
+        if _missing:
+            issues.append(f"IN zone mà thiếu dòng bảng: {sorted(_missing)} — NGUY HIỂM")
+    except Exception as _e:
+        issues.append(f"không đọc được zone_state.json: {_e}")
+
     # 6. HTML hợp lệ
     if h.count('<div') != h.count('</div>'):
         issues.append("HTML vỡ div — NGUY HIỂM, cần xem tay")
