@@ -187,8 +187,9 @@ def main():
     h = re.sub(r"<th>Giá \d{2}/\d{2}</th>", f"<th>Giá {today}</th>", h)
 
     # validate cơ bản
-    if "PIN-GATE-START" not in h or "<!-- PIN-GATE-END -->" not in h:
-        print("VALIDATE FAIL: mất PIN gate", file=sys.stderr)
+    # PIN gate đã tắt theo lệnh Tom 16/10 — kiểm tra marker OFF thay vì gate cũ
+    if "PIN-GATE-OFF" not in h:
+        print("VALIDATE FAIL: mất marker PIN-GATE-OFF", file=sys.stderr)
         return 2
     if h.count("<div") != h.count("</div>"):
         print("VALIDATE FAIL: lệch thẻ div", file=sys.stderr)

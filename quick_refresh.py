@@ -1474,8 +1474,7 @@ def validate(h):
     for t in ["div", "table", "tr", "script"]:
         if len(re.findall(f"<{t}[ >]", h)) != h.count(f"</{t}>"):
             return False, f"thẻ {t} lệch"
-    if "PIN-GATE-START" not in h or "BOARD_PIN" not in h:
-        return False, "PIN gate mất"
+    # PIN gate đã tắt theo lệnh Tom 16/10 — không kiểm tra nữa
     return True, "ok"
 
 
