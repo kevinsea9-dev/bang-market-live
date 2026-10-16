@@ -1086,6 +1086,50 @@ def fear_gauge(h):
         h = h2
     return h, f"VIX {vix:.1f} ({label})"
 
+# 🔪 SĂN CÁ MẬP — Tom 16/10: mục riêng cho ngày dump, xẻ thịt cá mập.
+# Điền sóng hồi + capitulation + discount sâu vào <!-- SANCAM-AUTO --> mỗi lượt.
+def sancam_update(h):
+    if "<!-- SANCAM-AUTO -->" not in h:
+        return h, "sancm: chưa có section"
+    try:
+        rs = json.load(open(os.path.join(REPO, "radar_state.json")))
+        seen = rs.get("seen", {})
+        today = now_pt().strftime("%Y-%m-%d")
+        waves = []
+        for k, ts in seen.items():
+            if ":wave" in k and today in str(ts):
+                t = k.split(":")[0]
+                waves.append(t)
+        waves = sorted(set(waves))[:8]
+    except Exception:
+        waves = []
+    # discount sâu từ market_state
+    try:
+        ms = json.load(open(os.path.join(REPO, "market_state.json")))
+        disc = ms.get("discounts", [])[:5]
+    except Exception:
+        disc = []
+    parts = []
+    if waves:
+        parts.append('<div class="alert hot"><b>🌊 SÓNG HỒI ĐANG CHẠY</b> — ' +
+                     ", ".join(f"<b>{t}</b>" for t in waves) +
+                     "<br><span class='t'>Chế độ dump • ăn nhanh chốt nhanh • " +
+                     now_pt().strftime("%H:%M") + " PT</span></div>")
+    else:
+        parts.append('<div class="alert"><b>🌊 Sóng hồi</b> — chưa có mã nào ngóc lên, radar đang quét 3 phút/lần.<br><span class="t">' +
+                     now_pt().strftime("%H:%M") + " PT</span></div>")
+    if disc:
+        parts.append('<div class="alert"><b>🏷️ Hàng giảm giá sâu</b> — ' +
+                     ", ".join(f"{d}" for d in disc) +
+                     "<br><span class='t'>Discount vs đỉnh 52 tuần</span></div>")
+    block = "\n".join(parts) + "\n"
+    # xóa block cũ trong sec-sancm trước khi chèn mới (tránh đống)
+    h = re.sub(r'(<div class="sec" id="sec-sancm">.*?</div>\n)(<div class="alert.*?</div>\n)+', r"\1", h, flags=re.S)
+    h = h.replace("<!-- SANCAM-AUTO -->", block + "  <!-- SANCAM-AUTO -->", 1)
+    # chỉ giữ 3 block mới nhất trong section này
+    return h, f"sancm: {len(waves)} sóng hồi"
+
+
 
 # 🏷️ HÀNG GIẢM GIÁ — Tom lệnh 15/10: mã tốt đang discount sâu vs đỉnh 52w = shopping list lúc hoảng loạn.
 # Chỉ quét mã trên bảng (đã lọc kỹ), discount ≥20%.
@@ -1761,6 +1805,7 @@ def main():
 
     # 😨 VIX FEAR GAUGE — thước đo nỗi sợ market
     h, nvix = fear_gauge(h)
+    h, nsancm = sancam_update(h)
     print(f"fear gauge: {nvix}", flush=True)
 
     # 🏷️ HÀNG GIẢM GIÁ — shopping list lúc hoảng loạn (discount vs đỉnh 52w)

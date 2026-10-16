@@ -867,3 +867,7 @@
 {"ts": "2026-10-16T11:19:08.823586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.14, "extra": "ng\u00f3c +2.0%, ng\u00e0y -9.9%"}
 {"ts": "2026-10-16T11:19:08.826071-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 188.6, "extra": "ng\u00f3c +1.9%, ng\u00e0y -9.6%"}
 {"ts": "2026-10-16T11:19:08.826159-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.39, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.4%"}
+{"ts": "2026-10-16T12:14:42.216624-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 95.85, "extra": "ng\u00f3c +2.6%, ng\u00e0y -10.7%"}
+{"ts": "2026-10-16T12:14:42.219279-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 61.09, "extra": "ng\u00f3c +2.0%, ng\u00e0y -12.3%"}
+{"ts": "2026-10-16T12:14:42.219369-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.8, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.2%"}
+{"ts": "2026-10-16T12:14:46.255801-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 61.09, "extra": "vol 2.3x, bounce +2.0%"}

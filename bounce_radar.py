@@ -6,6 +6,8 @@ Quét nhẹ các mã đang yếu trong radar_watchlist.json (đỏ ≥3%), bắt
   🚨 MẠNH: hồi ≥5% từ đáy
   🔥 RẤT MẠNH: hồi ≥8% từ đáy
 Mỗi ticker mỗi tier báo 1 lần/ngày (watermark radar_state.json).
+🌊 CHẾ ĐỘ DUMP (16/10): VIX>25 hoặc ≥4 mã gãy cắt/giờ → hạ ngưỡng (đỏ ≥3%, hồi ≥1%),
+   thêm tier 🌊 SÓNG HỒI — săn nhịp rebounce trong phiên dump để ăn ngắn.
 KHÔNG viết bảng, KHÔNG git — chỉ in signal để worker báo chat Tom ngay lập tức.
 Trade-off trung thực: tier sớm bắt được giá tốt nhưng có false start;
 tier xác nhận chắc hơn nhưng giá xấu hơn. Báo rõ tier để Tom tự cân.
@@ -89,6 +91,38 @@ def main():
         state = {"date": today, "seen": {}}
     seen = state["seen"]
     lows_hist = state.get("lows", {})
+    # 🌊 CHẾ ĐỘ DUMP (Tom 16/10: "lúc dump sẽ có nhịp rebounce, ăn được 1 chút còn hơn không")
+    # Khi VIX >25 hoặc ≥4 mã gãy cắt trong 1 giờ → hạ ngưỡng, săn sóng hồi ngắn
+    crash_mode = False
+    try:
+        _t, _v = fetch_one("^VIX")
+        _vix = _v[0] if _v else 0
+        if _vix and _v[0] >= 25:
+            crash_mode = True
+    except Exception:
+        _vix = 0
+    try:
+        _zs = json.load(open(os.path.join(REPO, "zone_state.json")))
+        _n = now_pt()
+        _broken = 0
+        for _t2, _s2 in _zs.items():
+            if _s2.get("state") == "BROKEN":
+                try:
+                    _tt = datetime.fromisoformat(_s2.get("time", ""))
+                    if (_n - _tt).total_seconds() < 3600:
+                        _broken += 1
+                except Exception:
+                    pass
+        if _broken >= 4:
+            crash_mode = True
+    except Exception:
+        pass
+    if crash_mode:
+        _reason = f"VIX {_vix:.1f}" if _vix else f"{_broken} mã gãy cắt/giờ"
+        print(f"radar: 🌊 CHẾ ĐỘ DUMP ({_reason}) — hạ ngưỡng săn sóng hồi")
+    # ngưỡng thường vs crash
+    _pc_thr = -3.0 if crash_mode else -4.0
+    _b_thr = 1.0 if crash_mode else 1.5
     sigs = []
     with ThreadPoolExecutor(max_workers=10) as ex:
         results = list(ex.map(fetch_one, tickers))
@@ -108,7 +142,7 @@ def main():
                 seen[mark] = n.isoformat()
                 sigs.append(f"🔻 <b>{t} GÃY ĐÁY MỚI</b> ${low:.2f} (đáy cũ ${prev_low:.2f}) — dao đang rơi, đứng ngoài")
         lows_hist[t] = low
-        if pc <= -4.0 and b >= 1.5 and b < 3.0:
+        if pc <= _pc_thr and b >= _b_thr and b < 3.0:
             sprout_cands.append(t)
     vol_map = {}
     if sprout_cands:
@@ -128,12 +162,15 @@ def main():
         elif b >= 3.0:
             tier = ("confirm",
                     f"🔄 <b>{t} XÁC NHẬN</b> +{b:.1f}% từ đáy (đang {pc:+.1f}%)")
-        elif pc <= -4.0 and b >= 1.5:
+        elif pc <= _pc_thr and b >= _b_thr:
             r = vol_map.get(t)
             # 🌱💰 ngóc đầu CÓ VOLUME = tín hiệu bắt đáy chất lượng cao
             if r and r >= 1.5:
                 tier = ("sprout_vol",
                         f"🌱💰 <b>{t} NGÓC ĐẦU CÓ VOLUME</b> +{b:.1f}% từ đáy, vol {r}x (đang {pc:+.1f}%) — tay to vào sớm")
+            elif crash_mode:
+                tier = ("wave",
+                        f"🌊 <b>{t} SÓNG HỒI</b> +{b:.1f}% từ đáy (đang {pc:+.1f}%) — CHẾ ĐỘ DUMP, ăn nhanh chốt nhanh")
             else:
                 tier = ("sprout",
                         f"🌱 <b>{t} NGÓC ĐẦU</b> +{b:.1f}% từ đáy (đang {pc:+.1f}%) — SỚM, chưa xác nhận")
