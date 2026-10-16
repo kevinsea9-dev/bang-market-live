@@ -16,9 +16,12 @@ def main():
     a = a.parse_args()
 
     h = open(a.html, encoding="utf-8").read()
-    # PIN gate đã tắt theo lệnh Tom 16/10
-    if "PIN-GATE-OFF" not in h:
-        print("PIN-GATE-OFF MISSING — không push", file=sys.stderr)
+    # Guard: bảng phải có PIN gate HOẶC marker OFF (tùy lệnh Tom từng thời điểm)
+    # Tom 16/10 ~10:00: giữ lại mật khẩu như cũ -> kiểm tra PIN-GATE-START
+    pin_on = "PIN-GATE-START" in h and "BOARD_PIN" in h
+    pin_off = "PIN-GATE-OFF" in h
+    if not (pin_on or pin_off):
+        print("PIN GUARD MISSING — không push", file=sys.stderr)
         return 2
     digest = hashlib.md5(a.title.encode()).hexdigest()[:10]
     mark = f"<!-- URG-NEWS-{digest} -->"
