@@ -1483,9 +1483,14 @@ def git_push(repo_dir, msg):
         return subprocess.run(a, cwd=repo_dir, capture_output=True, text=True, timeout=120)
     run("git", "pull", "--rebase", "origin", "main")
     # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
-    run("git", "add", "index.html", "zone_state.json", "market_state.json",
-        "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
-        "version.json", "back_to_wait_state.json")
+    # fix 16/10: chỉ add file đang tồn tại — back_to_wait_state.json vắng mặt làm
+    # cả lệnh add fail (fatal pathspec), commit rỗng, push "Everything up-to-date"
+    # rồi vẫn in "pushed" giả trong khi bảng chưa lên remote
+    _files = ["index.html", "zone_state.json", "market_state.json",
+              "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
+              "version.json", "back_to_wait_state.json"]
+    _files = [f for f in _files if os.path.exists(os.path.join(repo_dir, f))]
+    run("git", "add", *_files)
     st = run("git", "status", "--porcelain").stdout.strip()
     if not st:
         return "nothing-to-commit"
