@@ -226,7 +226,21 @@ def dedup_urgentbox(h):
         return full
 
     box2 = re.sub(r'<div class="alert urgent">(.*?)</div>', keep_first, box, flags=re.S)
-    return h[:j] + box2 + h[k:], removed
+    # Tom 16/10: dedup mạnh theo data-ticker — 1 mã chỉ 1 alert mới nhất
+    # (capitulation/moneyflow/reversal tạo alert riêng, regex text không bắt được)
+    seen_dt = set()
+    def keep_dt(m):
+        full = m.group(0)
+        mt = re.search(r'data-ticker="([A-Z]{2,6})"', full)
+        if mt:
+            t = mt.group(1)
+            if t in seen_dt:
+                removed.append(f"{t}(trùng data-ticker)")
+                return ""
+            seen_dt.add(t)
+        return full
+    box3 = re.sub(r'<div class="alert urgent" data-ticker="[^"]*".*?</div>', keep_dt, box2, flags=re.S)
+    return h[:j] + box3 + h[k:], removed
 
 
 def zone_tp_line(t):
@@ -672,6 +686,23 @@ def prune_old_alerts(h):
                 h = h[:ni] + news_sec2 + h[nj:]
     except Exception as e:
         print(f"  ! prune news li: {e}", file=sys.stderr)
+
+    # Tom 16/10: TRẦN CỨNG tin tức — tối đa 30 tin mới nhất, xóa tin cũ nhất khi vượt.
+    # (tin mới thêm nhanh hơn tin cũ hết hạn -> ứ đọng 80+ tin)
+    try:
+        ni2 = h.find('id="sec-news"')
+        if ni2 != -1:
+            nj2 = h.find('</div>', h.find('</ul>', ni2))
+            if nj2 != -1:
+                sec = h[ni2:nj2]
+                lis = list(re.finditer(r'<li[^>]*>.*?</li>', sec, re.S))
+                if len(lis) > 30:
+                    for m in reversed(lis[30:]):
+                        sec = sec[:m.start()] + sec[m.end():]
+                        removed[0] += 1
+                    h = h[:ni2] + sec + h[nj2:]
+    except Exception as e:
+        print(f"  ! news cap: {e}", file=sys.stderr)
 
     # Chống TRÙNG LẶP nội dung — Tom lệnh 15/10: "đừng để bị trùng lặp"
     seen_text = set()
