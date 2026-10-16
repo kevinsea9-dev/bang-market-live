@@ -1175,7 +1175,7 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
                         h, count=1)
         if not c2:
             return h, "khẩn: thiếu #urgentBox"
-    names = ", ".join(t for _, t, _ in fresh)
+    names = ", ".join(t for _, _, t, _ in fresh)
     return h, f"khẩn mới: {names}"
 
 

@@ -172,10 +172,10 @@ def main():
     # đánh dấu dedup bằng comment ẩn trong alert
     alert = build_alert(fresh, a.mode, n)
     marks = "".join(f"<!-- {dedup_key(a.mode, r['t'], date_s)} -->" for r in fresh)
-    anchor = "🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>"
+    anchor = "🦈 CÁ MẬP GOM HÀNG"
     i = h.find(anchor)
     if i == -1:
-        print("không thấy anchor TÍN HIỆU VÙNG", file=sys.stderr)
+        print("không thấy anchor CÁ MẬP GOM HÀNG", file=sys.stderr)
         return 2
     j = h.find("</h2>", i) + len("</h2>")
     h = h[:j] + "\n" + marks + alert + h[j:]
