@@ -124,6 +124,13 @@ def main():
     except Exception as e:
         issues.append(f"không đọc được zones.json: {e}")
 
+    # 5b. Tom 16/10: không còn nút chết — mọi href="#sec-*" phải có section tương ứng
+    links = set(re.findall(r'href="#(sec-[a-z]+)"', h))
+    ids = set(re.findall(r'id="(sec-[a-z]+)"', h))
+    dead = links - ids
+    if dead:
+        issues.append(f"nút chết: {sorted(dead)} — bấm không đi đâu")
+
     # 6. HTML hợp lệ
     if h.count('<div') != h.count('</div>'):
         issues.append("HTML vỡ div — NGUY HIỂM, cần xem tay")
