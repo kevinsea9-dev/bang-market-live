@@ -168,6 +168,30 @@ def main():
         print("HEALTHCHECK FIXED: " + " | ".join(fixed))
     if not issues and not fixed:
         print("HEALTHCHECK: OK ✓")
+
+    # Tom 16/10: gắn ĐÈN BÁO trạng thái lên bảng để nhìn thấy hệ thống đang chạy
+    try:
+        now_s = now_pt().strftime("%d/%m %H:%M")
+        if any("NGUY HIỂM" in i for i in issues):
+            badge = f'<div id="sysCheck" style="text-align:center;font-size:12px;color:#f87171;padding:4px">🔴 Hệ thống tự kiểm tra: CÓ VẤN ĐỀ ({now_s}) — đang xử lý</div>'
+        elif fixed:
+            badge = f'<div id="sysCheck" style="text-align:center;font-size:12px;color:#fbbf24;padding:4px">🟡 Hệ thống tự kiểm tra: đã tự sửa {len(fixed)} mục ({now_s})</div>'
+        else:
+            badge = f'<div id="sysCheck" style="text-align:center;font-size:12px;color:#4ade80;padding:4px">🟢 Hệ thống tự kiểm tra: bảng sạch ({now_s})</div>'
+        if 'id="sysCheck"' in h:
+            h = re.sub(r'<div id="sysCheck".*?</div>', badge, h, flags=re.S)
+        else:
+            # chèn ngay sau badge Cập nhật lần cuối
+            h = h.replace('id="lastUpdate"', 'id="lastUpdate"', 1)
+            m2 = re.search(r'(Cập nhật lần cuối[^<]*</[^>]+>)', h)
+            if m2:
+                h = h.replace(m2.group(1), m2.group(1) + "\n" + badge, 1)
+        open(CANON, "w").write(h)
+        open(HTML, "w").write(h)
+        print("đèn báo trạng thái đã gắn lên bảng")
+    except Exception as e:
+        print(f"! gắn đèn báo: {e}", file=sys.stderr)
+
     return 0 if not any("NGUY HIỂM" in i for i in issues) else 1
 
 if __name__ == "__main__":
