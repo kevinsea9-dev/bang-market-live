@@ -1078,7 +1078,7 @@ def fear_gauge(h):
         label, icon = "căng thẳng", "😟"
     else:
         label, icon = "bình tĩnh", "😐"
-    h = re.sub(r'<div class="note" id="vix-gauge">.*?</div>\n', "", h)
+    h = re.sub(r'<div class="note[^"]*" id="vix-gauge">.*?</div>', "", h)
     gauge = (f'<div class="note" id="vix-gauge">{icon} <b>VIX {vix:.1f}</b> — {label} '
              f'<span class="t">Thước đo nỗi sợ • Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)

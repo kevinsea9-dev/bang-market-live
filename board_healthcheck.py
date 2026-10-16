@@ -131,6 +131,13 @@ def main():
     if dead:
         issues.append(f"nút chết: {sorted(dead)} — bấm không đi đâu")
 
+    # 5c. Tom 16/10: không trùng id (VIX từng bị 2 thẻ)
+    for _id in ["vix-gauge", "sysCheck"]:
+        _c = h.count(f'id="{_id}"')
+        if _c > 1:
+            issues.append(f"trùng id {_id} x{_c}")
+            h = re.sub(f'<div[^>]*id="{_id}">.*?</div>', "", h, count=_c-1, flags=re.S)
+
     # 6. HTML hợp lệ
     if h.count('<div') != h.count('</div>'):
         issues.append("HTML vỡ div — NGUY HIỂM, cần xem tay")

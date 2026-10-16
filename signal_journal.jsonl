@@ -861,3 +861,9 @@
 {"ts": "2026-10-16T09:45:10.993583-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 189.92, "extra": "vol 2.2x, bounce +1.6%"}
 {"ts": "2026-10-16T09:53:43.184354-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "RCL", "price": 281.6, "extra": "\ud83d\udea8 <b>RCL V\u00c0O V\u00d9NG</b> \u2014 $281.60, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
 {"ts": "2026-10-16T10:03:05.109103-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "HIMS", "price": 28.46, "extra": "\ud83d\udea8 <b>HIMS V\u00c0O V\u00d9NG</b> \u2014 $28.46, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
+{"ts": "2026-10-16T11:02:23.326065-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRML", "price": 6.93, "extra": "+3.1% t\u1eeb \u0111\u00e1y"}
+{"ts": "2026-10-16T11:02:23.331457-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.83, "extra": "ng\u00f3c +1.8%, ng\u00e0y -6.0%"}
+{"ts": "2026-10-16T11:02:30.039922-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AMZN", "price": 248.81, "extra": "\ud83d\udea8 <b>AMZN V\u00c0O V\u00d9NG</b> \u2014 $248.81, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
+{"ts": "2026-10-16T11:19:08.823586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.14, "extra": "ng\u00f3c +2.0%, ng\u00e0y -9.9%"}
+{"ts": "2026-10-16T11:19:08.826071-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 188.6, "extra": "ng\u00f3c +1.9%, ng\u00e0y -9.6%"}
+{"ts": "2026-10-16T11:19:08.826159-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.39, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.4%"}
