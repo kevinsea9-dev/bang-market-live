@@ -492,5 +492,18 @@
   "PCVX",
   "XLE"
  ],
- "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded."
+ "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded.",
+ "AXON": {
+  "entry": [
+   395,
+   410
+  ],
+  "tp": [
+   475,
+   507
+  ],
+  "cut": 385,
+  "book": 3,
+  "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 3/11."
+ }
 }
