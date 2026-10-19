@@ -46,7 +46,22 @@ def fetch_candles(ticker):
         with urlopen(req, timeout=12) as r:
             d = json.load(r)["chart"]["result"][0]
         meta = d["meta"]
-        prev = float(meta.get("chartPreviousClose") or meta.get("previousClose") or 0)
+        # prev = đóng cửa phiên trước: lấy từ nến NGÀY gần nhất.
+        # meta chartPreviousClose của Yahoo có lúc STALE (sáng 19/10 trả về giá thứ Năm
+        # trong khi nến ngày đã có giá thứ Sáu → gap sai cả dấu). Chỉ dùng meta làm fallback.
+        prev = 0.0
+        try:
+            dreq = Request(f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+                           "?interval=1d&range=5d", headers=UA)
+            with urlopen(dreq, timeout=12) as dr:
+                dd = json.load(dr)["chart"]["result"][0]
+            dcloses = [c for c in dd["indicators"]["quote"][0]["close"] if c is not None]
+            if dcloses:
+                prev = float(dcloses[-1])
+        except Exception:
+            pass
+        if not prev:
+            prev = float(meta.get("chartPreviousClose") or meta.get("previousClose") or 0)
         ts = d["timestamp"]
         q = d["indicators"]["quote"][0]
         out = []
@@ -155,9 +170,10 @@ def main():
         return 0
 
     h = open(a.html, encoding="utf-8").read()
-    # PIN gate đã tắt theo lệnh Tom 16/10 — kiểm tra marker OFF
-    if "PIN-GATE-OFF" not in h:
-        print("PIN-GATE-OFF MISSING — không push", file=sys.stderr)
+    # PIN gate: Tom 16/10 09:52 chốt GIỮ mật khẩu như cũ — bảng phải còn gate mới được push
+    # (đồng bộ với validate() trong quick_refresh.py; marker PIN-GATE-OFF là của đợt tắt nhầm sáng 16/10)
+    if "PIN-GATE-START" not in h or "BOARD_PIN" not in h:
+        print("PIN gate mất trên bảng — không push", file=sys.stderr)
         return 2
     tickers = discover_tickers(h)
     print(f"gap scan {a.mode}: {len(tickers)} mã...", flush=True)
@@ -172,7 +188,7 @@ def main():
     # đánh dấu dedup bằng comment ẩn trong alert
     alert = build_alert(fresh, a.mode, n)
     marks = "".join(f"<!-- {dedup_key(a.mode, r['t'], date_s)} -->" for r in fresh)
-    anchor = "🦈 CÁ MẬP GOM HÀNG"
+    anchor = "<h2>🦈 CÁ MẬP GOM HÀNG"  # có <h2> để không nhầm comment CSS chứa cùng chữ
     i = h.find(anchor)
     if i == -1:
         print("không thấy anchor CÁ MẬP GOM HÀNG", file=sys.stderr)
