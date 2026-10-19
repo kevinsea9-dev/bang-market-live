@@ -977,21 +977,9 @@ def add_signals(h, events):
     # 🎣 MỒI NGON — Tom 19/10: mồi dụ cá mập vào lưới thép (earnings/analyst).
     # CHÍNH XÁC 19/10 (~12:30): chỉ hiện mồi còn tươi — d trong [hôm nay−3, hôm nay+7].
     # Mồi hết hạn tự rụng, không dụ bằng mồi ôi.
-    try:
-        _bait_raw = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bait.json")))
-    except Exception:
-        _bait_raw = {}
-    _today = now_pt().date()
+    _bait_all = _fresh_bait_all()
     def _fresh_bait(t):
-        out = []
-        for e in (_bait_raw.get(t) or []):
-            try:
-                d = datetime.strptime(e["d"], "%Y-%m-%d").date()
-            except Exception:
-                continue
-            if -3 <= (d - _today).days <= 7:
-                out.append(e["t"])
-        return out
+        return _bait_all.get(t, [])
     block = ""
     for t, prev, st, px, pc in events:
         z = ZONES[t]
@@ -1328,8 +1316,89 @@ def sancam_update(h):
 
 
 
-# 🏷️ HÀNG GIẢM GIÁ — Tom lệnh 15/10: mã tốt đang discount sâu vs đỉnh 52w = shopping list lúc hoảng loạn.
-# Chỉ quét mã trên bảng (đã lọc kỹ), discount ≥20%.
+# 🕸️ LƯỚI THÉP — Tom lệnh 19/10 (~12:40): mã onsale 40–95% vs đỉnh 52w TỰ ĐỘNG vào lưới.
+# Chỉ mã đạt chuẩn: có vùng duyệt (ZONES) hoặc mega-cap/ETF thanh khoản lớn.
+# Mã chưa có vùng → "chờ vẽ vùng", watch-only, KHÔNG lên mâm (luật chất lượng 16/10).
+STEEL_QUALITY = {"AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "AVGO",
+    "TSM", "AMD", "NFLX", "CRM", "ORCL", "PLTR", "COIN", "SHOP", "UBER", "DIS",
+    "BA", "NKE", "SBUX", "WMT", "TGT", "PANW", "CRWD", "ABNB", "MRNA", "MSTR",
+    "BABA", "SPY", "QQQ", "VOO", "SMH", "XLE", "SCHD", "IBIT", "SOXL", "DIA",
+    "IWM", "INTC", "DELL", "MU", "LRCX", "AMAT", "KLAC"}
+
+def _fresh_bait_all():
+    try:
+        raw = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bait.json")))
+    except Exception:
+        raw = {}
+    today = now_pt().date()
+    out = {}
+    for t, lst in raw.items():
+        if t.startswith("_"):
+            continue
+        for e in (lst or []):
+            try:
+                d = datetime.strptime(e["d"], "%Y-%m-%d").date()
+            except Exception:
+                continue
+            if -3 <= (d - today).days <= 7:
+                out.setdefault(t, []).append(e["t"])
+    return out
+
+def steel_net_update(h, prices, highs52):
+    """Dựng lại section LƯỚI THÉP mỗi lượt — idempotent."""
+    deals = []
+    for t, (px, pc) in prices.items():
+        h52 = highs52.get(t)
+        if not h52 or h52 <= 0:
+            continue
+        d = (px - h52) / h52 * 100
+        if -95 <= d <= -40 and (t in ZONES or t in STEEL_QUALITY):
+            deals.append((t, d, px, h52, pc))
+    deals.sort(key=lambda x: x[1])
+    bait = _fresh_bait_all()
+    ts = now_pt().strftime("%H:%M")
+    if deals:
+        rows = []
+        for t, d, px, h52, pc in deals:
+            z = ZONES.get(t)
+            if z:
+                en = z.get("entry", [0, 0])
+                tg = z.get("targets") or z.get("tp") or [0, 0]
+                ct = z.get("cut")
+                parts = [f'{z["book"]}: Vào ${en[0]:,.0f}–${en[1]:,.0f}']
+                if tg[0]:
+                    parts.append(f'Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}')
+                if ct:
+                    parts.append(f'Cắt <${ct:,.0f}')
+                zinfo = " · ".join(parts)
+            else:
+                zinfo = "chờ vẽ vùng (watch-only)"
+            b = bait.get(t)
+            brow = f"<br>🎣 Mồi: {'; '.join(b)}" if b else ""
+            rows.append(
+                f'<tr><td><b>{t}</b></td><td>{fmt_price(px)}</td>'
+                f'<td style="color:#e05252"><b>{d:.0f}%</b></td>'
+                f'<td>{fmt_price(h52)}</td><td>{zinfo}{brow}</td></tr>')
+        body = ('<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Onsale</th>'
+                '<th>Đỉnh 52w</th><th>Vùng / Mồi</th></tr>' +
+                "".join(rows) + "</table>")
+    else:
+        body = '<div class="alert">Chưa có mã đạt chuẩn onsale 40–95% lúc này.</div>'
+    block = (f'<div class="sec" id="sec-steelnet"><h2>🕸️ LƯỚI THÉP — ONSALE 40–95% (tự động)</h2>'
+             f'<div class="note">Mã đạt chuẩn tự vào lưới mỗi lượt 5 phút • có vùng duyệt mới lên mâm • '
+             f'mọi lệnh đều có cắt cứng • cập nhật {ts} PT</div>'
+             f"<!-- STEELNET-AUTO -->{body}<!-- /STEELNET-AUTO --></div>\n")
+    if 'id="sec-steelnet"' in h:
+        h = re.sub(r'<div class="sec" id="sec-steelnet">.*?</div>\n',
+                   lambda m: block, h, count=1, flags=re.S)
+    else:
+        anchor = '<div class="sec" id="sec-chinam">'
+        h = h.replace(anchor, block + anchor, 1)
+    # nav: thêm 🕸️ Lưới Thép sau 🔪 Săn CM (idempotent — chỉ khi chưa có)
+    if 'href="#sec-steelnet"' not in h:
+        h = re.sub(r'(href="#sec-sancm">🔪 Săn CM</a>)',
+                   r'\1<a href="#sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
+    return h, f"lưới thép: {len(deals)} mã onsale"
 def discount_card(h, prices, highs52):
     deals = []
     for t, (px, pc) in prices.items():
@@ -2027,6 +2096,10 @@ def main():
     # 🏷️ HÀNG GIẢM GIÁ — shopping list lúc hoảng loạn (discount vs đỉnh 52w)
     h, nd = discount_card(h, prices, {**highs52, **nhip_highs})
     print(f"hàng giảm giá: {nd}", flush=True)
+
+    # 🕸️ LƯỚI THÉP — Tom lệnh 19/10 (~12:40): mã đạt chuẩn onsale 40–95% TỰ ĐỘNG vào lưới
+    h, nsteel = steel_net_update(h, {**prices, **nhip_extra}, {**highs52, **nhip_highs})
+    print(f"lưới thép: {nsteel}", flush=True)
 
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
     # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION + ĐẢO CHIỀU
