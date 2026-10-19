@@ -1182,6 +1182,25 @@ def fg_rating(score):
         return "GREED", "🤑"
     return "EXTREME GREED", "🤑"
 
+def fg_tagline(rating):
+    return {
+        "EXTREME FEAR": "Đám đông hoảng loạn — lúc cá mập đi săn",
+        "FEAR": "Đám đông sợ hãi — canh giăng lưới",
+        "NEUTRAL": "Đám đông phân vân — đứng chờ",
+        "GREED": "Đám đông tham lam — cẩn thận",
+        "EXTREME GREED": "Đám đông say máu — cất lưới, giữ vốn",
+    }.get(rating, "")
+    s = round(score)
+    if s <= 25:
+        return "EXTREME FEAR", "😱"
+    if s <= 44:
+        return "FEAR", "😨"
+    if s <= 55:
+        return "NEUTRAL", "😐"
+    if s <= 74:
+        return "GREED", "🤑"
+    return "EXTREME GREED", "🤑"
+
 def fear_greed_gauge(h, vix, repo_dir):
     state_path = os.path.join(repo_dir, "fear_greed.json")
     old = {}
@@ -1232,7 +1251,7 @@ def fear_greed_gauge(h, vix, repo_dir):
     gcls = "gate-open" if gate_open else ""
     chk = now_pt().strftime("%H:%M")
     gauge = (f'<div class="note {gcls}" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.1f}</b> — {rating} '
-             f'<span class="t">CNN {ts_pt} • kiểm tra {chk} PT • Hôm qua {prev_close:.0f} • Tuần trước {prev_week:.0f}</span>'
+             f'<span class="t">{fg_tagline(rating)} • kiểm tra {chk} PT</span>'
              f'<br>{gate} <span class="t">Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<div class="note[^"]*" id="vix-gauge">.*?</div>)', r"\g<1>\n" + gauge, h, count=1)
     if c:
