@@ -1182,8 +1182,9 @@ def fear_greed_gauge(h, vix, repo_dir):
             else "🔒 <b>CỔNG SĂN ĐÓNG</b> — đứng ngoài, bảo quản vốn")
     h = re.sub(r'<div class="note[^"]*" id="fg-gauge">.*?</div>', "", h)
     gcls = "gate-open" if gate_open else ""
-    gauge = (f'<div class="note {gcls}" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.0f}</b> — {rating} '
-             f'<span class="t">CNN cập nhật {ts_pt} • Hôm qua {prev_close:.0f} • Tuần trước {prev_week:.0f}</span>'
+    chk = now_pt().strftime("%H:%M")
+    gauge = (f'<div class="note {gcls}" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.1f}</b> — {rating} '
+             f'<span class="t">CNN {ts_pt} • kiểm tra {chk} PT • Hôm qua {prev_close:.0f} • Tuần trước {prev_week:.0f}</span>'
              f'<br>{gate} <span class="t">Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<div class="note[^"]*" id="vix-gauge">.*?</div>)', r"\g<1>\n" + gauge, h, count=1)
     if c:
