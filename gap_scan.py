@@ -217,6 +217,9 @@ def main():
                 ins = h.find('>', ub) + 1
             h = h[:ins] + "\n".join(sharks) + "\n" + h[ins:]
             print(f"  + {len(sharks)} shark alert vào urgentBox", flush=True)
+        else:
+            # 19/10: đã từng mất urgentBox mà skip im lặng → báo to để worker xử lý
+            print("WARN: không thấy <div id=\"urgentBox\"> — shark alert KHÔNG chèn được", file=sys.stderr)
 
     # validate nhanh
     if h.count("<div") < h.count("</div>") - 5:
