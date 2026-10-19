@@ -517,6 +517,11 @@ def shark_of_day(h, repo_dir):
         k = len(h)
     box = h[j:k]
     now = now_pt()
+    # 19/10: mã trong _excluded (Tom xóa khỏi bảng) không được lên cá mập của ngày
+    try:
+        excluded_sd = set(json.load(open(os.path.join(repo_dir, "zones.json"))).get("_excluded", []))
+    except Exception:
+        excluded_sd = set()
     cands = []
     for m in re.finditer(r'<div class="alert urgent"[^>]*>(.*?)</div>', box, flags=re.S):
         full, inner = m.group(0), m.group(1)
@@ -524,6 +529,8 @@ def shark_of_day(h, repo_dir):
         if not mt:
             continue
         t = mt.group(1)
+        if t in excluded_sd:
+            continue
         mh_tier = re.search(r"<b>(🦈+)", inner)
         tier_n = len(mh_tier.group(1)) if mh_tier else 1
         tier_w = 3 if tier_n >= 3 else (2 if tier_n == 2 else 1)
@@ -1250,8 +1257,15 @@ URGENT_MAX = 3
 
 def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, revs=None):
     date_s = now_pt().strftime("%d/%m")
+    # 19/10: mã trong _excluded (Tom xóa khỏi bảng) không được tạo alert khẩn
+    try:
+        excluded_u = set(json.load(open(os.path.join(repo_dir, "zones.json"))).get("_excluded", []))
+    except Exception:
+        excluded_u = set()
     cands = []  # (key, ticker, html)
     for t, (px, pc) in prices.items():
+        if t in excluded_u:
+            continue
         low = daylows.get(t)
         b = (px - low) / low * 100 if low else 0
         if b >= 8.0:
@@ -1265,19 +1279,27 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
                           f"🚨 <b>{t} +{pc:.1f}% trong ngày</b> — đang chạy, canh vùng chốt"))
     # 💰 DÒNG TIỀN VÀO — vol ≥2.5x + đang bounce → tiền thật, ưu tiên khẩn
     for t, r, b, pc, px in flows or []:
+        if t in excluded_u:
+            continue
         if r >= 2.5 and b >= 3.0:
             cands.append((f"UMF{t}", t,
                           f"💰 <b>{t} DÒNG TIỀN VÀO</b> — vol {r}x TB, bounce +{b:.1f}% từ đáy"))
     # 😱→🛒 CAPITULATION — hoảng loạn + tay to đỡ = lúc gom (Buffett)
     for t, pc, r, b, px in caps or []:
+        if t in excluded_u:
+            continue
         cands.append((f"UCP{t}", t,
                       f"😱→🛒 <b>{t} HOẢNG LOẠN {pc:+.1f}%, vol {r}x</b> — đã ngóc +{b:.1f}% từ đáy, tay to đang đỡ, canh gom"))
     # 🔄 ĐẢO CHIỀU XÁC NHẬN — trigger bắt đáy: rớt sâu + hồi mạnh + volume
     for t, low_pc, b, r, px, pc in revs or []:
+        if t in excluded_u:
+            continue
         cands.append((f"URV{t}", t,
                       f"🔄 <b>{t} ĐẢO CHIỀU XÁC NHẬN</b> — đáy {low_pc:+.1f}%, hồi +{b:.1f}%, vol {r}x. Bắt đáy có tay to đỡ"))
     for ev in events or []:
         t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
+        if t in excluded_u:
+            continue
         if st == "IN":
             cands.append((f"UI{t}", t,
                           f"🚨 <b>{t} VÀO VÙNG</b> — ${px:,.2f}, vùng giá rẻ/đẹp"))
