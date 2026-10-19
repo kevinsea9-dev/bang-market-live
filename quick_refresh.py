@@ -1076,7 +1076,7 @@ def fear_gauge(h):
     except Exception:
         vix = 0
     if not vix:
-        return h, "VIX: không lấy được"
+        return h, "VIX: không lấy được", 0
     if vix >= 30:
         label, icon = "HOẢNG LOẠN CỰC ĐỘ — lúc gom hàng", "😱"
     elif vix >= 25:
@@ -1091,7 +1091,73 @@ def fear_gauge(h):
     h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)
     if c:
         h = h2
-    return h, f"VIX {vix:.1f} ({label})"
+    return h, f"VIX {vix:.1f} ({label})", vix
+
+
+# 🧭 FEAR & GREED GAUGE — Tom lệnh 19/10 (Chiến lược sống còn): CNN Fear & Greed
+# làm CỔNG SĂN cùng VIX. Chỉ số ngày, cập nhật trong phiên (không tick-by-tick) —
+# hiển thị giờ cập nhật thật, không giả vờ real-time.
+# Cổng săn MỞ khi: Fear&Greed ≤25 (extreme fear) hoặc VIX ≥25.
+FG_API = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
+FG_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+         "Accept": "application/json",
+         "Referer": "https://www.cnn.com/markets/fear-and-greed"}
+
+def fg_rating(score):
+    if score <= 24:
+        return "EXTREME FEAR", "😱"
+    if score <= 44:
+        return "FEAR", "😨"
+    if score <= 55:
+        return "NEUTRAL", "😐"
+    if score <= 74:
+        return "GREED", "🤑"
+    return "EXTREME GREED", "🤑"
+
+def fear_greed_gauge(h, vix, repo_dir):
+    state_path = os.path.join(repo_dir, "fear_greed.json")
+    old = {}
+    try:
+        old = json.load(open(state_path, encoding="utf-8"))
+    except Exception:
+        pass
+    score, rating, ts_pt, prev_close, prev_week = (old.get("score"), old.get("rating"),
+        old.get("ts_pt", "?"), old.get("prev_close"), old.get("prev_week"))
+    try:
+        req = Request(FG_API, headers=FG_UA)
+        data = json.load(urlopen(req, timeout=15))
+        fg = data["fear_and_greed"]
+        score = round(float(fg["score"]), 1)
+        rating, _icon = fg_rating(score)
+        ts = datetime.fromisoformat(fg["timestamp"].replace("Z", "+00:00")).astimezone(PT)
+        ts_pt = ts.strftime("%H:%M PT %d/%m")
+        prev_close = round(float(fg.get("previous_close", 0)), 1)
+        prev_week = round(float(fg.get("previous_1_week", 0)), 1)
+        json.dump({"score": score, "rating": rating, "ts_pt": ts_pt,
+                   "prev_close": prev_close, "prev_week": prev_week,
+                   "fetched_at": now_pt().isoformat()},
+                  open(state_path, "w", encoding="utf-8"))
+    except Exception as e:
+        print(f"  ! fear&greed fetch fail ({e}), dùng giá trị cũ", file=sys.stderr)
+    if score is None:
+        return h, "F&G: chưa có dữ liệu"
+    _r, icon = fg_rating(score)
+    gate_open = (score <= 25) or (vix and vix >= 25)
+    gate = ("🦈 <b>CỔNG SĂN MỞ</b> — cá mập đi bắt đáy" if gate_open
+            else "🔒 <b>CỔNG SĂN ĐÓNG</b> — đứng ngoài, bảo quản vốn")
+    h = re.sub(r'<div class="note[^"]*" id="fg-gauge">.*?</div>', "", h)
+    gauge = (f'<div class="note" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.0f}</b> — {rating} '
+             f'<span class="t">CNN cập nhật {ts_pt} • Hôm qua {prev_close:.0f} • Tuần trước {prev_week:.0f}</span>'
+             f'<br>{gate} <span class="t">Buffett: tham lam khi người khác sợ hãi</span></div>\n')
+    h2, c = re.subn(r'(<div class="note[^"]*" id="vix-gauge">.*?</div>)', r"\g<1>\n" + gauge, h, count=1)
+    if c:
+        h = h2
+    else:
+        h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)
+        if c:
+            h = h2
+    return h, f"F&G {score:.0f} ({rating}) — cổng săn {'MỞ' if gate_open else 'ĐÓNG'}"
 
 # 🔪 SĂN CÁ MẬP — Tom 16/10: mục riêng cho ngày dump, xẻ thịt cá mập.
 # Điền sóng hồi + capitulation + discount sâu vào <!-- SANCAM-AUTO --> mỗi lượt.
@@ -1826,9 +1892,11 @@ def main():
               flush=True)
 
     # 😨 VIX FEAR GAUGE — thước đo nỗi sợ market
-    h, nvix = fear_gauge(h)
+    h, nvix, vix_num = fear_gauge(h)
+    # 🧭 FEAR & GREED GAUGE — Tom 19/10 (Chiến lược sống còn): cổng săn cùng VIX
+    h, nfg = fear_greed_gauge(h, vix_num, a.repo_dir)
     h, nsancm = sancam_update(h)
-    print(f"fear gauge: {nvix}", flush=True)
+    print(f"fear gauge: {nvix} | {nfg}", flush=True)
 
     # 🏷️ HÀNG GIẢM GIÁ — shopping list lúc hoảng loạn (discount vs đỉnh 52w)
     h, nd = discount_card(h, prices, {**highs52, **nhip_highs})
