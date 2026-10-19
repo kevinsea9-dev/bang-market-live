@@ -1346,8 +1346,15 @@ def _fresh_bait_all():
 
 def steel_net_update(h, prices, highs52):
     """Dựng lại section LƯỚI THÉP mỗi lượt — idempotent."""
+    # 19/10 ~12:55: tôn trọng _excluded — mã Tom đã xóa khỏi bảng không được chui lại qua lưới thép.
+    try:
+        _ex = set(json.load(open(os.path.join(REPO, "zones.json"))).get("_excluded", []))
+    except Exception:
+        _ex = set()
     deals = []
     for t, (px, pc) in prices.items():
+        if t in _ex:
+            continue
         h52 = highs52.get(t)
         if not h52 or h52 <= 0:
             continue
