@@ -314,11 +314,6 @@ SHARK_CSS = (
     ".sharkday h3{margin:0 0 6px;font-size:15px;color:#ffd76a}"
     ".sharkday .sd-row{font-size:13.5px;padding:3px 0;color:#e8eefc}"
     ".sharkday .sd-why{color:#9fb3d9;font-size:12.5px}"
-    # 🚨 Tom 19/10: chớp nháy cho đồng hồ cổng săn — cổng MỞ thì viền vàng nhấp nháy.
-    ".gate-open{border:2px solid #ffc94d !important;border-radius:12px;"
-    "animation:gatePulse 1.6s ease-in-out infinite}"
-    "@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}"
-    "50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}"
 )
 
 
@@ -328,6 +323,20 @@ def ensure_shark_css(h):
     if ".backwait{" in h or "</style>" not in h:
         return h
     return h.replace("</style>", SHARK_CSS + "\n</style>", 1)
+
+
+GATE_CSS = (
+    ".gate-open{border:2px solid #ffc94d !important;border-radius:12px;"
+    "animation:gatePulse 1.6s ease-in-out infinite}"
+    "@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}"
+    "50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}"
+)
+
+def ensure_gate_css(h):
+    """Tom 19/10: CSS chớp nháy cho đồng hồ cổng săn (idempotent)."""
+    if ".gate-open{" in h or "</style>" not in h:
+        return h
+    return h.replace("</style>", GATE_CSS + "\n</style>", 1)
 
 
 def _journal_latest(repo_dir, ticker, today):
@@ -1114,13 +1123,14 @@ FG_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/53
          "Referer": "https://www.cnn.com/markets/fear-and-greed"}
 
 def fg_rating(score):
-    if score <= 24:
+    s = round(score)
+    if s <= 25:
         return "EXTREME FEAR", "😱"
-    if score <= 44:
+    if s <= 44:
         return "FEAR", "😨"
-    if score <= 55:
+    if s <= 55:
         return "NEUTRAL", "😐"
-    if score <= 74:
+    if s <= 74:
         return "GREED", "🤑"
     return "EXTREME GREED", "🤑"
 
@@ -1917,6 +1927,7 @@ def main():
               flush=True)
 
     # 😨 VIX FEAR GAUGE — thước đo nỗi sợ market
+    h = ensure_gate_css(h)  # CSS chớp nháy cổng săn (idempotent)
     h, nvix, vix_num = fear_gauge(h)
     # 🧭 FEAR & GREED GAUGE — Tom 19/10 (Chiến lược sống còn): cổng săn cùng VIX
     h, nfg = fear_greed_gauge(h, vix_num, a.repo_dir)
