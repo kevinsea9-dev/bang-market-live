@@ -636,238 +636,253 @@
 {"ts": "2026-10-15T13:05:37.018922-07:00", "date": "2026-10-15", "type": "reversal", "ticker": "SOXL", "price": 107.33, "extra": "\u0111\u00e1y -13.8%, h\u1ed3i +12.7%, vol 2.1x", "ret": 0.0, "close": 107.33, "win": false}
 {"ts": "2026-10-15T13:05:37.751114-07:00", "date": "2026-10-15", "type": "urgent", "ticker": "VSAT", "price": 61.5, "extra": "\ud83d\udd04 <b>VSAT \u0110\u1ea2O CHI\u1ec0U X\u00c1C NH\u1eacN</b> \u2014 \u0111\u00e1y -5.7%, h\u1ed3i +5.6%, vol", "ret": 0.0, "close": 61.5, "win": false}
 {"ts": "2026-10-15T13:05:37.752296-07:00", "date": "2026-10-15", "type": "urgent", "ticker": "ENTG", "price": 146.87, "extra": "\ud83d\udd04 <b>ENTG \u0110\u1ea2O CHI\u1ec0U X\u00c1C NH\u1eacN</b> \u2014 \u0111\u00e1y -8.1%, h\u1ed3i +4.4%, vol", "ret": 0.0, "close": 146.87, "win": false}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TOST", "price": 32.4, "extra": "gap +8.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UPST", "price": 24.67, "extra": "gap +8.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TTD", "price": 13.18, "extra": "gap +8.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "RKLB", "price": 54.57, "extra": "gap -7.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LAC", "price": 2.23, "extra": "gap +7.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SOXL", "price": 102.01, "extra": "gap -7.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRML", "price": 6.74, "extra": "gap +7.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DELL", "price": 474.31, "extra": "gap -6.6%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "USAR", "price": 11.0, "extra": "gap +6.6%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRM", "price": 251.16, "extra": "gap +6.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NKE", "price": 37.5, "extra": "gap +6.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "FIGS", "price": 19.75, "extra": "gap +6.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LULU", "price": 99.6, "extra": "gap +5.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "COHR", "price": 248.0, "extra": "gap -5.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IONQ", "price": 33.22, "extra": "gap +5.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "BROS", "price": 41.4, "extra": "gap +5.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ENTG", "price": 145.23, "extra": "gap -5.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMAT", "price": 424.0, "extra": "gap -5.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SYM", "price": 39.8, "extra": "gap +5.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "STX", "price": 678.61, "extra": "gap -4.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "HIMS", "price": 29.03, "extra": "gap +4.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "COIN", "price": 180.98, "extra": "gap +4.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ACHR", "price": 4.26, "extra": "gap +4.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ABNB", "price": 174.75, "extra": "gap +4.6%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MP", "price": 41.75, "extra": "gap +4.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "INTC", "price": 93.78, "extra": "gap -4.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SBUX", "price": 97.33, "extra": "gap +4.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KTOS", "price": 41.0, "extra": "gap +4.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IREN", "price": 29.32, "extra": "gap -4.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRNA", "price": 235.4, "extra": "gap +4.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "WDC", "price": 349.53, "extra": "gap -4.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "F", "price": 12.53, "extra": "gap +4.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KLAC", "price": 171.78, "extra": "gap -3.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SKHY", "price": 141.9, "extra": "gap -3.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DRAM", "price": 48.29, "extra": "gap -3.7%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SNDK", "price": 1353.12, "extra": "gap -3.6%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TGTX", "price": 56.3, "extra": "gap +3.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRVL", "price": 236.66, "extra": "gap -3.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SMCI", "price": 34.56, "extra": "gap -3.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IOVA", "price": 14.68, "extra": "gap +3.3%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMD", "price": 552.01, "extra": "gap -3.3%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "BA", "price": 190.62, "extra": "gap +3.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AXON", "price": 421.38, "extra": "gap +3.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NIO", "price": 3.51, "extra": "gap +3.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SHOP", "price": 177.6, "extra": "gap +3.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IBM", "price": 234.5, "extra": "gap +2.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "RCL", "price": 282.25, "extra": "gap +2.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AAOI", "price": 83.76, "extra": "gap -2.9%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LMT", "price": 537.03, "extra": "gap +2.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UBER", "price": 71.23, "extra": "gap +2.8%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "APLD", "price": 19.8, "extra": "gap -2.6%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SPCX", "price": 148.3, "extra": "gap -2.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "VLO", "price": 448.47, "extra": "gap -2.5%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "GLW", "price": 137.44, "extra": "gap -2.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AVAV", "price": 123.5, "extra": "gap +2.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRDO", "price": 175.0, "extra": "gap -2.4%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TSM", "price": 419.95, "extra": "gap -2.3%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SMH", "price": 552.3, "extra": "gap -2.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DLTR", "price": 124.39, "extra": "gap +2.2%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "OKLO", "price": 29.66, "extra": "gap +2.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ORCL", "price": 133.27, "extra": "gap +2.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UAL", "price": 101.0, "extra": "gap +2.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NVDA", "price": 216.75, "extra": "gap -2.1%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MSTR", "price": 146.17, "extra": "gap +2.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "GEV", "price": 922.52, "extra": "gap -2.0%"}
-{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UUUU", "price": 8.51, "extra": "gap +2.0%"}
-{"ts": "2026-10-16T06:30:46.909897-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "FIGS", "price": 19.54, "extra": "\ud83d\udea8 <b>FIGS bounce +6.7% t\u1eeb \u0111\u00e1y ng\u00e0y</b> \u2014 ti\u1ec1n v\u00e0o m\u1ea1nh, canh"}
-{"ts": "2026-10-16T06:30:46.915662-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AMD", "price": 546.3, "extra": "\ud83d\udea8 <b>AMD V\u00c0O V\u00d9NG</b> \u2014 $546.30, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:30:46.915824-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MELI", "price": 1870.0, "extra": "\ud83d\udea8 <b>MELI V\u00c0O V\u00d9NG</b> \u2014 $1,870.00, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:33:51.807779-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 101.27, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.7%"}
-{"ts": "2026-10-16T06:33:56.573448-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "KLAC", "price": 170.39, "extra": "\ud83d\udea8 <b>KLAC V\u00c0O V\u00d9NG</b> \u2014 $170.39, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:33:56.573649-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "NOC", "price": 503.88, "extra": "\ud83d\udea8 <b>NOC V\u00c0O V\u00d9NG</b> \u2014 $503.88, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRWV", "price": 65.19, "extra": "gap -6.4%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SOXL", "price": 101.18, "extra": "gap -5.7%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IONQ", "price": 32.81, "extra": "gap -4.5%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IREN", "price": 29.21, "extra": "gap -3.9%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NFLX", "price": 69.82, "extra": "gap -3.8%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MSTR", "price": 146.14, "extra": "gap -3.4%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SKHY", "price": 141.33, "extra": "gap -3.3%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "APLD", "price": 19.73, "extra": "gap -3.2%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KLAC", "price": 169.84, "extra": "gap -2.6%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ASTS", "price": 43.31, "extra": "gap -2.6%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRVL", "price": 235.22, "extra": "gap -2.5%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMD", "price": 548.31, "extra": "gap -2.5%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "WDC", "price": 347.73, "extra": "gap -2.4%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SPCX", "price": 145.35, "extra": "gap -2.2%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMAT", "price": 421.16, "extra": "gap -2.1%"}
-{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "INTC", "price": 93.46, "extra": "gap -2.0%"}
-{"ts": "2026-10-16T06:38:51.160151-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.43, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.7%"}
-{"ts": "2026-10-16T06:40:30.343345-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.91, "extra": "ng\u00f3c +2.1%, ng\u00e0y -6.0%"}
-{"ts": "2026-10-16T06:40:30.345696-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IREN", "price": 28.88, "extra": "ng\u00f3c +2.0%, ng\u00e0y -5.0%"}
-{"ts": "2026-10-16T06:40:30.347165-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 65.15, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.5%"}
-{"ts": "2026-10-16T06:40:32.914680-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.88, "extra": "vol 2.1x, bounce +2.0%"}
-{"ts": "2026-10-16T06:40:33.012045-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.91, "extra": "vol 2.5x, bounce +2.1%"}
-{"ts": "2026-10-16T06:40:33.081788-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 65.15, "extra": "vol 2.9x, bounce +1.5%"}
-{"ts": "2026-10-16T06:40:34.483069-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "KLAC", "price": 170.39, "extra": "\ud83d\udea8 <b>KLAC V\u00c0O V\u00d9NG</b> \u2014 $170.39, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:40:34.483205-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "ZS", "price": 216.98, "extra": "\ud83d\udea8 <b>ZS V\u00c0O V\u00d9NG</b> \u2014 $216.98, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:40:34.483258-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "DRAM", "price": 48.02, "extra": "\ud83d\udea8 <b>DRAM V\u00c0O V\u00d9NG</b> \u2014 $48.02, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:40:50.512980-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.9, "extra": "vol 2.1x, bounce +2.0%"}
-{"ts": "2026-10-16T06:40:50.592521-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.44, "extra": "vol 2.5x, bounce +1.6%"}
-{"ts": "2026-10-16T06:40:52.305312-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "GEV", "price": 932.14, "extra": "\ud83d\udea8 <b>GEV V\u00c0O V\u00d9NG</b> \u2014 $932.14, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T06:49:48.218777-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "GEV", "price": 948.8, "extra": "+3.6% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T06:49:48.222640-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "SYM", "price": 40.19, "extra": "+3.3% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T06:49:50.782763-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "GEV", "price": 948.8, "extra": "vol 2.2x, bounce +3.6%"}
-{"ts": "2026-10-16T06:49:50.783147-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.9, "extra": "vol 2.6x, bounce +2.0%"}
-{"ts": "2026-10-16T06:49:50.984146-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.67, "extra": "vol 3.0x, bounce +1.8%"}
-{"ts": "2026-10-16T06:49:53.005335-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MELI", "price": 1860.08, "extra": "\ud83d\udea8 <b>MELI V\u00c0O V\u00d9NG</b> \u2014 $1,860.08, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T07:08:51.934242-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRML", "price": 7.02, "extra": "+4.5% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:08:51.937268-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "LAC", "price": 2.27, "extra": "+3.2% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:08:51.937379-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.57, "extra": "ng\u00f3c +2.2%, ng\u00e0y -4.0%"}
-{"ts": "2026-10-16T07:08:51.937442-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 237.69, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.2%"}
-{"ts": "2026-10-16T07:08:51.937490-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "AAOI", "price": 80.23, "extra": "ng\u00f3c +1.7%, ng\u00e0y -4.2%"}
-{"ts": "2026-10-16T07:08:51.937523-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.94, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.3%"}
-{"ts": "2026-10-16T07:08:55.216614-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "COHR", "price": 237.69, "extra": "vol 2.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:08:55.216919-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.23, "extra": "vol 2.8x, bounce +1.7%"}
-{"ts": "2026-10-16T07:08:55.216983-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.64, "extra": "vol 4.2x, bounce +2.1%"}
-{"ts": "2026-10-16T07:08:55.499595-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LMT", "price": 546.33, "extra": "vol 2.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:08:55.499907-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "APLD", "price": 19.57, "extra": "vol 2.3x, bounce +2.2%"}
-{"ts": "2026-10-16T07:08:56.136751-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.27, "extra": "vol 2.0x, bounce +3.2%"}
-{"ts": "2026-10-16T07:08:57.017456-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "SOXL", "price": 100.64, "extra": "-6.3%, vol 4.2x, ng\u00f3c +2.1%"}
-{"ts": "2026-10-16T07:08:58.103555-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 100.64, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>SOXL HO\u1ea2NG LO\u1ea0N -6.3%, vol 4.2x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.1% t"}
-{"ts": "2026-10-16T07:08:58.103703-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "GEV", "price": 934.67, "extra": "\ud83d\udea8 <b>GEV V\u00c0O V\u00d9NG</b> \u2014 $934.67, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T07:19:10.074546-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "USAR", "price": 11.1, "extra": "+3.1% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:19:10.078069-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "VSAT", "price": 61.35, "extra": "+3.0% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:19:10.078206-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.47, "extra": "ng\u00f3c +2.2%, ng\u00e0y -9.7%"}
-{"ts": "2026-10-16T07:19:10.078260-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 196.6, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.7%"}
-{"ts": "2026-10-16T07:19:10.078300-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IREN", "price": 28.78, "extra": "ng\u00f3c +1.6%, ng\u00e0y -5.3%"}
-{"ts": "2026-10-16T07:19:10.078351-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "DDOG", "price": 254.0, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%"}
-{"ts": "2026-10-16T07:19:12.796469-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.78, "extra": "vol 2.8x, bounce +1.6%"}
-{"ts": "2026-10-16T07:19:12.797192-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.83, "extra": "vol 3.7x, bounce +2.3%"}
-{"ts": "2026-10-16T07:19:13.466446-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 196.6, "extra": "vol 3.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:19:13.466700-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.47, "extra": "vol 3.1x, bounce +2.2%"}
-{"ts": "2026-10-16T07:19:14.416256-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "SOXL", "price": 100.83, "extra": "-6.1%, vol 3.7x, ng\u00f3c +2.3%"}
-{"ts": "2026-10-16T07:19:14.540166-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.47, "extra": "-9.7%, vol 3.1x, ng\u00f3c +2.2%"}
-{"ts": "2026-10-16T07:19:15.128611-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "CRML", "price": 7.18, "extra": "\ud83d\udea8 <b>CRML bounce +6.8% t\u1eeb \u0111\u00e1y ng\u00e0y</b> \u2014 ti\u1ec1n v\u00e0o m\u1ea1nh, canh"}
-{"ts": "2026-10-16T07:19:15.128746-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MRNA", "price": 213.47, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>MRNA HO\u1ea2NG LO\u1ea0N -9.7%, vol 3.1x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.2% t"}
-{"ts": "2026-10-16T07:19:15.128794-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AXON", "price": 409.13, "extra": "\ud83d\udea8 <b>AXON V\u00c0O V\u00d9NG</b> \u2014 $409.13, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T07:23:52.474150-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "MP", "price": 42.26, "extra": "+3.0% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:23:55.228935-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.82, "extra": "vol 2.7x, bounce +1.8%"}
-{"ts": "2026-10-16T07:23:55.669250-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 101.21, "extra": "vol 3.5x, bounce +2.7%"}
-{"ts": "2026-10-16T07:23:55.712345-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.41, "extra": "vol 3.0x, bounce +1.7%"}
-{"ts": "2026-10-16T07:23:55.819701-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.29, "extra": "vol 2.1x, bounce +4.1%"}
-{"ts": "2026-10-16T07:23:57.922481-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "FRSH", "price": 13.98, "extra": "\ud83d\udea8 <b>FRSH V\u00c0O V\u00d9NG</b> \u2014 $13.98, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T07:28:46.653697-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.52, "extra": "ng\u00f3c +2.0%, ng\u00e0y -4.2%"}
-{"ts": "2026-10-16T07:28:49.269373-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.79, "extra": "vol 2.5x, bounce +1.7%"}
-{"ts": "2026-10-16T07:28:49.378833-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.33, "extra": "vol 3.3x, bounce +1.8%"}
-{"ts": "2026-10-16T07:33:52.321863-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "USAR", "price": 11.14, "extra": "+3.4% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:33:52.325653-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "MP", "price": 42.37, "extra": "+3.3% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:33:52.325790-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "UUUU", "price": 8.68, "extra": "+3.2% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:33:52.325848-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 238.41, "extra": "ng\u00f3c +2.1%, ng\u00e0y -4.9%"}
-{"ts": "2026-10-16T07:33:52.325887-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "AAOI", "price": 80.33, "extra": "ng\u00f3c +1.8%, ng\u00e0y -4.1%"}
-{"ts": "2026-10-16T07:33:52.326098-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 64.78, "extra": "ng\u00f3c +1.8%, ng\u00e0y -7.0%"}
-{"ts": "2026-10-16T07:33:52.326145-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 212.56, "extra": "ng\u00f3c +1.7%, ng\u00e0y -10.1%"}
-{"ts": "2026-10-16T07:33:52.326175-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SMCI", "price": 33.48, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%"}
-{"ts": "2026-10-16T07:33:52.326202-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.11, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.8%"}
-{"ts": "2026-10-16T07:33:52.326235-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.94, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.3%"}
-{"ts": "2026-10-16T07:33:55.373302-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 29.06, "extra": "vol 2.4x, bounce +2.6%"}
-{"ts": "2026-10-16T07:33:55.846340-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.33, "extra": "vol 2.2x, bounce +1.8%"}
-{"ts": "2026-10-16T07:33:56.041413-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 102.34, "extra": "vol 3.1x, bounce +3.8%"}
-{"ts": "2026-10-16T07:33:56.041666-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.78, "extra": "vol 4.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:33:56.041753-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.56, "extra": "vol 2.8x, bounce +1.7%"}
-{"ts": "2026-10-16T07:33:56.436610-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.29, "extra": "vol 2.0x, bounce +4.1%"}
-{"ts": "2026-10-16T07:33:58.219190-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 102.34, "extra": "\ud83d\udcb0 <b>SOXL D\u00d2NG TI\u1ec0N V\u00c0O</b> \u2014 vol 3.1x TB, bounce +3.8% t\u1eeb \u0111"}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TOST", "price": 32.4, "extra": "gap +8.5%", "ret": -2.41, "close": 31.62, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UPST", "price": 24.67, "extra": "gap +8.5%", "ret": -4.5, "close": 23.56, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TTD", "price": 13.18, "extra": "gap +8.2%", "ret": -7.21, "close": 12.23, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "RKLB", "price": 54.57, "extra": "gap -7.8%", "ret": -6.84, "close": 50.84, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LAC", "price": 2.23, "extra": "gap +7.8%", "ret": -2.24, "close": 2.18, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SOXL", "price": 102.01, "extra": "gap -7.7%", "ret": -8.18, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRML", "price": 6.74, "extra": "gap +7.7%", "ret": 3.41, "close": 6.97, "win": true}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DELL", "price": 474.31, "extra": "gap -6.6%", "ret": -4.76, "close": 451.71, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "USAR", "price": 11.0, "extra": "gap +6.6%", "ret": -4.18, "close": 10.54, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRM", "price": 251.16, "extra": "gap +6.4%", "ret": -4.16, "close": 240.7, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NKE", "price": 37.5, "extra": "gap +6.2%", "ret": -0.99, "close": 37.13, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "FIGS", "price": 19.75, "extra": "gap +6.0%", "ret": -3.19, "close": 19.12, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LULU", "price": 99.6, "extra": "gap +5.9%", "ret": -2.51, "close": 97.1, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "COHR", "price": 248.0, "extra": "gap -5.8%", "ret": -6.09, "close": 232.9, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IONQ", "price": 33.22, "extra": "gap +5.7%", "ret": -5.84, "close": 31.28, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "BROS", "price": 41.4, "extra": "gap +5.7%", "ret": -0.58, "close": 41.16, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ENTG", "price": 145.23, "extra": "gap -5.1%", "ret": -4.47, "close": 138.74, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMAT", "price": 424.0, "extra": "gap -5.1%", "ret": -3.47, "close": 409.29, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SYM", "price": 39.8, "extra": "gap +5.0%", "ret": -2.59, "close": 38.77, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "STX", "price": 678.61, "extra": "gap -4.9%", "ret": -5.84, "close": 639.01, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "HIMS", "price": 29.03, "extra": "gap +4.7%", "ret": -3.31, "close": 28.07, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "COIN", "price": 180.98, "extra": "gap +4.7%", "ret": -4.32, "close": 173.16, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ACHR", "price": 4.26, "extra": "gap +4.7%", "ret": -4.46, "close": 4.07, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ABNB", "price": 174.75, "extra": "gap +4.6%", "ret": -0.6, "close": 173.7, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MP", "price": 41.75, "extra": "gap +4.5%", "ret": -3.78, "close": 40.17, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "INTC", "price": 93.78, "extra": "gap -4.4%", "ret": -4.19, "close": 89.85, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SBUX", "price": 97.33, "extra": "gap +4.4%", "ret": 0.2, "close": 97.52, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KTOS", "price": 41.0, "extra": "gap +4.2%", "ret": -1.41, "close": 40.42, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IREN", "price": 29.32, "extra": "gap -4.1%", "ret": -7.95, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRNA", "price": 235.4, "extra": "gap +4.0%", "ret": -7.39, "close": 218.01, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "WDC", "price": 349.53, "extra": "gap -4.0%", "ret": -5.02, "close": 332.0, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "F", "price": 12.53, "extra": "gap +4.0%", "ret": -0.8, "close": 12.43, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KLAC", "price": 171.78, "extra": "gap -3.9%", "ret": -3.52, "close": 165.74, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SKHY", "price": 141.9, "extra": "gap -3.8%", "ret": -3.81, "close": 136.49, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DRAM", "price": 48.29, "extra": "gap -3.7%", "ret": -3.81, "close": 46.45, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SNDK", "price": 1353.12, "extra": "gap -3.6%", "ret": -3.98, "close": 1299.3, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TGTX", "price": 56.3, "extra": "gap +3.5%", "ret": -4.14, "close": 53.97, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRVL", "price": 236.66, "extra": "gap -3.5%", "ret": -3.73, "close": 227.83, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SMCI", "price": 34.56, "extra": "gap -3.4%", "ret": -8.48, "close": 31.63, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IOVA", "price": 14.68, "extra": "gap +3.3%", "ret": -7.22, "close": 13.62, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMD", "price": 552.01, "extra": "gap -3.3%", "ret": -4.21, "close": 528.75, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "BA", "price": 190.62, "extra": "gap +3.2%", "ret": -0.22, "close": 190.21, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AXON", "price": 421.38, "extra": "gap +3.2%", "ret": -7.38, "close": 390.29, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NIO", "price": 3.51, "extra": "gap +3.0%", "ret": -2.28, "close": 3.43, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SHOP", "price": 177.6, "extra": "gap +3.0%", "ret": -4.55, "close": 169.52, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IBM", "price": 234.5, "extra": "gap +2.9%", "ret": -1.01, "close": 232.14, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "RCL", "price": 282.25, "extra": "gap +2.9%", "ret": -1.62, "close": 277.68, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AAOI", "price": 83.76, "extra": "gap -2.9%", "ret": -9.78, "close": 75.57, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "LMT", "price": 537.03, "extra": "gap +2.8%", "ret": 2.8, "close": 552.09, "win": true}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UBER", "price": 71.23, "extra": "gap +2.8%", "ret": -1.24, "close": 70.35, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "APLD", "price": 19.8, "extra": "gap -2.6%", "ret": -8.84, "close": 18.05, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SPCX", "price": 148.3, "extra": "gap -2.5%", "ret": -1.53, "close": 146.03, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "VLO", "price": 448.47, "extra": "gap -2.5%", "ret": -0.84, "close": 444.71, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "GLW", "price": 137.44, "extra": "gap -2.4%", "ret": -3.96, "close": 132.0, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AVAV", "price": 123.5, "extra": "gap +2.4%", "ret": -1.38, "close": 121.79, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRDO", "price": 175.0, "extra": "gap -2.4%", "ret": -3.03, "close": 169.7, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "TSM", "price": 419.95, "extra": "gap -2.3%", "ret": -1.75, "close": 412.61, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SMH", "price": 552.3, "extra": "gap -2.2%", "ret": -2.27, "close": 539.79, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "DLTR", "price": 124.39, "extra": "gap +2.2%", "ret": -0.17, "close": 124.18, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "OKLO", "price": 29.66, "extra": "gap +2.1%", "ret": -5.7, "close": 27.97, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ORCL", "price": 133.27, "extra": "gap +2.1%", "ret": -3.78, "close": 128.23, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UAL", "price": 101.0, "extra": "gap +2.1%", "ret": -4.85, "close": 96.1, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NVDA", "price": 216.75, "extra": "gap -2.1%", "ret": -1.21, "close": 214.13, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MSTR", "price": 146.17, "extra": "gap +2.0%", "ret": -6.39, "close": 136.83, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "GEV", "price": 922.52, "extra": "gap -2.0%", "ret": -0.14, "close": 921.2, "win": false}
+{"ts": "2026-10-16T06:01:07.118862-07:00", "date": "2026-10-16", "type": "gap", "ticker": "UUUU", "price": 8.51, "extra": "gap +2.0%", "ret": -0.47, "close": 8.47, "win": false}
+{"ts": "2026-10-16T06:30:46.909897-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "FIGS", "price": 19.54, "extra": "\ud83d\udea8 <b>FIGS bounce +6.7% t\u1eeb \u0111\u00e1y ng\u00e0y</b> \u2014 ti\u1ec1n v\u00e0o m\u1ea1nh, canh", "ret": -2.15, "close": 19.12, "win": false}
+{"ts": "2026-10-16T06:30:46.915662-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AMD", "price": 546.3, "extra": "\ud83d\udea8 <b>AMD V\u00c0O V\u00d9NG</b> \u2014 $546.30, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -3.21, "close": 528.75, "win": false}
+{"ts": "2026-10-16T06:30:46.915824-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MELI", "price": 1870.0, "extra": "\ud83d\udea8 <b>MELI V\u00c0O V\u00d9NG</b> \u2014 $1,870.00, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.93, "close": 1834.0, "win": false}
+{"ts": "2026-10-16T06:33:51.807779-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 101.27, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.7%", "ret": -7.5, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:33:56.573448-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "KLAC", "price": 170.39, "extra": "\ud83d\udea8 <b>KLAC V\u00c0O V\u00d9NG</b> \u2014 $170.39, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -2.73, "close": 165.74, "win": false}
+{"ts": "2026-10-16T06:33:56.573649-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "NOC", "price": 503.88, "extra": "\ud83d\udea8 <b>NOC V\u00c0O V\u00d9NG</b> \u2014 $503.88, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": 3.17, "close": 519.86, "win": true}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "CRWV", "price": 65.19, "extra": "gap -6.4%", "ret": -5.83, "close": 61.39, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SOXL", "price": 101.18, "extra": "gap -5.7%", "ret": -7.42, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IONQ", "price": 32.81, "extra": "gap -4.5%", "ret": -4.66, "close": 31.28, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "IREN", "price": 29.21, "extra": "gap -3.9%", "ret": -7.6, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "NFLX", "price": 69.82, "extra": "gap -3.8%", "ret": 1.02, "close": 70.53, "win": true}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MSTR", "price": 146.14, "extra": "gap -3.4%", "ret": -6.37, "close": 136.83, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SKHY", "price": 141.33, "extra": "gap -3.3%", "ret": -3.42, "close": 136.49, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "APLD", "price": 19.73, "extra": "gap -3.2%", "ret": -8.51, "close": 18.05, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "KLAC", "price": 169.84, "extra": "gap -2.6%", "ret": -2.41, "close": 165.74, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "ASTS", "price": 43.31, "extra": "gap -2.6%", "ret": -6.12, "close": 40.66, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "MRVL", "price": 235.22, "extra": "gap -2.5%", "ret": -3.14, "close": 227.83, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMD", "price": 548.31, "extra": "gap -2.5%", "ret": -3.57, "close": 528.75, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "WDC", "price": 347.73, "extra": "gap -2.4%", "ret": -4.52, "close": 332.0, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "SPCX", "price": 145.35, "extra": "gap -2.2%", "ret": 0.47, "close": 146.03, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "AMAT", "price": 421.16, "extra": "gap -2.1%", "ret": -2.82, "close": 409.29, "win": false}
+{"ts": "2026-10-16T06:36:16.972008-07:00", "date": "2026-10-16", "type": "gap", "ticker": "INTC", "price": 93.46, "extra": "gap -2.0%", "ret": -3.86, "close": 89.85, "win": false}
+{"ts": "2026-10-16T06:38:51.160151-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.43, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.7%", "ret": -7.1, "close": 18.05, "win": false}
+{"ts": "2026-10-16T06:40:30.343345-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.91, "extra": "ng\u00f3c +2.1%, ng\u00e0y -6.0%", "ret": -7.17, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:40:30.345696-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IREN", "price": 28.88, "extra": "ng\u00f3c +2.0%, ng\u00e0y -5.0%", "ret": -6.54, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:40:30.347165-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 65.15, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.5%", "ret": -5.77, "close": 61.39, "win": false}
+{"ts": "2026-10-16T06:40:32.914680-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.88, "extra": "vol 2.1x, bounce +2.0%", "ret": -6.54, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:40:33.012045-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.91, "extra": "vol 2.5x, bounce +2.1%", "ret": -7.17, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:40:33.081788-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 65.15, "extra": "vol 2.9x, bounce +1.5%", "ret": -5.77, "close": 61.39, "win": false}
+{"ts": "2026-10-16T06:40:34.483069-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "KLAC", "price": 170.39, "extra": "\ud83d\udea8 <b>KLAC V\u00c0O V\u00d9NG</b> \u2014 $170.39, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -2.73, "close": 165.74, "win": false}
+{"ts": "2026-10-16T06:40:34.483205-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "ZS", "price": 216.98, "extra": "\ud83d\udea8 <b>ZS V\u00c0O V\u00d9NG</b> \u2014 $216.98, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -4.42, "close": 207.38, "win": false}
+{"ts": "2026-10-16T06:40:34.483258-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "DRAM", "price": 48.02, "extra": "\ud83d\udea8 <b>DRAM V\u00c0O V\u00d9NG</b> \u2014 $48.02, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -3.27, "close": 46.45, "win": false}
+{"ts": "2026-10-16T06:40:50.512980-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.9, "extra": "vol 2.1x, bounce +2.0%", "ret": -6.61, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:40:50.592521-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.44, "extra": "vol 2.5x, bounce +1.6%", "ret": -6.74, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:40:52.305312-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "GEV", "price": 932.14, "extra": "\ud83d\udea8 <b>GEV V\u00c0O V\u00d9NG</b> \u2014 $932.14, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.17, "close": 921.2, "win": false}
+{"ts": "2026-10-16T06:49:48.218777-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "GEV", "price": 948.8, "extra": "+3.6% t\u1eeb \u0111\u00e1y", "ret": -2.91, "close": 921.2, "win": false}
+{"ts": "2026-10-16T06:49:48.222640-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "SYM", "price": 40.19, "extra": "+3.3% t\u1eeb \u0111\u00e1y", "ret": -3.53, "close": 38.77, "win": false}
+{"ts": "2026-10-16T06:49:50.782763-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "GEV", "price": 948.8, "extra": "vol 2.2x, bounce +3.6%", "ret": -2.91, "close": 921.2, "win": false}
+{"ts": "2026-10-16T06:49:50.783147-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.9, "extra": "vol 2.6x, bounce +2.0%", "ret": -6.61, "close": 26.99, "win": false}
+{"ts": "2026-10-16T06:49:50.984146-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.67, "extra": "vol 3.0x, bounce +1.8%", "ret": -6.95, "close": 93.67, "win": false}
+{"ts": "2026-10-16T06:49:53.005335-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MELI", "price": 1860.08, "extra": "\ud83d\udea8 <b>MELI V\u00c0O V\u00d9NG</b> \u2014 $1,860.08, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.4, "close": 1834.0, "win": false}
+{"ts": "2026-10-16T07:08:51.934242-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRML", "price": 7.02, "extra": "+4.5% t\u1eeb \u0111\u00e1y", "ret": -0.71, "close": 6.97, "win": false}
+{"ts": "2026-10-16T07:08:51.937268-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "LAC", "price": 2.27, "extra": "+3.2% t\u1eeb \u0111\u00e1y", "ret": -3.96, "close": 2.18, "win": false}
+{"ts": "2026-10-16T07:08:51.937379-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.57, "extra": "ng\u00f3c +2.2%, ng\u00e0y -4.0%", "ret": -7.77, "close": 18.05, "win": false}
+{"ts": "2026-10-16T07:08:51.937442-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 237.69, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.2%", "ret": -2.02, "close": 232.9, "win": false}
+{"ts": "2026-10-16T07:08:51.937490-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "AAOI", "price": 80.23, "extra": "ng\u00f3c +1.7%, ng\u00e0y -4.2%", "ret": -5.81, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:08:51.937523-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.94, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.3%", "ret": -2.3, "close": 13.62, "win": false}
+{"ts": "2026-10-16T07:08:55.216614-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "COHR", "price": 237.69, "extra": "vol 2.0x, bounce +1.8%", "ret": -2.02, "close": 232.9, "win": false}
+{"ts": "2026-10-16T07:08:55.216919-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.23, "extra": "vol 2.8x, bounce +1.7%", "ret": -5.81, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:08:55.216983-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.64, "extra": "vol 4.2x, bounce +2.1%", "ret": -6.93, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:08:55.499595-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LMT", "price": 546.33, "extra": "vol 2.0x, bounce +1.8%", "ret": 1.05, "close": 552.09, "win": true}
+{"ts": "2026-10-16T07:08:55.499907-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "APLD", "price": 19.57, "extra": "vol 2.3x, bounce +2.2%", "ret": -7.77, "close": 18.05, "win": false}
+{"ts": "2026-10-16T07:08:56.136751-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.27, "extra": "vol 2.0x, bounce +3.2%", "ret": -3.96, "close": 2.18, "win": false}
+{"ts": "2026-10-16T07:08:57.017456-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "SOXL", "price": 100.64, "extra": "-6.3%, vol 4.2x, ng\u00f3c +2.1%", "ret": -6.93, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:08:58.103555-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 100.64, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>SOXL HO\u1ea2NG LO\u1ea0N -6.3%, vol 4.2x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.1% t", "ret": -6.93, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:08:58.103703-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "GEV", "price": 934.67, "extra": "\ud83d\udea8 <b>GEV V\u00c0O V\u00d9NG</b> \u2014 $934.67, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.44, "close": 921.2, "win": false}
+{"ts": "2026-10-16T07:19:10.074546-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "USAR", "price": 11.1, "extra": "+3.1% t\u1eeb \u0111\u00e1y", "ret": -5.05, "close": 10.54, "win": false}
+{"ts": "2026-10-16T07:19:10.078069-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "VSAT", "price": 61.35, "extra": "+3.0% t\u1eeb \u0111\u00e1y", "ret": -4.11, "close": 58.83, "win": false}
+{"ts": "2026-10-16T07:19:10.078206-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.47, "extra": "ng\u00f3c +2.2%, ng\u00e0y -9.7%", "ret": 2.13, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:19:10.078260-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 196.6, "extra": "ng\u00f3c +1.8%, ng\u00e0y -5.7%", "ret": -4.75, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:19:10.078300-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IREN", "price": 28.78, "extra": "ng\u00f3c +1.6%, ng\u00e0y -5.3%", "ret": -6.22, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:19:10.078351-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "DDOG", "price": 254.0, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%", "ret": -2.71, "close": 247.11, "win": false}
+{"ts": "2026-10-16T07:19:12.796469-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.78, "extra": "vol 2.8x, bounce +1.6%", "ret": -6.22, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:19:12.797192-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.83, "extra": "vol 3.7x, bounce +2.3%", "ret": -7.1, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:19:13.466446-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 196.6, "extra": "vol 3.0x, bounce +1.8%", "ret": -4.75, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:19:13.466700-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.47, "extra": "vol 3.1x, bounce +2.2%", "ret": 2.13, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:19:14.416256-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "SOXL", "price": 100.83, "extra": "-6.1%, vol 3.7x, ng\u00f3c +2.3%", "ret": -7.1, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:19:14.540166-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.47, "extra": "-9.7%, vol 3.1x, ng\u00f3c +2.2%", "ret": 2.13, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:19:15.128611-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "CRML", "price": 7.18, "extra": "\ud83d\udea8 <b>CRML bounce +6.8% t\u1eeb \u0111\u00e1y ng\u00e0y</b> \u2014 ti\u1ec1n v\u00e0o m\u1ea1nh, canh", "ret": -2.92, "close": 6.97, "win": false}
+{"ts": "2026-10-16T07:19:15.128746-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "MRNA", "price": 213.47, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>MRNA HO\u1ea2NG LO\u1ea0N -9.7%, vol 3.1x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.2% t", "ret": 2.13, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:19:15.128794-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AXON", "price": 409.13, "extra": "\ud83d\udea8 <b>AXON V\u00c0O V\u00d9NG</b> \u2014 $409.13, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -4.6, "close": 390.29, "win": false}
+{"ts": "2026-10-16T07:23:52.474150-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "MP", "price": 42.26, "extra": "+3.0% t\u1eeb \u0111\u00e1y", "ret": -4.95, "close": 40.17, "win": false}
+{"ts": "2026-10-16T07:23:55.228935-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.82, "extra": "vol 2.7x, bounce +1.8%", "ret": -6.35, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:23:55.669250-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 101.21, "extra": "vol 3.5x, bounce +2.7%", "ret": -7.45, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:23:55.712345-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.41, "extra": "vol 3.0x, bounce +1.7%", "ret": 2.64, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:23:55.819701-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.29, "extra": "vol 2.1x, bounce +4.1%", "ret": -4.8, "close": 2.18, "win": false}
+{"ts": "2026-10-16T07:23:57.922481-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "FRSH", "price": 13.98, "extra": "\ud83d\udea8 <b>FRSH V\u00c0O V\u00d9NG</b> \u2014 $13.98, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.72, "close": 13.74, "win": false}
+{"ts": "2026-10-16T07:28:46.653697-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.52, "extra": "ng\u00f3c +2.0%, ng\u00e0y -4.2%", "ret": -7.53, "close": 18.05, "win": false}
+{"ts": "2026-10-16T07:28:49.269373-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.79, "extra": "vol 2.5x, bounce +1.7%", "ret": -6.25, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:28:49.378833-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.33, "extra": "vol 3.3x, bounce +1.8%", "ret": -6.64, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:33:52.321863-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "USAR", "price": 11.14, "extra": "+3.4% t\u1eeb \u0111\u00e1y", "ret": -5.39, "close": 10.54, "win": false}
+{"ts": "2026-10-16T07:33:52.325653-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "MP", "price": 42.37, "extra": "+3.3% t\u1eeb \u0111\u00e1y", "ret": -5.19, "close": 40.17, "win": false}
+{"ts": "2026-10-16T07:33:52.325790-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "UUUU", "price": 8.68, "extra": "+3.2% t\u1eeb \u0111\u00e1y", "ret": -2.42, "close": 8.47, "win": false}
+{"ts": "2026-10-16T07:33:52.325848-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 238.41, "extra": "ng\u00f3c +2.1%, ng\u00e0y -4.9%", "ret": -2.31, "close": 232.9, "win": false}
+{"ts": "2026-10-16T07:33:52.325887-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "AAOI", "price": 80.33, "extra": "ng\u00f3c +1.8%, ng\u00e0y -4.1%", "ret": -5.93, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:33:52.326098-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 64.78, "extra": "ng\u00f3c +1.8%, ng\u00e0y -7.0%", "ret": -5.23, "close": 61.39, "win": false}
+{"ts": "2026-10-16T07:33:52.326145-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 212.56, "extra": "ng\u00f3c +1.7%, ng\u00e0y -10.1%", "ret": 2.56, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:33:52.326175-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SMCI", "price": 33.48, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%", "ret": -5.53, "close": 31.63, "win": false}
+{"ts": "2026-10-16T07:33:52.326202-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.11, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.8%", "ret": -1.84, "close": 70.78, "win": false}
+{"ts": "2026-10-16T07:33:52.326235-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.94, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.3%", "ret": -2.3, "close": 13.62, "win": false}
+{"ts": "2026-10-16T07:33:55.373302-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 29.06, "extra": "vol 2.4x, bounce +2.6%", "ret": -7.12, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:33:55.846340-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.33, "extra": "vol 2.2x, bounce +1.8%", "ret": -5.93, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:33:56.041413-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 102.34, "extra": "vol 3.1x, bounce +3.8%", "ret": -8.47, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:33:56.041666-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.78, "extra": "vol 4.0x, bounce +1.8%", "ret": -5.23, "close": 61.39, "win": false}
+{"ts": "2026-10-16T07:33:56.041753-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.56, "extra": "vol 2.8x, bounce +1.7%", "ret": 2.56, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:33:56.436610-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "LAC", "price": 2.29, "extra": "vol 2.0x, bounce +4.1%", "ret": -4.8, "close": 2.18, "win": false}
+{"ts": "2026-10-16T07:33:58.219190-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 102.34, "extra": "\ud83d\udcb0 <b>SOXL D\u00d2NG TI\u1ec0N V\u00c0O</b> \u2014 vol 3.1x TB, bounce +3.8% t\u1eeb \u0111", "ret": -8.47, "close": 93.67, "win": false}
 {"ts": "2026-10-16T07:33:58.228360-07:00", "date": "2026-10-16", "type": "broad_rebound", "ticker": "MARKET", "price": 0.0, "extra": "6 bounce, 10/13 xanh"}
-{"ts": "2026-10-16T07:42:50.030566-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "DELL", "price": 467.28, "extra": "+3.5% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:42:50.032350-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRDO", "price": 175.88, "extra": "+3.4% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:42:50.032449-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "PANW", "price": 355.31, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.0%"}
-{"ts": "2026-10-16T07:42:50.032493-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.45, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%"}
-{"ts": "2026-10-16T07:42:50.032526-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "DDOG", "price": 252.56, "extra": "ng\u00f3c +1.6%, ng\u00e0y -5.1%"}
-{"ts": "2026-10-16T07:42:50.032561-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SKHY", "price": 139.73, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.4%"}
-{"ts": "2026-10-16T07:42:50.032596-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MSTR", "price": 145.22, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.0%"}
-{"ts": "2026-10-16T07:42:50.032625-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 211.42, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.1%"}
-{"ts": "2026-10-16T07:42:52.900239-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.92, "extra": "vol 2.3x, bounce +2.1%"}
-{"ts": "2026-10-16T07:42:53.793157-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.73, "extra": "vol 2.8x, bounce +1.5%"}
-{"ts": "2026-10-16T07:42:53.999150-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.3, "extra": "vol 2.1x, bounce +1.8%"}
-{"ts": "2026-10-16T07:42:54.004614-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 103.01, "extra": "vol 3.0x, bounce +4.5%"}
-{"ts": "2026-10-16T07:42:54.537953-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "PANW", "price": 355.31, "extra": "vol 2.1x, bounce +1.6%"}
-{"ts": "2026-10-16T07:42:54.538275-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.64, "extra": "vol 3.8x, bounce +1.6%"}
-{"ts": "2026-10-16T07:42:54.671665-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.21, "extra": "vol 2.6x, bounce +2.0%"}
-{"ts": "2026-10-16T07:42:55.597859-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.21, "extra": "-9.8%, vol 2.6x, ng\u00f3c +2.0%"}
-{"ts": "2026-10-16T07:42:56.220406-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 103.01, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.5%, vol 3.0x"}
-{"ts": "2026-10-16T07:42:56.850707-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 103.01, "extra": "\ud83d\udd04 <b>SOXL \u0110\u1ea2O CHI\u1ec0U X\u00c1C NH\u1eacN</b> \u2014 \u0111\u00e1y -8.2%, h\u1ed3i +4.5%, vol"}
-{"ts": "2026-10-16T07:46:14.633327-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "VSAT", "price": 61.46, "extra": "+3.2% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:46:14.641526-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "LAC", "price": 2.27, "extra": "+3.2% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T07:46:14.641752-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 195.04, "extra": "ng\u00f3c +2.5%, ng\u00e0y -6.5%"}
-{"ts": "2026-10-16T07:46:14.641818-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SMCI", "price": 33.46, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.7%"}
-{"ts": "2026-10-16T07:46:14.641858-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.12, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.7%"}
-{"ts": "2026-10-16T07:46:17.322272-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.86, "extra": "vol 2.2x, bounce +1.9%"}
-{"ts": "2026-10-16T07:46:18.034311-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.84, "extra": "vol 2.7x, bounce +1.6%"}
-{"ts": "2026-10-16T07:46:18.035244-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.33, "extra": "vol 2.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:46:18.049510-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 103.07, "extra": "vol 2.9x, bounce +4.6%"}
-{"ts": "2026-10-16T07:46:18.435419-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.74, "extra": "vol 3.7x, bounce +1.7%"}
-{"ts": "2026-10-16T07:46:18.647139-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 195.04, "extra": "vol 2.8x, bounce +2.5%"}
-{"ts": "2026-10-16T07:46:18.647434-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.71, "extra": "vol 2.5x, bounce +2.3%"}
-{"ts": "2026-10-16T07:46:19.562248-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "OKTA", "price": 195.04, "extra": "-6.5%, vol 2.8x, ng\u00f3c +2.5%"}
-{"ts": "2026-10-16T07:46:19.562535-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.71, "extra": "-9.6%, vol 2.5x, ng\u00f3c +2.3%"}
-{"ts": "2026-10-16T07:46:20.170029-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 103.07, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.6%, vol 2.9x"}
-{"ts": "2026-10-16T07:46:20.752984-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "OKTA", "price": 195.04, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>OKTA HO\u1ea2NG LO\u1ea0N -6.5%, vol 2.8x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.5% t"}
-{"ts": "2026-10-16T07:48:55.039147-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.8, "extra": "vol 2.1x, bounce +1.7%"}
-{"ts": "2026-10-16T07:48:55.630869-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.91, "extra": "vol 2.7x, bounce +1.7%"}
-{"ts": "2026-10-16T07:48:55.631094-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.34, "extra": "vol 2.0x, bounce +1.8%"}
-{"ts": "2026-10-16T07:48:55.631155-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 102.87, "extra": "vol 2.8x, bounce +4.4%"}
-{"ts": "2026-10-16T07:48:56.021516-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.66, "extra": "vol 3.7x, bounce +1.6%"}
-{"ts": "2026-10-16T07:48:56.056597-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 194.91, "extra": "vol 2.8x, bounce +2.5%"}
-{"ts": "2026-10-16T07:48:56.374333-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 214.66, "extra": "vol 2.5x, bounce +2.7%"}
-{"ts": "2026-10-16T07:48:57.341654-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "OKTA", "price": 194.91, "extra": "-6.5%, vol 2.8x, ng\u00f3c +2.5%"}
-{"ts": "2026-10-16T07:48:57.424002-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 214.66, "extra": "-9.2%, vol 2.5x, ng\u00f3c +2.7%"}
-{"ts": "2026-10-16T07:48:57.983733-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 102.87, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.4%, vol 2.8x"}
-{"ts": "2026-10-16T08:14:47.033296-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 214.81, "extra": "vol 2.2x, bounce +2.8%"}
-{"ts": "2026-10-16T08:14:49.495547-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "NVDA", "price": 216.73, "extra": "\ud83d\udea8 <b>NVDA V\u00c0O V\u00d9NG</b> \u2014 $216.73, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T08:18:51.042095-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.62, "extra": "vol 2.2x, bounce +2.2%"}
-{"ts": "2026-10-16T08:45:40.431895-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.75, "extra": "ng\u00f3c +2.2%, ng\u00e0y -6.2%"}
-{"ts": "2026-10-16T08:45:43.293480-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.75, "extra": "vol 2.1x, bounce +2.2%"}
-{"ts": "2026-10-16T08:45:43.293775-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.94, "extra": "vol 2.0x, bounce +1.9%"}
-{"ts": "2026-10-16T09:01:11.094768-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "USAR", "price": 10.7, "extra": "\ud83d\udea8 <b>USAR V\u00c0O V\u00d9NG</b> \u2014 $10.71, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T09:32:17.574413-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.49, "extra": "ng\u00f3c +2.0%, ng\u00e0y -6.4%"}
-{"ts": "2026-10-16T09:36:31.294096-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.11, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.8%"}
-{"ts": "2026-10-16T09:45:07.480241-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 189.92, "extra": "ng\u00f3c +1.6%, ng\u00e0y -8.9%"}
-{"ts": "2026-10-16T09:45:07.482473-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.43, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.3%"}
-{"ts": "2026-10-16T09:45:07.482586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 18.73, "extra": "ng\u00f3c +1.5%, ng\u00e0y -8.1%"}
-{"ts": "2026-10-16T09:45:07.482641-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 237.14, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.4%"}
-{"ts": "2026-10-16T09:45:07.482674-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SKHY", "price": 139.68, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.4%"}
-{"ts": "2026-10-16T09:45:10.993583-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 189.92, "extra": "vol 2.2x, bounce +1.6%"}
-{"ts": "2026-10-16T09:53:43.184354-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "RCL", "price": 281.6, "extra": "\ud83d\udea8 <b>RCL V\u00c0O V\u00d9NG</b> \u2014 $281.60, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T10:03:05.109103-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "HIMS", "price": 28.46, "extra": "\ud83d\udea8 <b>HIMS V\u00c0O V\u00d9NG</b> \u2014 $28.46, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T11:02:23.326065-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRML", "price": 6.93, "extra": "+3.1% t\u1eeb \u0111\u00e1y"}
-{"ts": "2026-10-16T11:02:23.331457-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.83, "extra": "ng\u00f3c +1.8%, ng\u00e0y -6.0%"}
-{"ts": "2026-10-16T11:02:30.039922-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AMZN", "price": 248.81, "extra": "\ud83d\udea8 <b>AMZN V\u00c0O V\u00d9NG</b> \u2014 $248.81, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p"}
-{"ts": "2026-10-16T11:19:08.823586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.14, "extra": "ng\u00f3c +2.0%, ng\u00e0y -9.9%"}
-{"ts": "2026-10-16T11:19:08.826071-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 188.6, "extra": "ng\u00f3c +1.9%, ng\u00e0y -9.6%"}
-{"ts": "2026-10-16T11:19:08.826159-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.39, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.4%"}
-{"ts": "2026-10-16T12:14:42.216624-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 95.85, "extra": "ng\u00f3c +2.6%, ng\u00e0y -10.7%"}
-{"ts": "2026-10-16T12:14:42.219279-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 61.09, "extra": "ng\u00f3c +2.0%, ng\u00e0y -12.3%"}
-{"ts": "2026-10-16T12:14:42.219369-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.8, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.2%"}
-{"ts": "2026-10-16T12:14:46.255801-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 61.09, "extra": "vol 2.3x, bounce +2.0%"}
+{"ts": "2026-10-16T07:42:50.030566-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "DELL", "price": 467.28, "extra": "+3.5% t\u1eeb \u0111\u00e1y", "ret": -3.33, "close": 451.71, "win": false}
+{"ts": "2026-10-16T07:42:50.032350-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRDO", "price": 175.88, "extra": "+3.4% t\u1eeb \u0111\u00e1y", "ret": -3.51, "close": 169.7, "win": false}
+{"ts": "2026-10-16T07:42:50.032449-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "PANW", "price": 355.31, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.0%", "ret": -3.75, "close": 342.0, "win": false}
+{"ts": "2026-10-16T07:42:50.032493-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 19.45, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.6%", "ret": -7.2, "close": 18.05, "win": false}
+{"ts": "2026-10-16T07:42:50.032526-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "DDOG", "price": 252.56, "extra": "ng\u00f3c +1.6%, ng\u00e0y -5.1%", "ret": -2.16, "close": 247.11, "win": false}
+{"ts": "2026-10-16T07:42:50.032561-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SKHY", "price": 139.73, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.4%", "ret": -2.32, "close": 136.49, "win": false}
+{"ts": "2026-10-16T07:42:50.032596-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MSTR", "price": 145.22, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.0%", "ret": -5.78, "close": 136.83, "win": false}
+{"ts": "2026-10-16T07:42:50.032625-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 211.42, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.1%", "ret": -1.91, "close": 207.38, "win": false}
+{"ts": "2026-10-16T07:42:52.900239-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.92, "extra": "vol 2.3x, bounce +2.1%", "ret": -6.67, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:42:53.793157-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.73, "extra": "vol 2.8x, bounce +1.5%", "ret": -2.32, "close": 136.49, "win": false}
+{"ts": "2026-10-16T07:42:53.999150-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.3, "extra": "vol 2.1x, bounce +1.8%", "ret": -5.89, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:42:54.004614-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 103.01, "extra": "vol 3.0x, bounce +4.5%", "ret": -9.07, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:42:54.537953-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "PANW", "price": 355.31, "extra": "vol 2.1x, bounce +1.6%", "ret": -3.75, "close": 342.0, "win": false}
+{"ts": "2026-10-16T07:42:54.538275-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.64, "extra": "vol 3.8x, bounce +1.6%", "ret": -5.03, "close": 61.39, "win": false}
+{"ts": "2026-10-16T07:42:54.671665-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.21, "extra": "vol 2.6x, bounce +2.0%", "ret": 2.25, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:42:55.597859-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.21, "extra": "-9.8%, vol 2.6x, ng\u00f3c +2.0%", "ret": 2.25, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:42:56.220406-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 103.01, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.5%, vol 3.0x", "ret": -9.07, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:42:56.850707-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "SOXL", "price": 103.01, "extra": "\ud83d\udd04 <b>SOXL \u0110\u1ea2O CHI\u1ec0U X\u00c1C NH\u1eacN</b> \u2014 \u0111\u00e1y -8.2%, h\u1ed3i +4.5%, vol", "ret": -9.07, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:46:14.633327-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "VSAT", "price": 61.46, "extra": "+3.2% t\u1eeb \u0111\u00e1y", "ret": -4.28, "close": 58.83, "win": false}
+{"ts": "2026-10-16T07:46:14.641526-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "LAC", "price": 2.27, "extra": "+3.2% t\u1eeb \u0111\u00e1y", "ret": -3.96, "close": 2.18, "win": false}
+{"ts": "2026-10-16T07:46:14.641752-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 195.04, "extra": "ng\u00f3c +2.5%, ng\u00e0y -6.5%", "ret": -3.99, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:46:14.641818-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SMCI", "price": 33.46, "extra": "ng\u00f3c +1.6%, ng\u00e0y -4.7%", "ret": -5.47, "close": 31.63, "win": false}
+{"ts": "2026-10-16T07:46:14.641858-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.12, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.7%", "ret": -1.86, "close": 70.78, "win": false}
+{"ts": "2026-10-16T07:46:17.322272-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.86, "extra": "vol 2.2x, bounce +1.9%", "ret": -6.48, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:46:18.034311-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.84, "extra": "vol 2.7x, bounce +1.6%", "ret": -2.4, "close": 136.49, "win": false}
+{"ts": "2026-10-16T07:46:18.035244-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.33, "extra": "vol 2.0x, bounce +1.8%", "ret": -5.93, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:46:18.049510-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 103.07, "extra": "vol 2.9x, bounce +4.6%", "ret": -9.12, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:46:18.435419-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.74, "extra": "vol 3.7x, bounce +1.7%", "ret": -5.17, "close": 61.39, "win": false}
+{"ts": "2026-10-16T07:46:18.647139-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 195.04, "extra": "vol 2.8x, bounce +2.5%", "ret": -3.99, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:46:18.647434-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.71, "extra": "vol 2.5x, bounce +2.3%", "ret": 2.01, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:46:19.562248-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "OKTA", "price": 195.04, "extra": "-6.5%, vol 2.8x, ng\u00f3c +2.5%", "ret": -3.99, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:46:19.562535-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 213.71, "extra": "-9.6%, vol 2.5x, ng\u00f3c +2.3%", "ret": 2.01, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:46:20.170029-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 103.07, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.6%, vol 2.9x", "ret": -9.12, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:46:20.752984-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "OKTA", "price": 195.04, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>OKTA HO\u1ea2NG LO\u1ea0N -6.5%, vol 2.8x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.5% t", "ret": -3.99, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:48:55.039147-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "IREN", "price": 28.8, "extra": "vol 2.1x, bounce +1.7%", "ret": -6.28, "close": 26.99, "win": false}
+{"ts": "2026-10-16T07:48:55.630869-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SKHY", "price": 139.91, "extra": "vol 2.7x, bounce +1.7%", "ret": -2.44, "close": 136.49, "win": false}
+{"ts": "2026-10-16T07:48:55.631094-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "AAOI", "price": 80.34, "extra": "vol 2.0x, bounce +1.8%", "ret": -5.94, "close": 75.57, "win": false}
+{"ts": "2026-10-16T07:48:55.631155-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 102.87, "extra": "vol 2.8x, bounce +4.4%", "ret": -8.94, "close": 93.67, "win": false}
+{"ts": "2026-10-16T07:48:56.021516-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 64.66, "extra": "vol 3.7x, bounce +1.6%", "ret": -5.06, "close": 61.39, "win": false}
+{"ts": "2026-10-16T07:48:56.056597-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 194.91, "extra": "vol 2.8x, bounce +2.5%", "ret": -3.92, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:48:56.374333-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 214.66, "extra": "vol 2.5x, bounce +2.7%", "ret": 1.56, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:48:57.341654-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "OKTA", "price": 194.91, "extra": "-6.5%, vol 2.8x, ng\u00f3c +2.5%", "ret": -3.92, "close": 187.26, "win": false}
+{"ts": "2026-10-16T07:48:57.424002-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "MRNA", "price": 214.66, "extra": "-9.2%, vol 2.5x, ng\u00f3c +2.7%", "ret": 1.56, "close": 218.01, "win": true}
+{"ts": "2026-10-16T07:48:57.983733-07:00", "date": "2026-10-16", "type": "reversal", "ticker": "SOXL", "price": 102.87, "extra": "\u0111\u00e1y -8.2%, h\u1ed3i +4.4%, vol 2.8x", "ret": -8.94, "close": 93.67, "win": false}
+{"ts": "2026-10-16T08:14:47.033296-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 214.81, "extra": "vol 2.2x, bounce +2.8%", "ret": 1.49, "close": 218.01, "win": true}
+{"ts": "2026-10-16T08:14:49.495547-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "NVDA", "price": 216.73, "extra": "\ud83d\udea8 <b>NVDA V\u00c0O V\u00d9NG</b> \u2014 $216.73, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.2, "close": 214.13, "win": false}
+{"ts": "2026-10-16T08:18:51.042095-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 213.62, "extra": "vol 2.2x, bounce +2.2%", "ret": 2.06, "close": 218.01, "win": true}
+{"ts": "2026-10-16T08:45:40.431895-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.75, "extra": "ng\u00f3c +2.2%, ng\u00e0y -6.2%", "ret": -7.03, "close": 93.67, "win": false}
+{"ts": "2026-10-16T08:45:43.293480-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "SOXL", "price": 100.75, "extra": "vol 2.1x, bounce +2.2%", "ret": -7.03, "close": 93.67, "win": false}
+{"ts": "2026-10-16T08:45:43.293775-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "MRNA", "price": 212.94, "extra": "vol 2.0x, bounce +1.9%", "ret": 2.38, "close": 218.01, "win": true}
+{"ts": "2026-10-16T09:01:11.094768-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "USAR", "price": 10.7, "extra": "\ud83d\udea8 <b>USAR V\u00c0O V\u00d9NG</b> \u2014 $10.71, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.5, "close": 10.54, "win": false}
+{"ts": "2026-10-16T09:32:17.574413-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 100.49, "extra": "ng\u00f3c +2.0%, ng\u00e0y -6.4%", "ret": -6.79, "close": 93.67, "win": false}
+{"ts": "2026-10-16T09:36:31.294096-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "TMDX", "price": 72.11, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.8%", "ret": -1.84, "close": 70.78, "win": false}
+{"ts": "2026-10-16T09:45:07.480241-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 189.92, "extra": "ng\u00f3c +1.6%, ng\u00e0y -8.9%", "ret": -1.4, "close": 187.26, "win": false}
+{"ts": "2026-10-16T09:45:07.482473-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.43, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.3%", "ret": 0.46, "close": 207.38, "win": true}
+{"ts": "2026-10-16T09:45:07.482586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 18.73, "extra": "ng\u00f3c +1.5%, ng\u00e0y -8.1%", "ret": -3.63, "close": 18.05, "win": false}
+{"ts": "2026-10-16T09:45:07.482641-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COHR", "price": 237.14, "extra": "ng\u00f3c +1.5%, ng\u00e0y -5.4%", "ret": -1.79, "close": 232.9, "win": false}
+{"ts": "2026-10-16T09:45:07.482674-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SKHY", "price": 139.68, "extra": "ng\u00f3c +1.5%, ng\u00e0y -4.4%", "ret": -2.28, "close": 136.49, "win": false}
+{"ts": "2026-10-16T09:45:10.993583-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "OKTA", "price": 189.92, "extra": "vol 2.2x, bounce +1.6%", "ret": -1.4, "close": 187.26, "win": false}
+{"ts": "2026-10-16T09:53:43.184354-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "RCL", "price": 281.6, "extra": "\ud83d\udea8 <b>RCL V\u00c0O V\u00d9NG</b> \u2014 $281.60, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.39, "close": 277.68, "win": false}
+{"ts": "2026-10-16T10:03:05.109103-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "HIMS", "price": 28.46, "extra": "\ud83d\udea8 <b>HIMS V\u00c0O V\u00d9NG</b> \u2014 $28.46, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": -1.37, "close": 28.07, "win": false}
+{"ts": "2026-10-16T11:02:23.326065-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "CRML", "price": 6.93, "extra": "+3.1% t\u1eeb \u0111\u00e1y", "ret": 0.58, "close": 6.97, "win": true}
+{"ts": "2026-10-16T11:02:23.331457-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.83, "extra": "ng\u00f3c +1.8%, ng\u00e0y -6.0%", "ret": -1.52, "close": 13.62, "win": false}
+{"ts": "2026-10-16T11:02:30.039922-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "AMZN", "price": 248.81, "extra": "\ud83d\udea8 <b>AMZN V\u00c0O V\u00d9NG</b> \u2014 $248.81, v\u00f9ng gi\u00e1 r\u1ebb/\u0111\u1eb9p", "ret": 0.48, "close": 250.0, "win": false}
+{"ts": "2026-10-16T11:19:08.823586-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MRNA", "price": 213.14, "extra": "ng\u00f3c +2.0%, ng\u00e0y -9.9%", "ret": 2.28, "close": 218.01, "win": true}
+{"ts": "2026-10-16T11:19:08.826071-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "OKTA", "price": 188.6, "extra": "ng\u00f3c +1.9%, ng\u00e0y -9.6%", "ret": -0.71, "close": 187.26, "win": false}
+{"ts": "2026-10-16T11:19:08.826159-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ZS", "price": 206.39, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.4%", "ret": 0.48, "close": 207.38, "win": true}
+{"ts": "2026-10-16T12:14:42.216624-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "SOXL", "price": 95.85, "extra": "ng\u00f3c +2.6%, ng\u00e0y -10.7%", "ret": -2.27, "close": 93.67, "win": false}
+{"ts": "2026-10-16T12:14:42.219279-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 61.09, "extra": "ng\u00f3c +2.0%, ng\u00e0y -12.3%", "ret": 0.49, "close": 61.39, "win": true}
+{"ts": "2026-10-16T12:14:42.219369-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IOVA", "price": 13.8, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.2%", "ret": -1.3, "close": 13.62, "win": false}
+{"ts": "2026-10-16T12:14:46.255801-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 61.09, "extra": "vol 2.3x, bounce +2.0%", "ret": 0.49, "close": 61.39, "win": false}
+{"ts": "2026-10-16T12:44:12.440856-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "RTX", "price": 193.68, "extra": "+3.0% t\u1eeb \u0111\u00e1y", "ret": 0.12, "close": 193.92, "win": false}
+{"ts": "2026-10-16T12:49:02.085128-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "MSTR", "price": 136.24, "extra": "ng\u00f3c +1.6%, ng\u00e0y -9.9%", "ret": 0.43, "close": 136.83, "win": true}
+{"ts": "2026-10-16T12:49:02.087432-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "COIN", "price": 171.41, "extra": "ng\u00f3c +1.5%, ng\u00e0y -6.8%", "ret": 1.02, "close": 173.16, "win": true}
+{"ts": "2026-10-16T13:05:22.698666-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "NOC", "price": 519.9, "extra": "+3.2% t\u1eeb \u0111\u00e1y", "ret": -0.01, "close": 519.86, "win": false}
+{"ts": "2026-10-16T13:05:22.701326-07:00", "date": "2026-10-16", "type": "bounce", "ticker": "UUUU", "price": 8.48, "extra": "+3.0% t\u1eeb \u0111\u00e1y", "ret": -0.12, "close": 8.47, "win": false}
+{"ts": "2026-10-16T13:05:22.701424-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "CRWV", "price": 61.39, "extra": "ng\u00f3c +2.5%, ng\u00e0y -11.9%", "ret": 0.0, "close": 61.39, "win": true}
+{"ts": "2026-10-16T13:05:22.701475-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "APLD", "price": 18.05, "extra": "ng\u00f3c +2.3%, ng\u00e0y -11.5%", "ret": 0.0, "close": 18.05, "win": true}
+{"ts": "2026-10-16T13:05:22.701527-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "HIMS", "price": 28.07, "extra": "ng\u00f3c +2.0%, ng\u00e0y -4.5%", "ret": 0.0, "close": 28.07, "win": true}
+{"ts": "2026-10-16T13:05:22.701562-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "IREN", "price": 26.99, "extra": "ng\u00f3c +1.7%, ng\u00e0y -11.2%", "ret": 0.0, "close": 26.99, "win": true}
+{"ts": "2026-10-16T13:05:22.701594-07:00", "date": "2026-10-16", "type": "bounce_watch", "ticker": "ASTS", "price": 40.66, "extra": "ng\u00f3c +1.6%, ng\u00e0y -8.6%", "ret": 0.0, "close": 40.66, "win": true}
+{"ts": "2026-10-16T13:05:26.774850-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 61.39, "extra": "vol 2.4x, bounce +2.5%", "ret": 0.0, "close": 61.39, "win": false}
+{"ts": "2026-10-16T13:05:31.369248-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "NOC", "price": 519.9, "extra": "\ud83d\udea8 <b>NOC +4.1% trong ng\u00e0y</b> \u2014 \u0111ang ch\u1ea1y, canh v\u00f9ng ch\u1ed1t", "ret": -0.01, "close": 519.86, "win": false}
+{"ts": "2026-10-16T13:45:59.873179-07:00", "date": "2026-10-16", "type": "money_flow", "ticker": "CRWV", "price": 61.39, "extra": "vol 2.5x, bounce +2.5%", "ret": 0.0, "close": 61.39, "win": false}
+{"ts": "2026-10-16T13:46:02.636290-07:00", "date": "2026-10-16", "type": "capitulation", "ticker": "CRWV", "price": 61.39, "extra": "-11.9%, vol 2.5x, ng\u00f3c +2.5%", "ret": 0.0, "close": 61.39, "win": false}
+{"ts": "2026-10-16T13:46:04.670412-07:00", "date": "2026-10-16", "type": "urgent", "ticker": "CRWV", "price": 61.39, "extra": "\ud83d\ude31\u2192\ud83d\uded2 <b>CRWV HO\u1ea2NG LO\u1ea0N -11.9%, vol 2.5x</b> \u2014 \u0111\u00e3 ng\u00f3c +2.5% ", "ret": 0.0, "close": 61.39, "win": false}
