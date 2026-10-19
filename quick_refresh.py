@@ -975,10 +975,23 @@ def add_signals(h, events):
         return h
     ts = now_pt().strftime("%H:%M")
     # 🎣 MỒI NGON — Tom 19/10: mồi dụ cá mập vào lưới thép (earnings/analyst).
+    # CHÍNH XÁC 19/10 (~12:30): chỉ hiện mồi còn tươi — d trong [hôm nay−3, hôm nay+7].
+    # Mồi hết hạn tự rụng, không dụ bằng mồi ôi.
     try:
-        bait = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bait.json")))
+        _bait_raw = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bait.json")))
     except Exception:
-        bait = {}
+        _bait_raw = {}
+    _today = now_pt().date()
+    def _fresh_bait(t):
+        out = []
+        for e in (_bait_raw.get(t) or []):
+            try:
+                d = datetime.strptime(e["d"], "%Y-%m-%d").date()
+            except Exception:
+                continue
+            if -3 <= (d - _today).days <= 7:
+                out.append(e["t"])
+        return out
     block = ""
     for t, prev, st, px, pc in events:
         z = ZONES[t]
@@ -986,7 +999,7 @@ def add_signals(h, events):
         if t == "MRVL" and z.get("pos"):
             pnl = (px - 266.5) * 2
             extra = f" Vị thế Tom ({z['pos']}): {pnl:+.0f}$ tổng."
-        b = bait.get(t)
+        b = _fresh_bait(t)
         if b:
             extra += f" 🎣 Mồi: {'; '.join(b)}."
         desc = {"IN": "mới vào vùng", "BELOW": "rớt khỏi vùng",
