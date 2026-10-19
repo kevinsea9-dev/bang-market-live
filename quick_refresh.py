@@ -1144,6 +1144,15 @@ def fear_greed_gauge(h, vix, repo_dir):
         return h, "F&G: chưa có dữ liệu"
     _r, icon = fg_rating(score)
     gate_open = (score <= 25) or (vix and vix >= 25)
+    # 📓 Nhật ký cổng săn — Tom 19/10: đo hiệu quả chiến lược sống còn.
+    # Mỗi lượt ghi 1 dòng: giờ, F&G, VIX, cổng mở/đóng → cuối tuần chấm điểm.
+    try:
+        with open(os.path.join(repo_dir, "strategy_gate_log.jsonl"), "a", encoding="utf-8") as f:
+            f.write(json.dumps({"t": now_pt().strftime("%Y-%m-%d %H:%M"), "fg": score,
+                                "vix": round(vix, 1) if vix else None,
+                                "gate_open": gate_open}) + "\n")
+    except Exception as e:
+        print(f"  ! gate log: {e}", file=sys.stderr)
     gate = ("🦈 <b>CỔNG SĂN MỞ</b> — cá mập đi bắt đáy" if gate_open
             else "🔒 <b>CỔNG SĂN ĐÓNG</b> — đứng ngoài, bảo quản vốn")
     h = re.sub(r'<div class="note[^"]*" id="fg-gauge">.*?</div>', "", h)
