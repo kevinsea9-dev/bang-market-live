@@ -873,6 +873,53 @@ def update_zone_badges(h, prices, state_path):
     return h, events
 
 
+BOOK_SEC = {"Sổ 1": "sec-longterm", "Sổ 2": "sec-so2", "Sổ 3": "sec-so3"}
+
+def ensure_zone_rows(h, prices, state_path):
+    """LƯỚI THÉP — Tom 19/10: mã có vùng (IN/BROKEN) mà thiếu dòng bảng thì TỰ TẠO dòng.
+    Vá lỗ hổng COHR/ENTG/CRML/VLO: tín hiệu vùng bắn nhưng bảng không có dòng để xem."""
+    try:
+        state = json.load(open(state_path)) if os.path.exists(state_path) else {}
+    except Exception:
+        state = {}
+    created = []
+    for t, z in ZONES.items():
+        if t not in prices:
+            continue
+        st = (state.get(t) or {}).get("state")
+        if st not in ("IN", "BROKEN"):
+            continue
+        if re.search(r"<b>" + re.escape(t) + r"</b></td>", h):
+            continue
+        px, pc = prices[t]
+        lo, hi = z["entry"]
+        sec = BOOK_SEC.get(z.get("book", ""), "sec-watch")
+        dir_cls = "up" if pc >= 0 else "down"
+        zone_txt = f"Vào ${lo:g}–${hi:g}"
+        if z.get("targets"):
+            t1, t2 = z["targets"]
+            zone_txt += f" • Chốt ${t1:g}→${t2:g}"
+        if z.get("cut"):
+            zone_txt += f' • <span class="cut">Cắt dưới ${z["cut"]:g}</span>'
+        if z.get("note"):
+            zone_txt += f" — {z['note']}"
+        row = (f'<tr><td><b>{t}</b></td><td>{fmt_price(px)} '
+               f'<span class="{dir_cls}">{fmt_pct(pc)}</span></td>'
+               f'<td><span class="zone">{zone_txt}</span></td>'
+               f'<td><span class="badge {badge_class(st)}">{badge_text(st)}</span> '
+               f'<span class="badge b-new">MỚI</span></td></tr>\n')
+        pat = re.compile(r'(<div class="sec" id="' + sec + r'">.*?<table>.*?<tr><th>.*?</tr>)', re.S)
+        h2, c = pat.subn(lambda m: m.group(1) + "\n    " + row, h, count=1)
+        if c:
+            h = h2
+            created.append(t)
+        else:
+            print(f"  ! lưới thép: không tìm thấy section {sec} cho {t}", file=sys.stderr)
+    if created:
+        print(f"lưới thép: tự tạo dòng bảng cho {', '.join(created)}", flush=True)
+    return h
+
+
 def badge_class(st):
     return {"IN": "b-in", "BELOW": "b-near", "BROKEN": "b-cut", "ABOVE": "b-out"}[st]
 
@@ -1878,6 +1925,7 @@ def main():
     if a.mode in ("full", "close"):
         state_path = os.path.join(a.repo_dir, "zone_state.json")
         h, events = update_zone_badges(h, prices, state_path)
+        h = ensure_zone_rows(h, prices, state_path)  # lưới thép: mã IN/BROKEN thiếu dòng → tự tạo
         zone_events = events
         if events:
             h = add_signals(h, events)
