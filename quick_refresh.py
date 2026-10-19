@@ -974,6 +974,11 @@ def add_signals(h, events):
     if not events:
         return h
     ts = now_pt().strftime("%H:%M")
+    # 🎣 MỒI NGON — Tom 19/10: mồi dụ cá mập vào lưới thép (earnings/analyst).
+    try:
+        bait = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bait.json")))
+    except Exception:
+        bait = {}
     block = ""
     for t, prev, st, px, pc in events:
         z = ZONES[t]
@@ -981,6 +986,9 @@ def add_signals(h, events):
         if t == "MRVL" and z.get("pos"):
             pnl = (px - 266.5) * 2
             extra = f" Vị thế Tom ({z['pos']}): {pnl:+.0f}$ tổng."
+        b = bait.get(t)
+        if b:
+            extra += f" 🎣 Mồi: {'; '.join(b)}."
         desc = {"IN": "mới vào vùng", "BELOW": "rớt khỏi vùng",
                 "BROKEN": "THỦNG CẮT", "ABOVE": "vượt lên trên vùng"}[st]
         block += (f'  <div class="alert"><b>🚨 {t} — {desc} {z["book"]}</b> — '
