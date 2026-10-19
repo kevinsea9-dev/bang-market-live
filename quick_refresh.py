@@ -1104,8 +1104,9 @@ def fear_gauge(h):
         label, icon = "bình tĩnh", "😐"
         vcls = "vix-green"
     h = re.sub(r'<div class="note[^"]*" id="vix-gauge">.*?</div>', "", h)
-    gauge = (f'<div class="note {vcls}" id="vix-gauge">{icon} <b>VIX {vix:.1f}</b> — {label} '
-             f'<span class="t">Thước đo nỗi sợ • Buffett: tham lam khi người khác sợ hãi</span></div>\n')
+    chk = now_pt().strftime("%H:%M")
+    gauge = (f'<div class="note {vcls}" id="vix-gauge">{icon} <b>VIX {vix:.2f}</b> — {label} '
+             f'<span class="t">kiểm tra {chk} PT • Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)
     if c:
         h = h2
