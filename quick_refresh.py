@@ -314,6 +314,11 @@ SHARK_CSS = (
     ".sharkday h3{margin:0 0 6px;font-size:15px;color:#ffd76a}"
     ".sharkday .sd-row{font-size:13.5px;padding:3px 0;color:#e8eefc}"
     ".sharkday .sd-why{color:#9fb3d9;font-size:12.5px}"
+    # 🚨 Tom 19/10: chớp nháy cho đồng hồ cổng săn — cổng MỞ thì viền vàng nhấp nháy.
+    ".gate-open{border:2px solid #ffc94d !important;border-radius:12px;"
+    "animation:gatePulse 1.6s ease-in-out infinite}"
+    "@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}"
+    "50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}"
 )
 
 
@@ -1079,14 +1084,18 @@ def fear_gauge(h):
         return h, "VIX: không lấy được", 0
     if vix >= 30:
         label, icon = "HOẢNG LOẠN CỰC ĐỘ — lúc gom hàng", "😱"
+        vcls = "vix-red"
     elif vix >= 25:
         label, icon = "sợ hãi cao — canh gom", "😨"
+        vcls = "vix-red"
     elif vix >= 20:
         label, icon = "căng thẳng", "😟"
+        vcls = "vix-yellow"
     else:
         label, icon = "bình tĩnh", "😐"
+        vcls = "vix-green"
     h = re.sub(r'<div class="note[^"]*" id="vix-gauge">.*?</div>', "", h)
-    gauge = (f'<div class="note" id="vix-gauge">{icon} <b>VIX {vix:.1f}</b> — {label} '
+    gauge = (f'<div class="note {vcls}" id="vix-gauge">{icon} <b>VIX {vix:.1f}</b> — {label} '
              f'<span class="t">Thước đo nỗi sợ • Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + gauge, h, count=1)
     if c:
@@ -1136,6 +1145,7 @@ def fear_greed_gauge(h, vix, repo_dir):
         prev_week = round(float(fg.get("previous_1_week", 0)), 1)
         json.dump({"score": score, "rating": rating, "ts_pt": ts_pt,
                    "prev_close": prev_close, "prev_week": prev_week,
+                   "gate_open": bool((score <= 25) or (vix and vix >= 25)),
                    "fetched_at": now_pt().isoformat()},
                   open(state_path, "w", encoding="utf-8"))
     except Exception as e:
@@ -1144,6 +1154,11 @@ def fear_greed_gauge(h, vix, repo_dir):
         return h, "F&G: chưa có dữ liệu"
     _r, icon = fg_rating(score)
     gate_open = (score <= 25) or (vix and vix >= 25)
+    prev_gate = old.get("gate_open")
+    # 🚨 Tín hiệu lật cổng — Tom 19/10: cổng MỞ/ĐÓNG phải báo, không chỉ hiển thị.
+    if prev_gate is not None and bool(prev_gate) != gate_open:
+        print(f"🚨 GATE FLIP: cổng săn {'MỞ' if gate_open else 'ĐÓNG'} "
+              f"(F&G {score:.0f}, VIX {vix:.1f}) — báo Tom", flush=True)
     # 📓 Nhật ký cổng săn — Tom 19/10: đo hiệu quả chiến lược sống còn.
     # Mỗi lượt ghi 1 dòng: giờ, F&G, VIX, cổng mở/đóng → cuối tuần chấm điểm.
     try:
@@ -1156,7 +1171,8 @@ def fear_greed_gauge(h, vix, repo_dir):
     gate = ("🦈 <b>CỔNG SĂN MỞ</b> — cá mập đi bắt đáy" if gate_open
             else "🔒 <b>CỔNG SĂN ĐÓNG</b> — đứng ngoài, bảo quản vốn")
     h = re.sub(r'<div class="note[^"]*" id="fg-gauge">.*?</div>', "", h)
-    gauge = (f'<div class="note" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.0f}</b> — {rating} '
+    gcls = "gate-open" if gate_open else ""
+    gauge = (f'<div class="note {gcls}" id="fg-gauge">{icon} <b>Fear &amp; Greed {score:.0f}</b> — {rating} '
              f'<span class="t">CNN cập nhật {ts_pt} • Hôm qua {prev_close:.0f} • Tuần trước {prev_week:.0f}</span>'
              f'<br>{gate} <span class="t">Buffett: tham lam khi người khác sợ hãi</span></div>\n')
     h2, c = re.subn(r'(<div class="note[^"]*" id="vix-gauge">.*?</div>)', r"\g<1>\n" + gauge, h, count=1)
