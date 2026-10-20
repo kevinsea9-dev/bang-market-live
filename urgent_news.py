@@ -23,14 +23,21 @@ def main():
     if not (pin_on or pin_off):
         print("PIN GUARD MISSING — không push", file=sys.stderr)
         return 2
+    from datetime import datetime
+    try:
+        from zoneinfo import ZoneInfo
+        date_pt = datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%d/%m")
+    except Exception:
+        date_pt = ""
     digest = hashlib.md5(a.title.encode()).hexdigest()[:10]
     mark = f"<!-- URG-NEWS-{digest} -->"
     if mark in h:
         print("tin đã có trên bảng — bỏ qua (dedup)")
         return 0
     src = f" • {a.source}" if a.source else ""
+    datebit = f" • {date_pt}" if date_pt else ""
     alert = (f'{mark}<div class="alert urgent"><b>🚨 {a.title}</b><br>{a.body}<br>'
-             f'<span class="t">Tin khẩn market-moving{src} • chỉ tham khảo</span></div>\n')
+             f'<span class="t">Tin khẩn market-moving{datebit}{src} • chỉ tham khảo</span></div>\n')
     h2, c = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',
                     r"\g<1>" + alert, h, count=1, flags=re.S)
     if not c:
