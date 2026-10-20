@@ -139,12 +139,15 @@ def main():
             h = re.sub(f'<div[^>]*id="{_id}">.*?</div>', "", h, count=_c-1, flags=re.S)
 
     # 5d. Tom 16/10: mã IN zone phải có dòng trong bảng (từng sót 5 mã)
-    # 20/10: regex chịu cả dòng shark-focus <td>🦈 <b>T</b></td> (false positive AVGO/GOOGL/NVDA)
+    # 20/10 ~10:37 (lần 2): dòng shark-focus thực tế là <div ...>🦈🦈 <b>T</b> (Tom 10:31
+    # lệnh xếp dọc khung vàng — không còn <td>), nên regex cũ vẫn false positive
+    # AVGO/GOOGL/NVDA → NGUY HIỂM giả. Chấp nhận cả 2 dạng dòng hợp lệ.
     try:
         _zs = json.load(open(os.path.join(REPO, "zone_state.json")))
         _missing = [t for t, s in _zs.items()
                     if s.get("state") == "IN"
-                    and not re.search(rf'<tr[^>]*><td>[^<>]*<b>{t}</b></td>', h)]
+                    and not re.search(rf'<tr[^>]*><td>[^<>]*<b>{re.escape(t)}</b></td>', h)
+                    and not re.search(rf'🦈[^<>]*<b>{re.escape(t)}</b>', h)]
         if _missing:
             issues.append(f"IN zone mà thiếu dòng bảng: {sorted(_missing)} — NGUY HIỂM")
     except Exception as _e:
@@ -172,13 +175,16 @@ def main():
         issues.append(f"version.json lỗi: {e}")
 
     if fixed:
-        open(CANON, "w").write(h)
-        open(HTML, "w").write(h)
-        subprocess.run(["git", "-C", REPO, "add", "index.html"], timeout=30)
-        # version bump
-        v = {"v": now_pt().strftime("%Y%m%d%H%M%S")}
-        json.dump(v, open(os.path.join(REPO, "version.json"), "w"))
-        subprocess.run(["git", "-C", REPO, "add", "version.json"], timeout=30)
+        # LUẬT STAMP 20/10: mọi commit chạm index.html phải stamp_version() NGAY TRƯỚC
+        # commit (meta board-v + version.json cùng 1 giá trị). Ghi qua file tạm + rename.
+        from quick_refresh import stamp_version
+        h, _v = stamp_version(h, REPO)
+        for _p in (CANON, HTML):
+            _tmp = _p + ".tmp"
+            open(_tmp, "w").write(h)
+            os.replace(_tmp, _p)
+            assert "PIN-GATE-START" in open(_p, encoding="utf-8").read(), f"mất PIN gate {_p}"
+        subprocess.run(["git", "-C", REPO, "add", "index.html", "version.json"], timeout=30)
         subprocess.run(["git", "-C", REPO, "-c", "user.name=Iggy", "-c", "user.email=iggy@local",
                         "commit", "-m", "healthcheck: " + ", ".join(fixed)], timeout=30)
         p = subprocess.run(["git", "-C", REPO, "push", "origin", "main"],
@@ -212,8 +218,10 @@ def main():
             m2 = re.search(r'(Cập nhật lần cuối[^<]*</[^>]+>)', h)
             if m2:
                 h = h.replace(m2.group(1), m2.group(1) + "\n" + badge, 1)
-        open(CANON, "w").write(h)
-        open(HTML, "w").write(h)
+        open(_tmp2 := (CANON + ".tmp"), "w").write(h)
+        os.replace(_tmp2, CANON)
+        open(_tmp2 := (HTML + ".tmp"), "w").write(h)
+        os.replace(_tmp2, HTML)
         print("đèn báo trạng thái đã gắn lên bảng")
     except Exception as e:
         print(f"! gắn đèn báo: {e}", file=sys.stderr)
