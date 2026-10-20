@@ -1439,6 +1439,88 @@ def steel_net_update(h, prices, highs52):
         h = re.sub(r'(href="#sec-sancm">🔪 Săn CM</a>)',
                    r'\1<a href="#sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
     return h, f"lưới thép: {len(deals)} mã onsale"
+SHARK_FOCUS = [
+    ("TSM", "$23.2M calendar spread $450 của desk pro (20/10) — gom dài hạn sau −11.7%/12 phiên"),
+    ("AVGO", "$7.49M bullish premium tổ chức 12/10 · call vol +34% TB"),
+    ("GOOGL", "$14.2M + $5.3M bullish premium 12/10 — gom lặp lại nhiều phiên"),
+    ("NVDA", "Bullish premium $23.88M 12/10 (lớn nhất nhóm) · đơn TQ >$35B (Reuters 20/10), giá chưa bật"),
+    ("INTC", "$6.03M bullish premium 12/10 · OI call tăng vọt · JPM nâng UW→Neutral · CALL $100 exp 20/11 · earnings 29/10"),
+]
+
+
+def shark_focus_update(h, prices):
+    """🦈 CÁ MẬP GOM THẦM — Tom lệnh 20/10: focus 5 mã có bằng chứng gom âm thầm
+    lúc hoảng loạn. Dựng lại bảng focus mỗi lượt — idempotent, marker-based."""
+    ts = now_pt().strftime("%H:%M")
+    zones = ZONES
+    if not zones:
+        try:
+            raw = json.load(open(os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "zones.json")))
+            zones = {t: v for t, v in raw.items() if not t.startswith("_")}
+        except Exception:
+            zones = {}
+    rows = []
+    for t, ev in SHARK_FOCUS:
+        z = zones.get(t)
+        if not z:
+            continue
+        en = z.get("entry", [0, 0])
+        tg = z.get("targets") or z.get("tp") or [0, 0]
+        ct = z.get("cut")
+        pv = prices.get(t)
+        if pv:
+            px = pv[0]
+            if ct and px < ct:
+                st = "🔴 GÃY CẮT"
+            elif en[0] <= px <= en[1]:
+                st = "🟢 TRONG VÙNG"
+            elif px > en[1] and px <= en[1] * 1.03:
+                st = "🟡 SÁT TRÊN VÙNG"
+            elif px < en[0] and px >= en[0] * 0.95:
+                st = "🟡 SÁT DƯỚI VÙNG"
+            elif px > en[1]:
+                st = "⚪ TRÊN VÙNG"
+            else:
+                st = "⚪ DƯỚI VÙNG"
+            pxs = fmt_price(px)
+        else:
+            st = "—"
+            pxs = "—"
+        zinfo = f'{z["book"]}: Vào ${en[0]:,.0f}–${en[1]:,.0f}'
+        if tg and tg[0]:
+            zinfo += f" · Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}"
+        if ct:
+            zinfo += f" · Cắt <${ct:,.0f}"
+        rows.append(f"<tr><td><b>{t}</b></td><td>{pxs}</td><td>{st}</td>"
+                    f"<td>{zinfo}</td><td>{ev}</td></tr>")
+    body = ('<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Trạng thái</th>'
+            "<th>Vùng đã duyệt</th><th>Bằng chứng gom</th></tr>" +
+            "".join(rows) + "</table>")
+    if "<!-- SHARKFOCUS-AUTO -->" in h:
+        h = re.sub(r"<!-- SHARKFOCUS-AUTO -->.*?<!-- /SHARKFOCUS-AUTO -->",
+                   lambda m: f"<!-- SHARKFOCUS-AUTO -->{body}<!-- /SHARKFOCUS-AUTO -->",
+                   h, count=1, flags=re.S)
+        h = re.sub(r"(focus 5 mã tiềm năng \(20/10\)</h2><div class=\"note\">[^<]*?cập nhật )\d\d:\d\d( PT</div>)",
+                   lambda m: f"{m.group(1)}{ts}{m.group(2)}", h, count=1)
+    else:
+        block = ('<div class="sec" id="sec-sharkfocus"><h2>🦈 CÁ MẬP GOM THẦM — focus 5 mã tiềm năng (20/10)</h2>'
+                 '<div class="note">Cá mập gom âm thầm lúc hoảng loạn — bằng chứng options flow/insider có nguồn cùng ngày • '
+                 'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • '
+                 f"cập nhật {ts} PT</div>"
+                 f"<!-- SHARKFOCUS-AUTO -->{body}<!-- /SHARKFOCUS-AUTO --></div>\n")
+        anchor = '<div class="sec" id="sec-sancm">'
+        if anchor in h:
+            h = h.replace(anchor, block + anchor, 1)
+        else:
+            anchor2 = '<div class="sec" id="sec-steelnet">'
+            h = h.replace(anchor2, block + anchor2, 1)
+    if 'href="#sec-sharkfocus"' not in h:
+        h = re.sub(r'(href="#sec-sancm"[^>]*>🔪 Săn CM</a>)',
+                   r'\1<a href="#sec-sharkfocus">🦈 Gom Thầm</a>', h, count=1)
+    return h, f"shark focus: {len(rows)} mã"
+
+
 def discount_card(h, prices, highs52):
     deals = []
     for t, (px, pc) in prices.items():
@@ -2144,6 +2226,10 @@ def main():
     # 🕸️ LƯỚI THÉP — Tom lệnh 19/10 (~12:40): mã đạt chuẩn onsale 40–95% TỰ ĐỘNG vào lưới
     h, nsteel = steel_net_update(h, {**prices, **nhip_extra}, {**highs52, **nhip_highs})
     print(f"lưới thép: {nsteel}", flush=True)
+
+    # 🦈 CÁ MẬP GOM THẦM — Tom lệnh 20/10: focus 5 mã có bằng chứng gom âm thầm (dòng tiền lớn)
+    h, nfoc = shark_focus_update(h, {**prices, **nhip_extra})
+    print(f"shark focus: {nfoc}", flush=True)
 
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
     # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION + ĐẢO CHIỀU
