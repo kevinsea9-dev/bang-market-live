@@ -225,17 +225,29 @@ def main():
     if h.count("<div") < h.count("</div>") - 5:
         print("VALIDATE FAIL: div mất cân", file=sys.stderr)
         return 2
-    open(a.html, "w", encoding="utf-8").write(h)
-    repo_html = os.path.join(a.repo_dir, "index.html")
-    if os.path.abspath(a.html) != os.path.abspath(repo_html):
-        open(repo_html, "w", encoding="utf-8").write(h)
+    # 20/10: stamp version TRƯỚC khi ghi — fix reload-loop (meta ≠ version.json)
+    # do commit đè canon cũ không re-stamp
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from quick_refresh import stamp_version
+        h, _v = stamp_version(h, a.repo_dir)
+    except Exception as e:
+        print(f"  ! stamp_version: {e}", file=sys.stderr)
+    # ghi an toàn: file tạm + rename (không open 'w' trực tiếp — bài học 19/10)
+    assert "PIN-GATE-START" in h, "PIN gate mất trước khi ghi!"
+    for _p in {os.path.abspath(a.html),
+               os.path.join(a.repo_dir, "index.html")}:
+        _tmp = _p + ".tmpgap"
+        open(_tmp, "w", encoding="utf-8").write(h)
+        assert "PIN-GATE-START" in open(_tmp, encoding="utf-8").read()
+        os.replace(_tmp, _p)
     # git push (không add .github)
     cwd = os.getcwd()
     os.chdir(a.repo_dir)
     msg = f"gap scan {a.mode} {n.strftime('%d/%m %H:%M')} PT"
     res = "failed"
     for attempt in range(3):
-        os.system("git add index.html zone_state.json market_state.json >/dev/null 2>&1")
+        os.system("git add index.html version.json zone_state.json market_state.json >/dev/null 2>&1")
         rc = os.system(f'git -c user.email="tom@local" -c user.name="Tom" commit -qm "{msg}" >/dev/null 2>&1')
         rc = os.system("git pull --rebase origin main >/dev/null 2>&1")
         rc = os.system("git push origin main >/dev/null 2>&1")
