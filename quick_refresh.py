@@ -1326,8 +1326,23 @@ def sancam_update(h):
                      ", ".join(f"{d}" for d in disc) +
                      "<br><span class='t'>Discount vs đỉnh 52 tuần</span></div>")
     block = "\n".join(parts) + "\n"
-    # xóa block cũ trong sec-sancm trước khi chèn mới (tránh đống)
-    h = re.sub(r'(<div class="sec" id="sec-sancm">.*?</div>\n)(<div class="alert.*?</div>\n)+', r"\1", h, flags=re.S)
+    # Xóa block tự động cũ trong sec-sancm trước khi chèn mới (tránh đống).
+    # BUG 20/10: regex cũ đòi alert dính sát header + không khoảng trắng đầu dòng
+    # → không bao giờ khớp → alert "Sóng hồi" chồng 78 bản trên bảng.
+    # Nay quét đoạn từ đầu section tới marker SANCAM-AUTO, xóa mọi alert tự
+    # động cũ (chịu được khoảng trắng đầu dòng), chỉ giữ block mới nhất.
+    _ms = h.find('id="sec-sancm"')
+    _me = h.find("<!-- SANCAM-AUTO -->")
+    if _ms != -1 and _me != -1 and _me > _ms:
+        _seg = h[_ms:_me]
+
+        def _drop_auto(_m):
+            _t = _m.group(0).lower()
+            return "" if ("sóng hồi" in _t or "hàng giảm giá sâu" in _t) else _m.group(0)
+
+        _seg = re.sub(r'\s*<div class="alert[^"]*">.*?</div>', _drop_auto,
+                      _seg, flags=re.S)
+        h = h[:_ms] + _seg + h[_me:]
     h = h.replace("<!-- SANCAM-AUTO -->", block + "  <!-- SANCAM-AUTO -->", 1)
     # chỉ giữ 3 block mới nhất trong section này
     return h, f"sancm: {len(waves)} sóng hồi"
