@@ -139,11 +139,12 @@ def main():
             h = re.sub(f'<div[^>]*id="{_id}">.*?</div>', "", h, count=_c-1, flags=re.S)
 
     # 5d. Tom 16/10: mã IN zone phải có dòng trong bảng (từng sót 5 mã)
+    # 20/10: regex chịu cả dòng shark-focus <td>🦈 <b>T</b></td> (false positive AVGO/GOOGL/NVDA)
     try:
         _zs = json.load(open(os.path.join(REPO, "zone_state.json")))
         _missing = [t for t, s in _zs.items()
                     if s.get("state") == "IN"
-                    and not re.search(rf'<tr><td><b>{t}</b></td>', h)]
+                    and not re.search(rf'<tr[^>]*><td>[^<>]*<b>{t}</b></td>', h)]
         if _missing:
             issues.append(f"IN zone mà thiếu dòng bảng: {sorted(_missing)} — NGUY HIỂM")
     except Exception as _e:
