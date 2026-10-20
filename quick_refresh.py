@@ -332,11 +332,24 @@ GATE_CSS = (
     "50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}"
 )
 
+DEAL_CSS = (
+    ".alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;"
+    "background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));"
+    "animation:dealPulse 1.4s ease-in-out infinite}"
+    "@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}"
+    "50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}"
+)
+
 def ensure_gate_css(h):
     """Tom 19/10: CSS chớp nháy cho đồng hồ cổng săn (idempotent)."""
-    if ".gate-open{" in h or "</style>" not in h:
+    if "</style>" not in h:
         return h
-    return h.replace("</style>", GATE_CSS + "\n</style>", 1)
+    if ".gate-open{" not in h:
+        h = h.replace("</style>", GATE_CSS + "\n</style>", 1)
+    # 💎 CSS tín hiệu đặc biệt — thêm riêng để không chớp trùng với bản cũ
+    if ".special-deal{" not in h:
+        h = h.replace("</style>", DEAL_CSS + "\n</style>", 1)
+    return h
 
 
 def _journal_latest(repo_dir, ticker, today):
@@ -970,7 +983,7 @@ def add_dram_signals(h, events):
     return h[:j] + "\n" + sec + h[k:]
 
 
-def add_signals(h, events):
+def add_signals(h, events, special=None):
     if not events:
         return h
     ts = now_pt().strftime("%H:%M")
@@ -990,9 +1003,14 @@ def add_signals(h, events):
         b = _fresh_bait(t)
         if b:
             extra += f" 🎣 Mồi: {'; '.join(b)}."
+        # 💎 VÙNG ƯU ĐÃI ĐẶC BIỆT — Tom 19/10 (~13:30): tín hiệu đặc biệt cho deal đặc biệt
+        is_special = st == "IN" and special and t in special
+        if is_special:
+            extra += " 💎 <b>VÙNG ƯU ĐÃI ĐẶC BIỆT</b> — discount ≥40% vs đỉnh 52w, deal ngon nhất lưới."
         desc = {"IN": "mới vào vùng", "BELOW": "rớt khỏi vùng",
                 "BROKEN": "THỦNG CẮT", "ABOVE": "vượt lên trên vùng"}[st]
-        block += (f'  <div class="alert"><b>🚨 {t} — {desc} {z["book"]}</b> — '
+        cls = "alert special-deal" if is_special else "alert"
+        block += (f'  <div class="{cls}"><b>🚨 {t} — {desc} {z["book"]}</b> — '
                   f'{fmt_price(px)} ({fmt_pct(pc)}) lúc {ts} PT.{extra}<br>'
                   f'<span class="t">Tín hiệu vùng tự động • {now_pt().strftime("%d/%m")} • giá intraday</span></div>\n')
     anchor = "🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>"
@@ -1324,6 +1342,20 @@ STEEL_QUALITY = {"AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "AVGO"
     "BA", "NKE", "SBUX", "WMT", "TGT", "PANW", "CRWD", "ABNB", "MRNA", "MSTR",
     "BABA", "SPY", "QQQ", "VOO", "SMH", "XLE", "SCHD", "IBIT", "SOXL", "DIA",
     "IWM", "INTC", "DELL", "MU", "LRCX", "AMAT", "KLAC"}
+
+def special_deal_set(prices, highs52):
+    """💎 VÙNG ƯU ĐÃI ĐẶC BIỆT — Tom nhắc 19/10 (~13:30):
+    mã MỚI VÀO vùng đã duyệt + discount ≥40% vs đỉnh 52w = deal đặc biệt, tín hiệu đặc biệt.
+    (Mồi tươi hiển thị riêng trong alert khi có.)"""
+    out = set()
+    for t, (px, pc) in (prices or {}).items():
+        h52 = (highs52 or {}).get(t)
+        if not h52 or h52 <= 0:
+            continue
+        if (px - h52) / h52 * 100 <= -40:
+            out.add(t)
+    return out
+    return out
 
 def _fresh_bait_all():
     try:
@@ -2045,7 +2077,11 @@ def main():
         h = ensure_zone_rows(h, prices, state_path)  # lưới thép: mã IN/BROKEN thiếu dòng → tự tạo
         zone_events = events
         if events:
-            h = add_signals(h, events)
+            # 💎 VÙNG ƯU ĐÃI ĐẶC BIỆT — Tom 19/10 (~13:30): mã vào vùng + discount ≥40% + mồi tươi
+            special = special_deal_set({**prices, **nhip_extra}, {**highs52, **nhip_highs})
+            if special:
+                print(f"💎 vùng ưu đãi đặc biệt: {sorted(special)}", flush=True)
+            h = add_signals(h, events, special)
             h = add_dram_signals(h, events)
             tag = "tín hiệu vùng"
             print(f"tín hiệu vùng mới: {[(t, s) for t, _, s, _, _ in events]}", flush=True)
