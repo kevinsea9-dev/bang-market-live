@@ -1462,11 +1462,17 @@ SHARK_FOCUS = [
     ("INTC", "🦈", "$6.03M bullish premium 12/10 · OI call tăng vọt · JPM nâng UW→Neutral · CALL $100 exp 20/11 · earnings 29/10"),
 ]
 
+SHARKFOCUS_WRAP = ('<div class="sharkfocus" style="border:3px solid #d4af37;'
+                   'box-shadow:0 0 14px rgba(212,175,55,.55);'
+                   'background:rgba(212,175,55,.13);border-radius:12px;'
+                   'padding:10px 12px;margin:10px 0;overflow:hidden">')
+
 
 def shark_focus_update(h, prices):
     """👑 FOCUS CÁ MẬP GOM KHỦNG — gộp TRONG mục 🦈 CÁ MẬP GOM HÀNG (sec-urgent),
-    ghim ngay dưới tiêu đề mục. Tom lệnh 20/10 ~10:13: sáp nhập Gom Thầm vào
-    Cá Mập, highlight focus mã cá mập đang gom khủng; bỏ section riêng chống trùng.
+    ghim ngay dưới tiêu đề mục, TRONG KHUNG VÀNG. Tom lệnh 20/10 ~10:13 (gộp,
+    bỏ section riêng chống trùng) + ~10:31 (chữ phải nằm trong khung vàng —
+    bản bảng 5 cột tràn khung trên iPhone → đổi sang hàng xếp dọc gói gọn).
     Idempotent, marker-based (SHARKFOCUS-AUTO)."""
     ts = now_pt().strftime("%H:%M")
     zones = ZONES
@@ -1509,34 +1515,37 @@ def shark_focus_update(h, prices):
             zinfo += f" · Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}"
         if ct:
             zinfo += f" · Cắt <${ct:,.0f}"
-        rows.append(f"<tr><td>{tier} <b>{t}</b></td><td>{pxs}</td><td>{st}</td>"
-                    f"<td>{zinfo}</td><td>{ev}</td></tr>")
-    inner = (f'<div style="font-weight:700;font-size:1.05em">👑 FOCUS — CÁ MẬP ĐANG GOM KHỦNG (âm thầm trong hoảng loạn)</div>'
+        rows.append(
+            '<div style="border-top:1px solid rgba(212,175,55,.45);'
+            'padding:7px 0;word-break:break-word">'
+            f"{tier} <b>{t}</b> {pxs} · {st}<br>"
+            f'<span style="opacity:.92">{zinfo}</span><br>'
+            f'<span style="opacity:.78;font-size:.92em">🧾 {ev}</span></div>')
+    inner = (f'<div style="font-weight:700;font-size:1.06em">👑 FOCUS — CÁ MẬP ĐANG GOM KHỦNG (âm thầm trong hoảng loạn)</div>'
              f'<div class="note">Xếp theo độ khủng của bằng chứng dòng tiền lớn • giá + trạng thái vùng sống mỗi 5 phút • '
              f'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • cập nhật {ts} PT</div>'
-             '<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Trạng thái</th>'
-             "<th>Vùng đã duyệt</th><th>Bằng chứng gom</th></tr>" +
-             "".join(rows) + "</table>")
+             + "".join(rows))
     # 1) Dọn section riêng cũ (sec-sharkfocus) + nav link của nó — đã gộp, chống trùng.
     if 'id="sec-sharkfocus"' in h:
         h = re.sub(r'<div class="sec" id="sec-sharkfocus">.*?</div>\n',
                    "", h, count=1, flags=re.S)
     h = re.sub(r'\s*<a href="#sec-sharkfocus">[^<]*</a>', "", h, count=1)
-    # 2) Cập nhật tại chỗ nếu marker đã có; chưa có → ghim dưới tiêu đề sec-urgent.
+    # 2) Cập nhật tại chỗ nếu marker đã có (đồng thời nâng cấp khung vàng của
+    # wrapper cũ); chưa có → ghim dưới tiêu đề sec-urgent.
     if "<!-- SHARKFOCUS-AUTO -->" in h:
+        h = re.sub(r'<div class="sharkfocus" style="[^"]*">',
+                   lambda m: SHARKFOCUS_WRAP, h, count=1)
         h = re.sub(r"<!-- SHARKFOCUS-AUTO -->.*?<!-- /SHARKFOCUS-AUTO -->",
                    lambda m: f"<!-- SHARKFOCUS-AUTO -->{inner}<!-- /SHARKFOCUS-AUTO -->",
                    h, count=1, flags=re.S)
     else:
-        block = ('<div class="sharkfocus" style="border:2px solid #d4af37;'
-                 'background:rgba(212,175,55,.08);border-radius:10px;'
-                 'padding:8px 10px;margin:8px 0">'
+        block = (SHARKFOCUS_WRAP +
                  f"<!-- SHARKFOCUS-AUTO -->{inner}<!-- /SHARKFOCUS-AUTO --></div>\n")
         anchor = ('<h2>🦈 CÁ MẬP GOM HÀNG — tiền lớn đang chạy '
                   '<span class="badge b-urgent">🦈 CÁ MẬP</span></h2>')
         if anchor in h:
             h = h.replace(anchor, anchor + "\n" + block, 1)
-    return h, f"shark focus: {len(rows)} mã (gộp trong mục Cá Mập)"
+    return h, f"shark focus: {len(rows)} mã (gộp trong mục Cá Mập, khung vàng)"
 
 
 def discount_card(h, prices, highs52):
