@@ -1,0 +1,80 @@
+{
+ "entries": [
+  {
+   "date": "2026-10-21",
+   "eps_est": 0.45,
+   "implied": "±7.4%",
+   "name": "Tesla",
+   "note": "Rớt sau cả 3 kỳ gần nhất (7/2026 −14.5%). Decider: biên lãi gộp xe ex-credits + robotaxi/Optimus + câu hỏi sáp nhập SPCX.",
+   "rev_est": "$27.94B",
+   "status": "PENDING",
+   "ticker": "TSLA",
+   "when": "T4 21/10 AMC"
+  },
+  {
+   "date": "2026-10-21",
+   "eps_est": null,
+   "implied": null,
+   "name": "Meta Platforms",
+   "note": "Consensus bổ sung trước giờ báo cáo. Nhìn: doanh thu quảng cáo + capex AI 2027.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "META",
+   "when": "T4 21/10 AMC"
+  },
+  {
+   "date": "2026-10-20",
+   "eps_est": 0.82,
+   "implied": "±9.6%",
+   "name": "Netflix",
+   "note": "Đóng 19/10 $69.85 — đang TRONG vùng. 5 kỳ gần nhất giá đều rớt sau báo cáo; Wells Fargo hạ underweight PT $57 (18/9).",
+   "rev_est": "$12.87B",
+   "status": "DONE",
+   "ticker": "NFLX",
+   "when": "T3 20/10 AMC",
+   "eps_act": 0.87,
+   "rev_act": "$12.87B",
+   "verdict": "MIXED",
+   "guidance": "Q4: doanh thu ~$13.4B, EPS $0.67 — hụt kỳ vọng ~$13.5B/$0.73; hạ dự báo quảng cáo FY2026 còn ~$2.7B (từ ~$3B), hạ FCF cả năm còn ~$12B (từ ~$12.5B).",
+   "reaction_pct": "rơi -~7% sau giờ ~13:37 PT (tới $63.99, thanh khoản mỏng)",
+   "price_after": 63.99,
+   "essence": "EPS vượt kỳ vọng ($0.87 vs $0.82, doanh thu đúng $12.87B) nhưng toàn bộ số tương lai đều hụt — quảng cáo bị hạ, margin Q4 hụt, FCF hạ: thị trường bán tháo, giá rớt về sát đáy 52w $65.08."
+  },
+  {
+   "date": "2026-10-20",
+   "eps_est": 0.14,
+   "implied": "±7.5%",
+   "name": "SpaceX",
+   "note": "Giá ~$146 — trên vùng. Kỳ 8/2026: +9.4% ngày báo cáo rồi −13.6% hôm sau. Unlock 328.4M cp ngày 24/10.",
+   "rev_est": "$12.9B",
+   "status": "DONE",
+   "ticker": "SPCX",
+   "when": "T3 20/10 AMC",
+   "eps_act": 0.35,
+   "rev_act": "$14.58B",
+   "verdict": "BEAT",
+   "guidance": "Không đưa số guide cụ thể trong báo cáo; triển vọng được cập nhật trên webcast 13:30 PT (đang diễn ra lúc điền số).",
+   "reaction_pct": "tăng +3.3% sau giờ ~13:37 PT (tới $148.72, thanh khoản mỏng)",
+   "price_after": 148.72,
+   "essence": "Quý lãi đầu tiên kể từ IPO (6/2026): lãi ròng $4.4B; mảng AI (SI) $7.6B vượt kỳ vọng, chiếm ~52% doanh thu; Starlink 13.6M thuê bao — nhưng capex $19.6B vẫn lớn hơn cả doanh thu quý."
+  },
+  {
+   "date": "2026-10-20",
+   "eps_act": 2.54,
+   "eps_est": 2.59,
+   "essence": "Doanh thu kỷ lục $17.9B (+17% YoY) + guide Q4 mạnh, nhưng EPS điều chỉnh $2.54 hụt nhẹ consensus $2.59 và chi phí nhiên liệu +62% — thị trường bán sau giờ.",
+   "guidance": "Q4: doanh thu dự kiến tăng >20% YoY — kỷ lục mới, tăng tốc so với Q3.",
+   "implied": "±5.6%",
+   "name": "United Airlines",
+   "note": "Guide công ty EPS $2.50–3.50; nhiên liệu là ẩn số (~$1.12/cp áp lực). Beat EPS 11/12 kỳ gần nhất nhưng giá chỉ tăng sau 5/12 kỳ.",
+   "price_after": 94.59,
+   "reaction_pct": "-3.3% after-hours ~13:09 PT (thanh khoản mỏng)",
+   "rev_act": "$17.9B",
+   "rev_est": "$17.89B",
+   "status": "DONE",
+   "ticker": "UAL",
+   "verdict": "MIXED",
+   "when": "T3 20/10 AMC"
+  }
+ ]
+}
