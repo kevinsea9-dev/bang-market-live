@@ -1455,17 +1455,19 @@ def steel_net_update(h, prices, highs52):
                    r'\1<a href="#sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
     return h, f"lưới thép: {len(deals)} mã onsale"
 SHARK_FOCUS = [
-    ("TSM", "$23.2M calendar spread $450 của desk pro (20/10) — gom dài hạn sau −11.7%/12 phiên"),
-    ("AVGO", "$7.49M bullish premium tổ chức 12/10 · call vol +34% TB"),
-    ("GOOGL", "$14.2M + $5.3M bullish premium 12/10 — gom lặp lại nhiều phiên"),
-    ("NVDA", "Bullish premium $23.88M 12/10 (lớn nhất nhóm) · đơn TQ >$35B (Reuters 20/10), giá chưa bật"),
-    ("INTC", "$6.03M bullish premium 12/10 · OI call tăng vọt · JPM nâng UW→Neutral · CALL $100 exp 20/11 · earnings 29/10"),
+    ("NVDA", "🦈🦈🦈", "Bullish premium $23.88M 12/10 (lớn nhất nhóm) · đơn TQ >$35B (Reuters 20/10), giá chưa bật"),
+    ("TSM", "🦈🦈🦈", "$23.2M calendar spread $450 của desk pro (20/10) — gom dài hạn sau −11.7%/12 phiên"),
+    ("GOOGL", "🦈🦈", "$14.2M + $5.3M bullish premium 12/10 — gom lặp lại nhiều phiên"),
+    ("AVGO", "🦈🦈", "$7.49M bullish premium tổ chức 12/10 · call vol +34% TB"),
+    ("INTC", "🦈", "$6.03M bullish premium 12/10 · OI call tăng vọt · JPM nâng UW→Neutral · CALL $100 exp 20/11 · earnings 29/10"),
 ]
 
 
 def shark_focus_update(h, prices):
-    """🦈 CÁ MẬP GOM THẦM — Tom lệnh 20/10: focus 5 mã có bằng chứng gom âm thầm
-    lúc hoảng loạn. Dựng lại bảng focus mỗi lượt — idempotent, marker-based."""
+    """👑 FOCUS CÁ MẬP GOM KHỦNG — gộp TRONG mục 🦈 CÁ MẬP GOM HÀNG (sec-urgent),
+    ghim ngay dưới tiêu đề mục. Tom lệnh 20/10 ~10:13: sáp nhập Gom Thầm vào
+    Cá Mập, highlight focus mã cá mập đang gom khủng; bỏ section riêng chống trùng.
+    Idempotent, marker-based (SHARKFOCUS-AUTO)."""
     ts = now_pt().strftime("%H:%M")
     zones = ZONES
     if not zones:
@@ -1476,7 +1478,7 @@ def shark_focus_update(h, prices):
         except Exception:
             zones = {}
     rows = []
-    for t, ev in SHARK_FOCUS:
+    for t, tier, ev in SHARK_FOCUS:
         z = zones.get(t)
         if not z:
             continue
@@ -1507,33 +1509,34 @@ def shark_focus_update(h, prices):
             zinfo += f" · Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}"
         if ct:
             zinfo += f" · Cắt <${ct:,.0f}"
-        rows.append(f"<tr><td><b>{t}</b></td><td>{pxs}</td><td>{st}</td>"
+        rows.append(f"<tr><td>{tier} <b>{t}</b></td><td>{pxs}</td><td>{st}</td>"
                     f"<td>{zinfo}</td><td>{ev}</td></tr>")
-    body = ('<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Trạng thái</th>'
-            "<th>Vùng đã duyệt</th><th>Bằng chứng gom</th></tr>" +
-            "".join(rows) + "</table>")
+    inner = (f'<div style="font-weight:700;font-size:1.05em">👑 FOCUS — CÁ MẬP ĐANG GOM KHỦNG (âm thầm trong hoảng loạn)</div>'
+             f'<div class="note">Xếp theo độ khủng của bằng chứng dòng tiền lớn • giá + trạng thái vùng sống mỗi 5 phút • '
+             f'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • cập nhật {ts} PT</div>'
+             '<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Trạng thái</th>'
+             "<th>Vùng đã duyệt</th><th>Bằng chứng gom</th></tr>" +
+             "".join(rows) + "</table>")
+    # 1) Dọn section riêng cũ (sec-sharkfocus) + nav link của nó — đã gộp, chống trùng.
+    if 'id="sec-sharkfocus"' in h:
+        h = re.sub(r'<div class="sec" id="sec-sharkfocus">.*?</div>\n',
+                   "", h, count=1, flags=re.S)
+    h = re.sub(r'\s*<a href="#sec-sharkfocus">[^<]*</a>', "", h, count=1)
+    # 2) Cập nhật tại chỗ nếu marker đã có; chưa có → ghim dưới tiêu đề sec-urgent.
     if "<!-- SHARKFOCUS-AUTO -->" in h:
         h = re.sub(r"<!-- SHARKFOCUS-AUTO -->.*?<!-- /SHARKFOCUS-AUTO -->",
-                   lambda m: f"<!-- SHARKFOCUS-AUTO -->{body}<!-- /SHARKFOCUS-AUTO -->",
+                   lambda m: f"<!-- SHARKFOCUS-AUTO -->{inner}<!-- /SHARKFOCUS-AUTO -->",
                    h, count=1, flags=re.S)
-        h = re.sub(r"(focus 5 mã tiềm năng \(20/10\)</h2><div class=\"note\">[^<]*?cập nhật )\d\d:\d\d( PT</div>)",
-                   lambda m: f"{m.group(1)}{ts}{m.group(2)}", h, count=1)
     else:
-        block = ('<div class="sec" id="sec-sharkfocus"><h2>🦈 CÁ MẬP GOM THẦM — focus 5 mã tiềm năng (20/10)</h2>'
-                 '<div class="note">Cá mập gom âm thầm lúc hoảng loạn — bằng chứng options flow/insider có nguồn cùng ngày • '
-                 'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • '
-                 f"cập nhật {ts} PT</div>"
-                 f"<!-- SHARKFOCUS-AUTO -->{body}<!-- /SHARKFOCUS-AUTO --></div>\n")
-        anchor = '<div class="sec" id="sec-sancm">'
+        block = ('<div class="sharkfocus" style="border:2px solid #d4af37;'
+                 'background:rgba(212,175,55,.08);border-radius:10px;'
+                 'padding:8px 10px;margin:8px 0">'
+                 f"<!-- SHARKFOCUS-AUTO -->{inner}<!-- /SHARKFOCUS-AUTO --></div>\n")
+        anchor = ('<h2>🦈 CÁ MẬP GOM HÀNG — tiền lớn đang chạy '
+                  '<span class="badge b-urgent">🦈 CÁ MẬP</span></h2>')
         if anchor in h:
-            h = h.replace(anchor, block + anchor, 1)
-        else:
-            anchor2 = '<div class="sec" id="sec-steelnet">'
-            h = h.replace(anchor2, block + anchor2, 1)
-    if 'href="#sec-sharkfocus"' not in h:
-        h = re.sub(r'(href="#sec-sancm"[^>]*>🔪 Săn CM</a>)',
-                   r'\1<a href="#sec-sharkfocus">🦈 Gom Thầm</a>', h, count=1)
-    return h, f"shark focus: {len(rows)} mã"
+            h = h.replace(anchor, anchor + "\n" + block, 1)
+    return h, f"shark focus: {len(rows)} mã (gộp trong mục Cá Mập)"
 
 
 def discount_card(h, prices, highs52):
