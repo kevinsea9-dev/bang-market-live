@@ -145,6 +145,45 @@ def main():
         fixed.append(f"xóa {n_old} alert cũ")
         h = h2
 
+    # 4b. Cú Đêm: chỉ giữ entry ĐÊM HIỆN TẠI (Tom 21/10) — tối đa 3 entry mới
+    #     nhất, không entry nào cũ hơn entry mới nhất 12 giờ. Healthcheck chạy
+    #     15 phút cả đêm nên vá được khoảng trống 01:37–06:30 mà quick_refresh
+    #     (chỉ chạy trong phiên) không phủ.
+    from datetime import datetime as _dt
+
+    def _trim_cudem(m):
+        header, body = m.group(1), m.group(2)
+        alerts = re.findall(r'(<div class="alert[^"]*">.*?</div>)\s*', body, re.S)
+        if not alerts:
+            return m.group(0)
+
+        def _entry_dt(a):
+            tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2}) (\d{1,2}):(\d{2}) PT', a)
+            if not tm:
+                return None
+            d, mo, hh, mm = map(int, tm.groups())
+            try:
+                return _dt(now_pt().year, mo, d, hh, mm)
+            except ValueError:
+                return None
+
+        dts = [_entry_dt(a) for a in alerts]
+        known = [x for x in dts if x]
+        keep = alerts
+        if known:
+            newest = max(known)
+            keep = [a for a, x in zip(alerts, dts)
+                    if x is None or (newest - x).total_seconds() <= 12 * 3600]
+        keep = keep[:3]
+        if len(keep) != len(alerts):
+            issues.append(f"Cú Đêm thừa {len(alerts) - len(keep)} entry cũ")
+            fixed.append("dọn Cú Đêm: chỉ giữ entry đêm hiện tại (≤3)")
+            return header + '\n'.join(keep) + '\n</div>\n'
+        return m.group(0)
+
+    h = re.sub(r'(<div class="sec"[^>]*>\s*<h2>🌙 CÚ ĐÊM.*?</h2>)(.*?)(?=<div class="sec"|<div class="footer")',
+               _trim_cudem, h, flags=re.S)
+
     # 5. Mã excluded không được quay lại
     try:
         excluded = json.load(open(os.path.join(REPO, "zones.json"))).get("_excluded", [])

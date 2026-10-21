@@ -833,13 +833,36 @@ def prune_old_alerts(h):
         return full
     h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', dedup_content, h, flags=re.S)
 
-    # Cú Đêm: chỉ giữ 3 mới nhất
+    # Cú Đêm: chỉ giữ entry của ĐÊM HIỆN TẠI (Tom 21/10: Cú Đêm cũng phải tự
+    # dọn, không giữ tin cũ) — tối đa 3 entry mới nhất VÀ không entry nào cũ
+    # hơn entry mới nhất 12 giờ (1 chu kỳ đêm = 17:37 + 20:37 + 01:37).
     def trim_cudem(m):
         header, body = m.group(1), m.group(2)
         alerts = re.findall(r'(<div class="alert[^"]*">.*?</div>)\s*', body, re.S)
-        if len(alerts) > 3:
-            removed[0] += len(alerts) - 3
-            return header + '\n'.join(alerts[:3]) + '\n</div>\n'
+        if not alerts:
+            return m.group(0)
+
+        def _entry_dt(a):
+            tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2}) (\d{1,2}):(\d{2}) PT', a)
+            if not tm:
+                return None
+            d, mo, hh, mm = map(int, tm.groups())
+            try:
+                return datetime.datetime(now.year, mo, d, hh, mm)
+            except ValueError:
+                return None
+
+        dts = [_entry_dt(a) for a in alerts]
+        known = [x for x in dts if x]
+        keep = alerts
+        if known:
+            newest = max(known)
+            keep = [a for a, x in zip(alerts, dts)
+                    if x is None or (newest - x).total_seconds() <= 12 * 3600]
+        keep = keep[:3]
+        if len(keep) != len(alerts):
+            removed[0] += len(alerts) - len(keep)
+            return header + '\n'.join(keep) + '\n</div>\n'
         return m.group(0)
 
     h = re.sub(r'(<div class="sec"[^>]*>\s*<h2>🌙 CÚ ĐÊM.*?</h2>)(.*?)(?=<div class="sec"|<div class="footer")',

@@ -127,6 +127,42 @@ def main():
                     actions.append("xóa mảnh tin mồ côi khỏi TIN LỚN")
                     h = h[:ni] + sec + h[nj:]
 
+    # 1f. Cú Đêm: chỉ giữ entry ĐÊM HIỆN TẠI (Tom 21/10 — Cú Đêm cũng tự dọn,
+    #     không giữ tin cũ): tối đa 3 entry mới nhất, không entry nào cũ hơn
+    #     entry mới nhất 12 giờ (chu kỳ đêm 17:37 + 20:37 + 01:37).
+    def _cdt(a):
+        tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2}) (\d{1,2}):(\d{2}) PT', a)
+        if not tm:
+            return None
+        d, mo, hh, mm = map(int, tm.groups())
+        try:
+            return datetime.datetime(now.year, mo, d, hh, mm)
+        except ValueError:
+            return None
+
+    def _trim_cd(m):
+        header, body = m.group(1), m.group(2)
+        alerts = re.findall(r'(<div class="alert[^"]*">.*?</div>)\s*', body, flags=re.S)
+        if not alerts:
+            return m.group(0)
+        dts = [_cdt(a) for a in alerts]
+        known = [x for x in dts if x]
+        keep = alerts
+        if known:
+            newest = max(known)
+            keep = [a for a, x in zip(alerts, dts)
+                    if x is None or (newest - x).total_seconds() <= 12 * 3600]
+        keep = keep[:3]
+        if len(keep) != len(alerts):
+            actions.append(
+                f"dọn Cú Đêm: xóa {len(alerts) - len(keep)} entry cũ (chỉ giữ đêm hiện tại)")
+            return header + '\n'.join(keep) + '\n</div>\n'
+        return m.group(0)
+
+    h = re.sub(
+        r'(<div class="sec"[^>]*>\s*<h2>🌙 CÚ ĐÊM.*?</h2>)(.*?)(?=<div class="sec"|<div class="footer")',
+        _trim_cd, h, flags=re.S)
+
     # 2. Archive mục hunt cũ hơn 3 ngày: <h2>🎯 HUNT ... (DD/MM) ...
     def hunt_old(m):
         d, mo = int(m.group(1)), int(m.group(2))
