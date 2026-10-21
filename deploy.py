@@ -8,9 +8,14 @@ mù mờ. Token GitHub (gh) vẫn sống — vấn đề là transport + verific
 Cơ chế 2 đường + tự kiểm chứng bằng LIVE SITE:
   1. git push (đường chính), timeout chặt
   2. verify: remote HEAD == local HEAD (ls-remote, retry)
-  3. nếu vẫn lệch → FALLBACK API: gh contents PUT index.html + version.json
-     (api.github.com đi đường khác, đã chứng minh ổn định hơn qua proxy)
-  4. verify cuối: live version.json trên Pages == local version.json (poll 120s)
+  3. nếu phân nhánh (remote có snapshot API cũ) → TỰ CHỮA: merge -s ours
+     origin/main (giữ nguyên cây local — remote-only commit chỉ là snapshot
+     cũ của 2 file deploy) + push lại; chỉ chạy khi working tree sạch và
+     remote không có file lạ
+  4. nếu git protocol chết hẳn → FALLBACK API: gh contents PUT index.html +
+     version.json (api.github.com đi đường khác, đã chứng minh ổn định hơn
+     qua proxy)
+  5. verify cuối: live version.json trên Pages == local version.json (poll 120s)
 
 Exit: 0 = live đã khớp bản mới (hoặc vốn đã khớp); 1 = đã đẩy nhưng chưa verify được live;
         2 = thất bại cả 2 đường.
@@ -117,6 +122,43 @@ def api_fallback():
     return True
 
 
+def self_heal():
+    """Tự chữa phân nhánh: remote chỉ có snapshot API cũ của 2 file deploy
+    → merge -s ours giữ nguyên toàn bộ cây local, rồi push lại.
+    Chỉ chạy khi (a) working tree sạch ở index.html/version.json — job này
+    CẤM commit churn; (b) remote-only commits chỉ chạm 2 file deploy.
+    Trả True nếu push lại ăn thua."""
+    rc, out, _ = run("git", "status", "--porcelain", "--", *FILES, timeout=30)
+    if out:
+        print("deploy: self-heal bỏ qua (working tree chưa commit, tránh chạm churn)",
+              file=sys.stderr)
+        return False
+    if run("git", "fetch", "origin", timeout=60)[0] != 0:
+        return False
+    rc, out, _ = run("git", "log", "--name-only", "--format=",
+                     "HEAD..origin/main", timeout=30)
+    extra = [x for x in out.splitlines() if x and x not in FILES]
+    if extra:
+        print(f"deploy: remote có file lạ {extra} — KHÔNG tự merge, để xử lý tay",
+              file=sys.stderr)
+        return False
+    rc, out, err = run("git", "merge", "-s", "ours", "-m",
+                       "deploy: merge remote snapshot (keep local tree)",
+                       "origin/main", timeout=60)
+    if rc != 0:
+        print(f"deploy: merge -s ours thất bại ({err[:80]})", file=sys.stderr)
+        return False
+    for i in range(3):
+        rc, out, err = run("git", "push", "origin", "main", timeout=90)
+        if rc == 0:
+            print("deploy: self-heal push OK")
+            return True
+        print(f"deploy: self-heal push lần {i+1}/3 thất bại ({err[:80]})",
+              file=sys.stderr)
+        time.sleep(15)
+    return False
+
+
 def main():
     lock = open(LOCK, "w")
     try:
@@ -155,12 +197,24 @@ def _main():
         time.sleep(15)
 
     rh = remote_head()
-    if rh != lh:
-        print("deploy: git push không ăn thua → fallback API", file=sys.stderr)
+    if rh is None:
+        # ls-remote trả rỗng = git protocol chết hẳn → đi thẳng fallback API
+        print("deploy: git protocol chết (ls-remote rỗng) → fallback API",
+              file=sys.stderr)
         if not api_fallback():
             print("deploy: FAILED cả 2 đường", file=sys.stderr)
             return 2
-        lh = local_head()
+    elif rh != lh:
+        # phân nhánh: remote có snapshot API cũ → thử tự chữa trước
+        print("deploy: phân nhánh — thử tự chữa merge -s ours", file=sys.stderr)
+        if self_heal():
+            print("deploy: self-heal xong, kiểm tra lại")
+        else:
+            print("deploy: git push không ăn thua → fallback API", file=sys.stderr)
+            if not api_fallback():
+                print("deploy: FAILED cả 2 đường", file=sys.stderr)
+                return 2
+    lh = local_head()
 
     # verify cuối bằng LIVE SITE (ground truth của người xem)
     for _ in range(8):
