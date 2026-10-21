@@ -105,9 +105,14 @@ def render_entry(e, zones):
             # chuỗi đã gồm giá/giờ (vd lượt late-update) → render nguyên văn
             rl = f"<br>📈📉 Phản ứng sau báo cáo: {r}"
         es = f"<br>✨ <b>Tinh hoa:</b> {e['essence']}" if e.get("essence") else ""
+        au = ""
+        if e.get("audio"):
+            au = ("<br>🎧 <b>Nghe tóm tắt call (tiếng Việt):</b><br>"
+                  f"<audio controls preload='none' src='audio/{e['audio']}' "
+                  "style='width:100%;max-width:440px;height:34px'></audio>")
         return (f"<div class='alert' style='{style}padding:8px 10px;margin:6px 0;"
                 f"word-break:break-word'><b>{t}</b> — {when} · {v}{treasure}"
-                f"<br>{' · '.join(bits)}{g}{rl}{es}{zl}</div>")
+                f"<br>{' · '.join(bits)}{g}{rl}{es}{au}{zl}</div>")
     bits = []
     if e.get("eps_est") is not None:
         bits.append(f"EPS kỳ vọng {money(e['eps_est'])}")
