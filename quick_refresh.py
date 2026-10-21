@@ -2212,7 +2212,11 @@ def main():
     if a.mode in ("full", "close"):
         state_path = os.path.join(a.repo_dir, "zone_state.json")
         h, events = update_zone_badges(h, prices, state_path)
-        h = ensure_zone_rows(h, prices, state_path)  # lưới thép: mã IN/BROKEN thiếu dòng → tự tạo
+        # NOTE 21/10: ensure_zone_rows KHÔNG chạy ở đây nữa — nó chạy SAU steel_net_update
+        # (cuối pipeline). Lý do: steel_net_update dựng lại lưới có thể RỚT mã đang IN
+        # (vd STX vào vùng $695–720 thì discount chỉ còn -38.5% < ngưỡng 40%); ensure chạy
+        # trước thấy dòng steelnet còn đó nên skip tạo dòng Sổ, rồi steelnet rớt mã →
+        # mã IN mất dòng trên bảng (healthcheck NGUY HIỂM 06:50 21/10).
         zone_events = events
         if events:
             # 💎 VÙNG ƯU ĐÃI ĐẶC BIỆT — Tom 19/10 (~13:30): mã vào vùng + discount ≥40% + mồi tươi
@@ -2282,6 +2286,12 @@ def main():
     # 🕸️ LƯỚI THÉP — Tom lệnh 19/10 (~12:40): mã đạt chuẩn onsale 40–95% TỰ ĐỘNG vào lưới
     h, nsteel = steel_net_update(h, {**prices, **nhip_extra}, {**highs52, **nhip_highs})
     print(f"lưới thép: {nsteel}", flush=True)
+
+    # 🕸️ LƯỚI THÉP (bổ sung dòng còn thiếu) — CHẠY SAU steel_net_update (fix 21/10, xem NOTE ở trên):
+    # mã IN/BROKEN mà steelnet vừa rớt (vd STX vào vùng nên discount <40%), hoặc chưa có
+    # dòng ở bất kỳ đâu → tự tạo dòng ở mục Sổ đúng book. Không trùng (skip khi đã có dòng).
+    if a.mode in ("full", "close"):
+        h = ensure_zone_rows(h, prices, os.path.join(a.repo_dir, "zone_state.json"))
 
     # 🦈 CÁ MẬP GOM THẦM — Tom lệnh 20/10: focus 5 mã có bằng chứng gom âm thầm (dòng tiền lớn)
     h, nfoc = shark_focus_update(h, {**prices, **nhip_extra})
