@@ -107,9 +107,18 @@ def render_entry(e, zones):
         es = f"<br>✨ <b>Tinh hoa:</b> {e['essence']}" if e.get("essence") else ""
         au = ""
         if e.get("audio"):
+            fu = f"https://kevinsea9-dev.github.io/bang-market-live/audio/{e['audio']}"
+            ttl = f"Audio earnings {t} — tóm tắt call tiếng Việt"
+            oc = ("var u='" + fu + "';if(navigator.share){navigator.share({title:'" + ttl +
+                  "',url:u}).catch(function(){})}else if(navigator.clipboard){"
+                  "navigator.clipboard.writeText(u);var b=this;b.textContent='✅ Đã copy link';"
+                  "setTimeout(function(){b.textContent='⋯ Chia sẻ audio'},2000)}")
             au = ("<br>🎧 <b>Nghe tóm tắt call (tiếng Việt):</b><br>"
                   f"<audio controls preload='none' src='audio/{e['audio']}' "
-                  "style='width:100%;max-width:440px;height:34px'></audio>")
+                  "style='width:100%;max-width:440px;height:34px'></audio>"
+                  f"<br><button onclick=\"{oc}\" style='margin-top:4px;padding:5px 12px;"
+                  "border-radius:14px;border:1px solid #7c5cff;background:transparent;"
+                  "color:inherit;font-size:13px;cursor:pointer'>⋯ Chia sẻ audio</button>")
         return (f"<div class='alert' style='{style}padding:8px 10px;margin:6px 0;"
                 f"word-break:break-word'><b>{t}</b> — {when} · {v}{treasure}"
                 f"<br>{' · '.join(bits)}{g}{rl}{es}{au}{zl}</div>")
@@ -178,12 +187,20 @@ def main():
     assert START in h and END in h, "thiếu marker TINHHOA"
     pl = ""
     pli = state.get("playlist") or {}
+    ploc = ""
     if pli.get("file"):
+        pfu = "https://kevinsea9-dev.github.io/bang-market-live/audio/" + pli["file"]
+        ploc = ("var u='" + pfu + "';if(navigator.share){navigator.share({title:'Playlist earnings',url:u})"
+                ".catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(u);"
+                "var b=this;b.textContent='✅ Đã copy link';setTimeout(function(){b.textContent='⋯ Chia sẻ playlist'},2000)}")
         pl = ("<div class='alert' style='border:2px solid #7c5cff;padding:8px 10px;margin:6px 0'>"
               f"<b>{pli.get('label') or '🎵 PLAYLIST EARNINGS'}</b><br>"
               f"<audio controls preload='none' src='audio/{pli['file']}' "
               "style='width:100%;max-width:440px;height:34px'></audio>"
-              "<br><span style='opacity:.8'>Nghe một mạch tất cả mã trong ngày — link file này chia sẻ được.</span></div>\n")
+              "<br><span style='opacity:.8'>Nghe một mạch tất cả mã trong ngày.</span>"
+              f"<br><button onclick=\"{ploc}\" style='margin-top:4px;padding:5px 12px;"
+              "border-radius:14px;border:1px solid #7c5cff;background:transparent;"
+              "color:inherit;font-size:13px;cursor:pointer'>⋯ Chia sẻ playlist</button></div>\n")
     block = "\n" + pl + "\n".join(render_entry(e, zones) for e in kept) + "\n  "
     i, j = h.index(START) + len(START), h.index(END)
     h = h[:i] + block + h[j:]
