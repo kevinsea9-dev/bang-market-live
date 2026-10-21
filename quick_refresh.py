@@ -543,6 +543,10 @@ def shark_of_day(h, repo_dir):
     if k == -1:
         k = len(h)
     box = h[j:k]
+    # 21/10: xóa placeholder "chưa có tín hiệu cá mập" rác tích tụ từ daily_reset các
+    # ngày trước (không phải alert urgent nên vòng dọn cũ bỏ sót — Tom phàn nàn
+    # "cài cron mọi nơi vẫn chưa bay được cá mập" trong khi bảng ghi chưa có tín hiệu).
+    box = box.replace('<div class="alert" style="opacity:.75">🦈 Chưa có tín hiệu cá mập hôm nay — radar đang quét, có là báo ngay.</div>', "")
     now = now_pt()
     # 19/10: mã trong _excluded (Tom xóa khỏi bảng) không được lên cá mập của ngày
     try:
@@ -558,6 +562,12 @@ def shark_of_day(h, repo_dir):
         t = mt.group(1)
         if t in excluded_sd:
             continue
+        # 21/10: alert GẤU (gap xuống, coi chừng, gãy/thủng...) KHÔNG được lên ngôi
+        # cá mập của ngày — vụ NFLX gap -5.8% bị xếp 🥇 sáng 21/10.
+        _mh0 = re.search(r"<b>(.*?)</b>", inner, flags=re.S)
+        _head = re.sub(r"<[^>]+>", "", _mh0.group(1)).lower() if _mh0 else ""
+        if any(w in _head for w in ("coi chừng", "🔴", "gãy", "thủng", "dump", "gap xuống", "gap down", "lao dốc")):
+            continue
         mh_tier = re.search(r"<b>(🦈+)", inner)
         tier_n = len(mh_tier.group(1)) if mh_tier else 1
         tier_w = 3 if tier_n >= 3 else (2 if tier_n == 2 else 1)
@@ -571,14 +581,10 @@ def shark_of_day(h, repo_dir):
             except Exception:
                 age_h = None
         if age_h is None:
-            _, jts = _journal_latest(repo_dir, t, today)
-            if jts:
-                try:
-                    age_h = max(0, (now - datetime.fromisoformat(jts)).total_seconds() / 3600)
-                except Exception:
-                    age_h = None
-        if age_h is None:
-            age_h = 12.0
+            # 21/10: alert không có data-ts (kiểu cũ, vd gap premarket) -> mặc định 6h.
+            # BỎ fallback journal: journal ghi mọi tín hiệu của mã trong ngày nên alert
+            # cũ buổi sáng mượn được độ tươi "0p trước" và leo top oan (vụ NFLX 21/10).
+            age_h = 6.0
         fresh = 1 / (1 + age_h)
         score = tier_w * trust * fresh
         mh = re.search(r"<b>(.*?)</b>", inner, flags=re.S)
@@ -2007,6 +2013,39 @@ def refresh_sectors(h, sec_prices):
     return h, f"{n} card, mạnh nhất {best} {fmt_pct(best_pc)}"
 
 
+def bull_bear_update(h, repo_dir):
+    """⚔️ BULL vs BEAR — Tom hỏi 21/10: "BULL & BEAR, phe nào thắng".
+    Điểm phe = (2*SPY% + QQQ% + DIA%)/4 theo giá intraday cùng ngày.
+    >= +0.25: BULL thắng; <= -0.25: BEAR thắng; còn lại: ngang nhau.
+    Dải verdict nằm ngay dưới badge cập nhật, tự làm mới mỗi lượt refresh."""
+    try:
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            mkt = dict(ex.map(fetch_one, MARKET_ETFS))
+    except Exception:
+        return h
+    mkt = {k: v for k, v in mkt.items() if v}
+    if "SPY" not in mkt:
+        return h
+    spy = mkt["SPY"][1]
+    qqq = mkt.get("QQQ", (0, 0))[1]
+    dia = mkt.get("DIA", (0, 0))[1]
+    score = (2 * spy + qqq + dia) / 4
+    if score >= 0.25:
+        verdict, emo, bg = "BULL THẮNG", "🐂", "rgba(22,163,74,.14)"
+    elif score <= -0.25:
+        verdict, emo, bg = "BEAR THẮNG", "🐻", "rgba(220,38,38,.14)"
+    else:
+        verdict, emo, bg = "NGANG NHAU", "⚖️", "rgba(148,163,184,.14)"
+    strip = (f'<div class="bullbear" id="bullBear" style="border:2px solid #94a3b8;border-radius:12px;'
+             f'padding:8px 12px;margin:8px 0;background:{bg};font-size:14px">'
+             f'<b>⚔️ BULL vs BEAR — {emo} {verdict}</b> '
+             f'<span style="color:#9fb3d9">S&P 500 {fmt_pct(spy)} • Nasdaq {fmt_pct(qqq)} • Dow {fmt_pct(dia)} • '
+             f'điểm phe {score:+.2f} • {now_pt().strftime("%H:%M")} PT • giá intraday</span></div>\n')
+    h = re.sub(r'<div class="bullbear" id="bullBear".*?</div>\n', "", h, flags=re.S)
+    h = re.sub(r'(<span class="updated">.*?</span>)', r"\1\n" + strip, h, count=1, flags=re.S)
+    return h
+
+
 def market_klaxon(h, repo_dir):
     """Tự phát hiện market pump/dump qua SPY/QQQ/DIA — dựng banner đầu bảng.
     Không chờ cron phân tích, không chờ Tom nhắc."""
@@ -2339,6 +2378,10 @@ def main():
     if regime:
         tag = "còi market"
         print(f"market klaxon: {regime}", flush=True)
+
+    # ⚔️ BULL vs BEAR — dải verdict phe thắng, tự cập nhật mỗi lượt (Tom hỏi 21/10)
+    h = bull_bear_update(h, a.repo_dir)
+    print("bull vs bear: đã cập nhật dải verdict", flush=True)
 
     h = bump_badge(h, tag)
     ok, why = validate(h)
