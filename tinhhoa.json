@@ -1,6 +1,25 @@
 {
  "entries": [
   {
+   "date": "2026-10-20",
+   "eps_est": 0.82,
+   "implied": "±9.6%",
+   "name": "Netflix",
+   "note": "Đóng 19/10 $69.85 — đang TRONG vùng. 5 kỳ gần nhất giá đều rớt sau báo cáo; Wells Fargo hạ underweight PT $57 (18/9).",
+   "rev_est": "$12.87B",
+   "status": "DONE",
+   "ticker": "NFLX",
+   "when": "T3 20/10 AMC",
+   "eps_act": 0.87,
+   "rev_act": "$12.87B",
+   "verdict": "MIXED",
+   "guidance": "Q4: doanh thu ~$13.4B, EPS $0.67 — hụt kỳ vọng ~$13.5B/$0.73; hạ dự báo quảng cáo FY2026 còn ~$2.7B (từ ~$3B), hạ FCF cả năm còn ~$12B (từ ~$12.5B).",
+   "reaction_pct": "−~7% sau giờ 20/10 (~$63,99); đóng 21/10 $65,04 (−5,31%) — mép dưới vùng Sổ 3 $65–70, trên cắt $63 ~$2",
+   "price_after": 65.04,
+   "essence": "EPS vượt kỳ vọng ($0.87 vs $0.82, doanh thu đúng $12.87B) nhưng toàn bộ số tương lai đều hụt — quảng cáo bị hạ, margin Q4 hụt, FCF hạ: thị trường bán tháo, giá rớt về sát đáy 52w $65.08.",
+   "audio": "earnings-nflx-2026-10-20.mp3"
+  },
+  {
    "date": "2026-10-21",
    "eps_est": 0.45,
    "implied": "±7.4%",
@@ -94,10 +113,10 @@
    "rev_act": "$17.10B",
    "verdict": "BEAT",
    "guidance": "Giữ dự báo cả năm: doanh thu constant-currency +4–5%; NÂNG dự báo tăng trưởng doanh thu Software lên ~7–8% (từ 6–8%); NÂNG FCF cả năm: tăng >$1B YoY.",
-   "reaction_pct": "+4.76% sau giờ ~13:35 PT (tới $263.44, thanh khoản mỏng)",
-   "price_after": 263.44,
+   "reaction_pct": "đảo chiều trong call: từ +~5% tới $263,44 lúc 13:35 PT rớt xuống −3,6% tới $242,34 lúc 15:35 PT (Finnhub 18:35 ET, thanh khoản mỏng) so với đóng 251,46",
+   "price_after": 242.34,
    "essence": "Beat cả hai: doanh thu $17.10B (+4.7% YoY, vượt ~$16.8B), EPS điều chỉnh $2.95 vượt $2.86; ~2/3 deal Software trượt từ Q2 đã đóng lại, Software +8.3% (Red Hat +11%) — cổ phiếu bật +4.8% sau giờ.",
-   "src_note": "số theo Reuters + WSJ + StockStory + Finnhub AH 21/10, ghi nhận 2026-10-21T20:40 PT",
+   "src_note": "số theo Reuters + WSJ + StockStory 21/10; AH update 15:35 PT: Finnhub 242.34 (−3.63% vs đóng 251.46), Yahoo 242.33–242.69 (15:30–15:38 PT) — xác minh 2026-10-21 15:37 PT",
    "audio": "earnings-ibm-2026-10-21.mp3"
   },
   {
@@ -137,25 +156,10 @@
    "price_after": 197.46,
    "essence": "EPS điều chỉnh $2.36 vượt kỳ vọng ~$2.29–2.30, doanh thu $11.44B vượt $11.28B — Zyn/IQOS tiếp tục dẫn dắt, mảng không khói >40% doanh thu. Beat vẫn mở cửa đỏ −1.2%: P/E ~29x đã phản ánh kỳ vọng.",
    "audio": "earnings-pm-2026-10-21.mp3"
-  },
-  {
-   "date": "2026-10-20",
-   "eps_est": 0.82,
-   "implied": "±9.6%",
-   "name": "Netflix",
-   "note": "Đóng 19/10 $69.85 — đang TRONG vùng. 5 kỳ gần nhất giá đều rớt sau báo cáo; Wells Fargo hạ underweight PT $57 (18/9).",
-   "rev_est": "$12.87B",
-   "status": "DONE",
-   "ticker": "NFLX",
-   "when": "T3 20/10 AMC",
-   "eps_act": 0.87,
-   "rev_act": "$12.87B",
-   "verdict": "MIXED",
-   "guidance": "Q4: doanh thu ~$13.4B, EPS $0.67 — hụt kỳ vọng ~$13.5B/$0.73; hạ dự báo quảng cáo FY2026 còn ~$2.7B (từ ~$3B), hạ FCF cả năm còn ~$12B (từ ~$12.5B).",
-   "reaction_pct": "−~7% sau giờ 20/10 (~$63,99); đóng 21/10 $65,04 (−5,31%) — mép dưới vùng Sổ 3 $65–70, trên cắt $63 ~$2",
-   "price_after": 65.04,
-   "essence": "EPS vượt kỳ vọng ($0.87 vs $0.82, doanh thu đúng $12.87B) nhưng toàn bộ số tương lai đều hụt — quảng cáo bị hạ, margin Q4 hụt, FCF hạ: thị trường bán tháo, giá rớt về sát đáy 52w $65.08.",
-   "audio": "earnings-nflx-2026-10-20.mp3"
   }
- ]
+ ],
+ "playlist": {
+  "file": "playlist-earnings-2026-10-21.mp3",
+  "label": "🎵 PLAYLIST EARNINGS TỐI 21/10 — 7 mã (TMO · PM · TSLA · META · LRCX · TXN · IBM), ~13 phút"
+ }
 }

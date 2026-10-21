@@ -176,7 +176,15 @@ def main():
         h = f.read()
     h = ensure_section(h)
     assert START in h and END in h, "thiếu marker TINHHOA"
-    block = "\n" + "\n".join(render_entry(e, zones) for e in kept) + "\n  "
+    pl = ""
+    pli = state.get("playlist") or {}
+    if pli.get("file"):
+        pl = ("<div class='alert' style='border:2px solid #7c5cff;padding:8px 10px;margin:6px 0'>"
+              f"<b>{pli.get('label') or '🎵 PLAYLIST EARNINGS'}</b><br>"
+              f"<audio controls preload='none' src='audio/{pli['file']}' "
+              "style='width:100%;max-width:440px;height:34px'></audio>"
+              "<br><span style='opacity:.8'>Nghe một mạch tất cả mã trong ngày — link file này chia sẻ được.</span></div>\n")
+    block = "\n" + pl + "\n".join(render_entry(e, zones) for e in kept) + "\n  "
     i, j = h.index(START) + len(START), h.index(END)
     h = h[:i] + block + h[j:]
     assert "PIN-GATE-START" in h, "MẤT PIN GATE — dừng"
