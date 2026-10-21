@@ -785,6 +785,19 @@ def prune_old_alerts(h):
             if nj != -1:
                 news_sec = h[ni:nj]
                 news_sec2 = re.sub(r'<li[^>]*>(.*?)</li>', check_news_li, news_sec, flags=re.S)
+                # Quét MẢNH MỒ CÔI (Tom phát hiện 21/10): entry mất thẻ <li> mở
+                # do các lần dọn trước -> thân tin nằm trơ ngoài mọi <li>, regex
+                # theo cặp thẻ không bắt được. Trong <ul> tin, mọi nội dung nằm
+                # ngoài <li>...</li> đều là rác -> dựng lại body chỉ gồm các <li>.
+                _ul_m = re.search(r'<ul>(.*)</ul>', news_sec2, flags=re.S)
+                if _ul_m:
+                    _body = _ul_m.group(1)
+                    _residue = re.sub(r'<li[^>]*>.*?</li>', '', _body, flags=re.S)
+                    if _residue.strip():
+                        _clean = '\n'.join(re.findall(r'<li[^>]*>.*?</li>', _body, flags=re.S))
+                        news_sec2 = (news_sec2[:_ul_m.start(1)] + '\n' + _clean +
+                                     '\n' + news_sec2[_ul_m.end(1):])
+                        removed[0] += 1
                 h = h[:ni] + news_sec2 + h[nj:]
     except Exception as e:
         print(f"  ! prune news li: {e}", file=sys.stderr)

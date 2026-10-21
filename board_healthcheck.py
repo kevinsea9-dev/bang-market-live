@@ -116,6 +116,18 @@ def main():
             issues.append(f"tin không phải hôm nay x{_n_before - _n_after}")
             fixed.append(f"xóa {_n_before - _n_after} tin cũ (chỉ giữ tin {today})")
             sec2 = sec2.replace(' class="newsold"', '')
+        # Quét MẢNH MỒ CÔI: thân tin mất thẻ <li> mở nằm ngoài mọi <li> trong
+        # <ul> của mục tin (regex theo cặp thẻ không bắt được) -> dựng lại body.
+        _ul_m = re.search(r'<ul>(.*)</ul>', sec2, flags=re.S)
+        if _ul_m:
+            _body = _ul_m.group(1)
+            _residue = re.sub(r'<li[^>]*>.*?</li>', '', _body, flags=re.S)
+            if _residue.strip():
+                _clean = '\n'.join(re.findall(r'<li[^>]*>.*?</li>', _body, flags=re.S))
+                sec2 = (sec2[:_ul_m.start(1)] + '\n' + _clean + '\n' +
+                        sec2[_ul_m.end(1):])
+                issues.append("mảnh tin mồ côi trong TIN LỚN")
+                fixed.append("xóa mảnh tin mồ côi")
         h = h[:ni] + sec2 + h[nj:]
 
     # 4. Alert/tin cũ không phải hôm nay

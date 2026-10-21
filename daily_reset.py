@@ -109,6 +109,24 @@ def main():
                     f"xóa {n_del} tin cũ khỏi TIN LỚN (chỉ giữ tin {today})")
                 h = h[:ni] + sec + h[nj:]
 
+    # 1e. Quét MẢNH MỒ CÔI trong <ul> của TIN LỚN: thân tin mất thẻ <li> mở
+    #     nằm ngoài mọi <li> (các lần dọn theo cặp thẻ không bắt được).
+    ni = h.find('id="sec-news"')
+    if ni != -1:
+        nj = h.find('</ul>', ni)
+        if nj != -1:
+            sec = h[ni:nj]
+            um = re.search(r'<ul>(.*)', sec, flags=re.S)
+            if um:
+                body = um.group(1)
+                residue = re.sub(r'<li[^>]*>.*?</li>', '', body, flags=re.S)
+                if residue.strip():
+                    clean = '\n'.join(
+                        re.findall(r'<li[^>]*>.*?</li>', body, flags=re.S))
+                    sec = sec[:um.start(1)] + '\n' + clean + '\n'
+                    actions.append("xóa mảnh tin mồ côi khỏi TIN LỚN")
+                    h = h[:ni] + sec + h[nj:]
+
     # 2. Archive mục hunt cũ hơn 3 ngày: <h2>🎯 HUNT ... (DD/MM) ...
     def hunt_old(m):
         d, mo = int(m.group(1)), int(m.group(2))
