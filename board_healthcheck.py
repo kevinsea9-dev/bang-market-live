@@ -98,6 +98,24 @@ def main():
         if dups:
             issues.append(f"tin trùng nội dung x{dups}")
             fixed.append(f"xóa {dups} tin trùng")
+        # Tom 21/10: TIN LỚN chỉ giữ tin TRONG NGÀY — xóa mọi <li> mà stamp
+        # (span.t hoặc ngày đầu trong nội dung) không phải hôm nay; tin không
+        # có stamp nào cũng xóa (nguồn ứ đọng tồn kho trước đây).
+        def _news_today(mm):
+            inner = mm.group(0)
+            tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2})', inner)
+            dm = tm if tm else re.search(r'(\d{1,2})/(\d{1,2})', inner)
+            if not dm:
+                return ""
+            stamp = f"{int(dm.group(1)):02d}/{int(dm.group(2)):02d}"
+            return mm.group(0) if stamp == today else ""
+        _n_before = len(re.findall(r'<li[^>]*>', sec2))
+        sec2 = re.sub(r'<li[^>]*>.*?</li>', _news_today, sec2, flags=re.S)
+        _n_after = len(re.findall(r'<li[^>]*>', sec2))
+        if _n_after < _n_before:
+            issues.append(f"tin không phải hôm nay x{_n_before - _n_after}")
+            fixed.append(f"xóa {_n_before - _n_after} tin cũ (chỉ giữ tin {today})")
+            sec2 = sec2.replace(' class="newsold"', '')
         h = h[:ni] + sec2 + h[nj:]
 
     # 4. Alert/tin cũ không phải hôm nay
@@ -218,10 +236,14 @@ def main():
             m2 = re.search(r'(Cập nhật lần cuối[^<]*</[^>]+>)', h)
             if m2:
                 h = h.replace(m2.group(1), m2.group(1) + "\n" + badge, 1)
-        open(_tmp2 := (CANON + ".tmp"), "w").write(h)
-        os.replace(_tmp2, CANON)
-        open(_tmp2 := (HTML + ".tmp"), "w").write(h)
-        os.replace(_tmp2, HTML)
+        # LUẬT STAMP 20/10: mọi lần ghi HTML phải stamp_version() TRƯỚC
+        # (gắn đèn báo mà không stamp làm meta board-v lệch version.json → reload-loop)
+        from quick_refresh import stamp_version
+        h, _v = stamp_version(h, REPO)
+        for _p in (CANON, HTML):
+            open(_tmp2 := (_p + ".tmp"), "w").write(h)
+            os.replace(_tmp2, _p)
+            assert "PIN-GATE-START" in open(_p, encoding="utf-8").read(), f"mất PIN gate {_p}"
         print("đèn báo trạng thái đã gắn lên bảng")
     except Exception as e:
         print(f"! gắn đèn báo: {e}", file=sys.stderr)

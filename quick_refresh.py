@@ -757,33 +757,26 @@ def prune_old_alerts(h):
 
     h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', check_alert, h, flags=re.S)
 
-    # 📰 TIN TỨC <li> — Tom lệnh 15/10 (~14:35): tin cũ tự động xóa.
-    # BUG FIX: trước đây chỉ quét <div class="alert">, bỏ sót <li> trong mục TIN LỚN
-    # -> 62 tin ứ đọng. Luật đứng: ≥2 ngày xóa, hôm qua mờ đi, hôm nay đầy đủ.
+    # 📰 TIN TỨC <li> — Tom lệnh 15/10: tin cũ tự động xóa.
+    # LUẬT MỚI (Tom lệnh 21/10): mục TIN LỚN chỉ giữ tin TRONG NGÀY — "News hot,
+    # trong ngày". Mọi <li> mà stamp không phải hôm nay đều xóa, kể cả tin
+    # KHÔNG ghi ngày (luật cũ giữ tin không ngày -> ứ đọng tồn kho vĩnh viễn;
+    # và regex '<li>' trơn bỏ sót <li class="newsold"> -> tin mờ thoát dọn).
     try:
-        from datetime import timedelta
-        today_d = now.date()
-        yday = (today_d - timedelta(days=1)).strftime("%d/%m")
-
         def check_news_li(m):
             full, inner = m.group(0), m.group(1)
-            # ưu tiên ngày trong <span class="t"> (ngày đăng tin), fallback ngày đầu trong nội dung
+            # ngày của tin = stamp <span class="t"> (ngày đăng), fallback ngày đầu trong nội dung
             tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2})', inner)
             dm = tm if tm else re.search(r'(\d{1,2})/(\d{1,2})', inner)
             if not dm:
-                return full  # không ngày -> giữ
-            d, mo = int(dm.group(1)), int(dm.group(2))
-            try:
-                item_d = datetime.date(now.year, mo, d)
-            except ValueError:
-                return full
-            delta = (today_d - item_d).days
-            if delta >= 2:
                 removed[0] += 1
-                return ''  # ≥2 ngày -> xóa
-            if delta == 1 and 'newsold' not in full:
-                return full.replace('<li>', '<li class="newsold">', 1)  # hôm qua -> mờ
-            return full
+                return ''  # không ngày -> xóa
+            d, mo = int(dm.group(1)), int(dm.group(2))
+            if f"{d:02d}/{mo:02d}" != today:
+                removed[0] += 1
+                return ''  # không phải hôm nay -> xóa
+            # tin hôm nay: gỡ class mờ newsold sót lại
+            return full.replace(' class="newsold"', '')
 
         # chỉ xử <li> trong mục tin (sec-news), không đụng list khác
         ni = h.find('id="sec-news"')
@@ -791,7 +784,7 @@ def prune_old_alerts(h):
             nj = h.find('</div>', h.find('</ul>', ni))
             if nj != -1:
                 news_sec = h[ni:nj]
-                news_sec2 = re.sub(r'<li>(.*?)</li>', check_news_li, news_sec, flags=re.S)
+                news_sec2 = re.sub(r'<li[^>]*>(.*?)</li>', check_news_li, news_sec, flags=re.S)
                 h = h[:ni] + news_sec2 + h[nj:]
     except Exception as e:
         print(f"  ! prune news li: {e}", file=sys.stderr)

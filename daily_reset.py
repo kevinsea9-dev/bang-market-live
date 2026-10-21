@@ -82,6 +82,33 @@ def main():
             r'(<h2>' + h2pat + r'.*?</h2>)\s*((?:<div class="alert[^"]*">.*?</div>\s*)+)',
             news_old, h, flags=re.S)
 
+    # 1d. Dọn <li> trong mục TIN LỚN (sec-news): CHỈ giữ tin HÔM NAY.
+    #     (Tom lệnh 21/10: News = tin hot trong ngày. news_old ở 1c chỉ xử
+    #      div.alert nên danh sách <li> của TIN LỚN trước đây không ai dọn lúc
+    #      03:37 — tin 2 ngày tuổi + tin không ngày nằm chình ình tới 06:30.)
+    def _li_stamp(txt):
+        tm = re.search(r'<span class="t">(\d{1,2})/(\d{1,2})', txt)
+        dm = tm if tm else re.search(r'(\d{1,2})/(\d{1,2})', txt)
+        if not dm:
+            return None
+        return f"{int(dm.group(1)):02d}/{int(dm.group(2)):02d}"
+
+    ni = h.find('id="sec-news"')
+    if ni != -1:
+        nj = h.find('</ul>', ni)
+        if nj != -1:
+            sec = h[ni:nj]
+            lis = list(re.finditer(r'<li[^>]*>.*?</li>', sec, flags=re.S))
+            n_del = 0
+            for m in reversed(lis):
+                if _li_stamp(m.group(0)) != today:
+                    sec = sec[:m.start()] + sec[m.end():]
+                    n_del += 1
+            if n_del:
+                actions.append(
+                    f"xóa {n_del} tin cũ khỏi TIN LỚN (chỉ giữ tin {today})")
+                h = h[:ni] + sec + h[nj:]
+
     # 2. Archive mục hunt cũ hơn 3 ngày: <h2>🎯 HUNT ... (DD/MM) ...
     def hunt_old(m):
         d, mo = int(m.group(1)), int(m.group(2))
