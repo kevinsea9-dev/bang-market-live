@@ -886,5 +886,70 @@
   ],
   "cut": 23,
   "note": "Nuclear SMR, đáy 52w $27.24, -83% vs đỉnh"
+ },
+ "SOXX": {
+  "entry": [
+   465,
+   490
+  ],
+  "cut": 455,
+  "targets": [
+   535,
+   600
+  ],
+  "book": "Sổ 1",
+  "note": "ETF chip PHLX (cân bằng hơn SMH) — gom khi về vùng MA200/low 3 tháng"
+ },
+ "GLD": {
+  "entry": [
+   360,
+   378
+  ],
+  "cut": 348,
+  "targets": [
+   415,
+   460
+  ],
+  "book": "Sổ 1",
+  "note": "ETF vàng — phòng thủ, đã rớt ~27% từ đỉnh 52w $509.70"
+ },
+ "XLK": {
+  "entry": [
+   166,
+   174
+  ],
+  "cut": 160,
+  "targets": [
+   190,
+   203
+  ],
+  "book": "Sổ 1",
+  "note": "ETF công nghệ SPDR — vùng neo MA200 + đáy 3 tháng"
+ },
+ "URA": {
+  "entry": [
+   32,
+   35
+  ],
+  "cut": 30,
+  "targets": [
+   42,
+   48
+  ],
+  "book": "Sổ 1",
+  "note": "ETF uranium/hạt nhân — discount ~44% vs đỉnh, DƯỚI MA200: bắt đáy, cắt cứng"
+ },
+ "ITA": {
+  "entry": [
+   196,
+   206
+  ],
+  "cut": 190,
+  "targets": [
+   230,
+   256
+  ],
+  "book": "Sổ 1",
+  "note": "ETF quốc phòng/hàng không — discount ~20% vs đỉnh, dưới MA200: bắt đáy, cắt cứng"
  }
 }
