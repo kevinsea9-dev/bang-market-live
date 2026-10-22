@@ -34,8 +34,8 @@
    "rev_act": "$4.38B",
    "verdict": "BEAT",
    "guidance": "Q2 FY27: doanh thu $5.0–5.2B (điểm giữa $5.1B) vs kỳ vọng ~$4.57B; EPS điều chỉnh $5.60–6.00 (giữa $5.80) vs kỳ vọng ~$4.82; biên gộp ~60.5%; tăng cổ tức +17% lên $0.175/cp (trả 17/12, chốt sổ 4/12).",
-   "reaction_pct": "ĐẢO CHIỀU SAU GIỜ: bật +1,8% lên ~$360,64 ngay sau tin, rồi bị xả mạnh trong lúc earnings call đang diễn ra — về $325,69 (−8,05% so với giá đóng cửa) lúc ~13:50 PT (MarketBeat, thanh khoản mỏng, phiên after-hours còn chạy tới 17:00 PT). ĐÃ THỦNG CẮT $340.",
-   "price_after": 325.69,
+   "reaction_pct": "HỒI MỘT PHẦN sau giờ: từ đáy $325,69 (~13:50 PT) lên $337,85 lúc ~14:30 PT (Public.com; Barron's ghi ~$338,66, thanh khoản mỏng) — vẫn còn −4,6% so với giá đóng $354,19 và VẪN DƯỚI CẮT $340. Phiên after-hours còn chạy tới 17:00 PT.",
+   "price_after": 337.85,
    "essence": "Số liệu BEAT toàn diện (EPS $4.64 vs $4.11, doanh thu $4.38B +55% YoY, biên gộp 58.1%, guidance Q2 vượt xa phố) — nhưng giá sau giờ đảo chiều bị xả mạnh về dưới cắt $340 trong lúc call đang diễn ra: thị trường đang bán cái gì đó trong phần hỏi đáp/guidance chi tiết, không phải bán con số headline.",
    "audio": "earnings-wdc-2026-10-22.mp3"
   },
@@ -154,8 +154,8 @@
    "rev_act": "$1.2358B",
    "verdict": "BEAT",
    "guidance": "NÂNG lần 3 trong năm: FY26 adj EPS $3,10–3,40 (vs $2,71 est), doanh thu $4,4–4,6B (vs $4,12B est); được thêm vào S&P 500.",
-   "reaction_pct": "−3~5% sau giờ (WSJ: −3,1% tới $211,00; Finnhub 16:38 ET: −5,63% tới $205,52 — thanh khoản mỏng); phiên thường đóng $217,77 (−8,70%)",
-   "price_after": 211.0,
+   "reaction_pct": "−5,17% sau giờ tới $206,51 (Finnhub, 15:35 PT 22/10, thanh khoản mỏng); phiên thường đóng $217,77 (−8,70%). Đáy sau giờ ~$205,5–205,8 (Finnhub/TradingKey).",
+   "price_after": 206.51,
    "essence": "Beat cả hai + nâng guidance lần 3, doanh thu kỷ lục $1,24B (+138% YoY) nhờ điện cho data center AI — nhưng phố bán tháo vì kỳ vọng đã quá cao (+121% từ đầu năm).",
    "audio": "earnings-be-2026-10-22.mp3"
   },
@@ -256,7 +256,8 @@
    "guidance": "Chi phí vận hành 2026 ở $2.55–2.58B; mở giao dịch 23/5 vào tháng 12 và Nasdaq Equity Token nửa đầu 2027; ASR mới $315–385M.",
    "reaction_pct": "+7,47% — đóng 22/10 $103,30 (nến Yahoo: $96,12→$103,30)",
    "price_after": 103.3,
-   "essence": "Beat cả hai dòng: EPS $1.04 (+18% YoY), doanh thu $1.48B (+13%). Mảng Index bùng nổ +39% (dòng tiền ròng 12 tháng kỷ lục $141B), ARR $3.37B +12%, FinTech ARR +18% — cổ phiếu vọt +7,5% giữa ngày market đỏ."
+   "essence": "Beat cả hai dòng: EPS $1.04 (+18% YoY), doanh thu $1.48B (+13%). Mảng Index bùng nổ +39% (dòng tiền ròng 12 tháng kỷ lục $141B), ARR $3.37B +12%, FinTech ARR +18% — cổ phiếu vọt +7,5% giữa ngày market đỏ.",
+   "audio": "earnings-ndaq-2026-10-22.mp3"
   },
   {
    "ticker": "AAL",
@@ -275,7 +276,8 @@
    "guidance": "Q4: lỗ điều chỉnh $0.50–1.10/cp, doanh thu +19,5–22,5%; cả năm 2026 lỗ $1.00–1.60/cp (điểm giữa −$1.30, sâu hơn kỳ vọng) vì chi phí nhiên liệu cả năm cao hơn 2025 hơn $7B.",
    "reaction_pct": "+2,94% — đóng 22/10 $12,60 (Finnhub: $12,24→$12,60)",
    "price_after": 12.6,
-   "essence": "Doanh thu kỷ lục $16.34B (+19,3%), lỗ điều chỉnh −$0.28 hẹp hơn phố lo (consensus −$0.36); premium/corporate rất mạnh (+18,5%/+28%). Điểm trừ: nhiên liệu ngốn thêm $1.9B trong quý — guidance lỗ cả năm sâu hơn kỳ vọng."
+   "essence": "Doanh thu kỷ lục $16.34B (+19,3%), lỗ điều chỉnh −$0.28 hẹp hơn phố lo (consensus −$0.36); premium/corporate rất mạnh (+18,5%/+28%). Điểm trừ: nhiên liệu ngốn thêm $1.9B trong quý — guidance lỗ cả năm sâu hơn kỳ vọng.",
+   "audio": "earnings-aal-2026-10-22.mp3"
   },
   {
    "ticker": "SPOT",
@@ -294,7 +296,8 @@
    "guidance": "Q4: doanh thu €5.2B, lợi nhuận vận hành €820M (cao hơn kỳ vọng ~€803–813M), 316M thuê bao Premium (phố ~314,7M), 818M MAU.",
    "reaction_pct": "+11,10% — đóng 22/10 $583,66, đỉnh 10 tháng (Finnhub: $525,34→$583,66); sau giờ −0,28% ~$582,01",
    "price_after": 583.66,
-   "essence": "EPS hụt (€2.48 vs €2.81 — chi phí social charges cao hơn dự báo) nhưng thị trường bỏ qua: thuê bao Premium 306M vượt cả guidance của công ty, biên gộp kỷ lục 33,0%, triển vọng lợi nhuận Q4 vượt kỳ vọng — cổ phiếu vọt +11,1% giữa ngày market đỏ."
+   "essence": "EPS hụt (€2.48 vs €2.81 — chi phí social charges cao hơn dự báo) nhưng thị trường bỏ qua: thuê bao Premium 306M vượt cả guidance của công ty, biên gộp kỷ lục 33,0%, triển vọng lợi nhuận Q4 vượt kỳ vọng — cổ phiếu vọt +11,1% giữa ngày market đỏ.",
+   "audio": "earnings-spot-2026-10-22.mp3"
   },
   {
    "ticker": "DECK",
@@ -311,9 +314,10 @@
    "rev_act": "$1.481B",
    "verdict": "MIXED",
    "guidance": "NÂNG FY27 EPS lên $7.80–7.95 (gồm ~$0.52 hoàn thuế IEEPA) nhưng HẠ triển vọng doanh thu FY27 xuống $5.700–5.725B (từ $5.86–5.91B); HOKA chỉ còn tăng high-single-digit, UGG low-single-digit.",
-   "reaction_pct": "−6,2% sau giờ (~$80,0, thanh khoản mỏng); đóng cửa chính thức $85,28 (−0,25%)",
-   "price_after": 80.0,
-   "essence": "EPS $2.31 thắng lớn nhưng $0.28 trong đó là hoàn thuế IEEPA một lần; doanh thu hụt kỳ vọng ~$30M và công ty cắt triển vọng doanh thu cả năm (HOKA chậm lại, DTC comparable −6,4%) — beat mà vẫn bị bán sau giờ."
+   "reaction_pct": "~−8% sau giờ tới $78,49 (Barron's, cuối phiên chiều 22/10 PT, thanh khoản mỏng); stockanalysis ghi $79,24 lúc 14:04 PT. Phiên thường đóng $85,28 (−0,25%).",
+   "price_after": 78.49,
+   "essence": "EPS $2.31 thắng lớn nhưng $0.28 trong đó là hoàn thuế IEEPA một lần; doanh thu hụt kỳ vọng ~$30M và công ty cắt triển vọng doanh thu cả năm (HOKA chậm lại, DTC comparable −6,4%) — beat mà vẫn bị bán sau giờ.",
+   "audio": "earnings-deck-2026-10-22.mp3"
   },
   {
    "date": "2026-10-21",
@@ -377,7 +381,7 @@
   }
  ],
  "playlist": {
-  "file": "playlist-earnings-2026-10-21.mp3",
-  "label": "🎵 PLAYLIST EARNINGS TỐI 21/10 — 7 mã (TMO · PM · TSLA · META · LRCX · TXN · IBM), ~13 phút"
+  "file": "playlist-earnings-2026-10-22.mp3",
+  "label": "🎵 PLAYLIST EARNINGS TỐI 22/10 — 4 mã (NDAQ · AAL · SPOT · DECK), ~9 phút"
  }
 }
