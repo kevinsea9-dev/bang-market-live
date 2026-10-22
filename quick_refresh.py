@@ -2234,6 +2234,38 @@ def main():
         print("ngoài giờ giao dịch — thoát im lặng")
         return 0
 
+    # NGOÀI PHIÊN CHÍNH (04:30–06:30 PT) → LITE: chỉ làm tươi Bull & Bear
+    # (đọc futures) + fear gauge + badge. TUYỆT ĐỐI không chạy scanner
+    # intraday (bounce/dòng tiền/capitulation/klaxon/shark): ngoài giờ, giá
+    # Yahoo = đóng cửa hôm trước → scanner bắn tín hiệu "tươi" GIẢ từ dữ
+    # liệu cũ (sự cố 22/10: banner REBOUND TOÀN MARKET giả giữa premarket
+    # ngày dump). Giá trên bảng giữ nguyên số đóng cửa tới khi mở phiên.
+    _hm = now_pt().hour * 60 + now_pt().minute
+    if a.mode != "close" and not (6 * 60 + 30 <= _hm < 13 * 60):
+        h = open(a.html, encoding="utf-8").read()
+        h = ensure_gate_css(h)
+        h, _nvix, _vix_num = fear_gauge(h)
+        h, _nfg = fear_greed_gauge(h, _vix_num, a.repo_dir)
+        h = bull_bear_update(h, a.repo_dir)
+        h = bump_badge(h, "premarket — Bull & Bear theo futures")
+        ok, why = validate(h)
+        if not ok:
+            print(f"VALIDATE FAIL: {why}", file=sys.stderr)
+            return 2
+        open(a.html, "w", encoding="utf-8").write(h)
+        repo_html = os.path.join(a.repo_dir, "index.html")
+        if os.path.abspath(a.html) != os.path.abspath(repo_html):
+            open(repo_html, "w", encoding="utf-8").write(h)
+        h, _ = stamp_version(h, a.repo_dir)
+        open(a.html, "w", encoding="utf-8").write(h)
+        if os.path.abspath(a.html) != os.path.abspath(repo_html):
+            open(repo_html, "w", encoding="utf-8").write(h)
+        res = git_push(a.repo_dir,
+                       f"refresh {now_pt().strftime('%d/%m %H:%M')} PT (lite premarket)")
+        print(f"lite premarket: bull&bear + fear gauge tươi | git: {res}",
+              flush=True)
+        return 0 if res in ("pushed", "nothing-to-commit") else 3
+
     load_zones(a.repo_dir)
 
     tickers = discover_tickers(open(a.html, encoding="utf-8").read())
