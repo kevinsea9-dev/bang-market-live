@@ -34,9 +34,9 @@
    "rev_act": "$4.38B",
    "verdict": "BEAT",
    "guidance": "Q2 FY27: doanh thu $5.0–5.2B (điểm giữa $5.1B) vs kỳ vọng ~$4.57B; EPS điều chỉnh $5.60–6.00 (giữa $5.80) vs kỳ vọng ~$4.82; biên gộp ~60.5%; tăng cổ tức +17% lên $0.175/cp (trả 17/12, chốt sổ 4/12).",
-   "reaction_pct": "+1,8% sau giờ (~$360,64, thanh khoản mỏng; nhúng giảm lúc đầu rồi bật lại); đóng cửa chính thức $354,19 (−6,43%)",
-   "price_after": 360.64,
-   "essence": "Beat toàn diện: EPS $4.64 vs $4.11 kỳ vọng, doanh thu $4.38B (+55% YoY), biên gộp 58.1% — nhu cầu HDD cho trung tâm dữ liệu AI chưa hề chậm lại; guidance Q2 vượt xa mặt bằng phố. Giá sau giờ quay lại trong vùng Sổ 3 $355–375.",
+   "reaction_pct": "ĐẢO CHIỀU SAU GIỜ: bật +1,8% lên ~$360,64 ngay sau tin, rồi bị xả mạnh trong lúc earnings call đang diễn ra — về $325,69 (−8,05% so với giá đóng cửa) lúc ~13:50 PT (MarketBeat, thanh khoản mỏng, phiên after-hours còn chạy tới 17:00 PT). ĐÃ THỦNG CẮT $340.",
+   "price_after": 325.69,
+   "essence": "Số liệu BEAT toàn diện (EPS $4.64 vs $4.11, doanh thu $4.38B +55% YoY, biên gộp 58.1%, guidance Q2 vượt xa phố) — nhưng giá sau giờ đảo chiều bị xả mạnh về dưới cắt $340 trong lúc call đang diễn ra: thị trường đang bán cái gì đó trong phần hỏi đáp/guidance chi tiết, không phải bán con số headline.",
    "audio": "earnings-wdc-2026-10-22.mp3"
   },
   {
@@ -56,7 +56,8 @@
    "guidance": "FY27 giữ nguyên core EPS $6,89–7,11; NÂNG outlook all-in sales growth lên 2–4% (thương vụ Thorne); cảnh báo chi phí hàng hóa ~$1,4B after-tax (tăng từ ~$1B).",
    "reaction_pct": "+5,56% — đóng 22/10 $165,59 (nến Yahoo: $156,84→$165,59)",
    "price_after": 165.59,
-   "essence": "Beat cả EPS ($2,00 vs $1,89) lẫn doanh thu; organic sales +4% (volume +2,4%), cả 5 mảng đều vượt — nhưng biên gộp lõi rớt ~150bps, gánh chi phí hàng hóa $1,4B."
+   "essence": "Beat cả EPS ($2,00 vs $1,89) lẫn doanh thu; organic sales +4% (volume +2,4%), cả 5 mảng đều vượt — nhưng biên gộp lõi rớt ~150bps, gánh chi phí hàng hóa $1,4B.",
+   "audio": "earnings-pg-2026-10-22.mp3"
   },
   {
    "ticker": "UNP",
@@ -75,7 +76,8 @@
    "guidance": "Giữ outlook tăng trưởng EPS high-single-digit 2026; nâng kế hoạch capex lên $3,5B; sáp nhập Norfolk Southern chờ phê duyệt, dự kiến đóng H2 2027.",
    "reaction_pct": "+3,55% — đóng 22/10 $298,09 (nến Yahoo: $287,87→$298,09)",
    "price_after": 298.09,
-   "essence": "Quý 3 kỷ lục: lợi nhuận ròng $2,1B, adjusted EPS $3,53 (+15%), volume +6% — nhưng diesel Q4 dự báo ~$4,85/gallon là gánh nặng margin."
+   "essence": "Quý 3 kỷ lục: lợi nhuận ròng $2,1B, adjusted EPS $3,53 (+15%), volume +6% — nhưng diesel Q4 dự báo ~$4,85/gallon là gánh nặng margin.",
+   "audio": "earnings-unp-2026-10-22.mp3"
   },
   {
    "ticker": "LMT",
@@ -94,7 +96,8 @@
    "guidance": "NÂNG guidance FY26 lần 2 liên tiếp: doanh thu $80–82B, EPS $30,35–30,75; backlog KỶ LỤC $292B (đơn PAC-3 MSE $52,5B).",
    "reaction_pct": "+6,96% — đóng 22/10 $589,91 (nến Yahoo: $551,51→$589,91)",
    "price_after": 589.91,
-   "essence": "Beat đẹp cả hai + backlog kỷ lục $292B nhờ đơn tên lửa PAC-3 khổng lồ — tín hiệu ngân sách quốc phòng Mỹ vẫn nóng giữa căng thẳng địa chính trị."
+   "essence": "Beat đẹp cả hai + backlog kỷ lục $292B nhờ đơn tên lửa PAC-3 khổng lồ — tín hiệu ngân sách quốc phòng Mỹ vẫn nóng giữa căng thẳng địa chính trị.",
+   "audio": "earnings-lmt-2026-10-22.mp3"
   },
   {
    "ticker": "BX",
@@ -113,7 +116,8 @@
    "guidance": "AUM KỶ LỤC $1,37T (+10% YoY), inflows $63,3B; cổ tức $1,12/cp (chốt quyền 2/11, trả 9/11); fee-related earnings +6%.",
    "reaction_pct": "+8,38% — đóng 22/10 $118,75 (nến Yahoo: $109,57→$118,75; premarket từng −2,2%)",
    "price_after": 118.75,
-   "essence": "Distributable EPS $1,32 vượt kỳ vọng nhưng giảm 13% YoY; exits yếu (net realizations −34%) vì thị trường chập chờn — dòng vốn vào kỷ lục cứu bức tranh, giá đảo chiều mạnh trong phiên."
+   "essence": "Distributable EPS $1,32 vượt kỳ vọng nhưng giảm 13% YoY; exits yếu (net realizations −34%) vì thị trường chập chờn — dòng vốn vào kỷ lục cứu bức tranh, giá đảo chiều mạnh trong phiên.",
+   "audio": "earnings-bx-2026-10-22.mp3"
   },
   {
    "ticker": "VLO",
@@ -132,7 +136,8 @@
    "guidance": "Biên lọc dầu vẫn thuận lợi (tồn kho thấp, năng lực dư hạn chế, nhu cầu nhiên liệu bền); tiền mặt thặng dư ưu tiên trả cổ đông (cash $9,8B, payout 52%).",
    "reaction_pct": "−2,40% — đóng 22/10 $426,28 (nến Yahoo: $436,75→$426,28; sell-the-news)",
    "price_after": 426.28,
-   "essence": "Lợi nhuận $6,8B gấp 6 lần cùng kỳ, biên lọc $10,73B — nhưng giá rớt 2,4% vì đã chạy +16% trong 20 phiên. Sổ 2 vùng $430–440, cắt <$420: giá sau báo cáo CHƯA lọt vùng."
+   "essence": "Lợi nhuận $6,8B gấp 6 lần cùng kỳ, biên lọc $10,73B — nhưng giá rớt 2,4% vì đã chạy +16% trong 20 phiên. Sổ 2 vùng $430–440, cắt <$420: giá sau báo cáo CHƯA lọt vùng.",
+   "audio": "earnings-vlo-2026-10-22.mp3"
   },
   {
    "ticker": "BE",
@@ -151,7 +156,8 @@
    "guidance": "NÂNG lần 3 trong năm: FY26 adj EPS $3,10–3,40 (vs $2,71 est), doanh thu $4,4–4,6B (vs $4,12B est); được thêm vào S&P 500.",
    "reaction_pct": "−3~5% sau giờ (WSJ: −3,1% tới $211,00; Finnhub 16:38 ET: −5,63% tới $205,52 — thanh khoản mỏng); phiên thường đóng $217,77 (−8,70%)",
    "price_after": 211.0,
-   "essence": "Beat cả hai + nâng guidance lần 3, doanh thu kỷ lục $1,24B (+138% YoY) nhờ điện cho data center AI — nhưng phố bán tháo vì kỳ vọng đã quá cao (+121% từ đầu năm)."
+   "essence": "Beat cả hai + nâng guidance lần 3, doanh thu kỷ lục $1,24B (+138% YoY) nhờ điện cho data center AI — nhưng phố bán tháo vì kỳ vọng đã quá cao (+121% từ đầu năm).",
+   "audio": "earnings-be-2026-10-22.mp3"
   },
   {
    "ticker": "NEM",
@@ -170,7 +176,144 @@
    "guidance": "On track sản lượng cả năm 5,3M oz vàng; CẢI THIỆN guidance chi phí cả năm (CAS $925, AISC $1.520/oz); cổ tức $0,26/cp; đã mua lại $1,6B từ lần gọi trước.",
    "reaction_pct": "+1,86% sau giờ tới $115,74 (MarketBeat 16:40 ET, thanh khoản mỏng); phiên thường đóng $114,11 (−2,62% vs $117,18)",
    "price_after": 115.74,
-   "essence": "Kỷ lục lợi nhuận điều chỉnh quý 3 ($2,3B) nhờ giá vàng cao; sản lượng 1,3M oz đúng track cả năm, chi phí được cải thiện."
+   "essence": "Kỷ lục lợi nhuận điều chỉnh quý 3 ($2,3B) nhờ giá vàng cao; sản lượng 1,3M oz đúng track cả năm, chi phí được cải thiện.",
+   "audio": "earnings-nem-2026-10-22.mp3"
+  },
+  {
+   "ticker": "HON",
+   "name": "Honeywell",
+   "when": "T5 22/10 BMO",
+   "eps_est": 2.17,
+   "rev_est": "$5.01B",
+   "note": "Hậu spin-off Aerospace + IPO Quantinuum (giữ 48%) — phố nhìn organic growth và biên của 3 mảng còn lại.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks + thông cáo Honeywell (BusinessWire) 22/10, giá đóng nến Yahoo 5d",
+   "eps_act": 2.27,
+   "rev_act": "$4.99B",
+   "verdict": "MIXED",
+   "guidance": "NÂNG triển vọng cả năm 2026 (organic revenue, adj EPS, FCF); segment margin kỳ vọng ở cận trên của guidance cũ.",
+   "reaction_pct": "+1,67% — đóng 22/10 $218,31 (nến Yahoo: $214,73→$218,31)",
+   "price_after": 218.31,
+   "essence": "Adj EPS $2.27 (+34% YoY) vượt kỳ vọng nhờ biên gộp mở rộng 640bps (tăng giá + năng suất + xóa chi phí stranded sau spin-off); organic sales +7%, backlog ~$19B. Điểm trừ: doanh thu báo cáo $4.99B sát dưới kỳ vọng $5.01B vì thoái vốn WWS/PSS.",
+   "audio": "earnings-hon-2026-10-22.mp3"
+  },
+  {
+   "ticker": "CMCSA",
+   "name": "Comcast",
+   "when": "T5 22/10 BMO",
+   "eps_est": 0.98,
+   "rev_est": "$29.35B",
+   "note": "Đang tách NBCUniversal + Sky thành 2 công ty — phố nhìn broadband losses và đà Peacock/wireless.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks 22/10, giá đóng nến Yahoo 5d",
+   "eps_act": 1.07,
+   "rev_act": "$29.30B",
+   "verdict": "MIXED",
+   "guidance": "Không guidance tài chính chính thức; kế hoạch tách NBCUniversal/Sky vẫn đúng tiến độ; tạm dừng buyback trong quá trình tách.",
+   "reaction_pct": "+3,44% — đóng 22/10 $22,84 (nến Yahoo: $22,08→$22,84)",
+   "price_after": 22.84,
+   "essence": "EPS $1.07 vượt hẳn kỳ vọng (+9%), FCF $4.21B mạnh; Peacock lãi quý thứ 2 liên tiếp (EBITDA $261M, 48M thuê bao), wireless +14,7%. Điểm trừ: mất 144K thuê bao broadband (tệ hơn dự báo ~131K), theme parks EBITDA −17%.",
+   "audio": "earnings-cmcsa-2026-10-22.mp3"
+  },
+  {
+   "ticker": "NSC",
+   "name": "Norfolk Southern",
+   "when": "T5 22/10 BMO",
+   "eps_est": 3.48,
+   "rev_est": "$3.46B",
+   "note": "Đường sắt đang trong thương vụ sáp nhập với Union Pacific — phố nhìn operating ratio và tiến độ phê duyệt.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks 22/10, giá đóng nến Yahoo 5d",
+   "eps_act": 3.62,
+   "rev_act": "$3.53B",
+   "verdict": "BEAT",
+   "guidance": "NÂNG dự báo chi phí vận hành 2026 lên ~$9B (nhiên liệu đội thêm ~$700M); giữ mục tiêu tiết kiệm chi phí lũy kế ≥$650M.",
+   "reaction_pct": "+3,09% — đóng 22/10 $338,23 (nến Yahoo: $328,09→$338,23)",
+   "price_after": 338.23,
+   "essence": "Doanh thu kỷ lục $3.53B (+13,6%) và adj EPS $3.62 đều vượt kỳ vọng, sản lượng +3% ở cả 3 mảng. Điểm trừ: operating ratio xấu đi (65,4% adj) vì giá nhiên liệu — công ty nâng dự báo chi phí cả năm.",
+   "audio": "earnings-nsc-2026-10-22.mp3"
+  },
+  {
+   "ticker": "NDAQ",
+   "name": "Nasdaq",
+   "when": "T5 22/10 BMO",
+   "eps_est": 1.02,
+   "rev_est": "$1.47B",
+   "note": "Sàn giao dịch + fintech — phố nhìn ARR/SaaS và mảng Index.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks 22/10, giá đóng nến Yahoo 5d",
+   "eps_act": 1.04,
+   "rev_act": "$1.48B",
+   "verdict": "BEAT",
+   "guidance": "Chi phí vận hành 2026 ở $2.55–2.58B; mở giao dịch 23/5 vào tháng 12 và Nasdaq Equity Token nửa đầu 2027; ASR mới $315–385M.",
+   "reaction_pct": "+7,47% — đóng 22/10 $103,30 (nến Yahoo: $96,12→$103,30)",
+   "price_after": 103.3,
+   "essence": "Beat cả hai dòng: EPS $1.04 (+18% YoY), doanh thu $1.48B (+13%). Mảng Index bùng nổ +39% (dòng tiền ròng 12 tháng kỷ lục $141B), ARR $3.37B +12%, FinTech ARR +18% — cổ phiếu vọt +7,5% giữa ngày market đỏ."
+  },
+  {
+   "ticker": "AAL",
+   "name": "American Airlines",
+   "when": "T5 22/10 BMO",
+   "eps_est": -0.36,
+   "rev_est": "$16.21B",
+   "note": "Hãng bay lớn nhất Mỹ — thước đo giá nhiên liệu và nhu cầu premium.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks + MarketBeat/FiscalAI 22/10 (consensus EPS −$0.36; Zacks −$0.28), giá đóng Finnhub/Yahoo",
+   "eps_act": -0.28,
+   "rev_act": "$16.34B",
+   "verdict": "BEAT",
+   "guidance": "Q4: lỗ điều chỉnh $0.50–1.10/cp, doanh thu +19,5–22,5%; cả năm 2026 lỗ $1.00–1.60/cp (điểm giữa −$1.30, sâu hơn kỳ vọng) vì chi phí nhiên liệu cả năm cao hơn 2025 hơn $7B.",
+   "reaction_pct": "+2,94% — đóng 22/10 $12,60 (Finnhub: $12,24→$12,60)",
+   "price_after": 12.6,
+   "essence": "Doanh thu kỷ lục $16.34B (+19,3%), lỗ điều chỉnh −$0.28 hẹp hơn phố lo (consensus −$0.36); premium/corporate rất mạnh (+18,5%/+28%). Điểm trừ: nhiên liệu ngốn thêm $1.9B trong quý — guidance lỗ cả năm sâu hơn kỳ vọng."
+  },
+  {
+   "ticker": "SPOT",
+   "name": "Spotify",
+   "when": "T5 22/10 BMO",
+   "eps_est": 3.1,
+   "rev_est": "$5.7B",
+   "note": "Streaming nhạc — phố nhìn tăng trưởng thuê bao Premium và biên gộp.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "Zacks (số USD) + MarketFlux 22/10, giá đóng Finnhub",
+   "eps_act": 2.85,
+   "rev_act": "$5.72B",
+   "verdict": "MISS",
+   "guidance": "Q4: doanh thu €5.2B, lợi nhuận vận hành €820M (cao hơn kỳ vọng ~€803–813M), 316M thuê bao Premium (phố ~314,7M), 818M MAU.",
+   "reaction_pct": "+11,10% — đóng 22/10 $583,66, đỉnh 10 tháng (Finnhub: $525,34→$583,66); sau giờ −0,28% ~$582,01",
+   "price_after": 583.66,
+   "essence": "EPS hụt (€2.48 vs €2.81 — chi phí social charges cao hơn dự báo) nhưng thị trường bỏ qua: thuê bao Premium 306M vượt cả guidance của công ty, biên gộp kỷ lục 33,0%, triển vọng lợi nhuận Q4 vượt kỳ vọng — cổ phiếu vọt +11,1% giữa ngày market đỏ."
+  },
+  {
+   "ticker": "DECK",
+   "name": "Deckers Brands",
+   "when": "T5 22/10 AMC",
+   "eps_est": 1.79,
+   "rev_est": "$1.51B",
+   "note": "HOKA + UGG — phố nhìn tốc độ tăng trưởng HOKA và kênh DTC.",
+   "date": "2026-10-22",
+   "status": "DONE",
+   "implied": null,
+   "src_note": "BusinessWire + Seeking Alpha/Reuters (IBES) 22/10, phản ứng sau giờ AskTraders, giá đóng Yahoo",
+   "eps_act": 2.31,
+   "rev_act": "$1.481B",
+   "verdict": "MIXED",
+   "guidance": "NÂNG FY27 EPS lên $7.80–7.95 (gồm ~$0.52 hoàn thuế IEEPA) nhưng HẠ triển vọng doanh thu FY27 xuống $5.700–5.725B (từ $5.86–5.91B); HOKA chỉ còn tăng high-single-digit, UGG low-single-digit.",
+   "reaction_pct": "−6,2% sau giờ (~$80,0, thanh khoản mỏng); đóng cửa chính thức $85,28 (−0,25%)",
+   "price_after": 80.0,
+   "essence": "EPS $2.31 thắng lớn nhưng $0.28 trong đó là hoàn thuế IEEPA một lần; doanh thu hụt kỳ vọng ~$30M và công ty cắt triển vọng doanh thu cả năm (HOKA chậm lại, DTC comparable −6,4%) — beat mà vẫn bị bán sau giờ."
   },
   {
    "date": "2026-10-21",
