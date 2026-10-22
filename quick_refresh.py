@@ -78,7 +78,10 @@ def in_window():
     if n.weekday() >= 5:  # T7, CN
         return False
     hm = n.hour * 60 + n.minute
-    return 6 * 60 + 30 <= hm <= 13 * 60
+    # 04:30–13:00 PT (mở rộng premarket 22/10 — trước đây 06:30 khiến bảng,
+    # đặc biệt dải Bull & Bear, đứng hình suốt premarket; ngoài giờ chính
+    # Bull & Bear đọc futures nên số vẫn tươi và đúng nguồn)
+    return 4 * 60 + 30 <= hm <= 13 * 60
 
 
 def fetch_one(ticker):
@@ -2013,23 +2016,76 @@ def refresh_sectors(h, sec_prices):
     return h, f"{n} card, mạnh nhất {best} {fmt_pct(best_pc)}"
 
 
+FUTURES_IDX = ["ES=F", "NQ=F", "YM=F"]
+
+
+def fetch_futures_pct():
+    """% thay đổi futures chỉ số (ES/NQ/YM) so với đóng cửa phiên trước.
+    Đóng cửa trước lấy từ nến NGÀY đã hoàn tất gần nhất: nếu nến cuối là phiên
+    hôm nay (giờ ET) thì prev = close[-2], không thì close[-1]. TUYỆT ĐỐI
+    không dùng meta chartPreviousClose — futures bị stale lùi 1 ngày
+    (verify 22/10: meta ghi 7734.5 = đóng 19/10 trong khi đóng thật 21/10
+    là 7800.25 → % sai lệch hẳn). Giá hiện tại = meta regularMarketPrice
+    (futures chạy gần 24h nên luôn tươi)."""
+    out = {}
+    et = ZoneInfo("America/New_York")
+    today_et = datetime.now(et).date()
+    for t in FUTURES_IDX:
+        try:
+            url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
+                   + t.replace("=", "%3D") + "?interval=1d&range=5d")
+            req = Request(url, headers=UA)
+            with urlopen(req, timeout=10) as r:
+                d = json.load(r)["chart"]["result"][0]
+            closes = [c for c in d["indicators"]["quote"][0]["close"] if c]
+            price = float(d["meta"]["regularMarketPrice"])
+            last_day = datetime.fromtimestamp(d["timestamp"][-1], et).date()
+            if last_day == today_et and len(closes) >= 2:
+                prev = closes[-2]
+            else:
+                prev = closes[-1]
+            out[t] = round((price - prev) / prev * 100, 2)
+        except Exception as e:
+            print(f"  ! futures {t}: {e}", file=sys.stderr)
+    return out
+
+
 def bull_bear_update(h, repo_dir):
     """⚔️ BULL vs BEAR — Tom hỏi 21/10: "BULL & BEAR, phe nào thắng".
-    Điểm phe = (2*SPY% + QQQ% + DIA%)/4 theo giá intraday cùng ngày.
+    Điểm phe = (2*S&P% + Nasdaq% + Dow%)/4.
     >= +0.25: BULL thắng; <= -0.25: BEAR thắng; còn lại: ngang nhau.
+    TRONG PHIÊN (06:30–13:00 PT): SPY/QQQ/DIA intraday.
+    NGOÀI PHIÊN: futures ES/NQ/YM (chạy gần 24h) — sửa lỗi 22/10 Tom bắt:
+    dải cũ dùng giá đóng cửa phiên trước nên premarket vẫn hiện verdict cũ
+    trong khi futures đã rơi mạnh. Nhãn ghi rõ nguồn số.
     Dải verdict nằm ngay dưới badge cập nhật, tự làm mới mỗi lượt refresh."""
-    try:
-        with ThreadPoolExecutor(max_workers=3) as ex:
-            mkt = dict(ex.map(fetch_one, MARKET_ETFS))
-    except Exception:
-        return h
-    mkt = {k: v for k, v in mkt.items() if v}
-    if "SPY" not in mkt:
-        return h
-    spy = mkt["SPY"][1]
-    qqq = mkt.get("QQQ", (0, 0))[1]
-    dia = mkt.get("DIA", (0, 0))[1]
-    score = (2 * spy + qqq + dia) / 4
+    n = now_pt()
+    in_session = (n.weekday() < 5 and (n.hour, n.minute) >= (6, 30)
+                  and n.hour < 13)
+    if in_session:
+        try:
+            with ThreadPoolExecutor(max_workers=3) as ex:
+                mkt = dict(ex.map(fetch_one, MARKET_ETFS))
+        except Exception:
+            return h
+        mkt = {k: v for k, v in mkt.items() if v}
+        if "SPY" not in mkt:
+            return h
+        a = mkt["SPY"][1]
+        b = mkt.get("QQQ", (0, 0))[1]
+        c = mkt.get("DIA", (0, 0))[1]
+        labels = ("S&P 500", "Nasdaq", "Dow")
+        src = "giá intraday"
+    else:
+        f = fetch_futures_pct()
+        if "ES=F" not in f:
+            return h
+        a = f["ES=F"]
+        b = f.get("NQ=F", 0)
+        c = f.get("YM=F", 0)
+        labels = ("S&P fut", "Nasdaq fut", "Dow fut")
+        src = "theo futures (ngoài giờ chính)"
+    score = (2 * a + b + c) / 4
     if score >= 0.25:
         verdict, emo, bg = "BULL THẮNG", "🐂", "rgba(22,163,74,.14)"
     elif score <= -0.25:
@@ -2039,8 +2095,8 @@ def bull_bear_update(h, repo_dir):
     strip = (f'<div class="bullbear" id="bullBear" style="border:2px solid #94a3b8;border-radius:12px;'
              f'padding:8px 12px;margin:8px 0;background:{bg};font-size:14px">'
              f'<b>⚔️ BULL vs BEAR — {emo} {verdict}</b> '
-             f'<span style="color:#9fb3d9">S&P 500 {fmt_pct(spy)} • Nasdaq {fmt_pct(qqq)} • Dow {fmt_pct(dia)} • '
-             f'điểm phe {score:+.2f} • {now_pt().strftime("%H:%M")} PT • giá intraday</span></div>\n')
+             f'<span style="color:#9fb3d9">{labels[0]} {fmt_pct(a)} • {labels[1]} {fmt_pct(b)} • {labels[2]} {fmt_pct(c)} • '
+             f'điểm phe {score:+.2f} • {now_pt().strftime("%H:%M")} PT • {src}</span></div>\n')
     h = re.sub(r'<div class="bullbear" id="bullBear".*?</div>\n', "", h, flags=re.S)
     h = re.sub(r'(<span class="updated">.*?</span>)', r"\1\n" + strip, h, count=1, flags=re.S)
     return h
