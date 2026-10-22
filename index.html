@@ -222,7 +222,7 @@ li{margin-bottom:6px}
 .gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
 .alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
 </style>
-<meta name="board-v" content="20261022173238">
+<meta name="board-v" content="20261022174121">
 </head>
 <body>
 
@@ -243,8 +243,8 @@ li{margin-bottom:6px}
 <button onclick="this.textContent='⏳ Đang tải bản mới...';setTimeout(function(){location.href=location.pathname+'?t='+Date.now()},300)" style="font-size:14px;font-weight:700;padding:8px 18px;border-radius:10px;border:1px solid #4da6ff;background:rgba(77,166,255,.15);color:#fff;margin:6px 0;cursor:pointer">🔄 TẢI BẢN MỚI NHẤT</button>
   <div class="sub">Iggy × Tom — tin tức, vùng giá, tín hiệu vùng. Mở lúc nào cũng được, lúc nào cũng có bản mới nhất.</div>
   <div style="margin-top:8px">
-    <span class="updated">🟢 Cập nhật lần cuối: 22/10/2026 ~10:32 PT (tín hiệu vùng)</span>
-<div class="bullbear" id="bullBear" style="border:2px solid #94a3b8;border-radius:12px;padding:8px 12px;margin:8px 0;background:rgba(220,38,38,.14);font-size:14px"><b>⚔️ BULL vs BEAR — 🐻 BEAR THẮNG</b> <span style="color:#9fb3d9">S&P 500 −1.2% • Nasdaq −2.6% • Dow −0.1% • điểm phe -1.29 • 10:32 PT • giá intraday</span></div>
+    <span class="updated">🟢 Cập nhật lần cuối: 22/10/2026 ~10:37 PT (giữa phiên)</span>
+<div class="bullbear" id="bullBear" style="border:2px solid #94a3b8;border-radius:12px;padding:8px 12px;margin:8px 0;background:rgba(220,38,38,.14);font-size:14px"><b>⚔️ BULL vs BEAR — 🐻 BEAR THẮNG</b> <span style="color:#9fb3d9">S&P 500 −1.2% (~7,660) • Nasdaq −2.2% (~26,120) • Dow −0.2% (phẳng, ~52,740) • tech −3.2%, chip SMH −5.0% (lows 3 tháng), staples +2.5% đỡ • VIX 18.76 (+12.5%) • 10:37 PT • giá intraday</span></div>
 
 <div class="note vix-green" id="vix-gauge">😐 <b>VIX 19.13</b> — bình tĩnh <span class="t">kiểm tra 10:32 PT • Buffett: tham lam khi người khác sợ hãi</span></div>
 <div class="note gate-open" id="fg-gauge">😱 <b>Fear &amp; Greed 19.5</b> — EXTREME FEAR <span class="t">Đám đông hoảng loạn — lúc cá mập đi săn • kiểm tra 10:32 PT</span><br>🦈 <b>CỔNG SĂN MỞ</b> — cá mập đi bắt đáy <span class="t">Buffett: tham lam khi người khác sợ hãi</span></div>
@@ -926,7 +926,7 @@ li{margin-bottom:6px}
 
 
 
-<div id="sysCheck" style="text-align:center;font-size:12px;color:#4ade80;padding:4px">🟢 Hệ thống tự kiểm tra: bảng sạch (22/10 10:06)</div>
+<div id="sysCheck" style="text-align:center;font-size:12px;color:#4ade80;padding:4px">🟢 Hệ thống tự kiểm tra: bảng sạch (22/10 10:35)</div>
 
 
 
@@ -1413,8 +1413,8 @@ function checkPin(){
 <!-- MID-22/10-0837 -->
 <div class="alert"><b>⚠️ SPCX $150.27 (−5.67%, đóng 21/10 $159.31)</b><br>UNLOCK ~1.3 TỶ CP HÔM NAY — đợt lớn nhất từ IPO (pace vol 3.9x). Mốc đọc tape đã chốt: <b>$148</b> — đang trên. Vùng Sổ 3 $125–130 / Chốt $180→$220 / Cắt &lt;$118 — giá đang trên vùng, CHỈ QUAN SÁT, đứng ngoài theo kế hoạch gom.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
 <div class="alert"><b>🔴 MRVL $223.80 (−8.56%, đóng 21/10 $244.76)</b><br>THỦNG cắt cứng <b>$240</b> sâu thêm (đã báo 06:58) — QUYẾT ĐỊNH SỐ 1, pace 2.2x. Vùng Sổ 2 $260–270 / Chốt $310→$338. (Tom đang giữ 2 cp @ ~$266–267.) Theo kế hoạch cắt: đóng dưới $240 + volume xác nhận.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
-<div class="alert"><b>🟢 NFLX $66.57 (+2.34%, đóng 21/10 $65.04)</b><br>GIỮ ĐƯỢC reclaim vùng Sổ 3 <b>$65–70</b> — xanh trong ngày đỏ, pace 1.66x. Cách cắt cứng <b>$63</b> ~$3.6. Chốt $80→$94.70. Thủng $63 = cắt theo Sổ 3.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
-<div class="alert"><b>🔴 META $657.34 (−5.76%, đóng 21/10 $697.52)</b><br>DƯỚI vùng Sổ 2 <b>$670–700</b> (đã báo 06:58) — earnings BEAT nhưng capex 2026 nâng $135–145B + phát hành Class C. Cách cắt <b>$640</b> ~$17, pace 3.13x. Mất $640 + volume = yếu hẳn.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
+<div class="alert"><b>🟢 NFLX $67.31 (+3.48%, đóng 21/10 $65.04)</b><br>XANH NGƯỢC DÒNG — giữ vững reclaim vùng Sổ 3 <b>$65–70</b> trong ngày đỏ chip. Cách cắt cứng <b>$63</b> ~$4.3. Chốt $80→$94.70. Thủng $63 = cắt theo Sổ 3.<br><span class="t">22/10 • ~10:40 PT • Finnhub</span></div>
+<div class="alert"><b>🔴 META $646.90 (−7.26%, đóng 21/10 $697.52)</b><br>CHÌM SÂU dưới vùng Sổ 2 <b>$670–700</b> — earnings BEAT nhưng capex 2026 nâng $135–145B + phát hành Class C. Chỉ còn cách cắt <b>$640</b> ~$7. Mất $640 + volume = yếu hẳn.<br><span class="t">22/10 • ~10:40 PT • Finnhub</span></div>
 <div class="alert"><b>🔴 CRDO $164.84 (−9.57%, đóng 21/10 $182.28)</b><br>THỦNG cắt <b>$178</b> (Sổ 2, đã báo 06:58) — bán sâu thêm theo đà xả chip. Vùng Vào $185–195 / Chốt $220→$240. Hồi trên $178 trong phiên thì giữ, đóng dưới = theo kế hoạch cắt.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
 <div class="alert"><b>🔴 COHR $207.28 (−12.74%, đóng 21/10 $237.53)</b><br>THỦNG SÂU cắt <b>$228</b> (Sổ 3, đã báo 06:58) — bán tiếp, pace 2.33x. Vùng Vào $240–255 / Chốt $294→$303. Đang rơi mạnh — quan sát, chờ giá ổn định lại.<br><span class="t">22/10 • ~08:40 PT • Yahoo chart API</span></div>
 
@@ -1422,7 +1422,7 @@ function checkPin(){
 
 <div class="sec">
   <h2>🎰 KÈO OPTIONS TRONG NGÀY — Sổ 3, tiền mất được</h2>
-<div class="note">Quét sớm <b>04:37 PT (21/10): chưa có kèo đạt chuẩn radar — đứng ngoài.</b> (STOK có vol 2.5x trước earnings 3/11 nhưng thiếu dòng options cụ thể + strike — chưa đủ chuẩn.) Soát lại <b>06:42 PT: không có kèo mới nào được verify thêm — đứng ngoài.</b> Soát lại <b>08:40 PT: vẫn 0 kèo đạt chuẩn</b> (TSLA/META earnings tối nay — ≤1 ngày tới, không đạt chuẩn radar 3–14 ngày) — <b>đứng ngoài.</b> Soát lại <b>10:47 PT: vẫn 0 kèo đạt chuẩn</b> Soát lại <b>12:41 PT: vẫn 0 kèo đạt chuẩn</b> — đứng ngoài (TSLA/META earnings ≤1 ngày, không đạt chuẩn radar 3–14 ngày; không flow options bất thường nào được verify cho mã watchlist). — không có flow bất thường nào được verify cho mã watchlist (SOXX puts +90% là phòng hộ ngành chip, không phải kèo cụ thể) — <b>đứng ngoài.</b> Soát lại <b>14:37 PT: vẫn 0 kèo đạt chuẩn</b> — TSLA/META đã qua earnings (không còn trong cửa sổ 3–14 ngày), không flow options bất thường nào được verify cho mã watchlist — <b>đứng ngoài.</b> Soát lại <b>08:40 PT (22/10): vẫn 0 kèo đạt chuẩn</b> — TSLA/META/LRCX đã qua earnings, WDC báo tối nay (ngoài cửa sổ 3–14 ngày), không flow options bất thường nào verify được trong phiên sáng — <b>đứng ngoài.</b></div>
+<div class="note">Quét sớm <b>04:37 PT (21/10): chưa có kèo đạt chuẩn radar — đứng ngoài.</b> (STOK có vol 2.5x trước earnings 3/11 nhưng thiếu dòng options cụ thể + strike — chưa đủ chuẩn.) Soát lại <b>06:42 PT: không có kèo mới nào được verify thêm — đứng ngoài.</b> Soát lại <b>08:40 PT: vẫn 0 kèo đạt chuẩn</b> (TSLA/META earnings tối nay — ≤1 ngày tới, không đạt chuẩn radar 3–14 ngày) — <b>đứng ngoài.</b> Soát lại <b>10:47 PT: vẫn 0 kèo đạt chuẩn</b> Soát lại <b>12:41 PT: vẫn 0 kèo đạt chuẩn</b> — đứng ngoài (TSLA/META earnings ≤1 ngày, không đạt chuẩn radar 3–14 ngày; không flow options bất thường nào được verify cho mã watchlist). — không có flow bất thường nào được verify cho mã watchlist (SOXX puts +90% là phòng hộ ngành chip, không phải kèo cụ thể) — <b>đứng ngoài.</b> Soát lại <b>14:37 PT: vẫn 0 kèo đạt chuẩn</b> — TSLA/META đã qua earnings (không còn trong cửa sổ 3–14 ngày), không flow options bất thường nào được verify cho mã watchlist — <b>đứng ngoài.</b> Soát lại <b>08:40 PT (22/10): vẫn 0 kèo đạt chuẩn</b> — TSLA/META/LRCX đã qua earnings, WDC báo tối nay (ngoài cửa sổ 3–14 ngày), không flow options bất thường nào verify được trong phiên sáng — <b>đứng ngoài.</b> Soát lại <b>10:37 PT (22/10): vẫn 0 kèo đạt chuẩn</b> — TSLA/META/LRCX đã qua earnings, WDC/INTC báo tối nay (ngoài cửa sổ 3–14 ngày), không flow options bất thường nào verify được giữa phiên — <b>đứng ngoài.</b></div>
 
 
 
@@ -1553,7 +1553,7 @@ function checkPin(){
 <div class="note" style="margin-bottom:8px">7 mã Tom đang ngắm — <b>chưa có vùng duyệt</b>, chỉ theo dõi, chưa lên mâm kiếm tiền.</div>
   <table>
     <tr><th>Mã</th><th>Giá 22/10</th><th>Ghi chú</th><th>Trạng thái</th></tr>
-    <tr><td><b>META</b></td><td>$647.00 <span class="down">−7.2%</span></td><td><span class="zone">Big tech — đang bị bán theo sóng AI, chưa vẽ vùng</span></td><td><span class="badge b-near">🟡 DƯỚI VÙNG</span></td></tr>
+    <tr><td><b>META</b></td><td>$646.90 <span class="down">−7.3%</span></td><td><span class="zone">Sổ 2: Vào $670–700 • Chốt $760→$800 • <span class="cut">Cắt dưới $640</span> — beat nhưng capex AI + phát hành Class C; chìm sâu dưới vùng, còn ~$7 tới cắt (lúc 08:40 $657.34)</span></td><td><span class="badge b-near">🟡 GẦN VÙNG (sát cắt)</span></td></tr>
     <tr><td><b>MSFT</b></td><td>$523.91 <span class="down">−1.7%</span></td><td><span class="zone">Big tech — chưa vẽ vùng</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
     <tr><td><b>QCOM</b></td><td>$173.72 <span class="down">−2.4%</span></td><td><span class="zone">Chip — chưa vẽ vùng</span></td><td><span class="badge b-in">🟢 TRONG VÙNG</span></td></tr>
     
@@ -1565,6 +1565,12 @@ function checkPin(){
 
 <div class="sec" id="sec-swing">
   <h2>🚨 TÍN HIỆU VÙNG — mới nhất lên đầu</h2>
+  <div class="alert"><b>🔴 META — chìm sâu dưới vùng Sổ 2, SÁT CẮT</b> — $646.90 (−7.26%, đóng 21/10 $697.52) lúc ~10:40 PT. Chỉ còn <b>~$7 tới cắt $640</b> (lúc 08:40 còn ~$17, lúc đó $657.34). Beat nhưng capex AI 2026 nâng $135–145B + phát hành Class C (2-cho-1) → lo chi tiêu AI, kéo cả index. Mất $640 + volume = theo kế hoạch cắt.<br><span class="t">Giữa phiên 22/10 • Finnhub/fool.com</span></div>
+
+  <div class="alert"><b>🟢 NFLX — XANH NGƯỢC DÒNG, giữ vững reclaim vùng Sổ 3</b> — $67.31 (+3.48%, đóng 21/10 $65.04) lúc ~10:40 PT. TRONG vùng <b>$65–70</b>, cách cắt $63 ~$4.3 — hiếm hoi xanh trong ngày đỏ chip. Chốt $80→$94.70.<br><span class="t">Giữa phiên 22/10 • Finnhub</span></div>
+
+  <div class="alert"><b>⏰ GIỜ G TỐI NAY: WDC + INTC báo cáo AMC</b> — WDC $353.36 (−6.6%) rớt dưới vùng Sổ 3 ($355–375), sát mép dưới; INTC $86.28 (−7.2%) trong vùng Sổ 3 ($85–92, sát mép dưới). Cả 2 đều có 🎧 audio + kết quả lên 💎 EARNINGS EPS tối nay. Không đụng trước báo cáo.<br><span class="t">Giữa phiên 22/10 • kế hoạch phiên</span></div>
+
   <div class="alert"><b>🚨 VST — THỦNG CẮT Sổ 3</b> — $139.88 (−10.4%) lúc 10:32 PT.<br><span class="t">Tín hiệu vùng tự động • 22/10 • giá intraday</span></div>
 
   <div class="alert"><b>🚨 VLO — rớt khỏi vùng Sổ 2</b> — $420.32 (−3.8%) lúc 10:21 PT. 🎣 Mồi: earnings 22/10 BMO.<br><span class="t">Tín hiệu vùng tự động • 22/10 • giá intraday</span></div>
@@ -1837,6 +1843,10 @@ function checkPin(){
 
 
 </ul>
+<div class="alert"><b>📉 GIỮA PHIÊN: Nasdaq ~−2.2% (~26,120), S&amp;P 500 ~−1.2% (~7,660), Dow phẳng ~−0.2%</b> — tech −3.2%, chip <b>SMH −5.0%</b> (lows 3 tháng, SOXX −5.4%); <b>SOXL −16%</b> (lows 6 tháng); <b>CoreWeave bị downgrade, dưới $60</b> (lows 17 tháng). Nguyên nhân: META capex AI + phát hành cổ phiếu, LRCX guide mềm, lo nhu cầu/credit AI. Phòng thủ lên ngôi: XLP +2.5%, XLV +1.5%, utilities +1.2%. VIX 18.76 (+12.5%), 10Y 5.01%, vàng $4,054 (−2.1%).<br><span class="t">22/10 • giữa phiên • fool.com • curveaheadmarketstrategies.com • stockmarketwatch.com</span></div>
+<div class="alert"><b>🔴 META $646.90 (−7.26%) — chìm sâu, sát cắt $640</b> — beat (doanh thu $64.6B +26% YoY) nhưng thị trường chỉ nhìn capex AI 2026 <b>nâng lên $135–145B</b> + phát hành Class C (chia 2-cho-1). Kéo cả index đi xuống, cách cắt cứng <b>$640</b> chỉ ~$7.<br><span class="t">22/10 • giữa phiên • Finnhub/reuters.com</span></div>
+<div class="alert"><b>⏰ GIỜ G TỐI NAY: WDC + INTC báo cáo sau đóng cửa</b> — WDC $353.36 (−6.6%) rớt dưới vùng Sổ 3 ($355–375); INTC ~$86.3 (−7.2%) trong vùng Sổ 3 ($85–92, sát mép dưới), báo cáo <b>4:01 PM ET</b> — quyết định tâm lý cả nhóm chip. Kết quả + 🎧 audio tiếng Việt lên 💎 EARNINGS EPS tối nay.<br><span class="t">22/10 • giữa phiên • stockmarketwatch.com</span></div>
+<div class="alert"><b>📊 LEI tháng 9 KHÔNG ĐỔI</b> (Conference Board) — kinh tế không nóng thêm, đi cùng jobless claims 194K (thấp nhất ~57 năm). Fed blackout trước họp 28/10 — thị trường tập trung vào earnings.<br><span class="t">22/10 • giữa phiên • curveaheadmarketstrategies.com</span></div>
 <div class="alert"><b>📊 Jobless claims 194K</b> (est 200K, trước 199K) — THẤP NHẤT ~57 năm, thấp nhất từ 1969. Lao động vẫn nóng → Fed khó cắt.<br><span class="t">22/10 • Reuters • ra 8:30 ET</span></div>
 
 <div class="alert"><b>TSLA −1.0% ($382.66, hồi từ −5% premarket)</b> — beat, FCF $1.53B, giao 486,532 xe, margin auto ex-credit 18.1%; nhưng CẮT capex 2026 từ &gt;$25B → ~$20B. Morningstar nâng fair value $450→$475. Bloomberg: Tesla–SpaceX đẩy deal sáp nhập trong <b>1H 2027</b>.<br><span class="t">22/10 • Finnhub/Bloomberg</span></div>
@@ -1853,7 +1863,7 @@ function checkPin(){
   <div class="cal"><div class="d">Thứ 2 · 19/10 (hôm qua)</div><div>China Q3 GDP +4.5% (beat 4.4%) · NAHB index <b>29</b> (thấp nhất từ 2012) · chốt phiên: S&amp;P +0.41%, Nasdaq +1.11%, Dow −0.07% · JPMorgan nâng INTC, Bernstein nâng DDOG, MS Top Pick AMZN</div></div>
   <div class="cal"><div class="d">Thứ 3 · 20/10 (hôm qua)</div><div>🔵 <b>NVIDIA GTC Berlin khai mạc</b> (keynote Huang) · housing starts/permits <b>8:30 ET</b> (est 1.39M) · pending home sales 10:00 ET · ADP employment weekly · Atlanta Fed GDPNow · earnings: <b>NFLX (AMC)</b> · SPCX (AMC) · BMO: NOC · GE · RTX · 3M · GM (đã beat, PM −5.2%) · UAL (MIXED: doanh thu kỷ lục $17.9B nhưng EPS hụt, AH giảm) · HAS · HAL (đã beat, PM +5.7%) · Nokia · Fed blackout (họp 27–28/10) · <b>AMC đã báo:</b> NFLX ➖ (AH −5~−7% về ~$64) · SPCX ✅ (AH +2.1%) · ISRG ➖ (AH −6~−11%)</div></div>
   <div class="cal"><div class="d">Hôm nay · Thứ 4 21/10</div><div>📊 Macro (ET): MBA mortgage apps 7:00 · Atlanta Fed inflation expectations 10:00 · <b>EIA 10:30</b> · đấu giá trái phiếu 20Y $13B 1:00 PM · Lagarde ~12:00 · UK CPI <b>+3.5%</b> đã ra (nóng hơn kỳ vọng 3.4%) · ✅ <b>EARNINGS AMC ĐÃ RA:</b> TSLA ✅ (AH +1.2%) · META ✅ (AH +~2%) · TXN ✅ · IBM ✅ (AH +~4%) · LRCX ➖ (AH −5%+) — xem 💎 · Fed blackout (FOMC 27–28/10, 86% cược giữ nguyên)</div></div>
-  <div class="cal"><div class="d">Thứ 5 · 22/10</div><div>🔥 <b>SPCX unlock ~1.3B cp</b> (đợt lớn nhất — sóng cung mới, đứng ngoài) · jobless claims 8:30 ET <b>194K</b> (est 200K — thấp nhất ~57 năm) · Leading Indicators 10:00 ET · KC Fed mfg 11:00 ET · earnings: <b>WDC AMC 👁️</b> (Sổ 3 — rớt dưới vùng $355–375, $351.20 −7.2% lúc 08:37 PT — đứng ngoài trước giờ G) + P&amp;G · HON · LMT · AAL · Comcast · BE · Nokia · Japan CPI (đêm)</div></div>
+  <div class="cal"><div class="d">Thứ 5 · 22/10</div><div>🔥 <b>SPCX unlock ~1.3B cp</b> (đợt lớn nhất — sóng cung mới, đứng ngoài) · jobless claims 8:30 ET <b>194K</b> (est 200K — thấp nhất ~57 năm) · Leading Indicators 10:00 ET · KC Fed mfg 11:00 ET · earnings: <b>WDC AMC 👁️</b> (Sổ 3 — rớt dưới vùng $355–375, $353.36 −6.6% lúc ~10:40 PT — đứng ngoài trước giờ G) · <b>INTC AMC (4:01 PM ET)</b> (Sổ 3 — $86.28 −7.2%, trong vùng $85–92 sát mép dưới) + P&amp;G · HON · LMT · AAL · Comcast · BE · Nokia · Japan CPI (đêm) · <b>LEI tháng 9 không đổi</b> ✅</div></div>
   <div class="cal"><div class="d">Thứ 6 · 23/10</div><div><b>S&amp;P Global PMI flash (Oct, est 57.4 vs 58.4)</b> + Michigan sentiment final + AXP earnings — test lộ trình hike cuối năm</div></div>
   <div class="cal"><div class="d">T2–T4 · 27–28/10</div><div><b>FOMC</b> — blackout 17–29/10, không Fed speaker nào phát biểu trước quyết định</div></div>
   <div class="cal"><div class="d">Thứ 5 · 29/10</div><div>ECB họp (kỳ vọng hike sau lạm phát Eurozone 3.8% tháng 9)</div></div>
@@ -1862,7 +1872,7 @@ function checkPin(){
 
 <div class="footer">
   ⚠️ Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.<br>
-  <span class="note">Dữ liệu cùng ngày 21/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút (luôn lấy bản mới nhất, không giữ cache cũ); nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm). Bản mới mất ~10–25 phút để hiện trên web sau khi đẩy — nếu badge "Cập nhật lần cuối" cũ hơn, cứ để trang tự tải lại.</span>
+  <span class="note">Dữ liệu cùng ngày 22/10/2026 từ các bản quét đã verify. Board tự tải lại mỗi 5 phút (luôn lấy bản mới nhất, không giữ cache cũ); nội dung mới được nạp 10 lần mỗi ngày (7 lượt phiên Mỹ + 3 trạm Cú Đêm). Bản mới mất ~10–25 phút để hiện trên web sau khi đẩy — nếu badge "Cập nhật lần cuối" cũ hơn, cứ để trang tự tải lại.</span>
 </div>
 
 <a href="#top" class="totop" id="toTopBtn" title="Về đầu trang">⬆️</a>
