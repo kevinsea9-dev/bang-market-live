@@ -1506,7 +1506,7 @@ SHARKFOCUS_WRAP = ('<div class="sharkfocus" style="border:3px solid #d4af37;'
                    'padding:10px 12px;margin:10px 0;overflow:hidden">')
 
 
-def shark_focus_update(h, prices):
+def shark_focus_update(h, prices, pm=False):
     """👑 FOCUS CÁ MẬP GOM KHỦNG — gộp TRONG mục 🦈 CÁ MẬP GOM HÀNG (sec-urgent),
     ghim ngay dưới tiêu đề mục, TRONG KHUNG VÀNG. Tom lệnh 20/10 ~10:13 (gộp,
     bỏ section riêng chống trùng) + ~10:31 (chữ phải nằm trong khung vàng —
@@ -1561,7 +1561,8 @@ def shark_focus_update(h, prices):
             f'<span style="opacity:.78;font-size:.92em">🧾 {ev}</span></div>')
     inner = (f'<div style="font-weight:700;font-size:1.06em">👑 FOCUS — CÁ MẬP ĐANG GOM KHỦNG (âm thầm trong hoảng loạn)</div>'
              f'<div class="note">Xếp theo độ khủng của bằng chứng dòng tiền lớn • giá + trạng thái vùng sống mỗi 5 phút • '
-             f'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • cập nhật {ts} PT</div>'
+             f'tín hiệu canh riêng 09:37 + 11:37 PT • cổng săn chỉ là mùa, không phải điểm vào lệnh • cập nhật {ts} PT'
+             + (' • giá premarket (thanh khoản mỏng)' if pm else '') + '</div>'
              + "".join(rows))
     # 1) Dọn section riêng cũ (sec-sharkfocus) + nav link của nó — đã gộp, chống trùng.
     if 'id="sec-sharkfocus"' in h:
@@ -2050,6 +2051,51 @@ def fetch_futures_pct():
     return out
 
 
+def fetch_pm_prices(tickers):
+    """Giá premarket-aware: giá = nến 1m prepost gần nhất (fallback
+    regularMarketPrice), % so với đóng cửa phiên trước lấy từ nến NGÀY đã
+    hoàn tất (close[-2] nếu nến cuối là hôm nay ET) — không dùng meta
+    chartPreviousClose (stale). Trả {ticker: (giá, %)} giống fetch_one.
+    Dùng cho các khối 'sống' ngoài giờ phiên (FOCUS cá mập) — sửa lỗi
+    22/10: ngoài giờ, fetch_one trả đóng cửa hôm trước nên trạng thái vùng
+    trên bảng sai hẳn so với premarket thật."""
+    et = ZoneInfo("America/New_York")
+    today_et = datetime.now(et).date()
+
+    def one(t):
+        try:
+            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{t}?interval=1d&range=5d"
+            with urlopen(Request(url, headers=UA), timeout=10) as r:
+                d = json.load(r)["chart"]["result"][0]
+            closes = [c for c in d["indicators"]["quote"][0]["close"] if c]
+            last_day = datetime.fromtimestamp(d["timestamp"][-1], et).date()
+            prev = closes[-2] if last_day == today_et and len(closes) >= 2 else closes[-1]
+            px = None
+            try:
+                url2 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
+                        "?interval=1m&range=1d&includePrePost=true")
+                with urlopen(Request(url2, headers=UA), timeout=10) as r:
+                    m = json.load(r)["chart"]["result"][0]
+                mc = [c for c in m["indicators"]["quote"][0]["close"] if c]
+                if mc:
+                    px = mc[-1]
+            except Exception:
+                pass
+            if px is None:
+                px = float(d["meta"]["regularMarketPrice"])
+            return t, (round(float(px), 2), round((px - prev) / prev * 100, 2))
+        except Exception as e:
+            print(f"  ! pm {t}: {e}", file=sys.stderr)
+            return t, None
+
+    out = {}
+    with ThreadPoolExecutor(max_workers=5) as ex:
+        for t, v in ex.map(one, tickers):
+            if v:
+                out[t] = v
+    return out
+
+
 def bull_bear_update(h, repo_dir):
     """⚔️ BULL vs BEAR — Tom hỏi 21/10: "BULL & BEAR, phe nào thắng".
     Điểm phe = (2*S&P% + Nasdaq% + Dow%)/4.
@@ -2246,6 +2292,13 @@ def main():
         h = ensure_gate_css(h)
         h, _nvix, _vix_num = fear_gauge(h)
         h, _nfg = fear_greed_gauge(h, _vix_num, a.repo_dir)
+        # 👑 FOCUS cá mập cũng phải sống ngoài giờ (Tom bắt lỗi 22/10 ~06:25):
+        # giá premarket-aware + trạng thái vùng tính lại theo giá premarket.
+        load_zones(a.repo_dir)
+        _pm = fetch_pm_prices([t for t, _, _ in SHARK_FOCUS])
+        if _pm:
+            h, _nfoc = shark_focus_update(h, _pm, pm=True)
+            print(f"lite premarket: {_nfoc} (giá premarket)", flush=True)
         h = bull_bear_update(h, a.repo_dir)
         h = bump_badge(h, "premarket — Bull & Bear theo futures")
         ok, why = validate(h)
