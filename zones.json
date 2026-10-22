@@ -1,6 +1,6 @@
 {
  "AMD": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 520,
   "entry": [
    535,
@@ -12,14 +12,14 @@
   ]
  },
  "AMZN": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    246,
    250
   ]
  },
  "ASTS": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 49,
   "entry": [
    50,
@@ -31,7 +31,7 @@
   ]
  },
  "BIIB": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 215.73,
   "entry": [
    218,
@@ -43,7 +43,7 @@
   ]
  },
  "CEG": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 265,
   "entry": [
    270,
@@ -55,7 +55,7 @@
   ]
  },
  "COHR": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 228,
   "entry": [
    240,
@@ -67,7 +67,7 @@
   ]
  },
  "CRDO": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 178,
   "entry": [
    185,
@@ -79,7 +79,7 @@
   ]
  },
  "ENTG": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 140,
   "entry": [
    145,
@@ -91,7 +91,7 @@
   ]
  },
  "FIGS": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 17.48,
   "entry": [
    17.5,
@@ -103,7 +103,7 @@
   ]
  },
  "FRSH": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 12.7,
   "entry": [
    13.6,
@@ -115,7 +115,7 @@
   ]
  },
  "GEV": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 890,
   "entry": [
    900,
@@ -127,7 +127,7 @@
   ]
  },
  "HIMS": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 26,
   "entry": [
    27,
@@ -139,14 +139,14 @@
   ]
  },
  "HWM": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    200,
    220
   ]
  },
  "IOVA": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 11.17,
   "entry": [
    12.3,
@@ -158,7 +158,7 @@
   ]
  },
  "JPM": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 315.7,
   "entry": [
    323,
@@ -170,14 +170,14 @@
   ]
  },
  "KLAC": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    170,
    185
   ]
  },
  "MELI": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 1695,
   "entry": [
    1860,
@@ -189,20 +189,20 @@
   ]
  },
  "MRVL": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 240,
   "entry": [
    260,
    270
   ],
-  "pos": "2 shares @ ~$266–267",
+  "pos": "2 shares @ ~$266\u2013267",
   "reclaim": [
    275,
    285
   ]
  },
  "NFLX": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 63,
   "entry": [
    65,
@@ -214,14 +214,14 @@
   ]
  },
  "NOC": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    480,
    505
   ]
  },
  "PCVX": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 56.48,
   "entry": [
    60,
@@ -233,7 +233,7 @@
   ]
  },
  "RCL": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 257,
   "entry": [
    275,
@@ -245,7 +245,7 @@
   ]
  },
  "RKLB": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 61.5,
   "entry": [
    64,
@@ -266,10 +266,10 @@
    1550,
    1700
   ],
-  "book": "Sổ 3"
+  "book": "S\u1ed5 3"
  },
  "TMUS": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 150,
   "entry": [
    155,
@@ -281,20 +281,20 @@
   ]
  },
  "VLO": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 420,
   "entry": [
    430,
    440
   ],
-  "note": "hoặc breakout đóng cửa >$465",
+  "note": "ho\u1eb7c breakout \u0111\u00f3ng c\u1eeda >$465",
   "targets": [
    480,
    500
   ]
  },
  "VSAT": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 64,
   "entry": [
    66,
@@ -306,7 +306,7 @@
   ]
  },
  "VST": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "cut": 140,
   "entry": [
    144,
@@ -318,7 +318,7 @@
   ]
  },
  "ZS": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "cut": 205,
   "entry": [
    215,
@@ -329,7 +329,7 @@
    250
   ]
  },
- "_note": "NGUỒN CHÂN LÝ DUY NHẤT cho mọi vùng đã duyệt — script 5 phút đọc file này để phát hiện tín hiệu vùng. Tom cấp quyền tự động 14/10/2026: mã nào vào vùng rẻ/đẹp → Iggy tự thêm vùng vào đây, không cần hỏi.",
+ "_note": "NGU\u1ed2N CH\u00c2N L\u00dd DUY NH\u1ea4T cho m\u1ecdi v\u00f9ng \u0111\u00e3 duy\u1ec7t \u2014 script 5 ph\u00fat \u0111\u1ecdc file n\u00e0y \u0111\u1ec3 ph\u00e1t hi\u1ec7n t\u00edn hi\u1ec7u v\u00f9ng. Tom c\u1ea5p quy\u1ec1n t\u1ef1 \u0111\u1ed9ng 14/10/2026: m\u00e3 n\u00e0o v\u00e0o v\u00f9ng r\u1ebb/\u0111\u1eb9p \u2192 Iggy t\u1ef1 th\u00eam v\u00f9ng v\u00e0o \u0111\u00e2y, kh\u00f4ng c\u1ea7n h\u1ecfi.",
  "VOO": {
   "entry": [
    680,
@@ -340,7 +340,7 @@
    718,
    750
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "QQQ": {
   "entry": [
@@ -352,7 +352,7 @@
    763,
    800
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "SMH": {
   "entry": [
@@ -364,7 +364,7 @@
    620,
    672
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "SCHD": {
   "entry": [
@@ -376,7 +376,7 @@
    35,
    37
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "XLE": {
   "entry": [
@@ -388,7 +388,7 @@
    70,
    75
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "IBIT": {
   "entry": [
@@ -400,7 +400,7 @@
    55,
    66
   ],
-  "book": "Sổ 1"
+  "book": "S\u1ed5 1"
  },
  "MU": {
   "entry": [
@@ -412,7 +412,7 @@
    983,
    1100
   ],
-  "book": "Sổ 2"
+  "book": "S\u1ed5 2"
  },
  "WDC": {
   "entry": [
@@ -424,7 +424,7 @@
    448,
    490
   ],
-  "book": "Sổ 3"
+  "book": "S\u1ed5 3"
  },
  "STX": {
   "entry": [
@@ -436,7 +436,7 @@
    830,
    900
   ],
-  "book": "Sổ 3"
+  "book": "S\u1ed5 3"
  },
  "DRAM": {
   "entry": [
@@ -448,10 +448,10 @@
    57,
    65
   ],
-  "book": "Sổ 3"
+  "book": "S\u1ed5 3"
  },
  "NVDA": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    205,
    218
@@ -463,7 +463,7 @@
   "cut": 200
  },
  "SPCX": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    125,
    130
@@ -476,7 +476,7 @@
   "note": "SpaceX; catalyst: Tesla merger (Barron's <1h)"
  },
  "TSLA": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    300,
    310
@@ -494,9 +494,10 @@
   "HOOD",
   "VSAT",
   "RKLB",
-  "GD"
+  "GD",
+  "SPCX"
  ],
- "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded.",
+ "_excluded_note": "Tom 15/10: m\u00e3 trung l\u1eadp, x\u00f3a kh\u1ecfi b\u1ea3ng. Zone data backup \u1edf zones_excluded_backup.json. Mu\u1ed1n hi\u1ec7n l\u1ea1i th\u00ec x\u00f3a kh\u1ecfi _excluded.",
  "AXON": {
   "entry": [
    395,
@@ -508,10 +509,10 @@
   ],
   "cut": 385,
   "book": 3,
-  "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 3/11."
+  "note": "S\u1ed5 3: fail uptrend (d\u01b0\u1edbi MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), h\u1ed7 tr\u1ee3 $395.75, -45% t\u1eeb \u0111\u1ec9nh 52w. Earnings 3/11."
  },
  "IREN": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    28.5,
    30.0
@@ -521,10 +522,10 @@
    36.5
   ],
   "cut": 26.5,
-  "note": "Tom giữ @~$35. Đảo chiều xác nhận 15/10: đáy -13%, hồi +10.3%, vol 2.8x. Sóng 4 - lung lay."
+  "note": "Tom gi\u1eef @~$35. \u0110\u1ea3o chi\u1ec1u x\u00e1c nh\u1eadn 15/10: \u0111\u00e1y -13%, h\u1ed3i +10.3%, vol 2.8x. S\u00f3ng 4 - lung lay."
  },
  "CRML": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    6.4,
    6.7
@@ -534,10 +535,10 @@
    8.2
   ],
   "cut": 5.85,
-  "note": "Bounce +15.6% từ đáy 15/10, đóng $6.95 gần đỉnh 5 phiên. Chờ pullback, không đuổi đỉnh."
+  "note": "Bounce +15.6% t\u1eeb \u0111\u00e1y 15/10, \u0111\u00f3ng $6.95 g\u1ea7n \u0111\u1ec9nh 5 phi\u00ean. Ch\u1edd pullback, kh\u00f4ng \u0111u\u1ed5i \u0111\u1ec9nh."
  },
  "USAR": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    10.3,
    10.8
@@ -547,10 +548,10 @@
    12.79
   ],
   "cut": 9.75,
-  "note": "Bounce +10.8% từ đáy 15/10, đóng $11.09. Rare earth momentum."
+  "note": "Bounce +10.8% t\u1eeb \u0111\u00e1y 15/10, \u0111\u00f3ng $11.09. Rare earth momentum."
  },
  "APLD": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    17.5,
    19.0
@@ -560,10 +561,10 @@
    30
   ],
   "cut": 16.5,
-  "note": "AI data center, chưa có lãi, nợ $6.4B; đáy 52w $18.36, kháng cự $25.89; 13 Buy avg PT ~$61"
+  "note": "AI data center, ch\u01b0a c\u00f3 l\u00e3i, n\u1ee3 $6.4B; \u0111\u00e1y 52w $18.36, kh\u00e1ng c\u1ef1 $25.89; 13 Buy avg PT ~$61"
  },
  "BMNR": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    20,
    22
@@ -573,10 +574,10 @@
    31.5
   ],
   "cut": 18.5,
-  "note": "ETH treasury Tom Lee, 6.04M ETH (4.9% supply), Russell 1000; dưới $31.57 vẫn bearish; Strong Buy avg PT $45.87"
+  "note": "ETH treasury Tom Lee, 6.04M ETH (4.9% supply), Russell 1000; d\u01b0\u1edbi $31.57 v\u1eabn bearish; Strong Buy avg PT $45.87"
  },
  "DLTR": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    115,
    119
@@ -586,10 +587,10 @@
    140
   ],
   "cut": 110,
-  "note": "Bán lẻ phòng thủ, P/E 14.3, consensus Hold avg PT $131.83; hỗ trợ $108-112; kháng cự cũ $117-119 thành hỗ trợ"
+  "note": "B\u00e1n l\u1ebb ph\u00f2ng th\u1ee7, P/E 14.3, consensus Hold avg PT $131.83; h\u1ed7 tr\u1ee3 $108-112; kh\u00e1ng c\u1ef1 c\u0169 $117-119 th\u00e0nh h\u1ed7 tr\u1ee3"
  },
  "UAL": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    88,
    94
@@ -599,10 +600,10 @@
    130
   ],
   "cut": 84,
-  "note": "Earnings 20/10 AMC — ĐỨNG NGOÀI trước earnings; Strong Buy 23/25, avg PT ~$150; P/E 8.9; đáy 52w $84.64"
+  "note": "Earnings 20/10 AMC \u2014 \u0110\u1ee8NG NGO\u00c0I tr\u01b0\u1edbc earnings; Strong Buy 23/25, avg PT ~$150; P/E 8.9; \u0111\u00e1y 52w $84.64"
  },
  "GOOGL": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    320,
    342
@@ -612,10 +613,10 @@
    400
   ],
   "cut": 305,
-  "note": "Vùng gom dài hạn đã duyệt; $344 sát mép trên"
+  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; $344 s\u00e1t m\u00e9p tr\u00ean"
  },
  "AVGO": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    320,
    350
@@ -625,10 +626,10 @@
    440
   ],
   "cut": 300,
-  "note": "Vùng gom dài hạn đã duyệt; -31% vs đỉnh 52w"
+  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; -31% vs \u0111\u1ec9nh 52w"
  },
  "TSM": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    405,
    425
@@ -638,10 +639,10 @@
    485
   ],
   "cut": 390,
-  "note": "Vùng gom dài hạn đã duyệt; $420 trong vùng"
+  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; $420 trong v\u00f9ng"
  },
  "RTX": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    170,
    180
@@ -651,10 +652,10 @@
    215
   ],
   "cut": 160,
-  "note": "Vùng gom dài hạn đã duyệt; earnings 20/10 BMO — đứng ngoài trước tin"
+  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; earnings 20/10 BMO \u2014 \u0111\u1ee9ng ngo\u00e0i tr\u01b0\u1edbc tin"
  },
  "SPY": {
-  "book": "Sổ 1",
+  "book": "S\u1ed5 1",
   "entry": [
    740,
    760
@@ -664,10 +665,10 @@
    810
   ],
   "cut": 720,
-  "note": "ETF index Mỹ, -2% vs đỉnh"
+  "note": "ETF index M\u1ef9, -2% vs \u0111\u1ec9nh"
  },
  "META": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    670,
    700
@@ -680,7 +681,7 @@
   "note": "Uptrend (+7.3% vs MA50), earnings 21/10 AMC"
  },
  "MSFT": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    505,
    525
@@ -690,10 +691,10 @@
    590
   ],
   "cut": 490,
-  "note": "Uptrend (+5.4% vs MA50), sát đỉnh 52w $543; earnings 28/10"
+  "note": "Uptrend (+5.4% vs MA50), s\u00e1t \u0111\u1ec9nh 52w $543; earnings 28/10"
  },
  "QCOM": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    165,
    178
@@ -703,10 +704,10 @@
    220
   ],
   "cut": 155,
-  "note": "Chip chất lượng, -31% vs đỉnh, quanh MA50"
+  "note": "Chip ch\u1ea5t l\u01b0\u1ee3ng, -31% vs \u0111\u1ec9nh, quanh MA50"
  },
  "ORCL": {
-  "book": "Sổ 2",
+  "book": "S\u1ed5 2",
   "entry": [
    120,
    132
@@ -716,10 +717,10 @@
    185
   ],
   "cut": 110,
-  "note": "Mega-cap software, -54% vs đỉnh sâu, có lãi"
+  "note": "Mega-cap software, -54% vs \u0111\u1ec9nh s\u00e2u, c\u00f3 l\u00e3i"
  },
  "AMAT": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    390,
    415
@@ -729,10 +730,10 @@
    550
   ],
   "cut": 368,
-  "note": "Semicap, -13.9% vs MA50 (downtrend), -43% vs đỉnh"
+  "note": "Semicap, -13.9% vs MA50 (downtrend), -43% vs \u0111\u1ec9nh"
  },
  "BABA": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    100,
    110
@@ -742,10 +743,10 @@
    145
   ],
   "cut": 94,
-  "note": "China tech, rủi ro địa chính trị, -40% vs đỉnh"
+  "note": "China tech, r\u1ee7i ro \u0111\u1ecba ch\u00ednh tr\u1ecb, -40% vs \u0111\u1ec9nh"
  },
  "COIN": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    160,
    175
@@ -755,10 +756,10 @@
    230
   ],
   "cut": 150,
-  "note": "Crypto exchange, earnings miss, -53% vs đỉnh"
+  "note": "Crypto exchange, earnings miss, -53% vs \u0111\u1ec9nh"
  },
  "INTC": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    85,
    92
@@ -768,10 +769,10 @@
    115
   ],
   "cut": 78,
-  "note": "Turnaround, JPM Neutral PT $85, -35% vs đỉnh"
+  "note": "Turnaround, JPM Neutral PT $85, -35% vs \u0111\u1ec9nh"
  },
  "MSTR": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    125,
    140
@@ -781,10 +782,10 @@
    200
   ],
   "cut": 115,
-  "note": "BTC treasury, proxy bitcoin đòn bẩy cao, -55% vs đỉnh"
+  "note": "BTC treasury, proxy bitcoin \u0111\u00f2n b\u1ea9y cao, -55% vs \u0111\u1ec9nh"
  },
  "NKE": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    34,
    38
@@ -794,10 +795,10 @@
    52
   ],
   "cut": 31,
-  "note": "Turnaround bán lẻ, -47% vs đỉnh"
+  "note": "Turnaround b\u00e1n l\u1ebb, -47% vs \u0111\u1ec9nh"
  },
  "SKHY": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    135,
    145
@@ -807,10 +808,10 @@
    180
   ],
   "cut": 125,
-  "note": "Small-cap, -16.3% vs MA50 (yếu), ít dữ liệu — vị thế nhỏ"
+  "note": "Small-cap, -16.3% vs MA50 (y\u1ebfu), \u00edt d\u1eef li\u1ec7u \u2014 v\u1ecb th\u1ebf nh\u1ecf"
  },
  "SMMT": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    14,
    16
@@ -820,10 +821,10 @@
    22
   ],
   "cut": 12.5,
-  "note": "Biotech binary (thuốc ung thư phổi), -41% vs đỉnh"
+  "note": "Biotech binary (thu\u1ed1c ung th\u01b0 ph\u1ed5i), -41% vs \u0111\u1ec9nh"
  },
  "SOXL": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    90,
    100
@@ -833,10 +834,10 @@
    140
   ],
   "cut": 82,
-  "note": "ETF đòn bẩy 3x semiconductor, -67% vs đỉnh, chỉ lướt nhanh"
+  "note": "ETF \u0111\u00f2n b\u1ea9y 3x semiconductor, -67% vs \u0111\u1ec9nh, ch\u1ec9 l\u01b0\u1edbt nhanh"
  },
  "AVAV": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    110,
    120
@@ -846,10 +847,10 @@
    180
   ],
   "cut": 105,
-  "note": "Defense drones, đáy 52w $117.90, -70% vs đỉnh, dưới MA50 sâu"
+  "note": "Defense drones, \u0111\u00e1y 52w $117.90, -70% vs \u0111\u1ec9nh, d\u01b0\u1edbi MA50 s\u00e2u"
  },
  "KTOS": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    36,
    40
@@ -859,10 +860,10 @@
    60
   ],
   "cut": 34,
-  "note": "Kratos defense, đáy 52w $39.17, -70% vs đỉnh"
+  "note": "Kratos defense, \u0111\u00e1y 52w $39.17, -70% vs \u0111\u1ec9nh"
  },
  "IONQ": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    28,
    32
@@ -872,10 +873,10 @@
    48
   ],
   "cut": 26,
-  "note": "Quantum computing, -57% vs đỉnh, dưới MA50 sâu"
+  "note": "Quantum computing, -57% vs \u0111\u1ec9nh, d\u01b0\u1edbi MA50 s\u00e2u"
  },
  "OKLO": {
-  "book": "Sổ 3",
+  "book": "S\u1ed5 3",
   "entry": [
    25,
    28
@@ -885,7 +886,7 @@
    42
   ],
   "cut": 23,
-  "note": "Nuclear SMR, đáy 52w $27.24, -83% vs đỉnh"
+  "note": "Nuclear SMR, \u0111\u00e1y 52w $27.24, -83% vs \u0111\u1ec9nh"
  },
  "SOXX": {
   "entry": [
@@ -897,8 +898,8 @@
    535,
    600
   ],
-  "book": "Sổ 1",
-  "note": "ETF chip PHLX (cân bằng hơn SMH) — gom khi về vùng MA200/low 3 tháng"
+  "book": "S\u1ed5 1",
+  "note": "ETF chip PHLX (c\u00e2n b\u1eb1ng h\u01a1n SMH) \u2014 gom khi v\u1ec1 v\u00f9ng MA200/low 3 th\u00e1ng"
  },
  "GLD": {
   "entry": [
@@ -910,8 +911,8 @@
    415,
    460
   ],
-  "book": "Sổ 1",
-  "note": "ETF vàng — phòng thủ, đã rớt ~27% từ đỉnh 52w $509.70"
+  "book": "S\u1ed5 1",
+  "note": "ETF v\u00e0ng \u2014 ph\u00f2ng th\u1ee7, \u0111\u00e3 r\u1edbt ~27% t\u1eeb \u0111\u1ec9nh 52w $509.70"
  },
  "XLK": {
   "entry": [
@@ -923,8 +924,8 @@
    190,
    203
   ],
-  "book": "Sổ 1",
-  "note": "ETF công nghệ SPDR — vùng neo MA200 + đáy 3 tháng"
+  "book": "S\u1ed5 1",
+  "note": "ETF c\u00f4ng ngh\u1ec7 SPDR \u2014 v\u00f9ng neo MA200 + \u0111\u00e1y 3 th\u00e1ng"
  },
  "URA": {
   "entry": [
@@ -936,8 +937,8 @@
    42,
    48
   ],
-  "book": "Sổ 1",
-  "note": "ETF uranium/hạt nhân — discount ~44% vs đỉnh, DƯỚI MA200: bắt đáy, cắt cứng"
+  "book": "S\u1ed5 1",
+  "note": "ETF uranium/h\u1ea1t nh\u00e2n \u2014 discount ~44% vs \u0111\u1ec9nh, D\u01af\u1edaI MA200: b\u1eaft \u0111\u00e1y, c\u1eaft c\u1ee9ng"
  },
  "ITA": {
   "entry": [
@@ -949,7 +950,7 @@
    230,
    256
   ],
-  "book": "Sổ 1",
-  "note": "ETF quốc phòng/hàng không — discount ~20% vs đỉnh, dưới MA200: bắt đáy, cắt cứng"
+  "book": "S\u1ed5 1",
+  "note": "ETF qu\u1ed1c ph\u00f2ng/h\u00e0ng kh\u00f4ng \u2014 discount ~20% vs \u0111\u1ec9nh, d\u01b0\u1edbi MA200: b\u1eaft \u0111\u00e1y, c\u1eaft c\u1ee9ng"
  }
 }
