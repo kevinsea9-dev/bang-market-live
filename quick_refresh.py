@@ -1704,8 +1704,30 @@ def detect_money_flow(prices, daylows, repo_dir=None):
 URGENT_MAX = 3
 
 
-def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, revs=None):
+def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, revs=None, regime=None):
     date_s = now_pt().strftime("%d/%m")
+    # 🧭 LUẬT CHẾ ĐỘ (Tom duyệt 23/10): 🔴 PHÒNG THỦ = TẮT toàn bộ alert mua
+    # mới (bounce/capitulation/đảo chiều/dòng tiền/vào vùng đều là tín hiệu
+    # mua) — chỉ chèn 1 thông báo phòng thủ mỗi ngày. Tín hiệu vẫn được
+    # journal ở tầng detect (chấm điểm chạy tiếp, không gián đoạn số liệu).
+    # Cảnh báo GÃY CẮT đi qua add_signals, KHÔNG qua hàm này -> không bị tắt.
+    if regime == "RED":
+        mark = f"<!-- URG-DEF-{date_s} -->"
+        if mark in h:
+            return h, "khẩn: 🔴 PHÒNG THỦ — tắt signal mua (đã có thông báo)"
+        note = (f'{mark}<div class="alert urgent" data-ts="{now_pt().isoformat(timespec="seconds")}">'
+                f'<b>🔴 CHẾ ĐỘ PHÒNG THỦ — HỆ THỐNG ĐÃ TẮT TÍN HIỆU MUA MỚI</b> — '
+                f'SPY/QQQ đều dưới MA50, trend đang rơi. Chỉ quản trị vị thế theo cắt cứng, '
+                f'canh vùng gom sâu Sổ 1, chờ xác nhận đảo chiều. Bounce/capitulation hôm nay chỉ là tham khảo.<br>'
+                f'<span class="t">🧭 Luật Chế Độ • {date_s} • tín hiệu mua bật lại khi SPY/QQQ đòi lại MA20</span></div>\n')
+        h2, c1 = re.subn(r'(<div id="urgentBox">)<div class="note">Chưa có tín hiệu khẩn.*?</div>',
+                         r"\g<1>" + note, h, count=1, flags=re.S)
+        if c1:
+            return h2, "khẩn: 🔴 PHÒNG THỦ — đã chèn thông báo tắt signal mua"
+        h2, c2 = re.subn(r'(<div id="urgentBox">)', r"\g<1>" + note, h, count=1)
+        if c2:
+            return h2, "khẩn: 🔴 PHÒNG THỦ — đã chèn thông báo tắt signal mua"
+        return h, "khẩn: thiếu #urgentBox (phòng thủ)"
     # 19/10: mã trong _excluded (Tom xóa khỏi bảng) không được tạo alert khẩn
     try:
         excluded_u = set(json.load(open(os.path.join(repo_dir, "zones.json"))).get("_excluded", []))
@@ -2150,6 +2172,133 @@ def bull_bear_update(h, repo_dir):
     return h
 
 
+def fetch_daily_closes(ticker):
+    """Nến ngày ĐÃ HOÀN TẤT (date < hôm nay PT) từ Yahoo chart API.
+    Luật 23/10 (vụ gap sai dấu): sau ~06:30 PT Yahoo thêm nến hôm nay đang
+    giao dịch vào series — dcloses[-1] lúc đó là giá live, KHÔNG phải đóng
+    cửa. Mọi MA/chế độ phải tính trên nến hoàn tất."""
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+           f"?interval=1d&range=1y")
+    req = Request(url, headers=UA)
+    with urlopen(req, timeout=15) as r:
+        res = json.load(r)["chart"]["result"][0]
+    ts = res["timestamp"]
+    closes = res["indicators"]["quote"][0]["close"]
+    ny = ZoneInfo("America/New_York")
+    n = now_pt()
+    today = n.date()
+    # sau 13:05 PT ngày thường, nến hôm nay đã là giá đóng cửa cuối cùng -> tính luôn
+    closed_today = n.weekday() < 5 and (n.hour, n.minute) >= (13, 5)
+    out = []
+    for t, c in zip(ts, closes):
+        if c is None:
+            continue
+        d = datetime.fromtimestamp(t, ny).date()
+        if d < today or (closed_today and d == today):
+            out.append((d, float(c)))
+    return out
+
+
+def compute_regime(repo_dir):
+    """🧭 LUẬT CHẾ ĐỘ — Tom duyệt 23/10 (sau khi soi 1.815 signal: mọi loại
+    tín hiệu đều kỳ vọng âm trong tuần trend rơi; con số reversal 30 ngày
+    59,7% là ảo, do đúng 1 ngày đảo chiều toàn thị trường 15/10 kéo lên).
+    Đèn từ SPY/QQQ vs MA20/50/200 trên nến ngày đã hoàn tất:
+      🔴 PHÒNG THỦ: CẢ HAI chỉ số đóng dưới MA50 (trend ngắn/trung đã gãy)
+      🟢 TẤN CÔNG: cả hai trên MA50 và MA20
+      🟡 TRUNG LẬP: còn lại
+    F&G/VIX từ đây chỉ là vai phụ (mùa + độ rẻ), mất quyền cho phép vào lệnh.
+    Lỗi mạng/dữ liệu -> giữ state cũ (không bịa đèn)."""
+    state_path = os.path.join(repo_dir, "regime_state.json")
+    try:
+        prev = json.load(open(state_path)) if os.path.exists(state_path) else {}
+    except Exception:
+        prev = {}
+    info = {}
+    for tk in ("SPY", "QQQ"):
+        try:
+            dc = fetch_daily_closes(tk)
+        except Exception as e:
+            print(f"  ! regime {tk}: {e}", file=sys.stderr)
+            return prev
+        closes = [c for _, c in dc]
+        if len(closes) < 200:
+            print(f"  ! regime {tk}: chỉ {len(closes)} nến", file=sys.stderr)
+            return prev
+        last = closes[-1]
+        info[tk] = {
+            "close": round(last, 2),
+            "ma20": round(sum(closes[-20:]) / 20, 2),
+            "ma50": round(sum(closes[-50:]) / 50, 2),
+            "ma200": round(sum(closes[-200:]) / 200, 2),
+            "day_pc": round((last / closes[-2] - 1) * 100, 2),
+            "date": dc[-1][0].isoformat(),
+        }
+    below50 = all(info[t]["close"] < info[t]["ma50"] for t in info)
+    above50 = all(info[t]["close"] > info[t]["ma50"] for t in info)
+    above20 = all(info[t]["close"] > info[t]["ma20"] for t in info)
+    if below50:
+        regime, label = "RED", "🔴 PHÒNG THỦ"
+    elif above50 and above20:
+        regime, label = "GREEN", "🟢 TẤN CÔNG"
+    else:
+        regime, label = "YELLOW", "🟡 TRUNG LẬP"
+    st = {"regime": regime, "label": label, "indices": info,
+          "long_broken": all(info[t]["close"] < info[t]["ma200"] for t in info),
+          "updated": now_pt().isoformat(timespec="seconds"),
+          "basis": "nến ngày đã hoàn tất gần nhất"}
+    try:
+        json.dump(st, open(state_path, "w"))
+    except Exception as e:
+        print(f"  ! regime_state: {e}", file=sys.stderr)
+    return st
+
+
+def render_regime_strip(h, repo_dir):
+    """Dải đèn chế độ nằm ngay dưới dải Bull & Bear, đọc regime_state.json."""
+    try:
+        st = json.load(open(os.path.join(repo_dir, "regime_state.json")))
+    except Exception:
+        return h
+    if not st.get("regime"):
+        return h
+    i = st.get("indices", {})
+
+    def line(tk):
+        d = i.get(tk, {})
+        if not d:
+            return ""
+        return (f'{tk} ${d["close"]:,.2f} · MA20 ${d["ma20"]:,.0f} · '
+                f'MA50 ${d["ma50"]:,.0f} · MA200 ${d["ma200"]:,.0f}')
+    bg = {"RED": "rgba(220,38,38,.16)", "GREEN": "rgba(22,163,74,.16)",
+          "YELLOW": "rgba(234,179,8,.14)"}[st["regime"]]
+    if st["regime"] == "RED":
+        note = ("Hệ thống TẮT tín hiệu mua mới — chỉ quản trị vị thế theo cắt "
+                "cứng, canh vùng gom sâu Sổ 1 và chờ xác nhận đảo chiều "
+                "(SPY/QQQ đòi lại MA20). Bounce/capitulation chỉ là tham khảo.")
+    elif st["regime"] == "GREEN":
+        note = "Trend khỏe — tín hiệu mua hoạt động bình thường theo vùng + cắt cứng."
+    else:
+        note = ("Chế độ trung lập — tín hiệu mua vẫn chạy nhưng ưu tiên mã "
+                "chất lượng, vùng sâu; mã rủi ro đứng ngoài.")
+    if st.get("long_broken"):
+        note += " ⚠️ Cả hai chỉ số còn dưới MA200 — trend dài hạn cũng đã gãy."
+    strip = (f'<div class="regime" id="regimeStrip" style="border:2px solid #f59e0b;'
+             f'border-radius:12px;padding:8px 12px;margin:8px 0;background:{bg};font-size:14px">'
+             f'<b>🧭 CHẾ ĐỘ THỊ TRƯỜNG — {st["label"]}</b> '
+             f'<span style="color:#9fb3d9">{line("SPY")} · {line("QQQ")} · '
+             f'theo {st.get("basis", "")} ({i.get("SPY", {}).get("date", "")}) · '
+             f'cập nhật {st.get("updated", "")[:16].replace("T", " ")} PT</span><br>'
+             f'<span>{note}</span></div>\n')
+    h = re.sub(r'<div class="regime" id="regimeStrip".*?</div>\n', "", h, flags=re.S)
+    h2, c = re.subn(r'(<div class="bullbear" id="bullBear".*?</div>\n)',
+                    r"\g<1>" + strip, h, count=1, flags=re.S)
+    if c:
+        return h2
+    return re.sub(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + strip,
+                  h, count=1, flags=re.S)
+
+
 def market_klaxon(h, repo_dir):
     """Tự phát hiện market pump/dump qua SPY/QQQ/DIA — dựng banner đầu bảng.
     Không chờ cron phân tích, không chờ Tom nhắc."""
@@ -2239,7 +2388,7 @@ def git_push(repo_dir, msg):
     # fix 16/10: chỉ add file đang tồn tại — back_to_wait_state.json vắng mặt làm
     # cả lệnh add fail (fatal pathspec), commit rỗng, push "Everything up-to-date"
     # rồi vẫn in "pushed" giả trong khi bảng chưa lên remote
-    _files = ["index.html", "zone_state.json", "market_state.json",
+    _files = ["index.html", "zone_state.json", "market_state.json", "regime_state.json",
               "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
               "version.json", "back_to_wait_state.json"]
     _files = [f for f in _files if os.path.exists(os.path.join(repo_dir, f))]
@@ -2302,6 +2451,7 @@ def main():
             h, _nfoc = shark_focus_update(h, _pm, pm=True)
             print(f"lite premarket: {_nfoc} (giá premarket)", flush=True)
         h = bull_bear_update(h, a.repo_dir)
+        h = render_regime_strip(h, a.repo_dir)
         h = bump_badge(h, "premarket — Bull & Bear theo futures")
         ok, why = validate(h)
         if not ok:
@@ -2481,8 +2631,15 @@ def main():
 
     # 🚨 TÍN HIỆU KHẨN — Tom lệnh 15/10: chớp nháy khẩn cho mọi người kiếm tiền
     # PRO: quét toàn vũ trụ (không chỉ 51 mã bảng) + tầng BOUNCE MẠNH + DÒNG TIỀN + CAPITULATION + ĐẢO CHIỀU
+    # 🧭 LUẬT CHẾ ĐỘ — tính đèn từ nến ngày hoàn tất TRƯỚC khâu tín hiệu khẩn:
+    # 🔴 PHÒNG THỦ thì refresh_urgent tự tắt toàn bộ alert mua mới.
+    _regime_st = compute_regime(a.repo_dir)
+    _regime = _regime_st.get("regime") if isinstance(_regime_st, dict) else None
+    print(f"chế độ thị trường: {_regime_st.get('label') if isinstance(_regime_st, dict) else '?'}",
+          flush=True)
     load_trust(a.repo_dir)  # 🎓 điểm tin cậy 30 ngày cho alert khẩn
-    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps, revs)
+    h, nu = refresh_urgent(h, all_px, all_low, zone_events, a.repo_dir, flows, caps, revs,
+                           regime=_regime)
     print(f"tín hiệu khẩn: {nu}", flush=True)
 
     # 🔥 CÒI REBOUND TOÀN MARKET — Tom lệnh 15/10: bounce lan rộng + đa số sector
@@ -2525,6 +2682,9 @@ def main():
     # ⚔️ BULL vs BEAR — dải verdict phe thắng, tự cập nhật mỗi lượt (Tom hỏi 21/10)
     h = bull_bear_update(h, a.repo_dir)
     print("bull vs bear: đã cập nhật dải verdict", flush=True)
+
+    # 🧭 Dải đèn CHẾ ĐỘ — nằm ngay dưới Bull & Bear (Luật Chế Độ 23/10)
+    h = render_regime_strip(h, a.repo_dir)
 
     h = bump_badge(h, tag)
     ok, why = validate(h)
