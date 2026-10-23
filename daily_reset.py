@@ -234,6 +234,14 @@ def main():
         ub_end = find_balanced(h, ub)
         if ub_end:
             box = h[ub:ub_end]
+            # 21/10: placeholder "chưa có tín hiệu cá mập" của các ngày trước tích tụ
+            # trong urgentBox (không phải alert urgent nên vòng dọn dưới bỏ sót,
+            # có ngày chồng 4 bản) — xóa sạch trước khi xử lý.
+            _ph = '<div class="alert" style="opacity:.75">🦈 Chưa có tín hiệu cá mập hôm nay — radar đang quét, có là báo ngay.</div>'
+            if _ph in box:
+                box = box.replace(_ph, '')
+                h = h[:ub] + box + h[ub_end:]
+                ub_end = find_balanced(h, ub)
             alerts = []
             pos = 0
             while True:
