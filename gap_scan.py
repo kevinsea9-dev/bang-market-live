@@ -55,9 +55,19 @@ def fetch_candles(ticker):
                            "?interval=1d&range=5d", headers=UA)
             with urlopen(dreq, timeout=12) as dr:
                 dd = json.load(dr)["chart"]["result"][0]
-            dcloses = [c for c in dd["indicators"]["quote"][0]["close"] if c is not None]
-            if dcloses:
-                prev = float(dcloses[-1])
+            dts = dd["timestamp"]
+            dqr = dd["indicators"]["quote"][0]
+            today_s = datetime.datetime.now(PT).strftime("%Y-%m-%d")
+            # 23/10/2026: dcloses[-1] sau ~06:30 PT là nến HÔM NAY đang giao dịch (Yahoo đã
+            # thêm nến ngày mới vào range=5d) → prev thành giá live, gap SAI CẢ DẤU
+            # (MRNA báo +4.9% trong khi gap thật -2.9%). Luôn lấy nến hoàn tất gần nhất.
+            for t_, c_ in zip(dts, dqr["close"]):
+                if c_ is None:
+                    continue
+                ds = datetime.datetime.fromtimestamp(
+                    t_, datetime.timezone.utc).astimezone(PT).strftime("%Y-%m-%d")
+                if ds < today_s:
+                    prev = float(c_)
         except Exception:
             pass
         if not prev:
