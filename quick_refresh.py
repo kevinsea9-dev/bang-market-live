@@ -631,8 +631,10 @@ def sweep_stale_tickers(h, repo_dir):
     except Exception:
         return h, removed
     # BẢO VỆ: vị thế thật + mã Tom đang theo dõi sát — không bao giờ tự xóa
+    # 23/10: thêm SPCX — Tom lệnh 19/10 gỡ SPCX khỏi _excluded; stale-cleanup 22/10
+    # từng tự add lại (override lệnh Tom). SPCX có vùng LT duyệt + cron watch riêng.
     protected = {"MRVL", "IREN", "CTVA", "CRDO", "COHR", "GEV", "AMD",
-                 "QQQ", "QQQM", "TSLA", "NVDA", "SOXL", "OII", "CMBT"}
+                 "QQQ", "QQQM", "TSLA", "NVDA", "SOXL", "OII", "CMBT", "SPCX"}
     tracker_path = os.path.join(repo_dir, "stale_tracker.json")
     try:
         tracker = json.load(open(tracker_path)) if os.path.exists(tracker_path) else {}
