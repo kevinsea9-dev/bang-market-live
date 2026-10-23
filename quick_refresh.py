@@ -1712,6 +1712,18 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
     except Exception:
         excluded_u = set()
     cands = []  # (key, ticker, html)
+    # 😱→🛒 CAPITULATION — hoảng loạn + tay to đỡ = lúc gom (Buffett) — ƯU TIÊN RENDER CAO NHẤT (🎯 BOTTOM SIGNAL, lệnh Tom 15/10)
+    for t, pc, r, b, px in caps or []:
+        if t in excluded_u:
+            continue
+        cands.append((f"UCP{t}", t,
+                      f"😱→🛒 <b>{t} HOẢNG LOẠN {pc:+.1f}%, vol {r}x</b> — đã ngóc +{b:.1f}% từ đáy, tay to đang đỡ, canh gom"))
+    # 🔄 ĐẢO CHIỀU XÁC NHẬN — trigger bắt đáy: rớt sâu + hồi mạnh + volume — ƯU TIÊN RENDER CAO NHẤT (🎯 BOTTOM SIGNAL, lệnh Tom 15/10)
+    for t, low_pc, b, r, px, pc in revs or []:
+        if t in excluded_u:
+            continue
+        cands.append((f"URV{t}", t,
+                      f"🔄 <b>{t} ĐẢO CHIỀU XÁC NHẬN</b> — đáy {low_pc:+.1f}%, hồi +{b:.1f}%, vol {r}x. Bắt đáy có tay to đỡ"))
     for t, (px, pc) in prices.items():
         if t in excluded_u:
             continue
@@ -1733,18 +1745,6 @@ def refresh_urgent(h, prices, daylows, events, repo_dir, flows=None, caps=None, 
         if r >= 2.5 and b >= 3.0:
             cands.append((f"UMF{t}", t,
                           f"💰 <b>{t} DÒNG TIỀN VÀO</b> — vol {r}x TB, bounce +{b:.1f}% từ đáy"))
-    # 😱→🛒 CAPITULATION — hoảng loạn + tay to đỡ = lúc gom (Buffett)
-    for t, pc, r, b, px in caps or []:
-        if t in excluded_u:
-            continue
-        cands.append((f"UCP{t}", t,
-                      f"😱→🛒 <b>{t} HOẢNG LOẠN {pc:+.1f}%, vol {r}x</b> — đã ngóc +{b:.1f}% từ đáy, tay to đang đỡ, canh gom"))
-    # 🔄 ĐẢO CHIỀU XÁC NHẬN — trigger bắt đáy: rớt sâu + hồi mạnh + volume
-    for t, low_pc, b, r, px, pc in revs or []:
-        if t in excluded_u:
-            continue
-        cands.append((f"URV{t}", t,
-                      f"🔄 <b>{t} ĐẢO CHIỀU XÁC NHẬN</b> — đáy {low_pc:+.1f}%, hồi +{b:.1f}%, vol {r}x. Bắt đáy có tay to đỡ"))
     for ev in events or []:
         t, _prev, st, px, _pc = ev[0], ev[1], ev[2], ev[3], ev[4]
         if t in excluded_u:
