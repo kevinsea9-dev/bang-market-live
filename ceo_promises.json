@@ -197,6 +197,105 @@
    "promise": "Mục tiêu FY2030: tăng trưởng doanh thu hàng năm high-single-digit, biên lợi nhuận vận hành trên 20%",
    "due": "2030 (FY2030)",
    "status": "open"
+  },
+  {
+   "ticker": "AXP",
+   "who": "Stephen Squeri (CEO American Express)",
+   "said_on": "2026-10-23",
+   "source": "AXP Q3 2026 — company release via Reuters/AlphaStreet 23/10",
+   "promise": "Guidance FY26: GAAP EPS $18,30–18,60; adjusted EPS $17,60–17,90; tăng trưởng doanh thu cả năm 10%",
+   "due": "2026-12-31 (kết thúc FY26)",
+   "status": "open"
+  },
+  {
+   "ticker": "AXP",
+   "who": "Le Caillec (CFO American Express)",
+   "said_on": "2026-10-23",
+   "source": "AXP Q3 2026 earnings call transcript 23/10",
+   "promise": "Tham vọng tăng trưởng EPS mid-teens duy trì dài hạn; ROE ~35%",
+   "due": "ongoing",
+   "status": "open"
+  },
+  {
+   "ticker": "AXP",
+   "who": "Ban lãnh đạo Amex",
+   "said_on": "2026-10-23",
+   "source": "AXP Q3 2026 earnings call recap 23/10",
+   "promise": "Tăng trưởng chi phí dịch vụ card-member giảm mạnh trong Q4 khi lapping đợt làm mới Platinum năm ngoái (đòn bẩy vận hành)",
+   "due": "Q4 2026",
+   "status": "open"
+  },
+  {
+   "ticker": "E",
+   "who": "Claudio Descalzi (CEO Eni)",
+   "said_on": "2026-10-23",
+   "source": "Eni Q3 2026 — company release via Reuters/Motley Fool transcript 23/10",
+   "promise": "Cổ tức đặc biệt €0,46/cp (~€1,3B), ex-dividend 7/12, chi trả 9/12/2026",
+   "due": "2026-12-09",
+   "status": "open"
+  },
+  {
+   "ticker": "E",
+   "who": "Claudio Descalzi (CEO Eni)",
+   "said_on": "2026-10-23",
+   "source": "Eni Q3 2026 earnings call transcript 23/10",
+   "promise": "Dòng tiền vận hành FY26 €16,5B (cao hơn 43% so với guidance đầu năm); buyback 2026 nâng lên €3,8B; cổ tức thường €1,10/cp (+5%)",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "E",
+   "who": "Ban lãnh đạo Eni",
+   "said_on": "2026-10-23",
+   "source": "Eni Q3 2026 — TipRanks 23/10",
+   "promise": "Plenitude đạt 6,5 GW công suất năng lượng tái tạo lắp đặt tới cuối 2026",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "SLB",
+   "who": "Olivier Le Peuch (CEO SLB)",
+   "said_on": "2026-10-23",
+   "source": "SLB Q3 2026 earnings call — Benzinga/TradingView 23/10",
+   "promise": "Mảng Data Center Solutions vượt $2B doanh thu trong 2027",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "SLB",
+   "who": "Olivier Le Peuch (CEO SLB)",
+   "said_on": "2026-10-23",
+   "source": "SLB Q3 2026 earnings call transcript 23/10",
+   "promise": "Hướng dẫn doanh thu Q4 2026 gần $10B; triển vọng 2027 rất hấp dẫn",
+   "due": "Q4 2026 / FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "SLB",
+   "who": "HĐQT SLB",
+   "said_on": "2026-10-23",
+   "source": "SLB — company release via Morningstar 23/10",
+   "promise": "Cổ tức hàng quý $0,295/cp, chốt danh sách 2/12/2026, chi trả 7/1/2027",
+   "due": "2027-01-07",
+   "status": "open"
+  },
+  {
+   "ticker": "INFY",
+   "who": "Ban lãnh đạo Infosys",
+   "said_on": "2026-10-23",
+   "source": "Infosys Q2 FY27 — company release via IANS/APAC 23/10",
+   "promise": "Tăng trưởng doanh thu FY27 còn 1–2% CC (hạ từ 1,5–3%); giữ biên lợi nhuận vận hành 20–22%",
+   "due": "2027-03-31 (kết thúc FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "INFY",
+   "who": "HĐQT Infosys",
+   "said_on": "2026-10-23",
+   "source": "Infosys — company filing via ScanX 23/10",
+   "promise": "Cổ tức tạm thời ₹26/cp (+13% YoY), chốt danh sách 3/11, chi trả 11/11/2026",
+   "due": "2026-11-11",
+   "status": "open"
   }
  ]
 }
