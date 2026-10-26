@@ -1,301 +1,355 @@
 {
- "note": "Sổ lời hứa CEO — Iggy ghi từ earnings call đã xác minh; mỗi kỳ báo cáo sau, audio mở đầu bằng mục kiểm chứng các lời hứa tới hạn. Chỉ ghi phát biểu có nguồn cùng ngày.",
- "promises": [
-  {
-   "ticker": "TSLA",
-   "said_on": "2026-10-21",
-   "source": "TSLA Q3 2026 call — Shacknews transcript + Investors.com live coverage 21/10",
-   "promise": "Optimus: đạt nhịp sản xuất 20.000 con/tuần vào cuối năm sau; giao Optimus cho khách ngoài Tesla vào cuối 2027; các vấn đề AI/độ bền của robot được giải quyết vào cuối năm sau",
-   "due": "2027-Q4",
-   "status": "open"
-  },
-  {
-   "ticker": "TSLA",
-   "said_on": "2026-10-21",
-   "source": "TSLA Q3 2026 call — Investors.com 21/10",
-   "promise": "Terafab (liên doanh Tesla–SpaceX): chip thử nghiệm đầu tiên hè 2026; chip chạy thật (functional) quý 3/2028",
-   "due": "2026-Q3 (test chip) / 2028-Q3 (functional)",
-   "status": "open"
-  },
-  {
-   "ticker": "TSLA",
-   "said_on": "2026-10-21",
-   "source": "TSLA Q3 2026 call — Shacknews transcript 21/10",
-   "promise": "Nhắm sản xuất 5 triệu xe/năm vào khoảng 2030; biên lãi gộp tăng rõ rệt; số dặm robotaxi tăng theo cấp số nhân",
-   "due": "2030 (5M xe) / kiểm chứng từng quý (robotaxi, biên lãi)",
-   "status": "open"
-  },
-  {
-   "ticker": "META",
-   "said_on": "2026-10-21",
-   "source": "META Q3 2026 release + Reuters 21/10",
-   "promise": "Doanh thu Q4 2026 đạt $73–76B; capex cả năm 2026 trong vùng $135–145B; cổ phiếu hạng C không quyền biểu quyết hiệu lực 19/01/2027 kèm cổ tức cổ phiếu 1:1",
-   "due": "2027-Q1 (kiểm chứng tại earnings Q4)",
-   "status": "open"
-  },
-  {
-   "ticker": "SPCX",
-   "said_on": "2026-10-20",
-   "source": "SPCX Q3 2026 call — BeInCrypto/Circuitry 20/10",
-   "promise": "Musk: doanh thu thường niên (ARR) của SpaceX đạt $500B–$1T vào cuối 2027 (mốc trên phụ thuộc mở rộng năng lực tính toán)",
-   "due": "2027-Q4",
-   "status": "open"
-  },
-  {
-   "ticker": "SPCX",
-   "said_on": "2026-10-20",
-   "source": "SPCX Q3 2026 call — Reuters/BBC/TechCrunch 20/10",
-   "promise": "Hai ủy ban đặc biệt độc lập của SPCX và TSLA xem xét sáp nhập; chưa có điều khoản; cổ đông TSLA phải thông qua với >50% tổng cổ phiếu lưu hành",
-   "due": "theo tiến trình — kiểm chứng mỗi kỳ có tin mới",
-   "status": "open"
-  },
-  {
-   "ticker": "NVDA",
-   "who": "Jensen Huang (CEO Nvidia)",
-   "said_on": "2026-10-21",
-   "source": "Phỏng vấn tại Berlin, GTC Berlin 21/10/2026 (CryptoBriefing/Quantli)",
-   "promise": "Doanh thu gộp Blackwell + Vera Rubin đạt ~$1.000 tỷ lũy kế tới hết 2027 — gấp đôi mức tầm nhìn $500 tỷ công bố trước đó.",
-   "status": "open"
-  },
-  {
-   "ticker": "NVDA",
-   "who": "Jensen Huang (CEO Nvidia)",
-   "said_on": "2026-10-21",
-   "source": "Phỏng vấn Berlin 21/10/2026",
-   "promise": "GPU Blackwell và Vera Rubin hữu dụng 7–8 năm (thay vì ~4 năm trong mô hình phố) — chip dùng làm tài sản thế chấp tài trợ xây dựng.",
-   "status": "open"
-  },
-  {
-   "ticker": "NVDA",
-   "who": "Jensen Huang (CEO Nvidia)",
-   "said_on": "2026-09-10",
-   "source": "Goldman Sachs Communacopia 10/09/2026 (Motley Fool tường thuật)",
-   "promise": "Chi tiêu hạ tầng AI toàn cầu đạt $3–4 nghìn tỷ MỖI NĂM vào 2030; capex hyperscaler ~$800 tỷ (2026) → ~$1,3 nghìn tỷ (2027).",
-   "status": "open"
-  },
-  {
-   "ticker": "NVDA",
-   "who": "Jensen Huang (CEO Nvidia)",
-   "said_on": "2026-09",
-   "source": "Phát biểu bên lề hội nghị tại Scotland (CNBC, qua WebProNews)",
-   "promise": "Kỳ vọng Nvidia bán gấp đôi số chip trong năm tới so với năm nay; ban lãnh đạo nói tăng trưởng bị giới hạn bởi nguồn cung (HBM), không phải nhu cầu.",
-   "status": "open"
-  },
-  {
-   "ticker": "NDAQ",
-   "who": "Adena Friedman (CEO Nasdaq)",
-   "said_on": "2026-10-22",
-   "source": "NDAQ Q3 2026 call — AlphaStreet transcript + Cerbat Gem recap 22/10",
-   "promise": "Giao dịch 23/5 trên sàn Nasdaq chính thức khởi động ngày 6/12/2026, đúng tiến độ",
-   "due": "2026-12",
-   "status": "open"
-  },
-  {
-   "ticker": "NDAQ",
-   "who": "Adena Friedman (CEO Nasdaq)",
-   "said_on": "2026-10-22",
-   "source": "NDAQ Q3 2026 call — Cerbat Gem recap 22/10",
-   "promise": "Nasdaq Equity Token ra mắt nửa đầu 2027, hợp tác DTCC và Kraken",
-   "due": "2027-H1",
-   "status": "open"
-  },
-  {
-   "ticker": "NDAQ",
-   "who": "Ban lãnh đạo Nasdaq",
-   "said_on": "2026-10-22",
-   "source": "NDAQ Q3 2026 call — TranscriptDaily/Cerbat Gem 22/10",
-   "promise": "Hoàn tất chương trình mua lại nhanh ASR $315–385M trong quý 4/2026",
-   "due": "2026-Q4",
-   "status": "open"
-  },
-  {
-   "ticker": "NDAQ",
-   "who": "Sarah Youngwood (CFO Nasdaq)",
-   "said_on": "2026-10-22",
-   "source": "NDAQ Q3 2026 call — Cerbat Gem 22/10",
-   "promise": "Chi phí non-GAAP cả năm 2026 trong vùng $2.55–2.58B",
-   "due": "2027-01 (kiểm chứng tại earnings Q4)",
-   "status": "open"
-  },
-  {
-   "ticker": "AAL",
-   "who": "Robert Isom (CEO American Airlines)",
-   "said_on": "2026-10-22",
-   "source": "AAL Q3 2026 — CNBC 22/10",
-   "promise": "Quay lại lợi nhuận trong năm 2027",
-   "due": "2027 (kiểm chứng tại báo cáo Q4/2027)",
-   "status": "open"
-  },
-  {
-   "ticker": "AAL",
-   "who": "Devon May (CFO American Airlines)",
-   "said_on": "2026-10-22",
-   "source": "AAL Q3 2026 call — Motley Fool/MarketBeat transcript 22/10",
-   "promise": "Quý 4/2026: doanh thu +19.5–22.5% YoY, lỗ điều chỉnh $0.50–1.10/cp; cả năm 2026 lỗ điều chỉnh $1.00–1.60/cp",
-   "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
-   "status": "open"
-  },
-  {
-   "ticker": "AAL",
-   "who": "Devon May (CFO American Airlines)",
-   "said_on": "2026-10-22",
-   "source": "AAL Q3 2026 call — Fool transcript 22/10",
-   "promise": "Đạt gần $1 tỷ tiết kiệm chi phí hàng năm và hơn $900M cải thiện vốn lưu động vào cuối 2026",
-   "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
-   "status": "open"
-  },
-  {
-   "ticker": "AAL",
-   "who": "Ban lãnh đạo American Airlines",
-   "said_on": "2026-10-22",
-   "source": "AAL Q3 2026 call — Fool transcript/CNBC 22/10",
-   "promise": "Mở 10 phòng chờ mới tới năm 2027; tăng trưởng mạng bay 2027 chậm lại đáng kể",
-   "due": "2027",
-   "status": "open"
-  },
-  {
-   "ticker": "SPOT",
-   "who": "Ban lãnh đạo Spotify",
-   "said_on": "2026-10-22",
-   "source": "SPOT Q3 2026 — Market Flux 22/10",
-   "promise": "Quý 4/2026: đạt 316 triệu thuê bao Premium, 818 triệu MAU, lợi nhuận vận hành €820M",
-   "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
-   "status": "open"
-  },
-  {
-   "ticker": "SPOT",
-   "who": "Christian Luiga (CFO Spotify)",
-   "said_on": "2026-10-22",
-   "source": "SPOT Q3 2026 call — Stocktwits/TradingView 22/10",
-   "promise": "Tái đàm phán hợp đồng với Universal Music Group và Warner Music Group trong quý 1/2027",
-   "due": "2027-Q1",
-   "status": "open"
-  },
-  {
-   "ticker": "DECK",
-   "who": "Stefano Caroti (CEO Deckers Brands)",
-   "said_on": "2026-10-22",
-   "source": "DECK Q2 FY27 — businesswire/Morningstar 22/10",
-   "promise": "EPS cả năm FY27 đạt $7.80–7.95 (gồm ~$0.52 hoàn thuế IEEPA)",
-   "due": "2027-03-31 (kết thúc FY27)",
-   "status": "open"
-  },
-  {
-   "ticker": "DECK",
-   "who": "Stefano Caroti (CEO Deckers Brands)",
-   "said_on": "2026-10-22",
-   "source": "DECK Q2 FY27 — businesswire 22/10",
-   "promise": "Doanh thu cả năm FY27 đạt $5.700–5.725B; HOKA tăng high-single-digit, UGG low-single-digit",
-   "due": "2027-03-31 (kết thúc FY27)",
-   "status": "open"
-  },
-  {
-   "ticker": "DECK",
-   "who": "Stefano Caroti (CEO Deckers Brands)",
-   "said_on": "2026-10-22",
-   "source": "DECK Q2 FY27 — Barron's 22/10 (khung nhắc lại từ 5/2026)",
-   "promise": "Mục tiêu FY2030: tăng trưởng doanh thu hàng năm high-single-digit, biên lợi nhuận vận hành trên 20%",
-   "due": "2030 (FY2030)",
-   "status": "open"
-  },
-  {
-   "ticker": "AXP",
-   "who": "Stephen Squeri (CEO American Express)",
-   "said_on": "2026-10-23",
-   "source": "AXP Q3 2026 — company release via Reuters/AlphaStreet 23/10",
-   "promise": "Guidance FY26: GAAP EPS $18,30–18,60; adjusted EPS $17,60–17,90; tăng trưởng doanh thu cả năm 10%",
-   "due": "2026-12-31 (kết thúc FY26)",
-   "status": "open"
-  },
-  {
-   "ticker": "AXP",
-   "who": "Le Caillec (CFO American Express)",
-   "said_on": "2026-10-23",
-   "source": "AXP Q3 2026 earnings call transcript 23/10",
-   "promise": "Tham vọng tăng trưởng EPS mid-teens duy trì dài hạn; ROE ~35%",
-   "due": "ongoing",
-   "status": "open"
-  },
-  {
-   "ticker": "AXP",
-   "who": "Ban lãnh đạo Amex",
-   "said_on": "2026-10-23",
-   "source": "AXP Q3 2026 earnings call recap 23/10",
-   "promise": "Tăng trưởng chi phí dịch vụ card-member giảm mạnh trong Q4 khi lapping đợt làm mới Platinum năm ngoái (đòn bẩy vận hành)",
-   "due": "Q4 2026",
-   "status": "open"
-  },
-  {
-   "ticker": "E",
-   "who": "Claudio Descalzi (CEO Eni)",
-   "said_on": "2026-10-23",
-   "source": "Eni Q3 2026 — company release via Reuters/Motley Fool transcript 23/10",
-   "promise": "Cổ tức đặc biệt €0,46/cp (~€1,3B), ex-dividend 7/12, chi trả 9/12/2026",
-   "due": "2026-12-09",
-   "status": "open"
-  },
-  {
-   "ticker": "E",
-   "who": "Claudio Descalzi (CEO Eni)",
-   "said_on": "2026-10-23",
-   "source": "Eni Q3 2026 earnings call transcript 23/10",
-   "promise": "Dòng tiền vận hành FY26 €16,5B (cao hơn 43% so với guidance đầu năm); buyback 2026 nâng lên €3,8B; cổ tức thường €1,10/cp (+5%)",
-   "due": "2026-12-31",
-   "status": "open"
-  },
-  {
-   "ticker": "E",
-   "who": "Ban lãnh đạo Eni",
-   "said_on": "2026-10-23",
-   "source": "Eni Q3 2026 — TipRanks 23/10",
-   "promise": "Plenitude đạt 6,5 GW công suất năng lượng tái tạo lắp đặt tới cuối 2026",
-   "due": "2026-12-31",
-   "status": "open"
-  },
-  {
-   "ticker": "SLB",
-   "who": "Olivier Le Peuch (CEO SLB)",
-   "said_on": "2026-10-23",
-   "source": "SLB Q3 2026 earnings call — Benzinga/TradingView 23/10",
-   "promise": "Mảng Data Center Solutions vượt $2B doanh thu trong 2027",
-   "due": "2027-12-31",
-   "status": "open"
-  },
-  {
-   "ticker": "SLB",
-   "who": "Olivier Le Peuch (CEO SLB)",
-   "said_on": "2026-10-23",
-   "source": "SLB Q3 2026 earnings call transcript 23/10",
-   "promise": "Hướng dẫn doanh thu Q4 2026 gần $10B; triển vọng 2027 rất hấp dẫn",
-   "due": "Q4 2026 / FY27",
-   "status": "open"
-  },
-  {
-   "ticker": "SLB",
-   "who": "HĐQT SLB",
-   "said_on": "2026-10-23",
-   "source": "SLB — company release via Morningstar 23/10",
-   "promise": "Cổ tức hàng quý $0,295/cp, chốt danh sách 2/12/2026, chi trả 7/1/2027",
-   "due": "2027-01-07",
-   "status": "open"
-  },
-  {
-   "ticker": "INFY",
-   "who": "Ban lãnh đạo Infosys",
-   "said_on": "2026-10-23",
-   "source": "Infosys Q2 FY27 — company release via IANS/APAC 23/10",
-   "promise": "Tăng trưởng doanh thu FY27 còn 1–2% CC (hạ từ 1,5–3%); giữ biên lợi nhuận vận hành 20–22%",
-   "due": "2027-03-31 (kết thúc FY27)",
-   "status": "open"
-  },
-  {
-   "ticker": "INFY",
-   "who": "HĐQT Infosys",
-   "said_on": "2026-10-23",
-   "source": "Infosys — company filing via ScanX 23/10",
-   "promise": "Cổ tức tạm thời ₹26/cp (+13% YoY), chốt danh sách 3/11, chi trả 11/11/2026",
-   "due": "2026-11-11",
-   "status": "open"
-  }
- ]
+  "note": "Sổ lời hứa CEO — Iggy ghi từ earnings call đã xác minh; mỗi kỳ báo cáo sau, audio mở đầu bằng mục kiểm chứng các lời hứa tới hạn. Chỉ ghi phát biểu có nguồn cùng ngày.",
+  "promises": [
+    {
+      "ticker": "TSLA",
+      "said_on": "2026-10-21",
+      "source": "TSLA Q3 2026 call — Shacknews transcript + Investors.com live coverage 21/10",
+      "promise": "Optimus: đạt nhịp sản xuất 20.000 con/tuần vào cuối năm sau; giao Optimus cho khách ngoài Tesla vào cuối 2027; các vấn đề AI/độ bền của robot được giải quyết vào cuối năm sau",
+      "due": "2027-Q4",
+      "status": "open"
+    },
+    {
+      "ticker": "TSLA",
+      "said_on": "2026-10-21",
+      "source": "TSLA Q3 2026 call — Investors.com 21/10",
+      "promise": "Terafab (liên doanh Tesla–SpaceX): chip thử nghiệm đầu tiên hè 2026; chip chạy thật (functional) quý 3/2028",
+      "due": "2026-Q3 (test chip) / 2028-Q3 (functional)",
+      "status": "open"
+    },
+    {
+      "ticker": "TSLA",
+      "said_on": "2026-10-21",
+      "source": "TSLA Q3 2026 call — Shacknews transcript 21/10",
+      "promise": "Nhắm sản xuất 5 triệu xe/năm vào khoảng 2030; biên lãi gộp tăng rõ rệt; số dặm robotaxi tăng theo cấp số nhân",
+      "due": "2030 (5M xe) / kiểm chứng từng quý (robotaxi, biên lãi)",
+      "status": "open"
+    },
+    {
+      "ticker": "META",
+      "said_on": "2026-10-21",
+      "source": "META Q3 2026 release + Reuters 21/10",
+      "promise": "Doanh thu Q4 2026 đạt $73–76B; capex cả năm 2026 trong vùng $135–145B; cổ phiếu hạng C không quyền biểu quyết hiệu lực 19/01/2027 kèm cổ tức cổ phiếu 1:1",
+      "due": "2027-Q1 (kiểm chứng tại earnings Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "SPCX",
+      "said_on": "2026-10-20",
+      "source": "SPCX Q3 2026 call — BeInCrypto/Circuitry 20/10",
+      "promise": "Musk: doanh thu thường niên (ARR) của SpaceX đạt $500B–$1T vào cuối 2027 (mốc trên phụ thuộc mở rộng năng lực tính toán)",
+      "due": "2027-Q4",
+      "status": "open"
+    },
+    {
+      "ticker": "SPCX",
+      "said_on": "2026-10-20",
+      "source": "SPCX Q3 2026 call — Reuters/BBC/TechCrunch 20/10",
+      "promise": "Hai ủy ban đặc biệt độc lập của SPCX và TSLA xem xét sáp nhập; chưa có điều khoản; cổ đông TSLA phải thông qua với >50% tổng cổ phiếu lưu hành",
+      "due": "theo tiến trình — kiểm chứng mỗi kỳ có tin mới",
+      "status": "open"
+    },
+    {
+      "ticker": "NVDA",
+      "who": "Jensen Huang (CEO Nvidia)",
+      "said_on": "2026-10-21",
+      "source": "Phỏng vấn tại Berlin, GTC Berlin 21/10/2026 (CryptoBriefing/Quantli)",
+      "promise": "Doanh thu gộp Blackwell + Vera Rubin đạt ~$1.000 tỷ lũy kế tới hết 2027 — gấp đôi mức tầm nhìn $500 tỷ công bố trước đó.",
+      "status": "open"
+    },
+    {
+      "ticker": "NVDA",
+      "who": "Jensen Huang (CEO Nvidia)",
+      "said_on": "2026-10-21",
+      "source": "Phỏng vấn Berlin 21/10/2026",
+      "promise": "GPU Blackwell và Vera Rubin hữu dụng 7–8 năm (thay vì ~4 năm trong mô hình phố) — chip dùng làm tài sản thế chấp tài trợ xây dựng.",
+      "status": "open"
+    },
+    {
+      "ticker": "NVDA",
+      "who": "Jensen Huang (CEO Nvidia)",
+      "said_on": "2026-09-10",
+      "source": "Goldman Sachs Communacopia 10/09/2026 (Motley Fool tường thuật)",
+      "promise": "Chi tiêu hạ tầng AI toàn cầu đạt $3–4 nghìn tỷ MỖI NĂM vào 2030; capex hyperscaler ~$800 tỷ (2026) → ~$1,3 nghìn tỷ (2027).",
+      "status": "open"
+    },
+    {
+      "ticker": "NVDA",
+      "who": "Jensen Huang (CEO Nvidia)",
+      "said_on": "2026-09",
+      "source": "Phát biểu bên lề hội nghị tại Scotland (CNBC, qua WebProNews)",
+      "promise": "Kỳ vọng Nvidia bán gấp đôi số chip trong năm tới so với năm nay; ban lãnh đạo nói tăng trưởng bị giới hạn bởi nguồn cung (HBM), không phải nhu cầu.",
+      "status": "open"
+    },
+    {
+      "ticker": "NDAQ",
+      "who": "Adena Friedman (CEO Nasdaq)",
+      "said_on": "2026-10-22",
+      "source": "NDAQ Q3 2026 call — AlphaStreet transcript + Cerbat Gem recap 22/10",
+      "promise": "Giao dịch 23/5 trên sàn Nasdaq chính thức khởi động ngày 6/12/2026, đúng tiến độ",
+      "due": "2026-12",
+      "status": "open"
+    },
+    {
+      "ticker": "NDAQ",
+      "who": "Adena Friedman (CEO Nasdaq)",
+      "said_on": "2026-10-22",
+      "source": "NDAQ Q3 2026 call — Cerbat Gem recap 22/10",
+      "promise": "Nasdaq Equity Token ra mắt nửa đầu 2027, hợp tác DTCC và Kraken",
+      "due": "2027-H1",
+      "status": "open"
+    },
+    {
+      "ticker": "NDAQ",
+      "who": "Ban lãnh đạo Nasdaq",
+      "said_on": "2026-10-22",
+      "source": "NDAQ Q3 2026 call — TranscriptDaily/Cerbat Gem 22/10",
+      "promise": "Hoàn tất chương trình mua lại nhanh ASR $315–385M trong quý 4/2026",
+      "due": "2026-Q4",
+      "status": "open"
+    },
+    {
+      "ticker": "NDAQ",
+      "who": "Sarah Youngwood (CFO Nasdaq)",
+      "said_on": "2026-10-22",
+      "source": "NDAQ Q3 2026 call — Cerbat Gem 22/10",
+      "promise": "Chi phí non-GAAP cả năm 2026 trong vùng $2.55–2.58B",
+      "due": "2027-01 (kiểm chứng tại earnings Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "AAL",
+      "who": "Robert Isom (CEO American Airlines)",
+      "said_on": "2026-10-22",
+      "source": "AAL Q3 2026 — CNBC 22/10",
+      "promise": "Quay lại lợi nhuận trong năm 2027",
+      "due": "2027 (kiểm chứng tại báo cáo Q4/2027)",
+      "status": "open"
+    },
+    {
+      "ticker": "AAL",
+      "who": "Devon May (CFO American Airlines)",
+      "said_on": "2026-10-22",
+      "source": "AAL Q3 2026 call — Motley Fool/MarketBeat transcript 22/10",
+      "promise": "Quý 4/2026: doanh thu +19.5–22.5% YoY, lỗ điều chỉnh $0.50–1.10/cp; cả năm 2026 lỗ điều chỉnh $1.00–1.60/cp",
+      "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "AAL",
+      "who": "Devon May (CFO American Airlines)",
+      "said_on": "2026-10-22",
+      "source": "AAL Q3 2026 call — Fool transcript 22/10",
+      "promise": "Đạt gần $1 tỷ tiết kiệm chi phí hàng năm và hơn $900M cải thiện vốn lưu động vào cuối 2026",
+      "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "AAL",
+      "who": "Ban lãnh đạo American Airlines",
+      "said_on": "2026-10-22",
+      "source": "AAL Q3 2026 call — Fool transcript/CNBC 22/10",
+      "promise": "Mở 10 phòng chờ mới tới năm 2027; tăng trưởng mạng bay 2027 chậm lại đáng kể",
+      "due": "2027",
+      "status": "open"
+    },
+    {
+      "ticker": "SPOT",
+      "who": "Ban lãnh đạo Spotify",
+      "said_on": "2026-10-22",
+      "source": "SPOT Q3 2026 — Market Flux 22/10",
+      "promise": "Quý 4/2026: đạt 316 triệu thuê bao Premium, 818 triệu MAU, lợi nhuận vận hành €820M",
+      "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "SPOT",
+      "who": "Christian Luiga (CFO Spotify)",
+      "said_on": "2026-10-22",
+      "source": "SPOT Q3 2026 call — Stocktwits/TradingView 22/10",
+      "promise": "Tái đàm phán hợp đồng với Universal Music Group và Warner Music Group trong quý 1/2027",
+      "due": "2027-Q1",
+      "status": "open"
+    },
+    {
+      "ticker": "DECK",
+      "who": "Stefano Caroti (CEO Deckers Brands)",
+      "said_on": "2026-10-22",
+      "source": "DECK Q2 FY27 — businesswire/Morningstar 22/10",
+      "promise": "EPS cả năm FY27 đạt $7.80–7.95 (gồm ~$0.52 hoàn thuế IEEPA)",
+      "due": "2027-03-31 (kết thúc FY27)",
+      "status": "open"
+    },
+    {
+      "ticker": "DECK",
+      "who": "Stefano Caroti (CEO Deckers Brands)",
+      "said_on": "2026-10-22",
+      "source": "DECK Q2 FY27 — businesswire 22/10",
+      "promise": "Doanh thu cả năm FY27 đạt $5.700–5.725B; HOKA tăng high-single-digit, UGG low-single-digit",
+      "due": "2027-03-31 (kết thúc FY27)",
+      "status": "open"
+    },
+    {
+      "ticker": "DECK",
+      "who": "Stefano Caroti (CEO Deckers Brands)",
+      "said_on": "2026-10-22",
+      "source": "DECK Q2 FY27 — Barron's 22/10 (khung nhắc lại từ 5/2026)",
+      "promise": "Mục tiêu FY2030: tăng trưởng doanh thu hàng năm high-single-digit, biên lợi nhuận vận hành trên 20%",
+      "due": "2030 (FY2030)",
+      "status": "open"
+    },
+    {
+      "ticker": "AXP",
+      "who": "Stephen Squeri (CEO American Express)",
+      "said_on": "2026-10-23",
+      "source": "AXP Q3 2026 — company release via Reuters/AlphaStreet 23/10",
+      "promise": "Guidance FY26: GAAP EPS $18,30–18,60; adjusted EPS $17,60–17,90; tăng trưởng doanh thu cả năm 10%",
+      "due": "2026-12-31 (kết thúc FY26)",
+      "status": "open"
+    },
+    {
+      "ticker": "AXP",
+      "who": "Le Caillec (CFO American Express)",
+      "said_on": "2026-10-23",
+      "source": "AXP Q3 2026 earnings call transcript 23/10",
+      "promise": "Tham vọng tăng trưởng EPS mid-teens duy trì dài hạn; ROE ~35%",
+      "due": "ongoing",
+      "status": "open"
+    },
+    {
+      "ticker": "AXP",
+      "who": "Ban lãnh đạo Amex",
+      "said_on": "2026-10-23",
+      "source": "AXP Q3 2026 earnings call recap 23/10",
+      "promise": "Tăng trưởng chi phí dịch vụ card-member giảm mạnh trong Q4 khi lapping đợt làm mới Platinum năm ngoái (đòn bẩy vận hành)",
+      "due": "Q4 2026",
+      "status": "open"
+    },
+    {
+      "ticker": "E",
+      "who": "Claudio Descalzi (CEO Eni)",
+      "said_on": "2026-10-23",
+      "source": "Eni Q3 2026 — company release via Reuters/Motley Fool transcript 23/10",
+      "promise": "Cổ tức đặc biệt €0,46/cp (~€1,3B), ex-dividend 7/12, chi trả 9/12/2026",
+      "due": "2026-12-09",
+      "status": "open"
+    },
+    {
+      "ticker": "E",
+      "who": "Claudio Descalzi (CEO Eni)",
+      "said_on": "2026-10-23",
+      "source": "Eni Q3 2026 earnings call transcript 23/10",
+      "promise": "Dòng tiền vận hành FY26 €16,5B (cao hơn 43% so với guidance đầu năm); buyback 2026 nâng lên €3,8B; cổ tức thường €1,10/cp (+5%)",
+      "due": "2026-12-31",
+      "status": "open"
+    },
+    {
+      "ticker": "E",
+      "who": "Ban lãnh đạo Eni",
+      "said_on": "2026-10-23",
+      "source": "Eni Q3 2026 — TipRanks 23/10",
+      "promise": "Plenitude đạt 6,5 GW công suất năng lượng tái tạo lắp đặt tới cuối 2026",
+      "due": "2026-12-31",
+      "status": "open"
+    },
+    {
+      "ticker": "SLB",
+      "who": "Olivier Le Peuch (CEO SLB)",
+      "said_on": "2026-10-23",
+      "source": "SLB Q3 2026 earnings call — Benzinga/TradingView 23/10",
+      "promise": "Mảng Data Center Solutions vượt $2B doanh thu trong 2027",
+      "due": "2027-12-31",
+      "status": "open"
+    },
+    {
+      "ticker": "SLB",
+      "who": "Olivier Le Peuch (CEO SLB)",
+      "said_on": "2026-10-23",
+      "source": "SLB Q3 2026 earnings call transcript 23/10",
+      "promise": "Hướng dẫn doanh thu Q4 2026 gần $10B; triển vọng 2027 rất hấp dẫn",
+      "due": "Q4 2026 / FY27",
+      "status": "open"
+    },
+    {
+      "ticker": "SLB",
+      "who": "HĐQT SLB",
+      "said_on": "2026-10-23",
+      "source": "SLB — company release via Morningstar 23/10",
+      "promise": "Cổ tức hàng quý $0,295/cp, chốt danh sách 2/12/2026, chi trả 7/1/2027",
+      "due": "2027-01-07",
+      "status": "open"
+    },
+    {
+      "ticker": "INFY",
+      "who": "Ban lãnh đạo Infosys",
+      "said_on": "2026-10-23",
+      "source": "Infosys Q2 FY27 — company release via IANS/APAC 23/10",
+      "promise": "Tăng trưởng doanh thu FY27 còn 1–2% CC (hạ từ 1,5–3%); giữ biên lợi nhuận vận hành 20–22%",
+      "due": "2027-03-31 (kết thúc FY27)",
+      "status": "open"
+    },
+    {
+      "ticker": "INFY",
+      "who": "HĐQT Infosys",
+      "said_on": "2026-10-23",
+      "source": "Infosys — company filing via ScanX 23/10",
+      "promise": "Cổ tức tạm thời ₹26/cp (+13% YoY), chốt danh sách 3/11, chi trả 11/11/2026",
+      "due": "2026-11-11",
+      "status": "open"
+    },
+    {
+      "ticker": "VZ",
+      "who": "Hans Vestberg (CEO Verizon)",
+      "said_on": "2026-10-26",
+      "source": "VZ Q3 2026 release + call recap 26/10 (TradingView/dpa-AFX, TradingKey transcript)",
+      "promise": "Guidance FY2026: EPS điều chỉnh $5.04-5.06; thuê bao postpaid cả năm 1.1-1.2 triệu; tăng trưởng dòng tiền tự do khoảng 12%; doanh thu dịch vụ nửa trên vùng 2.5-3%, quý 4 khoảng 4%",
+      "due": "2026-12-31 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "VZ",
+      "who": "Hans Vestberg (CEO Verizon)",
+      "said_on": "2026-10-26",
+      "source": "VZ Q3 2026 call — TradingKey transcript 26/10",
+      "promise": "Mở rộng dịch vụ FWA tốc độ 1 gigabit tại các đô thị từ quý này sang 2027; thêm 10-15 triệu điểm phục vụ tiềm năng, trên nền tảng phủ cáp quang 40-50 triệu điểm; phủ cáp quang vượt 32 triệu điểm cuối năm 2026",
+      "due": "2026-12-31 (phủ cáp quang) / 2027 (mở rộng FWA)",
+      "status": "open"
+    },
+    {
+      "ticker": "NUE",
+      "who": "Leon Topalian (Chủ tịch kiêm CEO Nucor)",
+      "said_on": "2026-10-26",
+      "source": "NUE Q3 2026 release via Quiver/Kalkine 26/10",
+      "promise": "Lợi nhuận quý 4/2026 nhìn chung ngang bằng hoặc nhích cao hơn quý 3/2026",
+      "due": "2027-02 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "WELL",
+      "who": "Ban lãnh đạo Welltower",
+      "said_on": "2026-10-26",
+      "source": "WELL Q3 2026 release via Morningstar/Seeking Alpha 26/10",
+      "promise": "Guidance FY2026: lợi nhuận ròng $3.31-3.37/cp; FFO chuẩn hóa $6.47-6.53/cp; SSNOI trung bình tăng 15.0-16.25% (mảng nhà ở người cao tuổi vận hành 20.25-21.75%)",
+      "due": "2026-12-31 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "CDNS",
+      "who": "Anirudh Devgan (CEO Cadence)",
+      "said_on": "2026-10-26",
+      "source": "CDNS Q3 2026 release via Business Wire/Investors.com 26/10",
+      "promise": "Triển vọng 2026: tăng trưởng doanh thu 21%, EPS non-GAAP $8.40, doanh thu $6.387-6.417B; backlog kỷ lục $8.2B làm đệm",
+      "due": "2026-12-31 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    },
+    {
+      "ticker": "PSA",
+      "who": "Tom Boyle (CEO Public Storage)",
+      "said_on": "2026-10-26",
+      "source": "PSA Q3 2026 release via Business Wire/TradingView 26/10",
+      "promise": "Guidance 2026: Core FFO $16.90-17.10/cp; Same Store NOI tăng trưởng -0.8% đến +0.2%; tích hợp nhanh danh mục NSA + PS Canada lên nền tảng PS Next",
+      "due": "2026-12-31 (kiểm chứng tại báo cáo Q4)",
+      "status": "open"
+    }
+  ]
 }
