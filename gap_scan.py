@@ -216,7 +216,7 @@ def main():
             heat = "heat-green" if r["gap"] > 0 else "heat-red"
             sharks.append(
                 f'<div class="alert urgent" data-ticker="{r["t"]}" data-sig-px="{r["px"]:.2f}">'
-                f'<span class="heat {heat}">{"🟢 CÒN KỊP" if r["gap"] > 0 else "🔴 COI CHỪNG"}</span><br>'
+                f'<span class="heat {heat}">{"🟢 GAP LÊN" if r["gap"] > 0 else "🔴 COI CHỪNG"}</span><br>'
                 f'<b>🦈🦈 GAP PREMARKET {fmt_pct(r["gap"])} — {r["t"]} gap {d} mạnh (~${r["px"]:,.2f})</b><br>'
                 f'<span class="t">🦈 Cá mập • {date_s} • gap premarket {a.mode} • chỉ tham khảo</span></div>')
         ub = h.find('<div id="urgentBox">')
