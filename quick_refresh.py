@@ -1431,8 +1431,9 @@ def _fresh_bait_all():
                 out.setdefault(t, []).append(e["t"])
     return out
 
-def steel_net_update(h, prices, highs52):
-    """Dựng lại section LƯỚI THÉP mỗi lượt — idempotent."""
+def steel_net_update(h, prices, highs52, pm=False):
+    """Dựng lại section LƯỚI THÉP mỗi lượt — idempotent.
+    pm=True: giá là premarket (thanh khoản mỏng) — ghi rõ vào note."""
     # 19/10 ~12:55: tôn trọng _excluded — mã Tom đã xóa khỏi bảng không được chui lại qua lưới thép.
     try:
         _ex = set(json.load(open(os.path.join(
@@ -1481,7 +1482,7 @@ def steel_net_update(h, prices, highs52):
         body = '<div class="alert">Chưa có mã đạt chuẩn onsale 40–95% lúc này.</div>'
     block = (f'<div class="sec" id="sec-steelnet"><h2>🕸️ LƯỚI THÉP — ONSALE 40–95% (tự động)</h2>'
              f'<div class="note">Mã đạt chuẩn tự vào lưới mỗi lượt 5 phút • có vùng duyệt mới lên mâm • '
-             f'mọi lệnh đều có cắt cứng • cập nhật {ts} PT</div>'
+             f'mọi lệnh đều có cắt cứng • cập nhật {ts} PT{" • giá premarket, thanh khoản mỏng" if pm else ""}</div>'
              f"<!-- STEELNET-AUTO -->{body}<!-- /STEELNET-AUTO --></div>\n")
     if 'id="sec-steelnet"' in h:
         h = re.sub(r'<div class="sec" id="sec-steelnet">.*?</div>\n',
@@ -2450,6 +2451,29 @@ def main():
         if _pm:
             h, _nfoc = shark_focus_update(h, _pm, pm=True)
             print(f"lite premarket: {_nfoc} (giá premarket)", flush=True)
+        # 🕸️ LƯỚI THÉP cũng phải sống premarket (Tom bắt lỗi 26/10: mục onsale
+        # đông cứng ở giá đóng cửa thứ Sáu 13:05 suốt premarket vì lite bỏ qua).
+        # Giá premarket thật + đỉnh 52w từ cache của lượt full gần nhất (đỉnh
+        # 52w biến chậm, cache là chấp nhận được). Chỉ cập nhật khi lấy đủ giá —
+        # fetch lỗi thì GIỮ bảng cũ, tuyệt đối không xóa trắng section.
+        try:
+            _h52c = {}
+            _cf = os.path.join(a.repo_dir, "highs52_cache.json")
+            if os.path.exists(_cf):
+                _h52c = json.load(open(_cf))
+            _sec = re.search(r'id="sec-steelnet">(.*?)</div>\n', h, re.S)
+            _rows = re.findall(r"<tr><td><b>([A-Z]{2,5})</b></td>",
+                               _sec.group(1)) if _sec else []
+            _uni = sorted(set(ZONES.keys()) | STEEL_QUALITY | set(_rows))
+            _spm = fetch_pm_prices(_uni)
+            if len(_spm) >= 10 and _h52c:
+                h, _nsteel = steel_net_update(h, _spm, _h52c, pm=True)
+                print(f"lite premarket: {_nsteel} (giá premarket)", flush=True)
+            else:
+                print(f"lite premarket: steelnet giữ nguyên (pm={len(_spm)}, "
+                      f"cache={len(_h52c)})", flush=True)
+        except Exception as _e:
+            print(f"lite premarket: steelnet skip ({_e})", flush=True)
         h = bull_bear_update(h, a.repo_dir)
         h = render_regime_strip(h, a.repo_dir)
         h = bump_badge(h, "premarket — Bull & Bear theo futures")
@@ -2478,6 +2502,11 @@ def main():
     print(f"lấy giá {len(tickers)} mã...", flush=True)
     prices, daylows, highs52 = fetch_prices(tickers)
     print(f"ok {len(prices)}/{len(tickers)}", flush=True)
+    # Cache đỉnh 52w cho lượt lite premarket dùng (steelnet sống ngoài giờ).
+    try:
+        json.dump(highs52, open(os.path.join(a.repo_dir, "highs52_cache.json"), "w"))
+    except Exception:
+        pass
     if not prices:
         print("không lấy được giá nào — thoát", file=sys.stderr)
         return 1
