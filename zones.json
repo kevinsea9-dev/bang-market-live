@@ -44,15 +44,16 @@
  },
  "CEG": {
   "book": "Sổ 3",
-  "cut": 265,
+  "cut": 243,
   "entry": [
-   270,
-   280
+   250,
+   262
   ],
   "targets": [
    302,
    310
-  ]
+  ],
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy đôi $247,20 (23/10)/$249,20 (26/10). Neo kệ đáy đôi $247–255; giá còn dưới MA20 — mốc canh pullback."
  },
  "COHR": {
   "book": "Sổ 3",
@@ -68,15 +69,16 @@
  },
  "CRDO": {
   "book": "Sổ 2",
-  "cut": 178,
+  "cut": 140,
   "entry": [
+   150,
+   162
+  ],
+  "targets": [
    185,
    195
   ],
-  "targets": [
-   220,
-   240
-  ]
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy đôi $142,89 (23/10)/$145,10 (26/10) + nến đảo chiều +10,3% 27/10. Nền còn non, giá dưới MA200 ~$181 — mốc canh trong chế độ đỏ."
  },
  "ENTG": {
   "book": "Sổ 2",
@@ -116,15 +118,16 @@
  },
  "GEV": {
   "book": "Sổ 3",
-  "cut": 890,
+  "cut": 810,
   "entry": [
-   900,
-   935
+   850,
+   890
   ],
   "targets": [
    967,
    1050
-  ]
+  ],
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy sau cao hơn đáy trước ($796→$820), 27/10 lấy lại cắt cũ $890 trong phiên. Neo kệ $815–855."
  },
  "HIMS": {
   "book": "Sổ 3",
@@ -178,15 +181,16 @@
  },
  "MELI": {
   "book": "Sổ 2",
-  "cut": 1695,
+  "cut": 1550,
   "entry": [
-   1860,
-   1890
+   1600,
+   1700
   ],
   "targets": [
-   2240,
-   2300
-  ]
+   1860,
+   1900
+  ],
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Neo phiên capitulation 26/10 (đáy $1.571 rút chân đóng $1.669). Nền non 2 phiên — chờ giữ trên $1.600 thêm 1–2 phiên để xác nhận."
  },
  "MRVL": {
   "book": "Sổ 2",
@@ -520,15 +524,15 @@
  "IREN": {
   "book": "Sổ 3",
   "entry": [
-   28.5,
-   30.0
+   24.5,
+   26.5
   ],
   "targets": [
    34.0,
    36.5
   ],
-  "cut": 26.5,
-  "note": "Tom giữ @~$35. Đảo chiều xác nhận 15/10: đáy -13%, hồi +10.3%, vol 2.8x. Sóng 4 - lung lay."
+  "cut": 23.0,
+  "note": "Tom giữ @~$35. Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Kệ $24,85–25,60 test 3 lần trên đáy năm $23,72; 27/10 +7,45% lấy lại cắt cũ $26,50 trong phiên. Cắt cứng mới dưới đáy năm."
  },
  "CRML": {
   "book": "Sổ 3",
@@ -806,15 +810,15 @@
  "SKHY": {
   "book": "Sổ 3",
   "entry": [
-   135,
-   145
+   133,
+   142
   ],
   "targets": [
    165,
    180
   ],
-  "cut": 125,
-  "note": "Small-cap, -16.3% vs MA50 (yếu), ít dữ liệu — vị thế nhỏ"
+  "cut": 128,
+  "note": "Vùng vẽ lại 27/10 theo ý Tom: nền mới 3 đáy nâng dần $130,79 → $135,21 → $139,15 (kệ $131–140), giá 27/10 $145,54 bật trên mép vùng cũ $135–145. Cắt cứng mới <$128 dưới đáy nền. EARNINGS TỐI 27/10 ~17:00 PT — biến nhị phân, vùng là mốc tham chiếu sau earnings. ADR mới niêm yết (ít dữ liệu), dưới MA20/MA50 — vị thế nhỏ."
  },
  "SMMT": {
   "book": "Sổ 3",
