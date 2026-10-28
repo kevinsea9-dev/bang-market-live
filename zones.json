@@ -210,18 +210,6 @@
   ],
   "note": "Vùng vào MỚI Tom duyệt 27/10 (thay vùng cũ $260–270/cắt $240): giá hồi sát cắt cũ sau khi đóng 26/10 $233,78 dưới cắt; cắt cứng mới <$230; chốt 1 = vùng cũ $265, chốt 2 = reclaim $285. Catalyst AI Networking Summit 28/10."
  },
- "NFLX": {
-  "book": "Sổ 3",
-  "cut": 63,
-  "entry": [
-   65,
-   70
-  ],
-  "targets": [
-   80,
-   94.7
-  ]
- },
  "NOC": {
   "book": "Sổ 1",
   "entry": [
@@ -266,28 +254,30 @@
   ]
  },
  "SNDK": {
+  "book": "Sổ 3",
   "entry": [
-   1310,
-   1400
+   1240,
+   1310
   ],
-  "cut": 1280,
   "targets": [
-   1550,
-   1700
+   1450,
+   1550
   ],
-  "book": "Sổ 3"
+  "cut": 1205,
+  "note": "VẼ LẠI 27/10 theo luật vẽ lại vùng của Tom: vùng cũ $1.310–1.400/cắt $1.280 đã bị ĐÓNG CỬA thủng cắt 2 phiên (23/10 $1.238,03 + 26/10 $1.255,58). Nền thật: đáy đôi $1.228,89 (23/10) + $1.229,00 (26/10), đáy ngày nhích dần 3 phiên, đóng 27/10 $1.304,84. Cắt $1.205 = dưới đáy đôi. Chốt 1 $1.450 (dưới MA20 ~$1.487), Chốt 2 $1.550 (chốt cũ, sát MA50 ~$1.576). ⚠️ Earnings tối T5 29/10 AMC — gap có thể nhảy qua cắt."
  },
  "TMUS": {
   "book": "Sổ 2",
-  "cut": 150,
   "entry": [
-   155,
-   165
+   144,
+   152
   ],
   "targets": [
-   185,
-   200
-  ]
+   165,
+   180
+  ],
+  "cut": 140,
+  "note": "VÙNG CÓ ĐIỀU KIỆN — vẽ 27/10 theo lệnh Tom, CHƯA KÍCH HOẠT. Kích hoạt khi đóng cửa phiên phản ứng earnings (29/10; số Q3 ra 13:05 PT 28/10, consensus EPS $2,89 / DT $23,15B) giữ ≥$145 và không đóng thủng đáy 52 tuần $143,92. Đóng <$143,92 → HỦY, chờ dựng nền tiếp (dưới đó là vùng trống). Thay vùng cũ $155–165/cắt $150 đã gãy sau cú sốc SpaceX tháng 10. Căn cứ nền: 23/10 đáy $146,32 · 26/10 đáy $143,92 rút chân đóng $146,93 · 27/10 đóng $146,83 — 3 phiên giữ quanh $146–147. Cắt $140 = dưới đáy 52w có đệm. Chốt 1 $165 dưới MA50 ~$169; Chốt 2 $180."
  },
  "VLO": {
   "book": "Sổ 2",
@@ -436,16 +426,17 @@
   "book": "Sổ 3"
  },
  "STX": {
+  "book": "Sổ 3",
   "entry": [
-   695,
-   720
+   640,
+   665
   ],
-  "cut": 680,
   "targets": [
-   830,
-   900
+   720,
+   760
   ],
-  "book": "Sổ 3"
+  "cut": 610,
+  "note": "CÓ ĐIỀU KIỆN (rà 27/10; Tom lệnh theo dõi 27/10): chỉ kích hoạt khi ĐÓNG 28/10 ≥$640 (phiên phản ứng earnings Q1 FY27). Đóng <$621 → HỦY, chuyển chờ dựng nền: dưới $621 là vùng trống hỗ trợ, kệ thật kế tiếp ~$540–560 (vùng phá vỡ tháng 4/2026). AH 27/10 chạm $611 rồi hồi $628,21 (16:21 PT). Thay entry cũ $695–720/cắt $680 đã gãy từ 22/10."
  },
  "DRAM": {
   "entry": [
@@ -500,7 +491,6 @@
  "_excluded": [
   "PCVX",
   "XLE",
-  "HOOD",
   "VSAT",
   "RKLB",
   "GD",
@@ -988,5 +978,31 @@
   ],
   "cut": 137,
   "note": "Vẽ 26/10 theo lệnh Tom để ý TGT: kệ hỗ trợ tháng 8 $145.5–147.5, trên MA200 $133; PT đồng thuận ~$160–163 (Hold); earnings 18/11 BMO; dưới MA50 → Sổ 3"
+ },
+ "HOOD": {
+  "book": "Sổ 3",
+  "entry": [
+   87,
+   92
+  ],
+  "targets": [
+   102,
+   112
+  ],
+  "cut": 83,
+  "note": "Vẽ 27/10 theo lệnh trực tiếp của Tom (gỡ khỏi _excluded — lệnh mới thắng khóa cũ, tiền lệ SPCX 19/10). Căn cứ nến ngày tới 23/10 + giá 27/10: đỉnh 52w $150,47, MA20 $106,6 / MA50 $108,9 / MA200 ~$93,3. Kệ tháng 10 $94,5–94,8 đã gãy (đóng 26/10 $92,84); vùng vào neo kệ dưới: đáy swing 18/8 $91,44 (mép trên vùng) tới trên đáy capitulation 31/7 $83,68. Cắt cứng <$83 = thủng đáy swing 31/7. Chốt 1 $102 = lấy lại kệ $101–104 (đóng 21/10 $101,93); Chốt 2 $112 = cụm MA50/đáy cũ tháng 9–10. Beta 2,5, P/E ~41 — Sổ 3 vị thế nhỏ. Earnings Q3 ra tối 27/10 (beat số đầu theo Tom, giá AH vẫn bị đè — mẫu hình sell-the-news 4 kỳ liên tiếp); vùng là mốc canh giá VỀ, không đuổi giá hiện tại ~$94–95."
+ },
+ "WM": {
+  "book": "Sổ 1",
+  "entry": [
+   225,
+   232
+  ],
+  "targets": [
+   247,
+   262
+  ],
+  "cut": 215,
+  "note": "Vẽ 27/10 theo lệnh Tom 'theo dõi vùng mua WM'. Căn cứ nến ngày tới 27/10: MA200 $225,06 = sàn vùng; mép trên $232 = vùng tái kiểm phá vỡ 20–21/10 + đáy swing tháng 7 $232,80. Cắt $215 = dưới cụm MA20 $219,27/MA50 $217,52. Chốt 1 $247 = đỉnh 6 tháng/1 năm ($247,15/$248,13); Chốt 2 $262 = mở rộng đo lường. Giá 27/10: đóng $235,81, AH $233,24 (−0,88%) sau earnings MIXED (EPS adj $2,15 vs $2,18; DT $6,846B vs $6,81B; guidance FY ở cận trên khung DT, EBITDA điểm giữa $8,2B). WM vừa chạy +20% từ đáy 2/10 $200,58 vào earnings — vùng là mốc chờ pullback, KHÔNG đuổi giá hiện tại. Mã phòng thủ vốn hóa ~$95B, cổ tức — Sổ 1."
  }
 }
