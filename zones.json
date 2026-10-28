@@ -20,15 +20,16 @@
  },
  "ASTS": {
   "book": "Sổ 3",
-  "cut": 49,
   "entry": [
-   50,
-   55
+   37,
+   41
   ],
   "targets": [
-   65,
-   75
-  ]
+   50,
+   58
+  ],
+  "cut": 35,
+  "note": "Vẽ lại 28/10: nền $36.7-40 (đáy 23/10 $36.72), -69% vs đỉnh $133.86. Vùng cũ $50-55/cắt $49 đã gãy."
  },
  "BIIB": {
   "book": "Sổ 2",
@@ -243,15 +244,16 @@
  },
  "RKLB": {
   "book": "Sổ 3",
-  "cut": 61.5,
   "entry": [
-   64,
-   66
+   50,
+   55
   ],
-  "reclaim": [
-   70,
-   72
-  ]
+  "targets": [
+   68,
+   78
+  ],
+  "cut": 47.5,
+  "note": "Vẽ lại 28/10 theo lệnh Tom: nền $49.5-54 (đáy 23/10 $49.52), -61% vs đỉnh 52w $151. Giá 27/10 $58.31 trên vùng — chờ pullback, không đuổi. Reclaim MA20 $61.9 = tín hiệu mạnh thêm."
  },
  "SNDK": {
   "book": "Sổ 3",
@@ -492,7 +494,6 @@
   "PCVX",
   "XLE",
   "VSAT",
-  "RKLB",
   "GD",
   "ZS",
   "FIGS"
@@ -839,54 +840,54 @@
  "AVAV": {
   "book": "Sổ 3",
   "entry": [
-   110,
-   120
+   115,
+   124
   ],
   "targets": [
-   150,
-   180
+   145,
+   165
   ],
-  "cut": 105,
-  "note": "Defense drones, đáy 52w $117.90, -70% vs đỉnh, dưới MA50 sâu"
+  "cut": 110,
+  "note": "Vẽ lại 28/10: đáy $113.15 ngày 23/10, hồi 3 phiên liên tiếp tới $126.73 — trên vùng, chờ pullback. -69% vs đỉnh $408."
  },
  "KTOS": {
   "book": "Sổ 3",
   "entry": [
-   36,
-   40
+   37,
+   41
   ],
   "targets": [
    50,
-   60
+   58
   ],
-  "cut": 34,
-  "note": "Kratos defense, đáy 52w $39.17, -70% vs đỉnh"
+  "cut": 35.5,
+  "note": "Vẽ lại 28/10: đáy $36.37 ngày 23/10; đóng 27/10 $41.31 vừa lấy lại MA20 $40.93 — kỹ thuật mạnh nhất nhóm. -69% vs đỉnh $134."
  },
  "IONQ": {
   "book": "Sổ 3",
   "entry": [
-   28,
-   32
+   30,
+   33
   ],
   "targets": [
    40,
-   48
+   46
   ],
-  "cut": 26,
-  "note": "Quantum computing, -57% vs đỉnh, dưới MA50 sâu"
+  "cut": 28.5,
+  "note": "Vẽ lại 28/10: nền $29.9-31 (đáy 26/10 $29.94), -55% vs đỉnh $73.65."
  },
  "OKLO": {
   "book": "Sổ 3",
   "entry": [
-   25,
+   25.5,
    28
   ],
   "targets": [
-   35,
-   42
+   36,
+   44
   ],
-  "cut": 23,
-  "note": "Nuclear SMR, đáy 52w $27.24, -83% vs đỉnh"
+  "cut": 24,
+  "note": "Vẽ lại 28/10: đáy 52w $25.39 ngày 26/10, nền mới 2 phiên — discount sâu nhất nhóm -82% vs đỉnh $152. Nền còn non, size nhỏ."
  },
  "SOXX": {
   "entry": [
