@@ -1,6 +1,6 @@
 {
  "AMD": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 520,
   "entry": [
    535,
@@ -12,14 +12,14 @@
   ]
  },
  "AMZN": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    246,
    250
   ]
  },
  "ASTS": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    37,
    41
@@ -29,10 +29,10 @@
    58
   ],
   "cut": 35,
-  "note": "V\u1ebd l\u1ea1i 28/10: n\u1ec1n $36.7-40 (\u0111\u00e1y 23/10 $36.72), -69% vs \u0111\u1ec9nh $133.86. V\u00f9ng c\u0169 $50-55/c\u1eaft $49 \u0111\u00e3 g\u00e3y."
+  "note": "Vẽ lại 28/10: nền $36.7-40 (đáy 23/10 $36.72), -69% vs đỉnh $133.86. Vùng cũ $50-55/cắt $49 đã gãy."
  },
  "BIIB": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 215.73,
   "entry": [
    218,
@@ -44,7 +44,7 @@
   ]
  },
  "CEG": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 243,
   "entry": [
    250,
@@ -54,10 +54,10 @@
    302,
    310
   ],
-  "note": "V\u1ebd l\u1ea1i 27/10 theo LU\u1eacT V\u1ebc L\u1ea0I V\u00d9NG c\u1ee7a Tom (g\u00e3y v\u00f9ng c\u0169 \u2192 c\u00f3 n\u1ec1n m\u1edbi th\u00ec v\u1ebd l\u1ea1i). \u0110\u00e1y \u0111\u00f4i $247,20 (23/10)/$249,20 (26/10). Neo k\u1ec7 \u0111\u00e1y \u0111\u00f4i $247\u2013255; gi\u00e1 c\u00f2n d\u01b0\u1edbi MA20 \u2014 m\u1ed1c canh pullback."
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy đôi $247,20 (23/10)/$249,20 (26/10). Neo kệ đáy đôi $247–255; giá còn dưới MA20 — mốc canh pullback."
  },
  "COHR": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 228,
   "entry": [
    240,
@@ -69,7 +69,7 @@
   ]
  },
  "CRDO": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 140,
   "entry": [
    150,
@@ -79,10 +79,10 @@
    185,
    195
   ],
-  "note": "V\u1ebd l\u1ea1i 27/10 theo LU\u1eacT V\u1ebc L\u1ea0I V\u00d9NG c\u1ee7a Tom (g\u00e3y v\u00f9ng c\u0169 \u2192 c\u00f3 n\u1ec1n m\u1edbi th\u00ec v\u1ebd l\u1ea1i). \u0110\u00e1y \u0111\u00f4i $142,89 (23/10)/$145,10 (26/10) + n\u1ebfn \u0111\u1ea3o chi\u1ec1u +10,3% 27/10. N\u1ec1n c\u00f2n non, gi\u00e1 d\u01b0\u1edbi MA200 ~$181 \u2014 m\u1ed1c canh trong ch\u1ebf \u0111\u1ed9 \u0111\u1ecf."
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy đôi $142,89 (23/10)/$145,10 (26/10) + nến đảo chiều +10,3% 27/10. Nền còn non, giá dưới MA200 ~$181 — mốc canh trong chế độ đỏ."
  },
  "ENTG": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 140,
   "entry": [
    145,
@@ -94,7 +94,7 @@
   ]
  },
  "FIGS": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 17.48,
   "entry": [
    17.5,
@@ -106,7 +106,7 @@
   ]
  },
  "FRSH": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 12.7,
   "entry": [
    13.6,
@@ -118,7 +118,7 @@
   ]
  },
  "GEV": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 810,
   "entry": [
    850,
@@ -128,10 +128,10 @@
    967,
    1050
   ],
-  "note": "V\u1ebd l\u1ea1i 27/10 theo LU\u1eacT V\u1ebc L\u1ea0I V\u00d9NG c\u1ee7a Tom (g\u00e3y v\u00f9ng c\u0169 \u2192 c\u00f3 n\u1ec1n m\u1edbi th\u00ec v\u1ebd l\u1ea1i). \u0110\u00e1y sau cao h\u01a1n \u0111\u00e1y tr\u01b0\u1edbc ($796\u2192$820), 27/10 l\u1ea5y l\u1ea1i c\u1eaft c\u0169 $890 trong phi\u00ean. Neo k\u1ec7 $815\u2013855."
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Đáy sau cao hơn đáy trước ($796→$820), 27/10 lấy lại cắt cũ $890 trong phiên. Neo kệ $815–855."
  },
  "HIMS": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 26,
   "entry": [
    27,
@@ -143,14 +143,14 @@
   ]
  },
  "HWM": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    200,
    220
   ]
  },
  "IOVA": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 11.17,
   "entry": [
    12.3,
@@ -162,7 +162,7 @@
   ]
  },
  "JPM": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 315.7,
   "entry": [
    323,
@@ -174,14 +174,14 @@
   ]
  },
  "KLAC": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    170,
    185
   ]
  },
  "MELI": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 1550,
   "entry": [
    1600,
@@ -191,10 +191,10 @@
    1860,
    1900
   ],
-  "note": "V\u1ebd l\u1ea1i 27/10 theo LU\u1eacT V\u1ebc L\u1ea0I V\u00d9NG c\u1ee7a Tom (g\u00e3y v\u00f9ng c\u0169 \u2192 c\u00f3 n\u1ec1n m\u1edbi th\u00ec v\u1ebd l\u1ea1i). Neo phi\u00ean capitulation 26/10 (\u0111\u00e1y $1.571 r\u00fat ch\u00e2n \u0111\u00f3ng $1.669). N\u1ec1n non 2 phi\u00ean \u2014 ch\u1edd gi\u1eef tr\u00ean $1.600 th\u00eam 1\u20132 phi\u00ean \u0111\u1ec3 x\u00e1c nh\u1eadn."
+  "note": "Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Neo phiên capitulation 26/10 (đáy $1.571 rút chân đóng $1.669). Nền non 2 phiên — chờ giữ trên $1.600 thêm 1–2 phiên để xác nhận."
  },
  "MRVL": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    218,
    228
@@ -204,7 +204,7 @@
    265
   ],
   "cut": 212,
-  "pos": "2 shares @ ~$266\u2013267",
+  "pos": "2 shares @ ~$266–267",
   "reclaim": [
    275,
    285
@@ -213,14 +213,14 @@
   "prev_zone": "Vao $235-245 / Chot $265->$285 / Cat <$230 (AH 28/10 xuyen, cho dong 29/10 phan quyet)"
  },
  "NOC": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    480,
    505
   ]
  },
  "PCVX": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 56.48,
   "entry": [
    60,
@@ -232,7 +232,7 @@
   ]
  },
  "RCL": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 257,
   "entry": [
    275,
@@ -244,7 +244,7 @@
   ]
  },
  "RKLB": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    50,
    55
@@ -254,10 +254,10 @@
    78
   ],
   "cut": 47.5,
-  "note": "V\u1ebd l\u1ea1i 28/10 theo l\u1ec7nh Tom: n\u1ec1n $49.5-54 (\u0111\u00e1y 23/10 $49.52), -61% vs \u0111\u1ec9nh 52w $151. Gi\u00e1 27/10 $58.31 tr\u00ean v\u00f9ng \u2014 ch\u1edd pullback, kh\u00f4ng \u0111u\u1ed5i. Reclaim MA20 $61.9 = t\u00edn hi\u1ec7u m\u1ea1nh th\u00eam."
+  "note": "Vẽ lại 28/10 theo lệnh Tom: nền $49.5-54 (đáy 23/10 $49.52), -61% vs đỉnh 52w $151. Giá 27/10 $58.31 trên vùng — chờ pullback, không đuổi. Reclaim MA20 $61.9 = tín hiệu mạnh thêm."
  },
  "SNDK": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    1240,
    1310
@@ -267,10 +267,10 @@
    1550
   ],
   "cut": 1205,
-  "note": "V\u1ebc L\u1ea0I 27/10 theo lu\u1eadt v\u1ebd l\u1ea1i v\u00f9ng c\u1ee7a Tom: v\u00f9ng c\u0169 $1.310\u20131.400/c\u1eaft $1.280 \u0111\u00e3 b\u1ecb \u0110\u00d3NG C\u1eecA th\u1ee7ng c\u1eaft 2 phi\u00ean (23/10 $1.238,03 + 26/10 $1.255,58). N\u1ec1n th\u1eadt: \u0111\u00e1y \u0111\u00f4i $1.228,89 (23/10) + $1.229,00 (26/10), \u0111\u00e1y ng\u00e0y nh\u00edch d\u1ea7n 3 phi\u00ean, \u0111\u00f3ng 27/10 $1.304,84. C\u1eaft $1.205 = d\u01b0\u1edbi \u0111\u00e1y \u0111\u00f4i. Ch\u1ed1t 1 $1.450 (d\u01b0\u1edbi MA20 ~$1.487), Ch\u1ed1t 2 $1.550 (ch\u1ed1t c\u0169, s\u00e1t MA50 ~$1.576). \u26a0\ufe0f Earnings t\u1ed1i T5 29/10 AMC \u2014 gap c\u00f3 th\u1ec3 nh\u1ea3y qua c\u1eaft."
+  "note": "VẼ LẠI 27/10 theo luật vẽ lại vùng của Tom: vùng cũ $1.310–1.400/cắt $1.280 đã bị ĐÓNG CỬA thủng cắt 2 phiên (23/10 $1.238,03 + 26/10 $1.255,58). Nền thật: đáy đôi $1.228,89 (23/10) + $1.229,00 (26/10), đáy ngày nhích dần 3 phiên, đóng 27/10 $1.304,84. Cắt $1.205 = dưới đáy đôi. Chốt 1 $1.450 (dưới MA20 ~$1.487), Chốt 2 $1.550 (chốt cũ, sát MA50 ~$1.576). ⚠️ Earnings tối T5 29/10 AMC — gap có thể nhảy qua cắt."
  },
  "TMUS": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    144,
    152
@@ -280,23 +280,23 @@
    180
   ],
   "cut": 140,
-  "note": "V\u00d9NG C\u00d3 \u0110I\u1ec0U KI\u1ec6N \u2014 v\u1ebd 27/10 theo l\u1ec7nh Tom, CH\u01afA K\u00cdCH HO\u1ea0T. K\u00edch ho\u1ea1t khi \u0111\u00f3ng c\u1eeda phi\u00ean ph\u1ea3n \u1ee9ng earnings (29/10; s\u1ed1 Q3 ra 13:05 PT 28/10, consensus EPS $2,89 / DT $23,15B) gi\u1eef \u2265$145 v\u00e0 kh\u00f4ng \u0111\u00f3ng th\u1ee7ng \u0111\u00e1y 52 tu\u1ea7n $143,92. \u0110\u00f3ng <$143,92 \u2192 H\u1ee6Y, ch\u1edd d\u1ef1ng n\u1ec1n ti\u1ebfp (d\u01b0\u1edbi \u0111\u00f3 l\u00e0 v\u00f9ng tr\u1ed1ng). Thay v\u00f9ng c\u0169 $155\u2013165/c\u1eaft $150 \u0111\u00e3 g\u00e3y sau c\u00fa s\u1ed1c SpaceX th\u00e1ng 10. C\u0103n c\u1ee9 n\u1ec1n: 23/10 \u0111\u00e1y $146,32 \u00b7 26/10 \u0111\u00e1y $143,92 r\u00fat ch\u00e2n \u0111\u00f3ng $146,93 \u00b7 27/10 \u0111\u00f3ng $146,83 \u2014 3 phi\u00ean gi\u1eef quanh $146\u2013147. C\u1eaft $140 = d\u01b0\u1edbi \u0111\u00e1y 52w c\u00f3 \u0111\u1ec7m. Ch\u1ed1t 1 $165 d\u01b0\u1edbi MA50 ~$169; Ch\u1ed1t 2 $180."
+  "note": "VÙNG CÓ ĐIỀU KIỆN — vẽ 27/10 theo lệnh Tom, CHƯA KÍCH HOẠT. Kích hoạt khi đóng cửa phiên phản ứng earnings (29/10; số Q3 ra 13:05 PT 28/10, consensus EPS $2,89 / DT $23,15B) giữ ≥$145 và không đóng thủng đáy 52 tuần $143,92. Đóng <$143,92 → HỦY, chờ dựng nền tiếp (dưới đó là vùng trống). Thay vùng cũ $155–165/cắt $150 đã gãy sau cú sốc SpaceX tháng 10. Căn cứ nền: 23/10 đáy $146,32 · 26/10 đáy $143,92 rút chân đóng $146,93 · 27/10 đóng $146,83 — 3 phiên giữ quanh $146–147. Cắt $140 = dưới đáy 52w có đệm. Chốt 1 $165 dưới MA50 ~$169; Chốt 2 $180."
  },
  "VLO": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 420,
   "entry": [
    430,
    440
   ],
-  "note": "ho\u1eb7c breakout \u0111\u00f3ng c\u1eeda >$465",
+  "note": "hoặc breakout đóng cửa >$465",
   "targets": [
    480,
    500
   ]
  },
  "VSAT": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 64,
   "entry": [
    66,
@@ -308,7 +308,7 @@
   ]
  },
  "VST": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "cut": 140,
   "entry": [
    144,
@@ -320,7 +320,7 @@
   ]
  },
  "ZS": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "cut": 205,
   "entry": [
    215,
@@ -331,7 +331,7 @@
    250
   ]
  },
- "_note": "NGU\u1ed2N CH\u00c2N L\u00dd DUY NH\u1ea4T cho m\u1ecdi v\u00f9ng \u0111\u00e3 duy\u1ec7t \u2014 script 5 ph\u00fat \u0111\u1ecdc file n\u00e0y \u0111\u1ec3 ph\u00e1t hi\u1ec7n t\u00edn hi\u1ec7u v\u00f9ng. Tom c\u1ea5p quy\u1ec1n t\u1ef1 \u0111\u1ed9ng 14/10/2026: m\u00e3 n\u00e0o v\u00e0o v\u00f9ng r\u1ebb/\u0111\u1eb9p \u2192 Iggy t\u1ef1 th\u00eam v\u00f9ng v\u00e0o \u0111\u00e2y, kh\u00f4ng c\u1ea7n h\u1ecfi.",
+ "_note": "NGUỒN CHÂN LÝ DUY NHẤT cho mọi vùng đã duyệt — script 5 phút đọc file này để phát hiện tín hiệu vùng. Tom cấp quyền tự động 14/10/2026: mã nào vào vùng rẻ/đẹp → Iggy tự thêm vùng vào đây, không cần hỏi.",
  "VOO": {
   "entry": [
    680,
@@ -342,7 +342,7 @@
    718,
    750
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "QQQ": {
   "entry": [
@@ -354,7 +354,7 @@
    763,
    800
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "SMH": {
   "entry": [
@@ -366,7 +366,7 @@
    620,
    672
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "SCHD": {
   "entry": [
@@ -378,7 +378,7 @@
    35,
    37
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "XLE": {
   "entry": [
@@ -390,7 +390,7 @@
    70,
    75
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "IBIT": {
   "entry": [
@@ -402,7 +402,7 @@
    55,
    66
   ],
-  "book": "S\u1ed5 1"
+  "book": "Sổ 1"
  },
  "MU": {
   "entry": [
@@ -414,7 +414,7 @@
    983,
    1100
   ],
-  "book": "S\u1ed5 2"
+  "book": "Sổ 2"
  },
  "WDC": {
   "entry": [
@@ -426,10 +426,10 @@
    448,
    490
   ],
-  "book": "S\u1ed5 3"
+  "book": "Sổ 3"
  },
  "STX": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    640,
    665
@@ -439,7 +439,7 @@
    760
   ],
   "cut": 610,
-  "note": "C\u00d3 \u0110I\u1ec0U KI\u1ec6N (r\u00e0 27/10; Tom l\u1ec7nh theo d\u00f5i 27/10): ch\u1ec9 k\u00edch ho\u1ea1t khi \u0110\u00d3NG 28/10 \u2265$640 (phi\u00ean ph\u1ea3n \u1ee9ng earnings Q1 FY27). \u0110\u00f3ng <$621 \u2192 H\u1ee6Y, chuy\u1ec3n ch\u1edd d\u1ef1ng n\u1ec1n: d\u01b0\u1edbi $621 l\u00e0 v\u00f9ng tr\u1ed1ng h\u1ed7 tr\u1ee3, k\u1ec7 th\u1eadt k\u1ebf ti\u1ebfp ~$540\u2013560 (v\u00f9ng ph\u00e1 v\u1ee1 th\u00e1ng 4/2026). AH 27/10 ch\u1ea1m $611 r\u1ed3i h\u1ed3i $628,21 (16:21 PT). Thay entry c\u0169 $695\u2013720/c\u1eaft $680 \u0111\u00e3 g\u00e3y t\u1eeb 22/10."
+  "note": "CÓ ĐIỀU KIỆN (rà 27/10; Tom lệnh theo dõi 27/10): chỉ kích hoạt khi ĐÓNG 28/10 ≥$640 (phiên phản ứng earnings Q1 FY27). Đóng <$621 → HỦY, chuyển chờ dựng nền: dưới $621 là vùng trống hỗ trợ, kệ thật kế tiếp ~$540–560 (vùng phá vỡ tháng 4/2026). AH 27/10 chạm $611 rồi hồi $628,21 (16:21 PT). Thay entry cũ $695–720/cắt $680 đã gãy từ 22/10."
  },
  "DRAM": {
   "entry": [
@@ -451,10 +451,10 @@
    57,
    65
   ],
-  "book": "S\u1ed5 3"
+  "book": "Sổ 3"
  },
  "NVDA": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    205,
    218
@@ -466,7 +466,7 @@
   "cut": 200
  },
  "SPCX": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    125,
    130
@@ -479,7 +479,7 @@
   "note": "SpaceX; catalyst: Tesla merger (Barron's <1h)"
  },
  "TSLA": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    300,
    310
@@ -501,7 +501,7 @@
   "CRML",
   "SKHY"
  ],
- "_excluded_note": "Tom 15/10: m\u00e3 trung l\u1eadp, x\u00f3a kh\u1ecfi b\u1ea3ng. Zone data backup \u1edf zones_excluded_backup.json. Mu\u1ed1n hi\u1ec7n l\u1ea1i th\u00ec x\u00f3a kh\u1ecfi _excluded.",
+ "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded.",
  "AXON": {
   "entry": [
    395,
@@ -513,10 +513,10 @@
   ],
   "cut": 385,
   "book": 3,
-  "note": "S\u1ed5 3: fail uptrend (d\u01b0\u1edbi MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), h\u1ed7 tr\u1ee3 $395.75, -45% t\u1eeb \u0111\u1ec9nh 52w. Earnings 3/11."
+  "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 3/11."
  },
  "IREN": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    24.5,
    26.5
@@ -526,10 +526,10 @@
    36.5
   ],
   "cut": 23.0,
-  "note": "Tom gi\u1eef @~$35. V\u1ebd l\u1ea1i 27/10 theo LU\u1eacT V\u1ebc L\u1ea0I V\u00d9NG c\u1ee7a Tom (g\u00e3y v\u00f9ng c\u0169 \u2192 c\u00f3 n\u1ec1n m\u1edbi th\u00ec v\u1ebd l\u1ea1i). K\u1ec7 $24,85\u201325,60 test 3 l\u1ea7n tr\u00ean \u0111\u00e1y n\u0103m $23,72; 27/10 +7,45% l\u1ea5y l\u1ea1i c\u1eaft c\u0169 $26,50 trong phi\u00ean. C\u1eaft c\u1ee9ng m\u1edbi d\u01b0\u1edbi \u0111\u00e1y n\u0103m."
+  "note": "Tom giữ @~$35. Vẽ lại 27/10 theo LUẬT VẼ LẠI VÙNG của Tom (gãy vùng cũ → có nền mới thì vẽ lại). Kệ $24,85–25,60 test 3 lần trên đáy năm $23,72; 27/10 +7,45% lấy lại cắt cũ $26,50 trong phiên. Cắt cứng mới dưới đáy năm."
  },
  "CRML": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    6.4,
    6.7
@@ -539,10 +539,10 @@
    8.2
   ],
   "cut": 5.85,
-  "note": "Bounce +15.6% t\u1eeb \u0111\u00e1y 15/10, \u0111\u00f3ng $6.95 g\u1ea7n \u0111\u1ec9nh 5 phi\u00ean. Ch\u1edd pullback, kh\u00f4ng \u0111u\u1ed5i \u0111\u1ec9nh."
+  "note": "Bounce +15.6% từ đáy 15/10, đóng $6.95 gần đỉnh 5 phiên. Chờ pullback, không đuổi đỉnh."
  },
  "USAR": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    10.3,
    10.8
@@ -552,10 +552,10 @@
    12.79
   ],
   "cut": 9.75,
-  "note": "Bounce +10.8% t\u1eeb \u0111\u00e1y 15/10, \u0111\u00f3ng $11.09. Rare earth momentum."
+  "note": "Bounce +10.8% từ đáy 15/10, đóng $11.09. Rare earth momentum."
  },
  "APLD": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    17.5,
    19.0
@@ -565,10 +565,10 @@
    30
   ],
   "cut": 16.5,
-  "note": "AI data center, ch\u01b0a c\u00f3 l\u00e3i, n\u1ee3 $6.4B; \u0111\u00e1y 52w $18.36, kh\u00e1ng c\u1ef1 $25.89; 13 Buy avg PT ~$61"
+  "note": "AI data center, chưa có lãi, nợ $6.4B; đáy 52w $18.36, kháng cự $25.89; 13 Buy avg PT ~$61"
  },
  "BMNR": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    20,
    22
@@ -578,10 +578,10 @@
    31.5
   ],
   "cut": 18.5,
-  "note": "ETH treasury Tom Lee, 6.04M ETH (4.9% supply), Russell 1000; d\u01b0\u1edbi $31.57 v\u1eabn bearish; Strong Buy avg PT $45.87"
+  "note": "ETH treasury Tom Lee, 6.04M ETH (4.9% supply), Russell 1000; dưới $31.57 vẫn bearish; Strong Buy avg PT $45.87"
  },
  "DLTR": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    115,
    119
@@ -591,10 +591,10 @@
    140
   ],
   "cut": 110,
-  "note": "B\u00e1n l\u1ebb ph\u00f2ng th\u1ee7, P/E 14.3, consensus Hold avg PT $131.83; h\u1ed7 tr\u1ee3 $108-112; kh\u00e1ng c\u1ef1 c\u0169 $117-119 th\u00e0nh h\u1ed7 tr\u1ee3"
+  "note": "Bán lẻ phòng thủ, P/E 14.3, consensus Hold avg PT $131.83; hỗ trợ $108-112; kháng cự cũ $117-119 thành hỗ trợ"
  },
  "UAL": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    88,
    94
@@ -604,10 +604,10 @@
    130
   ],
   "cut": 84,
-  "note": "Earnings 20/10 AMC \u2014 \u0110\u1ee8NG NGO\u00c0I tr\u01b0\u1edbc earnings; Strong Buy 23/25, avg PT ~$150; P/E 8.9; \u0111\u00e1y 52w $84.64"
+  "note": "Earnings 20/10 AMC — ĐỨNG NGOÀI trước earnings; Strong Buy 23/25, avg PT ~$150; P/E 8.9; đáy 52w $84.64"
  },
  "GOOGL": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    270,
    282
@@ -631,7 +631,7 @@
   }
  },
  "AVGO": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    320,
    350
@@ -641,10 +641,10 @@
    440
   ],
   "cut": 300,
-  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; -31% vs \u0111\u1ec9nh 52w"
+  "note": "Vùng gom dài hạn đã duyệt; -31% vs đỉnh 52w"
  },
  "TSM": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    405,
    425
@@ -654,10 +654,10 @@
    485
   ],
   "cut": 390,
-  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; $420 trong v\u00f9ng"
+  "note": "Vùng gom dài hạn đã duyệt; $420 trong vùng"
  },
  "RTX": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    170,
    180
@@ -667,10 +667,10 @@
    215
   ],
   "cut": 160,
-  "note": "V\u00f9ng gom d\u00e0i h\u1ea1n \u0111\u00e3 duy\u1ec7t; earnings 20/10 BMO \u2014 \u0111\u1ee9ng ngo\u00e0i tr\u01b0\u1edbc tin"
+  "note": "Vùng gom dài hạn đã duyệt; earnings 20/10 BMO — đứng ngoài trước tin"
  },
  "SPY": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    740,
    760
@@ -680,10 +680,10 @@
    810
   ],
   "cut": 720,
-  "note": "ETF index M\u1ef9, -2% vs \u0111\u1ec9nh"
+  "note": "ETF index Mỹ, -2% vs đỉnh"
  },
  "META": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    670,
    700
@@ -696,7 +696,7 @@
   "note": "Uptrend (+7.3% vs MA50), earnings 21/10 AMC"
  },
  "MSFT": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    505,
    525
@@ -706,10 +706,10 @@
    590
   ],
   "cut": 490,
-  "note": "Uptrend (+5.4% vs MA50), s\u00e1t \u0111\u1ec9nh 52w $543; earnings 28/10"
+  "note": "Uptrend (+5.4% vs MA50), sát đỉnh 52w $543; earnings 28/10"
  },
  "QCOM": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    165,
    178
@@ -719,10 +719,10 @@
    220
   ],
   "cut": 155,
-  "note": "Chip ch\u1ea5t l\u01b0\u1ee3ng, -31% vs \u0111\u1ec9nh, quanh MA50"
+  "note": "Chip chất lượng, -31% vs đỉnh, quanh MA50"
  },
  "ORCL": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    120,
    132
@@ -732,10 +732,10 @@
    185
   ],
   "cut": 110,
-  "note": "Mega-cap software, -54% vs \u0111\u1ec9nh s\u00e2u, c\u00f3 l\u00e3i"
+  "note": "Mega-cap software, -54% vs đỉnh sâu, có lãi"
  },
  "AMAT": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    390,
    415
@@ -745,10 +745,10 @@
    550
   ],
   "cut": 368,
-  "note": "Semicap, -13.9% vs MA50 (downtrend), -43% vs \u0111\u1ec9nh"
+  "note": "Semicap, -13.9% vs MA50 (downtrend), -43% vs đỉnh"
  },
  "BABA": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    100,
    110
@@ -758,10 +758,10 @@
    145
   ],
   "cut": 94,
-  "note": "China tech, r\u1ee7i ro \u0111\u1ecba ch\u00ednh tr\u1ecb, -40% vs \u0111\u1ec9nh"
+  "note": "China tech, rủi ro địa chính trị, -40% vs đỉnh"
  },
  "COIN": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    160,
    175
@@ -771,10 +771,10 @@
    230
   ],
   "cut": 150,
-  "note": "Crypto exchange, earnings miss, -53% vs \u0111\u1ec9nh"
+  "note": "Crypto exchange, earnings miss, -53% vs đỉnh"
  },
  "INTC": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    85,
    92
@@ -784,10 +784,10 @@
    115
   ],
   "cut": 78,
-  "note": "Turnaround, JPM Neutral PT $85, -35% vs \u0111\u1ec9nh"
+  "note": "Turnaround, JPM Neutral PT $85, -35% vs đỉnh"
  },
  "MSTR": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    125,
    140
@@ -797,10 +797,10 @@
    200
   ],
   "cut": 115,
-  "note": "BTC treasury, proxy bitcoin \u0111\u00f2n b\u1ea9y cao, -55% vs \u0111\u1ec9nh"
+  "note": "BTC treasury, proxy bitcoin đòn bẩy cao, -55% vs đỉnh"
  },
  "NKE": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    34,
    38
@@ -810,10 +810,10 @@
    52
   ],
   "cut": 31,
-  "note": "Turnaround b\u00e1n l\u1ebb, -47% vs \u0111\u1ec9nh"
+  "note": "Turnaround bán lẻ, -47% vs đỉnh"
  },
  "SKHY": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    133,
    142
@@ -823,10 +823,10 @@
    180
   ],
   "cut": 128,
-  "note": "V\u00f9ng v\u1ebd l\u1ea1i 27/10 theo \u00fd Tom: n\u1ec1n m\u1edbi 3 \u0111\u00e1y n\u00e2ng d\u1ea7n $130,79 \u2192 $135,21 \u2192 $139,15 (k\u1ec7 $131\u2013140), gi\u00e1 27/10 $145,54 b\u1eadt tr\u00ean m\u00e9p v\u00f9ng c\u0169 $135\u2013145. C\u1eaft c\u1ee9ng m\u1edbi <$128 d\u01b0\u1edbi \u0111\u00e1y n\u1ec1n. EARNINGS T\u1ed0I 27/10 ~17:00 PT \u2014 bi\u1ebfn nh\u1ecb ph\u00e2n, v\u00f9ng l\u00e0 m\u1ed1c tham chi\u1ebfu sau earnings. ADR m\u1edbi ni\u00eam y\u1ebft (\u00edt d\u1eef li\u1ec7u), d\u01b0\u1edbi MA20/MA50 \u2014 v\u1ecb th\u1ebf nh\u1ecf."
+  "note": "Vùng vẽ lại 27/10 theo ý Tom: nền mới 3 đáy nâng dần $130,79 → $135,21 → $139,15 (kệ $131–140), giá 27/10 $145,54 bật trên mép vùng cũ $135–145. Cắt cứng mới <$128 dưới đáy nền. EARNINGS TỐI 27/10 ~17:00 PT — biến nhị phân, vùng là mốc tham chiếu sau earnings. ADR mới niêm yết (ít dữ liệu), dưới MA20/MA50 — vị thế nhỏ."
  },
  "SMMT": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    14,
    16
@@ -836,10 +836,10 @@
    22
   ],
   "cut": 12.5,
-  "note": "Biotech binary (thu\u1ed1c ung th\u01b0 ph\u1ed5i), -41% vs \u0111\u1ec9nh"
+  "note": "Biotech binary (thuốc ung thư phổi), -41% vs đỉnh"
  },
  "SOXL": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    90,
    100
@@ -849,10 +849,10 @@
    140
   ],
   "cut": 82,
-  "note": "ETF \u0111\u00f2n b\u1ea9y 3x semiconductor, -67% vs \u0111\u1ec9nh, ch\u1ec9 l\u01b0\u1edbt nhanh"
+  "note": "ETF đòn bẩy 3x semiconductor, -67% vs đỉnh, chỉ lướt nhanh"
  },
  "AVAV": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    115,
    124
@@ -862,10 +862,10 @@
    165
   ],
   "cut": 110,
-  "note": "V\u1ebd l\u1ea1i 28/10: \u0111\u00e1y $113.15 ng\u00e0y 23/10, h\u1ed3i 3 phi\u00ean li\u00ean ti\u1ebfp t\u1edbi $126.73 \u2014 tr\u00ean v\u00f9ng, ch\u1edd pullback. -69% vs \u0111\u1ec9nh $408."
+  "note": "Vẽ lại 28/10: đáy $113.15 ngày 23/10, hồi 3 phiên liên tiếp tới $126.73 — trên vùng, chờ pullback. -69% vs đỉnh $408."
  },
  "KTOS": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    37,
    41
@@ -875,10 +875,10 @@
    58
   ],
   "cut": 35.5,
-  "note": "V\u1ebd l\u1ea1i 28/10: \u0111\u00e1y $36.37 ng\u00e0y 23/10; \u0111\u00f3ng 27/10 $41.31 v\u1eeba l\u1ea5y l\u1ea1i MA20 $40.93 \u2014 k\u1ef9 thu\u1eadt m\u1ea1nh nh\u1ea5t nh\u00f3m. -69% vs \u0111\u1ec9nh $134."
+  "note": "Vẽ lại 28/10: đáy $36.37 ngày 23/10; đóng 27/10 $41.31 vừa lấy lại MA20 $40.93 — kỹ thuật mạnh nhất nhóm. -69% vs đỉnh $134."
  },
  "IONQ": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    30,
    33
@@ -888,10 +888,10 @@
    46
   ],
   "cut": 28.5,
-  "note": "V\u1ebd l\u1ea1i 28/10: n\u1ec1n $29.9-31 (\u0111\u00e1y 26/10 $29.94), -55% vs \u0111\u1ec9nh $73.65."
+  "note": "Vẽ lại 28/10: nền $29.9-31 (đáy 26/10 $29.94), -55% vs đỉnh $73.65."
  },
  "OKLO": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    25.5,
    28
@@ -901,7 +901,7 @@
    44
   ],
   "cut": 24,
-  "note": "V\u1ebd l\u1ea1i 28/10: \u0111\u00e1y 52w $25.39 ng\u00e0y 26/10, n\u1ec1n m\u1edbi 2 phi\u00ean \u2014 discount s\u00e2u nh\u1ea5t nh\u00f3m -82% vs \u0111\u1ec9nh $152. N\u1ec1n c\u00f2n non, size nh\u1ecf."
+  "note": "Vẽ lại 28/10: đáy 52w $25.39 ngày 26/10, nền mới 2 phiên — discount sâu nhất nhóm -82% vs đỉnh $152. Nền còn non, size nhỏ."
  },
  "SOXX": {
   "entry": [
@@ -913,8 +913,8 @@
    535,
    600
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF chip PHLX (c\u00e2n b\u1eb1ng h\u01a1n SMH) \u2014 gom khi v\u1ec1 v\u00f9ng MA200/low 3 th\u00e1ng"
+  "book": "Sổ 1",
+  "note": "ETF chip PHLX (cân bằng hơn SMH) — gom khi về vùng MA200/low 3 tháng"
  },
  "GLD": {
   "entry": [
@@ -926,8 +926,8 @@
    415,
    460
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF v\u00e0ng \u2014 ph\u00f2ng th\u1ee7, \u0111\u00e3 r\u1edbt ~27% t\u1eeb \u0111\u1ec9nh 52w $509.70"
+  "book": "Sổ 1",
+  "note": "ETF vàng — phòng thủ, đã rớt ~27% từ đỉnh 52w $509.70"
  },
  "XLK": {
   "entry": [
@@ -939,8 +939,8 @@
    190,
    203
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF c\u00f4ng ngh\u1ec7 SPDR \u2014 v\u00f9ng neo MA200 + \u0111\u00e1y 3 th\u00e1ng"
+  "book": "Sổ 1",
+  "note": "ETF công nghệ SPDR — vùng neo MA200 + đáy 3 tháng"
  },
  "URA": {
   "entry": [
@@ -952,8 +952,8 @@
    42,
    48
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF uranium/h\u1ea1t nh\u00e2n \u2014 discount ~44% vs \u0111\u1ec9nh, D\u01af\u1edaI MA200: b\u1eaft \u0111\u00e1y, c\u1eaft c\u1ee9ng"
+  "book": "Sổ 1",
+  "note": "ETF uranium/hạt nhân — discount ~44% vs đỉnh, DƯỚI MA200: bắt đáy, cắt cứng"
  },
  "ITA": {
   "entry": [
@@ -965,8 +965,8 @@
    230,
    256
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF qu\u1ed1c ph\u00f2ng/h\u00e0ng kh\u00f4ng \u2014 discount ~20% vs \u0111\u1ec9nh, d\u01b0\u1edbi MA200: b\u1eaft \u0111\u00e1y, c\u1eaft c\u1ee9ng"
+  "book": "Sổ 1",
+  "note": "ETF quốc phòng/hàng không — discount ~20% vs đỉnh, dưới MA200: bắt đáy, cắt cứng"
  },
  "SLV": {
   "entry": [
@@ -978,11 +978,11 @@
    58,
    65
   ],
-  "book": "S\u1ed5 1",
-  "note": "ETF b\u1ea1c iShares \u2014 discount ~-55% vs \u0111\u1ec9nh 52w $109.83, \u0111ang \u1edf low 3 th\u00e1ng, h\u1ed7 tr\u1ee3 $50.01/kh\u00e1ng c\u1ef1 $55.25, thanh kho\u1ea3n t\u1ed1t (AUM $28.6B), c\u1eaft c\u1ee9ng"
+  "book": "Sổ 1",
+  "note": "ETF bạc iShares — discount ~-55% vs đỉnh 52w $109.83, đang ở low 3 tháng, hỗ trợ $50.01/kháng cự $55.25, thanh khoản tốt (AUM $28.6B), cắt cứng"
  },
  "TGT": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    140,
    147
@@ -992,10 +992,10 @@
    170
   ],
   "cut": 137,
-  "note": "V\u1ebd 26/10 theo l\u1ec7nh Tom \u0111\u1ec3 \u00fd TGT: k\u1ec7 h\u1ed7 tr\u1ee3 th\u00e1ng 8 $145.5\u2013147.5, tr\u00ean MA200 $133; PT \u0111\u1ed3ng thu\u1eadn ~$160\u2013163 (Hold); earnings 18/11 BMO; d\u01b0\u1edbi MA50 \u2192 S\u1ed5 3"
+  "note": "Vẽ 26/10 theo lệnh Tom để ý TGT: kệ hỗ trợ tháng 8 $145.5–147.5, trên MA200 $133; PT đồng thuận ~$160–163 (Hold); earnings 18/11 BMO; dưới MA50 → Sổ 3"
  },
  "HOOD": {
-  "book": "S\u1ed5 3",
+  "book": "Sổ 3",
   "entry": [
    87,
    92
@@ -1005,10 +1005,10 @@
    112
   ],
   "cut": 83,
-  "note": "V\u1ebd 27/10 theo l\u1ec7nh tr\u1ef1c ti\u1ebfp c\u1ee7a Tom (g\u1ee1 kh\u1ecfi _excluded \u2014 l\u1ec7nh m\u1edbi th\u1eafng kh\u00f3a c\u0169, ti\u1ec1n l\u1ec7 SPCX 19/10). C\u0103n c\u1ee9 n\u1ebfn ng\u00e0y t\u1edbi 23/10 + gi\u00e1 27/10: \u0111\u1ec9nh 52w $150,47, MA20 $106,6 / MA50 $108,9 / MA200 ~$93,3. K\u1ec7 th\u00e1ng 10 $94,5\u201394,8 \u0111\u00e3 g\u00e3y (\u0111\u00f3ng 26/10 $92,84); v\u00f9ng v\u00e0o neo k\u1ec7 d\u01b0\u1edbi: \u0111\u00e1y swing 18/8 $91,44 (m\u00e9p tr\u00ean v\u00f9ng) t\u1edbi tr\u00ean \u0111\u00e1y capitulation 31/7 $83,68. C\u1eaft c\u1ee9ng <$83 = th\u1ee7ng \u0111\u00e1y swing 31/7. Ch\u1ed1t 1 $102 = l\u1ea5y l\u1ea1i k\u1ec7 $101\u2013104 (\u0111\u00f3ng 21/10 $101,93); Ch\u1ed1t 2 $112 = c\u1ee5m MA50/\u0111\u00e1y c\u0169 th\u00e1ng 9\u201310. Beta 2,5, P/E ~41 \u2014 S\u1ed5 3 v\u1ecb th\u1ebf nh\u1ecf. Earnings Q3 ra t\u1ed1i 27/10 (beat s\u1ed1 \u0111\u1ea7u theo Tom, gi\u00e1 AH v\u1eabn b\u1ecb \u0111\u00e8 \u2014 m\u1eabu h\u00ecnh sell-the-news 4 k\u1ef3 li\u00ean ti\u1ebfp); v\u00f9ng l\u00e0 m\u1ed1c canh gi\u00e1 V\u1ec0, kh\u00f4ng \u0111u\u1ed5i gi\u00e1 hi\u1ec7n t\u1ea1i ~$94\u201395."
+  "note": "Vẽ 27/10 theo lệnh trực tiếp của Tom (gỡ khỏi _excluded — lệnh mới thắng khóa cũ, tiền lệ SPCX 19/10). Căn cứ nến ngày tới 23/10 + giá 27/10: đỉnh 52w $150,47, MA20 $106,6 / MA50 $108,9 / MA200 ~$93,3. Kệ tháng 10 $94,5–94,8 đã gãy (đóng 26/10 $92,84); vùng vào neo kệ dưới: đáy swing 18/8 $91,44 (mép trên vùng) tới trên đáy capitulation 31/7 $83,68. Cắt cứng <$83 = thủng đáy swing 31/7. Chốt 1 $102 = lấy lại kệ $101–104 (đóng 21/10 $101,93); Chốt 2 $112 = cụm MA50/đáy cũ tháng 9–10. Beta 2,5, P/E ~41 — Sổ 3 vị thế nhỏ. Earnings Q3 ra tối 27/10 (beat số đầu theo Tom, giá AH vẫn bị đè — mẫu hình sell-the-news 4 kỳ liên tiếp); vùng là mốc canh giá VỀ, không đuổi giá hiện tại ~$94–95."
  },
  "WM": {
-  "book": "S\u1ed5 1",
+  "book": "Sổ 1",
   "entry": [
    225,
    232
@@ -1018,10 +1018,10 @@
    262
   ],
   "cut": 215,
-  "note": "V\u1ebd 27/10 theo l\u1ec7nh Tom 'theo d\u00f5i v\u00f9ng mua WM'. C\u0103n c\u1ee9 n\u1ebfn ng\u00e0y t\u1edbi 27/10: MA200 $225,06 = s\u00e0n v\u00f9ng; m\u00e9p tr\u00ean $232 = v\u00f9ng t\u00e1i ki\u1ec3m ph\u00e1 v\u1ee1 20\u201321/10 + \u0111\u00e1y swing th\u00e1ng 7 $232,80. C\u1eaft $215 = d\u01b0\u1edbi c\u1ee5m MA20 $219,27/MA50 $217,52. Ch\u1ed1t 1 $247 = \u0111\u1ec9nh 6 th\u00e1ng/1 n\u0103m ($247,15/$248,13); Ch\u1ed1t 2 $262 = m\u1edf r\u1ed9ng \u0111o l\u01b0\u1eddng. Gi\u00e1 27/10: \u0111\u00f3ng $235,81, AH $233,24 (\u22120,88%) sau earnings MIXED (EPS adj $2,15 vs $2,18; DT $6,846B vs $6,81B; guidance FY \u1edf c\u1eadn tr\u00ean khung DT, EBITDA \u0111i\u1ec3m gi\u1eefa $8,2B). WM v\u1eeba ch\u1ea1y +20% t\u1eeb \u0111\u00e1y 2/10 $200,58 v\u00e0o earnings \u2014 v\u00f9ng l\u00e0 m\u1ed1c ch\u1edd pullback, KH\u00d4NG \u0111u\u1ed5i gi\u00e1 hi\u1ec7n t\u1ea1i. M\u00e3 ph\u00f2ng th\u1ee7 v\u1ed1n h\u00f3a ~$95B, c\u1ed5 t\u1ee9c \u2014 S\u1ed5 1."
+  "note": "Vẽ 27/10 theo lệnh Tom 'theo dõi vùng mua WM'. Căn cứ nến ngày tới 27/10: MA200 $225,06 = sàn vùng; mép trên $232 = vùng tái kiểm phá vỡ 20–21/10 + đáy swing tháng 7 $232,80. Cắt $215 = dưới cụm MA20 $219,27/MA50 $217,52. Chốt 1 $247 = đỉnh 6 tháng/1 năm ($247,15/$248,13); Chốt 2 $262 = mở rộng đo lường. Giá 27/10: đóng $235,81, AH $233,24 (−0,88%) sau earnings MIXED (EPS adj $2,15 vs $2,18; DT $6,846B vs $6,81B; guidance FY ở cận trên khung DT, EBITDA điểm giữa $8,2B). WM vừa chạy +20% từ đáy 2/10 $200,58 vào earnings — vùng là mốc chờ pullback, KHÔNG đuổi giá hiện tại. Mã phòng thủ vốn hóa ~$95B, cổ tức — Sổ 1."
  },
  "NOW": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    138,
    146
@@ -1034,7 +1034,7 @@
   "note": "VE 28/10 - DA GAP SAU EARNINGS: AH 28/10 ~$125 (duoi cat $132) -> VUNG TAM VO HIEU, CHO DUNG NEN, khong ve duoi. Cho dong cua phien phan ung 29/10 + nen moi."
  },
  "CRWD": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    235,
    245
@@ -1047,7 +1047,7 @@
   "note": "Ve 28/10 theo lenh Tom. AH dump theo nhom software sau so GOOGL/NOW 13:05 PT (khong phai earnings rieng cua CRWD - earnings ke tiep 01/12). MA50 $237,86 trong vung; nen 21-22/10 dong $239,34/$237,94; cat $220 duoi day swing 20/10 $221,36. Ke dau tien canh: $252-256 (MA20 $256,17 + day AH $252,32) - chi la moc on dinh som, vung chinh sau hon vi dump chua co nen dong xac nhan."
  },
  "DELL": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    455,
    485
@@ -1060,7 +1060,7 @@
   "note": "Ve 28/10 theo lenh Tom. Nen rua thang 10: day $439,50 (20/10) + cum day $446-455 (16-26/10, 6 lan cham) sau Barclays ha hang 14/10; hoi dong 27/10 $501,96, dong 28/10 $493,79 (-1,63%). Vung = retest nen rua; Chot 1 $530 (ke Sep/MA50 $513), Chot 2 $565 (cum dinh Oct $562-578); Cat cung <$435 duoi day $439,50. MA200 $327,97 - uptrend dai han con nguyen; AI server backlog $95 ty. Earnings 24/11 AMC - gap sau so co the nhay qua cat."
  },
  "TWLO": {
-  "book": "S\u1ed5 2",
+  "book": "Sổ 2",
   "entry": [
    238,
    250
@@ -1070,6 +1070,19 @@
    290
   ],
   "cut": 232,
-  "note": "C\u00d3 \u0110I\u1ec0U KI\u1ec6N \u2014 earnings AMC 29/10 (k\u1ef3 v\u1ecdng EPS $1,47 \u00b7 DT $1,52 t\u1ef7). K\u00edch ho\u1ea1t khi \u0110\u00d3NG phi\u00ean ph\u1ea3n \u1ee9ng 30/10 gi\u1eef \u2265$248 (k\u1ec7 n\u1ec1n 19\u201328/10: \u0111\u00e1y $248,00\u2013$252,50); \u0111\u00f3ng <$236 (\u0111\u00e1y x\u1ea3 16/10 $236,85) \u2192 H\u1ee6Y, ch\u1edd d\u1ef1ng n\u1ec1n m\u1edbi. Gap l\u00ean sau beat: kh\u00f4ng \u0111u\u1ed5i, v\u00f9ng l\u00e0 m\u1ed1c ch\u1edd pullback. Neo: MA50 ~$256,5 \u00b7 MA20 ~$272 \u00b7 PT \u0111\u1ed3ng thu\u1eadn ~$271."
+  "note": "CÓ ĐIỀU KIỆN — earnings AMC 29/10 (kỳ vọng EPS $1,47 · DT $1,52 tỷ). Kích hoạt khi ĐÓNG phiên phản ứng 30/10 giữ ≥$248 (kệ nền 19–28/10: đáy $248,00–$252,50); đóng <$236 (đáy xả 16/10 $236,85) → HỦY, chờ dựng nền mới. Gap lên sau beat: không đuổi, vùng là mốc chờ pullback. Neo: MA50 ~$256,5 · MA20 ~$272 · PT đồng thuận ~$271."
+ },
+ "AAOI": {
+  "book": "Sổ 3",
+  "entry": [
+   70,
+   78
+  ],
+  "targets": [
+   88,
+   100
+  ],
+  "cut": 64,
+  "note": "Vẽ mới 29/10 theo OK của Tom. Nền đáy ba $66,28 (22/10)/$67,12 (23/10)/$66,51 (26/10), bật lên $82,22 (28/10); 29/10 nhúng $76,98 rồi rút chân. EPS TTM còn âm + beta ~3,9 + vừa pha loãng ATM $600tr → chỉ Sổ 3. Earnings dự kiến ~05/11 nhị phân. Mốc canh trong chế độ đỏ, không phải tín hiệu vào lệnh."
  }
 }
