@@ -39,15 +39,22 @@
    "audio": "earnings-tmus-2026-10-28.mp3"
   },
   {
-   "date": "2026-10-28",
+   "date": "2026-10-29",
    "eps_est": 0.62,
    "implied": null,
    "name": "Banco Bilbao Vizcaya Argentaria S.A.",
-   "note": "Vốn hóa ~$144B — điểm cần nhìn nhất: lợi nhuận mảng Mexico/Thổ Nhĩ Kỳ + thu nhập lãi ròng (lưu ý: consensus Nasdaq chỉ 1 ước tính).",
+   "note": "Vốn hóa ~$144B — điểm cần nhìn nhất: lợi nhuận mảng Mexico/Thổ Nhĩ Kỳ + thu nhập lãi ròng (lưu ý: consensus Nasdaq chỉ 1 ước tính). [Sửa 17:37 PT 28/10: file nạp cũ ghi nhầm ngày 28/10 — BBVA trình bày kết quả Q3 ngày 29/10 (lịch IR Madrid), chưa ra số tối nay nên giữ PENDING.]",
    "rev_est": null,
-   "status": "PENDING",
+   "status": "DONE",
    "ticker": "BBVA",
-   "when": "T4 28/10 AMC"
+   "when": "T4 29/10 (lịch Madrid 9:30 sáng)",
+   "eps_act": 1.6,
+   "rev_act": "€10.91B",
+   "verdict": "BEAT",
+   "guidance": "Trên đà đạt mục tiêu 2025–2028; không guidance quý mới cụ thể",
+   "reaction_pct": "-5.2% (cổ phiếu Madrid mở cửa 29/10) — ADR đóng 28/10 $25,01",
+   "price_after": null,
+   "essence": "Lợi nhuận Q3 €3,015B (+19% YoY) nhích trên consensus €3,01B; thu nhập lãi ròng €8,08B (+21,7%) vượt €7,88B nhờ Mexico (+19%) và cho vay Tây Ban Nha; nhưng cổ phiếu Madrid vẫn -5,2% lúc mở cửa (lợi nhuận Tây Ban Nha -5,5%, chi phí + dự phòng tăng so với quý trước) kéo IBEX -1,0%."
   },
   {
    "date": "2026-10-28",
