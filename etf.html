@@ -160,8 +160,12 @@ var lastV=null;
 function loadEtf(){
   fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
     var doc=new DOMParser().parseFromString(t,'text/html');
+    var s16=doc.getElementById('sec-etf16');
     var sec=doc.getElementById('sec-etf');
-    if(sec){ document.getElementById('etfContent').innerHTML=sec.outerHTML; }
+    var html='';
+    if(s16){ html+=s16.outerHTML; }
+    if(sec){ html+=sec.outerHTML; }
+    if(html){ document.getElementById('etfContent').innerHTML=html; }
     var b=doc.querySelector('.badge-upd')||doc.getElementById('updBadge');
     fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
       lastV=j.v;
