@@ -144,7 +144,7 @@ li{margin-bottom:6px}
   </div>
   <div style="margin:4px 0 12px"><a class="homebtn" href="./">🏠 VỀ BẢNG CHÍNH</a></div>
   <div id="etfContent"><div class="note">Đang lấy mục ETF từ bảng chính…</div></div>
-  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC các mục ETF từ bảng chính mỗi lần mở — mở đầu là 🎯 FOCUS 9 ETF cốt lõi LONG TERM 10–20 NĂM, rồi tới 16 ETF và ETF Sổ 1. Bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
+  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC các mục ETF từ bảng chính mỗi lần mở — mở đầu là 🌳 PHÂN BỔ VỐN LONG TERM (13 quỹ chọn lọc, ví dụ $100K + $2K/tháng), rồi tới 9 ETF cốt lõi, 16 ETF và ETF Sổ 1. Bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
 </div>
 <a class="homefloat" href="./">🏠 VỀ BẢNG CHÍNH</a>
 <script>
@@ -164,10 +164,12 @@ var lastV=null;
 function loadEtf(){
   fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
     var doc=new DOMParser().parseFromString(t,'text/html');
+    var sA=doc.getElementById('sec-ltalloc');
     var s9=doc.getElementById('sec-lt9');
     var s16=doc.getElementById('sec-etf16');
     var sec=doc.getElementById('sec-etf');
     var html='';
+    if(sA){ html+=sA.outerHTML; }
     if(s9){ html+=s9.outerHTML; }
     if(s16){
       var CORE9=['AVMC','DFAI','DFAW','DIDO','FWMMX','STXF','STXT','VTV','VUG'];
