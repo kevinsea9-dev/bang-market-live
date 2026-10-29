@@ -125,6 +125,16 @@ h1{font-size:23px;letter-spacing:1px}
 .tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
 .stickyhead{position:-webkit-sticky;position:sticky;top:0;z-index:8000;background:#0a0f1a;border-bottom:1px solid #22304b;box-shadow:0 6px 16px rgba(0,0,0,.55);margin:-6px -6px 12px;padding:8px 6px 4px}
 .stickyhead .topnav{position:static;margin:0;padding:4px 0 2px;background:transparent;border-bottom:none;box-shadow:none}
+.sv-sub{color:#bccbe4;font-size:13.5px;margin:2px 0 0}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:10px;margin-top:10px}
+.sv-card{background:#0d1526;border:1px solid rgba(245,197,66,.45);border-radius:12px;padding:12px 14px}
+.sv-card .sv-t{font-weight:800;font-size:15.5px;color:#f5c542;margin-bottom:5px}
+.sv-card .sv-b{font-size:13.5px;line-height:1.55;color:#dbe4f5}
+.sv-mission{margin-top:10px;background:linear-gradient(135deg,rgba(245,197,66,.18),rgba(245,197,66,.05));border:2px solid #f5c542;border-radius:12px;padding:14px 12px;text-align:center}
+.sv-mission .sv-mt{font-size:13px;font-weight:700;letter-spacing:1px;color:#f5c542;margin-bottom:4px}
+.sv-mission .sv-mq{font-size:17px;font-weight:800;color:#ffe9a8;line-height:1.45}
+.sv-foot{color:#8fa3c4;font-size:12.5px;margin-top:10px;text-align:center}
+@media (max-width:640px){.sv-grid{grid-template-columns:1fr}}
 .topnav{position:-webkit-sticky;position:sticky;top:0;z-index:8000;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:#0a0f1a;border-bottom:1px solid #22304b;box-shadow:0 6px 16px rgba(0,0,0,.55);margin:-6px -6px 12px}
 .tnav{flex:1 0 auto;min-width:64px;text-align:center;padding:9px 4px;border-radius:10px;background:#131c2e;border:1px solid #2a3a5c;color:#dbe7ff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .tnav.hot{background:linear-gradient(180deg,#7f1d1d,#450a0a);border-color:#ef4444;color:#fff;animation:hotGlow 1.6s ease-in-out infinite}
@@ -224,7 +234,7 @@ li{margin-bottom:6px}
 .gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
 .alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
 </style>
-<meta name="board-v" content="20261029211949">
+<meta name="board-v" content="20261029213248">
 </head>
 <body>
 
@@ -2321,6 +2331,20 @@ li{margin-bottom:6px}
 
 
 
+<div class="sec" id="sec-survival" style="border:2px solid #f5c542;background:linear-gradient(180deg,rgba(245,197,66,.07),#101829)">
+<h2 style="margin:2px 0 4px">🛡️ CHIẾN LƯỢC SỐNG CÒN</h2>
+<div class="sv-sub">Luật chơi cố định của bảng này — thị trường đổi mỗi ngày, luật này không đổi.</div>
+<div class="sv-grid">
+<div class="sv-card"><div class="sv-t">🏦 ĐỌC CHẾ ĐỘ TRƯỚC</div><div class="sv-b">SPY + QQQ đóng trên MA20 = mở cổng săn. Cả hai dưới MA20 = PHÒNG THỦ: tắt tín hiệu mua, chỉ giữ vốn + chờ đảo chiều xác nhận. VIX và Fear &amp; Greed chỉ là "mùa", không cho phép vào lệnh.</div></div>
+<div class="sv-card"><div class="sv-t">🦈 BƠI THEO CÁ MẬP</div><div class="sv-b">Tiền lớn gom đâu, bảng soi đó: dòng tiền vào bất thường, insider mua, khối FOCUS cá mập gom khủng. Đi sau dấu chân tiền lớn, không đi trước.</div></div>
+<div class="sv-card"><div class="sv-t">🕸️ LƯỚI THÉP CHỜ ĐÁY</div><div class="sv-b">Mã rớt sâu 40–95% khỏi đỉnh 52 tuần + có tin nóng thì giăng lưới chờ gom. Rẻ thôi chưa đủ — phải có nền giá thật mới vẽ vùng.</div></div>
+<div class="sv-card"><div class="sv-t">📚 BA SỔ TÁCH BẠCH</div><div class="sv-b">Sổ 1 dài hạn 70% · Sổ 2 lướt sóng 20% · Sổ 3 mạo hiểm 10%. Tiền sổ nào ở yên sổ đó, không lấy sổ này bù lỗ cho sổ kia.</div></div>
+<div class="sv-card"><div class="sv-t">✂️ CẮT CỨNG LÀ LUẬT</div><div class="sv-b">Mọi vùng gom đều có giá cắt cứng. Đóng cửa xuyên cắt = vùng hủy, không cãi, không gồng. Vốn còn thì còn cơ hội. Mã gãy vùng được vẽ lại vùng mới — chỉ khi đã dựng nền thật.</div></div>
+<div class="sv-card"><div class="sv-t">🎯 BẮT XÁC NHẬN, KHÔNG BẮT DAO RƠI</div><div class="sv-b">Vùng có điều kiện chỉ phán quyết bằng nến ĐÓNG cửa. Giá after-hours xuyên qua chỉ là cảnh báo sớm, không quyết định thay nến đóng.</div></div>
+</div>
+<div class="sv-mission"><div class="sv-mt">🤝 SỨ MỆNH CỦA BẢNG</div><div class="sv-mq">"Mọi người cùng nhau kiếm tiền. Và bảo quản vốn, của mình."</div></div>
+<div class="sv-foot">Vùng giá trên bảng chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định cuối cùng là của mỗi người.</div>
+</div>
 <div class="dayplan" id="dayPlan" style="border:2px solid #f59e0b;border-radius:12px;padding:10px 12px;margin:8px 0;background:rgba(245,158,11,.10);font-size:14px;line-height:1.55"><b>⚔️ KẾ HOẠCH TÁC CHIẾN — THỨ NĂM 29/10</b> <span style="color:#9fb3d9">(soạn tối 28/10 · bản sáng làm mới ~03:50 PT)</span>
 
 
