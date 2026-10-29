@@ -165,7 +165,16 @@ function loadEtf(){
     var sec=doc.getElementById('sec-etf');
     var html='';
     if(s9){ html+=s9.outerHTML; }
-    if(s16){ html+=s16.outerHTML; }
+    if(s16){
+      var CORE9=['AVMC','DFAI','DFAW','DIDO','FWMMX','STXF','STXT','VTV','VUG'];
+      s16.querySelectorAll('.alert').forEach(function(a){
+        var b=a.querySelector('b');
+        if(b && CORE9.indexOf(b.textContent.trim())>=0){ a.remove(); }
+      });
+      var h2=s16.querySelector('h2');
+      if(h2){ h2.textContent='🎯 7 MÃ CÒN LẠI TRONG NHÓM 16 ETF — 9 mã cốt lõi đã ở mục 🌳 LONG TERM phía trên'; }
+      html+=s16.outerHTML;
+    }
     if(sec){ html+=sec.outerHTML; }
     if(html){ document.getElementById('etfContent').innerHTML=html; }
     var b=doc.querySelector('.badge-upd')||doc.getElementById('updBadge');
