@@ -136,6 +136,17 @@ h1{font-size:23px;letter-spacing:1px}
 .bb-sub{display:block;font-size:12.5px;color:#fee2e2;margin-top:1px;line-height:1.35}
 .bb-l2 .bb-sub{color:#ffedd5}
 .bb-src{opacity:.85;font-size:11.5px}
+/* bb-ext */
+#breakingNews{display:none}
+#breakingNews.on{display:block;margin:2px 0 8px}
+.bb-newsbanner{border-radius:10px;padding:10px 12px;color:#fff}
+.bb-nl1{background:linear-gradient(90deg,#7f1d1d,#dc2626 55%,#991b1b);border:1px solid #ef4444;animation:bbPulse 1.6s ease-in-out infinite}
+.bb-nl2{background:linear-gradient(90deg,#7c2d12,#ea580c 55%,#9a3412);border:1px solid #f59e0b}
+.bb-nb-tag{display:inline-block;background:#fff;color:#b91c1c;font-size:12px;font-weight:900;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px;letter-spacing:.3px}
+.bb-nl2 .bb-nb-tag{color:#c2410c}
+.bb-nb-head{font-size:17.5px;font-weight:800;line-height:1.35;color:#fff}
+.bb-hotbadge{background:#dc2626;color:#fff;font-size:11px;font-weight:800;border-radius:10px;padding:1px 7px;margin-left:4px;animation:bbPulse 1.6s ease-in-out infinite}
+.bb-hotbadge:empty{display:none}
 @keyframes bbPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0);border-color:#ef4444}50%{box-shadow:0 0 14px 2px rgba(239,68,68,.55);border-color:#fca5a5}}
 .bn-name{font-size:16px;font-weight:900;color:#f5c542;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bn-btns{display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -240,7 +251,7 @@ li{margin-bottom:6px}
 .gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
 .alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
 </style>
-<meta name="board-v" content="20261029221949">
+<meta name="board-v" content="20261029222205">
 </head>
 <body>
 
@@ -317,7 +328,7 @@ li{margin-bottom:6px}
 <div class="bn-row"><span class="bn-name">🦈 CHIẾN LƯỢC SỐNG CÒN</span><span class="bn-btns"><button class="sharebtn" id="shareBtn" onclick="shareBoard()">📤 Chia sẻ</button><button class="eyebtn" id="eyeBtn" onclick="toggleShareBtn()" title="Bật/tắt nút Chia sẻ">👁️</button></span></div>
 <div id="breakingBar" class="on"><!-- BREAKING-BAR-START --><a class="bb-bar bb-l1" href="#sec-news"><span class="bb-title">🚨 TIN NÓNG · 💥 MỸ CHUẨN BỊ ĐÁNH IRAN — sẵn sàng ra đòn trong 96 giờ nếu Trump ra lệnh</span><span class="bb-sub">Kế hoạch đánh năng lượng + hạt nhân đã xong · mốc sau bầu cử 3/11 · Trump chưa quyết, Vance đang ngoại giao · dầu WTI ~$102/Brent ~$115 — động lực dump diện rộng · canh XOM/CVX ra số sáng mai</span><span class="bb-sub bb-src">15:15 PT 29/10 · CNN/WSJ/NPR · 29/10 · bấm để xem chi tiết ở mục TIN LỚN ↓</span></a><!-- BREAKING-BAR-END --></div>
 <div class="topnav" id="topnav">
-  <a href="#" class="tnav" id="newsToggle" onclick="return toggleNews(event)">📰 NEWS <span id="newsCount" class="nbadge"></span></a>
+  <a href="#" class="tnav" id="newsToggle" onclick="return toggleNews(event)">📰 NEWS <span id="newsCount" class="nbadge"></span><span id="newsHotBadge" class="bb-hotbadge">🔴 1</span></a>
   <a href="#sec-urgent" class="tnav shark">🦈 CÁ MẬP</a> <a href="#sec-tinhhoa" class="tnav">💎 EARNINGS EPS</a> <a href="#sec-ahshark" class="tnav">🦈🔥 AH Nóng</a><a href="#sec-asia" class="tnav">🌏🦈 Cá Mập Á</a>
   <a href="#sec-hot" class="tnav hot">🔥 HOT</a>
   <a href="#sec-cudem" class="tnav" id="cudemBtn">🌙 CÚ ĐÊM</a>
@@ -3822,6 +3833,7 @@ function checkPin(){
 
 
   <h2>📰 TIN LỚN (29/10)</h2>
+<div id="breakingNews" class="on"><!-- BREAKING-NEWS-START --><div class="bb-newsbanner bb-nl1"><span class="bb-nb-tag">🔥 TIN NÓNG</span><span class="bb-nb-head">💥 MỸ CHUẨN BỊ ĐÁNH IRAN — sẵn sàng ra đòn trong 96 giờ nếu Trump ra lệnh</span></div><!-- BREAKING-NEWS-END --></div>
 <!-- IRAN-2910 -->
 <div class="alert">🌍💥 <b>MỸ CHUẨN BỊ ĐÁNH IRAN — sẵn sàng ra đòn trong 96 giờ nếu Trump ra lệnh</b><br>
 · CNN (2 quan chức Mỹ): quân đội Mỹ sẵn sàng đánh Iran trong 96 giờ nếu TT Trump ra lệnh — CENTCOM/Lầu Năm Góc đã chuẩn bị kế hoạch đánh cơ sở NĂNG LƯỢNG + HẠT NHÂN của Iran<br>
