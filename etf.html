@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>📊 ETF DÀI HẠN — Sổ 1 · Bảng Market Live</title>
+<title>🌳 LONG TERM 10–20 NĂM — ETF DÀI HẠN CỦA TOM · Bảng Market Live</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0b1220;color:#e8edf5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px;max-width:900px;margin:0 auto;font-size:15px;line-height:1.55}
@@ -137,11 +137,11 @@ li{margin-bottom:6px}
 </div>
 <div class="etf-shell">
   <div class="etf-head">
-    <div class="ttl">📊 ETF DÀI HẠN — SỔ 1</div>
+    <div class="ttl">🌳 LONG TERM 10–20 NĂM — 9 ETF CỐT LÕI + ETF SỔ 1</div>
     <div><span id="etfUpd">Đang tải…</span> · <a class="back" href="./">← Về bảng chính</a></div>
   </div>
   <div id="etfContent"><div class="note">Đang lấy mục ETF từ bảng chính…</div></div>
-  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC mục 📊 ETF từ bảng chính mỗi lần mở — bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
+  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC các mục ETF từ bảng chính mỗi lần mở — mở đầu là 🎯 FOCUS 9 ETF cốt lõi LONG TERM 10–20 NĂM, rồi tới 16 ETF và ETF Sổ 1. Bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
 </div>
 <script>
 var BOARD_PIN='045679';
@@ -160,9 +160,11 @@ var lastV=null;
 function loadEtf(){
   fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
     var doc=new DOMParser().parseFromString(t,'text/html');
+    var s9=doc.getElementById('sec-lt9');
     var s16=doc.getElementById('sec-etf16');
     var sec=doc.getElementById('sec-etf');
     var html='';
+    if(s9){ html+=s9.outerHTML; }
     if(s16){ html+=s16.outerHTML; }
     if(sec){ html+=sec.outerHTML; }
     if(html){ document.getElementById('etfContent').innerHTML=html; }
