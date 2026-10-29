@@ -150,8 +150,9 @@ h1{font-size:23px;letter-spacing:1px}
 .bb-nb-tag{display:inline-block;background:#fff;color:#b91c1c;font-size:12px;font-weight:900;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px;letter-spacing:.3px}
 .bb-nl2 .bb-nb-tag{color:#c2410c}
 .bb-nb-head{font-size:17.5px;font-weight:800;line-height:1.35;color:#fff}
-.bb-hotbadge{background:#dc2626;color:#fff;font-size:11px;font-weight:800;border-radius:10px;padding:1px 7px;margin-left:4px;animation:bbPulse 1.6s ease-in-out infinite}
+.bb-hotbadge{display:inline-block;background:#dc2626;color:#fff;font-size:11px;font-weight:800;border-radius:10px;padding:1px 7px;margin-left:4px;animation:bbJump 1s ease-in-out infinite}
 .bb-hotbadge:empty{display:none}
+@keyframes bbJump{0%,100%{transform:scale(1) translateY(0);opacity:1}50%{transform:scale(1.35) translateY(-2px);opacity:.75}}
 @keyframes bbPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0);border-color:#ef4444}50%{box-shadow:0 0 14px 2px rgba(239,68,68,.55);border-color:#fca5a5}}
 .bn-name{font-size:16px;font-weight:900;color:#f5c542;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bn-btns{display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -256,7 +257,7 @@ li{margin-bottom:6px}
 .gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
 .alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
 </style>
-<meta name="board-v" content="20261029223005">
+<meta name="board-v" content="20261029223158">
 </head>
 <body>
 
