@@ -1084,5 +1084,109 @@
   ],
   "cut": 64,
   "note": "Vẽ mới 29/10 theo OK của Tom. Nền đáy ba $66,28 (22/10)/$67,12 (23/10)/$66,51 (26/10), bật lên $82,22 (28/10); 29/10 nhúng $76,98 rồi rút chân. EPS TTM còn âm + beta ~3,9 + vừa pha loãng ATM $600tr → chỉ Sổ 3. Earnings dự kiến ~05/11 nhị phân. Mốc canh trong chế độ đỏ, không phải tín hiệu vào lệnh."
+ },
+ "AVUV": {
+  "book": "Sổ 1",
+  "entry": [
+   115,
+   121
+  ],
+  "targets": [
+   129,
+   138
+  ],
+  "cut": 110,
+  "note": "ETF small-cap value chủ động (Avantis) — phí 0,25%, AUM ~$32 tỷ, thanh khoản dày; trên MA50 $122,5/MA200 $118,8, đỉnh 52w $129,05; vùng chờ pullback neo dải MA200–MA50. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "VTV": {
+  "book": "Sổ 1",
+  "entry": [
+   205,
+   215
+  ],
+  "targets": [
+   228,
+   245
+  ],
+  "cut": 198,
+  "note": "ETF value large-cap (Vanguard) — phí 0,03%, AUM ~$193 tỷ, cổ tức ~1,8%, beta ~0,77; đang tại đỉnh 52w $228,6 sau +22,7%/năm → vùng chờ pullback sâu, không đuổi giá. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "VUG": {
+  "book": "Sổ 1",
+  "entry": [
+   78,
+   84
+  ],
+  "targets": [
+   93,
+   101
+  ],
+  "cut": 74,
+  "note": "ETF growth large-cap (Vanguard) — phí 0,03%, AUM ~$230 tỷ, tech ~60%, chồng lắp một phần QQQ; đỉnh 52w $93 (6/10). Cặp value/growth cùng VTV. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "DFAI": {
+  "book": "Sổ 1",
+  "entry": [
+   38.5,
+   41
+  ],
+  "targets": [
+   43.6,
+   47
+  ],
+  "cut": 35.5,
+  "note": "ETF quốc tế developed ex-US core (Dimensional) — phí 0,18%, AUM ~$18 tỷ, ~3.700 mã, yield ~2,4%; trên MA200 $41,3, dưới MA50 $42,2 nhẹ; vùng neo dưới MA200. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "DFAW": {
+  "book": "Sổ 1",
+  "entry": [
+   78,
+   82
+  ],
+  "targets": [
+   86.4,
+   93
+  ],
+  "cut": 75,
+  "note": "ETF toàn cầu 1 mã (Dimensional fund-of-funds: Mỹ + quốc tế + EM + REIT) — phí 0,24%, AUM ~$1,7 tỷ; trên MA200 $80,9; vùng neo dải MA200. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "VCRB": {
+  "book": "Sổ 1",
+  "entry": [
+   72.5,
+   74.5
+  ],
+  "targets": [
+   79,
+   82
+  ],
+  "cut": 70.5,
+  "note": "ETF trái phiếu lõi hạng đầu tư chủ động (Vanguard) — phí 0,10%, AUM ~$8,1 tỷ, SEC yield ~5,2% trả tháng; giá sát đáy 52w $73,09 vì 10Y ~5% — đệm ballast đầu tiên của Sổ 1. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "DFSD": {
+  "book": "Sổ 1",
+  "entry": [
+   46,
+   46.8
+  ],
+  "targets": [
+   48.5,
+   50
+  ],
+  "cut": 45.2,
+  "note": "ETF trái phiếu ngắn hạn hạng đầu tư (Dimensional) — phí 0,16%, AUM ~$7,4 tỷ, yield TTM ~4,5% trả tháng, duration ngắn ít nhạy lãi suất; giá sát đáy 52w $46,39 — vai két an toàn có lãi. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "VWOB": {
+  "book": "Sổ 1",
+  "entry": [
+   61.5,
+   63.5
+  ],
+  "targets": [
+   68.4,
+   72
+  ],
+  "cut": 59.5,
+  "note": "ETF trái phiếu chính phủ EM định danh USD (Vanguard) — phí 0,15%, AUM ~$6,6 tỷ, SEC yield ~6,7% trả tháng; rủi ro tín dụng quốc gia EM — vệ tinh thu nhập. Thêm 29/10 theo danh sách Tom đưa."
  }
 }
