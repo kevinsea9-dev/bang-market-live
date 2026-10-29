@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>📊 ETF DÀI HẠN — Sổ 1 · Bảng Market Live</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1220;color:#e8edf5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px;max-width:900px;margin:0 auto;font-size:15px;line-height:1.55}
+h1{font-size:23px;letter-spacing:1px}
+.sub{color:#bccbe4;font-size:13.5px;margin-top:4px}
+.head{background:linear-gradient(135deg,#0e2233,#12283f);border:1px solid #1e3a5c;border-radius:14px;padding:16px;margin-bottom:14px}
+.updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:13px;padding:5px 10px;border-radius:20px}
+.sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
+.eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
+.tabbar{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer;text-decoration:none;display:block}
+.tab small{display:block;font-weight:400;font-size:12px;color:#bccbe4;margin-top:2px}
+.tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
+.tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
+.tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
+.topnav{position:sticky;top:0;z-index:8000;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:rgba(10,15,26,.96);backdrop-filter:blur(6px);border-bottom:1px solid #22304b;margin:-6px -6px 12px}
+.tnav{flex:1 0 auto;min-width:64px;text-align:center;padding:9px 4px;border-radius:10px;background:#131c2e;border:1px solid #2a3a5c;color:#dbe7ff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.tnav.hot{background:linear-gradient(180deg,#7f1d1d,#450a0a);border-color:#ef4444;color:#fff;animation:hotGlow 1.6s ease-in-out infinite}
+.nbadge{background:#ef4444;color:#fff;font-size:11px;font-weight:700;border-radius:10px;padding:1px 7px;margin-left:4px}
+.newsdrawer{background:#0d1526;border:1px solid #2a3b5c;border-radius:10px;margin:8px 0;padding:10px 12px;max-height:320px;overflow-y:auto}
+.newsdrawer .nd-head{font-weight:700;font-size:14px;margin-bottom:8px;display:flex;justify-content:space-between}
+.newsdrawer .nd-head a{font-size:12px;font-weight:400}
+.newsdrawer ul{margin:0;padding-left:18px}
+.newsdrawer li{margin-bottom:8px;font-size:13.5px}
+.newsold{opacity:.78}
+.nnew{background:#16a34a;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px;animation:nnewPulse 1.2s infinite}
+@keyframes nnewPulse{0%,100%{opacity:1}50%{opacity:.55}}
+.nhot{background:#dc2626;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px}
+.tnav.dim{opacity:.45}
+.tnav.nightpulse{animation:cudemPulse 2.5s ease-in-out infinite;border-color:#7c6cf0}
+@keyframes cudemPulse{0%,100%{box-shadow:0 0 4px rgba(124,108,240,.3)}50%{box-shadow:0 0 14px rgba(124,108,240,.8)}}
+.tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
+@keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
+@keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
+.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5);opacity:.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
+.card .lbl{font-size:13px;color:#bccbe4}
+.card .val{font-size:19px;font-weight:700;margin-top:2px}
+.up{color:#4ade80}.down{color:#f87171}.flat{color:#facc15}
+.sec{background:#101829;border:1px solid #22304b;border-radius:14px;padding:14px;margin-bottom:14px}
+.sec h2{font-size:17px;margin-bottom:10px}
+.alert{background:#131c2e;border-left:4px solid #facc15;border-radius:8px;padding:10px;margin-bottom:8px;font-size:15px}
+.alert.hot{border-left-color:#f87171;background:linear-gradient(90deg,rgba(248,113,113,.10),#131c2e 60%)}
+.alert.good{border-left-color:#4ade80;background:linear-gradient(90deg,rgba(74,222,128,.10),#131c2e 60%)}
+.alert .t{font-size:12.5px;color:#bccbe4}
+.alert .zt{font-size:13px;color:#ffd76a;font-weight:600}
+.alert .trust{font-size:12px;color:#9fd8a8}
+.alert .fresh{font-size:12px;color:#ffb066;font-weight:600}
+.heat{display:inline-block;font-size:12.5px;font-weight:700;border-radius:8px;padding:2px 10px;margin:2px 4px 2px 0}
+.heat-green{background:rgba(22,163,74,.25);color:#4ade80;border:1px solid #16a34a}
+.heat-yellow{background:rgba(202,138,4,.22);color:#facc15;border:1px solid #ca8a04}
+.heat-red{background:rgba(220,38,38,.25);color:#f87171;border:1px solid #dc2626;animation:heatBlink 1s infinite}
+@keyframes heatBlink{0%,100%{opacity:1}50%{opacity:.5}}
+.waitpx{font-size:12.5px;color:#ffd76a;font-weight:600}
+.vix-green{border-left:4px solid #16a34a}
+.vix-yellow{border-left:4px solid #ca8a04;animation:vixPulse 2s infinite}
+.vix-red{border-left:4px solid #dc2626;background:rgba(220,38,38,.12);animation:vixFlash 1s infinite;font-weight:700}
+@keyframes vixPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 12px rgba(202,138,4,.5)}}
+@keyframes vixFlash{0%,100%{box-shadow:0 0 8px rgba(220,38,38,.4)}50%{box-shadow:0 0 20px rgba(220,38,38,.9)}}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:#bccbe4;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
+td{padding:9px 6px;border-bottom:1px solid #1a2438}
+.badge{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
+tr.subhead td{background:#1c2942;color:#ffd479;font-weight:700;font-size:13.5px;padding:7px 10px;letter-spacing:.3px}
+.quicknav{position:sticky;top:0;z-index:50;background:#0f172aee;padding:9px 12px;font-size:14px;border-bottom:1px solid #243352;backdrop-filter:blur(4px)}
+.quicknav a{color:#7dd3fc;text-decoration:none;margin:0 4px;font-weight:600}
+.quicknav a:active{color:#fff}
+.b-in{background:#123c26;color:#4ade80}
+.b-near{background:#3d3312;color:#facc15}
+.b-out{background:#2a2f3d;color:#c2cfe6}
+.b-cut{background:#471b1b;color:#f87171}
+.b-new{background:#f59e0b;color:#0b1220;animation:blinkNew 1.15s infinite}
+.b-hot{background:#dc2626;color:#fff;animation:blinkHot .8s infinite;font-size:13px;padding:4px 10px}
+@keyframes blinkHot{0%,100%{opacity:1;box-shadow:0 0 8px #dc2626}50%{opacity:.45;box-shadow:none}}
+/* 🦈 CÁ MẬP GOM HÀNG — Tom lệnh 15/10: gold glow sang, không máu me */
+.alert.urgent{border-left:5px solid #ffc94d;background:linear-gradient(90deg,rgba(255,201,77,.13),#141007 65%);animation:sharkPulse 1.4s ease-in-out infinite;font-size:15px}
+@keyframes sharkPulse{0%,100%{box-shadow:0 0 14px rgba(255,201,77,.55);transform:scale(1)}50%{box-shadow:0 0 36px rgba(255,201,77,.95);background:rgba(90,66,14,.50);transform:scale(1.012)}}
+.b-urgent{background:linear-gradient(135deg,#ffc94d,#e8a020);color:#1a1206;animation:sharkPulse 1.4s infinite;font-size:14px;padding:5px 12px;font-weight:800}
+@keyframes blinkNew{0%,100%{opacity:1}50%{opacity:.3}}
+.livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#f87171;margin-right:6px;animation:blinkNew 1.4s infinite}
+.livestrip{display:flex;flex-wrap:wrap;gap:8px}
+.livechip{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:8px 10px;font-size:13.5px;min-width:104px;flex:1}
+.livechip .lt{font-weight:700;font-size:12px;color:#bccbe4}
+.livechip .lp{font-size:16px;font-weight:700;margin:2px 0}
+.livechip .lc{font-size:12.5px}
+.livechip.fup{animation:fUp .9s}
+.livechip.fdn{animation:fDn .9s}
+@keyframes fUp{0%{background:#14532d}100%{background:#131c2e}}
+@keyframes fDn{0%{background:#7f1d1d}100%{background:#131c2e}}
+.collapsebtn{display:block;width:100%;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;border-radius:10px;padding:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px}
+.oldcollapsed{display:none!important}
+.zone{color:#c2cfe6;font-size:12px}
+.cut{color:#f87171;font-size:12px}
+ul{padding-left:18px;font-size:14px;line-height:1.7}
+li{margin-bottom:6px}
+.cal{display:grid;grid-template-columns:86px 1fr;gap:6px;font-size:14px;margin-bottom:6px}
+.cal .d{color:#facc15;font-weight:700}
+.footer{text-align:center;color:#bccbe4;font-size:12px;margin:18px 0 8px;line-height:1.6}
+.note{font-size:13px;color:#a9bcd6}
+.spark{display:inline-block;vertical-align:middle;margin-left:8px}
+#pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
+#pinGate h2{font-size:20px;margin-bottom:6px}
+#pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
+#pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
+#pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
+#sec-hot .alert.hot{animation:hotBlink 1.4s ease-in-out infinite;border-left:4px solid #ef4444;box-shadow:0 0 8px rgba(239,68,68,.3)}
+@keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
+.guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
+.backwait{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin:2px 4px 2px 0;background:rgba(34,211,238,.18);color:#67e8f9;border:1px solid #22d3ee;animation:heatBlink 1.2s infinite}.wave{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;padding:2px 9px;margin:2px 4px 2px 0;background:rgba(167,139,250,.15);color:#c4b5fd;border:1px solid #8b5cf6}.wave.warn{background:rgba(220,38,38,.18);color:#fca5a5;border-color:#dc2626}.sharkday{border:2px solid #ffc94d;border-radius:12px;padding:10px 12px;margin:8px 0;background:linear-gradient(135deg,rgba(255,201,77,.14),rgba(20,16,7,.6))}.sharkday h3{margin:0 0 6px;font-size:15px;color:#ffd76a}.sharkday .sd-row{font-size:13.5px;padding:3px 0;color:#e8eefc}.sharkday .sd-why{color:#9fb3d9;font-size:12.5px}
+.gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
+.alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
+
+.etf-shell{max-width:1100px;margin:0 auto;padding:10px}
+.etf-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+.etf-head .ttl{font-size:20px;font-weight:800}
+.etf-head a.back{color:#ffd34d;text-decoration:none;font-weight:700}
+#etfUpd{opacity:.75;font-size:13px}
+</style>
+</head>
+<body>
+<div id="pinGate">
+  <div class="box">
+    <h2>🔐 Bảng Market Live</h2>
+    <div class="sub">Khu vực test riêng của Tom — nhập mã vào cửa</div>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off">
+    <button onclick="checkPin()">Mở bảng</button>
+    <div class="err" id="pinErr"></div>
+  </div>
+</div>
+<div class="etf-shell">
+  <div class="etf-head">
+    <div class="ttl">📊 ETF DÀI HẠN — SỔ 1</div>
+    <div><span id="etfUpd">Đang tải…</span> · <a class="back" href="./">← Về bảng chính</a></div>
+  </div>
+  <div id="etfContent"><div class="note">Đang lấy mục ETF từ bảng chính…</div></div>
+  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC mục 📊 ETF từ bảng chính mỗi lần mở — bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
+</div>
+<script>
+var BOARD_PIN='045679';
+function checkPin(){
+  var v=document.getElementById('pinInput').value.trim();
+  if(v===BOARD_PIN){
+    localStorage.setItem('boardPinOk2','1');
+    document.getElementById('pinGate').style.display='none';
+    loadEtf();
+  }else{
+    document.getElementById('pinErr').textContent='Mã chưa đúng — thử lại nhé';
+    document.getElementById('pinInput').value='';
+  }
+}
+var lastV=null;
+function loadEtf(){
+  fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
+    var doc=new DOMParser().parseFromString(t,'text/html');
+    var sec=doc.getElementById('sec-etf');
+    if(sec){ document.getElementById('etfContent').innerHTML=sec.outerHTML; }
+    var b=doc.querySelector('.badge-upd')||doc.getElementById('updBadge');
+    fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+      lastV=j.v;
+      document.getElementById('etfUpd').textContent='Bản '+j.v.slice(6,8)+'/'+j.v.slice(4,6)+' '+j.v.slice(8,10)+':'+j.v.slice(10,12)+' UTC';
+    }).catch(function(){});
+  }).catch(function(e){
+    document.getElementById('etfContent').innerHTML='<div class="note">Chưa tải được bảng chính — thử tải lại trang sau ít phút.</div>';
+  });
+}
+(function(){
+  if(localStorage.getItem('boardPinOk2')==='1'){
+    var g=document.getElementById('pinGate'); if(g) g.style.display='none';
+    loadEtf();
+  }else{
+    var inp=document.getElementById('pinInput');
+    if(inp) inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkPin();});
+  }
+  setInterval(function(){
+    if(localStorage.getItem('boardPinOk2')!=='1') return;
+    fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+      if(lastV && j.v!==lastV){ loadEtf(); }
+      lastV=j.v;
+    }).catch(function(){});
+  },60000);
+  document.addEventListener('visibilitychange',function(){
+    if(!document.hidden && localStorage.getItem('boardPinOk2')==='1') loadEtf();
+  });
+})();
+</script>
+</body>
+</html>
