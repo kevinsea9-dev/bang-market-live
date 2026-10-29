@@ -1057,5 +1057,18 @@
   ],
   "cut": 435,
   "note": "Ve 28/10 theo lenh Tom. Nen rua thang 10: day $439,50 (20/10) + cum day $446-455 (16-26/10, 6 lan cham) sau Barclays ha hang 14/10; hoi dong 27/10 $501,96, dong 28/10 $493,79 (-1,63%). Vung = retest nen rua; Chot 1 $530 (ke Sep/MA50 $513), Chot 2 $565 (cum dinh Oct $562-578); Cat cung <$435 duoi day $439,50. MA200 $327,97 - uptrend dai han con nguyen; AI server backlog $95 ty. Earnings 24/11 AMC - gap sau so co the nhay qua cat."
+ },
+ "TWLO": {
+  "book": "Sổ 2",
+  "entry": [
+   238,
+   250
+  ],
+  "targets": [
+   272,
+   290
+  ],
+  "cut": 232,
+  "note": "CÓ ĐIỀU KIỆN — earnings AMC 29/10 (kỳ vọng EPS $1,47 · DT $1,52 tỷ). Kích hoạt khi ĐÓNG phiên phản ứng 30/10 giữ ≥$248 (kệ nền 19–28/10: đáy $248,00–$252,50); đóng <$236 (đáy xả 16/10 $236,85) → HỦY, chờ dựng nền mới. Gap lên sau beat: không đuổi, vùng là mốc chờ pullback. Neo: MA50 ~$256,5 · MA20 ~$272 · PT đồng thuận ~$271."
  }
 }
