@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>📄 TRANG RIÊNG — Bảng Market Live</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1220;color:#e8edf5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:12px;max-width:900px;margin:0 auto;font-size:15px;line-height:1.55}
+h1{font-size:23px;letter-spacing:1px}
+.sub{color:#bccbe4;font-size:13.5px;margin-top:4px}
+.head{background:linear-gradient(135deg,#0e2233,#12283f);border:1px solid #1e3a5c;border-radius:14px;padding:16px;margin-bottom:14px}
+.updated{display:inline-block;margin-top:8px;background:#173b2a;color:#4ade80;border:1px solid #2c7a4b;font-size:13px;padding:5px 10px;border-radius:20px}
+.sharebtn{margin-left:8px;background:#1d4ed8;color:#fff;border:none;font-size:14px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer}
+.eyebtn{margin-left:6px;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
+.tabbar{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;text-align:center;padding:12px 6px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid #2c3d5f;background:#131c2e;color:#e8edf5;cursor:pointer;text-decoration:none;display:block}
+.tab small{display:block;font-weight:400;font-size:12px;color:#bccbe4;margin-top:2px}
+.tab.dt{border-color:#7a2c2c;background:linear-gradient(180deg,rgba(248,113,113,.12),#131c2e)}
+.tab.sw{border-color:#6b5a1e;background:linear-gradient(180deg,rgba(250,204,21,.10),#131c2e)}
+.tab.lt{border-color:#2c7a4b;background:linear-gradient(180deg,rgba(74,222,128,.10),#131c2e)}
+.stickyhead{position:-webkit-sticky;position:sticky;top:0;z-index:8000;background:#0a0f1a;border-bottom:1px solid #22304b;box-shadow:0 6px 16px rgba(0,0,0,.55);margin:-6px -6px 8px;padding:6px 6px 3px}
+.stickyhead .topnav{position:static;margin:0;padding:3px 0 1px;background:transparent;border-bottom:none;box-shadow:none}
+#sysCheck{padding:1px 4px !important}
+.bn-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 2px 1px}
+#breakingBar{display:none}
+#breakingBar.on{display:block;margin:3px 0 1px}
+.bb-bar{display:block;text-decoration:none;border-radius:8px;padding:7px 10px 6px;color:#fff}
+.bb-l1{background:linear-gradient(90deg,#7f1d1d,#b91c1c 55%,#991b1b);border:1px solid #ef4444;animation:bbPulse 1.6s ease-in-out infinite}
+.bb-l2{background:linear-gradient(90deg,#7c2d12,#c2410c 55%,#9a3412);border:1px solid #f59e0b}
+.bb-title{display:block;font-size:15.5px;font-weight:800;color:#fff;line-height:1.3}
+.bb-sub{display:block;font-size:12.5px;color:#fee2e2;margin-top:1px;line-height:1.35}#breakingBar .bb-sub{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bb-l2 .bb-sub{color:#ffedd5}
+.bb-src{opacity:.85;font-size:11.5px}
+/* boom-css */
+#boomBlock{display:none}
+#boomBlock.on{display:block}
+.boom-head{font-weight:700;margin:10px 0 4px}
+.boom-item{border-left:4px solid #f97316}
+/* bb-ext */
+#breakingNews{display:none}
+#breakingNews.on{display:block;margin:2px 0 8px}
+.bb-newsbanner{border-radius:10px;padding:10px 12px;color:#fff}
+.bb-nl1{background:linear-gradient(90deg,#7f1d1d,#dc2626 55%,#991b1b);border:1px solid #ef4444;animation:bbPulse 1.6s ease-in-out infinite}
+.bb-nl2{background:linear-gradient(90deg,#7c2d12,#ea580c 55%,#9a3412);border:1px solid #f59e0b}
+.bb-nb-tag{display:inline-block;background:#fff;color:#b91c1c;font-size:12px;font-weight:900;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px;letter-spacing:.3px}
+.bb-nl2 .bb-nb-tag{color:#c2410c}
+.bb-nb-head{font-size:17.5px;font-weight:800;line-height:1.35;color:#fff}
+.bb-hotbadge{display:inline-block;background:#dc2626;color:#fff;font-size:11px;font-weight:800;border-radius:10px;padding:1px 7px;margin-left:4px;animation:bbJump 1s ease-in-out infinite}
+.bb-hotbadge:empty{display:none}
+/* bb-multi */
+#breakingNews .bb-newsbanner{margin:0 0 6px}
+#breakingNews .bb-newsbanner:last-child{margin-bottom:0}
+/* bb-queue */
+.bb-queue{font-size:12px;color:#fca5a5;opacity:.85;padding:2px 4px 0;line-height:1.4}
+@keyframes bbJump{0%,100%{transform:scale(1) translateY(0);opacity:1}50%{transform:scale(1.35) translateY(-2px);opacity:.75}}
+@keyframes bbPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0);border-color:#ef4444}50%{box-shadow:0 0 14px 2px rgba(239,68,68,.55);border-color:#fca5a5}}
+.bn-name{font-size:16px;font-weight:900;color:#f5c542;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bn-btns{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.bn-btns .sharebtn{margin-left:0;padding:7px 12px;font-size:13.5px}
+.bn-btns .eyebtn{margin-left:0;padding:7px 10px}
+.topnav{position:-webkit-sticky;position:sticky;top:0;z-index:8000;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:#0a0f1a;border-bottom:1px solid #22304b;box-shadow:0 6px 16px rgba(0,0,0,.55);margin:-6px -6px 12px}
+.tnav{flex:1 0 auto;min-width:64px;text-align:center;padding:10px 4px;border-radius:10px;background:#131c2e;border:1px solid #2a3a5c;color:#dbe7ff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.tnav.hot{background:linear-gradient(180deg,#7f1d1d,#450a0a);border-color:#ef4444;color:#fff;animation:hotGlow 1.6s ease-in-out infinite}
+.nbadge{background:#ef4444;color:#fff;font-size:11px;font-weight:700;border-radius:10px;padding:1px 7px;margin-left:4px}
+.newsdrawer{background:#0d1526;border:1px solid #2a3b5c;border-radius:10px;margin:8px 0;padding:10px 12px;max-height:320px;overflow-y:auto}
+.newsdrawer .nd-head{font-weight:700;font-size:14px;margin-bottom:8px;display:flex;justify-content:space-between}
+.newsdrawer .nd-head a{font-size:12px;font-weight:400}
+.newsdrawer ul{margin:0;padding-left:18px}
+.newsdrawer li{margin-bottom:8px;font-size:13.5px}
+.newsold{opacity:.78}
+.nnew{background:#16a34a;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px;animation:nnewPulse 1.2s infinite}
+@keyframes nnewPulse{0%,100%{opacity:1}50%{opacity:.55}}
+.nhot{background:#dc2626;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:1px 8px;margin-right:6px}
+.tnav.dim{opacity:.45}
+.tnav.nightpulse{animation:cudemPulse 2.5s ease-in-out infinite;border-color:#7c6cf0}
+@keyframes cudemPulse{0%,100%{box-shadow:0 0 4px rgba(124,108,240,.3)}50%{box-shadow:0 0 14px rgba(124,108,240,.8)}}
+.tnav.shark{background:linear-gradient(180deg,#8a6a1c,#4a3a0c);border-color:#ffc94d;color:#ffe9b0;animation:sharkNav 2.5s ease-in-out infinite}
+@keyframes sharkNav{0%,100%{box-shadow:0 0 4px rgba(255,201,77,.35)}50%{box-shadow:0 0 16px rgba(255,201,77,.8)}}
+@keyframes hotGlow{0%,100%{box-shadow:0 0 4px rgba(239,68,68,.4)}50%{box-shadow:0 0 14px rgba(239,68,68,.9)}}
+.totop{position:fixed;bottom:18px;right:14px;z-index:9000;background:#1d4ed8;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.5);opacity:.88}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.card{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:10px;text-align:center}
+.card .lbl{font-size:13px;color:#bccbe4}
+.card .val{font-size:19px;font-weight:700;margin-top:2px}
+.up{color:#4ade80}.down{color:#f87171}.flat{color:#facc15}
+.sec{background:#101829;border:1px solid #22304b;border-radius:14px;padding:14px;margin-bottom:14px}
+.sec h2{font-size:17px;margin-bottom:10px}
+.alert{background:#131c2e;border-left:4px solid #facc15;border-radius:8px;padding:10px;margin-bottom:8px;font-size:15px}
+.alert.hot{border-left-color:#f87171;background:linear-gradient(90deg,rgba(248,113,113,.10),#131c2e 60%)}
+.alert.good{border-left-color:#4ade80;background:linear-gradient(90deg,rgba(74,222,128,.10),#131c2e 60%)}
+.alert .t{font-size:12.5px;color:#bccbe4}
+.alert .zt{font-size:13px;color:#ffd76a;font-weight:600}
+.alert .trust{font-size:12px;color:#9fd8a8}
+.alert .fresh{font-size:12px;color:#ffb066;font-weight:600}
+.heat{display:inline-block;font-size:12.5px;font-weight:700;border-radius:8px;padding:2px 10px;margin:2px 4px 2px 0}
+.heat-green{background:rgba(22,163,74,.25);color:#4ade80;border:1px solid #16a34a}
+.heat-yellow{background:rgba(202,138,4,.22);color:#facc15;border:1px solid #ca8a04}
+.heat-red{background:rgba(220,38,38,.25);color:#f87171;border:1px solid #dc2626;animation:heatBlink 1s infinite}
+@keyframes heatBlink{0%,100%{opacity:1}50%{opacity:.5}}
+.waitpx{font-size:12.5px;color:#ffd76a;font-weight:600}
+.vix-green{border-left:4px solid #16a34a}
+.vix-yellow{border-left:4px solid #ca8a04;animation:vixPulse 2s infinite}
+.vix-red{border-left:4px solid #dc2626;background:rgba(220,38,38,.12);animation:vixFlash 1s infinite;font-weight:700}
+@keyframes vixPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 12px rgba(202,138,4,.5)}}
+@keyframes vixFlash{0%,100%{box-shadow:0 0 8px rgba(220,38,38,.4)}50%{box-shadow:0 0 20px rgba(220,38,38,.9)}}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:#bccbe4;font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid #24344f;font-size:12.5px}
+td{padding:9px 6px;border-bottom:1px solid #1a2438}
+.badge{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
+tr.subhead td{background:#1c2942;color:#ffd479;font-weight:700;font-size:13.5px;padding:7px 10px;letter-spacing:.3px}
+.quicknav{position:sticky;top:0;z-index:50;background:#0f172aee;padding:9px 12px;font-size:14px;border-bottom:1px solid #243352;backdrop-filter:blur(4px)}
+.quicknav a{color:#7dd3fc;text-decoration:none;margin:0 4px;font-weight:600}
+.quicknav a:active{color:#fff}
+.b-in{background:#123c26;color:#4ade80}
+.b-near{background:#3d3312;color:#facc15}
+.b-out{background:#2a2f3d;color:#c2cfe6}
+.b-cut{background:#471b1b;color:#f87171}
+.b-new{background:#f59e0b;color:#0b1220;animation:blinkNew 1.15s infinite}
+.b-hot{background:#dc2626;color:#fff;animation:blinkHot .8s infinite;font-size:13px;padding:4px 10px}
+@keyframes blinkHot{0%,100%{opacity:1;box-shadow:0 0 8px #dc2626}50%{opacity:.45;box-shadow:none}}@keyframes ltaPulseW{0%,100%{opacity:1;color:#101418;background:#ffffff;text-shadow:none;box-shadow:0 0 18px rgba(255,255,255,.85)}50%{opacity:.55;color:#d7dde3;background:rgba(255,255,255,0);text-shadow:none;box-shadow:none}}@keyframes ltaPulseR{0%,100%{opacity:1;text-shadow:0 0 12px rgba(255,70,70,.95)}50%{opacity:.55;text-shadow:0 0 2px rgba(255,70,70,.3)}}.lta-blink-w{animation:none;display:inline-block;border-radius:5px;padding:1px 6px;background:#ffffff;color:#101418;box-shadow:0 0 14px rgba(255,255,255,.55)}.lta-blink-r{animation:ltaPulseR 1.1s ease-in-out infinite}@keyframes ltaPulseG{0%,100%{opacity:1;text-shadow:0 0 8px rgba(60,220,120,.8)}50%{opacity:.6;text-shadow:none}}@keyframes ltaPulseB{0%,100%{opacity:1;text-shadow:0 0 11px rgba(70,150,255,.95)}50%{opacity:.55;text-shadow:0 0 2px rgba(70,150,255,.3)}}.lta-blink-g{animation:ltaPulseG 1.9s ease-in-out infinite}.lta-blink-b{animation:ltaPulseB 1.4s ease-in-out infinite}.lta-dot{display:inline-block;width:15px;height:15px;transition:transform .6s ease-in-out,opacity .6s ease-in-out;border-radius:50%;margin-right:7px;vertical-align:-1px}@keyframes ltaDotW{0%,100%{transform:scale(.12);opacity:.45;box-shadow:none}50%{transform:scale(2.9);opacity:1;box-shadow:0 0 26px 10px rgba(255,255,255,.9)}}.lta-dot-w{background:#ffffff;width:17px;height:17px;animation:none;border:2px solid #101418;box-shadow:0 0 12px rgba(255,255,255,.85)}@keyframes ltaDotG{0%,100%{transform:scale(.12);opacity:.45;box-shadow:none}50%{transform:scale(2.9);opacity:1;box-shadow:0 0 26px 10px rgba(60,220,120,.85)}}.lta-dot-g{background:#2fe07c;animation:ltaDotG 1.9s ease-in-out infinite}@keyframes ltaDotB{0%,100%{transform:scale(.12);opacity:.45;box-shadow:none}50%{transform:scale(2.9);opacity:1;box-shadow:0 0 26px 10px rgba(70,150,255,.9)}}.lta-dot-b{background:#4b96ff;animation:ltaDotB 1.4s ease-in-out infinite}@keyframes ltaDotR{0%,100%{transform:scale(.12);opacity:.45;box-shadow:none}50%{transform:scale(2.9);opacity:1;box-shadow:0 0 26px 10px rgba(255,70,70,.95)}}.lta-dot-r{background:#ff4646;animation:ltaDotR 1.1s ease-in-out infinite}
+/* 🦈 CÁ MẬP GOM HÀNG — Tom lệnh 15/10: gold glow sang, không máu me */
+.alert.urgent{border-left:5px solid #ffc94d;background:linear-gradient(90deg,rgba(255,201,77,.13),#141007 65%);animation:sharkPulse 1.4s ease-in-out infinite;font-size:15px}
+@keyframes sharkPulse{0%,100%{box-shadow:0 0 14px rgba(255,201,77,.55);transform:scale(1)}50%{box-shadow:0 0 36px rgba(255,201,77,.95);background:rgba(90,66,14,.50);transform:scale(1.012)}}
+.b-urgent{background:linear-gradient(135deg,#ffc94d,#e8a020);color:#1a1206;animation:sharkPulse 1.4s infinite;font-size:14px;padding:5px 12px;font-weight:800}
+@keyframes blinkNew{0%,100%{opacity:1}50%{opacity:.3}}
+.livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#f87171;margin-right:6px;animation:blinkNew 1.4s infinite}
+.livestrip{display:flex;flex-wrap:wrap;gap:8px}
+.livechip{background:#131c2e;border:1px solid #24344f;border-radius:10px;padding:8px 10px;font-size:13.5px;min-width:104px;flex:1}
+.livechip .lt{font-weight:700;font-size:12px;color:#bccbe4}
+.livechip .lp{font-size:16px;font-weight:700;margin:2px 0}
+.livechip .lc{font-size:12.5px}
+.livechip.fup{animation:fUp .9s}
+.livechip.fdn{animation:fDn .9s}
+@keyframes fUp{0%{background:#14532d}100%{background:#131c2e}}
+@keyframes fDn{0%{background:#7f1d1d}100%{background:#131c2e}}
+.collapsebtn{display:block;width:100%;background:#1a2438;color:#9fc5ff;border:1px solid #2c3d5f;border-radius:10px;padding:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px}
+.oldcollapsed{display:none!important}
+.zone{color:#c2cfe6;font-size:12px}
+.cut{color:#f87171;font-size:12px}
+ul{padding-left:18px;font-size:14px;line-height:1.7}
+li{margin-bottom:6px}
+.cal{display:grid;grid-template-columns:86px 1fr;gap:6px;font-size:14px;margin-bottom:6px}
+.cal .d{color:#facc15;font-weight:700}
+.footer{text-align:center;color:#bccbe4;font-size:12px;margin:18px 0 8px;line-height:1.6}
+.note{font-size:13px;color:#a9bcd6}
+.spark{display:inline-block;vertical-align:middle;margin-left:8px}
+#pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
+#pinGate h2{font-size:20px;margin-bottom:6px}
+#pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
+#pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
+#pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
+#sec-hot .alert.hot{animation:hotBlink 1.4s ease-in-out infinite;border-left:4px solid #ef4444;box-shadow:0 0 8px rgba(239,68,68,.3)}
+@keyframes hotBlink{0%,100%{background:#131c2e;box-shadow:0 0 8px rgba(239,68,68,.3);transform:scale(1)}50%{background:#4a1414;box-shadow:0 0 20px rgba(239,68,68,.8);transform:scale(1.01)}}
+.guide p{margin:6px 0;line-height:1.5}.guide .keyline{background:#fff8e1;border-left:4px solid #f9a825;padding:8px 10px}.guide .disclaimer{color:#888;font-size:12px}
+.backwait{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin:2px 4px 2px 0;background:rgba(34,211,238,.18);color:#67e8f9;border:1px solid #22d3ee;animation:heatBlink 1.2s infinite}.wave{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;padding:2px 9px;margin:2px 4px 2px 0;background:rgba(167,139,250,.15);color:#c4b5fd;border:1px solid #8b5cf6}.wave.warn{background:rgba(220,38,38,.18);color:#fca5a5;border-color:#dc2626}.sharkday{border:2px solid #ffc94d;border-radius:12px;padding:10px 12px;margin:8px 0;background:linear-gradient(135deg,rgba(255,201,77,.14),rgba(20,16,7,.6))}.sharkday h3{margin:0 0 6px;font-size:15px;color:#ffd76a}.sharkday .sd-row{font-size:13.5px;padding:3px 0;color:#e8eefc}.sharkday .sd-why{color:#9fb3d9;font-size:12.5px}
+.gate-open{border:2px solid #ffc94d !important;border-radius:12px;animation:gatePulse 1.6s ease-in-out infinite}@keyframes gatePulse{0%,100%{box-shadow:0 0 6px rgba(255,201,77,.35)}50%{box-shadow:0 0 22px rgba(255,201,77,.9)}}
+.alert.special-deal{border:2px solid #7ee7f5 !important;border-radius:10px;background:linear-gradient(135deg,rgba(126,231,245,.12),rgba(255,201,77,.10));animation:dealPulse 1.4s ease-in-out infinite}@keyframes dealPulse{0%,100%{box-shadow:0 0 5px rgba(126,231,245,.3)}50%{box-shadow:0 0 20px rgba(126,231,245,.85)}}
+
+/* === LTALLOC 3 MAU + THUOC DO + HANG NHAP NHAY (Tom chot 30/10) === */
+#sec-ltalloc span[id^="lta-zone-"]{display:block}
+.lta-blink-g,.lta-blink-b,.lta-blink-r{display:inline-block;padding:2px 10px;border-radius:6px;color:#fff}
+.lta-blink-g{background:#16a34a}.lta-blink-b{background:#2563eb}.lta-blink-r{background:#dc2626}
+.lta-ruler{position:relative;display:flex;height:12px;margin:16px 0 4px}
+.lta-seg-b,.lta-seg-g,.lta-seg-r{height:12px;flex:0 0 auto}
+.lta-seg-b{background:#2563eb;border-radius:6px 0 0 6px}
+.lta-seg-g{background:#16a34a}
+.lta-seg-r{background:#dc2626;border-radius:0 6px 6px 0}
+.lta-mark{position:absolute;top:-13px;height:auto;transform:translateX(-50%);font-size:13px;color:#fff;text-shadow:0 1px 3px #000,0 0 3px #000}
+.lta-row-g{background:#12291a;animation:ltaRowG 2.4s linear infinite}
+.lta-row-b{background:#14273f;animation:ltaRowB 1.6s linear infinite}
+.lta-row-r{background:#2e1518;animation:ltaRowR 1.1s linear infinite}
+@keyframes ltaRowG{0%,49%{background:#1d6038}50%,100%{background:#12291a}}
+@keyframes ltaRowB{0%,49%{background:#1d4f9c}50%,100%{background:#14273f}}
+@keyframes ltaRowR{0%,49%{background:#8c2424}50%,100%{background:#2e1518}}
+
+
+.pgback{display:flex;gap:8px;margin:10px 0}
+.pgback button{flex:1;padding:13px 10px;font-size:16px;font-weight:700;border-radius:10px;border:2px solid #f59e0b;background:#1f2937;color:#fbbf24;cursor:pointer}
+
+.muc-shell{max-width:900px;margin:0 auto;padding:10px;padding-bottom:84px}
+.muc-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+.muc-head .ttl{font-size:20px;font-weight:800}
+.homebtn{display:inline-block;background:#1d4ed8;color:#fff;font-weight:800;font-size:16px;padding:12px 20px;border-radius:12px;text-decoration:none;border:1px solid #3b82f6}
+.homefloat{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9000;background:#1d4ed8;color:#fff;font-weight:800;font-size:16px;padding:13px 26px;border-radius:30px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.55);border:1px solid #3b82f6;white-space:nowrap}
+#pinGate{position:fixed;inset:0;background:#0b1220;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#pinGate .box{background:#131c2e;border:1px solid #2c3d5f;border-radius:16px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
+#pinGate h2{font-size:20px;margin-bottom:6px}
+#pinGate input{font-size:22px;letter-spacing:8px;text-align:center;width:100%;padding:12px;margin:14px 0;border-radius:10px;border:1px solid #2c3d5f;background:#0b1220;color:#e8edf5}
+#pinGate button{background:#1d4ed8;color:#fff;border:none;font-size:16px;font-weight:700;padding:12px;width:100%;border-radius:10px;cursor:pointer}
+#pinGate .err{color:#f87171;font-size:13px;min-height:20px;margin-top:8px}
+.muc-list a{display:block;background:#131c2e;border:1px solid #2a3a5c;color:#e8edf5;font-weight:700;font-size:16px;padding:14px 16px;border-radius:12px;margin-bottom:8px;text-decoration:none}
+</style>
+<script>/* (c) Tom — KHOA TEN MIEN: chi bang goc kevinsea9-dev.github.io moi mo duoc */(function(){try{if(location.hostname!=="kevinsea9-dev.github.io"){document.addEventListener("DOMContentLoaded",function(){document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0c0f14;color:#e8ecf3;font-family:sans-serif;text-align:center;padding:24px"><div><div style="font-size:44px">🦈</div><div style="font-size:20px;font-weight:700;color:#f5c86e;margin:10px 0">© BẢN QUYỀN CỦA TOM</div><div>Đây là BẢN SAO không hợp lệ của Bảng Live gốc.<br>Đang chuyển về bảng gốc…</div><div style="margin-top:16px"><a href="https://kevinsea9-dev.github.io/bang-market-live/" style="color:#7cc4ff">Tới Bảng Live gốc ngay</a></div></div></div>';setTimeout(function(){location.href="https://kevinsea9-dev.github.io/bang-market-live/"},3500);});}}catch(e){}})();</script>
+</head>
+<body>
+<!-- PIN-GATE-START -->
+<div id="pinGate">
+  <div class="box">
+    <h2>🔐 Bảng Market Live</h2>
+    <div class="sub">Khu vực test riêng của Tom — nhập mã vào cửa</div>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off">
+    <button onclick="checkPin()">Mở bảng</button>
+    <div class="err" id="pinErr"></div>
+  </div>
+</div>
+<!-- PIN-GATE-END -->
+<div class="muc-shell">
+  <div class="muc-head">
+    <div class="ttl" id="mucTitle">📄 ĐANG TẢI MỤC…</div>
+    <div><span id="mucUpd" style="opacity:.75;font-size:13px"></span></div>
+  </div>
+  <div style="margin:4px 0 12px"><a class="homebtn" href="./">⬅️ VỀ BẢNG CHÍNH</a></div>
+  <div id="mucContent"><div class="note">Đang lấy mục từ bảng chính…</div></div>
+  <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC nội dung từ bảng chính mỗi lần mở — bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán.</div>
+  <div style="margin:12px 0"><a class="homebtn" href="./">⬅️ VỀ BẢNG CHÍNH</a></div>
+</div>
+<a class="homefloat" href="./">⬅️ VỀ BẢNG CHÍNH</a>
+<script>
+var BOARD_PIN='045679';
+function checkPin(){
+  var v=document.getElementById('pinInput').value.trim();
+  if(v===BOARD_PIN){
+    localStorage.setItem('boardPinOk2','1');
+    document.getElementById('pinGate').style.display='none';
+    loadMuc();
+  }else{
+    document.getElementById('pinErr').textContent='Mã chưa đúng — thử lại nhé';
+    document.getElementById('pinInput').value='';
+  }
+}
+function secParam(){
+  var m=/[?&]s=([a-z0-9-]+)/i.exec(location.search);
+  return m?m[1]:'';
+}
+var lastV=null;
+function loadMuc(){
+  var sid=secParam();
+  fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
+    var doc=new DOMParser().parseFromString(t,'text/html');
+    var box=document.getElementById('mucContent');
+    var ttl=document.getElementById('mucTitle');
+    if(!sid){
+      ttl.textContent='📑 TẤT CẢ CÁC MỤC — bấm 1 mục để coi trang riêng';
+      document.title='📑 Mục lục — Bảng Market Live';
+      var html='<div class="muc-list">';
+      doc.querySelectorAll('.sec').forEach(function(s){
+        var h2=s.querySelector('h2');
+        var name=h2?h2.textContent:('Mục '+s.id);
+        html+='<a href="muc.html?s='+s.id+'">'+name+'</a>';
+      });
+      html+='</div>';
+      box.innerHTML=html;
+    }else{
+      var el=doc.getElementById(sid);
+      if(!el){ box.innerHTML='<div class="note">Mục này không còn trên bảng chính — về bảng chính coi bản mới nhất nhé.</div>'; ttl.textContent='📄 MỤC KHÔNG TÌM THẤY'; return; }
+      var h2=el.querySelector('h2');
+      var name=h2?h2.textContent:('Mục '+sid);
+      ttl.textContent=name;
+      document.title=name+' — Bảng Market Live';
+      box.innerHTML=el.outerHTML;
+      box.querySelectorAll('a[href^="#sec-"]').forEach(function(a){
+        a.setAttribute('href','muc.html?s='+a.getAttribute('href').slice(1));
+      });
+    }
+    fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+      lastV=j.v;
+      document.getElementById('mucUpd').textContent='Bản '+j.v.slice(6,8)+'/'+j.v.slice(4,6)+' '+j.v.slice(8,10)+':'+j.v.slice(10,12)+' UTC';
+    }).catch(function(){});
+  }).catch(function(e){
+    document.getElementById('mucContent').innerHTML='<div class="note">Chưa tải được bảng chính — thử tải lại trang sau ít phút.</div>';
+  });
+}
+(function(){
+  if(localStorage.getItem('boardPinOk2')==='1'){
+    var g=document.getElementById('pinGate'); if(g) g.style.display='none';
+    loadMuc();
+  }else{
+    var inp=document.getElementById('pinInput');
+    if(inp) inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkPin();});
+  }
+  setInterval(function(){
+    if(localStorage.getItem('boardPinOk2')!=='1') return;
+    fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+      if(lastV && j.v!==lastV){ loadMuc(); }
+      lastV=j.v;
+    }).catch(function(){});
+  },60000);
+  document.addEventListener('visibilitychange',function(){
+    if(!document.hidden && localStorage.getItem('boardPinOk2')==='1') loadMuc();
+  });
+})();
+</script>
+</body>
+</html>
