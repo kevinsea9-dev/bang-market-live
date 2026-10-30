@@ -279,81 +279,9 @@ li{margin-bottom:6px}
 @keyframes ltaRowB{0%,49%{background:#1d4f9c}50%,100%{background:#14273f}}
 @keyframes ltaRowR{0%,49%{background:#8c2424}50%,100%{background:#2e1518}}
 </style>
-<meta name="board-v" content="20261030141014">
+<meta name="board-v" content="20261030141145">
 <script>/* (c) Tom — KHOA TEN MIEN: chi bang goc kevinsea9-dev.github.io moi mo duoc */(function(){try{if(location.hostname!=="kevinsea9-dev.github.io"){document.addEventListener("DOMContentLoaded",function(){document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0c0f14;color:#e8ecf3;font-family:sans-serif;text-align:center;padding:24px"><div><div style="font-size:44px">🦈</div><div style="font-size:20px;font-weight:700;color:#f5c86e;margin:10px 0">© BẢN QUYỀN CỦA TOM</div><div>Đây là BẢN SAO không hợp lệ của Bảng Live gốc.<br>Đang chuyển về bảng gốc…</div><div style="margin-top:16px"><a href="https://kevinsea9-dev.github.io/bang-market-live/" style="color:#7cc4ff">Tới Bảng Live gốc ngay</a></div></div></div>';setTimeout(function(){location.href="https://kevinsea9-dev.github.io/bang-market-live/"},3500);});}}catch(e){}})();</script>
-<style>
-.pgback{display:flex;gap:8px;margin:10px 0}
-.pgback button{flex:1;padding:13px 10px;font-size:16px;font-weight:700;border-radius:10px;border:2px solid #f59e0b;background:#1f2937;color:#fbbf24;cursor:pointer}
-</style>
-<script>
-// PAGED-VIEW-3010 — Tom 30/10: coi tren phone, moi muc 1 trang nhu ETF 10-20 nam.
-// Bam muc -> chi hien muc do (1 trang). Bam TRO VE -> trang dau. Loi JS -> giu nguyen bang dai (fail-open).
-(function(){
-  var HOME=['sec-special','sec-topfocus'];
-  function $(s){return document.querySelector(s);}
-  function secs(){return Array.prototype.slice.call(document.querySelectorAll('.sec'));}
-  function headEl(){var st=$('.stickyhead'); if(st&&st.nextElementSibling&&st.nextElementSibling.classList.contains('head'))return st.nextElementSibling; return $('.head');}
-  function mode(){return sessionStorage.getItem('bv_mode')||'paged';}
-  function goHome(){try{sessionStorage.removeItem('bv_sec');sessionStorage.removeItem('bv_sec_ts');}catch(e){}
-    try{history.pushState(null,'',location.pathname+location.search);}catch(e){location.hash='';}
-    route(); window.scrollTo(0,0);}
-  function mkBar(sec){
-    var d=document.createElement('div'); d.className='pgback'; d.setAttribute('data-for',sec.id);
-    var b=document.createElement('button'); b.type='button'; b.textContent='\u2B05\uFE0F TR\u1EDE V\u1EC0 TRANG \u0110\u1EA6U';
-    b.onclick=goHome; d.appendChild(b); return d;
-  }
-  function ensureBars(sec){
-    if(document.querySelector('.pgback[data-for="'+sec.id+'"]'))return;
-    sec.parentNode.insertBefore(mkBar(sec),sec);
-    var b2=mkBar(sec); if(sec.nextSibling)sec.parentNode.insertBefore(b2,sec.nextSibling); else sec.parentNode.appendChild(b2);
-  }
-  function route(){
-    try{
-      var m=mode(), all=secs(), head=headEl(), i, s;
-      if(m==='all'){ for(i=0;i<all.length;i++)all[i].style.display=''; if(head)head.style.display='';
-        var bs=document.querySelectorAll('.pgback'); for(i=0;i<bs.length;i++)bs[i].style.display='none'; paintToggle(); return; }
-      var id=(location.hash||'').replace('#',''), target=null;
-      if(id){ var el=document.getElementById(id); if(el&&el.classList.contains('sec'))target=el; }
-      if(!target){ try{ var sv=sessionStorage.getItem('bv_sec'), ts=+(sessionStorage.getItem('bv_sec_ts')||0);
-        if(sv&&Date.now()-ts<5*60*1000){ var e2=document.getElementById(sv); if(e2&&e2.classList.contains('sec'))target=e2; } }catch(e){} }
-      if(target){
-        try{sessionStorage.setItem('bv_sec',target.id);sessionStorage.setItem('bv_sec_ts',''+Date.now());}catch(e){}
-        ensureBars(target);
-        for(i=0;i<all.length;i++)all[i].style.display=(all[i]===target)?'':'none';
-        if(head)head.style.display=(head.contains&&head.contains(target))?'':'none';
-        var an=target.parentNode; while(an&&an!==document.body){if(an.style&&an.style.display==='none')an.style.display=''; an=an.parentNode;}
-        var bars=document.querySelectorAll('.pgback'); for(i=0;i<bars.length;i++)bars[i].style.display=(bars[i].getAttribute('data-for')===target.id)?'flex':'none';
-      }else{
-        for(i=0;i<all.length;i++)all[i].style.display=(HOME.indexOf(all[i].id)>=0)?'':'none';
-        if(head)head.style.display='';
-        var bh=document.querySelectorAll('.pgback'); for(i=0;i<bh.length;i++)bh[i].style.display='none';
-      }
-      paintToggle();
-    }catch(e){ try{var a2=secs(); for(var j=0;j<a2.length;j++)a2[j].style.display=''; var h2=headEl(); if(h2)h2.style.display='';}catch(e2){} }
-  }
-  function paintToggle(){ var t=document.getElementById('bvToggle'); if(!t)return;
-    t.textContent=(mode()==='all')?'\uD83D\uDCC4 \u0110ANG XEM T\u1EA4T C\u1EA2 \u2014 b\u1EA5m \u0111\u1EC3 xem t\u1EEBng m\u1EE5c':'\uD83D\uDCC4 XEM T\u1EA4T C\u1EA2 1 TRANG'; }
-  function init(){
-    try{
-      var nav=$('.topnav');
-      if(nav&&!document.getElementById('bvHome')){
-        var a=document.createElement('a'); a.id='bvHome'; a.href='javascript:void(0)'; a.textContent='\uD83C\uDFE0 TRANG \u0110\u1EA6U';
-        a.onclick=function(ev){ev.preventDefault();goHome();};
-        nav.insertBefore(a,nav.firstChild);
-        var t=document.createElement('a'); t.id='bvToggle'; t.href='javascript:void(0)';
-        t.onclick=function(ev){ev.preventDefault(); var nm=(mode()==='all')?'paged':'all';
-          try{sessionStorage.setItem('bv_mode',nm);}catch(e){} route(); if(nm==='all')window.scrollTo(0,0); };
-        nav.insertBefore(t,nav.children[1]||null);
-      }
-    }catch(e){}
-    route();
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
-  window.addEventListener('hashchange',function(){route(); var id=(location.hash||'').replace('#','');
-    if(id&&document.getElementById(id)&&document.getElementById(id).classList.contains('sec'))window.scrollTo(0,0);});
-})();
-</script>
-<!-- /PAGED-VIEW-3010 -->
+
 </head>
 <body>
 
@@ -429,18 +357,18 @@ li{margin-bottom:6px}
 
 
 <div class="bn-row"><span class="bn-name">🦈 CHIẾN LƯỢC SỐNG CÒN</span><span class="bn-btns"><button class="sharebtn" id="shareBtn" onclick="shareBoard()">📤 Chia sẻ</button><button class="eyebtn" id="eyeBtn" onclick="toggleShareBtn()" title="Bật/tắt nút Chia sẻ">👁️</button></span></div>
-<div id="breakingBar" class="on"><!-- BREAKING-BAR-START --><a class="bb-bar bb-l1" href="#sec-special">⭐ ĐẶC BIỆT</a><a class="bb-bar bb-l1" href="#sec-news"><span class="bb-title">🚨 TIN NÓNG · 💥 MỸ–IRAN ĐẤU PHÁO THẬT — Iran bắn tên lửa từ Qeshm, Mỹ đáp trả, 4 tên lửa rơi trúng căn cứ Jask</span><span class="bb-sub">DIỄN BIẾN MỚI sáng 30/10 (Reuters 30/10): IRGC Hải quân Iran nói 2 tàu dầu khác đã dừng lại ở vùng biển phía nam Hormuz sau &#x27;sự cố&#x27;, vì phớt lờ cảnh…</span><span class="bb-sub bb-src">05:23 PT 30/10 · Reuters · 30/10; Reuters (KCMO) · 30/10; Reuters + UKMTO + Seatrade/Vanguard Tech + WSJ · 30/10; CENTCOM/Faytuks + Axios + Tasnim + WSJ + UKMTO/Reuters · 29/10 · bấm để xem chi tiết ở mục TIN LỚN · +4 tin nóng nữa ↓</span></a><!-- BREAKING-BAR-END --></div>
+<div id="breakingBar" class="on"><!-- BREAKING-BAR-START --><a class="bb-bar bb-l1" href="muc.html?s=sec-special">⭐ ĐẶC BIỆT</a><a class="bb-bar bb-l1" href="muc.html?s=sec-news"><span class="bb-title">🚨 TIN NÓNG · 💥 MỸ–IRAN ĐẤU PHÁO THẬT — Iran bắn tên lửa từ Qeshm, Mỹ đáp trả, 4 tên lửa rơi trúng căn cứ Jask</span><span class="bb-sub">DIỄN BIẾN MỚI sáng 30/10 (Reuters 30/10): IRGC Hải quân Iran nói 2 tàu dầu khác đã dừng lại ở vùng biển phía nam Hormuz sau &#x27;sự cố&#x27;, vì phớt lờ cảnh…</span><span class="bb-sub bb-src">05:23 PT 30/10 · Reuters · 30/10; Reuters (KCMO) · 30/10; Reuters + UKMTO + Seatrade/Vanguard Tech + WSJ · 30/10; CENTCOM/Faytuks + Axios + Tasnim + WSJ + UKMTO/Reuters · 29/10 · bấm để xem chi tiết ở mục TIN LỚN · +4 tin nóng nữa ↓</span></a><!-- BREAKING-BAR-END --></div>
 <div class="topnav" id="topnav">
   <a href="#" class="tnav" id="newsToggle" onclick="return toggleNews(event)">📰 NEWS <span id="newsCount" class="nbadge"></span><span id="newsHotBadge" class="bb-hotbadge">🔴 5</span></a>
-  <a href="#sec-urgent" class="tnav shark">🦈 CÁ MẬP</a> <a href="#sec-tinhhoa" class="tnav">💎 EARNINGS EPS</a> <a href="#sec-ahshark" class="tnav">🦈🔥 AH Nóng</a><a href="#sec-asia" class="tnav">🌏🦈 Cá Mập Á</a>
-  <a href="#sec-hot" class="tnav hot">🔥 HOT</a>
-  <a href="#sec-cudem" class="tnav" id="cudemBtn">🌙 CÚ ĐÊM</a>
-  <a href="#sec-daytrade" class="tnav">⚡ Daytrade</a>
-  <a href="#sec-swing" class="tnav">📗 Swing</a>
-  <a href="#sec-longterm" class="tnav">📘 Sổ 1</a>
-  <a href="#sec-etf" class="tnav">📊 ETF</a> <a href="etf.html" class="tnav">🌳 LONG TERM 10–20Y ↗</a> <a href="#sec-watch" class="tnav">👀 Theo dõi</a>
-  <a href="#sec-dram" class="tnav">💾 DRAM</a>
-  <a href="#sec-chinam" class="tnav">📖 CHỈ NAM</a>
+  <a href="muc.html?s=sec-urgent" class="tnav shark">🦈 CÁ MẬP</a> <a href="muc.html?s=sec-tinhhoa" class="tnav">💎 EARNINGS EPS</a> <a href="muc.html?s=sec-ahshark" class="tnav">🦈🔥 AH Nóng</a><a href="muc.html?s=sec-asia" class="tnav">🌏🦈 Cá Mập Á</a>
+  <a href="muc.html?s=sec-hot" class="tnav hot">🔥 HOT</a>
+  <a href="muc.html?s=sec-cudem" class="tnav" id="cudemBtn">🌙 CÚ ĐÊM</a>
+  <a href="muc.html?s=sec-daytrade" class="tnav">⚡ Daytrade</a>
+  <a href="muc.html?s=sec-swing" class="tnav">📗 Swing</a>
+  <a href="muc.html?s=sec-longterm" class="tnav">📘 Sổ 1</a>
+  <a href="muc.html?s=sec-etf" class="tnav">📊 ETF</a> <a href="etf.html" class="tnav">🌳 LONG TERM 10–20Y ↗</a> <a href="muc.html" class="tnav">📄 TRANG RIÊNG TỪNG MỤC</a> <a href="muc.html?s=sec-watch" class="tnav">👀 Theo dõi</a>
+  <a href="muc.html?s=sec-dram" class="tnav">💾 DRAM</a>
+  <a href="muc.html?s=sec-chinam" class="tnav">📖 CHỈ NAM</a>
 </div>
 </div>
 <div class="head" id="top">
@@ -2869,7 +2797,7 @@ li{margin-bottom:6px}
 </div>
 <!-- TOPFOCUS-END -->
   <div id="newsDrawer" class="newsdrawer" style="display:none">
-  <div class="nd-head">📰 TIN MỚI NHẤT <a href="#sec-news" onclick="toggleNews(event)">Xem tất cả →</a></div>
+  <div class="nd-head">📰 TIN MỚI NHẤT <a href="muc.html?s=sec-news">Xem tất cả →</a></div>
   <div id="newsDrawerBody"></div>
 </div>
 
