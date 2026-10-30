@@ -177,10 +177,7 @@ function buildStrip(box){
   if(cG) parts.push('🟢 '+cG);
   if(cY) parts.push('🟡 '+cY);
   if(!parts.length) return;
-  var html='<div class="mucstrip"><div class="mucstrip-count">📊 KHUNG TÍN HIỆU TRONG TRANG NÀY: '+parts.join(' · ')+'</div>';
-  if(firstR) html+='<div class="mucstrip-hot">🚨 KHẨN NHẤT: '+firstR+'</div>';
-  else if(firstB) html+='<div class="mucstrip-hot mucstrip-blue">🔵 RỚT SÂU — MUA NHIỀU THÊM: '+firstB+'</div>';
-  html+='</div>';
+  var html='<div class="mucstrip"><div class="mucstrip-count">📊 KHUNG TÍN HIỆU TRONG TRANG NÀY: '+parts.join(' · ')+'</div></div>';
   box.insertAdjacentHTML('afterbegin',html);
 }
 function loadEtf(){
