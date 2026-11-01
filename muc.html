@@ -352,11 +352,43 @@ function googleTranslateElementInit(){try{new google.translate.TranslateElement(
 function killGoogleBar(){try{document.querySelectorAll('.goog-te-banner-frame').forEach(function(f){f.style.setProperty('display','none','important');if(f.parentNode)f.parentNode.removeChild(f);});if(document.body)document.body.style.setProperty('top','0px','important');}catch(e){}}
 setInterval(killGoogleBar,700);
 function applyCookieLang(){try{if(document.cookie.indexOf('googtrans=/vi/en')>-1){var c=document.querySelector('.goog-te-combo');if(c&&c.value!=='en'){c.value='en';c.dispatchEvent(new Event('change'));}}}catch(e){}}
-function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}var c=document.querySelector('.goog-te-combo');if(c){c.value=(l==='en'?'en':'vi');c.dispatchEvent(new Event('change'));markLangBtn(l);setTimeout(killGoogleBar,300);setTimeout(killGoogleBar,1200);setTimeout(killGoogleBar,2500);}else{location.reload();}}
+function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}location.reload();}/*LANG-RELOAD-FIX*/
 function markLangBtn(l){try{var a=document.getElementById('langViBtn'),b=document.getElementById('langEnBtn');if(a){a.style.background='';a.style.color='';}if(b){b.style.background='';b.style.color='';}var on=document.getElementById(l==='en'?'langEnBtn':'langViBtn');if(on){on.style.background='#b45309';on.style.color='#fff';}}catch(e){}}
 document.addEventListener('DOMContentLoaded',function(){markLangBtn(document.cookie.indexOf('googtrans=/vi/en')>-1?'en':'vi');killGoogleBar();});
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <style>.goog-te-banner-frame,iframe.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important}body{top:0!important}.goog-te-gadget{display:none!important}#goog-gt-tt,.goog-te-balloon-frame{display:none!important}.goog-text-highlight{background:transparent!important;box-shadow:none!important}</style>
+<!-- COIN-TICKER -->
+<script>
+(function(){
+  function fmtP(p){
+    if(p>=1000) return '$'+p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    if(p>=1) return '$'+p.toFixed(3);
+    if(p>=0.01) return '$'+p.toFixed(4);
+    return '$'+p.toFixed(6);
+  }
+  function tick(){
+    var els=document.querySelectorAll('[data-cgprice]');
+    if(!els.length) return;
+    var ids=[];
+    els.forEach(function(e){var i=e.getAttribute('data-cgprice');if(ids.indexOf(i)<0)ids.push(i);});
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd&include_24hr_change=true')
+      .then(function(r){return r.json();})
+      .then(function(j){
+        els.forEach(function(e){var d=j[e.getAttribute('data-cgprice')];if(d&&d.usd)e.textContent=fmtP(d.usd);});
+        document.querySelectorAll('[data-cgchg]').forEach(function(e){
+          var d=j[e.getAttribute('data-cgchg')];
+          if(!d||d.usd_24h_change===undefined)return;
+          var c=d.usd_24h_change;
+          e.textContent=(c>=0?'+':'')+c.toFixed(1)+'%';
+        });
+        var w=document.getElementById('cgLiveWhen');
+        if(w){var t=new Date();w.textContent=' · 🟢 LIVE '+t.toLocaleTimeString('en-GB');}
+      }).catch(function(){});
+  }
+  tick();
+  setInterval(tick,30000);
+})();
+</script>
 </body>
 </html>
