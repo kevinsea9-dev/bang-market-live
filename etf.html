@@ -141,7 +141,7 @@ li{margin-bottom:6px}
     <div class="ttl">🌳 LONG TERM 10–20 NĂM — 9 ETF CỐT LÕI + ETF SỔ 1</div>
     <div><span id="etfUpd">Đang tải…</span></div>
   </div>
-  <div style="margin:4px 0 12px"><a class="homebtn" href="./">🏠 VỀ BẢNG CHÍNH</a></div>
+  <div style="margin:4px 0 12px"><a class="homebtn" href="./">🏠 VỀ BẢNG CHÍNH</a> <button class="homebtn notranslate" type="button" id="langViBtn" onclick="setBoardLang('vi')" style="font-size:14px;padding:12px 14px">🇻🇳 VIỆT</button> <button class="homebtn notranslate" type="button" id="langEnBtn" onclick="setBoardLang('en')" style="font-size:14px;padding:12px 14px">🇺🇸 ENGLISH</button></div>
   <div id="etfContent"><div class="note">Đang lấy mục ETF từ bảng chính…</div></div>
   <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC các mục ETF từ bảng chính mỗi lần mở — mở đầu là 🌳 PHÂN BỔ VỐN LONG TERM (13 quỹ chọn lọc, ví dụ $100K + $2K/tháng), rồi tới 9 ETF cốt lõi, 16 ETF và ETF Sổ 1. Bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán. Quyết định là của Tom.</div>
   <div style="margin:12px 0"><a class="homebtn" href="./">🏠 VỀ BẢNG CHÍNH</a></div>
@@ -231,5 +231,14 @@ function loadEtf(){
   });
 })();
 </script>
+<!-- LANG-TOGGLE -->
+<div id="google_translate_element" style="display:none"></div>
+<script>
+function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'vi',includedLanguages:'en,vi',autoDisplay:false},'google_translate_element');}catch(e){}}
+function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}location.reload();}
+document.addEventListener('DOMContentLoaded',function(){try{var en=document.cookie.indexOf('googtrans=/vi/en')>-1;var b=document.getElementById(en?'langEnBtn':'langViBtn');if(b){b.style.background='#b45309';}}catch(e){}});
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<style>.goog-te-banner-frame{display:none!important}.goog-te-gadget{display:none!important}body{top:0!important}#goog-gt-tt{display:none!important}.goog-text-highlight{background:transparent!important;box-shadow:none!important}</style>
 </body>
 </html>
