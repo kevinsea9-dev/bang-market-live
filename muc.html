@@ -270,6 +270,21 @@ function buildStrip(box){
   var html='<div class="mucstrip"><div class="mucstrip-count">📊 KHUNG TÍN HIỆU TRONG MỤC NÀY: '+parts.join(' · ')+'</div></div>';
   box.insertAdjacentHTML('afterbegin',html);
 }
+function retranslateMuc(){
+  // Trang rieng nap noi dung SAU khi Google dich xong trang khung -> noi dung moi
+  // bi sot tieng Viet (Tom bao 1/11 o muc News). Khi cookie dang EN: dispatch lai
+  // su kien dich nhieu nhip de Google dich ca phan vua nap.
+  if(document.cookie.indexOf('googtrans=/vi/en')===-1) return;
+  [500,1500,3000,5000].forEach(function(ms){
+    setTimeout(function(){
+      try{
+        var c=document.querySelector('.goog-te-combo');
+        if(c){ c.value='en'; c.dispatchEvent(new Event('change')); }
+        if(window.killGoogleBar) killGoogleBar();
+      }catch(e){}
+    }, ms);
+  });
+}
 function loadMuc(){
   var sid=secParam();
   fetch('index.html?cb='+Date.now()).then(function(r){return r.text();}).then(function(t){
@@ -300,6 +315,7 @@ function loadMuc(){
       });
       buildStrip(box);
     }
+    retranslateMuc();
     fetch('version.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
       lastV=j.v;
       document.getElementById('mucUpd').textContent='Bản '+j.v.slice(6,8)+'/'+j.v.slice(4,6)+' '+j.v.slice(8,10)+':'+j.v.slice(10,12)+' UTC';
