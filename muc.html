@@ -227,7 +227,7 @@ li{margin-bottom:6px}
     <div class="ttl" id="mucTitle">📄 ĐANG TẢI MỤC…</div>
     <div><span id="mucUpd" style="opacity:.75;font-size:13px"></span></div>
   </div>
-  <div style="margin:4px 0 12px"><a class="homebtn" href="./">⬅️ VỀ BẢNG CHÍNH</a> <button class="homebtn notranslate" type="button" id="langViBtn" onclick="setBoardLang('vi')" style="font-size:14px;padding:12px 14px">🇻🇳 VIỆT</button> <button class="homebtn notranslate" type="button" id="langEnBtn" onclick="setBoardLang('en')" style="font-size:14px;padding:12px 14px">🇺🇸 ENGLISH</button></div>
+  <div style="margin:4px 0 12px"><a class="homebtn" href="./">⬅️ VỀ BẢNG CHÍNH</a> <button class="homebtn notranslate" type="button" id="langViBtn" onclick="setBoardLang('vi')" style="font-size:14px;padding:12px 14px"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:-2px;border:1px solid #8a8a8a;border-radius:2px"><rect width="30" height="20" fill="#FFD800"/><rect y="3.5" width="30" height="3" fill="#DA251D"/><rect y="8.5" width="30" height="3" fill="#DA251D"/><rect y="13.5" width="30" height="3" fill="#DA251D"/></svg</button> <button class="homebtn notranslate" type="button" id="langEnBtn" onclick="setBoardLang('en')" style="font-size:14px;padding:12px 14px">🇺🇸 ENGLISH</button></div>
   <div id="mucContent"><div class="note">Đang lấy mục từ bảng chính…</div></div>
   <div class="note" style="margin-top:10px">Trang riêng này TỰ ĐỌC nội dung từ bảng chính mỗi lần mở — bảng chính cập nhật là trang này mới theo, không bao giờ kẹt bản cũ. Vùng giá chỉ là tham chiếu kỹ thuật, không phải lệnh mua/bán.</div>
   <div style="margin:12px 0"><a class="homebtn" href="./">⬅️ VỀ BẢNG CHÍNH</a></div>
@@ -331,9 +331,11 @@ function loadMuc(){
 <!-- LANG-TOGGLE -->
 <div id="google_translate_element" style="display:none"></div>
 <script>
-function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'vi',includedLanguages:'en,vi',autoDisplay:false},'google_translate_element');}catch(e){}}
-function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}location.reload();}
-document.addEventListener('DOMContentLoaded',function(){try{var en=document.cookie.indexOf('googtrans=/vi/en')>-1;var b=document.getElementById(en?'langEnBtn':'langViBtn');if(b){b.style.background='#b45309';}}catch(e){}});
+function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'vi',includedLanguages:'en,vi',autoDisplay:false},'google_translate_element');}catch(e){}setTimeout(applyCookieLang,900);}
+function applyCookieLang(){try{if(document.cookie.indexOf('googtrans=/vi/en')>-1){var c=document.querySelector('.goog-te-combo');if(c&&c.value!=='en'){c.value='en';c.dispatchEvent(new Event('change'));}}}catch(e){}}
+function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}var c=document.querySelector('.goog-te-combo');if(c){c.value=(l==='en'?'en':'vi');c.dispatchEvent(new Event('change'));markLangBtn(l);}else{location.reload();}}
+function markLangBtn(l){try{var a=document.getElementById('langViBtn'),b=document.getElementById('langEnBtn');if(a){a.style.background='';a.style.color='';}if(b){b.style.background='';b.style.color='';}var on=document.getElementById(l==='en'?'langEnBtn':'langViBtn');if(on){on.style.background='#b45309';on.style.color='#fff';}}catch(e){}}
+document.addEventListener('DOMContentLoaded',function(){markLangBtn(document.cookie.indexOf('googtrans=/vi/en')>-1?'en':'vi');});
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <style>.goog-te-banner-frame{display:none!important}.goog-te-gadget{display:none!important}body{top:0!important}#goog-gt-tt{display:none!important}.goog-text-highlight{background:transparent!important;box-shadow:none!important}</style>
