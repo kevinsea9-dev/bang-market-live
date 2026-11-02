@@ -391,7 +391,10 @@ document.addEventListener('DOMContentLoaded',function(){markLangBtn(document.coo
 })();
 </script>
 
-<!-- YAHOO-LIVE -->
+
+
+
+<!-- YAHOO-LIVE-V2 -->
 <script>
 (function(){
 function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
@@ -401,6 +404,7 @@ fetch('prices.json?cb='+Date.now()).then(function(r){return r.json();}).then(fun
 var q=j.q||{};
 document.querySelectorAll('[data-lchip]').forEach(function(e){var t=e.getAttribute('data-lchip'),d=q[t];if(!d)return;e.textContent=e.textContent.replace(/^\S+ \$[\d.,]+ \([^)]*\)/,t+' '+fmtP(d[0])+' ('+fmtPc(d[1])+')');});
 document.querySelectorAll('[data-achip],[data-fchip]').forEach(function(e){var t=e.getAttribute('data-achip')||e.getAttribute('data-fchip'),d=q[t];if(!d)return;e.textContent=e.textContent.replace(/(Giá )\$[\d.,]+/,'$1'+fmtP(d[0]));});
+document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var d=q[lt.textContent.trim()];if(!d)return;lp.textContent=d[0].toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(lc){var up=d[1]>=0;lc.textContent=(up?'▲ ':'▼ ')+Math.abs(d[1]).toFixed(2)+'%';lc.className='lc '+(up?'up':'down');}});
 var lamp=document.getElementById('yhLiveWhen');if(lamp){lamp.textContent='· \U0001F7E2 YAHOO LIVE '+new Date().toLocaleTimeString('en-GB');}
 }).catch(function(){});
 }
