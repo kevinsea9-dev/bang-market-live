@@ -390,5 +390,23 @@ document.addEventListener('DOMContentLoaded',function(){markLangBtn(document.coo
   setInterval(tick,30000);
 })();
 </script>
+
+<!-- YAHOO-LIVE -->
+<script>
+(function(){
+function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
+function fmtPc(x){var s=Math.abs(x).toFixed(2).replace('.',',');return (x<0?'\u2212':x>0?'+':'')+s+'%';}
+function tick(){
+fetch('prices.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+var q=j.q||{};
+document.querySelectorAll('[data-lchip]').forEach(function(e){var t=e.getAttribute('data-lchip'),d=q[t];if(!d)return;e.textContent=e.textContent.replace(/^\S+ \$[\d.,]+ \([^)]*\)/,t+' '+fmtP(d[0])+' ('+fmtPc(d[1])+')');});
+document.querySelectorAll('[data-achip],[data-fchip]').forEach(function(e){var t=e.getAttribute('data-achip')||e.getAttribute('data-fchip'),d=q[t];if(!d)return;e.textContent=e.textContent.replace(/(Giá )\$[\d.,]+/,'$1'+fmtP(d[0]));});
+var lamp=document.getElementById('yhLiveWhen');if(lamp){lamp.textContent='· \U0001F7E2 YAHOO LIVE '+new Date().toLocaleTimeString('en-GB');}
+}).catch(function(){});
+}
+tick();setInterval(tick,30000);
+})();
+</script>
+
 </body>
 </html>
