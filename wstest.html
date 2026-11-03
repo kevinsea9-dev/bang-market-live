@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>WS TEST — Yahoo Streamer</title></head>
+<body style="font-family:monospace;background:#111;color:#eee">
+<h2>YAHOO STREAMER TEST</h2>
+<div id="status">STATUS: INIT</div>
+<div id="count">TICKS: 0</div>
+<div id="last">LAST: -</div>
+<pre id="log"></pre>
+<script>
+var t0 = Date.now(), ticks = 0, lastPrices = {};
+function log(s){
+  var el = document.getElementById('log');
+  el.textContent += s + "\n";
+  var st = document.getElementById('status');
+  st.textContent = 'STATUS: ' + window.__st;
+  document.getElementById('count').textContent = 'TICKS: ' + ticks +
+    ' (sau ' + ((Date.now()-t0)/1000).toFixed(1) + 's)';
+}
+function b64ToBytes(b64){
+  var bin = atob(b64), arr = new Uint8Array(bin.length);
+  for (var i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+  return arr;
+}
+function decodePricing(buf){
+  var o = {}, pos = 0, dv = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
+  function varint(){
+    var shift = 0, result = 0;
+    while (true){
+      var b = buf[pos++];
+      result += (b & 0x7f) * Math.pow(2, shift);
+      if (!(b & 0x80)) break;
+      shift += 7;
+    }
+    return result;
+  }
+  while (pos < buf.length){
+    var key = varint(), field = Math.floor(key/8), wt = key % 8;
+    if (wt === 0){ var v = varint(); if (field===3) o.time = v; }
+    else if (wt === 5){ var f = dv.getFloat32(pos, true); pos += 4;
+      if (field===2) o.price = f; if (field===8) o.chgPct = f; if (field===12) o.chg = f; }
+    else if (wt === 1){ pos += 8; }
+    else if (wt === 2){ var len = varint();
+      if (field===1){ o.id = new TextDecoder().decode(buf.slice(pos, pos+len)); }
+      pos += len; }
+    else break;
+  }
+  return o;
+}
+window.__st = 'CONNECTING';
+try {
+  var ws = new WebSocket('wss://streamer.finance.yahoo.com/?version=2');
+  ws.onopen = function(){
+    window.__st = 'OPEN — da gui subscribe BTC-USD, ETH-USD';
+    ws.send(JSON.stringify({subscribe: ['BTC-USD','ETH-USD']}));
+    log('WS OPEN luc ' + new Date().toLocaleTimeString('en-GB'));
+  };
+  ws.onmessage = function(ev){
+    try {
+      var frame = ev.data, b64 = null;
+      try { var j = JSON.parse(frame); if (j && j.message) b64 = j.message; } catch(e){}
+      if (!b64) b64 = frame;
+      var d = decodePricing(b64ToBytes(b64));
+      if (d && d.id){
+        ticks++;
+        lastPrices[d.id] = d.price;
+        document.getElementById('last').textContent = 'LAST: ' + d.id + ' $' +
+          (d.price||0).toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2}) +
+          ' (' + (d.chgPct>=0?'+':'') + (d.chgPct||0).toFixed(2) + '%)';
+        if (ticks <= 12) log('TICK ' + ticks + ': ' + d.id + ' $' + d.price +
+          ' sau ' + ((Date.now()-t0)/1000).toFixed(1) + 's');
+        window.__st = 'STREAMING — dang nhan tick that';
+        document.getElementById('status').textContent = 'STATUS: ' + window.__st;
+        document.getElementById('count').textContent = 'TICKS: ' + ticks +
+          ' (sau ' + ((Date.now()-t0)/1000).toFixed(1) + 's)';
+      }
+    } catch(e){ log('MSG ERR: ' + e.message); }
+  };
+  ws.onerror = function(){ window.__st = 'ERROR'; log('WS ERROR'); };
+  ws.onclose = function(e){ window.__st = 'CLOSED code=' + e.code; log('WS CLOSED ' + e.code); };
+} catch(e){ window.__st = 'THROW ' + e.message; log('THROW: ' + e.message); }
+setTimeout(function(){ log('CHECK 30s: ticks=' + ticks + ' status=' + window.__st); }, 30000);
+</script>
+</body></html>
