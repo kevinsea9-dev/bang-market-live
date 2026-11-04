@@ -78,10 +78,11 @@ def in_window():
     if n.weekday() >= 5:  # T7, CN
         return False
     hm = n.hour * 60 + n.minute
-    # 04:30–13:00 PT (mở rộng premarket 22/10 — trước đây 06:30 khiến bảng,
-    # đặc biệt dải Bull & Bear, đứng hình suốt premarket; ngoài giờ chính
-    # Bull & Bear đọc futures nên số vẫn tươi và đúng nguồn)
-    return 4 * 60 + 30 <= hm <= 13 * 60
+    # 01:00–13:00 PT (nới premarket 31/10 theo lệnh Tom "nối tiếp Á -> Mỹ":
+    # phiên Á khép ~01:00 PT cũng là lúc premarket Mỹ mở 04:00 ET — làn
+    # LITE chạy từ 01:00 để giá không đứt quãng; 04:30–13:00 như cũ, phần
+    # 01:00–04:30 chỉ lite giá/futures, TUYỆT ĐỐI không scanner)
+    return 1 * 60 <= hm <= 13 * 60
 
 
 def fetch_one(ticker):
@@ -165,32 +166,368 @@ def update_tables(h, prices):
     return h, n
 
 
+def fmt_price_vn(p):
+    """$1.234,56 kiểu VN (dấu chấm nghìn, phẩy thập phân) — khớp khuôn dòng giá
+    sec-ltalloc/sec-lt9. Giá <1000: $706,11."""
+    s = f"{p:,.2f}"  # 1,234.56
+    return "$" + s.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
+
+
+def fmt_pct_vn(p):
+    """−0,53% / +0,05% / 0,00% — 2 số lẻ, phẩy thập phân, dấu trừ Unicode −."""
+    s = f"{abs(p):.2f}".replace(".", ",")
+    return ("−" if p < 0 else "+" if p > 0 else "") + s + "%"
+
+
+# Khuôn dòng giá "<b>TICKER</b> — $X (Y%)" — dùng ở sec-ltalloc + sec-lt9
+# (ô kiểu SWING của mục LONG TERM). Hai updater cũ không phủ khuôn này:
+# update_hot_entries chỉ ăn "<b>T ~$X (%)</b>", update_tables chỉ ăn hàng <tr>.
+DASH_PRICE_PAT = re.compile(
+    r"(<b>([A-Z]{2,6})</b>\s*—\s*)\$[\d.,]+(\s*\()[^)]*%(\))")
+
+
+def update_dash_prices(h, prices):
+    """<b>TICKER</b> — $X (Y%) -> giá + % ngày mới. Chỉ thay đúng số giá và số %
+    trong ngoặc; tên quỹ, % vốn, span lãi lta-ret-* và mọi phần còn lại của
+    dòng giữ nguyên. Ticker không có trong prices (fetch lỗi) -> giữ nguyên
+    dòng, tuyệt đối không xóa. Idempotent: chạy lại với cùng prices = 0 đổi."""
+    n = 0
+
+    def rep(m):
+        nonlocal n
+        t = m.group(2)
+        if t not in prices:
+            return m.group(0)
+        px, pc = prices[t]
+        n += 1
+        return (f"{m.group(1)}{fmt_price_vn(px)}{m.group(3)}"
+                f"{fmt_pct_vn(pc)}{m.group(4)}")
+
+    h = DASH_PRICE_PAT.sub(rep, h)
+    return h, n
+
+
+# === LẬT MÀU TÍN HIỆU LONG TERM THEO GIÁ REALTIME (Tom chốt 29/10 20:56) ===
+# Span lta-zone-<MÃ> mang data-gom/data-cao (ltalloc_update ghi mỗi sáng).
+# Mỗi lượt refresh, giá mới nhất của ô nào chạm dải nào thì ô đó tự đổi
+# câu tín hiệu 3 trạng thái: 🟢 MUA ĐỊNH KỲ / 🔵 MUA NHIỀU THÊM / 🔴 BÁN BỚT 20%.
+# Khuôn câu chữ KHỚP HỆT zone_text() trong ltalloc_update.py.
+LT_SIG_PAT = re.compile(
+    r'<span id="lta-zone-([A-Z]{2,6})"(?: class="lta-blink-[wrgb]")? '
+    r'data-gom="([\d.]+)-([\d.]+)" '
+    r'data-cao="([\d.]+)-([\d.]+)">(.*?)</span>(?=<br>)', re.S)
+# FIX 30/10: lookahead </span>(?=<br>) — span zone luôn kết thúc ngay trước
+# <br> trong ô quỹ; bản cũ dừng ở </span> lồng đầu tiên (chấm lta-dot) làm
+# update_ltalloc_signals NHÂN ĐÔI câu tín hiệu mỗi lượt lật màu.
+
+
+def _lt_signal_class(px, glo, ghi, tlo):
+    """3 trạng thái LONG TERM (Tom chốt 30/10): px >= tlo → đỏ BÁN BỚT 20%
+    (lta-blink-r); px < glo → xanh dương MUA NHIỀU THÊM (lta-blink-b);
+    còn lại → xanh lá MUA ĐỊNH KỲ (lta-blink-g). Không còn trạng thái trắng."""
+    if px >= tlo:
+        return "lta-blink-r"
+    if px < glo:
+        return "lta-blink-b"
+    return "lta-blink-g"
+
+
+def _lt_money(x):
+    s = fmt_price_vn(x)[1:]
+    if s.endswith(",00"):
+        s = s[:-3]
+    elif "," in s and s.endswith("0"):
+        s = s[:-1]
+    return "$" + s
+
+
+def _lt_pct1(x):
+    return f"{x:.1f}".replace(".", ",") + "%"
+
+
+def _lt_ruler_html(px, glo, tlo, thi):
+    # Thước đo 3 vùng: lo = glo x0,90 ; hi = thi x1,02. KHỚP _ruler_html()
+    # trong ltalloc_update.py.
+    lo = glo * 0.90
+    hi = thi * 1.02
+    span = hi - lo
+    wb = (glo - lo) / span * 100
+    wg = (tlo - glo) / span * 100
+    wr = (hi - tlo) / span * 100
+    mp = min(max((px - lo) / span, 0.0), 1.0) * 100
+    return (f'<div class="lta-ruler">'
+            f'<div class="lta-seg-b" style="width:{wb:.1f}%"></div>'
+            f'<div class="lta-seg-g" style="width:{wg:.1f}%"></div>'
+            f'<div class="lta-seg-r" style="width:{wr:.1f}%"></div>'
+            f'<div class="lta-mark" style="left:{mp:.1f}%">▼</div></div>')
+
+
+def _lt_chip_html(t, px, glo, tlo):
+    """KHUNG CHỚP ĐẦU HÀNG quỹ (Tom chốt 30/10 08:47): element riêng nằm
+    TRÊN CÙNG mỗi hàng lta-row, trên mọi chi tiết — tên mã + tín hiệu +
+    giá realtime + vùng, ai mở hàng là thấy đầu tiên.
+    KHỚP HỆT _chip_html() trong ltalloc_update.py."""
+    px_s = fmt_price_vn(px)
+    glo_s, tlo_s = _lt_money(glo), _lt_money(tlo)
+    if px >= tlo:
+        cls, lab = "lta-chip-r", "🔴 BÁN BỚT 20%"
+    elif px < glo:
+        cls, lab = "lta-chip-b", "🔵 MUA NHIỀU THÊM"
+    else:
+        cls, lab = "lta-chip-g", "🟢 MUA ĐỊNH KỲ"
+    return (f'<div class="lta-chip {cls}" id="lta-chip-{t}">'
+            f'{t} · {lab} · Giá {px_s} · Vùng {glo_s}–{tlo_s}</div>')
+
+
+def _lt_signal_text(t, px, glo, ghi, tlo, thi):
+    """Nội dung span lta-zone (VÙNG CHI TIẾT, nằm dưới khung chớp đầu hàng):
+    thước đo 3 vùng + dòng giá + khoảng cách tới màu kế tiếp.
+    KHỚP HỆT _sig_text() trong ltalloc_update.py."""
+    glo_s, tlo_s = _lt_money(glo), _lt_money(tlo)
+    plan = (f'<span class="lta-zb">🔵 Mua nhiều: dưới {glo_s}</span> · '
+            f'<span class="lta-zg">🟢 Định kỳ: {glo_s}–{tlo_s}</span> · '
+            f'<span class="lta-zr">🔴 Bán 20%: trên {tlo_s}</span>')
+    rt = (f"Mua ~{glo_s} → bán ~{tlo_s} = "
+          f"+{_lt_pct1((tlo / glo - 1) * 100)} một vòng")
+    ruler = _lt_ruler_html(px, glo, tlo, thi)
+    if px >= tlo:
+        dist = f"Rớt −{_lt_pct1((px - tlo) / px * 100)} về 🟢"
+    elif px < glo:
+        dist = f"Hồi +{_lt_pct1((glo - px) / px * 100)} về 🟢"
+    else:
+        dist = (f"Còn −{_lt_pct1((px - glo) / px * 100)} nữa sang 🔵 / "
+                f"+{_lt_pct1((tlo - px) / px * 100)} nữa sang 🔴")
+    return f"{ruler}{plan}<br>{rt}<br>{dist}"
+
+
+def _lt_count_text(n_r, n_b, n_g):
+    return f"📊 CẢ RỔ BÂY GIỜ: 🔴 {n_r} · 🔵 {n_b} · 🟢 {n_g}"
+
+
+def _balanced_span_end(h, start):
+    """Index ngay sau </span> ĐÓNG ĐÚNG của <span> mở tại start (stack-scan).
+    GỐC RỄ vụ lặp dòng ltalloc (ảnh Tom 31/10: cặp dòng 'Mua ~.../Còn...'
+    lặp ~40 lần trong ô VOO): LT_SIG_PAT cũ dừng ở </span> lồng đầu tiên
+    có <br> theo sau (chính là span lta-zr) nên mỗi lượt refresh chỉ thay
+    nửa đầu span, chừa đuôi cũ + thêm 1 cặp dòng mới. Mọi thay thế span
+    lta-zone PHẢI đi qua hàm này."""
+    depth, j = 0, start
+    while True:
+        o = h.find('<span', j)
+        c = h.find('</span>', j)
+        if c == -1:
+            return len(h)
+        if o != -1 and o < c:
+            depth += 1
+            j = o + 5
+        else:
+            depth -= 1
+            j = c + 7
+            if depth == 0:
+                return j
+
+
+_LTA_FOSSIL = re.compile(
+    r'\s*<br>Mua ~[^<]*?một vòng<br>(?:Còn|Rớt) [^<]*?</span>')
+
+
+def _strip_lta_fossils(h):
+    """Dọn fossil ltalloc: các cặp dòng 'Mua ~.../Còn...' MỒ CÔI nằm NGOÀI
+    span lta-zone — di tích lỗi thay-nửa-span trước 31/10/2026 mà các lần
+    restore/clobber kéo theo nguyên vẹn (Tom bắt lỗi 02/11: 39 cặp/ô quỹ,
+    mỗi cặp 1 giá realtime cũ khác nhau). Writer hiện tại thay span bằng
+    stack-scan nên không tự dọn phần ngoài span; hàm này quét sau mỗi lượt
+    update_ltalloc_signals để fossil không bao giờ tích lại được nữa."""
+    pat = re.compile(r'<span id="lta-zone-([A-Z]{2,6})"[^>]*>')
+    for m in reversed(list(pat.finditer(h))):
+        end = _balanced_span_end(h, m.start())
+        j = end
+        while True:
+            fm = _LTA_FOSSIL.match(h, j)
+            if not fm:
+                break
+            j = fm.end()
+        if j > end:
+            h = h[:end] + h[j:]
+    return h
+
+
+def update_ltalloc_signals(h, prices):
+    n = 0
+    tally = {"lta-blink-r": 0, "lta-blink-b": 0, "lta-blink-g": 0}
+    row_cls = {}
+    chip_map = {}
+
+    def rep(m):
+        nonlocal n
+        t = m.group(1)
+        if t not in prices:
+            return m.group(0)
+        px = prices[t][0]
+        glo, ghi, tlo, thi = (float(m.group(i)) for i in (2, 3, 4, 5))
+        n += 1
+        cls = _lt_signal_class(px, glo, ghi, tlo)
+        tally[cls] += 1
+        row_cls[t] = "lta-row-" + cls.rsplit("-", 1)[1]
+        chip_map[t] = _lt_chip_html(t, px, glo, tlo)
+        return (f'<span id="lta-zone-{t}" '
+                f'data-gom="{m.group(2)}-{m.group(3)}" '
+                f'data-cao="{m.group(4)}-{m.group(5)}">'
+                f'{_lt_signal_text(t, px, glo, ghi, tlo, thi)}</span>')
+
+    # Thay span lta-zone bằng stack-scan CÂN BẰNG (bản cũ LT_SIG_PAT.sub
+    # dừng ở </span> lồng đầu tiên -> lặp dòng mỗi lượt, xem _balanced_span_end).
+    _open_pat = re.compile(
+        r'<span id="lta-zone-([A-Z]{2,6})"(?: class="lta-blink-[wrgb]")? '
+        r'data-gom="([\d.]+)-([\d.]+)" data-cao="([\d.]+)-([\d.]+)">')
+    _out, _i = [], 0
+    while True:
+        _m = _open_pat.search(h, _i)
+        if not _m:
+            _out.append(h[_i:])
+            break
+        _end = _balanced_span_end(h, _m.start())
+        _out.append(h[_i:_m.start()])
+        _out.append(rep(_m))
+        _i = _end
+    h = ''.join(_out)
+    # Khung chớp ĐẦU HÀNG: thay element lta-chip-<T> theo giá realtime;
+    # chưa có (bảng cũ) thì chèn ngay sau thẻ mở hàng lta-row-<T>.
+    for t, chip in chip_map.items():
+        cpat = re.compile(r'<div class="lta-chip[^"]*" id="lta-chip-'
+                          + t + r'">.*?</div>', re.S)
+        h, cn = cpat.subn(chip, h, count=1)
+        if not cn:
+            opat = re.compile(r'(<div class="alert lta-row[^"]*" id="lta-row-'
+                              + t + r'">)')
+            h = opat.sub(lambda mm: mm.group(1) + chip, h, count=1)
+    # Cả hàng quỹ cũng lật màu theo cùng trạng thái (Tom chốt 30/10):
+    # <div class="alert lta-row" id="lta-row-<T>"> mang class lta-row-g/b/r.
+    for t, rc in row_cls.items():
+        rpat = re.compile(r'(<div class="alert lta-row)(?: lta-row-[gbr])?'
+                          r'(" id="lta-row-' + t + r'")')
+        h = rpat.sub(lambda mm: mm.group(1) + " " + rc + mm.group(2),
+                     h, count=1)
+    if n:
+        ct = _lt_count_text(tally["lta-blink-r"], tally["lta-blink-b"],
+                            tally["lta-blink-g"])
+        h = re.sub(r'(<span id="lta-count">)[^<]*(</span>)',
+                   lambda mm: mm.group(1) + ct + mm.group(2), h, count=1)
+    h = _strip_lta_fossils(h)
+    return h, n
+
+
+def _alert_ticker(full):
+    """Mã của 1 khối alert: ưu tiên data-achip (khung đầu khối) →
+    data-ticker → token HOA đầu tiên trong <b> đầu → token HOA đầu
+    trong text. None nếu không tách được (alert không theo mã)."""
+    m = re.search(r'data-achip="([A-Z]{2,6})"', full)
+    if m:
+        return m.group(1)
+    m = re.search(r'data-ticker="([A-Z]{2,6})"', full)
+    if m:
+        return m.group(1)
+    m = re.search(r"<b>(.*?)</b>", full, re.S)
+    if m:
+        mt = re.search(r"\b([A-Z]{2,6})\b", m.group(1))
+        if mt:
+            return mt.group(1)
+    txt = re.sub(r"<[^>]+>", " ", full)
+    mt = re.search(r"\b([A-Z]{2,6})\b", txt)
+    return mt.group(1) if mt else None
+
+
+def _alert_sig(full, ticker):
+    """Chữ ký sự kiện của 1 alert: text đã bỏ thẻ, bỏ MÃ, bỏ mọi con số
+    (giá/%/giờ/ngày) — 2 alert trùng THẬT (cùng sự kiện, chèn lại với số
+    cập nhật) cho cùng chữ ký; 2 alert khác sự kiện của cùng 1 mã (strip
+    daytrade + tín hiệu vùng, bounce + capitulation...) cho chữ ký khác
+    nhau nên đều được giữ. BÀI HỌC 30/10 ~09:24: dedup theo mã đơn thuần
+    đã xóa 61 alert hợp lệ khắp bảng trong 1 lượt refresh."""
+    txt = re.sub(r"<[^>]+>", " ", full)
+    if ticker:
+        txt = txt.replace(ticker, " ")
+    txt = re.sub(r"\$?\d[\d.,]*%?", " ", txt)
+    txt = re.sub(r"\s+", " ", txt).strip().lower()
+    return txt[:80]
+
+
+def _sec_span_containing(h, pos):
+    """(start, end) của mục <div class="sec"> chứa vị trí pos: từ thẻ mở
+    .sec gần nhất ở trước pos tới thẻ mở .sec kế tiếp. BÀI HỌC 30/10:
+    bản cũ tìm '<div class="sec">' (thừa dấu >) không bao giờ khớp thẻ
+    thật có id → span tràn tới cuối file, dedup xuyên mục xóa alert của
+    các mục sau."""
+    starts = [m.start() for m in re.finditer(r'<div class="sec"[^>]*>', h)]
+    s0 = None
+    for s in starts:
+        if s <= pos:
+            s0 = s
+        else:
+            break
+    if s0 is None:
+        return None
+    s1 = next((s for s in starts if s > s0), len(h))
+    return s0, s1
+
+
 def dedup_section_alerts(h, section_marker):
-    """Trong một mục alert (tín hiệu vùng / mã nóng): mỗi ticker chỉ giữ 1 —
-    cái mới nhất (đầu tiên, vì tín hiệu mới chèn lên đầu). Tom lệnh 14/10:
-    'mỗi mã một vị', trùng thì tự biến mất."""
+    """Dedup TRONG ĐÚNG 1 mục chứa marker: chỉ xóa alert trùng THẬT
+    (cùng mã + cùng chữ ký sự kiện), giữ cái mới nhất (đầu tiên)."""
     i = h.find(section_marker)
     if i == -1:
         return h, []
+    span = _sec_span_containing(h, i)
+    if not span:
+        return h, []
+    s0, s1 = span
     j = h.find("</h2>", i) + len("</h2>")
-    k = h.find('<div class="sec">', j)
-    if k == -1:
-        k = len(h)
-    sec = h[j:k]
+    if j < s0 or j > s1:
+        j = s0
+    sec = h[j:s1]
     seen = set()
     removed = []
 
-    def keep_first(m):
-        t = m.group(1)
-        if t in seen:
+    def keep_first(full, inner):
+        t = _alert_ticker(full)
+        key = (t, _alert_sig(full, t))
+        if key in seen:
             removed.append(f"{t}(alert trùng)")
             return ""
-        seen.add(t)
-        return m.group(0)
+        seen.add(key)
+        return full
 
-    sec2 = re.sub(r'<div class="alert[^"]*"><b>(?:🚨 )?([A-Z]{2,5})\b.*?</div>',
-                  keep_first, sec, flags=re.S)
-    return h[:j] + sec2 + h[k:], removed
+    sec2 = sub_balanced_alerts(sec, keep_first)
+    return h[:j] + sec2 + h[s1:], removed
+
+
+def dedup_alert_section(h, sec_id):
+    """Xóa alert trùng THẬT trong 1 mục (cùng mã + cùng chữ ký sự kiện —
+    Tom bắt lỗi trùng 30/10: cùng alert lặp 2–3 lần trong swing/daytrade/
+    dram). Alert khác sự kiện của cùng mã thì GIỮ (bài học 09:24 30/10:
+    dedup theo mã đơn thuần xóa cả strip daytrade hợp lệ). Quét cân bằng,
+    an toàn với khung zchip."""
+    m = re.search(r'<div class="sec" id="' + sec_id + r'"[^>]*>', h)
+    if not m:
+        return h, []
+    start = m.start()
+    nxt = h.find('<div class="sec"', start + 10)
+    end = nxt if nxt != -1 else len(h)
+    seg = h[start:end]
+    seen = set()
+    removed = []
+
+    def keep_first(full, inner):
+        t = _alert_ticker(full)
+        key = (t, _alert_sig(full, t))
+        if key in seen:
+            removed.append(t)
+            return ""
+        seen.add(key)
+        return full
+
+    seg2 = sub_balanced_alerts(seg, keep_first)
+    return h[:start] + seg2 + h[end:], removed
 
 
 def dedup_urgentbox(h):
@@ -210,40 +547,233 @@ def dedup_urgentbox(h):
     seen_no_tk = set()
     removed = []
 
-    def keep_first(m):
-        full, inner = m.group(0), m.group(1)
-        txt = re.sub(r'<[^>]+>', ' ', inner).strip()
-        mt = re.search(r'\b([A-Z]{2,5})\b', txt)
-        if mt:
-            t = mt.group(1)
-            if t in seen_tk:
-                removed.append(f"{t}(khẩn trùng)")
-                return ""
-            seen_tk.add(t)
+    # 30/10: quét CÂN BẰNG — regex non-greedy cũ dừng ở </div> đầu tiên
+    # (chính là thẻ đóng của KHUNG zchip trong alert) nên khi dedup quyết
+    # xóa 1 alert trùng, nó chỉ xóa được phần đầu + khung, để lại phần
+    # thân alert mồ côi trên bảng. Mã đọc qua _alert_ticker (khung trước).
+    def keep_first(full, inner):
+        if 'class="alert urgent"' not in full.split(">", 1)[0]:
             return full
-        norm = re.sub(r'\s+', ' ', txt).strip()[:60].lower()
-        if norm in seen_no_tk:
-            removed.append("(khẩn trùng nội dung)")
+        t = _alert_ticker(full)
+        # 30/10: dedup theo (mã + chữ ký sự kiện) — KHÔNG theo mã đơn thuần:
+        # capitulation/moneyflow/reversal của cùng 1 mã là các sự kiện KHÁC
+        # nhau, phải giữ cả; chỉ alert chèn lại cùng sự kiện mới là trùng.
+        key = (t, _alert_sig(full, t))
+        if key in seen_tk:
+            removed.append(f"{t}(khẩn trùng)")
             return ""
-        seen_no_tk.add(norm)
+        seen_tk.add(key)
         return full
 
-    box2 = re.sub(r'<div class="alert urgent">(.*?)</div>', keep_first, box, flags=re.S)
-    # Tom 16/10: dedup mạnh theo data-ticker — 1 mã chỉ 1 alert mới nhất
-    # (capitulation/moneyflow/reversal tạo alert riêng, regex text không bắt được)
-    seen_dt = set()
-    def keep_dt(m):
-        full = m.group(0)
-        mt = re.search(r'data-ticker="([A-Z]{2,6})"', full)
-        if mt:
-            t = mt.group(1)
-            if t in seen_dt:
-                removed.append(f"{t}(trùng data-ticker)")
+    box2 = sub_balanced_alerts(box, keep_first)
+    return h[:j] + box2 + h[k:], removed
+
+
+STALE_STATUS_PAT = re.compile(
+    r'\s*—\s*[🟢🟡🔴⚪⏸️]+\s*'
+    r'(?:TRONG VÙNG|DƯỚI VÙNG|TRÊN VÙNG|QUANH MÉP(?:\s+TRÊN|\s+DƯỚI)?\s+VÙNG|'
+    r'GÃY VÙNG(?:\s+—\s+THỦNG CẮT)?|SÁT\s+(?:TRÊN|DƯỚI)\s+VÙNG)'
+    r'\s*\$[\d,]+–\$?[\d,]+'
+    r'(?:\s*·\s*Cắt\s*&lt;\$[\d,]+)?')
+
+
+def clean_shark_layers(h):
+    """DỌN LỚP MỤC 🦈 CÁ MẬP + CÂU TRẠNG THÁI CŨ (Tom bắt lỗi 2/11 ~19:28:
+    mục cá mập trùng lặp triền miên + trạng thái/giá không khớp Yahoo).
+    3 gốc rễ, sửa 1 lần cho mọi lượt sau:
+    (1) Alert tin thường (class 'alert') của mã đã có khối 👑 FOCUS trong
+        cùng mục → 1 mã hiện 2 lần. FOCUS là khối chuẩn của mã đó (Tom
+        chốt 20/10) → bỏ bản alert thường; GIỮ NGUYÊN 'alert urgent'
+        (sự kiện tín hiệu thật, không phải bản tin lặp).
+    (2) Hóa thạch: alert mang ngày cũ trong <span class="t"> (vd WDC
+        22/10) được chip gắn giá mới mỗi lượt nên trông như tin mới và
+        thoát mọi vòng dọn theo tuổi → xóa khi ngày đầu trong span.t
+        khác hôm nay. Chỉ áp cho alert thường, không đụng alert urgent.
+    (3) Câu trạng thái CŨ trong thân alert ('— 🟢 TRONG VÙNG $205–218'
+        ghi lúc 08:40) nằm cạnh chip MỚI (giá Yahoo hiện tại) → 1 khối
+        2 trạng thái ngược nhau. Alert đã có chip (data-achip) thì chip
+        là nguồn số DUY NHẤT → cắt câu trạng thái cũ, giữ phần tin.
+    Idempotent — chạy cuối pipeline, sau update_alert_chips."""
+    notes = []
+    today = now_pt()
+
+    def _strip(full, inner):
+        if 'data-achip="' not in full:
+            return full
+        new = STALE_STATUS_PAT.sub("", full)
+        if new != full:
+            notes.append("bỏ câu trạng thái cũ")
+        return new
+
+    for sec in ALERT_CHIP_SECS:
+        m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+        if not m:
+            continue
+        s0 = m.start()
+        nxt = h.find('<div class="sec"', s0 + 10)
+        s1 = nxt if nxt != -1 else len(h)
+        h = h[:s0] + sub_balanced_alerts(h[s0:s1], _strip) + h[s1:]
+
+    m = re.search(r'<div class="sec" id="sec-urgent"[^>]*>', h)
+    if m:
+        s0 = m.start()
+        nxt = h.find('<div class="sec"', s0 + 10)
+        s1 = nxt if nxt != -1 else len(h)
+        focus_tks = {t for t, _tier, _ev in SHARK_FOCUS}
+
+        def _drop(full, inner):
+            cls = full.split(">", 1)[0]
+            if 'alert urgent' in cls or 'sharkfocus' in full \
+                    or 'sharkday' in full:
+                return full
+            mt = re.search(r'<span class="t">(.*?)</span>', full, re.S)
+            if mt:
+                dates = re.findall(r'(\d{1,2})/(\d{1,2})', mt.group(1))
+                if dates:
+                    d0, m0 = int(dates[0][0]), int(dates[0][1])
+                    if (m0, d0) != (today.month, today.day):
+                        notes.append(
+                            f"hóa thạch {_alert_ticker(full) or '?'} {d0}/{m0}")
+                        return ""
+            t = _alert_ticker(full)
+            if t in focus_tks:
+                notes.append(f"trùng FOCUS {t}")
                 return ""
-            seen_dt.add(t)
-        return full
-    box3 = re.sub(r'<div class="alert urgent" data-ticker="[^"]*".*?</div>', keep_dt, box2, flags=re.S)
-    return h[:j] + box3 + h[k:], removed
+            return full
+
+        h = h[:s0] + sub_balanced_alerts(h[s0:s1], _drop) + h[s1:]
+    return h, notes
+
+
+def build_hot_feed(h, prices):
+    """Dựng TĨNH nội dung #hotFeed (Tom bắt lỗi 30/10: mục HOT trên trang
+    riêng trống trơn — bản cũ chỉ có JS buildHotFeed chạy trên bảng
+    chính, trang riêng trích HTML tĩnh nên #hotFeed mãi kẹt ở dòng chờ
+    'Đang gom tin hot…'). Cùng luật chọn như JS: (1) headline của alert
+    gắn HOT (class hot / badge b-hot) khắp bảng, trừ sec-hot + sec-cudem;
+    (2) mã chạy ≥|3%| trong phiên từ prices (giá, %) — top 5 theo |%|.
+    Bảng chính vẫn được JS làm tươi thêm khi mở; trang riêng đọc bản
+    tĩnh này là có mã ngay."""
+    m = re.search(r'<div id="hotFeed">', h)
+    if not m:
+        return h, 0
+    depth, j = 0, m.start()
+    end = None
+    while True:
+        o = h.find('<div', j)
+        c = h.find('</div>', j)
+        if c == -1:
+            return h, 0
+        if o != -1 and o < c:
+            depth += 1
+            j = o + 4
+        else:
+            depth -= 1
+            j = c + 6
+            if depth == 0:
+                end = j
+                break
+    entries = []
+    seen = set()
+    sec_starts = [(mm.start(), mm.group(1)) for mm in
+                  re.finditer(r'<div class="sec" id="(sec-[a-z0-9]+)"', h)]
+    for idx, (s0, sid) in enumerate(sec_starts):
+        if sid in ("sec-hot", "sec-cudem"):
+            continue
+        s1 = sec_starts[idx + 1][0] if idx + 1 < len(sec_starts) else len(h)
+        seg = h[s0:s1]
+        hm = re.search(r'<h2>(.*?)</h2>', seg, re.S)
+        sname = re.sub(r'<[^>]+>', '', hm.group(1)).strip() if hm else sid
+
+        def _grab(full, inner, _sname=sname):
+            open_tag = full.split('>', 1)[0]
+            if 'hot' in open_tag or 'b-hot' in full:
+                bm = re.search(r'<b>(.*?)</b>', full, re.S)
+                if bm:
+                    txt = re.sub(r'<[^>]+>', '', bm.group(1)).strip()
+                    key = txt[:60]
+                    if txt and key not in seen:
+                        seen.add(key)
+                        entries.append(
+                            '<div class="alert hot" style="padding:8px 10px">'
+                            f'🔥 <b>{txt[:90]}</b> '
+                            '<span style="font-size:12px;color:#9fc5ff">'
+                            f'— ở mục {_sname}</span></div>')
+            return full
+
+        sub_balanced_alerts(seg, _grab)
+    movers = []
+    for t, v in prices.items():
+        try:
+            pct = v[1]
+        except Exception:
+            continue
+        if pct is not None and abs(pct) >= 3:
+            movers.append((t, pct))
+    movers.sort(key=lambda x: -abs(x[1]))
+    now = now_pt()
+    for t, pct in movers[:5]:
+        cls = 'up' if pct > 0 else 'down'
+        entries.append(
+            f'<div class="alert hot"><b>🔥 {t} chạy <span class="{cls}">'
+            f'{pct:+.1f}%</span></b> trong phiên — mã nóng, canh vùng.<br>'
+            f'<span class="t">Giá trực tiếp • cập nhật '
+            f'{now.strftime("%H:%M")} PT {now.strftime("%d/%m")}</span></div>')
+    inner = ''.join(entries) if entries else \
+        '<div class="note">Chưa có tin/mã HOT nào lúc này.</div>'
+    return h[:m.end()] + inner + h[end - 6:], len(entries)
+
+
+LIVE_STRIP_SYMS = ['SPY', 'QQQ', 'NVDA', 'TSM', 'MU', 'MRVL', 'RKLB', 'DRAM']
+
+
+def _fmt_px(n):
+    return f"{n:,.0f}" if n >= 1000 else f"{n:.2f}"
+
+
+def build_live_strip(h, prices):
+    """Dung TINH #liveStrip — cung benh voi #hotFeed 30/10: JS chi chay tren
+    bang chinh (fetch Yahoo qua proxy), trang rieng muc.html?s=sec-live chi
+    trich HTML tinh nen ket 'Dang tai gia live...' vinh vien (Tom kiem tra
+    1/11: 26/27 muc OK, rieng LIVE loi). Chip theo dung format JS: ma, gia,
+    % so voi dong cua hom truoc; |%| >= 3 gan HOT."""
+    m = re.search(r'<div id="liveStrip"[^>]*>', h)
+    if not m:
+        return h, 0
+    depth, j, end = 0, m.start(), None
+    while True:
+        o = h.find('<div', j)
+        c = h.find('</div>', j)
+        if c == -1:
+            return h, 0
+        if o != -1 and o < c:
+            depth += 1
+            j = o + 4
+        else:
+            depth -= 1
+            j = c + 6
+            if depth == 0:
+                end = j
+                break
+    chips = []
+    for sym in LIVE_STRIP_SYMS:
+        v = prices.get(sym)
+        if not v:
+            continue
+        try:
+            px, pct = float(v[0]), float(v[1])
+        except Exception:
+            continue
+        cls = 'up' if pct > 0.05 else ('down' if pct < -0.05 else 'flat')
+        arrow = '▲' if pct > 0.05 else ('▼' if pct < -0.05 else '●')
+        hot = ' <span class="badge b-hot">🔥 HOT</span>' if abs(pct) >= 3 else ''
+        chips.append(
+            f'<div class="livechip"><div class="lt">{sym}{hot}</div>'
+            f'<div class="lp">{_fmt_px(px)}</div>'
+            f'<div class="lc {cls}">{arrow} {abs(pct):.2f}%</div></div>')
+    if not chips:
+        return h, 0
+    return h[:m.end()] + ''.join(chips) + h[end - 6:], len(chips)
 
 
 def zone_tp_line(t):
@@ -280,21 +810,23 @@ def attach_zone_tp(h):
         k = len(h)
     box = h[j:k]
 
-    def add_tp(m):
-        full, inner = m.group(0), m.group(1)
-        if "🎯" in inner:
+    def add_tp(full, inner):
+        if 'class="alert urgent"' not in full.split(">", 1)[0]:
             return full
-        txt = re.sub(r'<[^>]+>', ' ', inner).strip()
-        mt = re.search(r'\b([A-Z]{2,5})\b', txt)
-        if not mt:
+        # Alert đã có KHUNG ĐẦU KHỐI (zchip) thì khung đã ghi Chốt/Cắt —
+        # gắn thêm dòng 🎯 là trùng lặp (Tom bắt lỗi 30/10).
+        if "🎯" in inner or "data-achip" in full:
             return full
-        line = zone_tp_line(mt.group(1))
+        t = _alert_ticker(full)
+        if not t:
+            return full
+        line = zone_tp_line(t)
         if not line:
             return full
-        return full.replace("</div>",
-                            f'<br><span class="zt">{line}</span></div>', 1)
+        return full[:-len("</div>")] + \
+            f'<br><span class="zt">{line}</span></div>'
 
-    box2 = re.sub(r'<div class="alert urgent"[^>]*>(.*?)</div>', add_tp, box, flags=re.S)
+    box2 = sub_balanced_alerts(box, add_tp)
     return h[:j] + box2 + h[k:]
 
 
@@ -592,6 +1124,10 @@ def shark_of_day(h, repo_dir):
         score = tier_w * trust * fresh
         mh = re.search(r"<b>(.*?)</b>", inner, flags=re.S)
         why = re.sub(r"<[^>]+>", "", mh.group(1)).strip()[:70] if mh else ""
+        # 2/11: dòng tóm tắt chỉ giữ NHÃN sự kiện (trước dấu — đầu tiên) —
+        # bản cũ chép nguyên headline nên mã hiện 2 lần trong cùng mục
+        # (1 ở dòng Cá Mập Của Ngày, 1 ở alert gốc ngay dưới).
+        why = re.sub(r"^🦈+\s*", "", why.split(" — ")[0]).strip()
         cands.append((score, t, tier_w, trust, age_h, why))
     box = _remove_balanced_div(box, '<div class="sharkday" id="sharkOfDay"')
     if not cands:
@@ -738,6 +1274,65 @@ def auto_cleanup(h, prices, tickers, repo_dir):
     return h, removed
 
 
+def sub_balanced_alerts(h, fn):
+    """Thay thế từng khối <div class="alert...">...</div> CÂN BẰNG bằng fn(full, inner).
+
+    GỐC RỄ vụ kẹt VALIDATE FAIL từ 12:48 29/10: regex non-greedy
+    `<div class="alert[^"]*">(.*?)</div>` dừng ở thẻ </div> ĐẦU TIÊN nên CẮT ĐÔI
+    alert chứa div lồng nhau (ô ltalloc: thanh % = 2 div lồng trong alert).
+    Hàm xóa sau đó ăn mất 3 thẻ mở mà chỉ trừ 1 thẻ đóng -> mỗi ô lệch -2,
+    13 ô = -26, validate 'thẻ div lệch' chặn mọi lượt ghi/push.
+    Hàm này dùng stack-scan nên khối cân bằng luôn được xử nguyên vẹn; vùng
+    <script> (JS chứa literal '<div class="alert...') được bỏ qua nguyên trạng."""
+    script_spans = [(m.start(), m.end())
+                    for m in re.finditer(r'<script[^>]*>.*?</script>', h, re.S)]
+
+    def _in_script(pos):
+        return any(s <= pos < e for s, e in script_spans)
+
+    pat = re.compile(r'<div class="alert[^>]*>')
+    out, i = [], 0
+    while True:
+        m = pat.search(h, i)
+        if not m:
+            out.append(h[i:])
+            break
+        if _in_script(m.start()):
+            e = next(e for s, e in script_spans if s <= m.start() < e)
+            out.append(h[i:e])
+            i = e
+            continue
+        start = m.start()
+        depth, j = 0, start
+        while True:
+            o = h.find('<div', j)
+            c = h.find('</div>', j)
+            if c == -1:  # không còn thẻ đóng: giữ nguyên phần còn lại
+                out.append(h[i:])
+                return ''.join(out)
+            if o != -1 and o < c:
+                depth += 1
+                j = o + 4
+            else:
+                depth -= 1
+                j = c + 6
+                if depth == 0:
+                    break
+        full = h[start:j]
+        inner = h[m.end():j - 6]
+        out.append(h[i:start])
+        out.append(fn(full, inner))
+        i = j
+    return ''.join(out)
+
+
+# Khối cấu trúc (không phải tin): prune/dedup không bao giờ được xóa —
+# chính các khối này từng bị xóa oan mỗi lượt (FWMMX/VCSP "biến mất" bí ẩn).
+_STRUCT_KEEP = ('VỐN', 'lta-ret-', 'NAV', 'CollegeAmerica',
+                'ĐỌC TRONG 10 GIÂY', 'ĐỌC TRANG NÀY TRONG 10 GIÂY',
+                'TÂM ĐIỂM', 'chưa phải tâm điểm')
+
+
 def prune_old_alerts(h):
     """Tom lệnh 15/10: tin cũ TỰ BIẾN MẤT — chạy mỗi 5 phút, không chờ daily reset.
     - Xóa alert có ngày KHÔNG phải hôm nay (trừ Cú Đêm — xử riêng).
@@ -748,8 +1343,10 @@ def prune_old_alerts(h):
     today = now.strftime("%d/%m")
     removed = [0]
 
-    def check_alert(m):
-        full, inner = m.group(0), m.group(1)
+    def check_alert(full, inner):
+        # Khối cấu trúc (ô phân bổ/tài khoản): không phải tin, không đụng
+        if any(k in inner for k in _STRUCT_KEEP):
+            return full
         # Cú Đêm: để hàm riêng xử, không đụng ở đây
         if 'Cú Đêm' in inner:
             return full
@@ -766,7 +1363,7 @@ def prune_old_alerts(h):
         removed[0] += 1
         return ''
 
-    h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', check_alert, h, flags=re.S)
+    h = sub_balanced_alerts(h, check_alert)
 
     # 📰 TIN TỨC <li> — Tom lệnh 15/10: tin cũ tự động xóa.
     # LUẬT MỚI (Tom lệnh 21/10): mục TIN LỚN chỉ giữ tin TRONG NGÀY — "News hot,
@@ -832,8 +1429,12 @@ def prune_old_alerts(h):
 
     # Chống TRÙNG LẶP nội dung — Tom lệnh 15/10: "đừng để bị trùng lặp"
     seen_text = set()
-    def dedup_content(m):
-        full, inner = m.group(0), m.group(1)
+    def dedup_content(full, inner):
+        # Khối cấu trúc có quyền lặp mã giữa các mục (vd VTV ở cả ltalloc lẫn
+        # lt9): không dedup — xóa nguyên khối cân bằng thì không lệch div
+        # nhưng vẫn mất nội dung.
+        if any(k in inner for k in _STRUCT_KEEP):
+            return full
         # Chuẩn hóa: lấy 80 ký tự đầu của text thuần
         txt = re.sub(r'<[^>]+>', '', inner).strip()[:80].lower()
         txt = re.sub(r'\s+', ' ', txt)
@@ -842,7 +1443,7 @@ def prune_old_alerts(h):
             return ''
         seen_text.add(txt)
         return full
-    h = re.sub(r'<div class="alert[^"]*">(.*?)</div>', dedup_content, h, flags=re.S)
+    h = sub_balanced_alerts(h, dedup_content)
 
     # Cú Đêm: chỉ giữ entry của ĐÊM HIỆN TẠI (Tom 21/10: Cú Đêm cũng phải tự
     # dọn, không giữ tin cũ) — tối đa 3 entry mới nhất VÀ không entry nào cũ
@@ -924,6 +1525,1026 @@ def update_zone_badges(h, prices, state_path):
         h = row_pat.sub(lambda m: f"{m.group(1)}{badge_class(st)}{m.group(2)}{badge_text(st)}{m.group(3)}", h, count=1)
     json.dump(new_state, open(state_path, "w"), indent=1)
     return h, events
+
+
+def _zone_chip_text(t, px, st, z, bare=False):
+    """(cls, text) của khung vùng: tên mã + trạng thái + giá + vùng + cắt.
+    Dùng chung cho hàng bảng (tr) và khối FOCUS (div).
+    bare=True (chỉ sec-special): chip chỉ ghi mã + trạng thái + giá —
+    số VÙNG/CHỐT/CẮT duy nhất nằm ở khung vàng 🎫 LỆNH MUA trong cùng
+    khối (luật Tom 2/11: khối ĐẶC BIỆT chỉ 1 bộ số, không trùng)."""
+    lo, hi = z["entry"]
+    note = (z.get("note") or "").upper()
+    if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
+        return ("zchip-n", f"{t} · ⏸️ VÙNG TẠM TREO — CHỜ DỰNG NỀN · "
+                           f"Giá {_lt_money(px)}")
+    lab = badge_text(st)
+    if st == "BROKEN":
+        lab = "🔴 GÃY VÙNG — THỦNG CẮT"
+    parts = [t, lab, f"Giá {_lt_money(px)}"]
+    if not bare:
+        parts.append(f"Vùng {_lt_money(lo)}–{_lt_money(hi)}")
+        tg = z.get("targets") or []
+        if len(tg) >= 2:
+            parts.append(f"Chốt {_lt_money(tg[0])}→{_lt_money(tg[1])}")
+        elif len(tg) == 1:
+            parts.append(f"Chốt {_lt_money(tg[0])}")
+        if z.get("cut"):
+            parts.append(f"Cắt <{_lt_money(z['cut'])}")
+        if st == "BELOW":
+            parts.append(f"Còn +{_lt_pct1((lo / px - 1) * 100)} tới vùng")
+    cls = {"IN": "zchip-g", "BROKEN": "zchip-r",
+           "BELOW": "zchip-y", "ABOVE": "zchip-n"}[st]
+    return cls, " · ".join(parts)
+
+
+def _zone_chip_row(t, px, st, z, colspan=4):
+    cls, txt = _zone_chip_text(t, px, st, z)
+    return (f'<tr class="zchip-row" data-t="{t}"><td colspan="{colspan}">'
+            f'<div class="zchip {cls}">{txt}</div></td></tr>')
+
+
+def _zone_state_of(z, px):
+    lo, hi = z["entry"]
+    if z.get("cut") and px < z["cut"]:
+        return "BROKEN"
+    if lo <= px <= hi:
+        return "IN"
+    if px < lo:
+        return "BELOW"
+    return "ABOVE"
+
+
+def _zones_local():
+    """(zones, excluded) — ưu tiên ZONES global của pipeline, rớt về
+    đọc zones.json cạnh script (test/tay)."""
+    zones = ZONES
+    excluded = set()
+    try:
+        raw = json.load(open(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "zones.json"), encoding="utf-8"))
+        excluded = set(raw.get("_excluded", []))
+        if not zones:
+            zones = {t: v for t, v in raw.items()
+                     if not t.startswith("_")}
+    except Exception:
+        pass
+    return zones, excluded
+
+
+def update_zone_chips(h, prices):
+    """KHUNG CHỚP ĐẦU HÀNG cho bảng Sổ 1/2/3 (Tom chốt 30/10 08:51 — áp
+    khuôn khung LONG TERM cho mọi mục): mỗi mã có vùng có 1 hàng khung
+    ngay TRÊN dòng của nó — tên mã + trạng thái vùng + giá realtime +
+    vùng + cắt. Chớp theo mức khẩn: IN xanh 1,9s · BROKEN đỏ 1,1s ·
+    BELOW vàng 2,6s · ABOVE tĩnh không chớp. Chỉ chạy trong 3 section
+    Sổ; mã excluded / không có giá / không có dòng thì bỏ qua."""
+    zones, excluded = _zones_local()
+    n = 0
+    for sec, colspan in (("sec-longterm", 4), ("sec-so2", 4),
+                         ("sec-so3", 4), ("sec-etf", 4),
+                         ("sec-etf16", 4), ("sec-steelnet", 5),
+                         ("sec-watch", 4)):
+        m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+        if not m:
+            continue
+        start = m.start()
+        nxt = h.find('<div class="sec"', start + 10)
+        end = nxt if nxt != -1 else len(h)
+        seg = h[start:end]
+        for t in zones:
+            if t in excluded or t not in prices:
+                continue
+            z = zones[t]
+            if not z.get("entry"):
+                continue
+            row_pat = re.compile(r"<tr><td><b>" + re.escape(t)
+                                 + r"</b></td>")
+            if not row_pat.search(seg):
+                continue
+            px = prices[t][0]
+            chip = _zone_chip_row(t, px, _zone_state_of(z, px), z,
+                                  colspan=colspan)
+            cpat = re.compile(r'<tr class="zchip-row" data-t="'
+                              + re.escape(t) + r'">.*?</tr>', re.S)
+            seg, cn = cpat.subn(chip, seg, count=1)
+            if not cn:
+                seg = row_pat.sub(lambda mm: chip + mm.group(0),
+                                  seg, count=1)
+            n += 1
+        # Hàng KHÔNG có vùng (watch-only / chờ dựng nền): vẫn có khung
+        # tĩnh trên đầu cho đồng nhất toàn bảng (Tom chốt 30/10 09:05 —
+        # TẤT CẢ các mục): 👁️ THEO DÕI / ⏸️ CHỜ DỰNG NỀN, không chớp.
+        for t in re.findall(r"<tr><td><b>([A-Z]{2,6})</b></td>", seg):
+            if t in excluded or f'data-t="{t}"' in seg:
+                continue
+            if t in prices:
+                px = prices[t][0]
+            else:
+                pm = re.search(r"<tr><td><b>" + re.escape(t)
+                               + r"</b></td><td>(?:NAV )?\$([\d,]+\.?\d*)",
+                               seg)
+                if not pm:
+                    continue
+                px = float(pm.group(1).replace(",", ""))
+            if t in zones or t == "NFLX":
+                txt = f"{t} · ⏸️ CHỜ DỰNG NỀN · Giá {_lt_money(px)}"
+            else:
+                txt = f"{t} · 👁️ THEO DÕI · Giá {_lt_money(px)}"
+            chip = (f'<tr class="zchip-row" data-t="{t}">'
+                    f'<td colspan="{colspan}">'
+                    f'<div class="zchip zchip-n">{txt}</div></td></tr>')
+            row_pat = re.compile(r"<tr><td><b>" + re.escape(t)
+                                 + r"</b></td>")
+            seg = row_pat.sub(lambda mm: chip + mm.group(0), seg, count=1)
+            n += 1
+        h = h[:start] + seg + h[end:]
+    return h, n
+
+
+FOCUS_BLOCK_PAT = re.compile(
+    r'(<div style="border-top:1px solid rgba\(212,175,55,\.45\);'
+    r'padding:7px 0;word-break:break-word">)'
+    r'(<div class="zchip[^"]*" data-fchip="[A-Z]{2,6}">.*?</div>)?'
+    r'(🦈+ <b>([A-Z]{2,6})</b> \$([\d,]+\.?\d*))', re.S)
+
+
+def update_focus_chips(h, prices):
+    """KHUNG CHỚP ĐẦU KHỐI cho 👑 FOCUS (chặng 2, Tom 30/10): mỗi khối
+    cá mập được 1 khung zchip ngay trên dòng 🦈🦈🦈 — cùng khuôn Sổ:
+    tên mã + trạng thái vùng + giá + vùng + cắt, chớp theo mức khẩn.
+    Giá lấy từ prices, rớt về giá in sẵn trong khối."""
+    zones, excluded = _zones_local()
+    n = 0
+
+    def rep(m):
+        nonlocal n
+        t = m.group(4)
+        if t in excluded or t not in zones or not zones[t].get("entry"):
+            return m.group(0)
+        if t in prices:
+            px = prices[t][0]
+        else:
+            px = float(m.group(5).replace(",", ""))
+        cls, txt = _zone_chip_text(t, px, _zone_state_of(zones[t], px),
+                                   zones[t])
+        n += 1
+        return (m.group(1)
+                + f'<div class="zchip {cls}" data-fchip="{t}">{txt}</div>'
+                + m.group(3))
+
+    h = FOCUS_BLOCK_PAT.sub(rep, h)
+    return h, n
+
+
+ALERT_CHIP_PAT = re.compile(
+    r'(<div class=["\']alert[^"\']*["\'][^>]*>)'
+    r'(?:(<div class="zchip[^"]*" data-achip="([A-Z]{2,6})">.*?</div>))?'
+    r'(\s*<b>(.{0,120}?)</b>)?'
+    r'(.{0,60})', re.S)
+
+# Mục KHÔNG bỏ tiêu đề alert khi gắn khung: khối kim cương ĐẶC BIỆT —
+# tiêu đề mang thứ hạng TÂM ĐIỂM SỐ 1/2/3, là nội dung chứ không trùng.
+NO_STRIP_SECS = {"sec-special"}
+
+ALERT_CHIP_SECS = ("sec-special", "sec-topfocus", "sec-news",
+                   "sec-ahshark", "sec-asia", "sec-urgent",
+                   "sec-tinhhoa", "sec-chinam", "sec-hot", "sec-live",
+                   "sec-plan", "sec-daytrade", "sec-cudem", "sec-watch",
+                   "sec-swing", "sec-dram", "sec-lt9")
+
+
+def update_alert_chips(h, prices):
+    """KHUNG ĐẦU KHỐI cho MỌI mục dạng alert (Tom chốt 30/10 09:01 — cả
+    daytrade / swing / long-t9 / tin / earnings cũng như vậy): alert nào
+    mở đầu bằng <b> chứa mã có vùng thì gắn 1 khung zchip ngay đầu khối —
+    cùng khuôn: tên mã + trạng thái vùng + giá realtime + vùng + cắt,
+    chớp theo mức khẩn. Alert không dẫn bằng mã có vùng thì giữ nguyên.
+    Giá: prices trước, rớt về giá in sẵn sau tiêu đề alert."""
+    zones, excluded = _zones_local()
+    n = 0
+    for sec in ALERT_CHIP_SECS:
+        m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+        if not m:
+            continue
+        start = m.start()
+        nxt = h.find('<div class="sec"', start + 10)
+        end = nxt if nxt != -1 else len(h)
+        seg = h[start:end]
+
+        def rep(mm):
+            nonlocal n
+            # Mã: khung cũ (data-achip) trước — alert đã bỏ tiêu đề ở lượt
+            # trước vẫn làm mới được khung; chưa có khung thì đọc tiêu đề.
+            t = mm.group(3)
+            if t is None and mm.group(5):
+                for tok in re.findall(r"[A-Z]{2,6}", mm.group(5)):
+                    if tok in zones and tok not in excluded \
+                            and zones[tok].get("entry"):
+                        t = tok
+                        break
+            if t is None or t in excluded \
+                    or not zones.get(t, {}).get("entry"):
+                return mm.group(0)
+            if t in prices:
+                px = prices[t][0]
+            else:
+                pm = re.search(r"\$([\d,]+\.?\d*)", mm.group(6) or "")
+                if not pm and mm.group(2):
+                    pm = re.search(r"Giá \$([\d,]+\.?\d*)", mm.group(2))
+                if not pm:
+                    return mm.group(0)
+                px = float(pm.group(1).replace(",", ""))
+            cls, txt = _zone_chip_text(t, px,
+                                       _zone_state_of(zones[t], px),
+                                       zones[t],
+                                       bare=(sec == "sec-special"))
+            n += 1
+            tail = mm.group(6) or ""
+            if mm.group(4):
+                # Tin Yahoo: tiêu đề là nội dung tin, KHÔNG được bỏ dù
+                # mã có vùng (lỗi 02/11: tiêu đề AMD bị chip nuốt mất).
+                nxt = seg.find('<div class="alert"', mm.end())
+                blk = seg[mm.start(): nxt if nxt != -1 else len(seg)]
+                if "Yahoo Finance qua" in blk:
+                    return (mm.group(1)
+                            + f'<div class="zchip {cls}" data-achip="{t}">'
+                            + txt + "</div>"
+                            + mm.group(4) + tail)
+            if mm.group(4) and sec not in NO_STRIP_SECS:
+                # KHUNG THAY TIÊU ĐỀ (Tom bắt lỗi trùng 30/10): bỏ headline
+                # <b>...</b> vì khung đã ghi mã + trạng thái + giá + vùng +
+                # cắt; dọn dấu nối + đoạn giá/giờ lặp ở đầu phần còn lại.
+                tail = re.sub(r"^\s*(—|–|-)\s*", "", tail)
+                tail = re.sub(
+                    r"^\$[\d,]+\.?\d*\s*\([−+\-][\d.,]+%\)\s*"
+                    r"lúc\s*[\d:]{4,5}\s*PT\.?\s*", "", tail)
+                tail = re.sub(r"^(<br\s*/?>)+", "", tail)
+                tail = re.sub(r"^\s*(—|–|-)\s*", "", tail)
+                return (mm.group(1)
+                        + f'<div class="zchip {cls}" data-achip="{t}">'
+                        + txt + "</div>" + tail)
+            return (mm.group(1)
+                    + f'<div class="zchip {cls}" data-achip="{t}">{txt}</div>'
+                    + (mm.group(4) or "") + tail)
+
+        seg = ALERT_CHIP_PAT.sub(rep, seg)
+        h = h[:start] + seg + h[end:]
+    return h, n
+
+
+# =====================================================================
+# ĐỒNG BỘ SỐ TĨNH + LÀM GIÀU DAYTRADE — Tom bắt lỗi 04/11/2026 05:36 PT:
+# daytrade/swing/long/leverage mỗi mục một số khác nhau vì mỗi writer
+# đóng băng giá/%/trạng thái/vùng tại thời điểm NÓ chạy; chỉ chip
+# data-px mới sống nhờ poller. Từ nay MỌI lượt refresh (lite premarket
+# + full) chạy pass đồng bộ CUỐI pipeline: mọi số IN trên bảng trong
+# các mục đích tính lại từ CÙNG 1 bộ giá (ngoài giờ = fetch_pm_prices,
+# trong phiên = giá intraday) + zones.json. Một công thức dịch vùng xe
+# duy nhất (_comp_line / _lev_pair_block đều dùng r = giá xe / giá gốc
+# trong CÙNG dict giá của lượt) — cấm trộn giá premarket với giá đóng
+# cửa trong cùng 1 lượt (gốc vụ AMDL 2 nơi 2 vùng dịch).
+# =====================================================================
+SYNC_SECS = ("sec-daytrade", "sec-swing", "sec-longterm", "sec-so2",
+             "sec-so3", "sec-leverage", "sec-special", "sec-topfocus",
+             "sec-plan", "sec-hot", "sec-watch", "sec-steelnet",
+             "sec-etf", "sec-etf16", "sec-dram", "sec-ahshark")
+_STATUS_LAB = {"IN": "🟢 TRONG VÙNG", "ABOVE": "⚪ TRÊN VÙNG",
+               "BELOW": "🟡 DƯỚI VÙNG",
+               "BROKEN": "🔴 GÃY VÙNG — THỦNG CẮT"}
+_ZONE_PHRASES = [
+    "🔴 GÃY VÙNG — THỦNG CẮT", "Vượt lên trên vùng", "vượt lên trên vùng",
+    "Vượt khỏi vùng", "vượt khỏi vùng", "Sát mép trên vùng",
+    "Sát mép dưới vùng", "sát mép trên vùng", "sát mép dưới vùng",
+    "Ngay mép dưới vùng", "Ngay mép trên vùng", "🟢 TRONG VÙNG",
+    "🟡 DƯỚI VÙNG", "⚪ TRÊN VÙNG", "🔴 GÃY VÙNG", "TRONG VÙNG",
+    "DƯỚI VÙNG", "TRÊN VÙNG", "GÃY VÙNG", "TRONG vùng", "DƯỚI vùng",
+    "TRÊN vùng", "Trên vùng", "Dưới vùng", "Trong vùng"]
+
+
+def _parse_num_sync(s):
+    """'1.234,56' VN / '1,234.56' US / '483,9' VN / '855.10' US -> float."""
+    s = s.strip().replace(" ", "")
+    if re.fullmatch(r"\d{1,3}(\.\d{3})+(,\d+)?", s):
+        return float(s.replace(".", "").replace(",", "."))
+    if re.fullmatch(r"\d{1,3}(,\d{3})+(\.\d+)?", s):
+        return float(s.replace(",", ""))
+    if re.fullmatch(r"\d+,\d{1,2}", s):
+        return float(s.replace(",", "."))
+    if re.fullmatch(r"\d+(\.\d+)?", s):
+        return float(s)
+    return None
+
+
+def _fmt_like(old, v):
+    """Format tiền khớp khuôn chuỗi cũ: thập phân phẩy kiểu VN ($511,29)
+    -> VN; còn lại US 2 số lẻ ($855.10)."""
+    if re.search(r",\d{1,2}$", old):
+        return fmt_price_vn(v)[1:]
+    return f"{v:,.2f}"
+
+
+def _zone_vals(z):
+    vals = [float(x) for x in (z.get("entry") or [])]
+    vals += [float(x) for x in (z.get("targets") or [])]
+    if z.get("cut"):
+        vals.append(float(z["cut"]))
+    return vals
+
+
+def _alert_spans(seg):
+    """(start, end) của từng khối <div class="alert..."> bằng stack-walk
+    div (bài học cân bằng div 19/10 — không regex non-greedy)."""
+    out = []
+    for m in re.finditer(r'<div class="alert[^"]*">', seg):
+        depth, end = 0, None
+        for dm in re.finditer(r"</?div\b[^>]*>", seg[m.start():]):
+            depth += -1 if dm.group(0).startswith("</") else 1
+            if depth == 0:
+                end = m.start() + dm.end()
+                break
+        if end:
+            out.append((m.start(), end))
+    return out
+
+
+def _mask_blocks(seg):
+    """Che các khối con đã có updater riêng (zchip/levcomp/levmap +
+    span data-px/data-pct) để pass văn xuôi không đụng vào; trả
+    (bản che, kho khôi phục)."""
+    store = []
+
+    def _put(txt):
+        store.append(txt)
+        return f"\x01{len(store) - 1}\x02"
+
+    # xử lý từ cuối về đầu để offset không lệch
+    spans = []
+    for m in re.finditer(r'<div class="(?:zchip|levcomp|levmap)[^"]*">',
+                         seg):
+        depth, end = 0, None
+        for dm in re.finditer(r"</?div\b[^>]*>", seg[m.start():]):
+            depth += -1 if dm.group(0).startswith("</") else 1
+            if depth == 0:
+                end = m.start() + dm.end()
+                break
+        if end:
+            spans.append((m.start(), end))
+    for s0, s1 in reversed(spans):
+        seg = seg[:s0] + _put(seg[s0:s1]) + seg[s1:]
+    seg = re.sub(r'<span[^>]*data-(?:px|pct)="[^"]*"[^>]*>.*?</span>',
+                 lambda m: _put(m.group(0)), seg, flags=re.S)
+    return seg, store
+
+
+def _unmask(seg, store):
+    for i, txt in enumerate(store):
+        seg = seg.replace(f"\x01{i}\x02", txt)
+    return seg
+
+
+def _prose_price_sub(txt, prices, zones):
+    """Giá trong VĂN XUÔI (alert/kế hoạch): 'AMD premarket $511,29
+    (+5,66%, 03:39 PT)' -> giá + % + giờ HIỆN TẠI. Pattern chỉ khớp mã
+    CÓ trong dict giá (tránh mã giả 'PT' trong '03:39 PT' nuốt mất
+    match của mã thật đứng sau). Bỏ qua: số vùng/chốt/cắt của chính mã
+    (chỉ khi KHÔNG kèm '(+x%)' — số kèm % luôn là giá), số gắn nhãn
+    'đóng cửa'/'Giá hiện tại', mốc kệ/đáy/MA trong ghi chú, đầu một
+    khoảng giá, số doanh thu $X tỷ, số lệch >35% (mốc lịch sử)."""
+    ticks = sorted((t for t in prices if len(t) >= 2),
+                   key=len, reverse=True)
+    if not ticks:
+        return txt
+    _alt = "|".join(map(re.escape, ticks))
+    # mid không được chứa mã khác có giá (tránh gán nhầm giá của mã
+    # đứng sau cho mã đứng trước trong câu nhiều mã — vụ RTX/RCL).
+    pat = re.compile(
+        r"\b(" + _alt + r")\b"
+        r"((?:(?![$%]|\b(?:" + _alt + r")\b).){0,30}?)\$\s*([\d][\d.,]*)"
+        r"(\s*\([−+\-]?\s*[\d.,]+%(?:\s*,\s*(\d{1,2}:\d{2})\s*PT)?\))?"
+        r"(?!\s*tỷ)")
+
+    def rep(m):
+        t, mid, num, pctpart, _tm = m.groups()
+        low = mid.lower()
+        if "hiện tại" in low or "đóng" in low:
+            return m.group(0)
+        if any(w in low for w in ("kệ", "đáy", "đỉnh", "hỗ trợ",
+                                  "kháng cự", "ma20", "ma50", "ma200",
+                                  "đồng thuận", "52 tuần", "52w")):
+            return m.group(0)
+        if re.match(r"\s*[–\-]\s*\$?[\d.,]+", txt[m.end():m.end() + 14]):
+            return m.group(0)  # đầu một KHOẢNG (kệ/vùng) — là MỐC
+        val = _parse_num_sync(num)
+        if val is None:
+            return m.group(0)
+        z = zones.get(t)
+        if z and not pctpart:
+            for zv in _zone_vals(z):
+                if abs(val - zv) <= max(0.51, abs(zv) * 0.003):
+                    return m.group(0)
+            tail = re.sub(r"[\s·•|]+$", "", low)[-16:]
+            if re.search(r"(vùng|vào|chốt|cắt|target|trong|trên|dưới|"
+                         r"mép|sát|tới)\s*<?$", tail):
+                return m.group(0)
+        px, pc = prices[t]
+        if not px or abs(val - px) / px > 0.35:
+            return m.group(0)
+        out = f"{t}{mid}${_fmt_like(num, px)}"
+        if pctpart:
+            if _tm:
+                out += (f" ({fmt_pct_vn(pc)}, "
+                        f"{now_pt().strftime('%H:%M')} PT)")
+            else:
+                out += f" ({fmt_pct_vn(pc)})"
+        return out
+    return pat.sub(rep, txt)
+
+
+def _sync_data_px(h, prices):
+    """Mọi <span data-px="T">T $X</span> + <span data-pct="T">(Y%)</span>
+    trên TOÀN bảng -> giá/% hiện tại (khuôn _lt_money như lúc render).
+    Trước đây bản HTML thô kẹt giá lúc render — khối cặp đòn bẩy đóng
+    băng giá ĐÓNG CỬA suốt premarket vì lite không render lại."""
+    n = 0
+
+    def _px(m):
+        nonlocal n
+        t = m.group(2)
+        if t not in prices:
+            return m.group(0)
+        n += 1
+        return f"{m.group(1)}{t} {_lt_money(prices[t][0])}{m.group(3)}"
+
+    h = re.sub(r'(<span[^>]*data-px="([A-Z]{1,6})"[^>]*>)[A-Z]{1,6} '
+               r"\$[\d.,]+(</span>)", _px, h)
+
+    def _pc(m):
+        nonlocal n
+        t = m.group(2)
+        if t not in prices:
+            return m.group(0)
+        n += 1
+        return f"{m.group(1)}({fmt_pct_vn(prices[t][1])}){m.group(3)}"
+
+    h = re.sub(r'(<span[^>]*data-pct="([A-Z]{1,6})"[^>]*>)\([−+\-]?'
+               r"[\d.,]+%\)(</span>)", _pc, h)
+    return h, n
+
+
+def _sync_zchips(seg, prices, zones, bare=False):
+    """Dựng lại MỌI zchip (data-achip / zchip-row / data-lchip) trong 1
+    section bằng _zone_chip_text — 1 khuôn duy nhất: giá + trạng thái +
+    vùng + chốt + cắt đều từ prices/zones.json HIỆN TẠI. Kể cả mã thuộc
+    _excluded (vd SKHY ở daytrade theo lệnh Tom 04/11): các updater cũ
+    bỏ qua excluded nên chip của chúng đóng băng."""
+    n = 0
+
+    def _mk(t):
+        z = zones.get(t)
+        if not z or not z.get("entry") or t not in prices:
+            return None
+        return _zone_chip_text(t, prices[t][0],
+                               _zone_state_of(z, prices[t][0]), z,
+                               bare=bare)
+
+    def _achip(m):
+        nonlocal n
+        r = _mk(m.group(1))
+        if not r:
+            return m.group(0)
+        n += 1
+        return (f'<div class="zchip {r[0]}" data-achip="{m.group(1)}">'
+                f"{r[1]}</div>")
+
+    seg = re.sub(r'<div class="zchip[^"]*" data-achip="([A-Z]{2,6})">'
+                 r".*?</div>", _achip, seg, flags=re.S)
+
+    def _row(m):
+        nonlocal n
+        r = _mk(m.group(1))
+        if not r:
+            return m.group(0)
+        n += 1
+        return (f'<tr class="zchip-row" data-t="{m.group(1)}">'
+                f'<td colspan="{m.group(2)}">'
+                f'<div class="zchip {r[0]}">{r[1]}</div></td></tr>')
+
+    seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
+                 r'<td colspan="(\d+)"><div class="zchip[^"]*">.*?</div>'
+                 r"</td></tr>", _row, seg, flags=re.S)
+
+    def _lchip(m):
+        nonlocal n
+        v = m.group(1)
+        u = LEV_MAP.get(v)
+        if not u or v not in prices or u not in prices:
+            return m.group(0)
+        vpx, vpct = prices[v]
+        head = f"{v} {_lt_money(vpx)} ({fmt_pct_vn(vpct)}) · NEO "
+        z = zones.get(u)
+        if z and z.get("entry"):
+            cls, txt = _zone_chip_text(
+                u, prices[u][0], _zone_state_of(z, prices[u][0]), z)
+        else:
+            cls = "zchip-n"
+            txt = (f"{u} · ⚪ CHƯA CÓ VÙNG · "
+                   f"Giá gốc {_lt_money(prices[u][0])}")
+        n += 1
+        return (f'<div class="zchip {cls}" data-lchip="{v}">'
+                f"{head}{txt}</div>")
+
+    seg = re.sub(r'<div class="zchip[^"]*" data-lchip="([A-Z]{1,6})">'
+                 r".*?</div>", _lchip, seg, flags=re.S)
+
+    # Chip tĩnh 👁️ THEO DÕI / ⏸️ CHỜ DỰNG NỀN (mã không có vùng):
+    # update_zone_chips chỉ TẠO khi thiếu, không bao giờ cập nhật lại
+    # giá trong chip đã có -> chip kẹt giá cũ (vụ VFLO $53,57 trong
+    # khi giá dòng đã $54,40).
+    def _watch(m):
+        nonlocal n
+        t = m.group(2)
+        if t not in prices or _mk(t):
+            return m.group(0)
+        n += 1
+        return (f"{m.group(1)}{t} · {m.group(3)} · "
+                f"Giá {_lt_money(prices[t][0])}{m.group(4)}")
+
+    seg = re.sub(r'(<div class="zchip[^"]*">)([A-Z]{2,6}) · '
+                 r"((?:👁️ THEO DÕI|⏸️ CHỜ DỰNG NỀN)) · Giá "
+                 r"\$[\d.,]+(</div>)", _watch, seg)
+    return seg, n
+
+
+_ROW_ZONE_PAT = re.compile(
+    r"Vào\s*\$[\d.,]+[–\-]\$?[\d.,]+\s*•\s*Chốt\s*\$[\d.,]+"
+    r"(?:→\$?[\d.,]+)?\s*•\s*(?:<span class=\"cut\">\s*)?"
+    r"Cắt(?:\s*dưới)?\s*<?\$[\d.,]+(?:\s*</span>)?")
+
+
+def _us_money(v):
+    f = float(v)
+    return f"${f:,.0f}" if f == int(f) else f"${f:,.2f}"
+
+
+def _sync_rows(seg, prices, zones):
+    """Hàng bảng <tr><td><b>T</b></td>...: (1) khuôn vùng trong
+    span.zone viết lại từ zones.json (bắt vụ MU swing còn vùng cũ
+    $890–920/cắt $870 sau khi zones.json đã vẽ lại $840–870);
+    (2) badge trạng thái vùng của hàng tính lại từ giá hiện tại —
+    lite premarket trước đây KHÔNG chạy update_zone_badges nên badge
+    kẹt từ lượt full hôm trước."""
+    n = 0
+
+    def _row(m):
+        nonlocal n
+        t, body = m.group(1), m.group(2)
+        z = zones.get(t)
+        if not z or not z.get("entry"):
+            return m.group(0)
+        changed = False
+
+        def _zone(_mz):
+            lo, hi = z["entry"]
+            tg = z.get("targets") or []
+            s = f"Vào {_us_money(lo)}–{_us_money(hi)} • Chốt "
+            s += "→".join(_us_money(x) for x in tg[:2]) if tg else "—"
+            if z.get("cut"):
+                s += f" • Cắt dưới {_us_money(z['cut'])}"
+            return s
+
+        body2, cn = _ROW_ZONE_PAT.subn(_zone, body, count=1)
+        if cn and body2 != body:
+            body, changed = body2, True
+        if t in prices:
+            st = _zone_state_of(z, prices[t][0])
+
+            def _badge(mb):
+                cur = re.sub(r"<[^>]+>", "", mb.group(4))
+                if not any(w in cur for w in ("VÙNG", "CẮT")):
+                    return mb.group(0)
+                return (f"{mb.group(1)}{badge_class(st)}{mb.group(3)}"
+                        f"{badge_text(st)}{mb.group(5)}")
+
+            body2, cn = re.subn(
+                r'(<span class="badge )(b-[a-z]+)(">)(.*?)(</span>)',
+                _badge, body, count=1, flags=re.S)
+            if cn and body2 != body:
+                body, changed = body2, True
+        if changed:
+            n += 1
+            return f"<tr><td><b>{t}</b></td>" + body + "</tr>"
+        return m.group(0)
+
+    seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>(.*?)</tr>", _row,
+                 seg, flags=re.S)
+    return seg, n
+
+
+def _sync_alerts(seg, prices, zones):
+    """Trong từng alert: giá văn xuôi -> giá hiện tại; CỤM TỪ trạng
+    thái vùng trong văn xuôi (vd 'Vượt lên trên vùng' viết lúc giá
+    $511) -> nhãn trạng thái tính từ giá HIỆN TẠI của mã chính của
+    alert (bắt vụ AMD: chip ghi GÃY mà văn xuôi ghi VƯỢT VÙNG trong
+    cùng 1 khối). Chỉ thay cụm từ trên dòng không nhắc mã vùng khác."""
+    spans = _alert_spans(seg)
+    for s0, s1 in reversed(spans):
+        blk = seg[s0:s1]
+        t = None
+        m = re.search(r'data-achip="([A-Z]{2,6})"', blk)
+        if m:
+            t = m.group(1)
+        if not t:
+            t = _comp_alert_ticker(blk)
+        masked, store = _mask_blocks(blk)
+        masked = _prose_price_sub(masked, prices, zones)
+        if t and t in prices and zones.get(t, {}).get("entry"):
+            lab = _STATUS_LAB[_zone_state_of(zones[t], prices[t][0])]
+            # thay cụm từ trong MỘT lượt regex (dài trước) — thay tuần
+            # tự từng cụm sẽ tự thay cả vào nhãn vừa chèn (vụ nhãn
+            # 'GÃY VÙNG' bị nhân ba 04/11).
+            phrase_re = re.compile("|".join(
+                re.escape(p) for p in
+                sorted(_ZONE_PHRASES, key=len, reverse=True)))
+            lines = masked.split("<br>")
+            for i, ln in enumerate(lines):
+                toks = set(re.findall(r"\b([A-Z]{2,6})\b",
+                                      re.sub(r"<[^>]+>", " ", ln)))
+                if any(x in zones and x != t for x in toks):
+                    continue
+                lines[i] = phrase_re.sub(lab, ln)
+            masked = "<br>".join(lines)
+        seg = seg[:s0] + _unmask(masked, store) + seg[s1:]
+    return seg
+
+
+def _sync_plan(seg, prices, zones):
+    """Khối '📍 VÙNG ĐANG MỞ' trong sec-plan: dựng lại 3 dòng trạng
+    thái (TRONG VÙNG / VƯỢT VÙNG / SÁT-DƯỚI VÙNG) từ giá HIỆN TẠI cho
+    đúng các mã khối đang nêu (bản 04:00 đóng băng giá premarket mỏng
+    03:39 PT — AMD $511,29 'vượt vùng' trong khi giá thật đã về $486).
+    Khối earnings cùng tiêu đề (không có dòng TRONG VÙNG) giữ nguyên."""
+    n = 0
+    pat = re.compile(r'<div class="alert"><b>📍 VÙNG ĐANG MỞ — SÁNG '
+                     r"(\d{2}/\d{2}) \(giá [^)]*\)</b><br>(.*?)</div>",
+                     re.S)
+    for m in reversed(list(pat.finditer(seg))):
+        body = m.group(2)
+        if "TRONG VÙNG" not in body:
+            continue
+        ticks = []
+        for tm in re.finditer(r"\b([A-Z]{2,6})\s*\$[\d.,]+", body):
+            t = tm.group(1)
+            if t in zones and zones[t].get("entry") and t in prices \
+                    and t not in ticks:
+                ticks.append(t)
+        if not ticks:
+            continue
+        g_in, g_ab, g_near = [], [], []
+        for t in ticks:
+            z = zones[t]
+            px = prices[t][0]
+            lo, hi = z["entry"]
+            st = _zone_state_of(z, px)
+            if st == "IN":
+                g_in.append(f"{t} {_lt_money(px)} trong "
+                            f"{_lt_money(lo)}–{_lt_money(hi)}")
+            elif st == "ABOVE":
+                g_ab.append(f"{t} {_lt_money(px)} trên "
+                            f"{_lt_money(lo)}–{_lt_money(hi)}")
+            elif st == "BROKEN":
+                g_near.append(f"{t} {_lt_money(px)} dưới cắt "
+                              f"{_lt_money(z['cut'])}")
+            else:
+                g_near.append(f"{t} {_lt_money(px)} dưới vùng "
+                              f"{_lt_money(lo)}–{_lt_money(hi)}, còn "
+                              f"trên cắt {_lt_money(z['cut'])}"
+                              if z.get("cut") else
+                              f"{t} {_lt_money(px)} dưới vùng "
+                              f"{_lt_money(lo)}–{_lt_money(hi)}")
+        lines = []
+        if g_in:
+            lines.append("· TRONG VÙNG: " + " · ".join(g_in))
+        if g_ab:
+            lines.append("· VƯỢT VÙNG LÊN TRÊN: " + " · ".join(g_ab))
+        if g_near:
+            lines.append("· SÁT VÙNG / DƯỚI VÙNG: " + " · ".join(g_near))
+        new = (f'<div class="alert"><b>📍 VÙNG ĐANG MỞ — SÁNG '
+               f"{m.group(1)} (giá cập nhật "
+               f"{now_pt().strftime('%H:%M')} PT)</b><br>"
+               + "<br>\n".join(lines) + "</div>")
+        seg = seg[:m.start()] + new + seg[m.end():]
+        n += 1
+    return seg, n
+
+
+def _sync_tinhhoa(seg, prices):
+    """Entry earnings: 'Giá hiện tại $X (+Y% hôm nay) · cập nhật
+    HH:MM PT' -> số + giờ hiện tại (mã lấy từ <b> đầu entry)."""
+    n = 0
+    pat = re.compile(r"(Giá hiện tại )\$([\d.,]+)(\s*\()([−+\-]?"
+                     r"[\d.,]+%)(\) hôm nay · cập nhật )"
+                     r"(\d{1,2}:\d{2} PT)")
+    for s0, s1 in reversed(_alert_spans(seg)):
+        blk = seg[s0:s1]
+        if "Giá hiện tại" not in blk:
+            continue
+        bm = re.search(r"<b>([A-Z]{2,6})</b>", blk)
+        if not bm or bm.group(1) not in prices:
+            continue
+        px, pc = prices[bm.group(1)]
+
+        def _rep(m):
+            return (f"{m.group(1)}${_fmt_like(m.group(2), px)}"
+                    f"{m.group(3)}{pc:+.1f}%{m.group(5)}"
+                    f"{now_pt().strftime('%H:%M')} PT")
+
+        blk2, cn = pat.subn(_rep, blk)
+        if cn:
+            seg = seg[:s0] + blk2 + seg[s1:]
+            n += cn
+    return seg, n
+
+
+def sync_static_numbers(h, prices):
+    """PASS ĐỒNG BỘ SỐ TĨNH — chạy CUỐI mọi lượt refresh (lite + full).
+    Trả (h, tổng chỗ sửa). Fail-soft từng section: lỗi 1 mục không
+    được làm chết cả lượt."""
+    zones, _excl = _zones_local()
+    total = 0
+    # bổ sung giá cho mã chỉ xuất hiện trong các mục đích (vd ANET ở
+    # topfocus — không có vùng, không có dòng bảng nên prices của
+    # pipeline chính không chứa) bằng fetch_pm_prices (prepost-aware:
+    # đúng cả ngoài giờ lẫn trong phiên); thiếu nữa thì giữ nguyên số.
+    try:
+        cand = set()
+        for sid in SYNC_SECS:
+            b = _sec_bounds(h, sid)
+            if b:
+                cand |= set(re.findall(r"\b([A-Z]{2,6})\b",
+                                       re.sub(r"<[^>]+>", " ",
+                                              h[b[0]:b[1]])))
+        db = _dayplan_bounds(h)
+        if db:
+            cand |= set(re.findall(r"\b([A-Z]{2,6})\b",
+                                   re.sub(r"<[^>]+>", " ",
+                                          h[db[0]:db[1]])))
+        miss = [t for t in sorted(cand) if t not in prices]
+        if miss:
+            got = fetch_pm_prices(miss)
+            prices = {**prices, **got}
+    except Exception as e:
+        print(f"  ! sync prices bổ sung: {e}", file=sys.stderr)
+    h, nd = _sync_data_px(h, prices)
+    total += nd
+    for sid in SYNC_SECS:
+        try:
+            # Khoảng section = tới section kế tiếp (khuôn update_zone_
+            # chips) — stack-walk có thể kết thúc SỚM ở section vỡ lồng
+            # nhau (sec-ahshark: div đầu không đóng, 4 alert nằm ngoài
+            # bounds) làm pass không với tới. Section cuối dùng
+            # stack-walk để tránh nuốt footer/script.
+            ms = re.search(r'<div class="sec" id="' + sid + r'"[^>]*>', h)
+            if not ms:
+                continue
+            s0 = ms.start()
+            nxt = h.find('<div class="sec"', s0 + 10)
+            if nxt != -1:
+                b = (s0, nxt)
+            else:
+                b = _sec_bounds(h, sid)
+                if not b:
+                    continue
+            seg = h[b[0]:b[1]]
+            seg, n1 = _sync_zchips(seg, prices, zones,
+                                   bare=(sid == "sec-special"))
+            seg, n2 = _sync_rows(seg, prices, zones)
+            seg = _sync_alerts(seg, prices, zones)
+            if sid == "sec-plan":
+                seg, n3 = _sync_plan(seg, prices, zones)
+                total += n3
+            total += n1 + n2
+            h = h[:b[0]] + seg + h[b[1]:]
+        except Exception as e:
+            print(f"  ! sync {sid}: {e}", file=sys.stderr)
+    try:
+        db = _dayplan_bounds(h)
+        if db:
+            seg = h[db[0]:db[1]]
+            seg, n1 = _sync_zchips(seg, prices, zones)
+            seg = _sync_alerts(seg, prices, zones)
+            total += n1
+            h = h[:db[0]] + seg + h[db[1]:]
+    except Exception as e:
+        print(f"  ! sync dayPlan: {e}", file=sys.stderr)
+    try:
+        b = _sec_bounds(h, "sec-tinhhoa")
+        if b:
+            seg, n4 = _sync_tinhhoa(h[b[0]:b[1]], prices)
+            total += n4
+            h = h[:b[0]] + seg + h[b[1]:]
+    except Exception as e:
+        print(f"  ! sync tinhhoa: {e}", file=sys.stderr)
+    return h, total
+
+
+# --- LÀM GIÀU DAYTRADE (Tom lệnh 04/11 05:42 PT: mục daytrade ~9 mã
+# là "nghèo, xấu hổ") — khối DAY-HOT-AUTO dựng lại MỖI LƯỢT từ giá +
+# zones.json hiện tại: ~18–22 khối chia 3 nhóm BAY / ÉP VÙNG / ĐẬP,
+# mỗi khối đủ chip vùng (hoặc watch-only rõ ràng) + dòng xe do
+# update_companion_lines gắn ngay sau (cùng 1 công thức toàn bảng) +
+# tem nhị phân cho mã có earnings hôm nay/ngày mai. Alert tay không
+# có chip (vd ⏰ XÚC TÁC) được GIỮ NGUYÊN; ghi chú tay của khối cũ
+# được giữ lại nếu không chứa trạng thái vùng/số giá cũ.
+DAY_HOT_POOL = ["ANET", "AMZN", "BABA", "MSFT", "CRM", "MELI", "NOW",
+                "UAL", "NKE", "GLD", "SLV", "TNA", "SNDK", "SKHY",
+                "MU", "NVDA", "AVGO", "COHR", "TSLA", "PLTR", "ALAB",
+                "IREN", "FRSH", "HOOD", "QCOM", "AMD", "GOOGL", "SMCI",
+                "TSM", "COIN", "MSTR", "APP", "ARM"]
+DAY_CORE_KEEP = {"AMD", "ANET", "AMZN", "GOOGL", "AVGO", "NVDA",
+                 "COHR", "QCOM"}
+DAY_BINARY = {"MELI": (11, 4), "COHR": (11, 4), "QCOM": (11, 4),
+              "IREN": (11, 5), "AXON": (11, 5), "APP": (11, 4),
+              "ARM": (11, 4)}  # (tháng, ngày) earnings — tem nhị phân
+
+
+def _day_notes(seg, zones):
+    """Ghi chú tay theo mã từ các alert chip cũ của sec-daytrade: giữ
+    dòng KHÔNG chứa chữ 'vùng' và KHÔNG chứa số giá (trừ $X tỷ) — các
+    dòng trạng thái/số cũ bị loại để khối mới không tự mâu thuẫn."""
+    notes = {}
+    for s0, s1 in _alert_spans(seg):
+        blk = seg[s0:s1]
+        m = re.search(r'data-achip="([A-Z]{2,6})"', blk)
+        if not m:
+            continue
+        t = m.group(1)
+        body = re.sub(r'^\s*<div class="alert[^"]*">', "", blk)
+        body = re.sub(r"</div>\s*$", "", body)
+        body = re.sub(r'<div class="(?:zchip|levcomp)[^"]*">.*?</div>',
+                      "", body, flags=re.S)
+        keep = []
+        for ln in body.split("<br>"):
+            txt = re.sub(r"<[^>]+>", " ", ln)
+            txt = re.sub(r"\s+", " ", txt).strip()
+            if len(txt) < 12 or "vùng" in txt.lower():
+                continue
+            if re.search(r"\$[\d.,]+(?!\s*tỷ)", txt):
+                continue
+            keep.append(ln.strip())
+            if len(keep) >= 2:
+                break
+        if keep:
+            notes[t] = keep
+    return notes
+
+
+def _day_block(t, prices, zones, notes, binary):
+    px, pc = prices[t]
+    z = zones.get(t)
+    parts = []
+    if z and z.get("entry"):
+        cls, txt = _zone_chip_text(t, px, _zone_state_of(z, px), z)
+        parts.append(f'<div class="alert"><div class="zchip {cls}" '
+                     f'data-achip="{t}">{txt}</div>')
+        if _zone_state_of(z, px) == "BROKEN":
+            parts.append("· Giá dưới cắt — vùng chỉ còn tham chiếu, "
+                         "chờ nến ĐÓNG lấy lại cắt mới tính lại")
+    else:
+        parts.append(
+            f'<div class="alert"><b><span data-px="{t}">'
+            f"{t} {_lt_money(px)}</span></b> "
+            f'<span data-pct="{t}">({fmt_pct_vn(pc)})</span>'
+            f" · 👁️ WATCH-ONLY")
+        parts.append("· ⚪ Chưa có vùng duyệt — chỉ theo dõi, "
+                     "không lên mâm")
+    if binary:
+        parts.append(f"· 💥 NHỊ PHÂN — earnings {binary} (Sổ 3): "
+                     "biến động mạnh quanh giờ ra số")
+    for ln in notes.get(t, []):
+        parts.append(ln if ln.startswith("·") else "· " + ln)
+    return "<br>\n".join(parts) + "</div>"
+
+
+def rebuild_daytrade(h, prices):
+    """Dựng lại khối mã nóng của sec-daytrade từ giá + zones.json
+    HIỆN TẠI. Trả (h, số khối). Fail-soft: lỗi thì giữ nguyên mục."""
+    try:
+        from datetime import timedelta
+        b = _sec_bounds(h, "sec-daytrade")
+        if not b:
+            return h, 0
+        s, e = b
+        seg = h[s:e]
+        zones, _excl = _zones_local()
+        open_tag = seg[:seg.find(">") + 1]
+        inner = seg[seg.find(">") + 1:-len("</div>")]
+        hm = re.search(r"<h2>.*?</h2>", inner, re.S)
+        head = inner[:hm.end()] if hm else ""
+        rest = inner[hm.end():] if hm else inner
+        notes = _day_notes(rest, zones)
+        preserved = []
+        for s0, s1 in _alert_spans(rest):
+            blk = rest[s0:s1]
+            if 'data-achip="' not in blk:
+                preserved.append(blk)
+        miss = [t for t in DAY_HOT_POOL if t not in prices]
+        if miss:
+            try:
+                prices = {**prices, **fetch_pm_prices(miss)}
+            except Exception:
+                pass
+        now = now_pt()
+        today_md = (now.month, now.day)
+        tmr = now + timedelta(days=1)
+        tmr_md = (tmr.month, tmr.day)
+
+        def _binary(t):
+            bd = DAY_BINARY.get(t)
+            if not bd:
+                return None
+            if bd == today_md:
+                return "hôm nay"
+            if bd == tmr_md:
+                return "ngày mai"
+            return None
+
+        groups = {"EP": [], "BAY": [], "DAP": []}
+        for t in DAY_HOT_POOL:
+            if t not in prices:
+                continue
+            px, pc = prices[t]
+            z = zones.get(t)
+            st = _zone_state_of(z, px) if z and z.get("entry") else None
+            grp = key = None
+            if st == "IN":
+                grp, key = "EP", 0.0
+            elif st == "BELOW":
+                d = (z["entry"][0] / px - 1) * 100
+                if d <= 3.5:
+                    grp, key = "EP", d
+                elif pc <= -1.5:
+                    grp, key = "DAP", pc
+            elif st == "ABOVE":
+                d = (px / z["entry"][1] - 1) * 100
+                if d <= 2.0:
+                    grp, key = "EP", d
+                elif pc >= 2.0:
+                    grp, key = "BAY", -pc
+            elif st == "BROKEN":
+                if z.get("cut") and px >= z["cut"] * 0.97:
+                    grp, key = "EP", 0.5
+                else:
+                    grp, key = "DAP", pc
+            if grp is None and pc >= 2.0:
+                grp, key = "BAY", -pc
+            elif grp is None and pc <= -1.5:
+                grp, key = "DAP", pc
+            if grp is None and t in DAY_CORE_KEEP and abs(pc) >= 0.8:
+                grp, key = ("BAY", -pc) if pc > 0 else ("DAP", pc)
+            if grp:
+                groups[grp].append((key, t))
+        for g in groups.values():
+            g.sort()
+        groups["EP"] = groups["EP"][:9]
+        groups["BAY"] = groups["BAY"][:8]
+        groups["DAP"] = groups["DAP"][:6]
+        total = sum(len(g) for g in groups.values())
+        if total < 16:  # mâm chưa đủ đầy — bổ sung mã động mạnh nhất còn lại
+            have = {t for g in groups.values() for _k, t in g}
+            extra = sorted(
+                (t for t in DAY_HOT_POOL
+                 if t in prices and t not in have),
+                key=lambda t: -abs(prices[t][1]))
+            for t in extra:
+                if total >= 18:
+                    break
+                px, pc = prices[t]
+                g = "BAY" if pc >= 0 else "DAP"
+                groups[g].append((0.0, t))
+                total += 1
+        labels = {"BAY": "🚀 ĐANG BAY", "EP": "🎯 ÉP VÀO VÙNG",
+                  "DAP": "🔻 ĐẬP MẠNH / SÁT CẮT"}
+        blocks, cnt = [], 0
+        for g in ("BAY", "EP", "DAP"):
+            if not groups[g]:
+                continue
+            blocks.append(f'<div style="font-weight:900;margin:10px 0 '
+                          f'2px;color:#f5c86e">{labels[g]}</div>')
+            for _k, t in groups[g]:
+                blocks.append(_day_block(t, prices, zones, notes,
+                                         _binary(t)))
+                cnt += 1
+        if cnt < 8:  # quá ít dữ liệu — không thay mục cũ
+            return h, 0
+        new_inner = (head + "\n" + "\n".join(preserved)
+                     + "\n<!-- DAY-HOT-AUTO -->\n" + "\n".join(blocks)
+                     + "\n<!-- /DAY-HOT-AUTO -->")
+        return h[:s] + open_tag + new_inner + "</div>" + h[e:], cnt
+    except Exception as ex:
+        print(f"  ! rebuild daytrade: {ex}", file=sys.stderr)
+        return h, 0
 
 
 BOOK_SEC = {"Sổ 1": "sec-longterm", "Sổ 2": "sec-so2", "Sổ 3": "sec-so3"}
@@ -1491,9 +3112,9 @@ def steel_net_update(h, prices, highs52, pm=False):
         anchor = '<div class="sec" id="sec-chinam">'
         h = h.replace(anchor, block + anchor, 1)
     # nav: thêm 🕸️ Lưới Thép sau 🔪 Săn CM (idempotent — chỉ khi chưa có)
-    if 'href="#sec-steelnet"' not in h:
+    if 'muc.html?s=sec-steelnet' not in h:
         h = re.sub(r'(href="#sec-sancm">🔪 Săn CM</a>)',
-                   r'\1<a href="#sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
+                   r'\1<a href="muc.html?s=sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
     return h, f"lưới thép: {len(deals)} mã onsale"
 SHARK_FOCUS = [
     ("NVDA", "🦈🦈🦈", "Bullish premium $23.88M 12/10 (lớn nhất nhóm) · đơn TQ >$35B (Reuters 20/10), giá chưa bật"),
@@ -1524,8 +3145,17 @@ def shark_focus_update(h, prices, pm=False):
             zones = {t: v for t, v in raw.items() if not t.startswith("_")}
         except Exception:
             zones = {}
+    # 30/10: tôn trọng _excluded — mã Tom đã loại khỏi mâm (INTC thesis gãy)
+    # không được chui lại qua khối FOCUS (lỗi healthcheck 13:34 PT 30/10).
+    try:
+        excluded_focus = set(json.load(open(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "zones.json"))).get("_excluded", []))
+    except Exception:
+        excluded_focus = set()
     rows = []
     for t, tier, ev in SHARK_FOCUS:
+        if t in excluded_focus:
+            continue
         z = zones.get(t)
         if not z:
             continue
@@ -2114,7 +3744,7 @@ def fetch_pm_prices(tickers):
             return t, None
 
     out = {}
-    with ThreadPoolExecutor(max_workers=5) as ex:
+    with ThreadPoolExecutor(max_workers=10) as ex:
         for t, v in ex.map(one, tickers):
             if v:
                 out[t] = v
@@ -2353,6 +3983,797 @@ def market_klaxon(h, repo_dir):
     return h, regime
 
 
+# ================= GỌN TOÀN BẢNG (Tom chốt 31/10/2026) =================
+# Tom chê: bảng dài thòng, trùng lặp nhiều, bảng cột vỡ trên phone.
+# Bước này chạy CUỐI pipeline (trước stamp): (1) khử trùng alert trong
+# từng mục, (2) chip vùng xuyên mục tối đa 2 bản — 1 mã 1 nhà, (3) gỡ
+# chip/hàng bảng của mã _excluded, (4) trần khối cho mục tin, (5) thẻ
+# LONG TERM gọn: 🟢 chỉ 1 dòng, 🔵/🔴 thẻ hành động tỉa chi tiết + trị
+# lặp dòng, (6) dòng tóm ⚡ đầu các mục vùng. Mọi xóa quét CÂN BẰNG.
+
+COMPACT_CAPS = {"sec-swing": 16, "sec-news": 16, "sec-urgent": 20,
+                "sec-asia": 12, "sec-hot": 10, "sec-daytrade": 26,
+                "sec-live": 12}
+# sec-daytrade trần 26 (nâng 04/11 theo lệnh Tom 05:42 — mục daytrade
+# phải GIÀU 18–22 khối DAY-HOT + khối tay; trần 12 cũ từ 31/10 cắt mất
+# cả nhóm ĐẬP MẠNH ở đuôi mỗi lượt render).
+_CHIP_SEC_PRIORITY = ("sec-special", "sec-topfocus", "sec-urgent",
+                      "sec-longterm", "sec-so2", "sec-so3", "sec-etf",
+                      "sec-etf16", "sec-steelnet", "sec-dram", "sec-watch",
+                      "sec-daytrade", "sec-swing", "sec-hot", "sec-live",
+                      "sec-news", "sec-asia", "sec-ahshark",
+                      "sec-leverage", "sec-chinam", "sec-cudem",
+                      "sec-plan", "sec-lt9", "sec-ltalloc")
+_SUMMARY_SECS = ("sec-longterm", "sec-so2", "sec-so3", "sec-etf",
+                 "sec-etf16", "sec-steelnet", "sec-watch", "sec-dram")
+
+COMPACT_CSS = """<style id="compact-css">
+.secsummary{font-weight:700;font-size:14px;background:#131c2e;border:1px solid #27334d;border-radius:8px;padding:6px 10px;margin:6px 0 10px;color:#dbe6f7}
+@media (max-width:760px){
+.sec table{width:100%}
+.sec table tr{display:block;margin:0 0 8px;border:1px solid #232c3d;border-radius:10px;padding:6px 2px;background:#101725}
+.sec table th{display:none}
+.sec table td{display:block;border:none;padding:2px 8px}
+.sec table tr.zchip-row{display:block;border:none;background:none;padding:0;margin:0 0 2px}
+.sec table tr.zchip-row td{padding:0}
+}
+</style>"""
+
+
+LANG_MARKER = '<!-- LANG-TOGGLE -->'
+LANG_BTNS = ('<button class="sharebtn notranslate" type="button" id="langViBtn" onclick="setBoardLang(\'vi\')" title="Tieng Viet"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:-2px;border:1px solid #8a8a8a;border-radius:2px"><rect width="30" height="20" fill="#FFD800"/><rect y="3.5" width="30" height="3" fill="#DA251D"/><rect y="8.5" width="30" height="3" fill="#DA251D"/><rect y="13.5" width="30" height="3" fill="#DA251D"/></svg> VIỆT</button>'
+             '<button class="sharebtn notranslate" type="button" id="langEnBtn" onclick="setBoardLang(\'en\')" title="English"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:-2px;border:1px solid #8a8a8a;border-radius:2px"><rect width="30" height="20" fill="#fff"/><rect y="0.00" width="30" height="1.84" fill="#B22234"/><rect y="3.08" width="30" height="1.84" fill="#B22234"/><rect y="6.15" width="30" height="1.84" fill="#B22234"/><rect y="9.23" width="30" height="1.84" fill="#B22234"/><rect y="12.31" width="30" height="1.84" fill="#B22234"/><rect y="15.38" width="30" height="1.84" fill="#B22234"/><rect y="18.46" width="30" height="1.84" fill="#B22234"/><rect width="12" height="10.77" fill="#3C3B6E"/><circle cx="1.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="3.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="5.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="7.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="9.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="11.0" cy="0.6" r="0.55" fill="#fff"/><circle cx="2.0" cy="1.8" r="0.55" fill="#fff"/><circle cx="4.0" cy="1.8" r="0.55" fill="#fff"/><circle cx="6.0" cy="1.8" r="0.55" fill="#fff"/><circle cx="8.0" cy="1.8" r="0.55" fill="#fff"/><circle cx="10.0" cy="1.8" r="0.55" fill="#fff"/><circle cx="1.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="3.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="5.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="7.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="9.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="11.0" cy="3.0" r="0.55" fill="#fff"/><circle cx="2.0" cy="4.2" r="0.55" fill="#fff"/><circle cx="4.0" cy="4.2" r="0.55" fill="#fff"/><circle cx="6.0" cy="4.2" r="0.55" fill="#fff"/><circle cx="8.0" cy="4.2" r="0.55" fill="#fff"/><circle cx="10.0" cy="4.2" r="0.55" fill="#fff"/><circle cx="1.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="3.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="5.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="7.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="9.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="11.0" cy="5.4" r="0.55" fill="#fff"/><circle cx="2.0" cy="6.6" r="0.55" fill="#fff"/><circle cx="4.0" cy="6.6" r="0.55" fill="#fff"/><circle cx="6.0" cy="6.6" r="0.55" fill="#fff"/><circle cx="8.0" cy="6.6" r="0.55" fill="#fff"/><circle cx="10.0" cy="6.6" r="0.55" fill="#fff"/><circle cx="1.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="3.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="5.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="7.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="9.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="11.0" cy="7.8" r="0.55" fill="#fff"/><circle cx="2.0" cy="9.0" r="0.55" fill="#fff"/><circle cx="4.0" cy="9.0" r="0.55" fill="#fff"/><circle cx="6.0" cy="9.0" r="0.55" fill="#fff"/><circle cx="8.0" cy="9.0" r="0.55" fill="#fff"/><circle cx="10.0" cy="9.0" r="0.55" fill="#fff"/><circle cx="1.0" cy="10.2" r="0.55" fill="#fff"/><circle cx="3.0" cy="10.2" r="0.55" fill="#fff"/><circle cx="5.0" cy="10.2" r="0.55" fill="#fff"/><circle cx="7.0" cy="10.2" r="0.55" fill="#fff"/><circle cx="9.0" cy="10.2" r="0.55" fill="#fff"/><circle cx="11.0" cy="10.2" r="0.55" fill="#fff"/></svg> ENGLISH</button>')
+LANG_SNIPPET = """<!-- LANG-TOGGLE -->
+<div id="google_translate_element" style="display:none"></div>
+<script>
+function googleTranslateElementInit(){try{new google.translate.TranslateElement({pageLanguage:'vi',includedLanguages:'en,vi',autoDisplay:false},'google_translate_element');}catch(e){}setTimeout(applyCookieLang,900);killGoogleBar();}
+function killGoogleBar(){try{document.querySelectorAll('.goog-te-banner-frame').forEach(function(f){f.style.setProperty('display','none','important');if(f.parentNode)f.parentNode.removeChild(f);});if(document.body)document.body.style.setProperty('top','0px','important');}catch(e){}}
+setInterval(killGoogleBar,700);
+function applyCookieLang(){try{if(document.cookie.indexOf('googtrans=/vi/en')>-1){var c=document.querySelector('.goog-te-combo');if(c&&c.value!=='en'){c.value='en';c.dispatchEvent(new Event('change'));}}}catch(e){}}
+function setBoardLang(l){var past='expires=Thu, 01 Jan 1970 00:00:00 GMT';if(l==='en'){var d=new Date(Date.now()+365*864e5).toUTCString();document.cookie='googtrans=/vi/en; path=/; expires='+d;document.cookie='googtrans=/vi/en; path=/bang-market-live/; expires='+d;}else{document.cookie='googtrans=; path=/; '+past;document.cookie='googtrans=; path=/bang-market-live/; '+past;}location.reload();}/*LANG-RELOAD-FIX*/
+function markLangBtn(l){try{var a=document.getElementById('langViBtn'),b=document.getElementById('langEnBtn');if(a){a.style.background='';a.style.color='';}if(b){b.style.background='';b.style.color='';}var on=document.getElementById(l==='en'?'langEnBtn':'langViBtn');if(on){on.style.background='#b45309';on.style.color='#fff';}}catch(e){}}
+document.addEventListener('DOMContentLoaded',function(){markLangBtn(document.cookie.indexOf('googtrans=/vi/en')>-1?'en':'vi');killGoogleBar();});
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<style>.goog-te-banner-frame,iframe.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important}body{top:0!important}.goog-te-gadget{display:none!important}#goog-gt-tt,.goog-te-balloon-frame{display:none!important}.goog-text-highlight{background:transparent!important;box-shadow:none!important}</style>
+"""
+
+def ensure_lang_toggle(html):
+    """Ban song ngu dung Google Translate widget (Tom 1/11 chot lai: ban Anh tu
+    dich chua sach nen tam dung Google; en.html van duy tri nen de sau nay thay).
+    Tu gan lai snippet neu mot generator lam mat."""
+    if 'googleTranslateElementInit' not in html and '</body>' in html:
+        html = html.replace('</body>', LANG_SNIPPET + '\n</body>', 1)
+    return html
+
+def ensure_share_gate(html):
+    """Khoa mat khau rieng cho muc chia se (Tom 1/11): con mat + nut Chia se
+    chi mo khi nhap dung mat khau chu bang; tu gan lai neu generator lam mat."""
+    if 'SHARE-GATE' in html:
+        return html
+    try:
+        import importlib.util, os
+        p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'patch_share_gate.py')
+        spec = importlib.util.spec_from_file_location('patch_share_gate', p)
+        mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+        if mod.OLD_BLOCK in html:
+            html = html.replace(mod.OLD_BLOCK, mod.NEW_BLOCK, 1)
+            if mod.OLD_TITLE in html:
+                html = html.replace(mod.OLD_TITLE, mod.NEW_TITLE, 1)
+    except Exception:
+        pass
+    return html
+
+YAHOO_LIVE_SNIPPET = """
+<!-- YAHOO-LIVE-V9 -->
+<script>
+(function(){
+function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
+function fmtPc(x){var s=Math.abs(x).toFixed(2).replace('.',',');return (x<0?'−':x>0?'+':'')+s+'%';}
+function fmtUS(x){return x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtPct1(x){return (x<0?'−':x>0?'+':'')+Math.abs(x).toFixed(1)+'%';}
+function fmtCg(p){if(p>=1000)return '$'+p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(p>=1)return '$'+p.toFixed(3);if(p>=0.01)return '$'+p.toFixed(4);return '$'+p.toFixed(6);}
+function tick(){
+fetch('prices.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(j){
+var q=j.q||{};
+function wsf(t){return window.__wsFresh&&window.__wsFresh[t]&&(Date.now()-window.__wsFresh[t]<90000);}
+document.querySelectorAll('[data-lchip]').forEach(function(e){var t=e.getAttribute('data-lchip'),d=q[t];if(!d||wsf(t))return;e.textContent=e.textContent.replace(/^\\S+ \\$[\\d.,]+ \\([^)]*\\)/,function(){return t+' '+fmtP(d[0])+' ('+fmtPc(d[1])+')';});});
+document.querySelectorAll('[data-achip],[data-fchip]').forEach(function(e){var t=e.getAttribute('data-achip')||e.getAttribute('data-fchip'),d=q[t];if(!d||wsf(t))return;e.textContent=e.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
+document.querySelectorAll('tr.zchip-row').forEach(function(tr){var _t=tr.getAttribute('data-t'),d=q[_t];if(!d||wsf(_t))return;var c=tr.querySelector('.zchip');if(!c)return;c.textContent=c.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
+document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]+/);if(!mt)return;var d=q[mt[0]];if(!d||wsf(mt[0]))return;lp.textContent=fmtUS(d[0]);if(lc){var up=d[1]>=0;lc.textContent=(up?'▲ ':'▼ ')+Math.abs(d[1]).toFixed(2)+'%';lc.className='lc '+(up?'up':'down');}});
+document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b)return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\\$)?)[\\d,]+(?:\\.\\d+)?(\\s*<span class=")(down|up)(">)[^<]*(<\\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d[0])+m[2]+(d[1]<0?'down':'up')+m[4]+fmtPct1(d[1])+m[5];}else if(/^\\s*~?\\$[\\d,]+(?:\\.\\d+)?\\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\\d,]+(?:\\.\\d+)?/,fmtUS(d[0]));}});
+document.querySelectorAll('b').forEach(function(b){if(!b.closest('#sec-etf,#sec-ltalloc,#sec-lt9'))return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var ns=b.nextSibling;if(!ns||ns.nodeType!==3)return;if(/^\\s*—\\s*\\$[\\d.,]+ \\([^)]*\\)/.test(ns.textContent)){ns.textContent=ns.textContent.replace(/^(\\s*—\\s*)\\$[\\d.,]+ \\([^)]*\\)/,function(m,g){return g+fmtP(d[0])+' ('+fmtPc(d[1])+')';});}});
+document.querySelectorAll('[id^="lta-chip-"]').forEach(function(e){var _t=e.id.replace('lta-chip-',''),d=q[_t];if(!d||wsf(_t))return;e.textContent=e.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
+document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(!m)return;var d=q[m[1]];if(!d||wsf(m[1]))return;e.textContent=e.textContent.replace(/(: [A-Z]{2,6} )\\$[\\d.,]+ \\([^)]*\\)/,function(m,g){return g+fmtP(d[0])+' ('+fmtPc(d[1])+')';});});
+if(j.cg){window.__yhOk=true;document.querySelectorAll('[data-cgprice]').forEach(function(e){var d=j.cg[e.getAttribute('data-cgprice')];if(d)e.textContent=fmtCg(d[0]);});document.querySelectorAll('[data-cgchg]').forEach(function(e){var d=j.cg[e.getAttribute('data-cgchg')];if(d)e.textContent=(d[1]>=0?'+':'')+d[1].toFixed(1)+'%';});var cw=document.getElementById('cgLiveWhen');if(cw){var age2=j.ts_epoch?Math.max(0,Math.round(Date.now()/1000-j.ts_epoch)):null;cw.textContent=age2===null?' · 🟢 LIVE':(age2<=180?' · 🟢 LIVE · giá '+age2+' giây trước':' · 🟡 GIÁ CŨ '+Math.round(age2/60)+' phút');}}
+var lamp=document.getElementById('yhLiveWhen');if(lamp&&!(window.__wsLast&&(Date.now()-window.__wsLast<30000))){var age=j.ts_epoch?Math.max(0,Math.round(Date.now()/1000-j.ts_epoch)):null;if(age===null){lamp.textContent='· 🟢 YAHOO LIVE';}else if(age<=180){lamp.textContent='· 🟢 YAHOO LIVE · giá '+age+' giây trước';}else{lamp.textContent='· 🟡 GIÁ CŨ '+Math.round(age/60)+' phút — chờ cập nhật';}}
+}).catch(function(){});
+}
+tick();setInterval(tick,30000);
+})();
+</script>
+"""
+
+
+def ensure_yahoo_live(html):
+    """YAHOO LIVE (Tom 1/11): may poller trong trang tu cap nhat gia Yahoo
+    tren cac chip moi 30 giay tu prices.json cung nguon (Yahoo chan CORS
+    nhung truc tiep nen phai qua cau noi nay — xem yahoo_live.py).
+    Tu gan lai snippet + den LIVE neu generator lam mat."""
+    if 'YAHOO-LIVE-V9' not in html:
+        i = html.find('<!-- YAHOO-LIVE')
+        if i != -1:
+            j = html.find('</script>', i)
+            if j != -1:
+                html = html[:i] + html[j + 9:]
+        if '</body>' in html:
+            html = html.replace('</body>', YAHOO_LIVE_SNIPPET + '\n</body>', 1)
+    if 'id="yhLiveWhen"' not in html:
+        i = html.find('id="sec-live"')
+        if i != -1:
+            j = html.find('</h2>', i)
+            if j != -1 and j - i < 800:
+                html = (html[:j]
+                        + ' <span id="yhLiveWhen" style="font-size:12px;'
+                          'color:#4ade80;font-weight:400">· '
+                          '\\U0001F7E2 YAHOO LIVE</span>'
+                        + html[j:])
+    return html
+
+
+WS_LIVE_SNIPPET = r"""
+<!-- YAHOO-WS-V3 -->
+<script>
+(function(){
+if(window.__wsStarted)return;window.__wsStarted=true;
+window.__wsFresh=window.__wsFresh||{};window.__wsLast=0;
+function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
+function fmtPc(x){var s=Math.abs(x).toFixed(2).replace('.',',');return (x<0?'−':x>0?'+':'')+s+'%';}
+function fmtUS(x){return x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtPct1(x){return (x<0?'−':x>0?'+':'')+Math.abs(x).toFixed(1)+'%';}
+function mf(v){var s=String(Math.round(v*100)/100),p=s.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.');if(p.length>1)p[1]=(p[1]+'0').slice(0,2);return '$'+p.join(',');}
+function b64b(b64){var bin=atob(b64),a=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a;}
+function dec(buf){var o={},pos=0,dv=new DataView(buf.buffer,buf.byteOffset,buf.byteLength);function vi(){var sh=0,r=0;while(true){var b=buf[pos++];r+=(b&0x7f)*Math.pow(2,sh);if(!(b&0x80))break;sh+=7;}return r;}while(pos<buf.length){var key=vi(),f=Math.floor(key/8),wt=key%8;if(wt===0){var v=vi();if(f===3)o.time=v;}else if(wt===5){var fl=dv.getFloat32(pos,true);pos+=4;if(f===2)o.price=fl;if(f===8)o.cp=fl;if(f===12)o.ch=fl;}else if(wt===1){pos+=8;}else if(wt===2){var ln=vi();if(f===1)o.id=new TextDecoder().decode(buf.slice(pos,pos+ln));pos+=ln;}else break;}return o;}
+var seen={},syms=[];
+document.querySelectorAll('[data-lchip],[data-achip],[data-fchip],[data-px],[data-pct]').forEach(function(e){var t=e.getAttribute('data-lchip')||e.getAttribute('data-achip')||e.getAttribute('data-fchip')||e.getAttribute('data-px')||e.getAttribute('data-pct');if(t&&/^[A-Z]{1,6}$/.test(t)&&!seen[t]){seen[t]=1;syms.push(t);}});
+document.querySelectorAll('tr.zchip-row').forEach(function(e){var t=e.getAttribute('data-t');if(t&&/^[A-Z]{1,6}$/.test(t)&&!seen[t]){seen[t]=1;syms.push(t);}});
+document.querySelectorAll('tr').forEach(function(e){var b=e.querySelector('td b');if(!b)return;var t=b.textContent.trim();if(/^[A-Z]{1,6}$/.test(t)&&!seen[t]){seen[t]=1;syms.push(t);}});
+document.querySelectorAll('[id^="lta-chip-"]').forEach(function(e){var t=e.id.replace('lta-chip-','');if(/^[A-Z]{1,6}$/.test(t)&&!seen[t]){seen[t]=1;syms.push(t);}});
+document.querySelectorAll('.livechip').forEach(function(e){var lt=e.querySelector('.lt');if(!lt)return;var m=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(m&&!seen[m[0]]){seen[m[0]]=1;syms.push(m[0]);}});
+document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(m&&!seen[m[1]]){seen[m[1]]=1;syms.push(m[1]);}});
+['SPY','QQQ'].forEach(function(t){if(!seen[t]){seen[t]=1;syms.push(t);}});
+var pending={},flushT=null,lampT=0;
+function apply(id,d){
+document.querySelectorAll('[data-lchip="'+id+'"]').forEach(function(e){e.textContent=e.textContent.replace(/^\S+ \$[\d.,]+ \([^)]*\)/,function(){return id+' '+fmtP(d.price)+' ('+fmtPc(d.cp||0)+')';});});
+document.querySelectorAll('[data-achip="'+id+'"],[data-fchip="'+id+'"]').forEach(function(e){e.textContent=e.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
+var lc=document.getElementById('lta-chip-'+id);if(lc){lc.textContent=lc.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});}
+document.querySelectorAll('[data-px="'+id+'"]').forEach(function(e){e.textContent=id+' '+mf(d.price);});
+document.querySelectorAll('[data-pct="'+id+'"]').forEach(function(e){var c=d.cp||0;e.textContent='('+(c>0?'+':'')+c.toFixed(2).replace('.',',')+'%)';});
+document.querySelectorAll('tr.zchip-row[data-t="'+id+'"]').forEach(function(tr){var c=tr.querySelector('.zchip');if(c)c.textContent=c.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
+document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b||b.textContent.trim()!==id)return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\$)?)[\d,]+(?:\.\d+)?(\s*<span class=")(down|up)(">)[^<]*(<\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d.price)+m[2]+((d.cp||0)<0?'down':'up')+m[4]+fmtPct1(d.cp||0)+m[5];}else if(/^\s*~?\$[\d,]+(?:\.\d+)?\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\d,]+(?:\.\d+)?/,fmtUS(d.price));}});
+document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(!mt||mt[0]!==id)return;lp.textContent=d.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(lc){var cp=d.cp||0;lc.textContent=(cp>=0?'▲ ':'▼ ')+Math.abs(cp).toFixed(2)+'%';lc.className='lc '+(cp>=0?'up':'down');}});
+document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(!m||m[1]!==id)return;e.textContent=e.textContent.replace(/(: [A-Z]{2,6} )\$[\d.,]+ \([^)]*\)/,function(mm,g){return g+fmtP(d.price)+' ('+fmtPc(d.cp||0)+')';});});
+}
+function flush(){var k;for(k in pending)apply(k,pending[k]);pending={};var now=Date.now();if(now-lampT>4000){lampT=now;var lamp=document.getElementById('yhLiveWhen');if(lamp)lamp.textContent='· ⚡ REALTIME '+new Date().toLocaleTimeString('en-GB');}}
+function onTick(d){if(!d.id||d.price===undefined)return;window.__wsFresh[d.id]=Date.now();window.__wsLast=Date.now();if(d.id==='BTC-USD')return;pending[d.id]=d;if(!flushT)flushT=setTimeout(function(){flushT=null;flush();},250);}
+var ws=null,backoff=3000,ka=null;
+function subscribe(){if(!ws||ws.readyState!==1)return;var all=syms.concat(['BTC-USD']);for(var i=0;i<all.length;i+=60){try{ws.send(JSON.stringify({subscribe:all.slice(i,i+60)}));}catch(e){}}}
+function connect(){try{ws=new WebSocket('wss://streamer.finance.yahoo.com/?version=2');}catch(e){retry();return;}
+ws.onopen=function(){backoff=3000;subscribe();if(ka)clearInterval(ka);ka=setInterval(subscribe,25000);};
+ws.onmessage=function(ev){try{var b64=null;try{var j=JSON.parse(ev.data);if(j&&j.message)b64=j.message;}catch(e){}if(!b64)b64=ev.data;onTick(dec(b64b(b64)));}catch(e){}};
+ws.onclose=function(){retry();};ws.onerror=function(){try{ws.close();}catch(e){}};}
+function retry(){if(ka){clearInterval(ka);ka=null;}window.__wsFresh={};setTimeout(connect,backoff);backoff=Math.min(backoff*2,30000);}
+connect();
+})();
+</script>
+"""
+
+
+def ensure_ws_live(html):
+    """YAHOO STREAMER (Tom 2/11 — đột phá realtime): máy khách WebSocket
+    ngay trong trang nối thẳng wss://streamer.finance.yahoo.com (đường ống
+    của chính Yahoo Finance live; test trình duyệt thật trên đúng origin
+    github.io 2/11 21:22 PT: 20 tick/48s BTC+ETH, giá khớp). Tick về là
+    cập nhật chip giá ngay; poller prices.json (5 phút) thành dự phòng —
+    khóa wsf() trong poller cũ chặn ghi đè mã đang có tick tươi <90s.
+    BTC-USD chỉ làm nhịp tim giữ đèn ⚡ (giá crypto vẫn do CoinGecko lo,
+    % 24h thật). Tự gắn lại snippet nếu generator làm mất."""
+    if 'YAHOO-WS-V3' not in html and '</body>' in html:
+        i = html.find('<!-- YAHOO-WS')
+        if i != -1:
+            j = html.find('</script>', i)
+            if j != -1:
+                html = html[:i] + html[j + 9:]
+        html = html.replace('</body>', WS_LIVE_SNIPPET + '\n</body>', 1)
+    return html
+
+
+def write_prices_cache(repo_dir, prices):
+    """Ghi prices_cache.json cho yahoo_live.py dung lai (tranh fetch lai).
+    Fail-soft: loi thi bo qua, yahoo_live tu fetch bo sung."""
+    try:
+        out = {}
+        for t, v in (prices or {}).items():
+            if isinstance(v, (list, tuple)) and len(v) >= 2 \
+                    and isinstance(v[0], (int, float)):
+                out[t] = [round(float(v[0]), 4), round(float(v[1]), 2)]
+        if out:
+            with open(os.path.join(repo_dir, "prices_cache.json"), "w",
+                      encoding="utf-8") as f:
+                json.dump(out, f, separators=(",", ":"))
+    except Exception:
+        pass
+
+
+def publish_yahoo_live():
+    """Bom prices.json (Yahoo) sau moi luot refresh — fail-soft, khong chan bang."""
+    try:
+        import subprocess as _sp
+        _sp.run([sys.executable,
+                 os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "yahoo_live.py")],
+                capture_output=True, text=True, timeout=300)
+    except Exception:
+        pass
+
+def ensure_compact_css(h):
+    if 'id="compact-css"' in h:
+        return h
+    return h.replace("</head>", COMPACT_CSS + "</head>", 1)
+
+
+def _sec_span_by_id(h, sec_id):
+    i = h.find(f'id="{sec_id}"')
+    if i == -1:
+        return None
+    return _sec_span_containing(h, i)
+
+
+def _chip_alert_key(full):
+    """Alert 'chip vùng' (bản sao trạng thái vùng của 1 mã, do
+    update_alert_chips nhân ra nhiều mục) -> (mã, chữ ký). Alert tin
+    tức kể chuyện KHÔNG phải chip -> None, tuyệt đối không đụng."""
+    cm = re.search(r'<div class="zchip[^"]*" data-achip="([A-Z]{2,6})">'
+                   r'(.*?)</div>', full, re.S)
+    if cm:
+        # Chữ ký tính trên RIÊNG khung chip (không tính phần tin đi kèm):
+        # cùng 1 trạng thái vùng nhân ra 5 mục vẫn là 1 sự kiện.
+        return (cm.group(1), _alert_sig(cm.group(0), cm.group(1)))
+    if "data-achip=" in full:
+        t = _alert_ticker(full)
+        return (t, _alert_sig(full, t)) if t else None
+    txt = re.sub(r"<[^>]+>", " ", full)
+    txt = re.sub(r"\s+", " ", txt).strip()
+    if re.match(r"^[A-Z]{2,6} · ", txt) and "Vùng" in txt and "Cắt" in txt:
+        t = _alert_ticker(full)
+        return (t, _alert_sig(full, t)) if t else None
+    return None
+
+
+def _compact_chip_dedup(h, excluded):
+    """Chip vùng của cùng 1 mã + cùng trạng thái: giữ tối đa 2 bản trên
+    toàn bảng (ưu tiên mục đặc biệt/topfocus/khẩn rồi tới sổ nhà); chip
+    của mã _excluded: gỡ sạch (mã đã loại khỏi mâm — vd INTC 30/10)."""
+    counts = {}
+    for sec_id in _CHIP_SEC_PRIORITY:
+        span = _sec_span_by_id(h, sec_id)
+        if not span:
+            continue
+        s0, s1 = span
+        seen_here = set()
+
+        def fn(full, inner):
+            key = _chip_alert_key(full)
+            if key is None:
+                return full
+            if key[0] in excluded:
+                # Gỡ riêng khung chip của mã đã loại; phần tin kể chuyện
+                # đi kèm (nếu còn đáng kể) thì giữ lại, không xóa oan.
+                stripped = re.sub(
+                    r'<div class="zchip[^"]*" data-achip="' + key[0]
+                    + r'">.*?</div>', '', full, flags=re.S)
+                txt = re.sub(r"\s+", " ",
+                             re.sub(r"<[^>]+>", " ", stripped)).strip()
+                return stripped if len(txt) >= 30 else ""
+            # FIX 02/11: cùng 1 chip xuất hiện 2 lần trong CÙNG 1 mục = trùng
+            # hiển thị (cap toàn bảng 2 bản là cho 2 mục khác nhau).
+            if key in seen_here:
+                return ""
+            seen_here.add(key)
+            c = counts.get(key, 0)
+            if c >= 2:
+                return ""
+            counts[key] = c + 1
+            return full
+
+        seg2 = sub_balanced_alerts(h[s0:s1], fn)
+        h = h[:s0] + seg2 + h[s1:]
+    return h
+
+
+def _compact_excluded_rows(h, excluded):
+    """Gỡ cặp hàng (chip + chi tiết) của mã _excluded khỏi các bảng vùng."""
+    for t in excluded:
+        pat = re.compile(
+            r'<tr class="zchip-row" data-t="' + t + r'"><td colspan="\d+">'
+            r'.*?</td></tr>\s*<tr><td><b>' + t + r'</b></td>.*?</tr>', re.S)
+        h = pat.sub('', h)
+        pat2 = re.compile(
+            r'<tr class="zchip-row" data-t="' + t + r'"><td colspan="\d+">'
+            r'.*?</td></tr>', re.S)
+        h = pat2.sub('', h)
+    return h
+
+
+def _compact_caps(h):
+    """Trần khối cho các mục tin/tín hiệu: giữ các khối đầu (mới nhất /
+    hành động xếp trước sẵn), gỡ phần đuôi dài. Khối cấu trúc miễn trừ."""
+    for sec_id, cap in COMPACT_CAPS.items():
+        span = _sec_span_by_id(h, sec_id)
+        if not span:
+            continue
+        s0, s1 = span
+        state = {"n": 0}
+
+        def fn(full, inner):
+            head = full.split(">", 1)[0]
+            if (any(k in inner for k in _STRUCT_KEEP)
+                    or 'lta-row' in head or 'secsummary' in full):
+                return full
+            state["n"] += 1
+            return full if state["n"] <= cap else ""
+
+        seg2 = sub_balanced_alerts(h[s0:s1], fn)
+        h = h[:s0] + seg2 + h[s1:]
+    return h
+
+
+def _lta_clean_tail(tail):
+    """Bỏ các cặp dòng vòng 'Mua ~.../Còn...' mồ côi + </span> lạc nằm
+    SAU span zone (di tích bug lặp dòng ltalloc trước 31/10)."""
+    tail = re.sub(r'(<br>\s*)?Mua ~[^<]*<br>\s*(Còn|Rớt) [^<]*', '', tail)
+    tail = tail.replace('</span>', '')
+    return tail
+
+
+def _compact_ltalloc(h):
+    """Thẻ LONG TERM gọn (ý Tom duyệt 31/10): quỹ 🔵/🔴 = thẻ hành động
+    (chip + tên + dải rút gọn 1 cặp dòng + lý do chọn); quỹ 🟢/két =
+    đúng 1 dòng (chip + khoảng cách tới mốc đổi màu). Xếp thẻ hành
+    động lên trước. Giữ nguyên id lta-chip/lta-zone/lta-ret để pipeline cập
+    nhật giá realtime + lãi ngày/tháng/năm không gãy (bài học 3/11: bản gọn
+    cũ nuốt mất span lta-ret → job ltalloc-returns-daily fail liên tiếp)."""
+    span = _sec_span_by_id(h, "sec-ltalloc")
+    if not span:
+        return h
+    s0, s1 = span
+    seg = h[s0:s1]
+
+    def fn(full, inner):
+        m = re.search(r'id="lta-row-([A-Z]{2,6})"', full)
+        if not m:
+            return full
+        t = m.group(1)
+        # Giữ span lãi (lta-ret) để job returns-daily còn chỗ ghi — bản gọn
+        # cũ nuốt mất span này nên updater fail 3 lượt liên tiếp (3/11).
+        ret = ''
+        rm = re.search(r'<span id="lta-ret-' + t + r'">[^<]*</span>', full)
+        if rm:
+            ret = rm.group(0)
+        open_tag = full[:full.find('>') + 1]
+        chip_m = re.search(r'<div class="lta-chip[^"]*" id="lta-chip-'
+                           + t + r'">.*?</div>', full, re.S)
+        chip = chip_m.group(0) if chip_m else ''
+        zm = re.search(r'<span id="lta-zone-' + t + r'"[^>]*>', full)
+        zone_open, zone_inner, tail = '', '', full
+        if zm:
+            zend = _balanced_span_end(full, zm.start())
+            zone_open = zm.group(0)
+            zone_inner = full[zm.end():zend - 7] if zend >= zm.end() + 7 else ''
+            tail = full[zend:]
+        tail = _lta_clean_tail(tail)
+        is_action = ('lta-row-r' in open_tag) or ('lta-row-b' in open_tag)
+        if not is_action:
+            if t == 'SGOV' or not chip:
+                body = (f'<b>{t}</b> — 💰 KÉT TIỀN — tiền 🔴 bán bớt về '
+                        'đây nằm chờ; quỹ nào rớt 🔵 thì lấy ra mua nhiều thêm.')
+                if zone_open:
+                    body += ' ' + zone_open + 'Két không mua bán theo giá.</span>'
+                return open_tag + body + ('<br>' + ret if ret else '') + '</div>'
+            dist = ''
+            txt = re.sub(r'<[^>]+>', ' ', zone_inner)
+            dm = re.search(r'(Còn [^<]{5,90}?sang (?:🔵|🔴)[^<]{0,40})', txt)
+            if dm:
+                dist = re.sub(r'\s+', ' ', dm.group(1)).strip()
+            line = chip
+            if zone_open:
+                line += (' ' + zone_open
+                         + (dist or '🟢 Mua định kỳ theo kỳ nạp.') + '</span>')
+            return open_tag + line + ('<br>' + ret if ret else '') + '</div>'
+        # Thẻ hành động: tỉa thanh %, dòng vốn/nạp, dòng lãi giá.
+        name = ''
+        nm = re.search(r'(<b>' + t + r'</b>.*?)(?=<div style="background|💰'
+                       r'|<span id="lta-zone)', full, re.S)
+        if nm:
+            name = nm.group(1)
+        znew = ''
+        if zone_open:
+            cut = zone_inner.find('Còn ')
+            if cut != -1:
+                endline = zone_inner.find('<', cut)
+                zcontent = zone_inner[:endline if endline != -1
+                                      else len(zone_inner)]
+            else:
+                zcontent = zone_inner
+            znew = zone_open + zcontent + '</span>'
+        why = ''
+        wm = re.search(r'🎯 Vì sao chọn:[^<]*', tail)
+        if wm:
+            why = '<br>' + wm.group(0).strip()
+        return open_tag + chip + name + znew + why + ('<br>' + ret if ret else '') + '</div>'
+
+    seg = sub_balanced_alerts(seg, fn)
+    # Xếp lại: thẻ hành động lên trước các dòng định kỳ (khối lta-row
+    # liên tiếp nhau, chỉ cách nhau khoảng trắng).
+    rows = []
+    pat = re.compile(r'<div class="alert lta-row[^>]*>')
+    pos = []
+    i = 0
+    while True:
+        mm = pat.search(seg, i)
+        if not mm:
+            break
+        depth, j = 0, mm.start()
+        while True:
+            o = seg.find('<div', j)
+            c = seg.find('</div>', j)
+            if c == -1:
+                j = len(seg)
+                break
+            if o != -1 and o < c:
+                depth += 1
+                j = o + 4
+            else:
+                depth -= 1
+                j = c + 6
+                if depth == 0:
+                    break
+        pos.append((mm.start(), j))
+        i = j
+    if len(pos) >= 2:
+        contiguous = all(seg[pos[k][1]:pos[k + 1][0]].strip() == ''
+                         for k in range(len(pos) - 1))
+        if contiguous:
+            blocks = [seg[a:b] for a, b in pos]
+            blocks.sort(key=lambda b: 0 if ('lta-row-r' in b[:80]
+                                            or 'lta-row-b' in b[:80]) else 1)
+            seg = seg[:pos[0][0]] + ''.join(blocks) + seg[pos[-1][1]:]
+    return h[:s0] + seg + h[s1:]
+
+
+def _compact_summary(h, sec_id):
+    """Dòng tóm ⚡ đầu mục vùng: đếm trạng thái từ chip trong mục —
+    mở mục 3 giây là nắm tình hình (Tom lệnh 31/10)."""
+    span = _sec_span_by_id(h, sec_id)
+    if not span:
+        return h
+    s0, s1 = span
+    seg = h[s0:s1]
+    # FIX 02/11: đếm theo token đầy đủ 'zchip zchip-X' — bản cũ đếm 'zchip-r'
+    # dính cả class 'zchip-row' của mọi hàng bảng → số 🔴 phình gấp nhiều lần.
+    g = seg.count('zchip zchip-g')
+    y = seg.count('zchip zchip-y')
+    r = seg.count('zchip zchip-r')
+    n = seg.count('zchip zchip-n')
+    if g + y + r + n == 0:
+        return h
+    parts = []
+    if g:
+        parts.append(f"🟢 {g} trong vùng")
+    if y:
+        parts.append(f"🟡 {y} dưới vùng")
+    if r:
+        parts.append(f"🔴 {r} gãy cắt")
+    if n:
+        parts.append(f"⚪ {n} trên vùng")
+    line = ('<div class="secsummary">⚡ TRONG MỤC: '
+            + ' · '.join(parts) + '</div>')
+    if 'secsummary' in seg:
+        seg = re.sub(r'<div class="secsummary">.*?</div>', line, seg, count=1)
+    elif '</h2>' in seg:
+        seg = seg.replace('</h2>', '</h2>' + line, 1)
+    else:
+        return h
+    return h[:s0] + seg + h[s1:]
+
+
+def _sort_ltalloc_actions(h):
+    """Quỹ LONG TERM có tín hiệu HÀNH ĐỘNG (hàng mang class lta-row-r =
+    🔴 BÁN BỚT / lta-row-b = 🔵 MUA NHIỀU) tự nổi lên ĐẦU nhóm hàng quỹ
+    trong sec-ltalloc (luật Tom 31/10: có tín hiệu mua/bán là phải show
+    lên trên). 🟢/két giữ nguyên thứ tự phân bổ. Chỉ hoán đổi vị trí các
+    khối hàng quỹ với nhau (stack-scan cân bằng), không đụng nội dung."""
+    i = h.find('id="sec-ltalloc"')
+    if i == -1:
+        return h
+    j = h.find('id="sec-lt9"', i)
+    if j == -1:
+        j = min(len(h), i + 60000)
+    seg = h[i:j]
+    starts = [m for m in re.finditer(
+        r'<div class="alert lta-row[^"]*" id="lta-row-[A-Z]+"', seg)]
+    if len(starts) < 2:
+        return h
+    blocks = []
+    for m in starts:
+        end = _levcomp_balanced_end(seg, m.start())
+        if end is None:
+            return h
+        blocks.append((m.start(), end, seg[m.start():end]))
+
+    def rank(b):
+        if 'lta-row-r' in b[2][:120]:
+            return 0
+        if 'lta-row-b' in b[2][:120]:
+            return 1
+        return 2
+
+    order = sorted(range(len(blocks)), key=lambda k: rank(blocks[k]))
+    if order == list(range(len(blocks))):
+        return h
+    out, prev = [], 0
+    for slot, src_i in zip(blocks, order):
+        out.append(seg[prev:slot[0]])
+        out.append(blocks[src_i][2])
+        prev = slot[1]
+    out.append(seg[prev:])
+    return h[:i] + ''.join(out) + h[j:]
+
+
+def board_compact(h):
+    """GỌN TOÀN BẢNG — chạy cuối pipeline, trước stamp (Tom 31/10)."""
+    excluded = set()
+    try:
+        # load_zones() đã lọc khóa _ khỏi ZONES -> đọc thẳng zones.json
+        # (cùng mẫu các hàm shark_focus/steel_net trong file này).
+        _zp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "zones.json")
+        excluded = set(json.load(open(_zp, encoding="utf-8"))
+                       .get("_excluded", []))
+    except Exception:
+        excluded = set()
+    for sec_id in re.findall(r'<div class="sec" id="([^"]+)"', h):
+        h, _rm = dedup_alert_section(h, sec_id)
+    h = _compact_chip_dedup(h, excluded)
+    if excluded:
+        h = _compact_excluded_rows(h, excluded)
+    h = _compact_caps(h)
+    h = _compact_ltalloc(h)
+    h = _sort_ltalloc_actions(h)
+    for sec_id in _SUMMARY_SECS:
+        h = _compact_summary(h, sec_id)
+    return h
+
+
+def dash_top_merge(h):
+    """🧭 BẢNG ĐIỀU KHIỂN ĐẦU BẢNG — Tom lệnh 3/11 (~12:47 PT, kèm ảnh chụp):
+    4 dải rời ở đầu bảng (Bull vs Bear + Chế độ thị trường + VIX + Fear&Greed/
+    Cổng săn) lặp số nhau, đọc rối — GOM THÀNH 1 KHỐI GỌN duy nhất, nhìn là
+    focus. Hàm chạy CUỐI pipeline, ngay trước stamp_version ở MỌI mode: các
+    writer cũ vẫn ghi 4 div riêng như thường (giữ nguyên logic/số liệu), hàm
+    này trích số thật từ chính 4 div đó, XÓA cả 4, chèn 1 card #dashTop bọc
+    marker DASHTOP-START/END ngay sau badge 'Cập nhật lần cuối'. Thiếu <2 div
+    hoặc thiếu anchor -> giữ nguyên h (an toàn). Lần chạy sau: writer ghi lại
+    4 div mới, merge xóa card cũ theo marker rồi dựng card mới — không chồng.
+    """
+    import html as _html
+
+    def grab(pat):
+        m = re.search(pat, h, re.S)
+        return m.group(0) if m else ""
+
+    def text_of(div):
+        t = re.sub(r"<br\s*/?>", " | ", div)
+        t = re.sub(r"<[^>]+>", " ", t)
+        return " ".join(_html.unescape(t).split())
+
+    bb = grab(r'<div class="bullbear" id="bullBear".*?</div>')
+    rg = grab(r'<div class="regime" id="regimeStrip".*?</div>')
+    vx = grab(r'<div class="note[^"]*" id="vix-gauge">.*?</div>')
+    fg = grab(r'<div class="note[^"]*" id="fg-gauge">.*?</div>')
+    if sum(bool(x) for x in (bb, rg, vx, fg)) < 2:
+        return h
+    if not re.search(r'<span class="updated">.*?</span>', h, re.S):
+        return h
+
+    # --- Bull vs Bear: verdict + phần số chỉ số ---
+    bb_t = text_of(bb)
+    bb_t = re.sub(r"^.*?BULL vs BEAR — ", "", bb_t)
+    bb_t = re.sub(r" • \d{1,2}:\d{2} PT • .*$", "", bb_t)
+    m = re.match(r"(\S+ [A-ZÀ-Ỹ ]+?) ((?:S&P|Nasdaq|Dow).*)", bb_t)
+    bb_head, bb_rest = (m.group(1), m.group(2)) if m else (bb_t, "")
+
+    # --- Chế độ: nhãn + dòng MA + ghi chú hành động ---
+    rg_t = text_of(rg)
+    m = re.search(r"CHẾ ĐỘ THỊ TRƯỜNG — (.+?) (SPY \$.*?) · theo ", rg_t)
+    rg_label, rg_idx = (m.group(1), m.group(2)) if m else ("", "")
+    rg_note = rg_t.split(" | ", 1)[1] if " | " in rg_t else ""
+    accent = ("#dc2626" if "PHÒNG THỦ" in rg_label else
+              "#16a34a" if "TẤN CÔNG" in rg_label else "#eab308")
+
+    # --- VIX: số + nhãn ---
+    vx_t = text_of(vx)
+    m = re.search(r"VIX ([\d.]+) — (.+?) kiểm tra", vx_t)
+    vx_s = f"VIX {m.group(1)} ({m.group(2)})" if m else ""
+
+    # --- Fear & Greed: điểm + rating + cổng săn ---
+    fg_t = text_of(fg)
+    m = re.search(r"Fear & Greed ([\d.]+) — ([A-Z ]+)", fg_t)
+    fg_s = f"F&G {m.group(1)} {m.group(2).strip()}" if m else ""
+    gate = ("🦈 CỔNG SĂN MỞ" if "CỔNG SĂN MỞ" in fg_t else
+            "🔒 CỔNG SĂN ĐÓNG" if "CỔNG SĂN ĐÓNG" in fg_t else "")
+
+    E = _html.escape
+
+    def _num(s):
+        try:
+            return float(str(s).replace(",", ""))
+        except Exception:
+            return None
+
+    def _vn_pct(x):
+        return f"{x:+.1f}".replace(".", ",") + "%"
+
+    # ===== DASHTOP V3 — Tom lệnh thu gọn 3/11 ~14:15 PT: bản v2 chiếm nửa
+    # màn hình phone, phải thu nhỏ lại một nửa. V3 gộp dòng: (1) dòng đầu =
+    # CHẾ ĐỘ + VIX + F&G; (2) thanh F&G gradient mỏng; (3-4) SPY/QQQ đòi lại
+    # MA20, thanh mỏng; (5) PHE % 1 dòng + thanh kéo co mỏng; (6) ghi chú
+    # rút gọn 1 dòng + cổng săn. Bỏ: dòng futures, điểm phe thô, hero F&G
+    # 2 dòng, đuôi dài "còn ... nữa mới tới MA20". Chữ giữ cỡ rõ nét.
+    # Thiếu dữ liệu cốt lõi -> rơi về layout v1 ở ngay dưới.
+    body = None
+    try:
+        _ms = re.search(r"SPY \$([\d,]+(?:\.\d+)?) · MA20 \$([\d,]+(?:\.\d+)?)", rg_t)
+        _mq = re.search(r"QQQ \$([\d,]+(?:\.\d+)?) · MA20 \$([\d,]+(?:\.\d+)?)", rg_t)
+        _mp = re.search(r"điểm phe ([+-]?[\d.]+)", bb_t)
+        _mf = re.search(r"Fear & Greed ([\d.]+) — ([A-Z ]+)", fg_t)
+        if _ms and _mq and _mp and _mf and rg_label:
+            _spy = (_num(_ms.group(1)), _num(_ms.group(2)))
+            _qqq = (_num(_mq.group(1)), _num(_mq.group(2)))
+            _score = float(_mp.group(1))
+            _fgv = float(_mf.group(1))
+            _rating_vn = {"EXTREME FEAR": "CỰC KỲ SỢ HÃI", "FEAR": "SỢ HÃI",
+                          "NEUTRAL": "TRUNG LẬP", "GREED": "THAM LAM",
+                          "EXTREME GREED": "CỰC KỲ THAM LAM"}.get(
+                              _mf.group(2).strip(), _mf.group(2).strip())
+            _vx_html = ""
+            if vx_s:
+                _mvx = re.search(r"VIX ([\d.]+)", vx_s)
+                _vxn = float(_mvx.group(1)) if _mvx else 0.0
+                _vxc = ("#f87171" if _vxn >= 25 else "#fb923c" if _vxn >= 20
+                        else "#eab308" if _vxn >= 15 else "#4ade80")
+                _vx_html = f' · 🌡️ <b style="color:{_vxc}">{E(vx_s)}</b>'
+            _prev = ""
+            try:
+                _fgp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "fear_greed.json")
+                _stf = json.load(open(_fgp, encoding="utf-8"))
+                if _stf.get("prev_close"):
+                    _prev = f' · hôm qua {_stf["prev_close"]:.0f}'
+            except Exception:
+                pass
+            _fgc = ("#f97316" if _fgv <= 25 else "#eab308" if _fgv <= 45 else
+                    "#a3a380" if _fgv <= 55 else "#84cc16" if _fgv <= 75
+                    else "#16a34a")
+
+            def _ma20_row(tk, cm):
+                close, ma20 = cm
+                d = (close / ma20 - 1) * 100 if ma20 else 0.0
+                if d >= 0:
+                    fill, col, tail = 100, "#16a34a", "ĐÃ ĐÒI LẠI MA20 ✓"
+                else:
+                    fill = max(4, min(96, 100 + d * 8))
+                    col = "#eab308" if d >= -3 else "#dc2626"
+                    tail = f"{_vn_pct(d)} tới MA20"
+                bar = ('<span class="dt-bar" style="display:inline-block;width:84px;height:8px;'
+                       'background:rgba(148,163,184,.25);border-radius:4px;'
+                       'overflow:hidden;vertical-align:middle;margin:0 6px">'
+                       f'<span style="display:block;height:100%;width:{fill:.0f}%;'
+                       f'background:{col}"></span></span>')
+                return (f'<div class="dt-ma">{tk} <b>${close:,.0f}</b> → MA20 ${ma20:,.0f} '
+                        f'{bar}<b class="dt-pct" style="color:{col}">{tail}</b></div>')
+
+            _bull = max(3, min(97, round(50 + _score * 12)))
+            _bear = 100 - _bull
+            # Tom 3/11 ~14:28: bỏ dòng 📌 dài — trạng thái cổng mua MỞ/ĐÓNG
+            # chuyển xuống dòng cuối của khối dạng badge highlight (xem footer).
+            _rows3 = [
+                (f'<div style="font-size:15px">🧭 <b>CHẾ ĐỘ — {E(rg_label)}</b>'
+                 f'{_vx_html}<span class="dt-sep"> · </span><span class="dt-fg">😨 FEAR & GREED <b style="color:{_fgc};font-size:19px">'
+                 f'{_fgv:.0f}</b> <b>{E(_rating_vn)}</b>'
+                 f'<span style="color:#c9d6f2;font-size:12px;margin-left:6px">'
+                 f'hôm nay {_fgv:.1f}{_prev}</span></span></div>'),
+                ('<div style="position:relative;height:6px;border-radius:3px;'
+                 'margin:4px 0 5px;background:linear-gradient(90deg,#dc2626,'
+                 '#f97316,#eab308,#84cc16,#16a34a)">'
+                 f'<div style="position:absolute;top:-2px;left:calc({_fgv:.0f}% - 2px);'
+                 'width:4px;height:11px;background:#fff;border-radius:2px;'
+                 'box-shadow:0 0 4px rgba(0,0,0,.7)"></div></div>'),
+                _ma20_row("SPY", _spy),
+                _ma20_row("QQQ", _qqq),
+                (f'<div style="margin-top:4px">🐂 <b style="color:#4ade80">'
+                 f'BULL {_bull}%</b> · 🐻 <b style="color:#f87171">BEAR '
+                 f'{_bear}%</b></div>'),
+                ('<div style="height:7px;border-radius:4px;overflow:hidden;'
+                 'background:#dc2626;margin:3px 0 1px">'
+                 f'<div style="height:100%;width:{_bull}%;background:#16a34a">'
+                 '</div></div>'),
+            ]
+            body = "".join(_rows3)
+    except Exception:
+        body = None
+    if body is None:
+        rows = []
+        if rg_label:
+            idx = f' <span style="color:#9fb3d9">{E(rg_idx)}</span>' if rg_idx else ""
+            rows.append(f"<div>🧭 <b>CHẾ ĐỘ — {E(rg_label)}</b>{idx}</div>")
+        if bb_head:
+            rest = f' <span style="color:#9fb3d9">{E(bb_rest)}</span>' if bb_rest else ""
+            rows.append(f"<div>⚔️ <b>PHE — {E(bb_head)}</b>{rest}</div>")
+        fear_bits = vx_s or ""
+        if fg_s or fear_bits:
+            fb = f' <span style="color:#9fb3d9">{E(fear_bits)}</span>' if fear_bits else ""
+            rows.append(f"<div>😨 <b>SỢ HÃI — {E(fg_s)}</b>{fb}</div>")
+        if not rows:
+            return h
+        body = "".join(rows)
+    # Tom 3/11 ~14:28: highlight CỔNG MUA MỞ/ĐÓNG ở dòng cuối khối (thay dòng 📌)
+    if "TẮT" in (rg_note or "") or "PHÒNG THỦ" in (rg_label or ""):
+        _gate_badge = ('<span style="background:#7f1d1d;color:#fff;padding:1px 8px;'
+                       'border-radius:6px;font-weight:800">⛔ KHÔNG MUA MÃ MỚI</span>'
+                       '<span class="dt-note"> chờ SPY/QQQ đòi lại MA20</span>')
+    elif "TRUNG LẬP" in (rg_label or ""):
+        _gate_badge = ('<span style="background:#92400e;color:#fff;padding:1px 8px;'
+                       'border-radius:6px;font-weight:800">⚠️ MUA MỚI: HẠN CHẾ</span>'
+                       '<span class="dt-note"> chờ xác nhận đảo chiều</span>')
+    elif rg_label:
+        _gate_badge = ('<span style="background:#14532d;color:#fff;padding:1px 8px;'
+                       'border-radius:6px;font-weight:800">✅ MUA MỚI: MỞ</span>'
+                       '<span class="dt-note"> mua theo vùng duyệt</span>')
+    else:
+        _gate_badge = "Bảng điều khiển đầu bảng"
+    # Tom 3/11 18:59 PT: monitor OK nhung phone bi rot dong/che khu ->
+    # media-query chi cho man hep (<=640px), desktop giu nguyen 100%.
+    # Style nam TRONG card (rebuild moi render) nen khong ton tai ban sao lac.
+    _dt_css = ('<style>@media (max-width:640px){'
+               '#dashTop .dt-sep{display:none}'
+               '#dashTop .dt-fg{display:block;margin-top:1px}'
+               '#dashTop .dt-bar{width:50px!important}'
+               '#dashTop .dt-pct{white-space:nowrap}'
+               '#dashTop .dt-note{white-space:nowrap}'
+               '#dashTop .dt-upd{white-space:nowrap}'
+               '#dashTop .dt-foot{padding-right:44px}'
+               '}</style>')
+    card = ("<!-- DASHTOP-START -->\n"
+            f'<div class="dashtop" id="dashTop" style="border:2px solid #d4af37;'
+            f"border-left:7px solid {accent};border-radius:12px;padding:8px 11px;"
+            f'margin:6px 0 2px;background:rgba(212,175,55,.06);font-size:13.5px;'
+            f'line-height:1.45">' + _dt_css + body +
+            f'<div class="dt-foot" style="font-size:12px;margin-top:4px">{_gate_badge}'
+            f'<span class="dt-upd" style="opacity:.65"> · cập nhật {now_pt().strftime("%H:%M")} PT</span>'
+            f"</div></div>\n<!-- DASHTOP-END -->\n")
+
+    for pat in (r'<div class="bullbear" id="bullBear".*?</div>\n?',
+                r'<div class="regime" id="regimeStrip".*?</div>\n?',
+                r'<div class="note[^"]*" id="vix-gauge">.*?</div>\n?',
+                r'<div class="note[^"]*" id="fg-gauge">.*?</div>\n?',
+                r"<!-- DASHTOP-START -->.*?<!-- DASHTOP-END -->\n?"):
+        h = re.sub(pat, "", h, flags=re.S)
+    h2, c = re.subn(r'(<span class="updated">.*?</span>)', r"\g<1>\n" + card,
+                    h, count=1, flags=re.S)
+    return h2 if c else h
+
+
 def stamp_version(h, repo_dir):
     """Tom lệnh 15/10 (~12:30): bạn bè không nhận được update — cache kẹt.
     Mỗi lượt ghi version.json + đóng dấu meta board-v vào HTML.
@@ -2382,32 +4803,35 @@ def validate(h):
 
 
 def git_push(repo_dir, msg):
-    def run(*a):
-        return subprocess.run(a, cwd=repo_dir, capture_output=True, text=True, timeout=120)
-    run("git", "pull", "--rebase", "origin", "main")
-    # add có chọn lọc — KHÔNG add .github/ (token thiếu workflow scope, push sẽ bị từ chối)
-    # fix 16/10: chỉ add file đang tồn tại — back_to_wait_state.json vắng mặt làm
-    # cả lệnh add fail (fatal pathspec), commit rỗng, push "Everything up-to-date"
-    # rồi vẫn in "pushed" giả trong khi bảng chưa lên remote
-    _files = ["index.html", "zone_state.json", "market_state.json", "regime_state.json",
-              "quick_refresh.py", "refresh-tickers.txt", "zones.json", "fetch_failures.json",
-              "version.json", "back_to_wait_state.json"]
-    _files = [f for f in _files if os.path.exists(os.path.join(repo_dir, f))]
-    run("git", "add", *_files)
-    st = run("git", "status", "--porcelain").stdout.strip()
-    if not st:
-        return "nothing-to-commit"
-    run("git", "-c", "user.email=tom@local", "-c", "user.name=Tom", "commit", "-qm", msg)
-    for i in range(3):
+    """CỔNG DUY NHẤT (phá trận 4/11 — lệnh Tom): hàm này KHÔNG tự git
+    pull/commit/push nữa. Mọi lượt đẩy giao deploy.py: nó gom MỌI file đổi
+    (web + state, theo danh sách FILES của deploy.py) thành đúng 1 commit
+    qua Git Data API rồi verify cặp live. Giữ nguyên hợp đồng trả về cho
+    caller: "pushed" / "nothing-to-commit" / "push-failed" — và KHÔNG bao
+    giờ trả "pushed" giả khi chưa thấy bằng chứng trong output của cổng
+    (bài học 16/10: push chưa lên mà in "pushed"). deploy.py đang bận
+    (flock — "lượt khác đang chạy") thì chờ 25 giây thử lại, tối đa 6 lần;
+    hết lượt hoặc cổng lỗi thì thành thật "push-failed" để lượt sau xử lý.
+    Tham số msg giữ cho tương thích chữ ký, cổng tự ghi log commit."""
+    for attempt in range(6):
         try:
-            r = run("git", "push", "origin", "main")
-        except subprocess.TimeoutExpired:
-            print("  ! push timeout, thử lại", file=sys.stderr)
-            time.sleep(30)
-            continue
-        if r.returncode == 0:
+            r = subprocess.run([sys.executable,
+                                os.path.join(repo_dir, "deploy.py")],
+                               cwd=repo_dir, capture_output=True, text=True,
+                               timeout=600)
+        except Exception:
+            return "push-failed"
+        out = (r.stdout or "") + (r.stderr or "")
+        if "lượt khác đang chạy" in out:
+            if attempt < 5:
+                time.sleep(25)
+                continue
+            return "push-failed"
+        if "0 commit" in out:
+            return "nothing-to-commit"
+        if "VERIFIED" in out or "1 commit" in out:
             return "pushed"
-        time.sleep(30)
+        return "push-failed"
     return "push-failed"
 
 
@@ -2418,6 +4842,816 @@ def close_headers(h):
     h = h.replace("giữa phiên", "chốt phiên")
     h = re.sub(r"\(14/10 — giữa phiên sáng\)", f"({today} — chốt phiên)", h)
     h = re.sub(r"\(\d{2}/\d{2} — giữa phiên sáng\)", f"({today} — chốt phiên)", h)
+    return h
+
+
+LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
+           "CIEG": "CIEN", "DRAM": "DRAM", "RAM": "DRAM", "NVDL": "NVDA",
+           "GGLL": "GOOGL", "AVGX": "AVGO", "TQQQ": "QQQ", "AMZU": "AMZN",
+           "TSLL": "TSLA", "TNA": "IWM", "SPCH": "SPCX", "VSTL": "VST",
+           "METU": "META", "SKUU": "SKHY", "AMDL": "AMD", "ORCU": "ORCL",
+           "MSFU": "MSFT", "TSMX": "TSM", "RKLX": "RKLB", "CRWC": "CRWD",
+           "CRMG": "CRM",
+           "ASTX": "ASTS", "DLLL": "DELL", "AAPU": "AAPL", "PLTU": "PLTR",
+           "PLTZ": "PLTR",
+           "INTW": "INTC", "STXU": "STX", "STXX": "STX", "STXL": "STX", "CEGX": "CEG", "IONX": "IONQ",
+           "AVXX": "AVAV", "KTUP": "KTOS", "OKLL": "OKLO", "OKTG": "OKTA",
+           "RDDC": "RDDT", "NOWL": "NOW", "CRDU": "CRDO", "ROBN": "HOOD", "LRCU": "LRCX",
+           "COHX": "COHR",
+           "MULL": "MU",
+           "NBIL": "NBIS",
+           "TSLG": "TSLA",
+           "TSLR": "TSLA",
+           "SMCX": "SMCI",
+           "NVDX": "NVDA",
+           "NVDG": "NVDA",
+           "MVLL": "MRVL",
+           "CONY": "COIN",
+           "SNDU": "SNDK",
+           "SNDG": "SNDK",
+           "AAOX": "AAOI",
+           "KLAG": "KLAC",
+           "LITX": "LITE",
+           "CSCL": "CSCO",
+           "VRTL": "VRT",
+           "ANEL": "ANET",
+           "LABX": "ALAB",
+           "RTXG": "RTX",
+           "LMTL": "LMT",
+           "GLWG": "GLW",
+           "WDCX": "WDC"}
+
+
+# --- XE X2 COMPANION (Tom 30/10 12:48): mẫu mục ĐÒN BẨY áp cho các mục khác.
+# Mỗi mã gốc có 1 xe x2 tốt nhất (thanh khoản cao nhất); alert/row của mã đó
+# được gắn thêm 1 dòng companion ngay dưới headline: giá xe realtime +
+# trạng thái vùng mã gốc (cùng logic/màu/chớp như lchip ở sec-leverage) +
+# vùng dịch theo tỷ lệ giá realtime (công thức levmap đang chạy ở sec-leverage).
+# TQQQ/TNA là xe chỉ số, KHÔNG gắn companion.
+# CỐ Ý KHÔNG gắn: sec-ltalloc + sec-etf/sec-lt9/sec-etf16 (tiền dài hạn
+# 10–20 năm, xe x2 ngược triết lý) · sec-leverage (đã đủ 3 lớp) · sec-news
+# và các mục tin tức/chỉ nam.
+COMP_MAP = {
+    "NVDA": "NVDL", "GOOGL": "GGLL", "AVGO": "AVGX", "TSM": "TSMX",
+    "MSFT": "MSFU", "ORCL": "ORCU", "AMD": "AMDL", "META": "METU",
+    "AMZN": "AMZU", "TSLA": "TSLL", "SNDK": "SNXX", "MU": "MUU",
+    "COIN": "CONL", "CIEN": "CIEG", "RKLB": "RKLX", "ASTS": "ASTX",
+    "IONQ": "IONX", "AVAV": "AVXX", "KTOS": "KTUP", "CEG": "CEGX",
+    "VST": "VSTL", "SPCX": "SPCH", "DELL": "DLLL", "AAPL": "AAPU",
+    "PLTR": "PLTU", "INTC": "INTW", "STX": "STXU", "SKHY": "SKUU",
+    "OKLO": "OKLL", "OKTA": "OKTG", "RDDT": "RDDC", "NOW": "NOWL",
+    "CRWD": "CRWC", "IREN": "IRE", "DRAM": "RAM", "CRDO": "CRDU", "HOOD": "ROBN", "LRCX": "LRCU",
+    "KLAC": "KLAG", "LITE": "LITX", "CSCO": "CSCL", "VRT": "VRTL",
+    "ANET": "ANEL", "ALAB": "LABX", "CRM": "CRMG",
+    "RTX": "RTXG", "LMT": "LMTL", "GLW": "GLWG", "WDC": "WDCX",
+}
+COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
+    "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
+    "VSTL": "⚠️ vol mỏng ~91k",
+    "AVXX": "⚠️ vol mỏng ~39k",
+    "RDDC": "⚠️ vol mỏng ~34k",
+    "AMDL": "🚨 AMD earnings 3/11 — cấm ôm xe qua số",
+    "LRCU": "⚠️ vol vừa ~140–200k cp/ngày, AUM ~$39tr — chia lệnh nhỏ, tránh giờ mỏng",
+    "COHX": "🚨 COHR earnings 4/11 — cấm ôm xe qua số",
+    "SMCX": "🚨 SMCI earnings CHIỀU NAY 3/11 — cấm ôm xe qua số",
+    "KLAG": "⚠️ vol mỏng ~22k cp/ngày (3/11), AUM ~$11tr — chia lệnh nhỏ, tránh giờ mỏng",
+    "LITX": "🚨 LITE earnings 5/11 AMC — cấm ôm xe qua số",
+    "CSCL": "⚠️ vol cực mỏng ~6–11k cp/ngày, AUM ~$10tr — gần như không giao dịch được, chia lệnh nhỏ",
+    "ANEL": "🚨 ANET earnings TỐI NAY 3/11 AMC — cấm ôm xe qua số · ⚠️ vol vừa ~61k cp/ngày (3/11) — chia lệnh nhỏ",
+    "LABX": "🚨 ALAB earnings TỐI NAY 3/11 AMC — cấm ôm xe qua số",
+    "RTXG": "⚠️ vol cực mỏng ~7,5k cp/ngày (3/11) — gần như không giao dịch được, chia lệnh nhỏ",
+    "LMTL": "⚠️ vol mỏng ~10–31k cp/ngày, AUM ~$8tr — chia lệnh nhỏ, tránh giờ mỏng",
+    "STXX": "⚠️ vol vừa ~100–160k cp/ngày, phí 1,49%/năm — chia lệnh nhỏ, tránh giờ mỏng",
+    "CONY": "💸 KHÔNG phải xe x2 — quỹ YieldMax thu nhập quyền chọn: phí ~0,99%/năm · cổ tức TUẦN (kỳ 29/10: $0,181/cp), phần lớn là hoàn vốn — NAV mòn dần theo thời gian",
+}
+COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
+                 "sec-special", "sec-urgent")
+_COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
+                   "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
+
+
+def _levcomp_balanced_end(h, start):
+    """Index ngay sau thẻ </div> cân bằng với <div mở tại start; None nếu lệch."""
+    depth, j = 0, start
+    while True:
+        o = h.find('<div', j)
+        c = h.find('</div>', j)
+        if c == -1:
+            return None
+        if o != -1 and o < c:
+            depth += 1
+            j = o + 4
+        else:
+            depth -= 1
+            j = c + 6
+            if depth == 0:
+                return j
+
+
+def _levcomp_strip(h):
+    """Xóa trọn mọi dòng .levcomp cũ + hàng <tr class="levcomp-row"> cũ.
+    Quét cân bằng tới thẻ đóng của element — KHÔNG regex non-greedy dừng
+    giữa chừng (bài học bug nhân đôi levtag 30/10)."""
+    while True:
+        m = re.search(r'<tr class="levcomp-row">', h)
+        if not m:
+            break
+        e = h.find('</tr>', m.start())
+        if e == -1:
+            break
+        h = h[:m.start()] + h[e + 5:]
+    out, i = [], 0
+    pat = re.compile(r'<div class="levcomp[^>]*>')
+    while True:
+        m = pat.search(h, i)
+        if not m:
+            out.append(h[i:])
+            break
+        start = m.start()
+        end = _levcomp_balanced_end(h, start)
+        if end is None:
+            out.append(h[i:])
+            return ''.join(out)
+        out.append(h[i:start])
+        i = end
+    return ''.join(out)
+
+
+def _comp_line(u, v, px, zones):
+    """(dòng companion, chớp?) cho mã gốc u / xe v; (None, False) nếu thiếu giá.
+    BROKEN → chỉ ghi 'MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu', TUYỆT ĐỐI
+    không ghi chữ MUA. Vùng TẠM TREO → không dịch số, như levmap."""
+    if v not in px or u not in px:
+        return None, False
+    vpx, vpct = px[v]
+    upx = px[u][0]
+    if not upx:
+        return None, False
+    head = (f"↳ XE X2 · SỔ 3 CHỈ DAYTRADE: {v} {_lt_money(vpx)} "
+            f"({fmt_pct_vn(vpct)})")
+    warn = COMP_WARN.get(v)
+    if warn:
+        head += f" · {warn}"
+    z = zones.get(u)
+    if not z or not z.get("entry"):
+        return head + f" · {u} chưa có vùng — xe chạy theo đà", False
+    note = (z.get("note") or "").upper()
+    if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
+        return head + f" · {u} VÙNG TẠM TREO — chưa dịch giá xe", False
+    try:
+        lo, hi = z["entry"]
+        st = _zone_state_of(z, upx)
+    except Exception:
+        return None, False
+    r = vpx / upx
+    body = (f"MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu · "
+            f"Vùng dịch {_lt_money(lo * r)}–{_lt_money(hi * r)}"
+            if st == "BROKEN" else
+            f"{_COMP_STATE_LAB[st]} · "
+            f"Vùng dịch {_lt_money(lo * r)}–{_lt_money(hi * r)}")
+    tps = z.get("targets") or z.get("tp") or []
+    if isinstance(tps, (int, float)):
+        tps = [tps]
+    if tps:
+        body += " · Chốt " + "→".join(_lt_money(t * r) for t in tps[:2])
+    if z.get("cut"):
+        body += f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}"
+    return head + " · " + body, (st == "IN")
+
+
+def _comp_alert_ticker(full):
+    """Mã chính của 1 alert: chip/ticker attr định danh trước (không ăn theo
+    mã nhắc trong bold — tránh gắn nhầm companion cho alert của mã khác)."""
+    for attr in ("data-achip", "data-ticker", "data-fchip"):
+        m = re.search(attr + r'="([A-Z]{2,6})"', full)
+        if m:
+            return m.group(1) if m.group(1) in COMP_MAP else None
+    m = re.search(r"<b>(.*?)</b>", full, re.S)
+    if m:
+        txt = re.sub(r"<[^>]+>", " ", m.group(1))
+        for tok in re.findall(r"\b([A-Z]{2,6})\b", txt):
+            if tok in COMP_MAP:
+                return tok
+    return None
+
+
+def _comp_insert_alert(full, u, line, flash):
+    """Chèn dòng companion NGAY DƯỚI headline của 1 alert; full nguyên trạng
+    nếu không xác định được headline (không đếm)."""
+    cls = "levcomp levflash" if flash else "levcomp"
+    div = f'<div class="{cls}">{line}</div>'
+    for bm in re.finditer(r"<b>(.*?)</b>", full, re.S):
+        txt = re.sub(r"<[^>]+>", " ", bm.group(1))
+        if re.search(r"\b" + u + r"\b", txt):
+            return full[:bm.end()] + div + full[bm.end():]
+    om = re.match(r'<div class="alert[^>]*>(<div class="zchip[^>]*>)', full)
+    if om:
+        end = _levcomp_balanced_end(full, om.start(1))
+        if end is not None:
+            return full[:end] + div + full[end:]
+    cm = re.search(r"</b>", full[:800])
+    if cm:
+        return full[:cm.end()] + div + full[cm.end():]
+    return full
+
+
+def update_companion_lines(h, prices):
+    """Gắn dòng companion xe x2 vào các mục đích (COMP_SECTIONS + khối 👑
+    FOCUS). Strip trước rồi gắn lại nên idempotent; fail-soft giữ nguyên bảng.
+    Trả về (h, tổng_số_dòng, {mục: số_dòng})."""
+    try:
+        h = _levcomp_strip(h)
+        if ".levcomp{" not in h:
+            css = (".levcomp{margin-top:6px;border:1px dashed #f59e0b;"
+                   "border-radius:8px;padding:6px 9px;font-size:14px;"
+                   "background:rgba(245,158,11,.08)}")
+            i = h.find("</style>")
+            if i > 0:
+                h = h[:i] + css + h[i:]
+        zones, _excl = _zones_local()
+        spans = {}
+        for sec in COMP_SECTIONS:
+            m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+            if not m:
+                continue
+            start = m.start()
+            nxt = h.find('<div class="sec"', start + 10)
+            spans[sec] = (start, nxt if nxt != -1 else len(h))
+        fi = h.find("FOCUS — CÁ MẬP")
+        if fi != -1:
+            fs = h.rfind('<div class="sharkfocus"', 0, fi)
+            fe_m = h.find("<!-- /SHARKFOCUS-AUTO -->", fi)
+            if fs != -1 and fe_m != -1:
+                fe = h.find("</div>", fe_m)
+                if fe != -1:
+                    spans["FOCUS"] = (fs, fe + 6)
+        if not spans:
+            return h, 0, {}
+        # --- giá cần fetch: xe + mã gốc của mọi mã ứng viên trong các mục đích
+        cand = set()
+        for s0, s1 in spans.values():
+            seg = h[s0:s1]
+            for attr in ("data-achip", "data-ticker", "data-fchip"):
+                cand.update(re.findall(attr + r'="([A-Z]{2,6})"', seg))
+            cand.update(re.findall(r"<tr><td><b>([A-Z]{2,6})</b></td>", seg))
+            for bm in re.finditer(r"<b>(.*?)</b>", seg, re.S):
+                txt = re.sub(r"<[^>]+>", " ", bm.group(1))
+                cand.update(t for t in re.findall(r"\b([A-Z]{2,6})\b", txt)
+                            if t in COMP_MAP)
+        cand = {t for t in cand if t in COMP_MAP}
+        px = dict(prices)
+        need = set()
+        for u in cand:
+            need.add(u)
+            need.add(COMP_MAP[u])
+        missing = [t for t in sorted(need) if t not in px]
+        if missing:
+            got, _l, _h52 = fetch_prices(missing)
+            px.update(got)
+        counts = {}
+        # --- xử lý từng mục từ CUỐI file về đầu để span trước không lệch
+        for name in sorted(spans, key=lambda k: -spans[k][0]):
+            s0, s1 = spans[name]
+            seg = h[s0:s1]
+            seen = set()
+            n0 = 0
+
+            def _mk_line(u):
+                line, flash = _comp_line(u, COMP_MAP[u], px, zones)
+                return line, flash
+
+            if name in ("sec-so2", "sec-so3"):
+                def _row_rep(m):
+                    nonlocal n0
+                    u = m.group(1)
+                    if u not in COMP_MAP or u in seen:
+                        return m.group(0)
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return m.group(0)
+                    seen.add(u)
+                    n0 += 1
+                    cls = "levcomp levflash" if flash else "levcomp"
+                    return (m.group(0) +
+                            f'<tr class="levcomp-row"><td colspan="4">'
+                            f'<div class="{cls}">{line}</div></td></tr>')
+                seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
+                             _row_rep, seg, flags=re.S)
+            elif name == "FOCUS":
+                fpat = re.compile(
+                    r'<div style="border-top:1px solid rgba\(212,175,55,.45\)'
+                    r'[^>]*>')
+                out, i = [], 0
+                while True:
+                    fm = fpat.search(seg, i)
+                    if not fm:
+                        out.append(seg[i:])
+                        break
+                    fend = _levcomp_balanced_end(seg, fm.start())
+                    if fend is None:
+                        out.append(seg[i:])
+                        break
+                    entry = seg[fm.start():fend]
+                    out.append(seg[i:fm.start()])
+                    u = _comp_alert_ticker(entry)
+                    if u and u not in seen:
+                        line, flash = _mk_line(u)
+                        if line:
+                            hm = re.search(
+                                r"<b>" + u + r"</b>.*?<br>", entry, re.S)
+                            if hm:
+                                cls = ("levcomp levflash" if flash
+                                       else "levcomp")
+                                entry = (entry[:hm.end()] +
+                                         f'<div class="{cls}">{line}</div>' +
+                                         entry[hm.end():])
+                                seen.add(u)
+                                n0 += 1
+                    out.append(entry)
+                    i = fend
+                seg = ''.join(out)
+            else:
+                def _alert_fn(full, inner):
+                    nonlocal n0
+                    u = _comp_alert_ticker(full)
+                    if not u or u in seen:
+                        return full
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return full
+                    new = _comp_insert_alert(full, u, line, flash)
+                    if new != full:
+                        seen.add(u)
+                        n0 += 1
+                    return new
+                seg = sub_balanced_alerts(seg, _alert_fn)
+            h = h[:s0] + seg + h[s1:]
+            if n0:
+                counts[name] = n0
+        return h, sum(counts.values()), counts
+    except Exception as e:
+        print(f"  ! companion lines: {e}", file=sys.stderr)
+        return h, 0, {}
+
+
+def update_leverage_signals(h, prices):
+    """Mục ĐÒN BẨY (Tom duyệt 30/10 12:27): thanh TÍN HIỆU NEO (data-lchip)
+    + giá xe + khung chớp levflash TỰ CHẠY mỗi lượt refresh theo GIÁ ETF
+    REALTIME và trạng thái vùng của mã gốc. Fail-soft: lỗi thì giữ nguyên."""
+    try:
+        if ".levmap{" not in h:
+            css = (".levmap{margin-top:6px;border:1px dashed #38bdf8;"
+                   "border-radius:8px;padding:6px 9px;font-size:14px;"
+                   "background:rgba(56,189,248,.08)}")
+            i = h.find("</style>")
+            if i > 0:
+                h = h[:i] + css + h[i:]
+        m = re.search(r'<div class="sec" id="sec-leverage"[^>]*>', h)
+        if not m:
+            return h, 0
+        start = m.start()
+        nxt = h.find('<div class="sec"', start + 10)
+        end = nxt if nxt != -1 else len(h)
+        seg = h[start:end]
+        vehs = re.findall(r'data-lchip="([A-Z]+)"', seg)
+        if not vehs:
+            return h, 0
+        zones, _excl = _zones_local()
+        need = set()
+        for v in vehs:
+            need.add(v)
+            u = LEV_MAP.get(v)
+            if u:
+                need.add(u)
+        px = dict(prices)
+        missing = [t for t in need if t not in px]
+        if missing:
+            got, _l, _h52 = fetch_prices(sorted(missing))
+            px.update(got)
+        n = 0
+        for v in vehs:
+            u = LEV_MAP.get(v)
+            if not u or v not in px:
+                continue
+            vpx, vpct = px[v]
+            # --- thanh tín hiệu neo: giá ETF realtime đứng đầu ---
+            chip_pat = re.compile(r'<div class="zchip [^"]*" data-lchip="'
+                                  + v + r'">.*?</div>', re.S)
+            cm = chip_pat.search(seg)
+            if cm:
+                head = (f"{v} {_lt_money(vpx)} ({fmt_pct_vn(vpct)})"
+                        f" · NEO ")
+                if u in zones and zones[u].get("entry") and u in px:
+                    upx = px[u][0]
+                    st = _zone_state_of(zones[u], upx)
+                    cls, txt = _zone_chip_text(u, upx, st, zones[u])
+                elif u in px:
+                    cls = "zchip-n"
+                    txt = (f"{u} · ⚪ CHƯA CÓ VÙNG · "
+                           f"Giá gốc {_lt_money(px[u][0])}")
+                else:
+                    cls, txt = "zchip-n", f"{u} · ⚪ CHƯA CÓ GIÁ GỐC"
+                new_chip = (f'<div class="zchip {cls}" data-lchip="{v}">'
+                            + head + txt + "</div>")
+                seg = seg[:cm.start()] + new_chip + seg[cm.end():]
+                n += 1
+            # --- khung chớp + giá xe trong thân alert ---
+            in_zone = (u in zones and zones[u].get("entry") and u in px
+                       and _zone_state_of(zones[u], px[u][0]) == "IN")
+            apat = re.compile(
+                r'<div class="alert(?: levflash)?"><b>'
+                r'((?:⚡|⭐|🚨) ' + v + r' —.*?)</b>', re.S)
+            am = apat.search(seg)
+            if am:
+                cls_alert = "alert levflash" if in_zone else "alert"
+                tag = ('<span class="levtag">🔥 ĐANG LỌT VÙNG</span>'
+                       if in_zone else "")
+                clean = re.sub(r'<span class="levtag">.*?</span>', "",
+                               am.group(1))
+                new_head = (f'<div class="{cls_alert}"><b>'
+                            + clean + tag + "</b>")
+                seg = seg[:am.start()] + new_head + seg[am.end():]
+                # giá xe realtime trong thân alert (sau headline)
+                tail = seg[am.start() + len(new_head):
+                           am.start() + len(new_head) + 700]
+                pm = re.search(r'~\$[\d.,]+ \([−+\-]?[\d.,]+%\)', tail)
+                if pm:
+                    newp = (f"~{_lt_money(vpx)} ({fmt_pct_vn(vpct)})")
+                    seg = (seg[:am.start() + len(new_head) + pm.start()]
+                           + newp
+                           + seg[am.start() + len(new_head) + pm.end():])
+                # --- DỊCH VÙNG GỐC SANG GIÁ ETF (Tom 12:33 — 1 công 2 việc:
+                # trên mã gốc, dưới mã ETF, vùng mua bán GIỐNG NHAU theo
+                # tỷ lệ giá realtime, cùng 1 tín hiệu chớp) ---
+                map_txt = None
+                if u in zones and zones[u].get("entry") and u in px:
+                    z = zones[u]
+                    note = (z.get("note") or "").upper()
+                    if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
+                        map_txt = (f"📐 {v} THEO VÙNG {u}: vùng gốc đang "
+                                   f"TẠM TREO — chưa dịch giá ETF")
+                    else:
+                        r = vpx / px[u][0]
+                        lo, hi = z["entry"]
+                        tps = z.get("targets") or z.get("tp") or []
+                        if isinstance(tps, (int, float)):
+                            tps = [tps]
+                        st_u = _zone_state_of(z, px[u][0])
+                        lab = (f"📐 {v} THEO VÙNG {u} — ĐÃ GÃY CẮT, "
+                               f"số dịch chỉ tham chiếu: "
+                               if st_u == "BROKEN" else
+                               f"📐 {v} MUA theo vùng {u}: ")
+                        parts = [lab
+                                 + f"{_lt_money(lo * r)}–{_lt_money(hi * r)}"]
+                        if tps:
+                            parts.append("Chốt " + "→".join(
+                                _lt_money(t * r) for t in tps[:2]))
+                        if z.get("cut"):
+                            parts.append(
+                                f"Cắt ETF ≈ <{_lt_money(z['cut'] * r)} "
+                                f"(khi {u} thủng {_lt_money(z['cut'])})")
+                        map_txt = " · ".join(parts)
+                elif u in px:
+                    map_txt = (f"📐 {v}: {u} chưa có vùng — chưa dịch được "
+                               f"giá ETF, chỉ canh theo đà")
+                if map_txt:
+                    lev = f'<div class="levmap">{map_txt}</div>'
+                    lpat = re.compile(r'<div class="levmap">.*?</div>',
+                                      re.S)
+                    astart = am.start()
+                    aend = seg.find("</div>", astart)
+                    if aend != -1:
+                        lm = lpat.search(seg, astart, aend + 6)
+                        if lm:
+                            seg = seg[:lm.start()] + lev + seg[lm.end():]
+                        else:
+                            seg = seg[:aend] + lev + seg[aend:]
+        return h[:start] + seg + h[end:], n
+    except Exception as e:
+        print(f"  ! leverage signals: {e}", file=sys.stderr)
+        return h, 0
+
+
+# --- CẶP MÃ GỐC + XE x2 (Tom 02/11: mục ĐÒN BẨY khó xem — đổi sang khối cặp:
+# mã gốc TRÊN, xe x2 DƯỚI, mỗi hàng đủ VÙNG MUA · CẮT · TARGET; số xe dịch theo
+# tỷ lệ giá realtime, tự tính lại mỗi lượt refresh; giá trong khối tự cập nhật
+# 30 giây qua prices.json nhờ data-px/data-pct). Thay vai trò của chip strip.
+LEV_X3 = {"SOXL", "TQQQ", "TNA"}
+# Xe NGƯỢC (short) — Tom lệnh 03/11 gắn PLTZ: nhãn phải ghi rõ NGƯỢC (SHORT)
+# để không ai đọc nhầm là xe long như PLTU. Mã gốc chưa có vùng thì không
+# dịch số (renderer đã xử lý), có vùng cũng KHÔNG dịch tuyến tính cho xe ngược.
+LEV_SHORT = {"PLTZ"}
+# 🌙 Xe giao dịch được PHIÊN ĐÊM Robinhood 24 Hour Market (Blue Ocean ATS,
+# 20:00 CN → 20:00 T6 ET). Nguồn: Robinhood instrument API field
+# all_day_tradability == "tradable", đọc trực tiếp 3/11/2026 (29 mã
+# confirmed). KHÔNG có trong set này = confirmed untradable tại Robinhood
+# (SNXX, SNDG, MUU, MULL, CONL, CIEG, TSLG, NVDG, INTW) hoặc chưa kiểm —
+# cả hai đều KHÔNG gắn nhãn. Danh sách Robinhood thay đổi theo thời gian:
+# verify lại trước khi coi là vĩnh viễn.
+LEV_24H = {"SOXL", "SOXS", "SQQQ", "SNDU", "CONY", "CONI", "FIAT", "DRAM",
+           "RAM", "PLTZ", "PLTU", "AAPU", "AMDL", "AVGX", "COHX", "TSLL",
+           "TSLR", "TSLQ", "NVDL", "NVDX", "NVDS", "MVLL", "ROBN", "METU",
+           "LRCU", "AAOX", "SKUU", "NBIL", "SMCX",
+           # bổ sung 3/11: check nốt toàn bộ xe còn lại trong LEV_MAP qua
+           # cùng API — tradable: 16 mã dưới; untradable: CRDU, CRWC,
+           # DLLL, KTUP, NOWL, OKTG, RDDC (không gắn nhãn)
+           "AMZU", "ASTX", "AVXX", "CEGX", "GGLL", "IONX", "MSFU", "OKLL",
+           "ORCU", "RKLX", "SPCH", "STXU", "TNA", "TQQQ", "TSMX", "VSTL",
+           # bổ sung 3/11 (lượt gắn KLAG + LITX): check trực tiếp Robinhood
+           # API cùng ngày — cả 2 tradable (KLAG phá lệ nhóm Leverage Shares
+           # 0/4 trước đó: eligible tính theo từng quỹ, phải check từng mã)
+           # bổ sung 3/11 (lượt gắn VRTL): VRTL cũng tradable qua API cùng
+           # ngày; CSCL gắn cùng đợt thì untradable — không gắn nhãn
+           # bổ sung 3/11 (lượt gắn GLWG): GLWG tradable qua Robinhood API
+           # cùng ngày; ANEL/LABX/RTXG/LMTL gắn cùng buổi đều untradable
+           # bổ sung 3/11 (lượt gắn STXX ~22:36): STXX check trực tiếp
+           # Robinhood API cùng ngày — tradable; STXL gắn ngay sau đó
+           # theo lệnh Tom, check cùng lượt — tradable
+           "KLAG", "LITX", "VRTL", "GLWG", "STXX", "STXL",
+           # bổ sung 4/11 (lượt gắn WDCX theo lệnh Tom): check trực tiếp
+           # Robinhood API cùng ngày — WDCX tradable phiên đêm
+           "WDCX"}
+LEV_SELF = {"SOXL": "ETF x3 bán dẫn", "DRAM": "ETF 1x rổ memory"}
+# CONY: Tom chốt LẠI tối 3/11 (~22:50) — gom CONY vào khối COIN, nằm
+# ngay dưới hàng CONL vì Tom không muốn phải đi tìm riêng (thay quyết
+# định khối riêng độc lập buổi sáng). CONY vẫn KHÔNG phải xe x2: nhãn
+# riêng ở LEV_VEH_LABEL và không dịch vùng ở LEV_NODERIVE.
+LEV_VEH_LABEL = {"CONY": "QUỸ YIELDMAX THU NHẬP QUYỀN CHỌN TRÊN COIN"
+                         " — KHÔNG PHẢI XE x2"}
+LEV_NODERIVE = {"CONY": "🎯 Quỹ thu nhập — KHÔNG dịch vùng mua/cắt/"
+                        "target theo COIN (đi cùng chiều COIN ~0,85x "
+                        "biên độ, NAV mòn dần); chỉ theo dõi giá + cổ "
+                        "tức tuần"}
+LEV_PAIR_JS = (
+    "<script>(function(){function mf(v){var s=String(v),p=s.split('.');"
+    "p[0]=p[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g,'.');return '$'+p.join(',');}"
+    "function f(){fetch('prices.json?x='+Date.now()).then(function(r){return r.json();})"
+    ".then(function(d){var q=d.q||{};"
+    "function wsf(t){return window.__wsFresh&&window.__wsFresh[t]&&(Date.now()-window.__wsFresh[t]<90000);}"
+    "document.querySelectorAll('[data-px]').forEach(function(e){var v=q[e.getAttribute('data-px')];"
+    "if(v&&!wsf(e.getAttribute('data-px')))e.textContent=e.getAttribute('data-px')+' '+mf(v[0]);});"
+    "document.querySelectorAll('[data-pct]').forEach(function(e){var v=q[e.getAttribute('data-pct')];"
+    "if(v&&!wsf(e.getAttribute('data-pct')))e.textContent='('+(v[1]>0?'+':'')+String(v[1]).replace('.',',')+'%)';});"
+    "}).catch(function(){});}"
+    "setInterval(f,30000);})();</script>")
+
+
+def _lev_pair_block(u, vehs, z, st, paused, upx, upct, px):
+    lab = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
+           "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG — THỦNG CẮT",
+           "PAUSED": "⏸️ CHỜ DỰNG NỀN — VÙNG TẠM TREO",
+           "NOZONE": "⚪ CHƯA CÓ VÙNG"}[st]
+    cls = "alert levflash" if st == "IN" else "alert levpair"
+    tag = ('<span class="levtag">🔥 ĐANG LỌT VÙNG</span>'
+           if st == "IN" else "")
+    role = LEV_SELF.get(u, "MÃ GỐC")
+    lines = [
+        f'<div class="{cls}"><b><span style="background:#f5c86e;color:#131313;'
+        f'font-weight:900;padding:1px 7px;border-radius:5px;font-size:1.18em">'
+        f'<span data-px="{u}">{u} {_lt_money(upx)}</span></span> '
+        f'<span data-pct="{u}">({fmt_pct_vn(upct)})</span> · {role}</b> '
+        f'· {lab}{tag}']
+    if z and z.get("entry"):
+        lo, hi = z["entry"]
+        tg = z.get("targets") or []
+        cond = " (điều kiện)" if paused else ""
+        parts = [f'🎯 VÙNG MUA{cond} {_lt_money(lo)}–{_lt_money(hi)}']
+        if z.get("cut"):
+            parts.append(f'✂️ CẮT <{_lt_money(z["cut"])}')
+        if len(tg) >= 2:
+            parts.append(f'🏁 TARGET {_lt_money(tg[0])}→{_lt_money(tg[1])}')
+        elif tg:
+            parts.append(f'🏁 TARGET {_lt_money(tg[0])}')
+        if st == "BELOW" and not paused:
+            parts.append(f'còn +{_lt_pct1((lo / upx - 1) * 100)} tới vùng')
+        lines.append("<br>" + " · ".join(parts))
+    else:
+        lines.append("<br>🎯 Chưa có vùng — chỉ theo dõi giá")
+    for v in vehs:
+        if v not in px:
+            continue
+        vpx, vpct = px[v]
+        mult = "x3" if v in LEV_X3 else "x2"
+        if v in LEV_VEH_LABEL:
+            vlabel = LEV_VEH_LABEL[v]
+        elif v in LEV_SHORT:
+            vlabel = f"XE {mult} NGƯỢC (SHORT) CỦA {u}"
+        else:
+            vlabel = f"XE {mult} CỦA {u}"
+        head = (f'⚡ <b><span style="background:#7dd3fc;color:#131313;'
+                f'font-weight:900;padding:1px 7px;border-radius:5px;'
+                f'font-size:1.12em"><span data-px="{v}">'
+                f'{v} {_lt_money(vpx)}</span></span> '
+                f'<span data-pct="{v}">({fmt_pct_vn(vpct)})</span></b> '
+                f'· {vlabel}'
+                + (' <span style="background:#6d5bd0;color:#fff;'
+                   'font-weight:800;padding:1px 6px;border-radius:5px">'
+                   '🌙 24H</span>' if v in LEV_24H else ''))
+        if z and z.get("entry") and upx and v not in LEV_SHORT \
+                and v not in LEV_NODERIVE:
+            r = vpx / upx
+            lo, hi = z["entry"]
+            tg = z.get("targets") or []
+            cond = " (điều kiện)" if paused else ""
+            parts = [f'🎯 VÙNG MUA{cond} {_lt_money(lo * r)}–'
+                     f'{_lt_money(hi * r)}']
+            if z.get("cut"):
+                parts.append(f'✂️ CẮT <{_lt_money(z["cut"] * r)}')
+            if len(tg) >= 2:
+                parts.append(f'🏁 TARGET {_lt_money(tg[0] * r)}→'
+                             f'{_lt_money(tg[1] * r)}')
+            elif tg:
+                parts.append(f'🏁 TARGET {_lt_money(tg[0] * r)}')
+            parts.append(f'<span style="opacity:.7">(dịch theo tỷ lệ '
+                         f'{r:.3f})</span>')
+            lines.append("<br>" + head + "<br>" + " · ".join(parts))
+        elif v in LEV_NODERIVE:
+            lines.append("<br>" + head + "<br>" + LEV_NODERIVE[v])
+        elif v in LEV_SHORT:
+            lines.append("<br>" + head + "<br>🎯 Xe NGƯỢC — chạy ngược mã gốc "
+                                "(gốc rớt thì xe tăng); không dịch vùng tuyến "
+                                "tính, chỉ daytrade theo đà của mã gốc")
+        else:
+            lines.append("<br>" + head + "<br>🎯 Mã gốc chưa có vùng — chưa dịch được "
+                                "vùng cho xe")
+        if v in COMP_WARN:
+            lines.append("<br>" + COMP_WARN[v])
+    lines.append("</div>")
+    return "".join(lines)
+
+
+def update_leverage_pairs(h, prices):
+    """Khối CẶP MÃ GỐC + XE trong sec-leverage (Tom 02/11). Tự dựng lại mỗi
+    lượt từ LEV_MAP + zones.json; thay chip strip data-lchip trong mục này.
+    Fail-soft: lỗi thì giữ nguyên bảng."""
+    try:
+        if ".levpair{" not in h:
+            css = (".levpair{border:1px solid #2a3648;border-radius:10px;"
+                   "padding:7px 10px;margin:0 0 8px;background:#101725}")
+            i = h.find("</style>")
+            if i > 0:
+                h = h[:i] + css + h[i:]
+        b = _sec_bounds(h, "sec-leverage")
+        if not b:
+            return h, 0
+        s, e = b
+        seg = h[s:e]
+        # Tom 02/11 "sửa phải sửa cho hết": mục ĐÒN BẨY chỉ còn KHỐI CẶP —
+        # xóa hẳn khối LEV-AUTO cũ của radar (trùng mã, giá snapshot kẹt)
+        # mỗi lượt, dù writer nào lỡ ghi lại.
+        seg = re.sub(r"<!-- LEV-AUTO -->.*?<!-- /LEV-AUTO -->", "", seg,
+                     flags=re.S)
+        zones, _excl = _zones_local()
+        groups = {}
+        for v, u in LEV_MAP.items():
+            groups.setdefault(u, [])
+            if v != u and v not in groups[u]:
+                groups[u].append(v)
+        need = set(groups) | {v for vs in groups.values() for v in vs}
+        need.add("LNT")
+        px = dict(prices)
+        missing = [t for t in need if t not in px]
+        if missing:
+            try:
+                got, _l, _h52 = fetch_prices(sorted(missing))
+                px.update(got)
+            except Exception:
+                pass
+        order = {"IN": 0, "BELOW": 1, "ABOVE": 2, "PAUSED": 3,
+                 "BROKEN": 4, "NOZONE": 5}
+        rows = []
+        for u, vehs in list(groups.items()) + [("LNT", [])]:
+            if u not in px:
+                continue
+            upx, upct = px[u]
+            z = zones.get(u)
+            paused = False
+            if z and z.get("entry"):
+                note = (z.get("note") or "").upper()
+                paused = ("TAM VO HIEU" in note or "TEMP-INVALID" in note)
+                st = "PAUSED" if paused else _zone_state_of(z, upx)
+            else:
+                st = "NOZONE"
+            rows.append((order[st], u, vehs, z, st, paused, upx, upct))
+        rows.sort(key=lambda r: (r[0], r[1]))
+        blocks = []
+        for _o, u, vehs, z, st, paused, upx, upct in rows:
+            blk = _lev_pair_block(u, vehs, z, st, paused, upx, upct, px)
+            if u == "LNT":
+                blk = blk.replace(
+                    "· MÃ GỐC</b>",
+                    "· CỔ PHIẾU THƯỜNG (Sổ 1) — Tom xếp canh chung mục này</b>")
+            blocks.append(blk)
+        inner = "".join(blocks) + LEV_PAIR_JS
+        rendered = "<!-- LEV-PAIRS -->" + inner + "<!-- /LEV-PAIRS -->"
+        if "<!-- LEV-PAIRS -->" in seg:
+            seg = re.sub(r"<!-- LEV-PAIRS -->.*?<!-- /LEV-PAIRS -->",
+                         lambda _m: rendered, seg, flags=re.S)
+        else:
+            # Migration: bỏ chip strip + 2 khối tay INTW/LNT (đã có trong cặp)
+            seg = re.sub(r'<div class="zchip [^"]*" data-lchip="[A-Z]+">'
+                         r'.*?</div>', "", seg)
+            seg = re.sub(r'<div class="alert" style="border:2px solid '
+                         r'#f5c86e[^>]*><b>⚡ (?:INTW|LNT) —.*?</div>',
+                         "", seg)
+            ai = seg.find("<!-- /LEV-AUTO -->")
+            pos = ai + len("<!-- /LEV-AUTO -->") if ai >= 0 else len(seg)
+            seg = seg[:pos] + rendered + seg[pos:]
+        return h[:s] + seg + h[e:], len(blocks)
+    except Exception as ex:
+        print(f"  ! leverage pairs: {ex}", file=sys.stderr)
+        return h, 0
+
+
+
+def _sec_bounds(h, sid):
+    """(start, end) của 1 section <div class="sec" id="sid">…</div>
+    bằng stack-walk (không dùng regex non-greedy — bài học 19/10)."""
+    i = h.find('id="%s"' % sid)
+    if i < 0:
+        return None
+    s = h.rfind('<div class="sec"', 0, i)
+    if s < 0:
+        return None
+    depth = 0
+    for m in re.finditer(r'</?div\b[^>]*>', h[s:]):
+        depth += -1 if m.group(0).startswith('</') else 1
+        if depth == 0:
+            return s, s + m.end()
+    return None
+
+
+def _dayplan_bounds(h):
+    """(start, end) của khối <div class="dayplan" id="dayPlan">…</div>
+    bằng stack-walk. dayPlan KHÔNG phải class="sec" nên _sec_bounds
+    không dùng được (nó sẽ bắt nhầm section sec đứng trước)."""
+    i = h.find('id="dayPlan"')
+    if i < 0:
+        return None
+    s = h.rfind('<div', 0, i)
+    if s < 0:
+        return None
+    depth = 0
+    for m in re.finditer(r'</?div\b[^>]*>', h[s:]):
+        depth += -1 if m.group(0).startswith('</') else 1
+        if depth == 0:
+            return s, s + m.end()
+    return None
+
+
+def merge_fresh_sections(h, path):
+    """Giữ section của writer khác khỏi bị lượt này ghi đè (race 2/11).
+    Đọc lại file tươi ngay trước khi ghi; với sec-crypto và sec-ltalloc —
+    2 section quick_refresh KHÔNG sở hữu — nếu bản tươi đầy đủ hơn bản
+    trong bộ nhớ thì thay bằng bản tươi. 'Đầy đủ hơn' = đếm marker:
+    crypto = số khối alert; ltalloc = số quỹ lta-ret. Lỗi đọc → giữ nguyên.
+    BỔ SUNG 2/11 giữa trận: dayPlan cũng được bảo vệ theo cùng luật —
+    khối GIỮA TRẬN do worker khác chèn giữa chừng (vd plan-midday-check)
+    bị các lượt refresh đọc-stale ghi đè 2 lần trong 1 buổi sáng; nếu
+    bản tươi có nhiều alert trong dayPlan hơn bản trong bộ nhớ thì
+    giữ nguyên khối dayPlan tươi."""
+    try:
+        fresh = open(path, encoding="utf-8").read()
+    except Exception as e:
+        print(f"  ! merge fresh sections: không đọc được {path}: {e}",
+              file=sys.stderr)
+        return h
+    for sid, marker in (("sec-crypto", '<div class="alert'),
+                         ("sec-ltalloc", "lta-ret-")):
+        try:
+            fb = _sec_bounds(fresh, sid)
+            hb = _sec_bounds(h, sid)
+            if not fb or not hb:
+                continue
+            fseg, hseg = fresh[fb[0]:fb[1]], h[hb[0]:hb[1]]
+            # (3/11 ~23:24: khối tóm tắt lta-flow/lta-count đã bỏ hẳn
+            # theo lệnh Tom — không còn guard giữ header ở đây.)
+            # FIX 4/11: dòng gán fresher bị xóa nhầm trong commit f6767f10
+            # (lượt dọn lta-flow) làm NameError mỗi lượt → section tươi
+            # của writer khác bị bỏ qua, crypto/ltalloc bị ghi đè trắng.
+            fresher = fseg.count(marker) > hseg.count(marker)
+            if fresher:
+                h = h[:hb[0]] + fseg + h[hb[1]:]
+                print(f"  merge fresh: giữ {sid} bản tươi "
+                      f"({fseg.count(marker)} > {hseg.count(marker)} marker)",
+                      flush=True)
+        except Exception as e:
+            print(f"  ! merge fresh {sid}: {e}", file=sys.stderr)
+    # dayPlan: khối do worker khác sở hữu (kế hoạch sáng + giữa trận) —
+    # cùng luật "bản tươi đầy đủ hơn thì giữ", marker = số khối alert.
+    try:
+        fb = _dayplan_bounds(fresh)
+        hb = _dayplan_bounds(h)
+        if fb and hb:
+            fseg, hseg = fresh[fb[0]:fb[1]], h[hb[0]:hb[1]]
+            if fseg.count('<div class="alert"') > hseg.count('<div class="alert"'):
+                h = h[:hb[0]] + fseg + h[hb[1]:]
+                print("  merge fresh: giữ dayPlan bản tươi "
+                      f"({fseg.count(chr(60)+'div class=\"alert\"')} > "
+                      f"{hseg.count(chr(60)+'div class=\"alert\"')} alert)",
+                      flush=True)
+    except Exception as e:
+        print(f"  ! merge fresh dayPlan: {e}", file=sys.stderr)
     return h
 
 
@@ -2474,8 +5708,77 @@ def main():
                       f"cache={len(_h52c)})", flush=True)
         except Exception as _e:
             print(f"lite premarket: steelnet skip ({_e})", flush=True)
+        try:
+            _chip_px = {}
+            for _d in (_spm, _pm):
+                try:
+                    _chip_px.update(_d)
+                except Exception:
+                    pass
+            if _chip_px:
+                # ĐỒNG BỘ SỐ 04/11: lite phải phủ giá cho MỌI mã có số
+                # in trong các mục đích — chỉ bằng fetch_pm_prices
+                # (NGUỒN DUY NHẤT ngoài giờ). Thiếu mã, updater con tự
+                # fetch bằng fetch_prices (giá ĐÓNG CỬA) -> trộn 2
+                # nguồn trong 1 lượt = AMD 3 nơi 3 số. Bổ sung tại đây.
+                try:
+                    _tgt = set(COMP_MAP) | set(COMP_MAP.values()) \
+                        | set(LEV_MAP) | set(LEV_MAP.values()) \
+                        | set(DAY_HOT_POOL) | {"LNT"}
+                    for _sid in SYNC_SECS + ("sec-tinhhoa",):
+                        _bb = _sec_bounds(h, _sid)
+                        if _bb:
+                            _sg = h[_bb[0]:_bb[1]]
+                            _tgt |= set(re.findall(
+                                r'data-(?:px|pct|achip|lchip|fchip)='
+                                r'"([A-Z]{1,6})"', _sg))
+                            _tgt |= set(re.findall(
+                                r"<tr><td><b>([A-Z]{2,6})</b></td>",
+                                _sg))
+                    _miss = [t for t in sorted(_tgt) if t not in _chip_px]
+                    if _miss:
+                        _chip_px.update(fetch_pm_prices(_miss))
+                except Exception as _e2:
+                    print(f"lite premarket: pm universe skip ({_e2})",
+                          flush=True)
+                h, _nh1 = update_hot_entries(h, _chip_px)
+                h, _nh2 = update_tables(h, _chip_px)
+                h, _nh3 = update_dash_prices(h, _chip_px)
+                h, _nday = rebuild_daytrade(h, _chip_px)
+                h, _nch = update_zone_chips(h, _chip_px)
+                h, _nlv = update_leverage_signals(h, _chip_px)
+                h, _nlp = update_leverage_pairs(h, _chip_px)
+                h, _ncomp, _compc = update_companion_lines(h, _chip_px)
+                h, _nfch = update_focus_chips(h, _chip_px)
+                h, _nach = update_alert_chips(h, _chip_px)
+                h, _ncln2 = clean_shark_layers(h)
+                if _ncln2:
+                    print(f"lite premarket: dọn lớp cá mập {', '.join(_ncln2)}",
+                          flush=True)
+                h, _nlt = update_ltalloc_signals(h, _chip_px)
+                h, _nsync = sync_static_numbers(h, _chip_px)
+                print(f"lite premarket: chips {_nch} bảng + {_nfch} FOCUS"
+                      f" + {_nach} alert + daytrade {_nday} khối"
+                      f" + sync {_nsync} chỗ", flush=True)
+        except Exception as _e:
+            print(f"lite premarket: chips skip ({_e})", flush=True)
+        try:
+            _allpx = {}
+            for _d in (_chip_px, _pm, _spm):
+                try:
+                    _allpx.update(_d)
+                except Exception:
+                    pass
+            write_prices_cache(a.repo_dir, _allpx)
+        except Exception:
+            pass
         h = bull_bear_update(h, a.repo_dir)
         h = render_regime_strip(h, a.repo_dir)
+        h = ensure_compact_css(h)
+        h = board_compact(h)
+        h = ensure_lang_toggle(h)
+        h = ensure_share_gate(h)
+        h = ensure_ws_live(ensure_yahoo_live(h))
         h = bump_badge(h, "premarket — Bull & Bear theo futures")
         ok, why = validate(h)
         if not ok:
@@ -2485,6 +5788,7 @@ def main():
         repo_html = os.path.join(a.repo_dir, "index.html")
         if os.path.abspath(a.html) != os.path.abspath(repo_html):
             open(repo_html, "w", encoding="utf-8").write(h)
+        h = dash_top_merge(h)
         h, _ = stamp_version(h, a.repo_dir)
         open(a.html, "w", encoding="utf-8").write(h)
         if os.path.abspath(a.html) != os.path.abspath(repo_html):
@@ -2493,6 +5797,7 @@ def main():
                        f"refresh {now_pt().strftime('%d/%m %H:%M')} PT (lite premarket)")
         print(f"lite premarket: bull&bear + fear gauge tươi | git: {res}",
               flush=True)
+        publish_yahoo_live()
         return 0 if res in ("pushed", "nothing-to-commit") else 3
 
     load_zones(a.repo_dir)
@@ -2517,7 +5822,28 @@ def main():
                f"<th>Giá {now_pt().strftime('%d/%m')}</th>", h)
     h, n1 = update_hot_entries(h, prices)
     h, n2 = update_tables(h, prices)
-    print(f"đã sửa {n1} hot entries, {n2} table cells", flush=True)
+    # Khuôn "<b>MÃ</b> — $X (Y%)" (sec-ltalloc/sec-lt9 — Tom lệnh giá real-time
+    # trong từng ô LONG TERM 29/10): mã nào chưa có giá (vd SGOV không nằm ở
+    # bảng/hot entries nào) thì fetch bổ sung, lỗi thì updater tự giữ nguyên.
+    _dash_t = sorted(set(m.group(2) for m in DASH_PRICE_PAT.finditer(h)))
+    _dash_missing = [t for t in _dash_t if t not in prices]
+    if _dash_missing:
+        try:
+            _dx, _, _ = fetch_prices(_dash_missing)
+            prices = {**prices, **_dx}
+        except Exception as e:
+            print(f"  ! dash prices extra: {e}", file=sys.stderr)
+    h, n3 = update_dash_prices(h, prices)
+    h, n4 = update_ltalloc_signals(h, prices)
+    if n4:
+        print(f"  ltalloc signals: {n4} ô cập nhật màu theo giá", flush=True)
+    h, n5 = update_zone_chips(h, prices)
+    h, nlv = update_leverage_signals(h, prices)
+    h, ncomp, compc = update_companion_lines(h, prices)
+    if n5:
+        print(f"  zone chips: {n5} khung đầu hàng Sổ 1/2/3", flush=True)
+    print(f"đã sửa {n1} hot entries, {n2} table cells, {n3} dash prices",
+          flush=True)
 
     # NHỊP THỊ TRƯỜNG — xếp hạng lại mỗi lượt (mục focus #1)
     try:
@@ -2682,8 +6008,22 @@ def main():
     h, c1 = dedup_section_alerts(h, "🚨 TÍN HIỆU VÙNG")
     h, c2 = dedup_section_alerts(h, "🔥 MÃ NÓNG")
     h, c3 = dedup_urgentbox(h)
-    if c1 or c2 or c3:
-        print(f"tự dọn trùng: {', '.join(c1 + c2 + c3)}", flush=True)
+    # Tom bắt lỗi 30/10: cùng mã lặp 2–3 lần trong swing/daytrade/dram —
+    # mỗi mã chỉ giữ alert MỚI NHẤT trong các mục tín hiệu này.
+    _cd = []
+    for _sec in ("sec-swing", "sec-daytrade", "sec-dram"):
+        h, _cx = dedup_alert_section(h, _sec)
+        _cd += [f"{t}@{_sec}" for t in _cx]
+    if c1 or c2 or c3 or _cd:
+        print(f"tự dọn trùng: {', '.join(c1 + c2 + c3 + _cd)}", flush=True)
+
+    # 🔥 HOT FEED TĨNH — dựng sẵn nội dung #hotFeed để trang riêng cũng có
+    # mã (JS buildHotFeed chỉ chạy trên bảng chính). Chạy sau dedup để
+    # nguồn alert đã sạch trùng.
+    h, nhf = build_hot_feed(h, prices)
+    print(f"hot feed tĩnh: {nhf}", flush=True)
+    h, nls = build_live_strip(h, prices)
+    print(f"live strip tĩnh: {nls}", flush=True)
 
     # 🎯 GẮN VÙNG GIÁ + TP vào alert khẩn — Tom góp ý 15/10 (~13:00):
     # HOT feed clone alert nên tự có dòng Chốt/Cắt theo.
@@ -2715,7 +6055,47 @@ def main():
     # 🧭 Dải đèn CHẾ ĐỘ — nằm ngay dưới Bull & Bear (Luật Chế Độ 23/10)
     h = render_regime_strip(h, a.repo_dir)
 
+    # DAYTRADE dựng lại từ giá hiện tại TRƯỚC chặng 2 để companion/
+    # alert-chip gắn tiếp lên khối mới (Tom lệnh 04/11: mâm daytrade
+    # phải đầy đủ ~18–22 khối, số từ nguồn duy nhất của lượt).
+    h, _nday = rebuild_daytrade(h, {**prices, **nhip_extra})
+    if _nday:
+        print(f"  daytrade: dựng lại {_nday} khối mã nóng", flush=True)
+
+    # KHUNG ĐẦU KHỐI chặng 2 (Tom 30/10) — chạy LẠI cuối pipeline để phủ
+    # lưới thép vừa dựng lại + ETF16 + dòng Sổ ensure vừa thêm + FOCUS.
+    h, nch2 = update_zone_chips(h, {**prices, **nhip_extra})
+    h, nlv2 = update_leverage_signals(h, {**prices, **nhip_extra})
+    h, npr = update_leverage_pairs(h, {**prices, **nhip_extra})
+    print(f"  leverage pairs: {npr} khối cặp mã gốc + xe", flush=True)
+    h, ncomp2, compc2 = update_companion_lines(h, {**prices, **nhip_extra})
+    h, nfch = update_focus_chips(h, {**prices, **nhip_extra})
+    h, nach = update_alert_chips(h, {**prices, **nhip_extra})
+    h, _ncln = clean_shark_layers(h)
+    if _ncln:
+        print(f"  dọn lớp cá mập: {', '.join(_ncln)}", flush=True)
+    print(f"  zone chips chặng 2: {nch2} bảng + {nfch} FOCUS + {nach} alert",
+          flush=True)
+    print(f"  companion xe x2: {ncomp2} dòng {compc2}", flush=True)
+
+    # ĐỒNG BỘ SỐ TĨNH — pass cuối: mọi số in còn sót trong các mục
+    # đích tính lại từ cùng bộ giá của lượt + zones.json (04/11).
+    h, _nsync = sync_static_numbers(h, {**prices, **nhip_extra})
+    print(f"  đồng bộ số tĩnh: {_nsync} chỗ sửa", flush=True)
+
+    h = ensure_compact_css(h)
+    h = board_compact(h)
+    h = ensure_lang_toggle(h)
+    h = ensure_share_gate(h)
+    h = ensure_ws_live(ensure_yahoo_live(h))
+    write_prices_cache(a.repo_dir, {**prices, **nhip_extra})
     h = bump_badge(h, tag)
+    # CHỐNG GHI ĐÈ RACE (Tom 2/11 — 2 lần clobber trong 1 buổi sáng):
+    # lượt này đọc file từ đầu lượt; nếu giữa chừng có writer khác (crypto/
+    # ltalloc) khôi phục section mà lượt này không sở hữu, bản ghi cuối sẽ
+    # xóa sạch công khôi phục đó. Trước khi ghi: đọc lại file TƯƠI, giữ lại
+    # section đầy đủ hơn cho sec-crypto (khối coin) và sec-ltalloc (hàng quỹ).
+    h = merge_fresh_sections(h, a.html)
     ok, why = validate(h)
     if not ok:
         print(f"VALIDATE FAIL: {why}", file=sys.stderr)
@@ -2728,6 +6108,7 @@ def main():
         open(repo_html, "w", encoding="utf-8").write(h)
 
     # đóng dấu version để bảng tự phát hiện bản mới (fix kẹt cache — Tom 15/10)
+    h = dash_top_merge(h)
     h, _ = stamp_version(h, a.repo_dir)
     open(a.html, "w", encoding="utf-8").write(h)
     if os.path.abspath(a.html) != os.path.abspath(repo_html):
@@ -2736,6 +6117,7 @@ def main():
     msg = f"refresh {now_pt().strftime('%d/%m %H:%M')} PT ({tag})"
     res = git_push(a.repo_dir, msg)
     print("git:", res, flush=True)
+    publish_yahoo_live()
     return 0 if res in ("pushed", "nothing-to-commit") else 3
 
 

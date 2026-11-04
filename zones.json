@@ -1,15 +1,16 @@
 {
  "AMD": {
   "book": "Sổ 2",
-  "cut": 520,
+  "cut": 488,
   "entry": [
+   498,
+   512
+  ],
+  "targets": [
    535,
    560
   ],
-  "targets": [
-   613,
-   658
-  ]
+  "note": "VẼ LẠI 30/10 (phán quyết đóng cửa): vùng cũ $535–560/cắt $520 BROKEN 30/10 (đóng ~$505, −10,8%). Nền mới: kệ $502 (đáy 22/10 $502,60 + đóng 30/10 giữ trên kệ sau khi nhúng $492,24), vol 1,68x TB20. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh. Kệ sâu hơn $451–463 nếu thủng $488."
  },
  "AMZN": {
   "book": "Sổ 2",
@@ -43,6 +44,19 @@
    300
   ]
  },
+ "BROS": {
+  "book": "Sổ 3",
+  "entry": [
+   41,
+   42.5
+  ],
+  "targets": [
+   48.5,
+   53
+  ],
+  "cut": 40,
+  "note": "Vẽ 04/11 theo lệnh trực tiếp của Tom (anh hỏi bullish 02/11, chốt vẽ vùng + gắn cron 04/11). VÙNG CÓ ĐIỀU KIỆN quanh earnings: BROS ra số TỐI 04/11 sau đóng cửa — phiên phản ứng 05/11 là phán quyết đầu tiên; không ôm qua earnings. Căn cứ nến ngày tới 03/11 (đóng $43,58) + sáng 04/11 (~$45,0): MA20 $41,6 / MA50 $42,1 / MA200 $53,1; đỉnh 52w $74,02, đáy 52w $36,51. Vào $41–42,50 = kệ pullback MA20/MA50, đáy tháng 10 giữ 3 lần ($40,11–40,85). Trần $44,60 (đỉnh tháng 10): 30/10 + 02/11 chọc lên $44,60–45,17 đều đóng rớt lại — breakout chỉ tính khi ĐÓNG trên $44,60 và giữ được sau earnings. Chốt 1 $48,50 = kệ tháng 8–9 ($48,07–48,67); Chốt 2 $53 = MA200. Cắt: ĐÓNG dưới $40 = gãy nền tháng 10 → vùng vô hiệu, chờ dựng nền. Dưới MA200, tính nhị phân earnings — Sổ 3 vị thế nhỏ. Trong 🔴 chỉ canh/tham chiếu."
+ },
  "CEG": {
   "book": "Sổ 3",
   "cut": 243,
@@ -58,15 +72,16 @@
  },
  "COHR": {
   "book": "Sổ 3",
-  "cut": 228,
+  "cut": 200,
   "entry": [
-   240,
-   255
+   203,
+   212
   ],
   "targets": [
-   294,
-   303
-  ]
+   228,
+   240
+  ],
+  "note": "VẼ LẠI 30/10: vùng cũ $240–255/cắt $228 BROKEN 30/10 (đóng ~$206, −13%). Nền mới: kệ $203–208 test 3 lần (22/10 đáy $204,38 · 23/10 $203,55 · 30/10 $203,87), đóng giữ trên kệ cả 3 lần. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh."
  },
  "CRDO": {
   "book": "Sổ 2",
@@ -159,7 +174,8 @@
   "targets": [
    15.11,
    18
-  ]
+  ],
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $12,30–13/cắt $11,17 BROKEN (đóng 30/10 $8,48; đã dưới cắt từ 29/10 sau cú rơi $14,81→$9,56). Kệ quan sát: $8,27 (đáy 30/10) → $6,50–7,10 (cụm tháng 8). Kích hoạt vẽ lại: ≥2–3 phiên không thủng $8,27 + đóng giữ trên $9,50, hoặc capitulation rút chân vol ≥1,5x TB20."
  },
  "JPM": {
   "book": "Sổ 2",
@@ -209,7 +225,7 @@
    275,
    285
   ],
-  "note": "VE LAI 28/10 ~14:40 PT (CO DIEU KIEN): Bloomberg - MRVL dam phan sau mua Lumentum (~$83 ty), co the cong bo tuan toi, CHUA co xac nhan chinh thuc. AH 28/10: 14:05 roi 1 mach $245 -> day $219,22 (-12,9% vs dong $251,65), hoi ~$229. Vung neo nen 22-26/10 ($220-224): Vao $218-228 / Chot $245->$265 / Cat cung <$212. KICH HOAT chi khi DONG CUA 29/10 giu >=$218; dong <$212 -> HUY. AH xuyen cat cu $230 chua phai gay chinh thuc - phan quyet o nen dong. Vi the Tom: 2 cp @ ~$266-267.",
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng điều kiện cũ $218–228/cắt $212 HỦY/BROKEN 30/10 (đóng $196,40; điều kiện 29/10 đã đạt $218,34 nhưng 30/10 gãy). Kệ quan sát: $190 (đáy 30/10, chưa phải kệ — kệ 31/7 $187,12 đã thủng ngay phiên sau) → $178 (đáy 3/8, kệ thật). Kích hoạt: ≥2–3 phiên đóng giữ ≥$190 + lấy lại $212, hoặc về $178–185 có rút chân vol ≥1,5x. Thương vụ Lumentum ĐÃ XÁC NHẬN chính thức 2/11: sáp nhập toàn cổ phiếu, 4,500 MRVL/LITE, EV ~$115 tỷ (~$1.132/LITE), sở hữu ~67%/33%, dự kiến đóng H1 2028. Đóng 2/11: MRVL $171,41 (−12,7% vs 30/10), LITE $684,40 (−18,6%).",
   "prev_zone": "Vao $235-245 / Chot $265->$285 / Cat <$230 (AH 28/10 xuyen, cho dong 29/10 phan quyet)"
  },
  "NOC": {
@@ -259,15 +275,15 @@
  "SNDK": {
   "book": "Sổ 3",
   "entry": [
-   1240,
-   1310
+   1075,
+   1130
   ],
   "targets": [
-   1450,
-   1550
+   1230,
+   1330
   ],
-  "cut": 1205,
-  "note": "VẼ LẠI 27/10 theo luật vẽ lại vùng của Tom: vùng cũ $1.310–1.400/cắt $1.280 đã bị ĐÓNG CỬA thủng cắt 2 phiên (23/10 $1.238,03 + 26/10 $1.255,58). Nền thật: đáy đôi $1.228,89 (23/10) + $1.229,00 (26/10), đáy ngày nhích dần 3 phiên, đóng 27/10 $1.304,84. Cắt $1.205 = dưới đáy đôi. Chốt 1 $1.450 (dưới MA20 ~$1.487), Chốt 2 $1.550 (chốt cũ, sát MA50 ~$1.576). ⚠️ Earnings tối T5 29/10 AMC — gap có thể nhảy qua cắt."
+  "cut": 1035,
+  "note": "CÓ ĐIỀU KIỆN (vẽ lại 3/11 theo lệnh Tom; thay vùng cũ $1.240–1.310 đã treo từ 30/10). Nền đang dựng: 2/11 phá đáy xuống $1.067,40 rồi 3/11 rút chân đóng $1.126,52 — đòi lại kệ 3/8 $1.115–1.121. ĐIỀU KIỆN: thêm 1–2 phiên không thủng $1.067 và đóng giữ trên $1.100 thì vùng có hiệu lực; đóng <$1.035 → HỦY, chờ kệ $998 (đáy 29/7). Bán: $1.230 (cụm đáy tháng 10 đã gãy = kháng cự) → $1.330. TÁCH CỔ PHIẾU 8:1 giao dịch từ 20/11 — sau tách mọi mốc chia 8 (vùng ~$134–141, cắt ~$129, bán ~$154→$166). Trong 🔴 chỉ canh/tham chiếu."
  },
  "TMUS": {
   "book": "Sổ 2",
@@ -280,7 +296,7 @@
    180
   ],
   "cut": 140,
-  "note": "VÙNG CÓ ĐIỀU KIỆN — vẽ 27/10 theo lệnh Tom, CHƯA KÍCH HOẠT. Kích hoạt khi đóng cửa phiên phản ứng earnings (29/10; số Q3 ra 13:05 PT 28/10, consensus EPS $2,89 / DT $23,15B) giữ ≥$145 và không đóng thủng đáy 52 tuần $143,92. Đóng <$143,92 → HỦY, chờ dựng nền tiếp (dưới đó là vùng trống). Thay vùng cũ $155–165/cắt $150 đã gãy sau cú sốc SpaceX tháng 10. Căn cứ nền: 23/10 đáy $146,32 · 26/10 đáy $143,92 rút chân đóng $146,93 · 27/10 đóng $146,83 — 3 phiên giữ quanh $146–147. Cắt $140 = dưới đáy 52w có đệm. Chốt 1 $165 dưới MA50 ~$169; Chốt 2 $180."
+  "note": "VÙNG CÓ ĐIỀU KIỆN — ĐÃ KÍCH HOẠT 29/10: đóng cửa phiên phản ứng earnings $147,29 giữ ≥$145 và không đóng thủng đáy 52 tuần $143,92 (xác nhận lượt 30/10; đồng bộ ghi chú 31/10 theo lệnh SỬA HẾT của Tom). Vùng hiệu lực bình thường từ 30/10: Vào $144–152 / Chốt $165→$180 / Cắt <$140. (Điều kiện gốc khi vẽ 27/10: đóng phiên phản ứng earnings 29/10 giữ ≥$145 và không đóng thủng $143,92. Đóng <$143,92 → HỦY, chờ dựng nền tiếp (dưới đó là vùng trống). Thay vùng cũ $155–165/cắt $150 đã gãy sau cú sốc SpaceX tháng 10. Căn cứ nền: 23/10 đáy $146,32 · 26/10 đáy $143,92 rút chân đóng $146,93 · 27/10 đóng $146,83 — 3 phiên giữ quanh $146–147. Cắt $140 = dưới đáy 52w có đệm. Chốt 1 $165 dưới MA50 ~$169; Chốt 2 $180."
  },
  "VLO": {
   "book": "Sổ 2",
@@ -289,7 +305,7 @@
    430,
    440
   ],
-  "note": "hoặc breakout đóng cửa >$465",
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $430–440/cắt $420 BROKEN (dưới cắt từ 27/10; đóng 30/10 $399,66, +3,9% hồi trong ngày). Nền non $377–387 đang hình thành (27/10 $385,65 · 28/10 $380,74 · 29/10 $377,45 · 30/10 $386,66 — đáy còn hạ dần, mới 1 phiên hồi). Kích hoạt: ≥2–3 phiên không thủng $377 + đóng trên $400, hoặc capitulation rút chân vol ≥1,5x.",
   "targets": [
    480,
    500
@@ -309,15 +325,16 @@
  },
  "VST": {
   "book": "Sổ 3",
-  "cut": 140,
+  "cut": 132,
   "entry": [
+   136,
+   140
+  ],
+  "targets": [
    144,
    150
   ],
-  "targets": [
-   163,
-   169
-  ]
+  "note": "VẼ LẠI 30/10: vùng cũ $144–150/cắt $140 BROKEN 30/10 (đóng $138,37, chỉ −1,2% dưới cắt — gãy sát cắt). Nền mới: kệ $133–136 test ~12 lần từ tháng 8 (đáy 30/9 $133,44 · 24/8 $134,50 · 2/10 $134,79...), đóng 30/10 giữ trên kệ (đáy ngày $135,86). Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh."
  },
  "ZS": {
   "book": "Sổ 2",
@@ -366,7 +383,8 @@
    620,
    672
   ],
-  "book": "Sổ 1"
+  "book": "Sổ 1",
+  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN (đóng 4/11 $504,48 GÃY CẮT $510; semi-redraw-watch đếm phiên dựng nền sau đóng cửa, đủ nền/kệ thật mới soạn vùng NHÁP chờ Tom duyệt). Số vùng Sổ 1 $535–560/chốt $620→$672/cắt $510 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực."
  },
  "SCHD": {
   "entry": [
@@ -405,16 +423,17 @@
   "book": "Sổ 1"
  },
  "MU": {
+  "book": "Sổ 2",
   "entry": [
-   890,
-   920
+   840,
+   870
   ],
-  "cut": 870,
   "targets": [
-   983,
-   1100
+   930,
+   983
   ],
-  "book": "Sổ 2"
+  "cut": 820,
+  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN (đóng 4/11 $795,23 GÃY CẮT $820 → hủy theo đúng điều kiện đã ghi; semi-redraw-watch đếm phiên dựng nền sau đóng cửa, đủ nền/kệ thật mới soạn vùng NHÁP chờ Tom duyệt; mốc quan sát: đáy phiên 4/11 $782, MA200 ~$752). Số vùng $840–870/chốt $930→$983 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực. | GỐC: CÓ ĐIỀU KIỆN (vẽ lại 3/11 theo lệnh Tom; thay vùng cũ $890–920/cắt $870 đã GÃY — đóng 2/11 $833,59, 3/11 $855,10 vẫn dưới cắt cũ). Nền tháng 10 $849–862 bị phá nhẹ xuống $829,24 (2/11) rồi 3/11 đòi lại, đóng $855,10 (+2,58%), đáy nâng $829→$845. ĐIỀU KIỆN: đóng giữ trên $840 và không thủng $829 thêm 1–2 phiên; đòi lại $870 (cắt cũ) = xác nhận mạnh hơn. Đóng <$820 → HỦY, chờ nền mới (MA200 ~$752 là mốc xa). Bán: $930 (MA20/cụm đóng 27/10) → $983 (đóng 28/10 = chốt 1 cũ). Trong 🔴 chỉ canh/tham chiếu."
  },
  "WDC": {
   "entry": [
@@ -431,15 +450,15 @@
  "STX": {
   "book": "Sổ 3",
   "entry": [
-   640,
-   665
+   540,
+   565
   ],
   "targets": [
-   720,
-   760
+   620,
+   665
   ],
-  "cut": 610,
-  "note": "CÓ ĐIỀU KIỆN (rà 27/10; Tom lệnh theo dõi 27/10): chỉ kích hoạt khi ĐÓNG 28/10 ≥$640 (phiên phản ứng earnings Q1 FY27). Đóng <$621 → HỦY, chuyển chờ dựng nền: dưới $621 là vùng trống hỗ trợ, kệ thật kế tiếp ~$540–560 (vùng phá vỡ tháng 4/2026). AH 27/10 chạm $611 rồi hồi $628,21 (16:21 PT). Thay entry cũ $695–720/cắt $680 đã gãy từ 22/10."
+  "cut": 525,
+  "note": "TAM VO HIEU — ⏸️ CHỜ DỰNG NỀN (vẽ lại 3/11 theo lệnh Tom). Vùng cũ $640–665/cắt $610 GÃY: đóng 2/11 $593,76 thủng kệ tháng 10 $621–636, đóng 3/11 $606,38 vẫn dưới cắt — CHƯA có nền mới (đáy 2 phiên $586,88–$599,02, còn là dao rơi). Vùng KẾ HOẠCH tại kệ thật kế tiếp $540–565 (vùng phá vỡ tháng 4/2026): chỉ kích hoạt khi giá dựng nền tại đó (≥3 phiên không đáy thấp hơn + đóng giữ trong vùng). Cắt cứng <$525. Bán: $620 (kệ cũ gãy = kháng cự) → $665. Kịch bản 2: đóng giữ trên $640 đủ 2 phiên = đòi lại kệ cũ → vẽ lại vùng tại $621–640. Trong 🔴 chỉ là mốc canh/tham chiếu."
  },
  "DRAM": {
   "entry": [
@@ -451,7 +470,8 @@
    57,
    65
   ],
-  "book": "Sổ 3"
+  "book": "Sổ 3",
+  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN (đóng 4/11 $45,13 GÃY CẮT $46; semi-redraw-watch đếm phiên dựng nền sau đóng cửa, đủ nền/kệ thật mới soạn vùng NHÁP chờ Tom duyệt). Số vùng Sổ 3 $48–51/chốt $57→$65/cắt $46 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực."
  },
  "NVDA": {
   "book": "Sổ 2",
@@ -499,7 +519,12 @@
   "ZS",
   "FIGS",
   "CRML",
-  "SKHY"
+  "SKHY",
+  "INTC",
+  "NFLX",
+  "UAL",
+  "DLTR",
+  "RCL"
  ],
  "_excluded_note": "Tom 15/10: mã trung lập, xóa khỏi bảng. Zone data backup ở zones_excluded_backup.json. Muốn hiện lại thì xóa khỏi _excluded.",
  "AXON": {
@@ -513,7 +538,7 @@
   ],
   "cut": 385,
   "book": 3,
-  "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 3/11."
+  "note": "Sổ 3: fail uptrend (dưới MA50 $507/MA200 $475), WS Moderate Buy PT ~$700 (+67%), hỗ trợ $395.75, -45% từ đỉnh 52w. Earnings 5/11."
  },
  "IREN": {
   "book": "Sổ 3",
@@ -544,15 +569,15 @@
  "USAR": {
   "book": "Sổ 3",
   "entry": [
+   9.2,
+   9.65
+  ],
+  "targets": [
    10.3,
    10.8
   ],
-  "targets": [
-   12.0,
-   12.79
-  ],
-  "cut": 9.75,
-  "note": "Bounce +10.8% từ đáy 15/10, đóng $11.09. Rare earth momentum."
+  "cut": 8.85,
+  "note": "VẼ LẠI 30/10: vùng cũ $10,30–10,80/cắt $9,75 BROKEN 30/10 (đóng $9,62, gãy sát cắt). Nền mới: kệ $8,89–9,41 test 5 lần trong 7 phiên (26/10 $8,89 · 27/10 $9,01 · 23/10 $9,26 · 22/10 $9,41 · 30/10 $9,19), đóng giữ trên kệ. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh."
  },
  "APLD": {
   "book": "Sổ 3",
@@ -693,7 +718,7 @@
    800
   ],
   "cut": 640,
-  "note": "Uptrend (+7.3% vs MA50), earnings 21/10 AMC"
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $670–700/cắt $640 BROKEN (dưới cắt từ 26/10; đóng 30/10 $614,99, đáy ngày $610,14). Đáy còn hạ dần (28/10 $609,00 · 29/10 $616,80 · 30/10 $610,14) — chưa phải nền. Kệ quan sát: $609 (đáy 28+30/10) → $537–567 (cụm tháng 8). Kích hoạt: ≥2–3 phiên không thủng $609 + đóng trên $640, hoặc về $560–570 có rút chân vol ≥1,5x."
  },
  "MSFT": {
   "book": "Sổ 2",
@@ -771,20 +796,20 @@
    230
   ],
   "cut": 150,
-  "note": "Crypto exchange, earnings miss, -53% vs đỉnh"
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $160–175/cắt $150 BROKEN 30/10 (đóng ~$139, −13%, đáy ngày $136,90 = đáy 12 tháng mới, đóng sát đáy, không rút chân). Kệ ứng viên $139 đã thủng (31/7 $139,11 · 26/6 $139,18 · 12/2 $139,36 đều đã gãy). Kệ quan sát: $136,90 (đáy 30/10) → vùng trống phía dưới. Kích hoạt: ≥2–3 phiên không thủng $136,90 + đóng giữ trên $145, hoặc capitulation rút chân vol ≥1,5x TB20."
  },
  "INTC": {
   "book": "Sổ 3",
   "entry": [
-   85,
-   92
+   58,
+   64
   ],
   "targets": [
-   105,
-   115
+   68.8,
+   78
   ],
-  "cut": 78,
-  "note": "Turnaround, JPM Neutral PT $85, -35% vs đỉnh"
+  "cut": 56,
+  "note": "TAM VO HIEU 02/11 — ⏸️ CHỜ DỰNG NỀN. Vẽ lại theo lệnh Tom 02/11 để canh XE INTW (GraniteShares 2x Long INTC) trong mục ĐÒN BẨY — mã gốc INTC VẪN LOẠI KHỎI MÂM (thesis gãy sau earnings 29/10, guidance Q4 sụp; _excluded giữ nguyên), vùng này THUẦN KỸ THUẬT cho xe, không phục hồi INTC lên mâm. Diễn biến: 30/10 capitulation đóng $65,76 (đáy $63,20, vol 454tr = 4,56x TB20); 02/11 còn thủng đáy mới $61,59 → còn rơi tự do, CHƯA có nền. Vùng $58–64 CHỜ KÍCH HOẠT: ≥2 phiên không thủng $61,59 + 1 phiên đóng trên $64. Dịch sang INTW theo tỷ lệ ~0,108 (10:28 PT 02/11): vào ~$6,25–6,90 · cắt đóng <$6,00 · chốt ~$7,45→$8,40. Xe x2: chỉ daytrade/swing 1–3 phiên, cấm giữ dài."
  },
  "MSTR": {
   "book": "Sổ 3",
@@ -815,15 +840,15 @@
  "SKHY": {
   "book": "Sổ 3",
   "entry": [
-   133,
-   142
+   144,
+   151
   ],
   "targets": [
    165,
    180
   ],
-  "cut": 128,
-  "note": "Vùng vẽ lại 27/10 theo ý Tom: nền mới 3 đáy nâng dần $130,79 → $135,21 → $139,15 (kệ $131–140), giá 27/10 $145,54 bật trên mép vùng cũ $135–145. Cắt cứng mới <$128 dưới đáy nền. EARNINGS TỐI 27/10 ~17:00 PT — biến nhị phân, vùng là mốc tham chiếu sau earnings. ADR mới niêm yết (ít dữ liệu), dưới MA20/MA50 — vị thế nhỏ."
+  "cut": 141,
+  "note": "Vẽ lại 3/11 theo lệnh Tom (thay vùng $133–142/cắt $128 của 27/10 — giá không quay lại vùng cũ sau earnings). NỀN MỚI sau earnings: đáy nâng dần $145,34 (30/10) → $146,29 (2/11) → $149,79 (3/11), đóng 3/11 $150,79 ngay dưới MA20 $151,22 — nền non 3 phiên trên mép vùng cũ. Cắt cứng <$141 (dưới nền). Bán: $165 (đỉnh sau earnings 28–29/10 $164,70–166,06) → $180. Lưu ý: SK Hynix tại Seoul sáng 4/11 (giờ Á) −3,65% — phiên Mỹ 4/11 có thể ép thử lại nền; phán quyết ở nến ĐÓNG giữ trên $144. ADR thanh khoản tốt (vol ~14,6tr cp 3/11). Trong 🔴 chỉ canh/tham chiếu."
  },
  "SMMT": {
   "book": "Sổ 3",
@@ -849,7 +874,7 @@
    140
   ],
   "cut": 82,
-  "note": "ETF đòn bẩy 3x semiconductor, -67% vs đỉnh, chỉ lướt nhanh"
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $90–100/cắt $82 BROKEN 30/10 (đóng ~$72–73, −29%, đáy ngày $70,23 = đáy 6 tháng mới, đóng sát đáy). ETF đòn bẩy x3 — chỉ lướt nhanh, cấm giữ dài. Kệ quan sát: $70,23 (đáy 30/10) → $80 (kệ vừa gãy, giờ là kháng cự). Kích hoạt: ≥2–3 phiên không thủng $70 + đóng trên $82."
  },
  "AVAV": {
   "book": "Sổ 3",
@@ -979,7 +1004,7 @@
    65
   ],
   "book": "Sổ 1",
-  "note": "ETF bạc iShares — discount ~-55% vs đỉnh 52w $109.83, đang ở low 3 tháng, hỗ trợ $50.01/kháng cự $55.25, thanh khoản tốt (AUM $28.6B), cắt cứng"
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $48–52/cắt $45 BROKEN 30/10 (đóng ~$44,30, đáy ngày $44,11 = đáy 6 tháng mới, đóng sát đáy, vol ~1,97x nhưng không rút chân). Chuỗi đáy hạ dần từ 14/10 ($50,01) — chưa có nền. Kệ quan sát: $44,11 (đáy 30/10). Kích hoạt: ≥2–3 phiên không thủng $44,11 + đóng trên $47, hoặc capitulation rút chân vol ≥1,5x."
  },
  "TGT": {
   "book": "Sổ 3",
@@ -1031,7 +1056,7 @@
    182
   ],
   "cut": 132,
-  "note": "VE 28/10 - DA GAP SAU EARNINGS: AH 28/10 ~$125 (duoi cat $132) -> VUNG TAM VO HIEU, CHO DUNG NEN, khong ve duoi. Cho dong cua phien phan ung 29/10 + nen moi."
+  "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN (tiếp tục từ 28/10). Vùng cũ $138–146/cắt $132 đã vô hiệu từ gap earnings 29/10; đóng 30/10 $105,12, đáy ngày $103,51 = đáy mới, thủng luôn kệ 31/7 $106,05. Kệ quan sát: $103,51 (đáy 30/10) → $85–95 (vùng sâu, đáy 6 tháng $85,44 ngày 14/5). Kích hoạt: ≥2–3 phiên không thủng $103,51 + đóng trên $110, hoặc về $90–95 có rút chân vol ≥1,5x."
  },
  "CRWD": {
   "book": "Sổ 2",
@@ -1049,28 +1074,29 @@
  "DELL": {
   "book": "Sổ 2",
   "entry": [
+   415,
+   432
+  ],
+  "targets": [
    455,
    485
   ],
-  "targets": [
-   530,
-   565
-  ],
-  "cut": 435,
-  "note": "Ve 28/10 theo lenh Tom. Nen rua thang 10: day $439,50 (20/10) + cum day $446-455 (16-26/10, 6 lan cham) sau Barclays ha hang 14/10; hoi dong 27/10 $501,96, dong 28/10 $493,79 (-1,63%). Vung = retest nen rua; Chot 1 $530 (ke Sep/MA50 $513), Chot 2 $565 (cum dinh Oct $562-578); Cat cung <$435 duoi day $439,50. MA200 $327,97 - uptrend dai han con nguyen; AI server backlog $95 ty. Earnings 24/11 AMC - gap sau so co the nhay qua cat."
+  "cut": 410,
+  "note": "VẼ LẠI 30/10: vùng cũ $455–485/cắt $435 BROKEN 30/10 (đóng $424,30, −10,8%). Nền mới: kệ tháng 8 $416–432 test 9 lần (7/8 $416,30 · 1/9 $421,89 · 24/8 $424,00 · 6/8 $426,00 · 19/8 $427,54 · 21/8 $429,45 · 11/8 $431,01 · 20/8 $432,00 · 2/9 $432,27), đóng 30/10 $424 giữ trong kệ sau khi nhúng $413,00, vol 1,66x TB20. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU. Kệ sâu $378/$368/$359 nếu thủng $410."
  },
  "TWLO": {
   "book": "Sổ 2",
   "entry": [
-   238,
-   250
+   190,
+   208
   ],
   "targets": [
-   272,
-   290
+   232,
+   250
   ],
-  "cut": 232,
-  "note": "CÓ ĐIỀU KIỆN — earnings AMC 29/10 (kỳ vọng EPS $1,47 · DT $1,52 tỷ). Kích hoạt khi ĐÓNG phiên phản ứng 30/10 giữ ≥$248 (kệ nền 19–28/10: đáy $248,00–$252,50); đóng <$236 (đáy xả 16/10 $236,85) → HỦY, chờ dựng nền mới. Gap lên sau beat: không đuổi, vùng là mốc chờ pullback. Neo: MA50 ~$256,5 · MA20 ~$272 · PT đồng thuận ~$271."
+  "cut": 178,
+  "note": "VẼ LẠI 30/10: vùng điều kiện cũ $238–250/cắt $232 HỦY 30/10 (đóng $205,03 < $236 — điều kiện kích hoạt ≥$248 không đạt). Nền mới từ nến capitulation 30/10 (phiên phản ứng earnings AMC 29/10): đáy $180,00 rút chân đóng $205,03 (+13,9% từ đáy, đóng sát đỉnh ngày $206,90), vol 1,73x TB20 + kệ tháng 8 $187–194. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh.",
+  "prev_zone": "Vùng điều kiện cũ $238–250/cắt $232 HỦY 30/10 (đóng $205,03 < $236)"
  },
  "AAOI": {
   "book": "Sổ 3",
@@ -1188,5 +1214,70 @@
   ],
   "cut": 59.5,
   "note": "ETF trái phiếu chính phủ EM định danh USD (Vanguard) — phí 0,15%, AUM ~$6,6 tỷ, SEC yield ~6,7% trả tháng; rủi ro tín dụng quốc gia EM — vệ tinh thu nhập. Thêm 29/10 theo danh sách Tom đưa."
+ },
+ "QQQM": {
+  "entry": [
+   272,
+   282
+  ],
+  "cut": 265,
+  "targets": [
+   314,
+   330
+  ],
+  "book": "Sổ 1",
+  "note": "Vẽ 29/10 (rổ LONG TERM): neo MA200 $279,45 + kệ đáy swing 272–278 (thấp nhất 28/4 $269,20; 27–29/7 $272,23–278,33); đỉnh 52w $314,11 (6/10/2026). Bản rẻ của QQQ (phí 0,15%) — vùng chờ pullback, giá 29/10 ~$293,73 đang trên vùng."
+ },
+ "BA": {
+  "book": "Sổ 3",
+  "entry": [
+   166,
+   172
+  ],
+  "targets": [
+   183,
+   190
+  ],
+  "cut": 162,
+  "note": "Vẽ 02/11 theo lệnh trực tiếp của Tom (anh thấy BA rớt rất cứng tuần rồi, lệnh vẽ vùng mới — khung đề xuất cũ $160–170/<$158 thay bằng vùng này). Căn cứ nến ngày Yahoo tới đóng 30/10 $171,55: capitulation ngày earnings 27/10 (đáy $167,41, vol 47,3tr ≈ 4,7× TB20), đáy 52w $165,01 (28/10); 2 phiên sau đóng KHÔNG thủng đáy + đáy sau cao hơn ($167,74 → $170,37) = đủ điều kiện dựng nền theo luật vẽ lại vùng 27/10. Vùng vào = kệ nền $166–172; chốt 1 $183 = mép gap sập earnings + sát MA20 $185,3; chốt 2 $190 = cụm giá trước earnings $188–193; cắt cứng đóng <$162 = nền gãy hẳn. Toán vào ~$169: rủi ro $7 → chốt 1 ≈ 2R. Chế độ 🔴: mốc canh/tham chiếu, Tom quyết định vào lệnh."
+ },
+ "OKTA": {
+  "book": "Sổ 2",
+  "entry": [
+   186,
+   196
+  ],
+  "targets": [
+   208,
+   226
+  ],
+  "cut": 182,
+  "note": "Ve 02/11 theo hoi cua Tom - OKTA vao S&P 500 hieu luc truoc mo cua T4 04/11 (thay Kenvue); quy chi so phai gom xong vao dong cua T3 03/11. Ke nen that: day 16/10 $184,89 - 19/10 $189,00 - 20/10 $183,60 (3 phien dung nen roi bay len $226); MA50 $194,02 sat mep tren vung, MA20 $212,65. 02/11: day phien $191,00 rut chan len $206 roi yeu lai ~$196,92 - nguoi ban chua het tay. Cat cung: dong <$182 (duoi day nen $183,60). Che do do: vung tham chieu/canh, nen DONG phan quyet. Rui ro: sau 04/11 het luc mua co hoc cua quy chi so (sell-the-news); earnings du kien dau T12/2026 (chua xac minh ngay)."
+ },
+ "LNT": {
+  "book": "Sổ 1",
+  "entry": [
+   69.5,
+   71.5
+  ],
+  "targets": [
+   76,
+   78.8
+  ],
+  "cut": 67.9,
+  "note": "Alliant Energy — điện lực phòng thủ, cổ phiếu THƯỜNG (không phải xe đòn bẩy); Tom lệnh 02/11 đưa vào mục ĐÒN BẨY để canh chung + vẽ vùng. Đã ra số Q3 ngày 29/10: EPS $1,52 vs kv $1,29 (beat +17,8%, public.com) → phá vỡ kệ tháng 10 ($66,85–70,68), đóng 30/10 $71,65 vol 2,1x TB20; 02/11 chạm $72,97. Trên MA20 $68,30 · MA50 $67,06 · MA200 $70,58. Vùng = chờ kéo về retest vùng phá vỡ, không đuổi giá ở đỉnh. Đỉnh 52w $78,81 · đáy 52w $62,54. Earnings kế tiếp ~18/02/2027."
+ },
+ "LRCX": {
+  "book": "Sổ 2",
+  "entry": [
+   222,
+   232
+  ],
+  "targets": [
+   254,
+   265
+  ],
+  "cut": 218,
+  "note": "Iggy vẽ 02/11 theo lệnh Tom gắn xe LRCU. Sau earnings 22/10 rơi từ $260,81 về đóng $230,15 (vol 23tr = 2,1x TB20), LRCX dựng kệ $225–232: đáy 22/10 $227,68 · 23/10 $225,14 · 30/10 $232,61 · 02/11 chạm lại $225,77 chưa thủng sàn kệ. Vùng = kệ hậu earnings, cắt cứng đóng <$218 (dưới sàn kệ ~3%). Chốt 1 $254 = đóng 29/10; chốt 2 $265 = lấp gap về cụm 21/10. Giá đang dưới MA20 $278,50/MA50 $294,47/MA200 $284,24, −48% vs đỉnh 52w $438,50 — chế độ 🔴: vùng tham chiếu/canh, phán quyết theo nến ĐÓNG."
  }
 }
