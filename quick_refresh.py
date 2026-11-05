@@ -5243,10 +5243,12 @@ def update_companion_lines(h, prices):
                             f'<div class="{cls}">{line}</div></td></tr>')
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _row_rep, seg, flags=re.S)
-            elif name in ("sec-longterm", "sec-etf16", "sec-etf"):
-                # bảng <tr><td><b> như Sổ 2/3 (Sổ 1 + 16 ETF) — gắn hàng
-                # levcomp ngay dưới hàng mã gốc; sec-etf chạy thêm lượt
-                # alert generic vì mục này trộn cả 2 dạng.
+            elif name in ("sec-longterm", "sec-etf16", "sec-etf",
+                          "sec-watch"):
+                # bảng <tr><td><b> như Sổ 2/3 (Sổ 1 + 16 ETF + bảng trạng
+                # thái vùng trong sec-watch) — gắn hàng levcomp ngay dưới
+                # hàng mã gốc; sec-etf + sec-watch chạy thêm lượt alert
+                # generic vì 2 mục này trộn cả 2 dạng.
                 def _lt_rep(m):
                     nonlocal n0
                     u = m.group(1)
@@ -5265,7 +5267,7 @@ def update_companion_lines(h, prices):
                              r".*?</tr>", _lt_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _lt_rep, seg, flags=re.S)
-                if name == "sec-etf":
+                if name in ("sec-etf", "sec-watch"):
                     def _etf_alert(full, inner):
                         nonlocal n0
                         u = _comp_alert_ticker(full)
