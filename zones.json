@@ -1737,5 +1737,168 @@
   ],
   "cut": 17,
   "note": "CHỜ DỰNG NỀN — nến Yahoo lỗi sau tin tách công ty (chart chỉ còn giá hiện tại $30,95; đáy/đỉnh 52w $18,00/$30,99 từ chart meta). Vùng chờ tạm neo đáy 52w; chờ dữ liệu nến phục hồi để vẽ lại theo kệ thật. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "CRCL": {
+  "book": "Sổ 3",
+  "entry": [
+   70,
+   76
+  ],
+  "targets": [
+   86,
+   100
+  ],
+  "cut": 67,
+  "note": "CHỜ DỰNG NỀN — rơi từ $140; cụm đáy mới $71,00–72,70 (5 phiên gần). Vùng chờ quanh cụm đáy; kích hoạt: ≥3 phiên giữ $71; chốt $85,95/MA200 $86 → $99,97. Vẽ đêm 4/11 phủ range."
+ },
+ "GFS": {
+  "book": "Sổ 3",
+  "entry": [
+   38,
+   43
+  ],
+  "targets": [
+   48,
+   55
+  ],
+  "cut": 36,
+  "note": "CHỜ DỰNG NỀN — thác nước, đáy 4/11 $39,03 chưa có nền. Vùng chờ quanh đáy hiện tại + kệ vừa gãy $42,15–42,70; kích hoạt: ngừng rơi + nền ≥3 phiên; chốt $48,21 → MA200 $55,2. Earnings 4/11 BEAT. Vẽ đêm 4/11 phủ range."
+ },
+ "MNST": {
+  "book": "Sổ 3",
+  "entry": [
+   45,
+   47.5
+  ],
+  "targets": [
+   50
+  ],
+  "cut": 42,
+  "note": "CÓ ĐIỀU KIỆN — mốc canh pullback: xu hướng lên khỏe, sát đỉnh 52w $50,17; kệ đáy nâng $44,92–47,59 + MA50 $44,7; chốt = đỉnh 52w; cắt dưới MA200 $43,2. Earnings 5/11 AMC. Vẽ đêm 4/11 phủ range."
+ },
+ "NET": {
+  "book": "Sổ 3",
+  "entry": [
+   245,
+   265
+  ],
+  "targets": [
+   298,
+   328
+  ],
+  "cut": 238,
+  "note": "CHỜ DỰNG NỀN — thác từ $370, đáy còn hạ ($257,83). Vùng chờ = MA200 $249,4 + swing low cũ $250,69; kích hoạt: giữ MA200 + nền ≥3 phiên; chốt $298,59 → $327,80; cắt dưới MA200. Earnings 5/11 AMC. Vẽ đêm 4/11 phủ range."
+ },
+ "NVO": {
+  "book": "Sổ 3",
+  "entry": [
+   37.5,
+   40.5
+  ],
+  "targets": [
+   44,
+   48.7
+  ],
+  "cut": 34.8,
+  "note": "KẾ HOẠCH — nền đang dựng: đáy $36,85 → cụm $37,96–39,24 → đáy nâng tới $42,12; chốt = MA200 $43,9 → $48,66; cắt dưới đáy nền (đáy 52w $35,12). Earnings 4/11 BEAT. Vẽ đêm 4/11 phủ range."
+ },
+ "WULF": {
+  "book": "Sổ 3",
+  "entry": [
+   10.3,
+   11.8
+  ],
+  "targets": [
+   13.4,
+   15.5
+  ],
+  "cut": 9.8,
+  "note": "CHỜ DỰNG NỀN — đáy capitulation $10,35 = đáy 52w; vùng chờ quanh đáy; kích hoạt: ≥3 phiên không thủng $10,35 + đóng trên $12; chốt $13,44 → $15,47; cắt dưới đáy 52w. Earnings 6/11 BMO. Vẽ đêm 4/11 phủ range."
+ },
+ "STXF": {
+  "book": "Sổ 1",
+  "entry": [
+   48.3,
+   49.3
+  ],
+  "targets": [
+   50.5
+  ],
+  "cut": 46.8,
+  "note": "CÓ ĐIỀU KIỆN — quỹ LT bám S&P 500 (Strive 500): dải ngang $48,51–50,54, kệ đáy $48,51–49,28; chốt = đỉnh 52w $50,54; cắt dưới MA200 $47,1. Mốc tham chiếu LT, trùng vai VOO/SPY. Vẽ đêm 4/11 phủ range."
+ },
+ "STXT": {
+  "book": "Sổ 1",
+  "entry": [
+   18.9,
+   19.3
+  ],
+  "targets": [
+   19.75,
+   20.4
+  ],
+  "cut": 18.7,
+  "note": "CÓ ĐIỀU KIỆN — quỹ trái phiếu LT (két tiền/ballast): dải siêu hẹp, kệ = đáy 52w $18,91 + cụm $19,25; chốt $19,74 → đỉnh 52w $20,40. Chỉ mốc tham chiếu LT. Vẽ đêm 4/11 phủ range."
+ },
+ "STXE": {
+  "book": "Sổ 1",
+  "entry": [
+   42,
+   44.5
+  ],
+  "targets": [
+   49,
+   52.5
+  ],
+  "cut": 40.5,
+  "note": "CHỜ DỰNG NỀN — quỹ EM (Strive) rơi từ $55,39, đáy mới $44,37 chưa có nền. Vùng chờ dưới giá hiện tại; kích hoạt: pullback về vùng chờ + dựng nền ≥3 phiên; chốt = kệ cũ $49,0–49,66 → $52,54. Vẽ đêm 4/11 phủ range."
+ },
+ "AVMC": {
+  "book": "Sổ 1",
+  "entry": [
+   76.5,
+   79
+  ],
+  "targets": [
+   82.6
+  ],
+  "cut": 74.5,
+  "note": "CÓ ĐIỀU KIỆN — quỹ mid-cap LT (Avantis): xu hướng lên, kệ đáy $76,59–78,51; chốt = đỉnh 52w $82,60; cắt dưới $75,93. Thanh khoản mỏng — mốc tham chiếu LT. Vẽ đêm 4/11 phủ range."
+ },
+ "DFMC": {
+  "book": "Sổ 1",
+  "entry": [
+   56.5,
+   58.5
+  ],
+  "targets": [
+   62.4
+  ],
+  "cut": 54.5,
+  "note": "CÓ ĐIỀU KIỆN — quỹ micro-cap LT (Dimensional): dải $56,54–62,37, kệ đáy $56,54–58,16; chốt = đỉnh 52w $62,37; cắt dưới dải. Vẽ đêm 4/11 phủ range."
+ },
+ "VFLO": {
+  "book": "Sổ 1",
+  "entry": [
+   50.5,
+   53.5
+  ],
+  "targets": [
+   56.4
+  ],
+  "cut": 48.5,
+  "note": "CÓ ĐIỀU KIỆN — quỹ LT: xu hướng lên, kệ $50,65 + đáy gần $53,28; chốt = đỉnh 52w $56,44; cắt dưới $50,65. Vẽ đêm 4/11 phủ range."
+ },
+ "FWMMX": {
+  "book": "Sổ 1",
+  "entry": [
+   65.5,
+   67.5
+  ],
+  "targets": [
+   69.9
+  ],
+  "cut": 63.5,
+  "note": "CÓ ĐIỀU KIỆN — quỹ tương hỗ trong tài khoản 529 của Tom (giá NAV): giá sát đỉnh 52w $69,91; vùng chờ pullback = kệ NAV $65,78–67,72; chốt = đỉnh 52w; cắt dưới kệ (đáy 52w $61,55). Mốc tham chiếu LT. Vẽ đêm 4/11 phủ range."
  }
 }
