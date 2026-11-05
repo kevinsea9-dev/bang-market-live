@@ -4759,6 +4759,8 @@ def dash_top_merge(h):
             f"border-left:7px solid {accent};border-radius:12px;padding:8px 11px;"
             f'margin:6px 0 2px;background:rgba(212,175,55,.06);font-size:13.5px;'
             f'line-height:1.45">' + _dt_css + body +
+            f'<div class="dt-legend" style="font-size:12px;margin-top:3px">'
+            f'🟨 MÃ GỐC · 🟦 XE 2x · 🌙 XE CHẠY ĐÊM 24H</div>' +
             f'<div class="dt-foot" style="font-size:12px;margin-top:4px">{_gate_badge}'
             f'<span class="dt-upd" style="opacity:.65"> · cập nhật {now_pt().strftime("%H:%M")} PT</span>'
             f"</div></div>\n<!-- DASHTOP-END -->\n")
@@ -4891,6 +4893,11 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
 # CỐ Ý KHÔNG gắn: sec-ltalloc + sec-etf/sec-lt9/sec-etf16 (tiền dài hạn
 # 10–20 năm, xe x2 ngược triết lý) · sec-leverage (đã đủ 3 lớp) · sec-news
 # và các mục tin tức/chỉ nam.
+# MỞ RỘNG 4/11 (Tom chốt 20:26 — LUẬT GẮN CẶP TOÀN BẢNG): MỌI mã trên bảng
+# đều gắn xe — KỂ CẢ MÃ WATCH-ONLY — nơi có xe thật đã kiểm chứng Yahoo.
+# Mẫu thống nhất: nhãn mã gốc VÀNG (gradient #ffe066→#f5c518 như .tk của
+# sec-tinhhoa) · nhãn xe XANH DA TRỜI #7dd3fc (như sec-leverage) · 🌙 24H
+# chỉ khi xe nằm trong LEV_24H (snapshot Robinhood đã kiểm chứng).
 COMP_MAP = {
     "NVDA": "NVDL", "GOOGL": "GGLL", "AVGO": "AVGX", "TSM": "TSMX",
     "MSFT": "MSFU", "ORCL": "ORCU", "AMD": "AMDL", "META": "METU",
@@ -4904,6 +4911,13 @@ COMP_MAP = {
     "KLAC": "KLAG", "LITE": "LITX", "CSCO": "CSCL", "VRT": "VRTL",
     "ANET": "ANEL", "ALAB": "LABX", "CRM": "CRMG",
     "RTX": "RTXG", "LMT": "LMTL", "GLW": "GLWG", "WDC": "WDCX",
+    # bổ sung 4/11 (mở rộng toàn bảng — mọi xe đã kiểm chứng Yahoo quote
+    # 4/11: tên quỹ 2x Long đúng mã gốc + giá thật; vol TB 5 phiên 4/11
+    # ghi ở COMP_WARN nếu mỏng)
+    "COHR": "COHX", "NBIS": "NBIL", "SMCI": "SMCX", "MRVL": "MVLL",
+    "AAOI": "AAOX", "MSTR": "MSTX", "BABA": "BABX", "NFLX": "NFXL",
+    "GLD": "UGL", "SLV": "AGQ", "BA": "BOEU", "BMNR": "BMNU",
+    "QCOM": "QCMU", "ARM": "ARMG", "APP": "APPX",
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
@@ -4923,9 +4937,14 @@ COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "LMTL": "⚠️ vol mỏng ~10–31k cp/ngày, AUM ~$8tr — chia lệnh nhỏ, tránh giờ mỏng",
     "STXX": "⚠️ vol vừa ~100–160k cp/ngày, phí 1,49%/năm — chia lệnh nhỏ, tránh giờ mỏng",
     "CONY": "💸 KHÔNG phải xe x2 — quỹ YieldMax thu nhập quyền chọn: phí ~0,99%/năm · cổ tức TUẦN (kỳ 29/10: $0,181/cp), phần lớn là hoàn vốn — NAV mòn dần theo thời gian",
+    "QCMU": "⚠️ vol vừa ~127k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ, tránh giờ mỏng",
+    "BOEU": "⚠️ vol mỏng ~99k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ, tránh giờ mỏng",
 }
 COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
-                 "sec-special", "sec-urgent")
+                 "sec-special", "sec-urgent",
+                 # mở rộng 4/11 theo LUẬT GẮN CẶP TOÀN BẢNG
+                 "sec-topfocus", "sec-tickets", "sec-watch", "sec-steelnet",
+                 "sec-tinhhoa", "sec-hot", "sec-live")
 _COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
                    "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
 
@@ -4977,27 +4996,38 @@ def _levcomp_strip(h):
     return ''.join(out)
 
 
-def _comp_line(u, v, px, zones):
+def _comp_line(u, v, px, zones, suffix=""):
     """(dòng companion, chớp?) cho mã gốc u / xe v; (None, False) nếu thiếu giá.
     BROKEN → chỉ ghi 'MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu', TUYỆT ĐỐI
-    không ghi chữ MUA. Vùng TẠM TREO → không dịch số, như levmap."""
+    không ghi chữ MUA. Vùng TẠM TREO → không dịch số, như levmap.
+    Mẫu 4/11: nhãn mã gốc VÀNG + nhãn xe XANH DA TRỜI (chip data-px/data-pct
+    để streamer/poller cập nhật realtime như sec-leverage) + 🌙 24H khi xe
+    có trong LEV_24H. suffix: câu đuôi riêng theo mục (vd cảnh báo earnings
+    ở sec-tinhhoa)."""
     if v not in px or u not in px:
         return None, False
     vpx, vpct = px[v]
     upx = px[u][0]
     if not upx:
         return None, False
-    head = (f"↳ XE X2 · SỔ 3 CHỈ DAYTRADE: {v} {_lt_money(vpx)} "
-            f"({fmt_pct_vn(vpct)})")
+    gold = ('<span style="background:linear-gradient(180deg,#ffe066,#f5c518);'
+            'color:#111;font-weight:900;padding:1px 7px;border-radius:5px">'
+            f"{u}</span>")
+    sky = ('<span style="background:#7dd3fc;color:#131313;font-weight:900;'
+           'padding:1px 7px;border-radius:5px">'
+           f'<span data-px="{v}">{v} {_lt_money(vpx)}</span></span>')
+    moon = " · 🌙 24H" if v in LEV_24H else ""
+    head = (f"{gold} ↳ XE X2 · SỔ 3 CHỈ DAYTRADE: {sky} "
+            f'<span data-pct="{v}">({fmt_pct_vn(vpct)})</span>{moon}')
     warn = COMP_WARN.get(v)
     if warn:
         head += f" · {warn}"
     z = zones.get(u)
     if not z or not z.get("entry"):
-        return head + f" · {u} chưa có vùng — xe chạy theo đà", False
+        return head + f" · {u} chưa có vùng — xe chạy theo đà" + suffix, False
     note = (z.get("note") or "").upper()
     if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
-        return head + f" · {u} VÙNG TẠM TREO — chưa dịch giá xe", False
+        return head + f" · {u} VÙNG TẠM TREO — chưa dịch giá xe" + suffix, False
     try:
         lo, hi = z["entry"]
         st = _zone_state_of(z, upx)
@@ -5016,7 +5046,7 @@ def _comp_line(u, v, px, zones):
         body += " · Chốt " + "→".join(_lt_money(t * r) for t in tps[:2])
     if z.get("cut"):
         body += f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}"
-    return head + " · " + body, (st == "IN")
+    return head + " · " + body + suffix, (st == "IN")
 
 
 def _comp_alert_ticker(full):
@@ -5094,6 +5124,12 @@ def update_companion_lines(h, prices):
             for attr in ("data-achip", "data-ticker", "data-fchip"):
                 cand.update(re.findall(attr + r'="([A-Z]{2,6})"', seg))
             cand.update(re.findall(r"<tr><td><b>([A-Z]{2,6})</b></td>", seg))
+            # mẫu riêng từng mục (4/11): lưới thép dùng data-t trên
+            # zchip-row · earnings dùng <span class='tk'> · live strip
+            # dùng <div class="lt">
+            cand.update(re.findall(r'data-t="([A-Z]{2,6})"', seg))
+            cand.update(re.findall(r"class=['\"]tk['\"]>([A-Z0-9.]{1,8})<", seg))
+            cand.update(re.findall(r'<div class="lt">([A-Z]{2,6})', seg))
             for bm in re.finditer(r"<b>(.*?)</b>", seg, re.S):
                 txt = re.sub(r"<[^>]+>", " ", bm.group(1))
                 cand.update(t for t in re.findall(r"\b([A-Z]{2,6})\b", txt)
@@ -5137,6 +5173,89 @@ def update_companion_lines(h, prices):
                             f'<div class="{cls}">{line}</div></td></tr>')
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _row_rep, seg, flags=re.S)
+            elif name == "sec-steelnet":
+                # lưới thép có 2 dạng hàng: <tr class="zchip-row" data-t>
+                # (chip tóm tắt) + <tr><td><b> (bảng chi tiết) — gắn 1 dòng
+                # companion cho mỗi mã (seen chặn trùng), colspan=5.
+                def _sn_rep(m):
+                    nonlocal n0
+                    u = m.group(1)
+                    if u not in COMP_MAP or u in seen:
+                        return m.group(0)
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return m.group(0)
+                    seen.add(u)
+                    n0 += 1
+                    cls = "levcomp levflash" if flash else "levcomp"
+                    return (m.group(0) +
+                            f'<tr class="levcomp-row"><td colspan="5">'
+                            f'<div class="{cls}">{line}</div></td></tr>')
+                seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
+                             r".*?</tr>", _sn_rep, seg, flags=re.S)
+                seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
+                             _sn_rep, seg, flags=re.S)
+            elif name == "sec-tinhhoa":
+                # entry earnings: <div class='alert' ...> (NHÁY ĐƠN — khác
+                # mọi mục khác) + mã ở <span class='tk'>; dòng xe chèn ngay
+                # sau <br> đầu tiên của entry + LUẬT TOM: kèm cảnh báo cấm
+                # ôm xe qua đêm ra số.
+                _earn_suffix = " · ⚠️ XE X2: CẤM ÔM QUA ĐÊM RA SỐ"
+                out, i = [], 0
+                pat = re.compile(r"<div class='alert[^>]*>")
+                while True:
+                    m = pat.search(seg, i)
+                    if not m:
+                        out.append(seg[i:])
+                        break
+                    e_end = _levcomp_balanced_end(seg, m.start())
+                    if e_end is None:
+                        out.append(seg[i:])
+                        break
+                    entry = seg[m.start():e_end]
+                    out.append(seg[i:m.start()])
+                    tm = re.search(r"class='tk'>([A-Z0-9.]{1,8})<", entry)
+                    u = tm.group(1) if tm else None
+                    if u and u in COMP_MAP and u not in seen:
+                        line, flash = _comp_line(u, COMP_MAP[u], px, zones,
+                                                 suffix=_earn_suffix)
+                        if line:
+                            bm = re.search(r"<br\s*/?>", entry)
+                            pos = bm.end() if bm else tm.end()
+                            cls = ("levcomp levflash" if flash
+                                   else "levcomp")
+                            entry = (entry[:pos] +
+                                     f'<div class="{cls}">{line}</div>' +
+                                     entry[pos:])
+                            seen.add(u)
+                            n0 += 1
+                    out.append(entry)
+                    i = e_end
+                seg = ''.join(out)
+            elif name == "sec-live":
+                # live strip: mỗi mã 1 .livechip trong #liveStrip (JS tự
+                # cập nhật giá trong strip) — gắn các dòng companion NGAY
+                # SAU strip, vẫn trong sec-live, không đụng vào strip.
+                sm = re.search(r'<div id="liveStrip"[^>]*>', seg)
+                if sm:
+                    send = _levcomp_balanced_end(seg, sm.start())
+                    if send is not None:
+                        strip = seg[sm.start():send]
+                        lines = []
+                        for u in re.findall(r'<div class="lt">([A-Z]{2,6})',
+                                            strip):
+                            if u in COMP_MAP and u not in seen:
+                                line, flash = _mk_line(u)
+                                if line:
+                                    seen.add(u)
+                                    n0 += 1
+                                    cls = ("levcomp levflash" if flash
+                                           else "levcomp")
+                                    lines.append(
+                                        f'<div class="{cls}">{line}</div>')
+                        if lines:
+                            seg = (seg[:send] + ''.join(lines) +
+                                   seg[send:])
             elif name == "FOCUS":
                 fpat = re.compile(
                     r'<div style="border-top:1px solid rgba\(212,175,55,.45\)'
