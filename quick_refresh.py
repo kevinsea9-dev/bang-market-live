@@ -6345,6 +6345,7 @@ def main():
         h = render_regime_strip(h, a.repo_dir)
         h = ensure_compact_css(h)
         h = board_compact(h)
+        h = ensure_block_footers(h)
         h = ensure_lang_toggle(h)
         h = ensure_share_gate(h)
         h = ensure_ws_live(ensure_yahoo_live(h))
@@ -6654,6 +6655,7 @@ def main():
 
     h = ensure_compact_css(h)
     h = board_compact(h)
+    h = ensure_block_footers(h)
     h = ensure_lang_toggle(h)
     h = ensure_share_gate(h)
     h = ensure_ws_live(ensure_yahoo_live(h))
