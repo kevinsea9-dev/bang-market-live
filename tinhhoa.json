@@ -133,6 +133,17 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Zacks: EPS $0,21, doanh thu $473,7M). Sổ 3: Vào $37–41/Chốt $50→$58/Cắt <$35,50. Điểm nhìn: doanh thu hypersonics + backlog; đã beat 7/8 quý gần nhất."
   },
   {
+   "ticker": "TMDX",
+   "name": "TransMedics Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.3,
+   "rev_est": "$178–181M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — tối nay sau đóng cửa (công ty xác nhận báo cáo 5/11, call 13:30 PT). EPS kỳ vọng ~$0,30 (so $0,66 cùng kỳ năm trước), doanh thu ~$178–181M (+~24% YoY). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: biên lãi co lại (outlook margin hoạt động 12,5–14%) + 2 quý gần nhất đều miss lợi nhuận dù doanh thu vẫn beat; miss nữa có thể thử đáy 52 tuần $60,10. Mốc $70–72 lấy lại = dấu hiệu sớm đòi lại nền."
+  },
+  {
    "ticker": "COP",
    "name": "ConocoPhillips",
    "date": "2026-11-05",
