@@ -262,13 +262,16 @@ def _lt_ruler_html(px, glo, tlo, thi):
             f'<div class="lta-mark" style="left:{mp:.1f}%">▼</div></div>')
 
 
-def _lt_chip_html(t, px, glo, tlo):
+def _lt_chip_html(t, px, glo, ghi, tlo, thi):
     """KHUNG CHỚP ĐẦU HÀNG quỹ (Tom chốt 30/10 08:47): element riêng nằm
     TRÊN CÙNG mỗi hàng lta-row, trên mọi chi tiết — tên mã + tín hiệu +
     giá realtime + vùng, ai mở hàng là thấy đầu tiên.
-    KHỚP HỆT _chip_html() trong ltalloc_update.py."""
+    KHỚP HỆT _chip_html() trong ltalloc_update.py.
+    5/11 (thống nhất kiểu khối toàn bảng): khung ghi ĐỦ 2 dải —
+    Vùng gom $glo–$ghi · Bán bớt $tlo–$thi (quỹ LT không cắt cứng)."""
     px_s = fmt_price_vn(px)
-    glo_s, tlo_s = _lt_money(glo), _lt_money(tlo)
+    glo_s, ghi_s = _lt_money(glo), _lt_money(ghi)
+    tlo_s, thi_s = _lt_money(tlo), _lt_money(thi)
     if px >= tlo:
         cls, lab = "lta-chip-r", "🔴 BÁN BỚT 20%"
     elif px < glo:
@@ -276,7 +279,8 @@ def _lt_chip_html(t, px, glo, tlo):
     else:
         cls, lab = "lta-chip-g", "🟢 MUA ĐỊNH KỲ"
     return (f'<div class="lta-chip {cls}" id="lta-chip-{t}">'
-            f'{t} · {lab} · Giá {px_s} · Vùng {glo_s}–{tlo_s}</div>')
+            f'{t} · {lab} · Giá {px_s} · Vùng gom {glo_s}–{ghi_s} '
+            f'· Bán bớt {tlo_s}–{thi_s}</div>')
 
 
 def _lt_signal_text(t, px, glo, ghi, tlo, thi):
@@ -369,7 +373,7 @@ def update_ltalloc_signals(h, prices):
         cls = _lt_signal_class(px, glo, ghi, tlo)
         tally[cls] += 1
         row_cls[t] = "lta-row-" + cls.rsplit("-", 1)[1]
-        chip_map[t] = _lt_chip_html(t, px, glo, tlo)
+        chip_map[t] = _lt_chip_html(t, px, glo, ghi, tlo, thi)
         return (f'<span id="lta-zone-{t}" '
                 f'data-gom="{m.group(2)}-{m.group(3)}" '
                 f'data-cao="{m.group(4)}-{m.group(5)}">'
@@ -1530,9 +1534,10 @@ def update_zone_badges(h, prices, state_path):
 def _zone_chip_text(t, px, st, z, bare=False):
     """(cls, text) của khung vùng: tên mã + trạng thái + giá + vùng + cắt.
     Dùng chung cho hàng bảng (tr) và khối FOCUS (div).
-    bare=True (chỉ sec-special): chip chỉ ghi mã + trạng thái + giá —
-    số VÙNG/CHỐT/CẮT duy nhất nằm ở khung vàng 🎫 LỆNH MUA trong cùng
-    khối (luật Tom 2/11: khối ĐẶC BIỆT chỉ 1 bộ số, không trùng)."""
+    bare=True: chip chỉ ghi mã + trạng thái + giá. Từ 5/11 (Tom duyệt
+    mẫu khối 🔥 HOT áp toàn bảng): sec-special KHÔNG còn bare — khung
+    đầu khối ghi ĐỦ Vùng/Chốt/Cắt như mọi mục; tham số giữ cho tương
+    thích, không caller nào truyền True nữa."""
     lo, hi = z["entry"]
     note = (z.get("note") or "").upper()
     if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
@@ -1704,6 +1709,16 @@ ALERT_CHIP_PAT = re.compile(
     r'(\s*<b>(.{0,120}?)</b>)?'
     r'(.{0,60})', re.S)
 
+# Bản RỘNG (thống nhất kiểu khối 5/11): alert mở đầu bằng <b> chứa nhãn
+# baseflash (style dài ~200 ký tự — ahshark/lt9) thì bản 120 ký tự không
+# bắt được -> không gắn được khung đầu khối. Chỉ dùng cho 2 mục đó.
+ALERT_CHIP_PAT_WIDE = re.compile(
+    r'(<div class=["\']alert[^"\']*["\'][^>]*>)'
+    r'(?:(<div class="zchip[^"]*" data-achip="([A-Z]{2,6})">.*?</div>))?'
+    r'(\s*<b>(.{0,400}?)</b>)?'
+    r'(.{0,60})', re.S)
+ALERT_CHIP_WIDE_SECS = {"sec-ahshark", "sec-lt9"}
+
 # Mục KHÔNG bỏ tiêu đề alert khi gắn khung: khối kim cương ĐẶC BIỆT —
 # tiêu đề mang thứ hạng TÂM ĐIỂM SỐ 1/2/3, là nội dung chứ không trùng.
 NO_STRIP_SECS = {"sec-special"}
@@ -1759,7 +1774,7 @@ def update_alert_chips(h, prices):
             cls, txt = _zone_chip_text(t, px,
                                        _zone_state_of(zones[t], px),
                                        zones[t],
-                                       bare=(sec == "sec-special"))
+                                       bare=False)
             n += 1
             tail = mm.group(6) or ""
             if mm.group(4):
@@ -1789,7 +1804,9 @@ def update_alert_chips(h, prices):
                     + f'<div class="zchip {cls}" data-achip="{t}">{txt}</div>'
                     + (mm.group(4) or "") + tail)
 
-        seg = ALERT_CHIP_PAT.sub(rep, seg)
+        _pat = (ALERT_CHIP_PAT_WIDE if sec in ALERT_CHIP_WIDE_SECS
+                else ALERT_CHIP_PAT)
+        seg = _pat.sub(rep, seg)
         h = h[:start] + seg + h[end:]
     return h, n
 
@@ -2318,7 +2335,7 @@ def sync_static_numbers(h, prices):
                     continue
             seg = h[b[0]:b[1]]
             seg, n1 = _sync_zchips(seg, prices, zones,
-                                   bare=(sid == "sec-special"))
+                                   bare=False)
             seg, n2 = _sync_rows(seg, prices, zones)
             seg = _sync_alerts(seg, prices, zones)
             if sid == "sec-plan":
@@ -5319,7 +5336,7 @@ def update_companion_lines(h, prices):
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _row_rep, seg, flags=re.S)
             elif name in ("sec-longterm", "sec-etf16", "sec-etf",
-                          "sec-watch"):
+                          "sec-watch", "sec-dram"):
                 # bảng <tr><td><b> như Sổ 2/3 (Sổ 1 + 16 ETF + bảng trạng
                 # thái vùng trong sec-watch) — gắn hàng levcomp ngay dưới
                 # hàng mã gốc; sec-etf + sec-watch chạy thêm lượt alert
@@ -5737,37 +5754,37 @@ LEV_PAIR_JS = (
 
 
 def _lev_pair_block(u, vehs, z, st, paused, upx, upct, px):
-    lab = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
-           "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG — THỦNG CẮT",
-           "PAUSED": "⏸️ CHỜ DỰNG NỀN — VÙNG TẠM TREO",
-           "NOZONE": "⚪ CHƯA CÓ VÙNG"}[st]
+    """Khối CẶP mã gốc + xe — TỪ 5/11 THEO MẪU KHỐI 🔥 HOT (Tom duyệt
+    ảnh chụp sec-hot, áp thống nhất toàn bảng):
+    (1) KHUNG ĐẦU KHỐI zchip màu theo trạng thái: MÃ · trạng thái ·
+        Giá · Vùng · Chốt · Cắt (data-achip — _sync_zchips + poller/
+        streamer giữ tươi như mọi mục);
+    (2) mỗi xe 1 dòng .levveh: chip VÀNG mã gốc + '↳ XE xN · SỔ 3 CHỈ
+        DAYTRADE:' + chip XANH DA TRỜI xe (data-px/data-pct) + 🌙 24H
+        nếu có + ⚠️ tem riêng + trạng thái + Vùng dịch · Chốt · Cắt xe
+        ≈ (dịch theo tỷ lệ realtime, cùng công thức _comp_line);
+    (3) ghi chú ngắn (vai trò ETF tự doanh / cảnh báo);
+    (4) CHÂN KHỐI 'Giá trực tiếp • cập nhật HH:MM PT DD/MM'.
+    Dòng xe dùng class levveh, KHÔNG dùng levcomp: _levcomp_strip của
+    companion pass xóa mọi .levcomp toàn bảng rồi chỉ gắn lại trong
+    COMP_SECTIONS (sec-leverage không nằm trong đó) -> levcomp ở đây
+    sẽ bị xóa trắng ngay lượt refresh kế tiếp."""
     cls = "alert levflash" if st == "IN" else "alert levpair"
-    tag = ('<span class="levtag">🔥 ĐANG LỌT VÙNG</span>'
-           if st == "IN" else "")
-    role = LEV_SELF.get(u, "MÃ GỐC")
-    lines = [
-        f'<div class="{cls}"><b><span class="baseflash" '
-        f'style="background:#f5c86e;color:#131313;'
-        f'font-weight:900;padding:1px 7px;border-radius:5px;font-size:1.18em">'
-        f'<span data-px="{u}">{u} {_lt_money(upx)}</span></span> '
-        f'<span data-pct="{u}">({fmt_pct_vn(upct)})</span> · {role}</b> '
-        f'· {lab}{tag}']
+    stamp = now_pt().strftime("%H:%M PT %d/%m")
+    lines = [f'<div class="{cls}">']
+    # (1) khung đầu khối
     if z and z.get("entry"):
-        lo, hi = z["entry"]
-        tg = z.get("targets") or []
-        cond = " (điều kiện)" if paused else ""
-        parts = [f'🎯 VÙNG MUA{cond} {_lt_money(lo)}–{_lt_money(hi)}']
-        if z.get("cut"):
-            parts.append(f'✂️ CẮT <{_lt_money(z["cut"])}')
-        if len(tg) >= 2:
-            parts.append(f'🏁 TARGET {_lt_money(tg[0])}→{_lt_money(tg[1])}')
-        elif tg:
-            parts.append(f'🏁 TARGET {_lt_money(tg[0])}')
-        if st == "BELOW" and not paused:
-            parts.append(f'còn +{_lt_pct1((lo / upx - 1) * 100)} tới vùng')
-        lines.append("<br>" + " · ".join(parts))
+        zcls, ztxt = _zone_chip_text(u, upx, _zone_state_of(z, upx), z)
+        lines.append(f'<div class="zchip {zcls}" data-achip="{u}">'
+                     f'{ztxt}</div>')
     else:
-        lines.append("<br>🎯 Chưa có vùng — chỉ theo dõi giá")
+        lines.append(f'<div class="zchip zchip-n">{u} · ⚪ CHƯA CÓ VÙNG '
+                     f'· Giá {_lt_money(upx)}</div>')
+    gold = ('<span class="baseflash" '
+            'style="background:linear-gradient(180deg,#ffe066,#f5c518);'
+            'color:#111;font-weight:900;padding:1px 7px;'
+            f'border-radius:5px">{u}</span>')
+    # (2) dòng xe
     for v in vehs:
         if v not in px:
             continue
@@ -5776,48 +5793,57 @@ def _lev_pair_block(u, vehs, z, st, paused, upx, upct, px):
         if v in LEV_VEH_LABEL:
             vlabel = LEV_VEH_LABEL[v]
         elif v in LEV_SHORT:
-            vlabel = f"XE {mult} NGƯỢC (SHORT) CỦA {u}"
+            vlabel = f"XE {mult} NGƯỢC · SỔ 3 CHỈ DAYTRADE"
         else:
-            vlabel = f"XE {mult} CỦA {u}"
-        head = (f'⚡ <b><span style="background:#7dd3fc;color:#131313;'
-                f'font-weight:900;padding:1px 7px;border-radius:5px;'
-                f'font-size:1.12em"><span data-px="{v}">'
-                f'{v} {_lt_money(vpx)}</span></span> '
-                f'<span data-pct="{v}">({fmt_pct_vn(vpct)})</span></b> '
-                f'· {vlabel}'
-                + (' <span style="background:#6d5bd0;color:#fff;'
-                   'font-weight:800;padding:1px 6px;border-radius:5px">'
-                   '🌙 24H</span>' if v in LEV_24H else ''))
-        if z and z.get("entry") and upx and v not in LEV_SHORT \
-                and v not in LEV_NODERIVE:
+            vlabel = f"XE {mult} · SỔ 3 CHỈ DAYTRADE"
+        sky = ('<span style="background:#7dd3fc;color:#131313;'
+               'font-weight:900;padding:1px 7px;border-radius:5px">'
+               f'<span data-px="{v}">{v} {_lt_money(vpx)}</span></span>')
+        head = (f"{gold} ↳ {vlabel}: {sky} "
+                f'<span data-pct="{v}">({fmt_pct_vn(vpct)})</span>')
+        if v in LEV_24H:
+            head += " · 🌙 24H"
+        warn = COMP_WARN.get(v)
+        if warn:
+            head += f" · {warn}"
+        if v in LEV_NODERIVE:
+            body = LEV_NODERIVE[v]
+        elif v in LEV_SHORT:
+            body = ("Xe NGƯỢC — chạy ngược mã gốc (gốc rớt thì xe tăng); "
+                    "không dịch vùng tuyến tính, chỉ daytrade theo đà "
+                    "của mã gốc")
+        elif not (z and z.get("entry")):
+            body = "⚪ Chưa có vùng duyệt — xe chạy theo đà"
+        elif paused:
+            body = ("⚪ Chưa có vùng duyệt (vùng cũ tạm treo) "
+                    "— chưa dịch giá xe")
+        elif upx:
             r = vpx / upx
             lo, hi = z["entry"]
             tg = z.get("targets") or []
-            cond = " (điều kiện)" if paused else ""
-            parts = [f'🎯 VÙNG MUA{cond} {_lt_money(lo * r)}–'
-                     f'{_lt_money(hi * r)}']
+            if st == "BROKEN":
+                body = ("MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu · "
+                        f"Vùng dịch {_lt_money(lo * r)}–"
+                        f"{_lt_money(hi * r)}")
+            else:
+                body = (f"{_COMP_STATE_LAB[st]} · "
+                        f"Vùng dịch {_lt_money(lo * r)}–"
+                        f"{_lt_money(hi * r)}")
+            if tg:
+                body += " · Chốt " + "→".join(
+                    _lt_money(t * r) for t in tg[:2])
             if z.get("cut"):
-                parts.append(f'✂️ CẮT <{_lt_money(z["cut"] * r)}')
-            if len(tg) >= 2:
-                parts.append(f'🏁 TARGET {_lt_money(tg[0] * r)}→'
-                             f'{_lt_money(tg[1] * r)}')
-            elif tg:
-                parts.append(f'🏁 TARGET {_lt_money(tg[0] * r)}')
-            parts.append(f'<span style="opacity:.7">(dịch theo tỷ lệ '
-                         f'{r:.3f})</span>')
-            lines.append("<br>" + head + "<br>" + " · ".join(parts))
-        elif v in LEV_NODERIVE:
-            lines.append("<br>" + head + "<br>" + LEV_NODERIVE[v])
-        elif v in LEV_SHORT:
-            lines.append("<br>" + head + "<br>🎯 Xe NGƯỢC — chạy ngược mã gốc "
-                                "(gốc rớt thì xe tăng); không dịch vùng tuyến "
-                                "tính, chỉ daytrade theo đà của mã gốc")
+                body += f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}"
         else:
-            lines.append("<br>" + head + "<br>🎯 Mã gốc chưa có vùng — chưa dịch được "
-                                "vùng cho xe")
-        if v in COMP_WARN:
-            lines.append("<br>" + COMP_WARN[v])
-    lines.append("</div>")
+            body = "⚪ Chưa có vùng duyệt — xe chạy theo đà"
+        lines.append(f'<div class="levveh">{head} · {body}</div>')
+    # (3) ghi chú vai trò riêng (SOXL/DRAM là ETF, không phải cổ phiếu)
+    role = LEV_SELF.get(u)
+    if role:
+        lines.append(f"<br>{role} — khối cặp đòn bẩy")
+    # (4) chân khối
+    lines.append(f'<br><span class="t">Giá trực tiếp • cập nhật '
+                 f'{stamp}</span></div>')
     return "".join(lines)
 
 
@@ -5829,6 +5855,14 @@ def update_leverage_pairs(h, prices):
         if ".levpair{" not in h:
             css = (".levpair{border:1px solid #2a3648;border-radius:10px;"
                    "padding:7px 10px;margin:0 0 8px;background:#101725}")
+            i = h.find("</style>")
+            if i > 0:
+                h = h[:i] + css + h[i:]
+        if ".levveh{" not in h:
+            # dòng xe trong khối cặp (mẫu HOT 5/11) — style như .levcomp
+            css = (".levveh{margin-top:6px;border:1px dashed #f59e0b;"
+                   "border-radius:8px;padding:6px 9px;font-size:14px;"
+                   "background:rgba(245,158,11,.08)}")
             i = h.find("</style>")
             if i > 0:
                 h = h[:i] + css + h[i:]
@@ -5881,8 +5915,9 @@ def update_leverage_pairs(h, prices):
             blk = _lev_pair_block(u, vehs, z, st, paused, upx, upct, px)
             if u == "LNT":
                 blk = blk.replace(
-                    "· MÃ GỐC</b>",
-                    "· CỔ PHIẾU THƯỜNG (Sổ 1) — Tom xếp canh chung mục này</b>")
+                    '<br><span class="t">Giá trực tiếp',
+                    "<br>· CỔ PHIẾU THƯỜNG (Sổ 1) — Tom xếp canh chung "
+                    'mục này<br><span class="t">Giá trực tiếp', 1)
             blocks.append(blk)
         inner = "".join(blocks) + LEV_PAIR_JS
         rendered = "<!-- LEV-PAIRS -->" + inner + "<!-- /LEV-PAIRS -->"
