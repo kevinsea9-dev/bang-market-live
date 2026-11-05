@@ -4919,6 +4919,19 @@ COMP_MAP = {
     "AAOI": "AAOX", "MSTR": "MSTX", "BABA": "BABX", "NFLX": "NFXL",
     "GLD": "UGL", "SLV": "AGQ", "BA": "BOEU", "BMNR": "BMNU",
     "QCOM": "QCMU", "ARM": "ARMG", "APP": "APPX",
+    # bổ sung đêm 4/11 (THỐNG NHẤT TOÀN WEB — Tom lệnh 22:50): mọi xe đã
+    # kiểm chứng qua Yahoo search (tên quỹ ghi đúng "2x Long <mã gốc>") +
+    # v8 chart (giá + vol TB 5 phiên); vol ghi ở COMP_WARN nếu mỏng.
+    "AMAT": "AMAU", "APLD": "APLX", "CRCL": "CRCG", "CRML": "CRMX",
+    "ENTG": "ENTL", "GEV": "GEVX", "GFS": "GFSG", "IWM": "UWM",
+    "MNST": "MNSX", "NET": "NETG", "NVO": "NVOX", "QQQ": "QLD",
+    "USAR": "USAX", "WULF": "WULX",
+    # quỹ chỉ số hiển thị ở nhóm LONG/ETF: xe là của CHỈ SỐ (đã kiểm chứng
+    # tên quỹ ProShares Ultra) — SPY/VOO/STXF cùng bám S&P 500 → SSO;
+    # QQQM cùng chỉ số Nasdaq-100 với QQQ → QLD; IBIT → BITX (2x BTC
+    # futures của Volatility Shares, KHÔNG bám spot IBIT — xem COMP_WARN)
+    "SPY": "SSO", "VOO": "SSO", "STXF": "SSO", "QQQM": "QLD",
+    "IBIT": "BITX",
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
@@ -4940,12 +4953,26 @@ COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "CONY": "💸 KHÔNG phải xe x2 — quỹ YieldMax thu nhập quyền chọn: phí ~0,99%/năm · cổ tức TUẦN (kỳ 29/10: $0,181/cp), phần lớn là hoàn vốn — NAV mòn dần theo thời gian",
     "QCMU": "⚠️ vol vừa ~127k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ, tránh giờ mỏng",
     "BOEU": "⚠️ vol mỏng ~99k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ, tránh giờ mỏng",
+    "ENTL": "⚠️ vol CỰC MỎNG ~7k cp/ngày (TB 5 phiên, 4/11) — gần như không giao dịch được",
+    "MNSX": "⚠️ vol CỰC MỎNG ~0,5k cp/ngày (TB 5 phiên, 4/11) — gần như không giao dịch được",
+    "CRMX": "⚠️ vol mỏng ~68k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
+    "AMAU": "⚠️ vol mỏng ~153k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
+    "NETG": "⚠️ vol mỏng ~85k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
+    "GFSG": "⚠️ vol mỏng ~151k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
+    "BITX": "⚠️ 2x BTC qua FUTURES (Volatility Shares) — bám Bitcoin, KHÔNG bám giá IBIT spot; chỉ daytrade",
 }
 COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  "sec-special", "sec-urgent",
                  # mở rộng 4/11 theo LUẬT GẮN CẶP TOÀN BẢNG
                  "sec-topfocus", "sec-tickets", "sec-watch", "sec-steelnet",
-                 "sec-tinhhoa", "sec-hot", "sec-live")
+                 "sec-tinhhoa", "sec-hot", "sec-live",
+                 # mở rộng đêm 4/11 (Tom 22:59 + 23:01): PHỦ MỌI MỤC —
+                 # nhóm LONG/dài hạn + plan/ahshark/dram gắn như thường;
+                 # chỉ sec-news/sec-asia/sec-chinam/sec-crypto/sec-cudem
+                 # là mục tin/không phải hàng giao dịch (ghi rõ trong
+                 # báo cáo kiểm từng mục)
+                 "sec-longterm", "sec-etf16", "sec-etf", "sec-lt9",
+                 "sec-ltalloc", "sec-plan", "sec-ahshark", "sec-dram")
 _COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
                    "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
 
@@ -5056,18 +5083,38 @@ def _comp_line(u, v, px, zones, suffix=""):
     except Exception:
         return None, False
     r = vpx / upx
+    tps = z.get("targets") or z.get("tp") or []
+    if isinstance(tps, (int, float)):
+        tps = [tps]
+    # MÃ CHỜ DỰNG NỀN (Tom 22:57 4/11: vẫn phải CÓ SỐ — vùng chờ tham
+    # chiếu + chốt + cắt, ghi rõ chưa hiệu lực; không giấu số như nhánh
+    # TẠM VÔ HIỆU ở trên)
+    if "CHỜ DỰNG NỀN" in note or "CHO DUNG NEN" in note:
+        if tps and z.get("cut"):
+            wbody = ("⏸️ CHỜ DỰNG NỀN — vùng chờ tham chiếu (chưa hiệu "
+                     "lực) · Vùng chờ dịch "
+                     f"{_lt_money(lo * r)}–{_lt_money(hi * r)} · Chốt "
+                     + "→".join(_lt_money(t * r) for t in tps[:2])
+                     + f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}")
+            return head + " · " + wbody + suffix, False
+        return head + " · ⏸️ CHỜ DỰNG NỀN — chưa có số vùng chờ" + suffix, False
     body = (f"MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu · "
             f"Vùng dịch {_lt_money(lo * r)}–{_lt_money(hi * r)}"
             if st == "BROKEN" else
             f"{_COMP_STATE_LAB[st]} · "
             f"Vùng dịch {_lt_money(lo * r)}–{_lt_money(hi * r)}")
-    tps = z.get("targets") or z.get("tp") or []
-    if isinstance(tps, (int, float)):
-        tps = [tps]
     if tps:
         body += " · Chốt " + "→".join(_lt_money(t * r) for t in tps[:2])
     if z.get("cut"):
         body += f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}"
+    if st != "BROKEN":
+        if "WATCH-ONLY" in note or "WATCH ONLY" in note:
+            body = ("👁️ WATCH-ONLY (mốc tham chiếu, không phải vùng "
+                    "duyệt) · " + body)
+        elif "CÓ ĐIỀU KIỆN" in note or "CO DIEU KIEN" in note:
+            body = "🔶 CÓ ĐIỀU KIỆN · " + body
+        elif "KẾ HOẠCH" in note or "KE HOACH" in note:
+            body = "🔶 KẾ HOẠCH · " + body
     return head + " · " + body + suffix, (st == "IN")
 
 
@@ -5196,6 +5243,74 @@ def update_companion_lines(h, prices):
                             f'<div class="{cls}">{line}</div></td></tr>')
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _row_rep, seg, flags=re.S)
+            elif name in ("sec-longterm", "sec-etf16", "sec-etf"):
+                # bảng <tr><td><b> như Sổ 2/3 (Sổ 1 + 16 ETF) — gắn hàng
+                # levcomp ngay dưới hàng mã gốc; sec-etf chạy thêm lượt
+                # alert generic vì mục này trộn cả 2 dạng.
+                def _lt_rep(m):
+                    nonlocal n0
+                    u = m.group(1)
+                    if u not in COMP_MAP or u in seen:
+                        return m.group(0)
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return m.group(0)
+                    seen.add(u)
+                    n0 += 1
+                    cls = "levcomp levflash" if flash else "levcomp"
+                    return (m.group(0) +
+                            f'<tr class="levcomp-row"><td colspan="4">'
+                            f'<div class="{cls}">{line}</div></td></tr>')
+                seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
+                             r".*?</tr>", _lt_rep, seg, flags=re.S)
+                seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
+                             _lt_rep, seg, flags=re.S)
+                if name == "sec-etf":
+                    def _etf_alert(full, inner):
+                        nonlocal n0
+                        u = _comp_alert_ticker(full)
+                        if not u or u in seen:
+                            return full
+                        line, flash = _mk_line(u)
+                        if not line:
+                            return full
+                        new = _comp_insert_alert(full, u, line, flash)
+                        if new != full:
+                            seen.add(u)
+                            n0 += 1
+                        return new
+                    seg = sub_balanced_alerts(seg, _etf_alert)
+            elif name == "sec-ltalloc":
+                # hàng quỹ .lta-row (chip id=lta-chip-<TK>) — chèn dòng
+                # companion ngay trước thẻ đóng của hàng.
+                out, i = [], 0
+                pat = re.compile(
+                    r'<div class="alert lta-row[^>]*" id="lta-row-([A-Z]+)"')
+                while True:
+                    m = pat.search(seg, i)
+                    if not m:
+                        out.append(seg[i:])
+                        break
+                    e_end = _levcomp_balanced_end(seg, m.start())
+                    if e_end is None:
+                        out.append(seg[i:])
+                        break
+                    entry = seg[m.start():e_end]
+                    out.append(seg[i:m.start()])
+                    u = m.group(1)
+                    if u in COMP_MAP and u not in seen:
+                        line, flash = _mk_line(u)
+                        if line and entry.endswith("</div>"):
+                            cls = ("levcomp levflash" if flash
+                                   else "levcomp")
+                            entry = (entry[:-6]
+                                     + f'<div class="{cls}">{line}</div>'
+                                     + "</div>")
+                            seen.add(u)
+                            n0 += 1
+                    out.append(entry)
+                    i = e_end
+                seg = ''.join(out)
             elif name == "sec-steelnet":
                 # lưới thép có 2 dạng hàng: <tr class="zchip-row" data-t>
                 # (chip tóm tắt) + <tr><td><b> (bảng chi tiết) — gắn 1 dòng
