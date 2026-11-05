@@ -5154,6 +5154,76 @@ def _comp_insert_alert(full, u, line, flash):
     return full
 
 
+def _special_watch_extra(seg, mk_line, seen):
+    """Riêng sec-special (⭐ KHUNG ĐẶC BIỆT) — 2 việc generic không làm được:
+
+    (1) DÒNG MÃ GỐC (Tom 5/11 03:18: "Mã gốc ko có"): dòng số vùng của mã
+    tâm điểm phải mở đầu bằng nhãn MÃ GỐC highlight VÀNG (baseflash, cùng
+    mẫu nhãn trong _comp_line) + chữ "Vùng mua" rõ ràng, ngay tại dòng số
+    của mã gốc — KHÔNG thêm bộ số thứ hai, chỉ nâng cấp chính dòng số sẵn
+    có (số giữ nguyên văn, khớp khung vàng/zones.json). Alert đã có nhãn
+    baseflash (lượt trước gắn) thì bỏ qua — idempotent.
+
+    (2) CANH THÊM: khối prose chứa NHIỀU mã trong 1 alert (mỗi mã 1 dòng
+    "· MÃ $giá — ..."), generic chỉ gắn tối đa 1 companion/alert theo mã
+    ở <b>/data-achip nên bỏ qua cả khối. Tách từng dòng "· MÃ ..." và gắn
+    companion ngay dưới dòng của mã đó (chỉ mã có xe thật trong COMP_MAP).
+
+    PHẢI chạy TRƯỚC lượt generic của sec-special: lúc đó alert chưa có
+    levcomp (đã strip ở đầu update_companion_lines) nên baseflash trong
+    alert chỉ có thể là nhãn mã gốc ở dòng số. Trả về (seg, số companion
+    CANH THÊM đã gắn)."""
+    def _base_fn(full, inner):
+        if 'class="baseflash"' in full:
+            return full
+        am = re.search(r'data-achip="([A-Z]{2,6})"', full)
+        if not am:
+            return full
+        u = am.group(1)
+        zm = re.search(
+            r"((?:🟢|🟡|⚪|🔴)\s+(?:TRONG VÙNG|DƯỚI VÙNG|TRÊN VÙNG|"
+            r"GÃY VÙNG)\s+)(Sổ\s*\d)\s+(\$[\d.,]+\s*[–—-]\s*\$[\d.,]+)",
+            full)
+        if not zm:
+            return full
+        gold = ('<span class="baseflash" '
+                'style="background:linear-gradient(180deg,#ffe066,#f5c518);'
+                'color:#111;font-weight:900;padding:1px 7px;'
+                'border-radius:5px">' + u + "</span> ")
+        rep = (gold + zm.group(1) + "· " + zm.group(2)
+               + " · Vùng mua " + zm.group(3))
+        return full[:zm.start()] + rep + full[zm.end():]
+
+    seg = sub_balanced_alerts(seg, _base_fn)
+    added = 0
+
+    def _ct_fn(full, inner):
+        nonlocal added
+        if "CANH THÊM" not in full:
+            return full
+        parts = re.split(r"(<br\s*/?>)", full)
+        out = []
+        for part in parts:
+            out.append(part)
+            tm = re.match(r"\s*·\s*([A-Z]{2,6})\b", part)
+            if not tm:
+                continue
+            u = tm.group(1)
+            if u not in COMP_MAP or u in seen:
+                continue
+            line, flash = mk_line(u)
+            if not line:
+                continue
+            cls = "levcomp levflash" if flash else "levcomp"
+            out.append(f'<div class="{cls}">{line}</div>')
+            seen.add(u)
+            added += 1
+        return "".join(out)
+
+    seg = sub_balanced_alerts(seg, _ct_fn)
+    return seg, added
+
+
 def update_companion_lines(h, prices):
     """Gắn dòng companion xe x2 vào các mục đích (COMP_SECTIONS + khối 👑
     FOCUS). Strip trước rồi gắn lại nên idempotent; fail-soft giữ nguyên bảng.
@@ -5204,6 +5274,11 @@ def update_companion_lines(h, prices):
                 txt = re.sub(r"<[^>]+>", " ", bm.group(1))
                 cand.update(t for t in re.findall(r"\b([A-Z]{2,6})\b", txt)
                             if t in COMP_MAP)
+            # dòng prose "· MÃ $giá — ..." (khối CANH THÊM của sec-special):
+            # mã không nằm trong <b>/chip nên quét riêng, không thì thiếu
+            # giá để gắn companion cho các mã đó.
+            cand.update(t for t in re.findall(r"·\s*([A-Z]{2,6})\s+\$", seg)
+                        if t in COMP_MAP)
         cand = {t for t in cand if t in COMP_MAP}
         px = dict(prices)
         need = set()
@@ -5443,6 +5518,12 @@ def update_companion_lines(h, prices):
                         seen.add(u)
                         n0 += 1
                     return new
+                if name == "sec-special":
+                    # nhãn VÀNG cho dòng số MÃ GỐC + companion từng mã
+                    # CANH THÊM — chạy TRƯỚC lượt generic (lúc này alert
+                    # chưa có levcomp; xem _special_watch_extra).
+                    seg, _nx = _special_watch_extra(seg, _mk_line, seen)
+                    n0 += _nx
                 seg = sub_balanced_alerts(seg, _alert_fn)
             h = h[:s0] + seg + h[s1:]
             if n0:
