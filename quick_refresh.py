@@ -5191,7 +5191,10 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
            "RTXG": "RTX",
            "LMTL": "LMT",
            "GLWG": "GLW",
-           "WDCX": "WDC"}
+           "WDCX": "WDC",
+           # bổ sung 5/11 (4 xe thật mới, rà soát xe 2x — Tom lệnh 11:11 PT)
+           "HIMZ": "HIMS", "MRNX": "MRNA", "UBRL": "UBER",
+           "KMLI": "MELI"}
 
 
 # --- XE X2 COMPANION (Tom 30/10 12:48): mẫu mục ĐÒN BẨY áp cho các mục khác.
@@ -5241,6 +5244,13 @@ COMP_MAP = {
     # futures của Volatility Shares, KHÔNG bám spot IBIT — xem COMP_WARN)
     "SPY": "SSO", "VOO": "SSO", "STXF": "SSO", "QQQM": "QLD",
     "IBIT": "BITX",
+    # bổ sung 5/11 (rà soát xe 2x — Tom lệnh 11:11 PT): 4 xe thật mới,
+    # đã kiểm chứng Yahoo search/chart 5/11 (tên quỹ "2x Long <gốc>"):
+    # HIMZ Defiance 2X Long HIMS $15,74 · MRNX Defiance 2X Long MRNA
+    # $185,43 · UBRL GraniteShares 2x Long UBER $12,63 · KMLI
+    # KraneShares 2x Long MELI $8,93 (quỹ mới ~3 phiên, chưa vol TB,
+    # Robinhood NOT_FOUND -> KHÔNG 🌙, xem COMP_WARN)
+    "HIMS": "HIMZ", "MRNA": "MRNX", "UBER": "UBRL", "MELI": "KMLI",
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
@@ -5269,6 +5279,7 @@ COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "NETG": "⚠️ vol mỏng ~85k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
     "GFSG": "⚠️ vol mỏng ~151k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
     "BITX": "⚠️ 2x BTC qua FUTURES (Volatility Shares) — bám Bitcoin, KHÔNG bám giá IBIT spot; chỉ daytrade",
+    "KMLI": "⚠️ quỹ MỚI (KraneShares 2x Long MELI, mới giao dịch ~3 phiên 5/11) — chưa có vol TB, thanh khoản chưa xác minh, KHÔNG chạy đêm — chia lệnh nhỏ",
 }
 COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  "sec-special", "sec-urgent",
@@ -6168,7 +6179,14 @@ LEV_24H = {"SOXL", "SOXS", "SQQQ", "SNDU", "CONY", "CONI", "FIAT", "DRAM",
            "KLAG", "LITX", "VRTL", "GLWG", "STXX", "STXL",
            # bổ sung 4/11 (lượt gắn WDCX theo lệnh Tom): check trực tiếp
            # Robinhood API cùng ngày — WDCX tradable phiên đêm
-           "WDCX"}
+           "WDCX",
+           # bổ sung 5/11 (rà soát 24H toàn bảng — Tom lệnh 11:11 PT):
+           # Robinhood instrument API field all_day_tradability, check
+           # từng quỹ ngày 5/11 — 21 xe tradable phiên đêm (IRE Tom nêu
+           # đúng: Defiance 2X Long IREN chạy đêm thật)
+           "IRE", "MSTX", "BABX", "NFXL", "BOEU", "BMNU", "QCMU",
+           "ARMG", "APPX", "AMAU", "APLX", "CRCG", "GEVX", "NVOX",
+           "QLD", "WULX", "SSO", "BITX", "HIMZ", "MRNX", "UBRL"}
 LEV_SELF = {"SOXL": "ETF x3 bán dẫn", "DRAM": "ETF 1x rổ memory"}
 # CONY: Tom chốt LẠI tối 3/11 (~22:50) — gom CONY vào khối COIN, nằm
 # ngay dưới hàng CONL vì Tom không muốn phải đi tìm riêng (thay quyết
