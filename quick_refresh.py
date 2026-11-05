@@ -1652,7 +1652,9 @@ def update_zone_chips(h, prices):
                                seg)
                 if not pm:
                     continue
-                px = float(pm.group(1).replace(",", ""))
+                px = _parse_num_sync(pm.group(1))
+                if px is None:
+                    continue
             if t in zones or t == "NFLX":
                 txt = f"{t} · ⏸️ CHỜ DỰNG NỀN · Giá {_lt_money(px)}"
             else:
@@ -1691,7 +1693,9 @@ def update_focus_chips(h, prices):
         if t in prices:
             px = prices[t][0]
         else:
-            px = float(m.group(5).replace(",", ""))
+            px = _parse_num_sync(m.group(5))
+            if px is None:
+                return m.group(0)
         cls, txt = _zone_chip_text(t, px, _zone_state_of(zones[t], px),
                                    zones[t])
         n += 1
@@ -1765,12 +1769,22 @@ def update_alert_chips(h, prices):
             if t in prices:
                 px = prices[t][0]
             else:
-                pm = re.search(r"\$([\d,]+\.?\d*)", mm.group(6) or "")
-                if not pm and mm.group(2):
+                # Thứ tự nguồn giá in sẵn (5/11 — bẫy vốn hóa lt9):
+                # (a) khung cũ của chính alert (đáng tin nhất);
+                # (b) mục wide (lt9/ahshark): giá in ngay sau nhãn mã
+                #     trong tiêu đề <b>; (c) số $ đầu tiên ở phần đuôi.
+                pm = None
+                if mm.group(2):
                     pm = re.search(r"Giá \$([\d,]+\.?\d*)", mm.group(2))
+                if not pm and sec in ALERT_CHIP_WIDE_SECS and mm.group(5):
+                    pm = re.search(r"</span>\s*\$([\d.,]+)", mm.group(5))
+                if not pm:
+                    pm = re.search(r"\$([\d,]+\.?\d*)", mm.group(6) or "")
                 if not pm:
                     return mm.group(0)
-                px = float(pm.group(1).replace(",", ""))
+                px = _parse_num_sync(pm.group(1))
+                if px is None:
+                    return mm.group(0)
             cls, txt = _zone_chip_text(t, px,
                                        _zone_state_of(zones[t], px),
                                        zones[t],
