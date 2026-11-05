@@ -4065,7 +4065,7 @@ def ensure_share_gate(html):
     return html
 
 YAHOO_LIVE_SNIPPET = """
-<!-- YAHOO-LIVE-V9 -->
+<!-- YAHOO-LIVE-V10 -->
 <script>
 (function(){
 function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
@@ -4084,7 +4084,8 @@ document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelecto
 document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b)return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\\$)?)[\\d,]+(?:\\.\\d+)?(\\s*<span class=")(down|up)(">)[^<]*(<\\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d[0])+m[2]+(d[1]<0?'down':'up')+m[4]+fmtPct1(d[1])+m[5];}else if(/^\\s*~?\\$[\\d,]+(?:\\.\\d+)?\\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\\d,]+(?:\\.\\d+)?/,fmtUS(d[0]));}});
 document.querySelectorAll('b').forEach(function(b){if(!b.closest('#sec-etf,#sec-ltalloc,#sec-lt9'))return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var ns=b.nextSibling;if(!ns||ns.nodeType!==3)return;if(/^\\s*—\\s*\\$[\\d.,]+ \\([^)]*\\)/.test(ns.textContent)){ns.textContent=ns.textContent.replace(/^(\\s*—\\s*)\\$[\\d.,]+ \\([^)]*\\)/,function(m,g){return g+fmtP(d[0])+' ('+fmtPc(d[1])+')';});}});
 document.querySelectorAll('[id^="lta-chip-"]').forEach(function(e){var _t=e.id.replace('lta-chip-',''),d=q[_t];if(!d||wsf(_t))return;e.textContent=e.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
-document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(!m)return;var d=q[m[1]];if(!d||wsf(m[1]))return;e.textContent=e.textContent.replace(/(: [A-Z]{2,6} )\\$[\\d.,]+ \\([^)]*\\)/,function(m,g){return g+fmtP(d[0])+' ('+fmtPc(d[1])+')';});});
+document.querySelectorAll('[data-px]').forEach(function(e){var t=e.getAttribute('data-px'),d=q[t];if(!d||wsf(t))return;e.textContent=t+' '+fmtP(d[0]);});
+document.querySelectorAll('[data-pct]').forEach(function(e){var t=e.getAttribute('data-pct'),d=q[t];if(!d||wsf(t))return;e.textContent='('+fmtPc(d[1])+')';});
 if(j.cg){window.__yhOk=true;document.querySelectorAll('[data-cgprice]').forEach(function(e){var d=j.cg[e.getAttribute('data-cgprice')];if(d)e.textContent=fmtCg(d[0]);});document.querySelectorAll('[data-cgchg]').forEach(function(e){var d=j.cg[e.getAttribute('data-cgchg')];if(d)e.textContent=(d[1]>=0?'+':'')+d[1].toFixed(1)+'%';});var cw=document.getElementById('cgLiveWhen');if(cw){var age2=j.ts_epoch?Math.max(0,Math.round(Date.now()/1000-j.ts_epoch)):null;cw.textContent=age2===null?' · 🟢 LIVE':(age2<=180?' · 🟢 LIVE · giá '+age2+' giây trước':' · 🟡 GIÁ CŨ '+Math.round(age2/60)+' phút');}}
 var lamp=document.getElementById('yhLiveWhen');if(lamp&&!(window.__wsLast&&(Date.now()-window.__wsLast<30000))){var age=j.ts_epoch?Math.max(0,Math.round(Date.now()/1000-j.ts_epoch)):null;if(age===null){lamp.textContent='· 🟢 YAHOO LIVE';}else if(age<=180){lamp.textContent='· 🟢 YAHOO LIVE · giá '+age+' giây trước';}else{lamp.textContent='· 🟡 GIÁ CŨ '+Math.round(age/60)+' phút — chờ cập nhật';}}
 }).catch(function(){});
@@ -4100,7 +4101,7 @@ def ensure_yahoo_live(html):
     tren cac chip moi 30 giay tu prices.json cung nguon (Yahoo chan CORS
     nhung truc tiep nen phai qua cau noi nay — xem yahoo_live.py).
     Tu gan lai snippet + den LIVE neu generator lam mat."""
-    if 'YAHOO-LIVE-V9' not in html:
+    if 'YAHOO-LIVE-V10' not in html:
         i = html.find('<!-- YAHOO-LIVE')
         if i != -1:
             j = html.find('</script>', i)
@@ -4122,7 +4123,7 @@ def ensure_yahoo_live(html):
 
 
 WS_LIVE_SNIPPET = r"""
-<!-- YAHOO-WS-V3 -->
+<!-- YAHOO-WS-V4 -->
 <script>
 (function(){
 if(window.__wsStarted)return;window.__wsStarted=true;
@@ -4152,7 +4153,7 @@ document.querySelectorAll('[data-pct="'+id+'"]').forEach(function(e){var c=d.cp|
 document.querySelectorAll('tr.zchip-row[data-t="'+id+'"]').forEach(function(tr){var c=tr.querySelector('.zchip');if(c)c.textContent=c.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
 document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b||b.textContent.trim()!==id)return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\$)?)[\d,]+(?:\.\d+)?(\s*<span class=")(down|up)(">)[^<]*(<\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d.price)+m[2]+((d.cp||0)<0?'down':'up')+m[4]+fmtPct1(d.cp||0)+m[5];}else if(/^\s*~?\$[\d,]+(?:\.\d+)?\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\d,]+(?:\.\d+)?/,fmtUS(d.price));}});
 document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(!mt||mt[0]!==id)return;lp.textContent=d.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(lc){var cp=d.cp||0;lc.textContent=(cp>=0?'▲ ':'▼ ')+Math.abs(cp).toFixed(2)+'%';lc.className='lc '+(cp>=0?'up':'down');}});
-document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(!m||m[1]!==id)return;e.textContent=e.textContent.replace(/(: [A-Z]{2,6} )\$[\d.,]+ \([^)]*\)/,function(mm,g){return g+fmtP(d.price)+' ('+fmtPc(d.cp||0)+')';});});
+
 }
 function flush(){var k;for(k in pending)apply(k,pending[k]);pending={};var now=Date.now();if(now-lampT>4000){lampT=now;var lamp=document.getElementById('yhLiveWhen');if(lamp)lamp.textContent='· ⚡ REALTIME '+new Date().toLocaleTimeString('en-GB');}}
 function onTick(d){if(!d.id||d.price===undefined)return;window.__wsFresh[d.id]=Date.now();window.__wsLast=Date.now();if(d.id==='BTC-USD')return;pending[d.id]=d;if(!flushT)flushT=setTimeout(function(){flushT=null;flush();},250);}
@@ -4178,7 +4179,7 @@ def ensure_ws_live(html):
     khóa wsf() trong poller cũ chặn ghi đè mã đang có tick tươi <90s.
     BTC-USD chỉ làm nhịp tim giữ đèn ⚡ (giá crypto vẫn do CoinGecko lo,
     % 24h thật). Tự gắn lại snippet nếu generator làm mất."""
-    if 'YAHOO-WS-V3' not in html and '</body>' in html:
+    if 'YAHOO-WS-V4' not in html and '</body>' in html:
         i = html.find('<!-- YAHOO-WS')
         if i != -1:
             j = html.find('</script>', i)
