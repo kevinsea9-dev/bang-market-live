@@ -955,16 +955,16 @@
  },
  "SOXX": {
   "entry": [
-   465,
-   490
+   155,
+   163.33
   ],
-  "cut": 455,
+  "cut": 151.67,
   "targets": [
-   535,
-   600
+   178.33,
+   200
   ],
   "book": "Sổ 1",
-  "note": "ETF chip PHLX (cân bằng hơn SMH) — gom khi về vùng MA200/low 3 tháng"
+  "note": "ETF chip PHLX (cân bằng hơn SMH) — gom khi về vùng MA200/low 3 tháng. TÁCH 3:1 hiệu lực 5/11 — số đã chia 3."
  },
  "GLD": {
   "entry": [
@@ -1007,16 +1007,16 @@
  },
  "ITA": {
   "entry": [
-   196,
-   206
+   65.33,
+   68.67
   ],
-  "cut": 190,
+  "cut": 63.33,
   "targets": [
-   230,
-   256
+   76.67,
+   85.33
   ],
   "book": "Sổ 1",
-  "note": "ETF quốc phòng/hàng không — discount ~20% vs đỉnh, dưới MA200: bắt đáy, cắt cứng"
+  "note": "ETF quốc phòng/hàng không — discount ~20% vs đỉnh, dưới MA200: bắt đáy, cắt cứng. TÁCH 3:1 hiệu lực 5/11 — số đã chia 3."
  },
  "SLV": {
   "entry": [
