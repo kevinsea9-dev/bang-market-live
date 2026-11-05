@@ -1,50 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "WBD",
-   "name": "Warner Bros. Discovery",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.04,
-   "rev_est": "$8.76B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — chưa xác minh được kết quả Q3 sáng 5/11 (chưa thấy bản tin cùng ngày; MarketBeat ghi WBD đã được Skydance thâu tóm tháng 10/2026 — có thể không báo riêng). Sổ 3 chờ dựng nền $18,50–21,50/Cắt <$17."
-  },
-  {
-   "ticker": "SONY",
-   "name": "Sony Group",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.38,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: mảng game + cảm biến hình ảnh."
-  },
-  {
-   "ticker": "CNQ",
-   "name": "Canadian Natural Resources",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.05,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: giá dầu + sản lượng."
-  },
-  {
-   "ticker": "CI",
-   "name": "Cigna Group",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 7.46,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: chi phí y tế + mảng Evernorth."
-  },
-  {
    "ticker": "ABNB",
    "name": "Airbnb",
    "date": "2026-11-05",
@@ -142,6 +98,50 @@
    "rev_est": "$178–181M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — tối nay sau đóng cửa (công ty xác nhận báo cáo 5/11, call 13:30 PT). EPS kỳ vọng ~$0,30 (so $0,66 cùng kỳ năm trước), doanh thu ~$178–181M (+~24% YoY). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: biên lãi co lại (outlook margin hoạt động 12,5–14%) + 2 quý gần nhất đều miss lợi nhuận dù doanh thu vẫn beat; miss nữa có thể thử đáy 52 tuần $60,10. Mốc $70–72 lấy lại = dấu hiệu sớm đòi lại nền."
+  },
+  {
+   "ticker": "WBD",
+   "name": "Warner Bros. Discovery",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.04,
+   "rev_est": "$8.76B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — chưa xác minh được kết quả Q3 sáng 5/11 (chưa thấy bản tin cùng ngày; MarketBeat ghi WBD đã được Skydance thâu tóm tháng 10/2026 — có thể không báo riêng). Sổ 3 chờ dựng nền $18,50–21,50/Cắt <$17."
+  },
+  {
+   "ticker": "SONY",
+   "name": "Sony Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.38,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: mảng game + cảm biến hình ảnh."
+  },
+  {
+   "ticker": "CNQ",
+   "name": "Canadian Natural Resources",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.05,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: giá dầu + sản lượng."
+  },
+  {
+   "ticker": "CI",
+   "name": "Cigna Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 7.46,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: chi phí y tế + mảng Evernorth."
   },
   {
    "ticker": "COP",
