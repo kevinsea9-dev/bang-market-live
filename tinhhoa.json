@@ -38,22 +38,36 @@
    "name": "IonQ",
    "date": "2026-11-05",
    "when": "T5 5/11 AMC",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": -0.38,
    "rev_est": "$141.2M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Doanh thu kỳ vọng +254% YoY; thương vụ SkyWater $1,8B là điểm nhìn."
+   "note": "Đã ra số tối 5/11 (thông cáo công ty qua Minyanville/Bitcomme cùng ngày) — GAAP EPS $1,42 nhờ lãi mark-to-market warrant (phi tiền mặt); EPS điều chỉnh -$0,29. Doanh thu +254% kỳ vọng đã vượt xa.",
+   "eps_act": -0.29,
+   "rev_act": "$173.8M",
+   "verdict": "BEAT",
+   "guidance": "Nâng doanh thu FY26 lên $505–515M (từ $450–460M); backlog $1,2B; mảng quantum computing kỳ vọng +110% YoY.",
+   "reaction_pct": "+4,09% sau giờ lên $27,51 (Finnhub 16:33 ET 5/11, từ đóng $26,43; thanh khoản mỏng)",
+   "price_after": 27.51,
+   "essence": "Doanh thu kỷ lục $173,8M (+336% YoY, beat $141,2M), EPS điều chỉnh -$0,29 beat -$0,38; nâng guidance cả năm lên $505–515M, backlog $1,2B — nhưng giá sau giờ $27,51 vẫn dưới cắt Sổ 3 $28,50, vùng đã vô hiệu từ 2/11."
   },
   {
    "ticker": "AAOI",
    "name": "Applied Optoelectronics",
    "date": "2026-11-05",
    "when": "T5 5/11 AMC",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 0.14,
    "rev_est": "$268.1M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Vùng cũ đã vô hiệu từ 2/11 — chỉ theo dõi kết quả."
+   "note": "Đã ra số tối 5/11 (PR Newswire cùng ngày) — GAAP EPS $0,07, lần đầu lãi GAAP trở lại; doanh thu 800G tăng gần 5 lần so với quý trước.",
+   "eps_act": 0.17,
+   "rev_act": "$269.9M",
+   "verdict": "BEAT",
+   "guidance": "Q4/2026: doanh thu $385–420M, EPS non-GAAP $0,48–0,63 — guide mạnh, gấp rưỡi Q3.",
+   "reaction_pct": "+22,2% sau giờ lên ~$57,30 (Kraken ~13:08 PT 5/11, từ đóng $46,89; thanh khoản mỏng)",
+   "price_after": 57.3,
+   "essence": "EPS non-GAAP $0,17 beat $0,14, doanh thu kỷ lục $269,9M (quý kỷ lục thứ 6 liên tiếp), trở lại lãi GAAP $0,07; guide Q4 $385–420M vượt xa kỳ vọng — cổ phiếu bật +22% sau giờ sau phiên rơi -20,89% trước giờ. Vùng Sổ 3 cũ ($70–78) đã vô hiệu từ 2/11, giá vẫn dưới cắt $64."
   },
   {
    "ticker": "WBD",
@@ -64,40 +78,61 @@
    "eps_est": -0.04,
    "rev_est": "$8.76B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — chưa xác minh được kết quả Q3 sáng 5/11 (chưa thấy bản tin cùng ngày; MarketBeat ghi WBD đã được Skydance thâu tóm tháng 10/2026 — có thể không báo riêng). Sổ 3 chờ dựng nền $18,50–21,50/Cắt <$17."
+   "note": "⚠️ KHÔNG CÓ SỐ ĐỂ ĐIỀN — WBD đã bị hủy niêm yết 6/10/2026 (Skydance thâu tóm, theo stockanalysis.com); không còn báo cáo riêng. Giữ PENDING chờ quyết định xóa khỏi danh sách. Vùng Sổ 3 chờ dựng nền $18,50–21,50/Cắt <$17 đã vô hiệu theo mã."
   },
   {
    "ticker": "SONY",
    "name": "Sony Group",
    "date": "2026-11-05",
    "when": "T5 5/11 BMO",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 0.38,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: mảng game + cảm biến hình ảnh."
+   "note": "Đã ra số sáng 5/11 (Zacks/Reuters cùng ngày) — EPS ¥76,49 vs kỳ vọng ¥63,67 (quy đổi ~$0,48, tỷ giá 157,84); doanh thu ¥3.429,4B +10,3% YoY. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "eps_act": 0.48,
+   "rev_act": "¥3.429,4B (~$21,7B)",
+   "verdict": "BEAT",
+   "guidance": "Nâng FY26: doanh thu ¥13.000B (từ ¥12.500B), lợi nhuận hoạt động ¥1.870B (từ ¥1.720B).",
+   "reaction_pct": "+6,13% lên $27,54 (đóng cửa 5/11, Finnhub; từ $25,95)",
+   "price_after": 27.54,
+   "essence": "Lợi nhuận hoạt động +45% lên ¥622,3B, vượt xa kỳ vọng ¥505B nhờ game (+83%) và phim Spider-Man (+568%); nâng guidance cả năm."
   },
   {
    "ticker": "CNQ",
    "name": "Canadian Natural Resources",
    "date": "2026-11-05",
    "when": "T5 5/11 BMO",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 1.05,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: giá dầu + sản lượng."
+   "note": "Đã ra số sáng 5/11 (bản tin công ty qua Newsfile/Quantisnow + Motley Fool cùng ngày) — lợi nhuận ròng điều chỉnh $3,4B, dòng tiền điều chỉnh ~$5,5B; sản lượng ~1,652 triệu BOE/ngày. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "eps_act": 1.67,
+   "rev_act": null,
+   "verdict": "BEAT",
+   "guidance": "Đạt mốc nợ ròng $13B → 100% FCF cho mua lại cổ phiếu, mục tiêu $800M/tháng trong T11–12/2026; cổ tức $0,625/quý (năm thứ 26 tăng liên tiếp).",
+   "reaction_pct": "-1,45% về $48,92 (đóng cửa 5/11, Finnhub; từ $49,64)",
+   "price_after": 48.92,
+   "essence": "EPS điều chỉnh $1,67 vượt xa kỳ vọng $1,05; đạt mốc nợ ròng $13B, chuyển 100% dòng tiền tự do sang mua lại cổ phiếu $800M/tháng."
   },
   {
    "ticker": "CI",
    "name": "Cigna Group",
    "date": "2026-11-05",
    "when": "T5 5/11 BMO",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 7.46,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: chi phí y tế + mảng Evernorth."
+   "note": "Đã ra số sáng 5/11 (Zacks/MarketBeat/Earnings Whispers cùng ngày) — EPS điều chỉnh $7,98 (GAAP $5,47); Evernorth + Cigna Healthcare đều tăng. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "eps_act": 7.98,
+   "rev_act": "$73.79B",
+   "verdict": "BEAT",
+   "guidance": "Nâng EPS điều chỉnh FY26 lên ≥$30,60 (lần nâng thứ 3 trong năm); nhưng đặt lại base chạy 2026 ~$30 do sức ép chi phí y tế 2027.",
+   "reaction_pct": "-1,29% về $301,48 (đóng cửa 5/11, Finnhub; từ $305,41)",
+   "price_after": 301.48,
+   "essence": "EPS điều chỉnh $7,98 beat $7,46, doanh thu $73,79B beat $72,64B; nâng guidance FY26 lần 3 lên ≥$30,60 nhưng reset base 2027 về ~$30 khiến cổ phiếu đỏ phiên."
   },
   {
    "ticker": "COP",
@@ -338,6 +373,17 @@
    "rev_est": "$1.86B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (consensus). Điểm nhìn: AUM + dòng tiền ròng các quỹ."
+  },
+  {
+   "ticker": "ENB",
+   "name": "Enbridge",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.36,
+   "rev_est": "$9.62B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (MarketBeat consensus; Zacks ghi DT $10,32B). Điểm nhìn: chi phí tài chính cao có đè lợi nhuận không; backlog dự án ~C$41B + cổ tức ~5,7%. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "UBER",
