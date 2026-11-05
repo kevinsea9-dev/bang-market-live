@@ -817,18 +817,46 @@ def attach_zone_tp(h):
     def add_tp(full, inner):
         if 'class="alert urgent"' not in full.split(">", 1)[0]:
             return full
-        # Alert đã có KHUNG ĐẦU KHỐI (zchip) thì khung đã ghi Chốt/Cắt —
-        # gắn thêm dòng 🎯 là trùng lặp (Tom bắt lỗi 30/10).
-        if "🎯" in inner or "data-achip" in full:
-            return full
         t = _alert_ticker(full)
         if not t:
             return full
-        line = zone_tp_line(t)
-        if not line:
-            return full
-        return full[:-len("</div>")] + \
-            f'<br><span class="zt">{line}</span></div>'
+        out = full
+        # 05/11 (audit 27 mục, điểm 6): alert cá mập về KHỐI MẪU như
+        # sec-special — (a) CHIP ĐẦU KHỐI màu theo trạng thái (giá lấy
+        # từ data-sig-px của chính alert; companion pass sẽ gắn dòng xe
+        # nhờ data-achip này), (b) CHÂN KHỐI riêng từng alert.
+        # THỨ TỰ QUAN TRỌNG: chip chèn TRƯỚC; có chip rồi thì KHÔNG gắn
+        # dòng 🎯 nữa (chip đã đủ Chốt/Cắt — luật chống trùng 30/10).
+        chipped = "data-achip" in out
+        if not chipped:
+            z = ZONES.get(t)
+            sig = re.search(r'data-sig-px="([\d.]+)"', full)
+            if z and isinstance(z, dict) and z.get("entry") and sig:
+                try:
+                    spx = float(sig.group(1))
+                    cls, txt = _zone_chip_text(
+                        t, spx, _zone_state_of(z, spx), z)
+                    gt = out.find(">") + 1
+                    out = (out[:gt]
+                           + f'<div class="zchip {cls}" '
+                             f'data-achip="{t}">{txt}</div>'
+                           + out[gt:])
+                    chipped = True
+                except Exception:
+                    pass
+        # Dòng 🎯 Chốt/Cắt (luật 15/10) — chỉ khi alert chưa có khung số.
+        if not chipped and "🎯" not in inner:
+            line = zone_tp_line(t)
+            if line:
+                out = out[:-len("</div>")] + \
+                    f'<br><span class="zt">{line}</span></div>'
+        if "blkfoot" not in inner:
+            _n = now_pt()
+            out = out[:-len("</div>")] + (
+                f'<br><span class="t blkfoot">Giá trực tiếp • cập nhật '
+                f'{_n.strftime("%H:%M")} PT {_n.strftime("%d/%m")}'
+                f'</span></div>')
+        return out
 
     box2 = sub_balanced_alerts(box, add_tp)
     return h[:j] + box2 + h[k:]
@@ -3128,13 +3156,30 @@ def steel_net_update(h, prices, highs52, pm=False):
             if z:
                 en = z.get("entry", [0, 0])
                 tg = z.get("targets") or z.get("tp") or [0, 0]
+                if isinstance(tg, (int, float)):
+                    tg = [tg]
                 ct = z.get("cut")
-                parts = [f'{z["book"]}: Vào ${en[0]:,.0f}–${en[1]:,.0f}']
-                if tg[0]:
-                    parts.append(f'Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}')
+                # 05/11 (audit 27 mục): in số zones NGUYÊN BẢN bằng
+                # _lt_money như chip zchip — bản cũ format :,.0f LÀM
+                # TRÒN (OKLO 25,5–28 bị in thành 26–28) làm chip và ô
+                # chi tiết mang 2 bộ số lệch nhau trong cùng mục.
+                parts = [f'{z["book"]}: Vào {_lt_money(en[0])}–'
+                         f'{_lt_money(en[1])}']
+                if tg and tg[0]:
+                    if len(tg) >= 2 and tg[1]:
+                        parts.append(f'Chốt {_lt_money(tg[0])}→'
+                                     f'{_lt_money(tg[1])}')
+                    else:
+                        parts.append(f'Chốt {_lt_money(tg[0])}')
                 if ct:
-                    parts.append(f'Cắt <${ct:,.0f}')
+                    parts.append(f'Cắt <{_lt_money(ct)}')
                 zinfo = " · ".join(parts)
+                # Mã TẠM TREO: ghi nhãn rõ ngay trong ô chi tiết, thống
+                # nhất với dòng xe companion ("chưa dịch giá xe") — số ở
+                # đây là số THAM CHIẾU của vùng cũ, không còn hiệu lực.
+                if "TAM VO HIEU" in (z.get("note") or "").upper():
+                    zinfo = ("⏸️ VÙNG TẠM TREO — số tham chiếu, chưa "
+                             "hiệu lực · " + zinfo)
             else:
                 zinfo = "chờ vẽ vùng (watch-only)"
             b = bait.get(t)
@@ -6230,6 +6275,11 @@ def _lev_pair_block(u, vehs, z, st, paused, upx, upct, px):
                     _lt_money(t * r) for t in tg[:2])
             if z.get("cut"):
                 body += f" · Cắt xe ≈ <{_lt_money(z['cut'] * r)}"
+            # 05/11 (audit điểm 10): số dịch là SNAPSHOT tại lượt refresh
+            # này — poller/streamer chỉ cập nhật GIÁ xe (data-px) chứ
+            # không tính lại số dịch giữa 2 lượt, nên phải ghi rõ giờ
+            # tính để không hiểu nhầm là số realtime tuyệt đối.
+            body += f" · (số dịch tính lúc {stamp})"
         else:
             body = "⚪ Chưa có vùng duyệt — xe chạy theo đà"
         lines.append(f'<div class="levveh">{head} · {body}</div>')
