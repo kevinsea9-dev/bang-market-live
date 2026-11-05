@@ -4573,6 +4573,198 @@ def board_compact(h):
     return h
 
 
+# =====================================================================
+# THỐNG NHẤT KIỂU KHỐI TOÀN BẢNG (Tom duyệt mẫu 🔥 HOT 5/11): mọi khối
+# mã theo khuôn 4 phần — (1) khung đầu khối màu theo trạng thái ghi đủ
+# MÃ · trạng thái · Giá · Vùng · Chốt · Cắt (zchip/lta-chip, các pass
+# trên lo), (2) dòng xe (companion/levveh lo), (3) ghi chú ngắn sẵn có,
+# (4) CHÂN KHỐI 'Giá trực tiếp • cập nhật HH:MM PT DD/MM'. Pass này lo
+# phần (4) + dọn dòng 🎯 bộ-số rời trong alert đã có khung (1 khối chỉ
+# 1 bộ số). Chạy CUỐI pipeline (sau board_compact, trước stamp) ở MỌI
+# mode; fail-soft từng section — lỗi 1 mục không chết cả lượt.
+# =====================================================================
+_FOOT_PAT = re.compile(
+    r"Giá trực tiếp • cập nhật \d{1,2}:\d{2} PT \d{2}/\d{2}")
+_FOOT_TABLE_SECS = {"sec-so2": 4, "sec-so3": 4, "sec-longterm": 4,
+                    "sec-etf": 4, "sec-etf16": 4, "sec-steelnet": 5,
+                    "sec-watch": 4, "sec-dram": 4}
+_FOOT_ALERT_SECS = ("sec-special", "sec-tickets", "sec-topfocus",
+                    "sec-news", "sec-ahshark", "sec-asia", "sec-urgent",
+                    "sec-tinhhoa", "sec-hot", "sec-crypto", "sec-plan",
+                    "sec-daytrade", "sec-cudem", "sec-watch",
+                    "sec-swing", "sec-lt9", "sec-ltalloc", "sec-leverage")
+_DUP_TGT_PAT = re.compile(
+    r'<div style="margin-top:4px;font-weight:800">🎯[^<]*</div>')
+
+
+def _foot_stamp():
+    return now_pt().strftime("%H:%M PT %d/%m")
+
+
+def _alert_qualifies(full, sec):
+    if ('data-achip=' in full or "class='tk'" in full
+            or 'lta-chip' in full or 'data-fchip=' in full
+            or '<div class="zchip' in full):
+        return True
+    # khối CANH THÊM của sec-special: nhiều mã trong 1 alert prose,
+    # mỗi mã đã có dòng companion — vẫn là khối mã, gắn 1 chân chung.
+    return sec == "sec-special" and "CANH THÊM" in full
+
+
+def _foot_alerts_in_seg(seg, sec, foot_txt):
+    """Gắn/cập nhật chân khối cho từng alert CÂN BẰNG trong 1 section."""
+    script_spans = [(m.start(), m.end()) for m in
+                    re.finditer(r'<script[^>]*>.*?</script>', seg, re.S)]
+
+    def _in_script(pos):
+        return any(s <= pos < e for s, e in script_spans)
+
+    pat = re.compile(r'<div class=["\']alert[^>]*>')
+    out, i = [], 0
+    while True:
+        m = pat.search(seg, i)
+        if not m:
+            out.append(seg[i:])
+            break
+        if _in_script(m.start()):
+            e = next(e for s, e in script_spans if s <= m.start() < e)
+            out.append(seg[i:e])
+            i = e
+            continue
+        end = _levcomp_balanced_end(seg, m.start())
+        if end is None:
+            out.append(seg[i:])
+            break
+        full = seg[m.start():end]
+        out.append(seg[i:m.start()])
+        if _alert_qualifies(full, sec):
+            if 'data-achip=' in full:
+                # số đã nằm ở khung đầu khối -> bỏ dòng 🎯 bộ-số rời
+                # (mẫu lt9/ahshark cũ) cho 1 khối chỉ còn 1 bộ số.
+                def _dup(mm):
+                    return "" if ("Vùng mua" in mm.group(0)
+                                  and "Cắt" in mm.group(0)) else mm.group(0)
+                full = _DUP_TGT_PAT.sub(_dup, full)
+            if "Giá trực tiếp • cập nhật" not in full:
+                pos = full.rfind("</div>")
+                if pos > 0:
+                    full = (full[:pos]
+                            + f'<br><span class="t blkfoot">{foot_txt}'
+                              '</span>' + full[pos:])
+        out.append(full)
+        i = end
+    return ''.join(out)
+
+
+def ensure_block_footers(h):
+    try:
+        foot_txt = f"Giá trực tiếp • cập nhật {_foot_stamp()}"
+        # 1) làm tươi giờ MỌI chân khối sẵn có trên toàn bảng
+        h = _FOOT_PAT.sub(foot_txt, h)
+        # 2) alert blocks theo từng section
+        for sec in _FOOT_ALERT_SECS:
+            try:
+                m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>',
+                              h)
+                if not m:
+                    continue
+                s0 = m.start()
+                nxt = h.find('<div class="sec"', s0 + 10)
+                seg = h[s0:nxt if nxt != -1 else len(h)]
+                seg2 = _foot_alerts_in_seg(seg, sec, foot_txt)
+                if seg2 != seg:
+                    h = h[:s0] + seg2 + h[s0 + len(seg):]
+            except Exception as e:
+                print(f"  ! footers {sec}: {e}", file=sys.stderr)
+        # 3) khối 👑 FOCUS (div border-top vàng, không phải div.alert)
+        try:
+            for fm in reversed(list(re.finditer(r'data-fchip="([A-Z]+)"',
+                                                h))):
+                bs = h.rfind('<div style="border-top:1px solid '
+                             'rgba(212,175,55,.45)', 0, fm.start())
+                if bs == -1 or fm.start() - bs > 400:
+                    continue
+                be = _levcomp_balanced_end(h, bs)
+                if be is None:
+                    continue
+                blk = h[bs:be]
+                if "Giá trực tiếp • cập nhật" in blk:
+                    continue
+                pos = blk.rfind("</div>")
+                if pos > 0:
+                    blk = (blk[:pos]
+                           + f'<br><span class="t blkfoot">{foot_txt}'
+                             '</span>' + blk[pos:])
+                    h = h[:bs] + blk + h[be:]
+        except Exception as e:
+            print(f"  ! footers FOCUS: {e}", file=sys.stderr)
+        # 4) bảng: hàng chân blkfoot-row ngay cuối mỗi khối mã
+        for sec, colspan in _FOOT_TABLE_SECS.items():
+            try:
+                m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>',
+                              h)
+                if not m:
+                    continue
+                s0 = m.start()
+                nxt = h.find('<div class="sec"', s0 + 10)
+                if nxt != -1:
+                    seg = h[s0:nxt]
+                    send = nxt
+                else:
+                    b = _sec_bounds(h, sec)
+                    if not b:
+                        continue
+                    seg = h[b[0]:b[1]]
+                    send = b[1]
+                rows = [(mm.start(), mm.end(), mm.group(0))
+                        for mm in re.finditer(r"<tr[^>]*>.*?</tr>",
+                                              seg, re.S)]
+                blocks = []  # (ticker, last_row_end, has_foot)
+                cur = None
+                for rs, rend, rtxt in rows:
+                    zm = re.search(r'class="zchip-row" data-t="([A-Z]+)"',
+                                   rtxt)
+                    mm2 = re.match(r'<tr><td><b>([A-Z]{2,6})</b></td>',
+                                   rtxt)
+                    fm2 = re.search(r'class="blkfoot-row" data-t="([A-Z]+)"',
+                                    rtxt)
+                    t = (zm.group(1) if zm else
+                         mm2.group(1) if mm2 else
+                         fm2.group(1) if fm2 else None)
+                    if zm or mm2:
+                        if cur and cur[0] != t:
+                            blocks.append(cur)
+                            cur = None
+                        if cur is None:
+                            cur = [t, rend, False, bool(zm)]
+                        else:
+                            cur[1] = rend
+                            cur[3] = cur[3] or bool(zm)
+                    elif fm2:
+                        if cur and cur[0] == t:
+                            cur[1] = rend
+                            cur[2] = True
+                    elif 'class="levcomp-row"' in rtxt:
+                        if cur:
+                            cur[1] = rend
+                if cur:
+                    blocks.append(cur)
+                for t, last_end, has_foot, has_chip in reversed(blocks):
+                    if has_foot or not has_chip:
+                        continue
+                    frow = (f'<tr class="blkfoot-row" data-t="{t}">'
+                            f'<td colspan="{colspan}">'
+                            f'<span class="t">{foot_txt}</span>'
+                            '</td></tr>')
+                    seg = seg[:last_end] + frow + seg[last_end:]
+                h = h[:s0] + seg + h[send:]
+            except Exception as e:
+                print(f"  ! footers-table {sec}: {e}", file=sys.stderr)
+    except Exception as e:
+        print(f"  ! block footers: {e}", file=sys.stderr)
+    return h
+
+
 def dash_top_merge(h):
     """🧭 BẢNG ĐIỀU KHIỂN ĐẦU BẢNG — Tom lệnh 3/11 (~12:47 PT, kèm ảnh chụp):
     4 dải rời ở đầu bảng (Bull vs Bear + Chế độ thị trường + VIX + Fear&Greed/
