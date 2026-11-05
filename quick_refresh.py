@@ -1582,7 +1582,10 @@ def _zone_state_of(z, px):
 
 def _zones_local():
     """(zones, excluded) — ưu tiên ZONES global của pipeline, rớt về
-    đọc zones.json cạnh script (test/tay)."""
+    đọc zones.json cạnh script (test/tay).
+    Chuẩn hoá (5/11): một số vùng lưu targets dưới key 'tp' (AXON...)
+    trong khi các hàm dựng khung chỉ đọc 'targets' -> khung mất Chốt.
+    Bổ sung 'targets' từ 'tp' ngay tại nguồn cho mọi consumer."""
     zones = ZONES
     excluded = set()
     try:
@@ -1595,6 +1598,11 @@ def _zones_local():
                      if not t.startswith("_")}
     except Exception:
         pass
+    if isinstance(zones, dict):
+        for _v in zones.values():
+            if isinstance(_v, dict) and not _v.get("targets") \
+                    and _v.get("tp"):
+                _v["targets"] = _v["tp"]
     return zones, excluded
 
 
