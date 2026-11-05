@@ -17,7 +17,12 @@
   "entry": [
    246,
    250
-  ]
+  ],
+  "targets": [
+   287
+  ],
+  "cut": 238,
+  "note": " · Bổ sung CHỐT/CẮT 4/11 (Tom duyệt vẽ): chốt $287 = đỉnh 52w $287,20; cắt $238 dưới kệ đáy $244,30 + MA200 $243,7 (nến ngày Yahoo, đóng 4/11 $266,03)."
  },
  "ASTS": {
   "book": "Sổ 3",
@@ -162,7 +167,13 @@
   "entry": [
    200,
    220
-  ]
+  ],
+  "targets": [
+   233,
+   263
+  ],
+  "cut": 190,
+  "note": " · Bổ sung CHỐT/CẮT 4/11: chốt $233→$263 (cụm đỉnh $224,99–233,42 → đỉnh 52w $263,34); cắt $190 dưới đáy hồi phục $195,46."
  },
  "IOVA": {
   "book": "Sổ 2",
@@ -194,7 +205,13 @@
   "entry": [
    170,
    185
-  ]
+  ],
+  "targets": [
+   190,
+   212
+  ],
+  "cut": 162,
+  "note": " · Bổ sung CHỐT/CẮT 4/11: chốt $190→$212 (cụm đỉnh $186–191 → $208–215); cắt $162 dưới kệ $165,89–169,81. ⚠️ Đóng 4/11 $149,79 ĐÃ DƯỚI CẮT — vùng gãy trong thực tế, số chỉ tham chiếu; chờ dựng nền mới để vẽ lại."
  },
  "MELI": {
   "book": "Sổ 2",
@@ -233,7 +250,13 @@
   "entry": [
    480,
    505
-  ]
+  ],
+  "targets": [
+   550,
+   576
+  ],
+  "cut": 462,
+  "note": " · Bổ sung CHỐT/CẮT 4/11: chốt $550→$576 (đỉnh $549,77 → $575,55); cắt $462 dưới kệ đáy $470,06–471,36."
  },
  "PCVX": {
   "book": "Sổ 3",
@@ -1279,5 +1302,440 @@
   ],
   "cut": 218,
   "note": "Iggy vẽ 02/11 theo lệnh Tom gắn xe LRCU. Sau earnings 22/10 rơi từ $260,81 về đóng $230,15 (vol 23tr = 2,1x TB20), LRCX dựng kệ $225–232: đáy 22/10 $227,68 · 23/10 $225,14 · 30/10 $232,61 · 02/11 chạm lại $225,77 chưa thủng sàn kệ. Vùng = kệ hậu earnings, cắt cứng đóng <$218 (dưới sàn kệ ~3%). Chốt 1 $254 = đóng 29/10; chốt 2 $265 = lấp gap về cụm 21/10. Giá đang dưới MA20 $278,50/MA50 $294,47/MA200 $284,24, −48% vs đỉnh 52w $438,50 — chế độ 🔴: vùng tham chiếu/canh, phán quyết theo nến ĐÓNG."
+ },
+ "AAPL": {
+  "book": "Sổ 3",
+  "entry": [
+   325,
+   335
+  ],
+  "targets": [
+   354
+  ],
+  "cut": 318,
+  "note": "CÓ ĐIỀU KIỆN — mốc canh pullback Sổ 3 (vẽ 4/11 phủ range toàn web; AAPL trước đây watch-only — Tom veto nếu cần). Kệ: đáy nâng $325–334 nhiều lần chạm + MA50 $334,8; chốt = đỉnh 52w $354,50; giá 4/11 sát đỉnh — mốc tham chiếu trong 🔴, không phải vùng duyệt."
+ },
+ "ANET": {
+  "book": "Sổ 3",
+  "entry": [
+   160,
+   168
+  ],
+  "targets": [
+   191,
+   212
+  ],
+  "cut": 155,
+  "note": "KẾ HOẠCH — nền non: đáy $163,25–166,86 (3 phiên) + MA200 $165,8. Kích hoạt: ≥2–3 phiên không thủng $163 + đóng giữ trong vùng. Chốt: swing high $191,47 → đỉnh 52w $212,78. Vẽ 4/11 phủ range."
+ },
+ "CRM": {
+  "book": "Sổ 3",
+  "entry": [
+   214,
+   224
+  ],
+  "targets": [
+   252,
+   268
+  ],
+  "cut": 207,
+  "note": "CÓ ĐIỀU KIỆN — nền ngang ~10 phiên $214–228 trên MA200 $198,3; chốt theo kháng cự $251,61 → $267,95; cắt dưới nền. Vẽ 4/11 phủ range."
+ },
+ "CSCO": {
+  "book": "Sổ 3",
+  "entry": [
+   100,
+   104
+  ],
+  "targets": [
+   113,
+   119
+  ],
+  "cut": 97,
+  "note": "KẾ HOẠCH — nền non 3 phiên $101,4–101,8 ngay trên MA200 $101,6; chốt $112,70 → $118,65; kích hoạt: giữ nền + đóng trên $104. Vẽ 4/11 phủ range."
+ },
+ "LMT": {
+  "book": "Sổ 3",
+  "entry": [
+   555,
+   575
+  ],
+  "targets": [
+   636,
+   657
+  ],
+  "cut": 540,
+  "note": "CÓ ĐIỀU KIỆN — mốc canh pullback: giá đã chạy +20% từ nền $497–525; kệ chờ $548–576 = MA50/MA200 + swing low $555,27; chốt $636,09 → $657,16. Vẽ 4/11 phủ range."
+ },
+ "VRT": {
+  "book": "Sổ 3",
+  "entry": [
+   198,
+   210
+  ],
+  "targets": [
+   240,
+   258
+  ],
+  "cut": 184,
+  "note": "KẾ HOẠCH — đáy nâng $187,24 → $202,59; chốt $239,85 → $258,12; cắt dưới đáy đầu $187. Vẽ 4/11 phủ range."
+ },
+ "PLTR": {
+  "book": "Sổ 3",
+  "entry": [
+   163,
+   170
+  ],
+  "targets": [
+   188,
+   203
+  ],
+  "cut": 157,
+  "note": "WATCH-ONLY + CÓ ĐIỀU KIỆN — theo lệnh Tom: PLTR watch-only, KHÔNG phải vùng duyệt, không lên mâm. Mốc tham chiếu: kệ swing low $164,55–169,77 (5 lần chạm); chốt $188,37 → $202,63; cắt dưới kệ (MA200 $153,6). Vẽ 4/11 phủ range."
+ },
+ "IWM": {
+  "book": "Sổ 3",
+  "entry": [
+   270,
+   280
+  ],
+  "targets": [
+   297,
+   305
+  ],
+  "cut": 264,
+  "note": "CÓ ĐIỀU KIỆN — Russell 2000: kệ swing low $269,88–281,03 + MA200 $279,0; chốt $297,04 → đỉnh $305,18; mốc tham chiếu cho xe UWM/TNA. Vẽ 4/11 phủ range."
+ },
+ "ABNB": {
+  "book": "Sổ 3",
+  "entry": [
+   163,
+   168
+  ],
+  "targets": [
+   187,
+   193
+  ],
+  "cut": 158,
+  "note": "CÓ ĐIỀU KIỆN — kệ đáy $164,10–166,70 (cụm swing low); chốt $187,36 → đỉnh 52w $193,45; cắt dưới $159,61. Earnings 5/11 AMC. Vẽ 4/11 phủ range."
+ },
+ "BAM": {
+  "book": "Sổ 3",
+  "entry": [
+   46,
+   49
+  ],
+  "targets": [
+   56
+  ],
+  "cut": 43,
+  "note": "CÓ ĐIỀU KIỆN — mốc canh pullback: giá phá đỉnh 52w $55,97; vùng chờ = đỉnh nền cũ $46,38–49,32; cắt dưới nền $43,62. Earnings 6/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "CAVA": {
+  "book": "Sổ 3",
+  "entry": [
+   53,
+   57
+  ],
+  "targets": [
+   68,
+   71
+  ],
+  "cut": 50,
+  "note": "CÓ ĐIỀU KIỆN — kệ phá vỡ $53,91 + MA50 $56,0; nền gốc $49,67–51,50; chốt $68,01 → MA200 $71,4. Vẽ 4/11 phủ range."
+ },
+ "CHTR": {
+  "book": "Sổ 3",
+  "entry": [
+   104,
+   112
+  ],
+  "targets": [
+   133,
+   148
+  ],
+  "cut": 98,
+  "note": "CÓ ĐIỀU KIỆN — đáy đôi $101,11 (đáy 52w) + đáy nâng tới $116,51; kệ $103,28–112,87; chốt $133,33 → $148,34; cắt dưới đáy đôi. Earnings 6/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "COP": {
+  "book": "Sổ 3",
+  "entry": [
+   124,
+   133
+  ],
+  "targets": [
+   141,
+   154
+  ],
+  "cut": 118,
+  "note": "CÓ ĐIỀU KIỆN — kệ swing low $123,46–132,57; chốt $141,62 → đỉnh $154,28; cắt $118 dưới MA200 $122. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "DUK": {
+  "book": "Sổ 3",
+  "entry": [
+   120,
+   125
+  ],
+  "targets": [
+   134
+  ],
+  "cut": 116,
+  "note": "CÓ ĐIỀU KIỆN — kệ swing low $119,04–124,62 + MA50 $119,5; chốt = đỉnh 52w $134,49. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "HUM": {
+  "book": "Sổ 3",
+  "entry": [
+   398,
+   412
+  ],
+  "targets": [
+   434,
+   456
+  ],
+  "cut": 378,
+  "note": "CÓ ĐIỀU KIỆN — nền gần: cụm đáy $399,35–410,51; chốt $434,13 → $456,50; cắt dưới swing low $382,11. Earnings 6/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "MCD": {
+  "book": "Sổ 3",
+  "entry": [
+   258,
+   268
+  ],
+  "targets": [
+   342
+  ],
+  "cut": 245,
+  "note": "CÓ ĐIỀU KIỆN — kệ swing low $259,85–268,76 (đáy nâng từ $229,20); chốt = đỉnh 52w $341,75; cắt dưới MA50 $248,2. Vẽ 4/11 phủ range."
+ },
+ "PH": {
+  "book": "Sổ 3",
+  "entry": [
+   885,
+   915
+  ],
+  "targets": [
+   984,
+   1048
+  ],
+  "cut": 855,
+  "note": "CÓ ĐIỀU KIỆN — dải nền ngang $868–947 (~50 phiên), lấy dải dưới; chốt $983,92 → $1.047,61; cắt dưới $868,49. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "RUN": {
+  "book": "Sổ 3",
+  "entry": [
+   7.0,
+   7.8
+  ],
+  "targets": [
+   9.24,
+   12.3
+  ],
+  "cut": 6.5,
+  "note": "CÓ ĐIỀU KIỆN — nền đáy 52w $6,78–7,26 + đáy nâng; chốt $9,24 → MA200 $12,3. Vẽ 4/11 phủ range."
+ },
+ "SO": {
+  "book": "Sổ 3",
+  "entry": [
+   88,
+   91
+  ],
+  "targets": [
+   99
+  ],
+  "cut": 85,
+  "note": "CÓ ĐIỀU KIỆN — dải ngang $87,13–93,21, lấy dải dưới + MA50 $88; chốt = đỉnh 52w $99,58. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "UBER": {
+  "book": "Sổ 3",
+  "entry": [
+   64,
+   68
+  ],
+  "targets": [
+   72,
+   78
+  ],
+  "cut": 61.5,
+  "note": "KẾ HOẠCH — nền non quanh đáy 52w $64,04 (đáy nâng $64,68→67,36); kích hoạt: đóng giữ trên $68; chốt $72,08 → $78,35. Vẽ 4/11 phủ range."
+ },
+ "CVS": {
+  "book": "Sổ 3",
+  "entry": [
+   69,
+   74
+  ],
+  "targets": [
+   84,
+   92
+  ],
+  "cut": 66,
+  "note": "CHỜ DỰNG NỀN — rơi sau earnings 4/11 (đáy ngày $77,33), chưa có nền ở mặt bằng mới. Vùng chờ quanh đáy 52w $69,51; kích hoạt: giá về vùng chờ + ≥2–3 phiên không thủng $69,51; chốt = kệ cũ $84,23–85,80 → cụm $92,35; cắt dưới đáy 52w. Vẽ 4/11 phủ range."
+ },
+ "DDOG": {
+  "book": "Sổ 3",
+  "entry": [
+   186,
+   200
+  ],
+  "targets": [
+   226,
+   252
+  ],
+  "cut": 178,
+  "note": "CHỜ DỰNG NỀN — thác nước sau earnings (đóng 4/11 $188,72, đáy $186,51). Vùng chờ = quanh đáy hiện tại + MA200 $199,7; kích hoạt: ≥2–3 phiên không thủng $186 + đóng giữ trên $200; chốt = kệ cũ $226,83 → $251,99. Vẽ 4/11 phủ range."
+ },
+ "UI": {
+  "book": "Sổ 3",
+  "entry": [
+   500,
+   530
+  ],
+  "targets": [
+   585,
+   627
+  ],
+  "cut": 490,
+  "note": "CHỜ DỰNG NỀN — đang rơi (đáy $532,39). Vùng chờ quanh đáy 52w $500,23 + swing low $515; kích hoạt: dựng nền tại vùng chờ; chốt $585,02 → $627,30. Earnings 6/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "ALAB": {
+  "book": "Sổ 3",
+  "entry": [
+   200,
+   215
+  ],
+  "targets": [
+   249,
+   281
+  ],
+  "cut": 192,
+  "note": "CHỜ DỰNG NỀN — rơi tự do (đáy 4/11 $208,40, dưới MA200 $256). Vùng chờ quanh đáy hiện tại + tâm lý $200; kích hoạt: ngừng rơi + nền ≥3 phiên không thủng $208; chốt = swing low cũ $249,25 → $281,29. Vẽ 4/11 phủ range."
+ },
+ "APP": {
+  "book": "Sổ 3",
+  "entry": [
+   255,
+   270
+  ],
+  "targets": [
+   305,
+   338
+  ],
+  "cut": 245,
+  "note": "CHỜ DỰNG NỀN — sập về kệ $255,46–269,41 rồi bật AH sau earnings 4/11 (+22%). Vùng chờ = kệ cũ, chờ pullback; kích hoạt: pullback về kệ + giữ $255; chốt $305,28 → $338,34; cắt dưới $249,85. Vẽ 4/11 phủ range."
+ },
+ "ARM": {
+  "book": "Sổ 3",
+  "entry": [
+   182,
+   196
+  ],
+  "targets": [
+   208,
+   238
+  ],
+  "cut": 174,
+  "note": "CHỜ DỰNG NỀN — còn rơi (đáy $189,88). Vùng chờ quanh đáy hiện tại; kích hoạt: ≥3 phiên không thủng $190; chốt = kệ cũ $208,30 → $238,03. Vẽ 4/11 phủ range."
+ },
+ "CIEN": {
+  "book": "Sổ 3",
+  "entry": [
+   255,
+   275
+  ],
+  "targets": [
+   313,
+   355
+  ],
+  "cut": 245,
+  "note": "CHỜ DỰNG NỀN — thác nước (đáy $268,67). Vùng chờ quanh đáy hiện tại; kích hoạt: ngừng rơi + 3 phiên không đáy thấp hơn; chốt $313,45 → $355,00. Vẽ 4/11 phủ range."
+ },
+ "GLW": {
+  "book": "Sổ 3",
+  "entry": [
+   110,
+   120
+  ],
+  "targets": [
+   139,
+   158
+  ],
+  "cut": 105,
+  "note": "CHỜ DỰNG NỀN — đáy $115,40 còn rơi. Vùng chờ quanh đáy + kệ vừa gãy $120,48; kích hoạt: dựng nền ≥3 phiên tại vùng chờ; chốt $139,25 → $157,91. Vẽ 4/11 phủ range."
+ },
+ "LITE": {
+  "book": "Sổ 3",
+  "entry": [
+   575,
+   620
+  ],
+  "targets": [
+   736,
+   800
+  ],
+  "cut": 550,
+  "note": "CHỜ DỰNG NỀN — thác từ $1.143 (đáy $598,70); earnings 5/11 AMC nhị phân. Vùng chờ quanh đáy hiện tại; kích hoạt: sau số + dựng nền; chốt $736,01 → $800,00. Vẽ 4/11 phủ range."
+ },
+ "NBIS": {
+  "book": "Sổ 3",
+  "entry": [
+   136,
+   148
+  ],
+  "targets": [
+   179,
+   204
+  ],
+  "cut": 130,
+  "note": "CHỜ DỰNG NỀN — đáy đôi $140,02/$140,60 (2 lần chạm). Vùng chờ quanh đáy đôi; kích hoạt: ≥2–3 phiên giữ $140 + đóng trên $150; chốt $178,85 (MA200 $178,1) → $203,87. Vẽ 4/11 phủ range."
+ },
+ "RDDT": {
+  "book": "Sổ 3",
+  "entry": [
+   88,
+   100
+  ],
+  "targets": [
+   133,
+   146
+  ],
+  "cut": 84,
+  "note": "CHỜ DỰNG NỀN — đáy capitulation $89,28 = đáy 52w, đáy nâng 3 phiên. Vùng chờ quanh nền non; kích hoạt: giữ $89 + đóng trên $110; chốt $133,33 → $146,25. Vẽ 4/11 phủ range."
+ },
+ "SMCI": {
+  "book": "Sổ 3",
+  "entry": [
+   28,
+   31
+  ],
+  "targets": [
+   35.5,
+   41.5
+  ],
+  "cut": 26.5,
+  "note": "CHỜ DỰNG NỀN — chảy máu về $29,39 (dưới MA200 $32,7). Vùng chờ quanh đáy hiện tại + kệ $30,92; kích hoạt: ngừng rơi + nền ≥3 phiên; chốt $35,63 → $41,53. Vẽ 4/11 phủ range."
+ },
+ "MRNA": {
+  "book": "Sổ 3",
+  "entry": [
+   208,
+   228
+  ],
+  "targets": [
+   258
+  ],
+  "cut": 172,
+  "note": "CÓ ĐIỀU KIỆN — PARABOLIC: sát đỉnh 52w $258,72 từ đáy $22,28, không kệ gần giá. Chỉ canh pullback về nền hợp nhất gần nhất (swing low $208,92 + cụm $212–227); chốt = đỉnh 52w $258,72; cắt dưới kệ $179,53–183,28. Earnings 6/11 BMO. Vẽ 4/11 phủ range."
+ },
+ "WBD": {
+  "book": "Sổ 3",
+  "entry": [
+   18.5,
+   21.5
+  ],
+  "targets": [
+   31
+  ],
+  "cut": 17,
+  "note": "CHỜ DỰNG NỀN — nến Yahoo lỗi sau tin tách công ty (chart chỉ còn giá hiện tại $30,95; đáy/đỉnh 52w $18,00/$30,99 từ chart meta). Vùng chờ tạm neo đáy 52w; chờ dữ liệu nến phục hồi để vẽ lại theo kệ thật. Earnings 5/11 BMO. Vẽ 4/11 phủ range."
  }
 }
