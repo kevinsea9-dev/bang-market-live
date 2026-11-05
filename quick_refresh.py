@@ -1348,6 +1348,14 @@ def prune_old_alerts(h):
     removed = [0]
 
     def check_alert(full, inner):
+        # 💥 MÃ SẮP BUNG: khối sự kiện nhị phân do boom_block.py sở hữu —
+        # KHÔNG quét theo ngày (ngày trong thân là ngày SỰ KIỆN tương lai,
+        # không phải "ngày đăng tin"). Không có miễn trừ này, prune xóa cả
+        # 5 mã mỗi lượt vì "5/11" (không đệm 0) ≠ today "05/11" — đúng vụ
+        # 5/11: render 13:39 xong bị quick_refresh 13:39/13:40 ăn sạch.
+        # (Mirror miễn trừ boom-item đã có trong board_healthcheck.old_alert.)
+        if 'boom-item' in full:
+            return full
         # Khối cấu trúc (ô phân bổ/tài khoản): không phải tin, không đụng
         if any(k in inner for k in _STRUCT_KEEP):
             return full
