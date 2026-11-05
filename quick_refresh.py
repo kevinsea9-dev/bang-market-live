@@ -5016,6 +5016,31 @@ def dash_top_merge(h):
     return h2 if c else h
 
 
+def boom_reapply(h):
+    """💥 MÃ SẮP BUNG — vẽ lại khối sự kiện nhị phân từ boom_watch.json
+    (state duy nhất, do boom_block.py sở hữu) ngay trước khi ghi file.
+
+    GỐC RỄ vụ block trống 5/11: quick_refresh đọc index.html vào bộ nhớ
+    đầu lượt, boom_block.py render sau đó, lượt quick_refresh ghi lại bản
+    cũ trong bộ nhớ -> 5 mã biến mất; deploy sau đó đẩy bản trống lên live
+    (live v=20261105140524 trống dù v=20261105140136 đã verify đủ 5 mã).
+    Miễn trừ prune (boom-item) chỉ giữ mã ĐÃ CÓ lúc đọc — không cứu được
+    lượt đọc trước lúc render. Vẽ lại từ state lúc ghi thì mọi writer —
+    đọc trước hay sau render — đều ghi đúng khối hiện tại. Chạy cùng vị
+    trí với dash_top_merge (cuối pipeline, mọi mode). Lỗi đọc state ->
+    giữ nguyên h, không chặn pipeline.
+    """
+    try:
+        import boom_block
+        st = boom_block.load_state()
+        block = boom_block.render_block(st)
+        out, _how = boom_block.apply_to(h, block)
+        return out if out is not None else h
+    except Exception as e:
+        print(f"  ! boom_reapply: {e}", file=sys.stderr)
+        return h
+
+
 def stamp_version(h, repo_dir):
     """Tom lệnh 15/10 (~12:30): bạn bè không nhận được update — cache kẹt.
     Mỗi lượt ghi version.json + đóng dấu meta board-v vào HTML.
@@ -6388,6 +6413,7 @@ def main():
         repo_html = os.path.join(a.repo_dir, "index.html")
         if os.path.abspath(a.html) != os.path.abspath(repo_html):
             open(repo_html, "w", encoding="utf-8").write(h)
+        h = boom_reapply(h)
         h = dash_top_merge(h)
         h, _ = stamp_version(h, a.repo_dir)
         open(a.html, "w", encoding="utf-8").write(h)
@@ -6709,6 +6735,7 @@ def main():
         open(repo_html, "w", encoding="utf-8").write(h)
 
     # đóng dấu version để bảng tự phát hiện bản mới (fix kẹt cache — Tom 15/10)
+    h = boom_reapply(h)
     h = dash_top_merge(h)
     h, _ = stamp_version(h, a.repo_dir)
     open(a.html, "w", encoding="utf-8").write(h)
