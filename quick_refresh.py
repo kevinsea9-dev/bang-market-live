@@ -5288,19 +5288,30 @@ def _levcomp_strip(h):
     return ''.join(out)
 
 
-_BASEFLASH_CSS = (
-    ".baseflash{animation:basePulse 3s ease-in-out infinite}"
-    "@keyframes basePulse{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,0)}"
-    "50%{box-shadow:0 0 9px 2px rgba(245,197,24,.75)}}")
+_BASEFLASH_CSS = ".baseflash{box-shadow:0 0 7px 2px rgba(245,197,24,.55)}"
+_LEVFLASH_CSS_STATIC = (".levflash{border:2px solid #f59e0b !important;"
+                        "box-shadow:0 0 10px rgba(245,158,11,.5)}")
 
 
 def _ensure_baseflash_css(h):
-    """CSS nhãn MÃ GỐC chớp nháy trong cặp gốc/xe (Tom 4/11 22:34: mã
-    gốc phải CHỚP NHÁY RÕ — nháy CHẬM 3s ease-in-out kiểu glow
-    box-shadow, KHÔNG đổi màu nền, đúng luật chớp 2,8–3,5s).
-    Idempotent: chèn 1 lần trước </style> đầu tiên, các lượt sau tự giữ
-    vì CSS nằm trong file đã lưu."""
-    if ".baseflash{" not in h:
+    """CSS nhãn MÃ GỐC + khung xe trong cặp gốc/xe — GIỮ TĨNH LUÔN SÁNG
+    (Tom 5/11 06:22 PT: "Tắt chớp — giữ highlight vàng/xanh tĩnh", THẮNG
+    lệnh 4/11 22:34 bắt mã gốc chớp nháy: chớp làm highlight trông ẩn/hiện,
+    khó đọc). Nền gradient vàng của nhãn nằm ở inline style từng span nên
+    giữ nguyên 100%; class chỉ còn glow tĩnh, TUYỆT ĐỐI không animation.
+    Idempotent + TỰ NÂNG CẤP: file còn CSS chớp cũ (basePulse/levPulse)
+    thì thay sang tĩnh + xóa hẳn @keyframes chớp của cặp gốc/xe. Chỉ áp
+    cho cặp gốc/xe — animation trạng thái hành động ở mục khác không đụng."""
+    h = re.sub(r"@keyframes basePulse\{0%,100%\{[^}]*\}50%\{[^}]*\}\}",
+               "", h)
+    h = re.sub(r"@keyframes levPulse\{0%,100%\{[^}]*\}50%\{[^}]*\}\}",
+               "", h)
+    if ".levflash{" in h:
+        h = re.sub(r"\.levflash\{[^}]*\}", _LEVFLASH_CSS_STATIC, h,
+                   count=1)
+    if ".baseflash{" in h:
+        h = re.sub(r"\.baseflash\{[^}]*\}", _BASEFLASH_CSS, h, count=1)
+    else:
         i = h.find("</style>")
         if i > 0:
             h = h[:i] + _BASEFLASH_CSS + h[i:]
@@ -5492,6 +5503,7 @@ def update_companion_lines(h, prices):
     """Gắn dòng companion xe x2 vào các mục đích (COMP_SECTIONS + khối 👑
     FOCUS). Strip trước rồi gắn lại nên idempotent; fail-soft giữ nguyên bảng.
     Trả về (h, tổng_số_dòng, {mục: số_dòng})."""
+    h_orig = h
     try:
         h = _levcomp_strip(h)
         if ".levcomp{" not in h:
@@ -5792,10 +5804,36 @@ def update_companion_lines(h, prices):
             h = h[:s0] + seg + h[s1:]
             if n0:
                 counts[name] = n0
+        # GUARD ĐƠN ĐIỆU (fix gốc 5/11 — vụ highlight sec-special lúc có
+        # lúc không): pass KHÔNG BAO GIỜ được trả về ÍT companion hơn bản
+        # đầu vào ở bất kỳ mục nào. Nhánh của 1 mục lỗi/tịt giữa chừng
+        # (vd _special_watch_extra trên markup khung mới) thì khôi phục
+        # nguyên segment GỐC của mục đó — số giá cũ 1 nhịp còn hơn mất
+        # sạch highlight chờ lượt sau gắn lại.
+        for _sec_id in COMP_SECTIONS:
+            try:
+                _ob = _sec_bounds(h_orig, _sec_id)
+                _nb = _sec_bounds(h, _sec_id)
+                if _ob and _nb:
+                    _ocnt = h_orig[_ob[0]:_ob[1]].count('<div class="levcomp')
+                    _ncnt = h[_nb[0]:_nb[1]].count('<div class="levcomp')
+                    if _ncnt < _ocnt:
+                        h = (h[:_nb[0]] + h_orig[_ob[0]:_ob[1]]
+                             + h[_nb[1]:])
+                        print(f"  ! companion guard: {_sec_id} tụt "
+                              f"{_ocnt}->{_ncnt} — khôi phục segment gốc",
+                              file=sys.stderr)
+            except Exception:
+                pass
         return h, sum(counts.values()), counts
     except Exception as e:
-        print(f"  ! companion lines: {e}", file=sys.stderr)
-        return h, 0, {}
+        # FAIL-SOFT ĐÚNG NGHĨA (fix gốc 5/11): lỗi giữa pass (sau khi đã
+        # strip toàn bảng / xử lý dở vài mục) phải trả về bản GỐC nguyên
+        # vẹn — bản cũ từng trả biến h đã bị strip dở, khiến 1 lỗi nhỏ
+        # thành mất highlight cả mục cho tới lượt refresh sau.
+        print(f"  ! companion lines: {e} — giữ nguyên bảng gốc",
+              file=sys.stderr)
+        return h_orig, 0, {}
 
 
 def update_leverage_signals(h, prices):
