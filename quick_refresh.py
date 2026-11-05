@@ -5429,14 +5429,14 @@ def _comp_insert_alert(full, u, line, flash):
     return full
 
 
-# CANH THÊM ĐỨNG của sec-special (Tom 5/11 06:25 PT): các mã boom-watch
-# nhị phân phải có mặt trong lớp CANH THÊM của KHUNG ĐẶC BIỆT để theo dõi
-# — gắn ở TẦNG GENERATOR (mọi lượt companion pass tự bổ sung + làm tươi
-# giá/trạng thái, writer nào viết lại khung thiếu thì lượt refresh kế
-# gắn lại ngay), KHÔNG sửa tay HTML. Tự hết hạn sau ngày sự kiện.
-# (mã, hạn YYYY-MM-DD PT, nhãn sự kiện). Số vùng/chốt/cắt/sổ lấy từ
-# zones.json tại thời điểm gắn; mã không có xe 2x thật (SMMT) chỉ mang
-# nhãn VÀNG mã gốc + bộ 3 số, tuyệt đối không bịa xe.
+# DỰ BỊ ĐỨNG của sec-special (Tom 5/11 06:25 PT + cấu trúc khung
+# 3 TÂM ĐIỂM + tối đa 7 DỰ BỊ chốt 06:30 PT): các mã boom-watch nhị
+# phân phải có mặt trong lớp DỰ BỊ của KHUNG ĐẶC BIỆT dưới dạng KHỐI
+# ĐẦY ĐỦ — gắn ở TẦNG GENERATOR (mọi lượt companion pass tự dựng khối
+# nếu khung bị writer nào viết lại thiếu), KHÔNG sửa tay HTML. Tự hết
+# hạn sau ngày sự kiện. (mã, hạn YYYY-MM-DD PT, nhãn sự kiện). Số
+# vùng/chốt/cắt/sổ lấy từ zones.json tại thời điểm gắn; mã không có
+# xe 2x thật (SMMT) chỉ mang nhãn VÀNG mã gốc + bộ 3 số, không bịa xe.
 _SPECIAL_CANH_STANDING = (
     ("AAOI", "2026-11-05", "earnings TỐI NAY 05/11 AMC"),
     ("AMAT", "2026-11-12", "earnings 12/11 AMC"),
@@ -5510,28 +5510,27 @@ def _special_watch_extra(seg, mk_line, seen, px=None, zones=None):
             added += 1
         return "".join(out)
 
-    # --- CANH THÊM ĐỨNG (boom-watch nhị phân — Tom 5/11 06:25): chạy
-    # TRƯỚC _ct_fn để dòng companion của các mã đứng được gắn cùng lượt.
-    # Mỗi lượt: xóa dòng đứng cũ (giá trong dòng là snapshot) rồi viết
-    # lại bằng giá + trạng thái vùng của CHÍNH lượt này; mã đã lên tâm
-    # điểm (data-achip trong mục) hoặc đã qua hạn sự kiện thì chỉ xóa,
-    # không viết lại.
+    seg = sub_balanced_alerts(seg, _ct_fn)
+
+    # --- DỰ BỊ ĐỨNG (boom-watch nhị phân — Tom 5/11 06:25 + cấu trúc
+    # khung 3 TÂM ĐIỂM + tối đa 7 DỰ BỊ chốt 06:30): mã đứng chưa có
+    # khối nào trong mục (chưa là tâm điểm, chưa có khối dự bị) thì tự
+    # dựng KHỐI DỰ BỊ đầy đủ mẫu thống nhất (header zchip đủ bộ 3 +
+    # nhãn VÀNG mã gốc + ghi chú nhị phân + chân khối) ở cuối mục —
+    # writer nào viết lại khung mà sót mã đứng thì lượt refresh kế tự
+    # bổ sung ngay. Dòng companion do lượt generic gắn tiếp ngay sau
+    # (mã có xe thật); mã không xe (SMMT) chỉ mang nhãn VÀNG + bộ 3.
+    # Tôn trọng trần 10 mã/mục và hạn sự kiện của từng mã.
     if px and zones:
-        def _standing_fn(full, inner):
-            if "CANH THÊM" not in full:
-                return full
-            today = now_pt().strftime("%Y-%m-%d")
+        try:
+            _today = now_pt().strftime("%Y-%m-%d")
+            _names = set(re.findall(r'data-achip="([A-Z]{2,6})"', seg))
             for u, until, ev in _SPECIAL_CANH_STANDING:
-                full = re.sub(
-                    r"<br>\s*·\s*(?:<span[^>]*>)?" + u
-                    + r"(?:</span>)?\s+\$[^<]*", "", full)
-                if today > until or f'data-achip="{u}"' in seg:
+                if _today > until or u in _names or len(_names) >= 10:
                     continue
                 z = zones.get(u)
-                if not z or not z.get("entry"):
-                    continue
                 pv = px.get(u)
-                if not pv or not pv[0]:
+                if not z or not z.get("entry") or not pv or not pv[0]:
                     continue
                 upx = pv[0]
                 lo, hi = z["entry"]
@@ -5539,51 +5538,49 @@ def _special_watch_extra(seg, mk_line, seen, px=None, zones=None):
                 if isinstance(tps, (int, float)):
                     tps = [tps]
                 st = _zone_state_of(z, upx)
-                slab = ("🔴 DƯỚI CẮT — chỉ tham chiếu, phán quyết ở "
-                        "nến ĐÓNG" if st == "BROKEN"
+                zc = {"IN": "zchip-g", "BELOW": "zchip-y",
+                      "ABOVE": "zchip-n", "BROKEN": "zchip-r"}[st]
+                slab = ("🔴 GÃY VÙNG — THỦNG CẮT" if st == "BROKEN"
                         else _COMP_STATE_LAB[st])
-                line = (f"· {u} {_lt_money(upx)} — {slab} vùng "
-                        f"{z.get('book', 'Sổ 3')} "
+                dist = ""
+                if st == "BELOW":
+                    dist = (f" · Còn +{(lo / upx - 1) * 100:.1f}% tới "
+                            "vùng").replace(".", ",")
+                elif st == "ABOVE":
+                    dist = (f" · Trên vùng +{(upx / hi - 1) * 100:.1f}%"
+                            ).replace(".", ",")
+                chip = (f"{u} · {slab} · Giá {_lt_money(upx)} · Vùng "
                         f"{_lt_money(lo)}–{_lt_money(hi)}")
                 if tps:
-                    line += (" · Chốt " + "→".join(
+                    chip += (" · Chốt " + "→".join(
                         _lt_money(t) for t in tps[:2]))
                 if z.get("cut"):
-                    line += f" · Cắt <{_lt_money(z['cut'])}"
-                line += f" · 🎲 CƯỢC NHỊ PHÂN SỔ 3 — {ev}"
-                for anchor in ("<br>Giá CANH THÊM theo",
-                               '<span class="t blkfoot">'):
-                    i = full.find(anchor)
-                    if i != -1:
-                        full = full[:i] + "<br>" + line + full[i:]
-                        break
-                else:
-                    j = full.rfind("</div>")
-                    if j != -1:
-                        full = full[:j] + "<br>" + line + full[j:]
-            return full
-
-        seg = sub_balanced_alerts(seg, _standing_fn)
-
-    seg = sub_balanced_alerts(seg, _ct_fn)
-
-    # Mã đứng KHÔNG có xe 2x thật (SMMT): không có dòng companion mang
-    # nhãn VÀNG mã gốc → bọc nhãn VÀNG ngay trên dòng prose của nó.
-    def _gold_fn(full, inner):
-        if "CANH THÊM" not in full:
-            return full
-        for u, _until, _ev in _SPECIAL_CANH_STANDING:
-            if u in COMP_MAP:
-                continue
-            full = full.replace(
-                f"· {u} ",
-                '· <span class="baseflash" style="background:'
-                'linear-gradient(180deg,#ffe066,#f5c518);color:#111;'
-                'font-weight:900;padding:1px 7px;border-radius:5px">'
-                f"{u}</span> ", 1)
-        return full
-
-    seg = sub_balanced_alerts(seg, _gold_fn)
+                    chip += f" · Cắt <{_lt_money(z['cut'])}"
+                chip += dist
+                gold = ('<span class="baseflash" style="background:'
+                        'linear-gradient(180deg,#ffe066,#f5c518);'
+                        'color:#111;font-weight:900;padding:1px 7px;'
+                        'border-radius:5px">' + u + "</span>")
+                note = (f"🎲 CƯỢC NHỊ PHÂN {z.get('book', 'Sổ 3')} — "
+                        f"{ev}"
+                        + (" · Đang dưới cắt — chỉ tham chiếu, phán "
+                           "quyết ở nến ĐÓNG." if st == "BROKEN" else
+                           " · Chỉ canh/tham chiếu trong chế độ 🔴, "
+                           "không phải tín hiệu mua/bán."))
+                blk = (f'<div class="alert"><div class="zchip {zc}" '
+                       f'data-achip="{u}">{chip}</div>'
+                       f"<b>🔹 DỰ BỊ — {u} · {ev.upper()}</b><br>"
+                       f"{gold} {slab} · {z.get('book', 'Sổ 3')}<br>"
+                       f"{note}<br>"
+                       f'<span class="t blkfoot">Giá trực tiếp • cập '
+                       f'nhật {now_pt().strftime("%H:%M")} PT '
+                       f'{now_pt().strftime("%d/%m")}</span></div>')
+                j = seg.rfind("</div>")
+                if j != -1:
+                    seg = seg[:j] + blk + "\n" + seg[j:]
+                    _names.add(u)
+        except Exception as _e:
+            print(f"  ! standing blocks: {_e}", file=sys.stderr)
     return seg, added
 
 
@@ -5661,6 +5658,23 @@ def update_companion_lines(h, prices):
         if missing:
             got, _l, _h52 = fetch_prices(missing)
             px.update(got)
+        # Mã CANH THÊM ĐỨNG + xe của chúng: fetch batch lớn hay rớt lẻ
+        # (đã xác minh 5/11: batch 166 mã chỉ trả ~47 mã, rớt AAOX/AMAU/
+        # SMMT) → fetch lại RIÊNG theo batch nhỏ ≤6 mã cho chắc, không
+        # thì dòng đứng bị xóa mà không viết lại được ở _special_watch_
+        # extra (lại thành lúc có lúc không).
+        _st_missing = []
+        for _su, _suntil, _sev in _SPECIAL_CANH_STANDING:
+            if now_pt().strftime("%Y-%m-%d") <= _suntil:
+                for _t in (_su, COMP_MAP.get(_su)):
+                    if _t and _t not in px:
+                        _st_missing.append(_t)
+        if _st_missing:
+            try:
+                _sg, _sl2, _sh2 = fetch_prices(sorted(set(_st_missing)))
+                px.update(_sg)
+            except Exception as _e:
+                print(f"  ! standing refetch: {_e}", file=sys.stderr)
         counts = {}
         # --- xử lý từng mục từ CUỐI file về đầu để span trước không lệch
         for name in sorted(spans, key=lambda k: -spans[k][0]):
