@@ -5714,6 +5714,31 @@ def update_companion_lines(h, prices):
         if missing:
             got, _l, _h52 = fetch_prices(missing)
             px.update(got)
+        # Fallback chống mất dòng xe (Tom bắt lỗi 5/11 ~14:14 — MELI/MRVL/
+        # VST/HOOD/HIMS/DRAM/SPCX cứ thiếu highlight vì fetch batch lớn rớt
+        # lẻ các xe mới/mỏng: _comp_line thiếu giá là bỏ dòng, mà strip ở
+        # đầu lượt đã xóa dòng cũ → khối trơ trụi tới lượt fetch trúng).
+        # Còn thiếu thì lấy từ prices.json trên đĩa (bơm giá có đủ các xe
+        # này), vẫn thiếu nữa thì fetch lại theo batch nhỏ ≤6 mã.
+        _still = [t for t in sorted(need) if t not in px]
+        if _still:
+            try:
+                _pj = json.load(open(os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)),
+                    "prices.json")))
+                for _t in _still:
+                    if _t in _pj.get("q", {}):
+                        px[_t] = _pj["q"][_t]
+            except Exception as _e:
+                print(f"  ! companion prices.json fallback: {_e}",
+                      file=sys.stderr)
+            _still = [t for t in _still if t not in px]
+            for _i in range(0, len(_still), 6):
+                try:
+                    _g, _l3, _h3 = fetch_prices(_still[_i:_i + 6])
+                    px.update(_g)
+                except Exception as _e:
+                    print(f"  ! companion refetch nho: {_e}", file=sys.stderr)
         # Mã CANH THÊM ĐỨNG + xe của chúng: fetch batch lớn hay rớt lẻ
         # (đã xác minh 5/11: batch 166 mã chỉ trả ~47 mã, rớt AAOX/AMAU/
         # SMMT) → fetch lại RIÊNG theo batch nhỏ ≤6 mã cho chắc, không
@@ -5758,6 +5783,17 @@ def update_companion_lines(h, prices):
                     return (m.group(0) +
                             f'<tr class="levcomp-row"><td colspan="4">'
                             f'<div class="{cls}">{line}</div></td></tr>')
+                # Nhóm CHỈ có zchip-row, không có hàng data (mã gãy vùng/
+                # treo — writer chỉ dựng chip): phải gắn ở zchip-row, nếu
+                # không các mã này không bao giờ có dòng xe (bài học 5/11:
+                # MRVL ở Sổ 2 + VST/HOOD/HIMS/DRAM ở Sổ 3 trơ trụi; kèm
+                # bẫy guard — dòng NOW gắn bằng cơ chế khác làm count của
+                # branch luôn thấp hơn segment hiện hữu 1 dòng → guard
+                # khôi phục segment cũ mỗi lượt → MELI có hàng data cũng
+                # không bao giờ được gắn). seen dùng chung nên mã có cả
+                # 2 dạng chỉ gắn 1 dòng ở zchip-row (như lưới thép).
+                seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
+                             r".*?</tr>", _row_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _row_rep, seg, flags=re.S)
             elif name in ("sec-longterm", "sec-etf16", "sec-etf",
