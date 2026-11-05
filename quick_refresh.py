@@ -4997,6 +4997,25 @@ def _levcomp_strip(h):
     return ''.join(out)
 
 
+_BASEFLASH_CSS = (
+    ".baseflash{animation:basePulse 3s ease-in-out infinite}"
+    "@keyframes basePulse{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,0)}"
+    "50%{box-shadow:0 0 9px 2px rgba(245,197,24,.75)}}")
+
+
+def _ensure_baseflash_css(h):
+    """CSS nhãn MÃ GỐC chớp nháy trong cặp gốc/xe (Tom 4/11 22:34: mã
+    gốc phải CHỚP NHÁY RÕ — nháy CHẬM 3s ease-in-out kiểu glow
+    box-shadow, KHÔNG đổi màu nền, đúng luật chớp 2,8–3,5s).
+    Idempotent: chèn 1 lần trước </style> đầu tiên, các lượt sau tự giữ
+    vì CSS nằm trong file đã lưu."""
+    if ".baseflash{" not in h:
+        i = h.find("</style>")
+        if i > 0:
+            h = h[:i] + _BASEFLASH_CSS + h[i:]
+    return h
+
+
 def _comp_line(u, v, px, zones, suffix=""):
     """(dòng companion, chớp?) cho mã gốc u / xe v; (None, False) nếu thiếu giá.
     BROKEN → chỉ ghi 'MÃ GỐC ĐÃ GÃY CẮT — số dịch chỉ tham chiếu', TUYỆT ĐỐI
@@ -5011,7 +5030,8 @@ def _comp_line(u, v, px, zones, suffix=""):
     upx = px[u][0]
     if not upx:
         return None, False
-    gold = ('<span style="background:linear-gradient(180deg,#ffe066,#f5c518);'
+    gold = ('<span class="baseflash" '
+            'style="background:linear-gradient(180deg,#ffe066,#f5c518);'
             'color:#111;font-weight:900;padding:1px 7px;border-radius:5px">'
             f"{u}</span>")
     sky = ('<span style="background:#7dd3fc;color:#131313;font-weight:900;'
@@ -5025,10 +5045,11 @@ def _comp_line(u, v, px, zones, suffix=""):
         head += f" · {warn}"
     z = zones.get(u)
     if not z or not z.get("entry"):
-        return head + f" · {u} chưa có vùng — xe chạy theo đà" + suffix, False
+        return head + " · ⚪ Chưa có vùng duyệt — xe chạy theo đà" + suffix, False
     note = (z.get("note") or "").upper()
     if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
-        return head + f" · {u} VÙNG TẠM TREO — chưa dịch giá xe" + suffix, False
+        return head + (" · ⚪ Chưa có vùng duyệt (vùng cũ tạm treo)"
+                       " — chưa dịch giá xe") + suffix, False
     try:
         lo, hi = z["entry"]
         st = _zone_state_of(z, upx)
@@ -5099,6 +5120,7 @@ def update_companion_lines(h, prices):
             i = h.find("</style>")
             if i > 0:
                 h = h[:i] + css + h[i:]
+        h = _ensure_baseflash_css(h)
         zones, _excl = _zones_local()
         spans = {}
         for sec in COMP_SECTIONS:
@@ -5526,7 +5548,8 @@ def _lev_pair_block(u, vehs, z, st, paused, upx, upct, px):
            if st == "IN" else "")
     role = LEV_SELF.get(u, "MÃ GỐC")
     lines = [
-        f'<div class="{cls}"><b><span style="background:#f5c86e;color:#131313;'
+        f'<div class="{cls}"><b><span class="baseflash" '
+        f'style="background:#f5c86e;color:#131313;'
         f'font-weight:900;padding:1px 7px;border-radius:5px;font-size:1.18em">'
         f'<span data-px="{u}">{u} {_lt_money(upx)}</span></span> '
         f'<span data-pct="{u}">({fmt_pct_vn(upct)})</span> · {role}</b> '
@@ -5611,6 +5634,7 @@ def update_leverage_pairs(h, prices):
             i = h.find("</style>")
             if i > 0:
                 h = h[:i] + css + h[i:]
+        h = _ensure_baseflash_css(h)
         b = _sec_bounds(h, "sec-leverage")
         if not b:
             return h, 0
