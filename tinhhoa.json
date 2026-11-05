@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "ABNB",
-   "name": "Airbnb",
-   "date": "2026-11-05",
-   "when": "T5 5/11 AMC",
-   "status": "PENDING",
-   "eps_est": 2.89,
-   "rev_est": "$4.75B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: bookings + nhu cầu du lịch."
-  },
-  {
    "ticker": "NET",
    "name": "Cloudflare",
    "date": "2026-11-05",
@@ -32,17 +21,6 @@
    "rev_est": "$2.49B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus)."
-  },
-  {
-   "ticker": "AXON",
-   "name": "Axon Enterprise",
-   "date": "2026-11-05",
-   "when": "T5 5/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.89,
-   "rev_est": "$934.3M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Forward P/E ~42x — kỳ vọng cao, rủi ro phản ứng mạnh."
   },
   {
    "ticker": "IREN",
@@ -76,28 +54,6 @@
    "rev_est": "$268.1M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Vùng cũ đã vô hiệu từ 2/11 — chỉ theo dõi kết quả."
-  },
-  {
-   "ticker": "KTOS",
-   "name": "Kratos Defense & Security",
-   "date": "2026-11-05",
-   "when": "T5 5/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.21,
-   "rev_est": "$473.7M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Zacks: EPS $0,21, doanh thu $473,7M). Sổ 3: Vào $37–41/Chốt $50→$58/Cắt <$35,50. Điểm nhìn: doanh thu hypersonics + backlog; đã beat 7/8 quý gần nhất."
-  },
-  {
-   "ticker": "TMDX",
-   "name": "TransMedics Group",
-   "date": "2026-11-05",
-   "when": "T5 5/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.3,
-   "rev_est": "$178–181M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — tối nay sau đóng cửa (công ty xác nhận báo cáo 5/11, call 13:30 PT). EPS kỳ vọng ~$0,30 (so $0,66 cùng kỳ năm trước), doanh thu ~$178–181M (+~24% YoY). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: biên lãi co lại (outlook margin hoạt động 12,5–14%) + 2 quý gần nhất đều miss lợi nhuận dù doanh thu vẫn beat; miss nữa có thể thử đáy 52 tuần $60,10. Mốc $70–72 lấy lại = dấu hiệu sớm đòi lại nền."
   },
   {
    "ticker": "WBD",
@@ -216,6 +172,75 @@
    "essence": "EPS $1,99 vượt kỳ vọng $1,88; doanh thu $9,10B (+6,6% YoY)."
   },
   {
+   "ticker": "ABNB",
+   "name": "Airbnb",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "DONE",
+   "eps_est": 2.89,
+   "rev_est": "$4.75B",
+   "implied": null,
+   "note": "Đã ra số tối 5/11 (MarketBeat, cùng ngày) — EPS $3,16 vs kỳ vọng $2,85; doanh thu $4,87B vs $4,75B.",
+   "eps_act": 3.16,
+   "rev_act": "$4.87B",
+   "verdict": "BEAT",
+   "reaction_pct": "+10,53% sau giờ về $187,88 (MarketBeat 5/11 16:14 ET, tính từ đóng $169,98; thanh khoản mỏng)",
+   "price_after": 187.88,
+   "essence": "EPS $3,16 beat kỳ vọng $2,85 (+$0,31); doanh thu $4,87B beat $4,75B — beat cả hai, cổ phiếu +10,5% sau giờ, chạm chốt $187."
+  },
+  {
+   "ticker": "AXON",
+   "name": "Axon Enterprise",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "DONE",
+   "eps_est": 1.89,
+   "rev_est": "$934.3M",
+   "implied": null,
+   "note": "Đã ra số tối 5/11 (thông cáo Axon/PR Newswire, cùng ngày) — EPS non-GAAP $1,72 vs kỳ vọng $1,89; doanh thu $909M vs $934,3M.",
+   "eps_act": 1.72,
+   "rev_act": "$909M",
+   "verdict": "MISS",
+   "guidance": "Q4 doanh thu $990M–$1,01B, Adj EBITDA $245–250M; cả năm loại ~$130M doanh thu Dedrone liên bang bị lùi.",
+   "reaction_pct": "-17,28% sau giờ về $319,49 (MarketBeat 5/11 16:16 ET, tính từ đóng $386,22; thanh khoản mỏng)",
+   "price_after": 319.49,
+   "essence": "EPS non-GAAP $1,72 hụt $1,89; doanh thu $909M hụt $934,3M do 3 hợp đồng liên bang Dedrone ~$130M bị lùi; đầu tư thêm $1,2B vào Skydio (nắm 37%)."
+  },
+  {
+   "ticker": "KTOS",
+   "name": "Kratos Defense & Security",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.21,
+   "rev_est": "$473.7M",
+   "implied": null,
+   "note": "Đã ra số tối 5/11 (MarketBeat, cùng ngày) — EPS $0,24 vs kỳ vọng $0,2075; doanh thu $471,8M vs $471,4M.",
+   "eps_act": 0.24,
+   "rev_act": "$471.80M",
+   "verdict": "BEAT",
+   "reaction_pct": "-0,95% sau giờ về $32,86 (MarketBeat 5/11 16:13 ET, tính từ đóng $33,18; thanh khoản mỏng)",
+   "price_after": 32.86,
+   "essence": "EPS $0,24 beat $0,2075; doanh thu $471,8M vừa đủ beat $471,4M — beat mỏng cả hai nhưng giá sau giờ -0,95% về $32,86, vẫn dưới cắt $35,50."
+  },
+  {
+   "ticker": "TMDX",
+   "name": "TransMedics Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.3,
+   "rev_est": "$178–181M",
+   "implied": null,
+   "note": "Đã ra số tối 5/11 (MarketBeat, cùng ngày) — EPS $0,51 vs kỳ vọng $0,2976; doanh thu $203,01M vs $178,06M.",
+   "eps_act": 0.51,
+   "rev_act": "$203.01M",
+   "verdict": "BEAT",
+   "reaction_pct": "+18,20% sau giờ về $81,52 (MarketBeat 5/11 16:18 ET, tính từ đóng $68,97; thanh khoản mỏng)",
+   "price_after": 81.52,
+   "essence": "EPS $0,51 beat mạnh $0,30 (+71%); doanh thu $203M beat $178M (+14%) — beat lớn cả hai sau 2 quý miss lợi nhuận liên tiếp, cổ phiếu +18,2% sau giờ."
+  },
+  {
    "ticker": "VST",
    "name": "Vistra Corp.",
    "date": "2026-11-06",
@@ -302,6 +327,17 @@
    "rev_est": "$62.5M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: nhóm đào coin — đọc xuyên sang IREN (vị thế Tom ra số tối 5/11): sản lượng đào + hợp đồng điện cho AI/HPC."
+  },
+  {
+   "ticker": "BEN",
+   "name": "Franklin Resources",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.77,
+   "rev_est": "$1.86B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (consensus). Điểm nhìn: AUM + dòng tiền ròng các quỹ."
   },
   {
    "ticker": "UBER",
