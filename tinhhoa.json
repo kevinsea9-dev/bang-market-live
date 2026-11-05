@@ -1,50 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "COP",
-   "name": "ConocoPhillips",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.05,
-   "rev_est": "$18.59B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 từ lịch earnings 5/11 (consensus Yahoo). Điểm nhìn: sản lượng + giá dầu quý 3."
-  },
-  {
-   "ticker": "PH",
-   "name": "Parker-Hannifin",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 8.21,
-   "rev_est": "$5.81B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus Yahoo). Quý 1 tài khóa 2027."
-  },
-  {
-   "ticker": "SO",
-   "name": "Southern Company",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.71,
-   "rev_est": "$8.38B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus Yahoo). Điện lực phòng thủ."
-  },
-  {
-   "ticker": "DUK",
-   "name": "Duke Energy",
-   "date": "2026-11-05",
-   "when": "T5 5/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.86,
-   "rev_est": "$8.91B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus Yahoo). Điện lực phòng thủ."
-  },
-  {
    "ticker": "WBD",
    "name": "Warner Bros. Discovery",
    "date": "2026-11-05",
@@ -53,7 +9,40 @@
    "eps_est": -0.04,
    "rev_est": "$8.76B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — dời từ AMC 4/11 sang BMO 5/11."
+   "note": "⏳ CHỜ KẾT QUẢ — chưa xác minh được kết quả Q3 sáng 5/11 (chưa thấy bản tin cùng ngày; MarketBeat ghi WBD đã được Skydance thâu tóm tháng 10/2026 — có thể không báo riêng). Sổ 3 chờ dựng nền $18,50–21,50/Cắt <$17."
+  },
+  {
+   "ticker": "SONY",
+   "name": "Sony Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.38,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: mảng game + cảm biến hình ảnh."
+  },
+  {
+   "ticker": "CNQ",
+   "name": "Canadian Natural Resources",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.05,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: giá dầu + sản lượng."
+  },
+  {
+   "ticker": "CI",
+   "name": "Cigna Group",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "PENDING",
+   "eps_est": 7.46,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Nasdaq). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. Điểm nhìn: chi phí y tế + mảng Evernorth."
   },
   {
    "ticker": "ABNB",
@@ -100,17 +89,6 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Forward P/E ~42x — kỳ vọng cao, rủi ro phản ứng mạnh."
   },
   {
-   "ticker": "LITE",
-   "name": "Lumentum",
-   "date": "2026-11-05",
-   "when": "T5 5/11 AMC",
-   "status": "PENDING",
-   "eps_est": 4.22,
-   "rev_est": "$1.25B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Mã đối tác trong tin đồn MRVL đàm phán mua lại — chú ý mọi xác nhận/bác bỏ quanh kỳ này."
-  },
-  {
    "ticker": "IREN",
    "name": "IREN Limited",
    "date": "2026-11-05",
@@ -142,6 +120,89 @@
    "rev_est": "$268.1M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Vùng cũ đã vô hiệu từ 2/11 — chỉ theo dõi kết quả."
+  },
+  {
+   "ticker": "KTOS",
+   "name": "Kratos Defense & Security",
+   "date": "2026-11-05",
+   "when": "T5 5/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.21,
+   "rev_est": "$473.7M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp sáng 5/11 (Zacks: EPS $0,21, doanh thu $473,7M). Sổ 3: Vào $37–41/Chốt $50→$58/Cắt <$35,50. Điểm nhìn: doanh thu hypersonics + backlog; đã beat 7/8 quý gần nhất."
+  },
+  {
+   "ticker": "COP",
+   "name": "ConocoPhillips",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "DONE",
+   "eps_est": 3.05,
+   "rev_est": "$18.59B",
+   "implied": null,
+   "note": "Đã ra số sáng 5/11 (thông cáo COP + Morningstar, cùng ngày) — EPS điều chỉnh $3,27 vs kỳ vọng $3,05 (FactSet).",
+   "eps_act": 3.27,
+   "rev_act": "$19.44B",
+   "verdict": "BEAT",
+   "guidance": "Nâng cổ tức quý +11% lên $0,93/cp (trả 1/12); sản lượng Q4 dự kiến 2,32–2,36 triệu thùng/ngày; giữ nguyên guidance capex + chi phí vận hành cả năm.",
+   "reaction_pct": "+1,8% premarket về $139,45 (Yahoo 5/11 ~05:50 PT, tính từ đóng 4/11 $136,94; thanh khoản mỏng)",
+   "price_after": 139.45,
+   "essence": "EPS điều chỉnh $3,27 vượt kỳ vọng $3,05 nhờ giá dầu thực hiện +32% YoY; CFO $7,2B; tăng cổ tức 11%."
+  },
+  {
+   "ticker": "PH",
+   "name": "Parker-Hannifin",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "DONE",
+   "eps_est": 8.21,
+   "rev_est": "$5.81B",
+   "implied": null,
+   "note": "Đã ra số sáng 5/11 (GlobeNewswire + StockStory, cùng ngày) — EPS điều chỉnh $8,90 vs kỳ vọng $8,17.",
+   "eps_act": 8.9,
+   "rev_act": "$5.99B",
+   "verdict": "BEAT",
+   "guidance": "Nâng guidance FY27: EPS điều chỉnh $36,45–37,25; doanh thu +16–19%; FCF $3,5–4,0B; backlog kỷ lục $13,7B.",
+   "reaction_pct": "+6,4% premarket về $968 (Yahoo 5/11 ~05:50 PT, tính từ đóng 4/11 $910,19; thanh khoản mỏng)",
+   "price_after": 968.0,
+   "essence": "Doanh thu kỷ lục $5,99B (+18% YoY), EPS điều chỉnh kỷ lục $8,90 vượt kỳ vọng $8,17; nâng guidance cả năm sau thương vụ Filtration Group."
+  },
+  {
+   "ticker": "SO",
+   "name": "Southern Company",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "DONE",
+   "eps_est": 1.71,
+   "rev_est": "$8.38B",
+   "implied": null,
+   "note": "Đã ra số sáng 5/11 (PR Newswire + Quiver, cùng ngày) — EPS điều chỉnh $1,94 vs kỳ vọng $1,76.",
+   "eps_act": 1.94,
+   "rev_act": "$8.84B",
+   "verdict": "BEAT",
+   "guidance": "CFO dự kiến EPS điều chỉnh FY2026 ở/quanh đỉnh dải $4,50–4,60 (call Q2); call phân tích 13:00 ET hôm nay.",
+   "reaction_pct": "+1,3% premarket về $94,29 (Yahoo 5/11 ~05:50 PT, tính từ đóng 4/11 $93,12; thanh khoản mỏng)",
+   "price_after": 94.29,
+   "essence": "EPS điều chỉnh $1,94 vượt kỳ vọng $1,76; doanh thu $8,84B (+13% YoY) nhờ thời tiết ấm hơn + nhu cầu điện tăng."
+  },
+  {
+   "ticker": "DUK",
+   "name": "Duke Energy",
+   "date": "2026-11-05",
+   "when": "T5 5/11 BMO",
+   "status": "DONE",
+   "eps_est": 1.86,
+   "rev_est": "$8.91B",
+   "implied": null,
+   "note": "Đã ra số sáng 5/11 (dpa-AFX + Quiver, cùng ngày) — EPS $1,99 vs kỳ vọng $1,88.",
+   "eps_act": 1.99,
+   "rev_act": "$9.10B",
+   "verdict": "BEAT",
+   "guidance": "Giữ guidance EPS FY2026 $6,70–6,80; call phân tích 10:00 ET hôm nay.",
+   "reaction_pct": "+1,5% premarket về $131,50 (Yahoo 5/11 ~05:50 PT, tính từ đóng 4/11 $129,59; thanh khoản mỏng)",
+   "price_after": 131.5,
+   "essence": "EPS $1,99 vượt kỳ vọng $1,88; doanh thu $9,10B (+6,6% YoY)."
   },
   {
    "ticker": "VST",
@@ -515,6 +576,24 @@
    "price_after": 36.51,
    "essence": "EPS đúng kỳ vọng, doanh thu vượt nhẹ (+30% YoY) nhưng hạ guidance EBITDA cả năm → cổ phiếu rơi ~17% sau giờ, về dưới cắt $40 (phán quyết ở đóng cửa 5/11, giá sau giờ mỏng).",
    "audio": "earnings-bros-2026-11-04.mp3"
+  },
+  {
+   "ticker": "LITE",
+   "name": "Lumentum",
+   "date": "2026-11-02",
+   "when": "T3 2/11 BMO (dời từ T5 5/11 AMC)",
+   "status": "DONE",
+   "eps_est": 4.22,
+   "rev_est": "$1.25B",
+   "implied": null,
+   "note": "Đã báo sớm 2/11 BMO (dời từ 5/11 AMC do MRVL thâu tóm) — EPS $4,57 vs kỳ vọng $4,22; doanh thu $1,26B (MarketBeat/KuCoin, cùng tuần).",
+   "eps_act": 4.57,
+   "rev_act": "$1.26B",
+   "verdict": "BEAT",
+   "guidance": "Q2 FY27: doanh thu $1,575–1,625B, EPS non-GAAP $5,90–6,20; MRVL thâu tóm toàn cổ phiếu ~$115B (4,5 cp MRVL/cp LITE).",
+   "reaction_pct": "-28,8% từ đóng 30/10 ($840,70) về $599 premarket 5/11 sau tin MRVL thâu tóm (thị trường bán theo deal, bất chấp số beat; thanh khoản mỏng)",
+   "price_after": 599.0,
+   "essence": "EPS $4,57 vượt kỳ vọng $4,22, doanh thu $1,26B (+136,5% YoY) nhưng cổ phiếu rơi theo tin MRVL thâu tóm — giá premarket $599 lọt vùng chờ $575–620."
   }
  ],
  "playlist": {
