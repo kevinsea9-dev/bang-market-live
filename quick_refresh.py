@@ -3853,16 +3853,38 @@ def fetch_pm_prices(tickers):
             last_day = datetime.fromtimestamp(d["timestamp"][-1], et).date()
             prev = closes[-2] if last_day == today_et and len(closes) >= 2 else closes[-1]
             px = None
+            ah_print = False
             try:
                 url2 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
                         "?interval=1m&range=1d&includePrePost=true")
                 with urlopen(Request(url2, headers=UA), timeout=10) as r:
                     m = json.load(r)["chart"]["result"][0]
-                mc = [c for c in m["indicators"]["quote"][0]["close"] if c]
-                if mc:
-                    px = mc[-1]
+                qc = m["indicators"]["quote"][0]["close"]
+                ts1 = m.get("timestamp") or []
+                last_i = None
+                for i in range(len(qc) - 1, -1, -1):
+                    if qc[i]:
+                        last_i = i
+                        break
+                if last_i is not None:
+                    px = qc[last_i]
+                    # AH print thật = nến 1m cuối từ 16:00 ET trở đi
+                    if last_i < len(ts1):
+                        lt = datetime.fromtimestamp(ts1[last_i], et)
+                        if lt.date() == today_et and (lt.hour, lt.minute) >= (16, 0):
+                            ah_print = True
             except Exception:
                 pass
+            # 06/11 (vá gốc — kiểm số 13:45 phát hiện 31 xe lệch 0,5–2,7%):
+            # sau đóng cửa, mã KHÔNG có AH trade thì nến 1m cuối là giao
+            # dịch cuối phiên thường (xe mỏng có thể từ nhiều phút trước
+            # 16:00) — lấy close ngày chính thức thay vì giá 1m cũ.
+            # Có AH print thật thì giữ giá AH (đó mới là giá sống).
+            now_et = datetime.now(et)
+            session_done = (last_day == today_et
+                            and (now_et.hour, now_et.minute) >= (16, 0))
+            if session_done and not ah_print:
+                px = closes[-1]
             if px is None:
                 px = float(d["meta"]["regularMarketPrice"])
             return t, (round(float(px), 2), round((px - prev) / prev * 100, 2))
@@ -5250,8 +5272,10 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
            "GLWG": "GLW",
            "WDCX": "WDC",
            # bổ sung 5/11 (4 xe thật mới, rà soát xe 2x — Tom lệnh 11:11 PT)
-           "HIMZ": "HIMS", "MRNX": "MRNA", "UBRL": "UBER",
-           "KMLI": "MELI"}
+           # 06/11: KMLI ĐÃ GỠ — KraneShares 2x Long MELI thanh lý cuối
+           # 10/2026 (nến ngày cuối 29/10 $8,93, không còn giao dịch);
+           # MELI hiện KHÔNG có xe 2x thật — khối MELI ghi "Không có xe 2x".
+           "HIMZ": "HIMS", "MRNX": "MRNA", "UBRL": "UBER"}
 
 
 # --- XE X2 COMPANION (Tom 30/10 12:48): mẫu mục ĐÒN BẨY áp cho các mục khác.
@@ -5307,7 +5331,9 @@ COMP_MAP = {
     # $185,43 · UBRL GraniteShares 2x Long UBER $12,63 · KMLI
     # KraneShares 2x Long MELI $8,93 (quỹ mới ~3 phiên, chưa vol TB,
     # Robinhood NOT_FOUND -> KHÔNG 🌙, xem COMP_WARN)
-    "HIMS": "HIMZ", "MRNA": "MRNX", "UBER": "UBRL", "MELI": "KMLI",
+    # 06/11: KMLI đã thanh lý cuối 10/2026 — GỠ khỏi COMP_MAP (MELI
+    # hiện không có xe 2x thật; xem LEV_MAP).
+    "HIMS": "HIMZ", "MRNA": "MRNX", "UBER": "UBRL",
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
@@ -5336,7 +5362,7 @@ COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "NETG": "⚠️ vol mỏng ~85k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
     "GFSG": "⚠️ vol mỏng ~151k cp/ngày (TB 5 phiên, 4/11) — chia lệnh nhỏ",
     "BITX": "⚠️ 2x BTC qua FUTURES (Volatility Shares) — bám Bitcoin, KHÔNG bám giá IBIT spot; chỉ daytrade",
-    "KMLI": "⚠️ quỹ MỚI (KraneShares 2x Long MELI, mới giao dịch ~3 phiên 5/11) — chưa có vol TB, thanh khoản chưa xác minh, KHÔNG chạy đêm — chia lệnh nhỏ",
+    # 06/11: KMLI đã thanh lý — gỡ khỏi COMP_WARN cùng COMP_MAP/LEV_MAP.
 }
 COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  "sec-special", "sec-urgent",
