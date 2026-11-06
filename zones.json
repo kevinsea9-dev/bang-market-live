@@ -1,16 +1,16 @@
 {
  "AMD": {
   "book": "Sổ 2",
-  "cut": 488,
   "entry": [
-   498,
-   512
+   430,
+   455
   ],
   "targets": [
-   535,
-   560
+   498,
+   535
   ],
-  "note": "VẼ LẠI 30/10 (phán quyết đóng cửa): vùng cũ $535–560/cắt $520 BROKEN 30/10 (đóng ~$505, −10,8%). Nền mới: kệ $502 (đáy 22/10 $502,60 + đóng 30/10 giữ trên kệ sau khi nhúng $492,24), vol 1,68x TB20. Chế độ 🔴: chỉ là MỐC CANH/THAM CHIẾU, không phải tín hiệu vào lệnh. Kệ sâu hơn $451–463 nếu thủng $488."
+  "cut": 420,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 06/11 theo lệnh Tom, thay vùng $498–512/cắt $488 (gãy đóng 05/11 $404,40). Neo đáy capitulation 05/11 $402,10 (vol 2,7x); 06/11 đóng $449,04 +11,0% vol 1,7x, đáy $433,30 giữ xa đáy. KT: giữ ĐÓNG không thủng $402,10 đủ 3 phiên (đã 2/3) + đóng lấy lại $463 (qua kệ $451–463). Cắt = ĐÓNG <$420. Chốt $498 (vùng cũ) → $535. −32% vs đỉnh 3 tháng $658,52. 🔴 mốc canh/tham chiếu."
  },
  "AMZN": {
   "book": "Sổ 2",
@@ -511,28 +511,28 @@
  "SPCX": {
   "book": "Sổ 3",
   "entry": [
-   125,
-   130
+   126,
+   136
   ],
   "targets": [
-   180,
-   220
+   150,
+   176
   ],
   "cut": 118,
-  "note": "SpaceX; catalyst: Tesla merger (Barron's <1h) | ĐÓNG 5/11: $123,62 (−9,05%) — LỌT VÙNG GOM LT $120–135 (khung tsla-spcx-nvda-long-watch; đáy phiên $120,42 chạm mép dưới vùng). MÂU THUẪN: entry zones.json $125–130/cắt $118 khác khung LT $120–135/cắt <$108 — khung LT là chuẩn canh theo lệnh 4/11, không tự sửa cả hai."
+  "note": "VÙNG MỚI CÓ ĐIỀU KIỆN — vẽ 06/11 theo lệnh Tom, thay entry cũ $125–130/cắt $118. Neo đáy capitulation 05/11 $120,39 (vol 1,6x); 06/11 đóng $134,27 +8,6%, đáy $128,57 giữ trên đáy. KT: giữ ĐÓNG không thủng $120,39 đủ 3 phiên (đã 2/3) + đóng lấy lại $145 (MA20). Cắt = ĐÓNG <$118. Chốt $150 (MA50) → $176 (đỉnh 3 tháng). Khung gom LT $120–135/cắt <$108 giữ riêng ở job LT. Catalyst: ủy ban sáp nhập TSLA–SPCX; unlock 08/12 ~797,6tr cp. 🔴 mốc canh/tham chiếu."
  },
  "TSLA": {
   "book": "Sổ 2",
   "entry": [
-   300,
-   310
+   345,
+   365
   ],
   "targets": [
-   400,
-   450
+   385,
+   400
   ],
-  "cut": 290,
-  "note": "Tesla; catalyst: SpaceX merger (Barron's <1h) | ĐÓNG 5/11: $343,69 (−10,77%) — XUYÊN XUỐNG DƯỚI MA200 $384,32 ở nến đóng (đóng 4/11 $385,19 còn trên MA200 $384,76 — dứt chuỗi 8 phiên trên MA200). Vẫn TRÊN vùng gom LT $300–330 / cắt <$290 (cách mép vùng $13,69). MÂU THUẪN: entry zones.json $300–310 khác khung LT $300–330 — khung LT là chuẩn canh, không tự sửa cả hai."
+  "cut": 330,
+  "note": "VÙNG MỚI CÓ ĐIỀU KIỆN — vẽ 06/11 theo lệnh Tom, thay entry cũ $300–310. Neo đáy capitulation 05/11 $338,15 (vol 2x); 06/11 đóng $358,22 +4,2%, đáy $347,60 giữ trên đáy. KT: giữ ĐÓNG không thủng $338,15 đủ 3 phiên (đã 2/3) + đóng lấy lại $372 (MA50). Cắt = ĐÓNG <$330. Chốt $385 (MA200 $384,32) → $400. Khung gom LT $300–330/cắt <$290 giữ riêng ở job tsla-spcx-nvda-long-watch. 🔴 mốc canh/tham chiếu."
  },
  "_excluded": [
   "PCVX",
@@ -701,15 +701,15 @@
  "TSM": {
   "book": "Sổ 1",
   "entry": [
+   360,
+   380
+  ],
+  "targets": [
    405,
    425
   ],
-  "targets": [
-   460,
-   485
-  ],
-  "cut": 390,
-  "note": "Vùng gom dài hạn đã duyệt; $420 trong vùng"
+  "cut": 340,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 06/11 theo lệnh Tom, thay vùng FOCUS $405–425/cắt $390 (gãy đóng 05/11 $353,10). Neo đáy capitulation 05/11 $351,19 (vol 3,1x); 06/11 đóng $375,44 +6,3%, đáy $367,95 giữ trên đáy. KT: giữ ĐÓNG không thủng $351,19 đủ 3 phiên (đã 2/3) + đóng lấy lại $390. Cắt = ĐÓNG <$340. Chốt $405→$425 (vùng FOCUS cũ). −23% vs đỉnh 3 tháng $487,47. 🔴 mốc canh/tham chiếu."
  },
  "RTX": {
   "book": "Sổ 1",
