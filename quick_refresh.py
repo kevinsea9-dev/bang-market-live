@@ -1577,8 +1577,22 @@ def _zone_chip_text(t, px, st, z, bare=False):
     lo, hi = z["entry"]
     note = (z.get("note") or "").upper()
     if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
-        return ("zchip-n", f"{t} · ⏸️ VÙNG TẠM TREO — CHỜ DỰNG NỀN · "
-                           f"Giá {_lt_money(px)}")
+        # Luật 5/11 (Tom bắt lỗi lần 2 ở sec-special/sec-watch): chip tạm
+        # treo vẫn phải đủ bộ 3 THAM CHIẾU — nhánh cũ nuốt mất Vùng/Chốt/
+        # Cắt dù zones.json còn đủ số (vụ STX/MRVL/SOXL). Số lấy từ chính
+        # entry của mã, ghi rõ là vùng cũ chỉ tham chiếu.
+        _ref = [f"{t} · ⏸️ VÙNG TẠM TREO — CHỜ DỰNG NỀN",
+                f"Giá {_lt_money(px)}",
+                f"Vùng tham chiếu {_lt_money(lo)}–{_lt_money(hi)}"]
+        _tg = z.get("targets") or z.get("tp") or []
+        if len(_tg) >= 2:
+            _ref.append(f"Chốt {_lt_money(_tg[0])}→{_lt_money(_tg[1])}")
+        elif len(_tg) == 1:
+            _ref.append(f"Chốt {_lt_money(_tg[0])}")
+        if z.get("cut"):
+            _ref.append(f"Cắt <{_lt_money(z['cut'])}")
+        return ("zchip-n", " · ".join(_ref)
+                + " (vùng cũ — chỉ tham chiếu)")
     lab = badge_text(st)
     if st == "BROKEN":
         lab = "🔴 GÃY VÙNG — THỦNG CẮT"
@@ -5835,14 +5849,47 @@ def _unified_rebuild(full, t, prices, zones):
     if not hdr:
         # Không có giá tươi cho mã này (vd TMDX chưa vào universe bơm
         # giá): vẫn ép được mẫu bằng giá ngay trong headline cũ của
-        # khối, ghi rõ là giá trong khối — không bịa số.
+        # khối, ghi rõ là giá trong khối — không bịa số. Mã có vùng duyệt
+        # thì header vẫn phải đủ bộ 3: dựng chip chuẩn bằng chính giá
+        # trong khối qua _zone_chip_text (luật 5/11 — vụ TMDX).
         if not old_px:
             return full
-        hdr = (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
-               f'Giá ${old_px} · (giá trong khối — chưa có giá tươi)'
-               f'</div>')
+        hdr = None
+        _z = zones.get(t)
+        if _z and _z.get("entry"):
+            try:
+                _opxf = float(old_px.replace(",", ""))
+                _cls, _txt = _zone_chip_text(
+                    t, _opxf, _zone_state_of(_z, _opxf), _z)
+                hdr = (f'<div class="zchip {_cls}" data-achip="{t}">'
+                       f'{_txt}</div>')
+            except Exception:
+                hdr = None
+        if not hdr:
+            hdr = (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
+                   f'Giá ${old_px} · (giá trong khối — chưa có giá tươi)'
+                   f'</div>')
     if not veh:
         veh = _unified_veh(t, prices, zones)
+    if not veh and old_px:
+        # Giá tươi thiếu: thử lại dòng xe bằng giá trong khối để
+        # _comp_line có mốc tính tỷ lệ dịch.
+        try:
+            veh = _unified_veh(
+                t, {t: [float(old_px.replace(",", "")), None]}, zones)
+        except Exception:
+            veh = ""
+    if not veh:
+        # Chuẩn Tom 5/11: MỌI khối mã phải có dòng 2 — có xe thật thì
+        # dòng xe, không thì dòng .noveh nói rõ. Thiếu hẳn dòng 2 là lỗi
+        # mẫu (vụ TNA sec-daytrade, TMDX sec-ahshark).
+        _v = COMP_MAP.get(t)
+        if _v:
+            veh = (f'<div class="noveh">↳ XE X2 của {t}: {_v} — số dịch '
+                   f'chờ giá tươi, chưa gắn trong khối này</div>')
+        else:
+            veh = (f'<div class="noveh">↳ {t} không có xe 2x thật đã '
+                   f'kiểm chứng — không gắn dòng xe</div>')
     out = open_tag + extras + hdr + veh
     if inner:
         out += inner
