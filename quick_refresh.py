@@ -6413,8 +6413,12 @@ def update_companion_lines(h, prices):
                           "sec-watch", "sec-dram"):
                 # bảng <tr><td><b> như Sổ 2/3 (Sổ 1 + 16 ETF + bảng trạng
                 # thái vùng trong sec-watch) — gắn hàng levcomp ngay dưới
-                # hàng mã gốc; sec-etf + sec-watch chạy thêm lượt alert
-                # generic vì 2 mục này trộn cả 2 dạng.
+                # hàng mã gốc; CẢ NHÓM chạy thêm lượt alert generic ở
+                # cuối nhánh vì các mục này đều có thể trộn cả 2 dạng
+                # (bảng + khối alert) — sec-longterm là bằng chứng: khối
+                # ỨNG VIÊN LONG TERM của GEV/DDOG là alert data-achip,
+                # không phải hàng bảng (fix gốc 6/11, xem chú thích ở
+                # lượt alert bên dưới).
                 def _lt_rep(m):
                     nonlocal n0
                     u = m.group(1)
@@ -6436,21 +6440,35 @@ def update_companion_lines(h, prices):
                              r".*?</tr>", _lt_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
                              _lt_rep, seg, flags=re.S)
-                if name in ("sec-etf", "sec-watch"):
-                    def _etf_alert(full, inner):
-                        nonlocal n0
-                        u = _comp_alert_ticker(full)
-                        if not u or u in seen:
-                            return full
-                        line, flash = _mk_line(u)
-                        if not line:
-                            return full
-                        new = _comp_insert_alert(full, u, line, flash)
-                        if new != full:
-                            seen.add(u)
-                            n0 += 1
-                        return new
-                    seg = sub_balanced_alerts(seg, _etf_alert)
+                # Lượt alert generic cho MỌI mục trong nhánh (trước
+                # 6/11 chỉ sec-etf/sec-watch): khối alert có chip định
+                # danh (data-achip) của mã COMP_MAP nằm ngoài <table>
+                # không bao giờ nhận được dòng xe từ 2 lượt bảng ở trên.
+                # Vụ GEV ở sec-longterm (6/11): GEV chỉ tồn tại dạng
+                # alert "ỨNG VIÊN LONG TERM" -> census + pair_audit đếm
+                # thiếu đúng 1 dòng vĩnh viễn; vehicle_gate gắn lại 2
+                # vòng vẫn thiếu vì cả companion (nhánh bảng) lẫn
+                # normalize (chỉ phủ UNIFIED_BLOCK_SECTIONS, không có
+                # sec-longterm) đều không chạm được khối này, còn
+                # _levcomp_strip ở đầu pass xóa mọi dòng gắn từ bên
+                # ngoài -> bản pipeline lúc thiếu lúc đủ theo writer
+                # cuối. seen dùng chung với lượt bảng nên mã đã có dòng
+                # ở hàng bảng không bị gắn trùng; mã không xe thật (vd
+                # DDOG) được _comp_alert_ticker trả None -> giữ nguyên.
+                def _mix_alert(full, inner):
+                    nonlocal n0
+                    u = _comp_alert_ticker(full)
+                    if not u or u in seen:
+                        return full
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return full
+                    new = _comp_insert_alert(full, u, line, flash)
+                    if new != full:
+                        seen.add(u)
+                        n0 += 1
+                    return new
+                seg = sub_balanced_alerts(seg, _mix_alert)
             elif name == "sec-ltalloc":
                 # hàng quỹ .lta-row (chip id=lta-chip-<TK>) — chèn dòng
                 # companion ngay trước thẻ đóng của hàng.
