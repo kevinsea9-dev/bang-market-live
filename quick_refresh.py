@@ -5927,9 +5927,20 @@ def _unified_rebuild(full, t, prices, zones):
             except Exception:
                 hdr = None
         if not hdr:
+            # Mã KHÔNG có vùng duyệt: header phải tự khai rõ "Chưa có
+            # vùng duyệt" ngay trong zchip (luật mẫu khối 5/11 +
+            # strict_audit chỉ công nhận lời khai nằm TRONG header —
+            # ghi ở thân khối không tính). Trước 6/11 fallback này chỉ
+            # ghi giá trong khối -> khối mã chưa có giá tươi + chưa có
+            # vùng (vd TNA ở sec-daytrade) bị strict bắt
+            # HDR-NO-VUNG/CHOT/CAT dù thân khối đã ghi rõ. Mã CÓ vùng
+            # mà _zone_chip_text lỗi ở trên thì KHÔNG khai sai — giữ
+            # header không lời khai để lỗi vùng lộ ra ở phép đo vùng.
+            _decl = ('' if (_z and _z.get("entry"))
+                     else ' · ⚪ Chưa có vùng duyệt')
             hdr = (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
                    f'Giá ${old_px} · (giá trong khối — chưa có giá tươi)'
-                   f'</div>')
+                   f'{_decl}</div>')
     if not veh:
         veh = _unified_veh(t, prices, zones)
     if not veh and old_px:
