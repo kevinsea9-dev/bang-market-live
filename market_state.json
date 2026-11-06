@@ -1,1 +1,46 @@
-{"regime": null, "pc": 0.32, "time": "2026-11-06T13:06:03.656689-08:00"}
+{
+ "regime": null,
+ "pc": 0.32,
+ "time": "2026-11-06T13:06:03.656689-08:00",
+ "signal_score": {
+  "updated": "2026-11-06",
+  "by_type": {
+   "bounce": {
+    "n": 1527,
+    "winrate": 32.0,
+    "avg_ret": -0.16
+   },
+   "bounce_watch": {
+    "n": 898,
+    "winrate": 46.8,
+    "avg_ret": -0.49
+   },
+   "capitulation": {
+    "n": 769,
+    "winrate": 25.5,
+    "avg_ret": -0.83
+   },
+   "gap": {
+    "n": 992,
+    "winrate": 35.1,
+    "avg_ret": -1.23
+   },
+   "money_flow": {
+    "n": 3298,
+    "winrate": 34.5,
+    "avg_ret": -0.39
+   },
+   "reversal": {
+    "n": 2029,
+    "winrate": 35.6,
+    "avg_ret": -0.49
+   },
+   "urgent": {
+    "n": 449,
+    "winrate": 40.5,
+    "avg_ret": -0.08
+   }
+  },
+  "line": "🎓 Điểm signal 30 ngày: bounce 32% (489/1527, -0.2% TB) • bounce_watch 47% (420/898, -0.5% TB) • capitulation 25% (196/769, -0.8% TB) • gap 35% (348/992, -1.2% TB) • money_flow 35% (1139/3298, -0.4% TB) • reversal 36% (723/2029, -0.5% TB) • urgent 41% (182/449, -0.1% TB)"
+ }
+}
