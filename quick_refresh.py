@@ -2665,8 +2665,15 @@ def ensure_zone_rows(h, prices, state_path):
         dir_cls = "up" if pc >= 0 else "down"
         zone_txt = f"Vào ${lo:g}–${hi:g}"
         if z.get("targets"):
-            t1, t2 = z["targets"]
-            zone_txt += f" • Chốt ${t1:g}→${t2:g}"
+            # 06/11: zones 1 chốt (MCD [342], MNST [50], ...) là hợp lệ —
+            # không unpack 2 giá trị (ValueError khi MNST mới IN).
+            tg = z["targets"]
+            if isinstance(tg, (int, float)):
+                tg = [tg]
+            if len(tg) >= 2:
+                zone_txt += f" • Chốt ${tg[0]:g}→${tg[1]:g}"
+            elif tg:
+                zone_txt += f" • Chốt ${tg[0]:g}"
         if z.get("cut"):
             zone_txt += f' • <span class="cut">Cắt dưới ${z["cut"]:g}</span>'
         if z.get("note"):
@@ -3294,7 +3301,12 @@ def shark_focus_update(h, prices, pm=False):
             pxs = "—"
         zinfo = f'{z["book"]}: Vào ${en[0]:,.0f}–${en[1]:,.0f}'
         if tg and tg[0]:
-            zinfo += f" · Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}"
+            # 06/11: cùng lỗi 1 chốt như ensure_zone_rows — SHARK_FOCUS
+            # hiện không chứa mã 1 chốt, vá phòng ngừa.
+            if len(tg) >= 2 and tg[1]:
+                zinfo += f" · Chốt ${tg[0]:,.0f}→${tg[1]:,.0f}"
+            else:
+                zinfo += f" · Chốt ${tg[0]:,.0f}"
         if ct:
             zinfo += f" · Cắt <${ct:,.0f}"
         rows.append(
