@@ -298,15 +298,15 @@
  "SNDK": {
   "book": "Sổ 3",
   "entry": [
-   1075,
-   1130
+   805,
+   860
   ],
   "targets": [
-   1230,
-   1330
+   1014,
+   1126
   ],
-  "cut": 1035,
-  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN 0/3 (đóng 5/11 $806,43 −22,26% THỦNG CẮT $1.035 → vùng CÓ ĐIỀU KIỆN HỦY theo đúng điều kiện đã ghi; xuyên cả kệ chờ $998 (đáy 29/7); đáy phiên $803,97; thủng MA200 $1.270,51. Phiên dựng nền 0/3 — còn rơi tự do, không vẽ vùng đuổi dao rơi. TÁCH CỔ PHIẾU 8:1 từ 20/11 — sau tách mọi mốc chia 8.) Số vùng $1.075–1.130/chốt $1.230→$1.330 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực. | GỐC: CÓ ĐIỀU KIỆN (vẽ lại 3/11 theo lệnh Tom; thay vùng cũ $1.240–1.310 đã treo từ 30/10). Nền đang dựng: 2/11 phá đáy xuống $1.067,40 rồi 3/11 rút chân đóng $1.126,52 — đòi lại kệ 3/8 $1.115–1.121. ĐIỀU KIỆN: thêm 1–2 phiên không thủng $1.067 và đóng giữ trên $1.100 thì vùng có hiệu lực; đóng <$1.035 → HỦY, chờ kệ $998 (đáy 29/7). Bán: $1.230 (cụm đáy tháng 10 đã gãy = kháng cự) → $1.330. TÁCH CỔ PHIẾU 8:1 giao dịch từ 20/11 — sau tách mọi mốc chia 8 (vùng ~$134–141, cắt ~$129, bán ~$154→$166). Trong 🔴 chỉ canh/tham chiếu."
+  "cut": 790,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 6/11 theo lệnh Tom (thay vùng $1.075–1.130/cắt $1.035 đã VÔ HIỆU). Neo đáy capitulation 5/11 $803,97 (vol 30,1tr ~3x TB). Phiên 6/11: đáy $816,42 GIỮ trên đáy, giá ~$823. ĐIỀU KIỆN KÍCH HOẠT: ≥3 phiên không thủng $803,97 + đóng lấy lại $912 (đỉnh 6/11). Chốt: $1.014 (đáy 4/11) → $1.126 (đóng 3/11). Cắt cứng: đóng <$790. ⚠️ TÁCH 8:1 từ 20/11 — sau tách mọi mốc chia 8 (vùng ~$101–108 · chốt ~$127→$141 · cắt ~$99). Trong 🔴 chỉ canh/tham chiếu. | CŨ: vùng $1.075–1.130/cắt $1.035 VÔ HIỆU (đóng 5/11 $806,43)."
  },
  "TMUS": {
   "book": "Sổ 2",
@@ -448,15 +448,15 @@
  "MU": {
   "book": "Sổ 2",
   "entry": [
-   840,
-   870
+   655,
+   690
   ],
   "targets": [
-   930,
-   983
+   782,
+   855
   ],
-  "cut": 820,
-  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN 0/3 (đóng 5/11 $656,39 −17,46%, đáy phiên $650,00 — tạo đáy thấp hơn phiên trước, phiên dựng nền 0/3; thủng MA200 $755,26. Đáy phiên $650,00 trùng kệ tháng 5 theo phân tích FXStreet 5/11 — chỉ là mốc quan sát, CHƯA phải kệ xác nhận; đủ ≥3 phiên không thủng đáy + đóng giữ nền mới xét vẽ lại; semi-redraw-watch đếm sau đóng cửa). Số vùng $840–870/chốt $930→$983 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực. | GỐC: CÓ ĐIỀU KIỆN (vẽ lại 3/11 theo lệnh Tom; thay vùng cũ $890–920/cắt $870 đã GÃY — đóng 2/11 $833,59, 3/11 $855,10 vẫn dưới cắt cũ). Nền tháng 10 $849–862 bị phá nhẹ xuống $829,24 (2/11) rồi 3/11 đòi lại, đóng $855,10 (+2,58%), đáy nâng $829→$845. ĐIỀU KIỆN: đóng giữ trên $840 và không thủng $829 thêm 1–2 phiên; đòi lại $870 (cắt cũ) = xác nhận mạnh hơn. Đóng <$820 → HỦY, chờ nền mới (MA200 ~$752 là mốc xa). Bán: $930 (MA20/cụm đóng 27/10) → $983 (đóng 28/10 = chốt 1 cũ). Trong 🔴 chỉ canh/tham chiếu."
+  "cut": 640,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 6/11 theo lệnh Tom (thay vùng $840–870/cắt $820 đã VÔ HIỆU). Neo đáy capitulation 5/11 $650,00 (vol 76,7tr ~3x TB — xả cực điểm). Phiên 6/11: đáy $676,00 GIỮ trên đáy capitulation, hồi tới $724,80, giá ~$690. ĐIỀU KIỆN KÍCH HOẠT: ≥3 phiên không thủng $650 + đóng lấy lại $724,80. Chốt: $782 (đáy 4/11) → $855 (đóng 3/11). Cắt cứng: đóng <$640 (dưới đáy capitulation). MA200 ~$755. Trong 🔴 chỉ canh/tham chiếu. | CŨ: vùng $840–870/chốt $930→$983/cắt $820 VÔ HIỆU (đóng 5/11 $656,39 thủng cắt)."
  },
  "WDC": {
   "entry": [
@@ -481,7 +481,7 @@
    665
   ],
   "cut": 525,
-  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN 0/3 (vùng KẾ HOẠCH $540–565 CHƯA KÍCH HOẠT ĐÃ GÃY: đóng 5/11 $466,53 −16,25% THỦNG CẮT $525; đếm nền reset 1/3 → 0/3; đáy phiên $461,21; thủng MA200 $697,13. Đủ ≥3 phiên không thủng đáy + đóng giữ nền mới xét vẽ lại.) Số vùng KH $540–565/chốt $620→$665/cắt $525 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực. | GỐC: TAM VO HIEU — ⏸️ CHỜ DỰNG NỀN (vẽ lại 3/11 theo lệnh Tom). Vùng cũ $640–665/cắt $610 GÃY: đóng 2/11 $593,76 thủng kệ tháng 10 $621–636, đóng 3/11 $606,38 vẫn dưới cắt — CHƯA có nền mới (đáy 2 phiên $586,88–$599,02, còn là dao rơi). Vùng KẾ HOẠCH tại kệ thật kế tiếp $540–565 (vùng phá vỡ tháng 4/2026): chỉ kích hoạt khi giá dựng nền tại đó (≥3 phiên không đáy thấp hơn + đóng giữ trong vùng). Cắt cứng <$525. Bán: $620 (kệ cũ gãy = kháng cự) → $665. Kịch bản 2: đóng giữ trên $640 đủ 2 phiên = đòi lại kệ cũ → vẽ lại vùng tại $621–640. Trong 🔴 chỉ là mốc canh/tham chiếu."
+  "note": "⏸️ CHỜ DỰNG NỀN — KHÔNG VẼ VÙNG MỚI 6/11 (Tom lệnh vẽ lại, Iggy soi nến: phiên 6/11 STX còn tạo ĐÁY MỚI $449,29 < đáy 5/11 $461,11, giá ~$457 −2% trong khi MU/SNDK/SKHY đều hồi — còn rơi tự do, vẽ lúc này là đuổi dao rơi). MỐC QUAN SÁT: phiên đầu tiên KHÔNG tạo đáy mới + đóng lấy lại $466,53 (đóng 5/11) → bắt đầu đếm nền 1/3; đủ ≥3 phiên giữ nền mới xét vẽ vùng neo đáy $449,29. Số vùng KH cũ $540–565/cắt $525 chỉ là tham chiếu cũ, KHÔNG hiệu lực. Trong 🔴 chỉ canh."
  },
  "DRAM": {
   "entry": [
@@ -874,15 +874,15 @@
  "SKHY": {
   "book": "Sổ 3",
   "entry": [
-   144,
-   151
+   122,
+   130
   ],
   "targets": [
-   165,
-   180
+   141,
+   151
   ],
-  "cut": 141,
-  "note": "VÔ HIỆU — ⏸️ CHỜ DỰNG NỀN 0/3 (đóng 5/11 $123,90 −13,40% THỦNG CẮT $141 → vùng VÔ HIỆU; đáy phiên $122,50; nền sau earnings $145,34→$146,29→$149,79 đã gãy hết. Đủ ≥3 phiên không thủng đáy + đóng giữ nền mới xét vẽ lại.) Số vùng $144–151/chốt $165→$180/cắt $141 giữ làm tham chiếu cũ, KHÔNG còn hiệu lực. | GỐC: Vẽ lại 3/11 theo lệnh Tom (thay vùng $133–142/cắt $128 của 27/10 — giá không quay lại vùng cũ sau earnings). NỀN MỚI sau earnings: đáy nâng dần $145,34 (30/10) → $146,29 (2/11) → $149,79 (3/11), đóng 3/11 $150,79 ngay dưới MA20 $151,22 — nền non 3 phiên trên mép vùng cũ. Cắt cứng <$141 (dưới nền). Bán: $165 (đỉnh sau earnings 28–29/10 $164,70–166,06) → $180. Lưu ý: SK Hynix tại Seoul sáng 4/11 (giờ Á) −3,65% — phiên Mỹ 4/11 có thể ép thử lại nền; phán quyết ở nến ĐÓNG giữ trên $144. ADR thanh khoản tốt (vol ~14,6tr cp 3/11). Trong 🔴 chỉ canh/tham chiếu."
+  "cut": 118,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 6/11 theo lệnh Tom (thay vùng $144–151/cắt $141 đã VÔ HIỆU). Neo đáy capitulation 5/11 $122,20 (vol 51,3tr ~2,5x TB). Phiên 6/11: đáy $124,83 GIỮ trên đáy, giá ~$126. ĐIỀU KIỆN KÍCH HOẠT: ≥3 phiên không thủng $122,20 + đóng lấy lại $133,45 (đỉnh 6/11). Chốt: $141 (đáy 4/11 $141,18) → $151 (đóng 3/11 $150,79). Cắt cứng: đóng <$118. Trong 🔴 chỉ canh/tham chiếu. | CŨ: vùng $144–151/chốt $165→$180/cắt $141 VÔ HIỆU (đóng 5/11 $123,90)."
  },
  "SMMT": {
   "book": "Sổ 3",
