@@ -4330,15 +4330,24 @@ def write_prices_cache(repo_dir, prices):
 
 
 def publish_yahoo_live():
-    """Bom prices.json (Yahoo) sau moi luot refresh — fail-soft, khong chan bang."""
+    """Bom prices.json (Yahoo) TRUOC buoc day bang (fix goc 06/11: truoc
+    day bom chay SAU git_push nen cu ket day la gia dung yen ca luot).
+    Fail-soft, khong chan bang — nhung KHONG nuot bang chung nua: loi thi
+    in returncode + duoi stdout/stderr ra log cua luot refresh."""
     try:
         import subprocess as _sp
-        _sp.run([sys.executable,
-                 os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                              "yahoo_live.py")],
-                capture_output=True, text=True, timeout=300)
-    except Exception:
-        pass
+        r = _sp.run([sys.executable,
+                     os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  "yahoo_live.py")],
+                    capture_output=True, text=True, timeout=300)
+        tail = ((r.stdout or "") + (r.stderr or "")).strip().splitlines()
+        if r.returncode == 0:
+            print("pump: OK | " + (tail[-1] if tail else ""), flush=True)
+        else:
+            print(f"pump: FAIL rc={r.returncode} | "
+                  + " | ".join(tail[-3:]), flush=True)
+    except Exception as _e:
+        print(f"pump: EXCEPTION {type(_e).__name__}: {_e}", flush=True)
 
 def ensure_compact_css(h):
     if 'id="compact-css"' in h:
@@ -7358,11 +7367,11 @@ def main():
         open(a.html, "w", encoding="utf-8").write(h)
         if os.path.abspath(a.html) != os.path.abspath(repo_html):
             open(repo_html, "w", encoding="utf-8").write(h)
+        publish_yahoo_live()
         res = git_push(a.repo_dir,
                        f"refresh {now_pt().strftime('%d/%m %H:%M')} PT (lite premarket)")
         print(f"lite premarket: bull&bear + fear gauge tươi | git: {res}",
               flush=True)
-        publish_yahoo_live()
         return 0 if res in ("pushed", "nothing-to-commit") else 3
 
     load_zones(a.repo_dir)
@@ -7686,9 +7695,9 @@ def main():
         open(repo_html, "w", encoding="utf-8").write(h)
 
     msg = f"refresh {now_pt().strftime('%d/%m %H:%M')} PT ({tag})"
+    publish_yahoo_live()
     res = git_push(a.repo_dir, msg)
     print("git:", res, flush=True)
-    publish_yahoo_live()
     return 0 if res in ("pushed", "nothing-to-commit") else 3
 
 
