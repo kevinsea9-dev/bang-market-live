@@ -5,11 +5,18 @@
    "name": "Franklin Resources",
    "date": "2026-11-06",
    "when": "T6 6/11 BMO",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 0.77,
    "rev_est": "$1.86B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (consensus). Điểm nhìn: AUM + dòng tiền ròng các quỹ."
+   "note": "Đã ra số sáng 6/11 BMO (Zacks/StockStory/MarketBeat, cùng ngày) — EPS điều chỉnh $0,94 vs kỳ vọng $0,77; doanh thu $2,43B (+3,9% YoY); AUM $1,80 nghìn tỷ, dòng tiền ròng dài hạn $20,8B.",
+   "eps_act": 0.94,
+   "rev_act": "$2.43B",
+   "verdict": "BEAT",
+   "guidance": "",
+   "reaction_pct": "+4,7% đóng phiên 6/11 về $33,73 (từ đóng 5/11 $32,21; báo cáo BMO nên phản ứng trong phiên, không phải sau giờ)",
+   "price_after": 33.73,
+   "essence": "EPS điều chỉnh $0,94 vượt kỳ vọng $0,77 (+22%), doanh thu $2,43B (+3,9% YoY); AUM $1,80 nghìn tỷ (+8,1% YoY) với $20,8B dòng tiền ròng dài hạn — cổ phiếu +4,7% đóng $33,73."
   },
   {
    "ticker": "VST",
@@ -182,7 +189,7 @@
    "eps_est": -0.04,
    "rev_est": "$8.76B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — chưa xác minh (sáng 6/11): MarketBeat/Fiscal.ai vẫn ghi Q2 2026 (6/8) là kỳ gần nhất, chưa thấy số Q3 2026 — có thể dời lịch (thương vụ mua lại đang đàm phán); giữ PENDING, Cú Đêm kiểm tra lại."
+   "note": "ĐÃ XÁC MINH 6/11: WBD bị hủy niêm yết 6/10/2026 sau khi Skydance mua lại toàn tiền mặt $31/cp, ticker ngừng giao dịch — không còn báo cáo Q3 để chờ; cần gỡ khỏi danh sách (giữ PENDING, không có số để điền)."
   },
   {
    "ticker": "SONY",
