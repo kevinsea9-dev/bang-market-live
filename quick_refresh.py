@@ -4478,6 +4478,19 @@ def _compact_ltalloc(h):
         if not m:
             return full
         t = m.group(1)
+        # GIỮ DÒNG XE companion (fix gốc 6/11 — vụ dòng xe on/off): hàng
+        # được DỰNG LẠI từ chip+vùng+lãi nên dòng .levcomp mà
+        # update_companion_lines vừa gắn ở đầu lượt bị bỏ rơi tại đây;
+        # MỌI lượt refresh đều tự xóa dòng xe của IBIT/QQQM/VOO ngay
+        # trong cùng lượt (chỉ lev_special_sync không chạy compact mới
+        # giữ được -> bảng nhấp nháy theo 2 lịch cron). Mang theo
+        # nguyên dòng levcomp gốc, gắn lại ở cuối hàng trước </div>.
+        lev = ''
+        _lm = re.search(r'<div class="levcomp[^>]*>', full)
+        if _lm:
+            _le = _levcomp_balanced_end(full, _lm.start())
+            if _le is not None:
+                lev = full[_lm.start():_le]
         # Giữ span lãi (lta-ret) để job returns-daily còn chỗ ghi — bản gọn
         # cũ nuốt mất span này nên updater fail 3 lượt liên tiếp (3/11).
         ret = ''
@@ -4503,7 +4516,7 @@ def _compact_ltalloc(h):
                         'đây nằm chờ; quỹ nào rớt 🔵 thì lấy ra mua nhiều thêm.')
                 if zone_open:
                     body += ' ' + zone_open + 'Két không mua bán theo giá.</span>'
-                return open_tag + body + ('<br>' + ret if ret else '') + '</div>'
+                return open_tag + body + ('<br>' + ret if ret else '') + lev + '</div>'
             dist = ''
             txt = re.sub(r'<[^>]+>', ' ', zone_inner)
             dm = re.search(r'(Còn [^<]{5,90}?sang (?:🔵|🔴)[^<]{0,40})', txt)
@@ -4513,7 +4526,7 @@ def _compact_ltalloc(h):
             if zone_open:
                 line += (' ' + zone_open
                          + (dist or '🟢 Mua định kỳ theo kỳ nạp.') + '</span>')
-            return open_tag + line + ('<br>' + ret if ret else '') + '</div>'
+            return open_tag + line + ('<br>' + ret if ret else '') + lev + '</div>'
         # Thẻ hành động: tỉa thanh %, dòng vốn/nạp, dòng lãi giá.
         name = ''
         nm = re.search(r'(<b>' + t + r'</b>.*?)(?=<div style="background|💰'
@@ -4534,7 +4547,7 @@ def _compact_ltalloc(h):
         wm = re.search(r'🎯 Vì sao chọn:[^<]*', tail)
         if wm:
             why = '<br>' + wm.group(0).strip()
-        return open_tag + chip + name + znew + why + ('<br>' + ret if ret else '') + '</div>'
+        return open_tag + chip + name + znew + why + ('<br>' + ret if ret else '') + lev + '</div>'
 
     seg = sub_balanced_alerts(seg, fn)
     # Xếp lại: thẻ hành động lên trước các dòng định kỳ (khối lta-row
@@ -5319,11 +5332,20 @@ COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  "sec-tinhhoa", "sec-hot", "sec-live",
                  # mở rộng đêm 4/11 (Tom 22:59 + 23:01): PHỦ MỌI MỤC —
                  # nhóm LONG/dài hạn + plan/ahshark/dram gắn như thường;
-                 # chỉ sec-news/sec-asia/sec-chinam/sec-crypto/sec-cudem
-                 # là mục tin/không phải hàng giao dịch (ghi rõ trong
-                 # báo cáo kiểm từng mục)
+                 # chỉ sec-asia/sec-chinam/sec-crypto/sec-cudem là mục
+                 # tin/không phải hàng giao dịch (ghi rõ trong báo cáo
+                 # kiểm từng mục)
                  "sec-longterm", "sec-etf16", "sec-etf", "sec-lt9",
-                 "sec-ltalloc", "sec-plan", "sec-ahshark", "sec-dram")
+                 "sec-ltalloc", "sec-plan", "sec-ahshark", "sec-dram",
+                 # 6/11: sec-news VÀO diện phủ — nhưng nhánh riêng CHỈ
+                 # gắn cho alert có chip định danh (data-achip/
+                 # data-ticker/data-fchip) trỏ mã COMP_MAP (khối mã có
+                 # cấu trúc như alert VST của yahoo_news); alert tin
+                 # prose nhắc mã trong câu chữ KHÔNG gắn (xem nhánh
+                 # sec-news trong update_companion_lines). Trước 6/11
+                 # mục này không pass nào sở hữu -> khối mã trong tin
+                 # không bao giờ có dòng xe (block_census bắt VST).
+                 "sec-news")
 _COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
                    "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
 
@@ -5835,11 +5857,30 @@ def _unified_rebuild(full, t, prices, zones):
         if ve is not None:
             veh = inner[vm.start():ve]
             inner = inner[:vm.start()] + inner[ve:]
-    # (c) bỏ header zchip cũ (thay bằng chip chuẩn giá tươi)
+    # (b2) gỡ MỌI dòng .noveh sẵn có (fix gốc 6/11): bản cũ chỉ tách
+    # .levcomp — .noveh cũ ở lại trong inner, cuối hàm lại cộng thêm 1
+    # dòng .noveh mới -> mỗi lượt normalize nhân thêm 1 bản (đo trên
+    # live 6/11: SMMT x5, AXON x16). veh luôn được sinh lại ở cuối hàm
+    # (levcomp giữ nguyên / .noveh mới) nên gỡ sạch bản cũ là an toàn
+    # và làm rebuild IDEMPOTENT.
+    while True:
+        nm = re.search(r'<div class="noveh[^>]*>', inner)
+        if not nm:
+            break
+        ne = _levcomp_balanced_end(inner, nm.start())
+        if ne is None:
+            break
+        inner = inner[:nm.start()] + inner[ne:]
+    # (c) bỏ header zchip cũ (thay bằng chip chuẩn giá tươi) — đồng
+    # thời LƯU giá in trong chip làm mốc dự phòng cho bước (d).
     zm = re.search(r'<div class="zchip[^>]*>', inner)
+    chip_px = None
     if zm:
         ze = _levcomp_balanced_end(inner, zm.start())
         if ze is not None:
+            _pm = re.search(r'Giá \$([\d.,]+)', inner[zm.start():ze])
+            if _pm:
+                chip_px = _pm.group(1)
             inner = inner[:zm.start()] + inner[ze:]
     # (d) bỏ chân blkfoot cũ (gắn lại ở cuối) + headline giá kiểu cũ
     inner = re.sub(r'<br\s*/?>\s*<span class="t blkfoot">.*?</span>', "",
@@ -5855,6 +5896,16 @@ def _unified_rebuild(full, t, prices, zones):
             if pm0:
                 old_px = pm0.group(1)
             inner = inner[hm.end():]
+    if not old_px and chip_px:
+        # Giá in ngay trong zchip của khối (dạng VN: 907,76 / 1.048,50).
+        # Khối không có giá tươi lẫn headline giá vẫn ép được mẫu thay
+        # vì bỏ cuộc tay trắng — vd khối URG-DEF được update_alert_chips
+        # gắn chip SAU lượt normalize nên lượt trước normalize không
+        # thấy data-achip (vụ PH ở sec-urgent, strict NO-VEH-LINE 6/11).
+        _cp = chip_px
+        if re.fullmatch(r'\d{1,3}(\.\d{3})*(,\d+)?', _cp) or ',' in _cp:
+            _cp = _cp.replace('.', '').replace(',', '.')
+        old_px = _cp
     inner = inner.strip()
     inner = re.sub(r"^(<br\s*/?>\s*)+", "", inner)
     hdr = _unified_header(t, prices, zones)
@@ -5957,6 +6008,211 @@ def normalize_unified_blocks(h, prices):
         except Exception as ex:
             print(f"  ! normalize {sec}: {ex}", file=sys.stderr)
     return h, counts
+
+
+def _veh_census_missing(h):
+    """Đếm dòng xe THẬT SỰ thiếu trên toàn bảng — CÙNG ngữ nghĩa với
+    block_census.py (theo mục: mã trình bày ∩ COMP_MAP chưa có dòng
+    xe) + table_census.py (theo nhóm hàng trong bảng) + strict_audit
+    NO-VEH-LINE (khối alert ở mục unified có data-achip mà không có
+    .levcomp lẫn .noveh). Đây là PHÉP ĐO của vehicle_gate: trước 6/11
+    không pass nào tự đo output của chính mình trước khi đẩy, nên
+    bảng thiếu dòng xe cứ thế lên live cho tới khi Tom nhìn thấy.
+    Trả list [(mục, mã, loại: block|table|noveh)]."""
+    miss = []
+    secs = [(m.start(), m.group(1)) for m in
+            re.finditer(r'<div class="sec" id="(sec-[a-z0-9]+)"', h)]
+    bounds = [(s, secs[i + 1][0] if i + 1 < len(secs) else len(h), n)
+              for i, (s, n) in enumerate(secs)]
+    for (s, e, name) in bounds:
+        seg = h[s:e]
+        presented = set()
+        presented.update(re.findall(r'data-achip="([A-Z0-9.]{1,6})"', seg))
+        presented.update(re.findall(r'data-t="([A-Z0-9.]{1,6})"', seg))
+        presented.update(re.findall(r'<tr><td><b>([A-Z]{2,6})</b></td>',
+                                    seg))
+        presented.update(re.findall(r'id="lta-row-([A-Z]+)"', seg))
+        presented.update(re.findall(r'<div class="lt">([A-Z]{2,6})', seg))
+        presented.update(re.findall(r"class='tk'>([A-Z0-9.]{1,8})<", seg))
+        covered = set()
+        for mm in re.finditer(r'<div class="lev(?:comp|veh)[\s"]', seg):
+            bm = re.search(r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})</span>',
+                           seg[mm.start():mm.start() + 600])
+            if bm:
+                covered.add(bm.group(1))
+        for mm in re.finditer(r'(.{0,400}?)↳\s*XE', seg, re.S):
+            bm = re.findall(r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})</span>',
+                            mm.group(1))
+            if bm:
+                covered.add(bm[-1])
+        for mm in re.finditer(r"""<div class=['"]alert""", seg):
+            be = _levcomp_balanced_end(h, s + mm.start())
+            if be is None:
+                continue
+            blk = h[s + mm.start():be]
+            if not re.search(r'↳\s*XE', blk, re.I):
+                continue
+            if re.search(r'(?:levcomp|levveh|baseflash).{0,80}↳|'
+                         r'↳.{0,200}baseflash', blk, re.S):
+                continue
+            bm = re.search(r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})</span>',
+                           blk)
+            am = re.search(r'data-achip="([A-Z0-9.]{1,6})"', blk)
+            if bm:
+                covered.add(bm.group(1))
+            elif am:
+                covered.add(am.group(1))
+        for t in sorted(presented):
+            if t in COMP_MAP and t not in covered:
+                miss.append((name, t, 'block'))
+        for tm in re.finditer(r'<table[^>]*>(.*?)</table>', seg, re.S):
+            tbl = tm.group(1)
+            groups, lines, last_z = {}, {}, None
+            for rm in re.finditer(r'<tr[^>]*>(.*?)</tr>', tbl, re.S):
+                row, inner = rm.group(0), rm.group(1)
+                if 'levcomp-row' in row or 'levcomp' in inner:
+                    bm = re.search(
+                        r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})</span>',
+                        inner)
+                    if bm:
+                        lines[bm.group(1)] = lines.get(bm.group(1), 0) + 1
+                    continue
+                zm = re.search(r'data-t="([A-Z0-9.]{1,6})"', row)
+                if 'zchip-row' in row and zm:
+                    groups[zm.group(1)] = groups.get(zm.group(1), 0) + 1
+                    last_z = zm.group(1)
+                    continue
+                bm = re.search(r'<td><b>([A-Z]{2,6})</b></td>', inner)
+                if bm:
+                    t = bm.group(1)
+                    if last_z == t:
+                        last_z = None
+                    else:
+                        groups[t] = groups.get(t, 0) + 1
+            for t, g in groups.items():
+                if t in COMP_MAP and lines.get(t, 0) < g:
+                    miss.append((name, t, 'table'))
+    for sec in UNIFIED_BLOCK_SECTIONS:
+        sm = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+        if not sm:
+            continue
+        nxt = h.find('<div class="sec"', sm.start() + 10)
+        seg = h[sm.start():nxt if nxt != -1 else len(h)]
+        covered_until = -1
+        for mm in re.finditer(r'<div class="alert', seg):
+            if mm.start() <= covered_until:
+                continue
+            be = _levcomp_balanced_end(seg, mm.start())
+            if be is None:
+                continue
+            covered_until = be
+            blk = seg[mm.start():be]
+            am = re.search(r'data-achip="([A-Z0-9.]{1,6})"', blk)
+            if am and 'levcomp' not in blk and 'noveh' not in blk:
+                miss.append((sec, am.group(1), 'noveh'))
+    return miss
+
+
+def vehicle_gate(h, prices, tag=""):
+    """CỔNG DÒNG XE — pass CUỐI của pipeline, chạy ngay trước validate/
+    ghi file (fix gốc 6/11, vụ dòng xe on/off nhiều ngày): tự ĐO output
+    bằng _veh_census_missing (cùng phép đo Tom dùng kiểm bảng) rồi TỰ
+    CHỮA trong cùng lượt bằng 2 renderer sẵn có — companion pass (dòng
+    .levcomp) + normalize (dòng .noveh/header/chân cho khối unified).
+
+    Vì sao cần cổng ở điểm ra chung: thứ tự pass trong 1 lượt để hở
+    nhiều khe — board_compact dựng lại hàng ltalloc SAU companion,
+    update_alert_chips gắn chip định danh SAU normalize (khối bỗng
+    mang mã mà chưa có dòng 2), writer ngoài viết lại mục không qua
+    companion... Vá từng khe thì khe khác lại hở; cổng ở điểm ra là
+    bất biến theo xây dựng: không bản nào rời pipeline mà census dòng
+    xe còn > 0 trong khả năng chữa. Chữa không xong (thiếu giá xe
+    thật) thì IN TO cảnh báo — không im lặng như trước."""
+    try:
+        miss = _veh_census_missing(h)
+    except Exception as e:
+        print(f"  ! vehicle gate ({tag}): census lỗi {e}",
+              file=sys.stderr)
+        return h
+    if not miss:
+        print(f"  vehicle gate ({tag}): đủ dòng xe ✓", flush=True)
+        return h
+    print(f"  vehicle gate ({tag}): THIẾU {len(miss)} dòng xe "
+          f"{miss[:8]} — gắn lại cuối pipeline", flush=True)
+    for _r in range(2):
+        try:
+            h, _nc, _cc = update_companion_lines(h, prices)
+            h, _nn = normalize_unified_blocks(h, prices)
+        except Exception as e:
+            print(f"  ! vehicle gate ({tag}): gắn lại lỗi {e}",
+                  file=sys.stderr)
+            break
+        miss = _veh_census_missing(h)
+        if not miss:
+            break
+    if miss:
+        print(f"  !! vehicle gate ({tag}): VẪN THIẾU {len(miss)} sau "
+              f"gắn lại: {miss[:8]} — healthcheck sẽ bắt tiếp",
+              file=sys.stderr)
+    else:
+        print(f"  vehicle gate ({tag}): đã gắn đủ ✓", flush=True)
+    return h
+
+
+def _attach_table_companions(seg, colspan, mk_line, seen):
+    """Gắn dòng levcomp-row theo NHÓM HÀNG trong từng <table> của seg —
+    cùng ngữ nghĩa đếm với table_census.py: mỗi nhóm hàng (1 zchip-row,
+    hoặc 1 hàng data KHÔNG bị zchip-row cùng mã ngay trước đó hấp thụ)
+    phải có 1 dòng xe của chính mã đó trong cùng bảng.
+
+    Vì sao đếm theo nhóm (fix gốc 6/11 — 1 nửa của vụ dòng xe on/off):
+    bản cũ gắn theo `seen` (1 mã = 1 dòng / 1 mục). Khi 1 mã có hàng
+    data nằm LỆCH khỏi nhóm zchip của nó (vd VST ở sec-so3:
+    ensure_zone_rows ghi hàng data theo thứ tự vùng, update_zone_chips
+    ghi nhóm zchip theo thứ tự trạng thái -> hàng data thành "nhóm mồ
+    côi" thứ 2), census đếm 2 nhóm / 1 dòng = thiếu vĩnh viễn; vị trí
+    hàng đổi theo writer thì mức thiếu cũng nhấp nháy theo. Đi hàng
+    theo đúng thuật toán census -> số dòng gắn == số nhóm, theo xây
+    dựng. Trả (seg_mới, số_dòng). Hàng ngoài <table> không xử lý ở
+    đây — lượt regex cũ (theo seen) chạy sau lo phần đó."""
+    n = [0]
+
+    def _tbl(tm):
+        tbl = tm.group(0)
+        out, last, last_z = [], 0, None
+        for rm in re.finditer(r'<tr[^>]*>.*?</tr>', tbl, re.S):
+            row = rm.group(0)
+            out.append(tbl[last:rm.start()])
+            u = None
+            if 'levcomp-row' not in row and 'levcomp' not in row:
+                zm = re.search(r'data-t="([A-Z0-9.]{1,6})"', row)
+                if 'zchip-row' in row and zm:
+                    last_z = zm.group(1)
+                    u = last_z
+                else:
+                    bm = re.search(r'<td><b>([A-Z]{2,6})</b></td>', row)
+                    if bm:
+                        t = bm.group(1)
+                        if last_z == t:
+                            last_z = None
+                        else:
+                            u = t
+            if u and u in COMP_MAP:
+                line, flash = mk_line(u)
+                if line:
+                    seen.add(u)
+                    n[0] += 1
+                    cls = "levcomp levflash" if flash else "levcomp"
+                    row = (row + f'<tr class="levcomp-row">'
+                           f'<td colspan="{colspan}">'
+                           f'<div class="{cls}">{line}</div></td></tr>')
+            out.append(row)
+            last = rm.end()
+        out.append(tbl[last:])
+        return ''.join(out)
+
+    return re.sub(r'<table[^>]*>.*?</table>', _tbl, seg,
+                  flags=re.S), n[0]
 
 
 def update_companion_lines(h, prices):
@@ -6111,6 +6367,12 @@ def update_companion_lines(h, prices):
                 # khôi phục segment cũ mỗi lượt → MELI có hàng data cũng
                 # không bao giờ được gắn). seen dùng chung nên mã có cả
                 # 2 dạng chỉ gắn 1 dòng ở zchip-row (như lưới thép).
+                # FIX 6/11: đi bảng theo NHÓM HÀNG trước (mỗi nhóm 1
+                # dòng — kể cả nhóm data mồ côi như VST), rồi mới chạy
+                # 2 lượt regex cũ cho hàng ngoài bảng (seen chặn trùng).
+                seg, _nw = _attach_table_companions(seg, 4, _mk_line,
+                                                    seen)
+                n0 += _nw
                 seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
                              r".*?</tr>", _row_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
@@ -6135,6 +6397,9 @@ def update_companion_lines(h, prices):
                     return (m.group(0) +
                             f'<tr class="levcomp-row"><td colspan="4">'
                             f'<div class="{cls}">{line}</div></td></tr>')
+                seg, _nw = _attach_table_companions(seg, 4, _mk_line,
+                                                    seen)
+                n0 += _nw
                 seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
                              r".*?</tr>", _lt_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
@@ -6203,6 +6468,9 @@ def update_companion_lines(h, prices):
                     return (m.group(0) +
                             f'<tr class="levcomp-row"><td colspan="5">'
                             f'<div class="{cls}">{line}</div></td></tr>')
+                seg, _nw = _attach_table_companions(seg, 5, _mk_line,
+                                                    seen)
+                n0 += _nw
                 seg = re.sub(r'<tr class="zchip-row" data-t="([A-Z]{2,6})">'
                              r".*?</tr>", _sn_rep, seg, flags=re.S)
                 seg = re.sub(r"<tr><td><b>([A-Z]{2,6})</b></td>.*?</tr>",
@@ -6301,6 +6569,35 @@ def update_companion_lines(h, prices):
                     out.append(entry)
                     i = fend
                 seg = ''.join(out)
+            elif name == "sec-news":
+                # Mục TIN LỚN: chỉ gắn dòng xe cho alert MÃ CÓ CẤU TRÚC
+                # (chip định danh data-achip/data-ticker/data-fchip trỏ
+                # mã COMP_MAP — vd alert earnings VST do yahoo_news
+                # chèn kèm zchip). Alert tin prose (nhắc mã trong câu
+                # chữ, không chip) KHÔNG gắn: tránh dòng xe lạc vào tin
+                # thời sự. Khác nhánh generic ở chỗ KHÔNG fallback quét
+                # <b> tìm mã.
+                def _news_fn(full, inner):
+                    nonlocal n0
+                    u = None
+                    for attr in ("data-achip", "data-ticker",
+                                 "data-fchip"):
+                        _m = re.search(attr + r'="([A-Z]{2,6})"', full)
+                        if _m:
+                            u = (_m.group(1)
+                                 if _m.group(1) in COMP_MAP else None)
+                            break
+                    if not u or u in seen:
+                        return full
+                    line, flash = _mk_line(u)
+                    if not line:
+                        return full
+                    new = _comp_insert_alert(full, u, line, flash)
+                    if new != full:
+                        seen.add(u)
+                        n0 += 1
+                    return new
+                seg = sub_balanced_alerts(seg, _news_fn)
             else:
                 def _alert_fn(full, inner):
                     nonlocal n0
@@ -6978,6 +7275,14 @@ def main():
         h = ensure_share_gate(h)
         h = ensure_ws_live(ensure_yahoo_live(h))
         h = bump_badge(h, "premarket — Bull & Bear theo futures")
+        # CỔNG DÒNG XE (6/11): nhánh lite cũng compact SAU companion —
+        # cùng cổng cuối như nhánh chính, fail-soft theo giá premarket.
+        try:
+            if _chip_px:
+                h = vehicle_gate(h, _chip_px, "lite")
+        except Exception as _ge:
+            print(f"lite premarket: vehicle gate skip ({_ge})",
+                  file=sys.stderr)
         ok, why = validate(h)
         if not ok:
             print(f"VALIDATE FAIL: {why}", file=sys.stderr)
@@ -7297,6 +7602,9 @@ def main():
     # xóa sạch công khôi phục đó. Trước khi ghi: đọc lại file TƯƠI, giữ lại
     # section đầy đủ hơn cho sec-crypto (khối coin) và sec-ltalloc (hàng quỹ).
     h = merge_fresh_sections(h, a.html)
+    # CỔNG DÒNG XE (6/11): đo + tự chữa dòng xe trên output CUỐI —
+    # pass cuối cùng trước validate/ghi file, sau mọi pass khác.
+    h = vehicle_gate(h, {**prices, **nhip_extra}, a.mode)
     ok, why = validate(h)
     if not ok:
         print(f"VALIDATE FAIL: {why}", file=sys.stderr)
