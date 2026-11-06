@@ -688,15 +688,15 @@
  "AVGO": {
   "book": "Sổ 1",
   "entry": [
+   290,
+   305
+  ],
+  "targets": [
    320,
    350
   ],
-  "targets": [
-   400,
-   440
-  ],
-  "cut": 300,
-  "note": "Vùng gom dài hạn đã duyệt; -31% vs đỉnh 52w"
+  "cut": 280,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 06/11 theo lệnh Tom, thay vùng cũ $320–350/cắt $300 (gãy đóng 05/11). Neo kệ capitulation $290 (đáy 05/11 $290,12 vol 2,3x; 06/11 chọc $289,77 trong phiên nhưng ĐÓNG $293,69 +0,7%). KT: giữ đóng ≥$290 thêm 1 phiên (đã 2/3 phiên đóng) + đóng lấy lại $311,50. Cắt = ĐÓNG <$280. Chốt $320 (kệ cũ) → $350 (MA50). Giá -32% vs đỉnh 3 tháng $432,73. Chế độ 🔴: mốc canh/tham chiếu."
  },
  "TSM": {
   "book": "Sổ 1",
