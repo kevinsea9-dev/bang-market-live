@@ -6736,11 +6736,22 @@ def update_companion_lines(h, prices):
                 if _ob and _nb:
                     _ocnt = h_orig[_ob[0]:_ob[1]].count('<div class="levcomp')
                     _ncnt = h[_nb[0]:_nb[1]].count('<div class="levcomp')
-                    if _ncnt < _ocnt:
+                    # 06/11: tụt do xe BỊ GỠ KHỎI COMP_MAP có chủ đích
+                    # (vd KMLI thanh lý) thì KHÔNG khôi phục — đếm số
+                    # dòng levcomp gốc mà xe của nó không còn trong
+                    # COMP_MAP.values() và trừ khỏi kỳ vọng.
+                    _allowed = 0
+                    for _chunk in h_orig[_ob[0]:_ob[1]].split(
+                            '<div class="levcomp')[1:]:
+                        _m = re.search(r'data-px="([A-Z]{2,6})"', _chunk)
+                        if _m and _m.group(1) not in COMP_MAP.values():
+                            _allowed += 1
+                    if _ncnt < _ocnt - _allowed:
                         h = (h[:_nb[0]] + h_orig[_ob[0]:_ob[1]]
                              + h[_nb[1]:])
                         print(f"  ! companion guard: {_sec_id} tụt "
-                              f"{_ocnt}->{_ncnt} — khôi phục segment gốc",
+                              f"{_ocnt}->{_ncnt} (cho phép {_allowed}) "
+                              f"— khôi phục segment gốc",
                               file=sys.stderr)
             except Exception:
                 pass
