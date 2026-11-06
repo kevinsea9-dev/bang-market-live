@@ -2476,30 +2476,35 @@ def _day_notes(seg, zones):
 
 
 def _day_block(t, prices, zones, notes, binary):
+    """Khối sec-daytrade — TỪ 5/11 QUA RENDERER THỐNG NHẤT
+    (render_unified_block, mẫu sec-special); hàm này chỉ soạn phần ghi
+    chú riêng của mục daytrade."""
     px, pc = prices[t]
     z = zones.get(t)
-    parts = []
+    note_parts = []
+    if z and z.get("entry"):
+        if _zone_state_of(z, px) == "BROKEN":
+            note_parts.append("· Giá dưới cắt — vùng chỉ còn tham chiếu, "
+                              "chờ nến ĐÓNG lấy lại cắt mới tính lại")
+    else:
+        note_parts.append("· ⚪ Chưa có vùng duyệt — chỉ theo dõi, "
+                          "không lên mâm")
+    if binary:
+        note_parts.append(f"· 💥 NHỊ PHÂN — earnings {binary} (Sổ 3): "
+                          "biến động mạnh quanh giờ ra số")
+    for ln in notes.get(t, []):
+        note_parts.append(ln if ln.startswith("·") else "· " + ln)
+    blk = render_unified_block(t, prices, zones,
+                               note_html="<br>\n".join(note_parts))
+    if blk:
+        return blk
+    # Fallback không giá (caller đã lọc t in prices — gần như không xảy ra)
+    cls, txt = ("zchip-n", f"{t} · 👁️ WATCH-ONLY")
     if z and z.get("entry"):
         cls, txt = _zone_chip_text(t, px, _zone_state_of(z, px), z)
-        parts.append(f'<div class="alert"><div class="zchip {cls}" '
-                     f'data-achip="{t}">{txt}</div>')
-        if _zone_state_of(z, px) == "BROKEN":
-            parts.append("· Giá dưới cắt — vùng chỉ còn tham chiếu, "
-                         "chờ nến ĐÓNG lấy lại cắt mới tính lại")
-    else:
-        parts.append(
-            f'<div class="alert"><b><span data-px="{t}">'
-            f"{t} {_lt_money(px)}</span></b> "
-            f'<span data-pct="{t}">({fmt_pct_vn(pc)})</span>'
-            f" · 👁️ WATCH-ONLY")
-        parts.append("· ⚪ Chưa có vùng duyệt — chỉ theo dõi, "
-                     "không lên mâm")
-    if binary:
-        parts.append(f"· 💥 NHỊ PHÂN — earnings {binary} (Sổ 3): "
-                     "biến động mạnh quanh giờ ra số")
-    for ln in notes.get(t, []):
-        parts.append(ln if ln.startswith("·") else "· " + ln)
-    return "<br>\n".join(parts) + "</div>"
+    return (f'<div class="alert"><div class="zchip {cls}" '
+            f'data-achip="{t}">{txt}</div>'
+            + "<br>\n".join(note_parts) + "</div>")
 
 
 def rebuild_daytrade(h, prices):
@@ -5640,6 +5645,243 @@ def _special_watch_extra(seg, mk_line, seen, px=None, zones=None):
     return seg, added
 
 
+# ============================================================================
+# RENDERER THỐNG NHẤT KHỐI MÃ — Tom lệnh 5/11 ~16:44: "code MỘT renderer
+# duy nhất cho cả 27 mục, giống hệt mẫu mục ĐẶC BIỆT". Mọi khối mã ở mọi
+# mục đều sinh qua render_unified_block() hoặc bị normalize_unified_blocks()
+# ép về mẫu ở cuối pipeline -> lệch mẫu không tái diễn.
+# Mẫu 4 phần (sec-special / 🔥 HOT, Tom duyệt 5/11 05:06):
+#  (1) header .zchip MÀU THEO TRẠNG THÁI (g=xanh TRONG VÙNG · r=đỏ GÃY
+#      VÙNG/thủng cắt · y=cam DƯỚI VÙNG · n=xám TRÊN VÙNG/TẠM TREO) —
+#      cùng nguồn _zone_chip_text với sec-special + sec-leverage:
+#      MÃ · trạng thái · Giá · Vùng · Chốt · Cắt, data-achip cho
+#      poller/streamer. (Codebase không có class zchip-o; DƯỚI VÙNG
+#      dùng zchip-y như chính sec-special đang chạy.)
+#  (2) dòng xe .levcomp từ _comp_line(): chip VÀNG tĩnh mã gốc +
+#      "↳ XE X2 · SỔ 3 CHỈ DAYTRADE" + chip XANH DA TRỜI tĩnh mã xe
+#      (data-px/data-pct) + bộ 3 dịch theo tỷ lệ realtime; xe lấy từ
+#      COMP_MAP — TUYỆT ĐỐI không hardcode. Mã gốc gãy cắt: _comp_line
+#      tự ghi "số dịch chỉ tham chiếu". Mã có vùng mà KHÔNG có xe 2x
+#      thật -> dòng .noveh ghi rõ "không có xe 2x thật đã kiểm chứng".
+#  (3) ghi chú ngắn (khi chuẩn hoá: giữ nguyên nội dung cũ của khối).
+#  (4) chân <span class="t blkfoot">Giá trực tiếp • cập nhật HH:MM PT
+#      DD/MM</span>.
+# Mục KHÔNG phải khối mã (tin tức/lịch/chỉ số Á/crypto...) KHÔNG qua
+# renderer này — phạm vi xem UNIFIED_BLOCK_SECTIONS.
+# ============================================================================
+UNIFIED_BLOCK_SECTIONS = ("sec-daytrade", "sec-swing", "sec-watch",
+                          "sec-hot", "sec-urgent", "sec-special",
+                          "sec-ahshark", "sec-tickets")
+
+
+def _unified_footer():
+    _n = now_pt()
+    return (f'<span class="t blkfoot">Giá trực tiếp • cập nhật '
+            f'{_n.strftime("%H:%M")} PT {_n.strftime("%d/%m")}</span>')
+
+
+def _unified_header(t, prices, zones):
+    """Phần (1) của mẫu: zchip chuẩn cho mã t; None nếu không có giá."""
+    px = prices.get(t)
+    if not px or not px[0]:
+        return None
+    z = zones.get(t)
+    if z and z.get("entry"):
+        cls, txt = _zone_chip_text(t, px[0], _zone_state_of(z, px[0]), z)
+        return f'<div class="zchip {cls}" data-achip="{t}">{txt}</div>'
+    return (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
+            f'👁️ WATCH-ONLY · Giá {_lt_money(px[0])} · '
+            f'⚪ Chưa có vùng duyệt — chỉ theo dõi, không lên mâm</div>')
+
+
+def _unified_veh(t, prices, zones):
+    """Phần (2) của mẫu: dòng xe từ _comp_line/COMP_MAP; dòng .noveh khi
+    mã có vùng mà không có xe 2x thật; '' khi không áp dụng."""
+    v = COMP_MAP.get(t)
+    if v:
+        line, flash = _comp_line(t, v, prices, zones)
+        if line:
+            cls = "levcomp levflash" if flash else "levcomp"
+            return f'<div class="{cls}">{line}</div>'
+        return ""
+    try:
+        vehs = set(COMP_MAP.values())
+        for _vs in LEV_MAP.values():
+            vehs.update(_vs if isinstance(_vs, (list, tuple, set))
+                        else [_vs])
+    except Exception:
+        vehs = set(COMP_MAP.values())
+    if t in vehs:
+        return (f'<div class="noveh">↳ {t} là xe đòn bẩy — không '
+                f'gắn thêm xe phái sinh</div>')
+    if t in zones:
+        return (f'<div class="noveh">↳ {t} không có xe 2x thật đã kiểm '
+                f'chứng — không gắn dòng xe</div>')
+    return ""
+
+
+def render_unified_block(t, prices, zones, note_html="", extra_top="",
+                         alert_attrs='class="alert"'):
+    """RENDERER CHUNG DUY NHẤT cho khối mã (mẫu sec-special 4 phần).
+    Generator nào sinh khối mã cũng phải qua hàm này; khối do writer
+    ngoài ghi tay sẽ bị normalize_unified_blocks ép về cùng mẫu."""
+    hdr = _unified_header(t, prices, zones)
+    if not hdr:
+        return ""
+    out = [f"<div {alert_attrs}>"]
+    if extra_top:
+        out.append(extra_top)
+    out.append(hdr)
+    veh = _unified_veh(t, prices, zones)
+    if veh:
+        out.append(veh)
+    if note_html:
+        out.append(note_html)
+    out.append("<br>" + _unified_footer())
+    out.append("</div>")
+    return "".join(out)
+
+
+_UNI_SKIP_WORDS = ("CANH THÊM",)
+
+
+def _unified_subject(full):
+    """Mã chính DUY NHẤT của 1 alert; None -> không chuẩn hoá (khối tin/
+    khối nhiều mã/khối cấu trúc). Ưu tiên data-achip -> baseflash ->
+    đúng 1 mã trong <b> đầu khối."""
+    m = re.search(r'data-achip="([A-Z0-9.\-]{1,7})"', full)
+    if m:
+        return m.group(1)
+    m = re.search(r'class="baseflash"[^>]*>([A-Z0-9.\-]{1,7})</span>',
+                  full)
+    if m:
+        return m.group(1)
+    cands = []
+    bm = re.search(r"<b>(.*?)</b>", full, re.S)
+    if bm:
+        txt = re.sub(r"<[^>]+>", " ", bm.group(1))
+        for tok in re.findall(r"\b([A-Z]{2,6})\b", txt):
+            if (tok in COMP_MAP or tok in ZONES) and tok not in cands:
+                cands.append(tok)
+    if len(cands) == 1:
+        return cands[0]
+    return None
+
+
+def _unified_rebuild(full, t, prices, zones):
+    """Ép 1 alert về mẫu thống nhất: giữ class alert + div phụ đầu khối
+    (specpick...) + dòng xe sẵn có + toàn bộ ghi chú; thay header bằng
+    zchip chuẩn (giá tươi), thêm dòng xe nếu companion pass bỏ sót,
+    gắn chân blkfoot."""
+    om = re.match(r'<div class="alert[^>]*>', full)
+    if not om:
+        return full
+    open_tag = om.group(0)
+    inner = full[om.end():]
+    if inner.endswith("</div>"):
+        inner = inner[:-len("</div>")]
+    # (a) giữ div phụ đầu khối (specpick của sec-special...)
+    extras = ""
+    while True:
+        s0 = inner.lstrip()
+        lead = len(inner) - len(s0)
+        dm = re.match(r'<div class="(specpick|sharkday|sd-)[^"]*"[^>]*>',
+                      s0)
+        if not dm:
+            break
+        de = _levcomp_balanced_end(s0, 0)
+        if de is None:
+            break
+        extras += s0[:de]
+        inner = inner[lead + de:]
+    # (b) tách dòng xe sẵn có (companion pass vừa làm tươi — giữ nguyên)
+    veh = ""
+    vm = re.search(r'<div class="levcomp[^>]*>', inner)
+    if vm:
+        ve = _levcomp_balanced_end(inner, vm.start())
+        if ve is not None:
+            veh = inner[vm.start():ve]
+            inner = inner[:vm.start()] + inner[ve:]
+    # (c) bỏ header zchip cũ (thay bằng chip chuẩn giá tươi)
+    zm = re.search(r'<div class="zchip[^>]*>', inner)
+    if zm:
+        ze = _levcomp_balanced_end(inner, zm.start())
+        if ze is not None:
+            inner = inner[:zm.start()] + inner[ze:]
+    # (d) bỏ chân blkfoot cũ (gắn lại ở cuối) + headline giá kiểu cũ
+    inner = re.sub(r'<br\s*/?>\s*<span class="t blkfoot">.*?</span>', "",
+                   inner, flags=re.S)
+    inner = re.sub(r'<span class="t blkfoot">.*?</span>', "", inner,
+                   flags=re.S)
+    hm = re.match(r'\s*<b>(.*?)</b>', inner, re.S)
+    if hm:
+        htxt = re.sub(r"<[^>]+>", " ", hm.group(1))
+        if re.search(r"\$[\d.,]+", htxt) and t in htxt:
+            inner = inner[hm.end():]
+    inner = inner.strip()
+    inner = re.sub(r"^(<br\s*/?>\s*)+", "", inner)
+    hdr = _unified_header(t, prices, zones)
+    if not hdr:
+        return full
+    if not veh:
+        veh = _unified_veh(t, prices, zones)
+    out = open_tag + extras + hdr + veh
+    if inner:
+        out += inner
+    out += "<br>" + _unified_footer() + "</div>"
+    return out
+
+
+def normalize_unified_blocks(h, prices):
+    """Ép mọi khối mã trong UNIFIED_BLOCK_SECTIONS về mẫu thống nhất.
+    Chạy CUỐI pipeline (sau update_companion_lines): khối nào writer
+    ngoài ghi lệch mẫu đều bị dựng lại tại chỗ — header zchip chuẩn +
+    dòng xe + chân khối. Fail-soft từng mục. Trả (h, {mục: số khối})."""
+    counts = {}
+    try:
+        zones, _excl = _zones_local()
+    except Exception:
+        return h, counts
+    for sec in UNIFIED_BLOCK_SECTIONS:
+        try:
+            # KHÔNG dùng _sec_bounds: id của vài mục (sec-ahshark) xuất
+            # hiện lần đầu ở thẻ neo trong menu nên _sec_bounds bắt nhầm
+            # đoạn 86 ký tự. Tìm thẳng thẻ <div class="sec" id=...> rồi
+            # stack-walk như update_companion_lines vẫn làm.
+            sm = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+            if not sm:
+                continue
+            _s0 = sm.start()
+            # Span = tới section kế tiếp (như update_companion_lines):
+            # sec-ahshark có div section RỖNG (chỉ chứa <h2>), toàn bộ
+            # khối alert nằm NGOÀI div, sau marker AHSHARK-AUTO-START —
+            # stack-walk cân bằng sẽ cắt mất hết khối của mục này.
+            _nxt = h.find('<div class="sec"', _s0 + 10)
+            b = (_s0, _nxt if _nxt != -1 else len(h))
+            s, e = b
+            seg = h[s:e]
+            n = [0]
+
+            def _fn(full, inner):
+                if any(w in full for w in _UNI_SKIP_WORDS):
+                    return full
+                t = _unified_subject(full)
+                if not t:
+                    return full
+                new = _unified_rebuild(full, t, prices, zones)
+                if new != full:
+                    n[0] += 1
+                return new
+
+            seg2 = sub_balanced_alerts(seg, _fn)
+            if seg2 != seg:
+                h = h[:s] + seg2 + h[e:]
+            counts[sec] = n[0]
+        except Exception as ex:
+            print(f"  ! normalize {sec}: {ex}", file=sys.stderr)
+    return h, counts
+
+
 def update_companion_lines(h, prices):
     """Gắn dòng companion xe x2 vào các mục đích (COMP_SECTIONS + khối 👑
     FOCUS). Strip trước rồi gắn lại nên idempotent; fail-soft giữ nguyên bảng.
@@ -6626,6 +6868,7 @@ def main():
                 h, _nlv = update_leverage_signals(h, _chip_px)
                 h, _nlp = update_leverage_pairs(h, _chip_px)
                 h, _ncomp, _compc = update_companion_lines(h, _chip_px)
+                h, _nuni = normalize_unified_blocks(h, _chip_px)
                 h, _nfch = update_focus_chips(h, _chip_px)
                 h, _nach = update_alert_chips(h, _chip_px)
                 h, _ncln2 = clean_shark_layers(h)
@@ -6948,6 +7191,7 @@ def main():
     h, npr = update_leverage_pairs(h, {**prices, **nhip_extra})
     print(f"  leverage pairs: {npr} khối cặp mã gốc + xe", flush=True)
     h, ncomp2, compc2 = update_companion_lines(h, {**prices, **nhip_extra})
+    h, _nuni2 = normalize_unified_blocks(h, {**prices, **nhip_extra})
     h, nfch = update_focus_chips(h, {**prices, **nhip_extra})
     h, nach = update_alert_chips(h, {**prices, **nhip_extra})
     h, _ncln = clean_shark_layers(h)
