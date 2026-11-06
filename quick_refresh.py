@@ -5763,8 +5763,15 @@ def _unified_subject(full):
         for tok in re.findall(r"\b([A-Z]{2,6})\b", txt):
             if (tok in COMP_MAP or tok in ZONES) and tok not in cands:
                 cands.append(tok)
-    if len(cands) == 1:
-        return cands[0]
+        if len(cands) == 1:
+            return cands[0]
+        if not cands:
+            # Headline giá cổ điển "MÃ — $giá (±%)" cho mã chưa có vùng
+            # duyệt lẫn xe (vd TMDX chờ duyệt vùng): vẫn là khối mã.
+            pm = re.match(r"\s*(?:\S+\s+)?([A-Z]{2,6})\s*[—–\-]\s*\$",
+                          txt)
+            if pm:
+                return pm.group(1)
     return None
 
 
@@ -5813,16 +5820,27 @@ def _unified_rebuild(full, t, prices, zones):
                    inner, flags=re.S)
     inner = re.sub(r'<span class="t blkfoot">.*?</span>', "", inner,
                    flags=re.S)
+    old_px = None
     hm = re.match(r'\s*<b>(.*?)</b>', inner, re.S)
     if hm:
         htxt = re.sub(r"<[^>]+>", " ", hm.group(1))
         if re.search(r"\$[\d.,]+", htxt) and t in htxt:
+            pm0 = re.search(r"\$([\d][\d.,]*)", htxt)
+            if pm0:
+                old_px = pm0.group(1)
             inner = inner[hm.end():]
     inner = inner.strip()
     inner = re.sub(r"^(<br\s*/?>\s*)+", "", inner)
     hdr = _unified_header(t, prices, zones)
     if not hdr:
-        return full
+        # Không có giá tươi cho mã này (vd TMDX chưa vào universe bơm
+        # giá): vẫn ép được mẫu bằng giá ngay trong headline cũ của
+        # khối, ghi rõ là giá trong khối — không bịa số.
+        if not old_px:
+            return full
+        hdr = (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
+               f'Giá ${old_px} · (giá trong khối — chưa có giá tươi)'
+               f'</div>')
     if not veh:
         veh = _unified_veh(t, prices, zones)
     out = open_tag + extras + hdr + veh

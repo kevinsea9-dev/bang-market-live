@@ -854,6 +854,118 @@
    "promise": "Chuỗi Arc chuyển sang proof-of-stake trong 2027; mạng thanh toán Circle đạt doanh thu đáng kể trong 2027; đạo luật GENIUS có hiệu lực tháng 1/2027",
    "due": "2027",
    "status": "open"
+  },
+  {
+   "ticker": "SONY",
+   "said_on": "2026-11-05",
+   "source": "Sony Q2 FY26 release — Zacks/Reuters 5/11",
+   "promise": "FY26: doanh thu ¥13.000B (từ ¥12.500B), lợi nhuận hoạt động ¥1.870B (từ ¥1.720B)",
+   "due": "FY26 (2027-03)",
+   "status": "open"
+  },
+  {
+   "ticker": "CNQ",
+   "said_on": "2026-11-05",
+   "source": "CNQ Q3 2026 release — Newsfile/Motley Fool 5/11",
+   "promise": "100% FCF cho mua lại cổ phiếu, mục tiêu 800 triệu đô la/tháng trong tháng 11–12/2026 sau khi đạt mốc nợ ròng 13 tỷ đô la; cổ tức 0,625 đô la/quý",
+   "due": "2026-12",
+   "status": "open"
+  },
+  {
+   "ticker": "CI",
+   "said_on": "2026-11-05",
+   "source": "Cigna Q3 2026 release — Zacks/MarketBeat 5/11",
+   "promise": "EPS điều chỉnh FY26 ≥ 30,60 đô la (nâng lần 3 trong năm); base chạy 2026 ~30 đô la do sức ép chi phí y tế 2027",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "COP",
+   "said_on": "2026-11-05",
+   "source": "ConocoPhillips Q3 2026 release — Morningstar 5/11",
+   "promise": "Tăng cổ tức quý +11% lên 0,93 đô la/cp (trả 1/12/2026); sản lượng Q4 2,32–2,36 triệu thùng/ngày",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "PH",
+   "said_on": "2026-11-05",
+   "source": "Parker-Hannifin Q1 FY27 release — GlobeNewswire 5/11",
+   "promise": "FY27: EPS điều chỉnh 36,45–37,25 đô la; doanh thu +16–19%; FCF 3,5–4,0 tỷ đô la; backlog kỷ lục 13,7 tỷ đô la",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "SO",
+   "said_on": "2026-11-05",
+   "source": "Southern Company Q3 2026 release — PR Newswire 5/11",
+   "promise": "EPS điều chỉnh FY2026 ở/quanh đỉnh dải 4,50–4,60 đô la",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "DUK",
+   "said_on": "2026-11-05",
+   "source": "Duke Energy Q3 2026 release — dpa-AFX 5/11",
+   "promise": "Giữ guidance EPS FY2026 6,70–6,80 đô la",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "NET",
+   "said_on": "2026-11-05",
+   "source": "Cloudflare Q3 2026 release — Business Wire/Investors.com 5/11",
+   "promise": "Q4/2026: doanh thu 845–846 triệu đô la, EPS 0,43 đô la; FY26: doanh thu 2.963–2.964 triệu đô la, EPS 1,35 đô la",
+   "due": "2026-Q4 / FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "IREN",
+   "said_on": "2026-11-05",
+   "source": "IREN Q1 FY27 release — StockTitan 5/11",
+   "promise": "Mục tiêu ARR trên 4 tỷ đô la dời từ cuối 2026 sang quý 1–2/2027; backlog 20,3 tỷ đô la",
+   "due": "2027-H1",
+   "status": "open"
+  },
+  {
+   "ticker": "IONQ",
+   "said_on": "2026-11-05",
+   "source": "IonQ Q3 2026 release — Morningstar/AP 5/11",
+   "promise": "FY26 doanh thu 505–515 triệu đô la (từ 450–460 triệu); mảng quantum +110% YoY; backlog 1,2 tỷ đô la",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "AAOI",
+   "said_on": "2026-11-05",
+   "source": "Applied Optoelectronics Q3 2026 release — PR Newswire 5/11",
+   "promise": "Q4/2026: doanh thu 385–420 triệu đô la, EPS non-GAAP 0,48–0,63 đô la",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "ABNB",
+   "said_on": "2026-11-05",
+   "source": "Airbnb Q3 2026 shareholder letter/call — TipRanks/Skift 5/11",
+   "promise": "Q4/2026 doanh thu 3,22–3,28 tỷ đô la; FY26 tăng trưởng high-teens, biên EBITDA điều chỉnh ~36%; mua lại 12 tỷ đô la; trợ lý AI chuyên biệt tới khách nửa đầu 2027",
+   "due": "2026-Q4 / 2027-H1",
+   "status": "open"
+  },
+  {
+   "ticker": "AXON",
+   "said_on": "2026-11-05",
+   "source": "Axon Q3 2026 shareholder letter — PR Newswire/Reuters 5/11",
+   "promise": "Q4/2026 doanh thu 990 triệu–1,01 tỷ đô la, EBITDA điều chỉnh 245–250 triệu đô la; thương vụ Skydio 1,2 tỷ đô la (nắm 37%) đóng trong Q4/2026–Q1/2027",
+   "due": "2026-Q4 / 2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "TMDX",
+   "said_on": "2026-11-05",
+   "source": "TransMedics Q3 2026 release/call — TradingKey/PR Newswire 5/11",
+   "promise": "FY26 doanh thu 764–774 triệu đô la (tăng trưởng 26–28%), gồm ~14 triệu đô la từ PAD Aviation",
+   "due": "FY26",
+   "status": "open"
   }
  ]
 }

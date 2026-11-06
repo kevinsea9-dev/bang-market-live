@@ -27,7 +27,8 @@
    "guidance": "Nâng FY26: doanh thu ¥13.000B (từ ¥12.500B), lợi nhuận hoạt động ¥1.870B (từ ¥1.720B).",
    "reaction_pct": "+3,08% sau giờ về $26,75 (Yahoo 15:40 PT 5/11, từ đóng 4/11 $25,95; thanh khoản mỏng)",
    "price_after": 26.75,
-   "essence": "Lợi nhuận hoạt động +45% lên ¥622,3B, vượt xa kỳ vọng ¥505B nhờ game (+83%) và phim Spider-Man (+568%); nâng guidance cả năm."
+   "essence": "Lợi nhuận hoạt động +45% lên ¥622,3B, vượt xa kỳ vọng ¥505B nhờ game (+83%) và phim Spider-Man (+568%); nâng guidance cả năm.",
+   "audio": "earnings-sony-2026-11-05.mp3"
   },
   {
    "ticker": "CNQ",
@@ -45,7 +46,8 @@
    "guidance": "Đạt mốc nợ ròng $13B → 100% FCF cho mua lại cổ phiếu, mục tiêu $800M/tháng trong T11–12/2026; cổ tức $0,625/quý (năm thứ 26 tăng liên tiếp).",
    "reaction_pct": "-1,45% về $48,92 (đóng cửa 5/11, Finnhub; từ $49,64)",
    "price_after": 48.92,
-   "essence": "EPS điều chỉnh $1,67 vượt xa kỳ vọng $1,05; đạt mốc nợ ròng $13B, chuyển 100% dòng tiền tự do sang mua lại cổ phiếu $800M/tháng."
+   "essence": "EPS điều chỉnh $1,67 vượt xa kỳ vọng $1,05; đạt mốc nợ ròng $13B, chuyển 100% dòng tiền tự do sang mua lại cổ phiếu $800M/tháng.",
+   "audio": "earnings-cnq-2026-11-05.mp3"
   },
   {
    "ticker": "CI",
@@ -63,7 +65,8 @@
    "guidance": "Nâng EPS điều chỉnh FY26 lên ≥$30,60 (lần nâng thứ 3 trong năm); nhưng đặt lại base chạy 2026 ~$30 do sức ép chi phí y tế 2027.",
    "reaction_pct": "-1,29% về $301,48 (đóng cửa 5/11, Finnhub; từ $305,41)",
    "price_after": 301.48,
-   "essence": "EPS điều chỉnh $7,98 beat $7,46, doanh thu $73,79B beat $72,64B; nâng guidance FY26 lần 3 lên ≥$30,60 nhưng reset base 2027 về ~$30 khiến cổ phiếu đỏ phiên."
+   "essence": "EPS điều chỉnh $7,98 beat $7,46, doanh thu $73,79B beat $72,64B; nâng guidance FY26 lần 3 lên ≥$30,60 nhưng reset base 2027 về ~$30 khiến cổ phiếu đỏ phiên.",
+   "audio": "earnings-ci-2026-11-05.mp3"
   },
   {
    "ticker": "COP",
@@ -81,7 +84,8 @@
    "guidance": "Nâng cổ tức quý +11% lên $0,93/cp (trả 1/12); sản lượng Q4 dự kiến 2,32–2,36 triệu thùng/ngày; giữ nguyên guidance capex + chi phí vận hành cả năm.",
    "reaction_pct": "−0,54% sau giờ về $136,20 (Yahoo 15:40 PT 5/11, từ đóng 4/11 $136,94; thanh khoản mỏng)",
    "price_after": 136.2,
-   "essence": "EPS điều chỉnh $3,27 vượt kỳ vọng $3,05 nhờ giá dầu thực hiện +32% YoY; CFO $7,2B; tăng cổ tức 11%."
+   "essence": "EPS điều chỉnh $3,27 vượt kỳ vọng $3,05 nhờ giá dầu thực hiện +32% YoY; CFO $7,2B; tăng cổ tức 11%.",
+   "audio": "earnings-cop-2026-11-05.mp3"
   },
   {
    "ticker": "PH",
@@ -99,7 +103,8 @@
    "guidance": "Nâng guidance FY27: EPS điều chỉnh $36,45–37,25; doanh thu +16–19%; FCF $3,5–4,0B; backlog kỷ lục $13,7B.",
    "reaction_pct": "−2,86% sau giờ về $884,17 (Yahoo 15:40 PT 5/11, từ đóng 4/11 $910,19; thanh khoản mỏng)",
    "price_after": 884.17,
-   "essence": "Doanh thu kỷ lục $5,99B (+18% YoY), EPS điều chỉnh kỷ lục $8,90 vượt kỳ vọng $8,17; nâng guidance cả năm sau thương vụ Filtration Group."
+   "essence": "Doanh thu kỷ lục $5,99B (+18% YoY), EPS điều chỉnh kỷ lục $8,90 vượt kỳ vọng $8,17; nâng guidance cả năm sau thương vụ Filtration Group.",
+   "audio": "earnings-ph-2026-11-05.mp3"
   },
   {
    "ticker": "SO",
@@ -117,7 +122,8 @@
    "guidance": "CFO dự kiến EPS điều chỉnh FY2026 ở/quanh đỉnh dải $4,50–4,60 (call Q2); call phân tích 13:00 ET hôm nay.",
    "reaction_pct": "~tham chiếu sau giờ về $93,10 (Yahoo 15:40 PT 5/11, từ đóng 4/11 $93,12; thanh khoản mỏng)",
    "price_after": 93.1,
-   "essence": "EPS điều chỉnh $1,94 vượt kỳ vọng $1,76; doanh thu $8,84B (+13% YoY) nhờ thời tiết ấm hơn + nhu cầu điện tăng."
+   "essence": "EPS điều chỉnh $1,94 vượt kỳ vọng $1,76; doanh thu $8,84B (+13% YoY) nhờ thời tiết ấm hơn + nhu cầu điện tăng.",
+   "audio": "earnings-so-2026-11-05.mp3"
   },
   {
    "ticker": "DUK",
@@ -135,7 +141,8 @@
    "guidance": "Giữ guidance EPS FY2026 $6,70–6,80; call phân tích 10:00 ET hôm nay.",
    "reaction_pct": "+1,5% premarket về $131,50 (Yahoo 5/11 ~05:50 PT, tính từ đóng 4/11 $129,59; thanh khoản mỏng)",
    "price_after": 131.5,
-   "essence": "EPS $1,99 vượt kỳ vọng $1,88; doanh thu $9,10B (+6,6% YoY)."
+   "essence": "EPS $1,99 vượt kỳ vọng $1,88; doanh thu $9,10B (+6,6% YoY).",
+   "audio": "earnings-duk-2026-11-05.mp3"
   },
   {
    "ticker": "NET",
@@ -153,7 +160,8 @@
    "guidance": "Q4/2026: DT $845–846M, EPS non-GAAP $0,43; cả năm FY26: DT $2.963–2.964M, EPS $1,35 — nâng mạnh so với guide cũ $2.864–2.870M.",
    "reaction_pct": "+2,82% sau giờ về $274,10 (Yahoo 15:40 PT 5/11, từ đóng 4/11 $266,58; thanh khoản mỏng)",
    "price_after": 274.1,
-   "essence": "EPS non-GAAP $0,38 beat $0,34, doanh thu $782,5M beat $737M (+39% YoY); nâng guide cả năm lên $2.963M — cổ phiếu +2,8% sau giờ về $274,10, trên vùng chờ Sổ 3 $245–265 (vùng chờ dựng nền, chưa kích hoạt)."
+   "essence": "EPS non-GAAP $0,38 beat $0,34, doanh thu $782,5M beat $737M (+39% YoY); nâng guide cả năm lên $2.963M — cổ phiếu +2,8% sau giờ về $274,10, trên vùng chờ Sổ 3 $245–265 (vùng chờ dựng nền, chưa kích hoạt).",
+   "audio": "earnings-net-2026-11-05.mp3"
   },
   {
    "ticker": "MNST",
@@ -171,7 +179,8 @@
    "guidance": "Không đưa guidance Q4/cả năm; mua lại $100M cổ phiếu trong Q3, còn ~$800M hạn mức mua lại.",
    "reaction_pct": "-4,87% sau giờ về $45,50 (Yahoo ~16:47 ET 5/11, từ đóng $47,83; thanh khoản mỏng)",
    "price_after": 45.5,
-   "essence": "EPS điều chỉnh $0,30 đúng kỳ vọng, doanh thu $2,56B beat $2,49B (+16,7% YoY) nhưng biên gộp co về 54,7% và không có guidance — cổ phiếu -4,9% sau giờ về $45,50, lọt vào vùng Sổ 3 có điều kiện $45–47,50."
+   "essence": "EPS điều chỉnh $0,30 đúng kỳ vọng, doanh thu $2,56B beat $2,49B (+16,7% YoY) nhưng biên gộp co về 54,7% và không có guidance — cổ phiếu -4,9% sau giờ về $45,50, lọt vào vùng Sổ 3 có điều kiện $45–47,50.",
+   "audio": "earnings-mnst-2026-11-05.mp3"
   },
   {
    "ticker": "IREN",
@@ -189,7 +198,8 @@
    "guidance": "Không guide EPS/DT; mục tiêu ARR >$4B dời từ cuối 2026 sang T1–T2/2027; backlog $20,3B (+22% QoQ); capex FY27 còn $15B, trong đó $6B vốn huy động phụ thuộc thị trường.",
    "reaction_pct": "+3,33% sau giờ lên $18,63 (Yahoo 15:40 PT 5/11, từ đóng $18,03; thanh khoản mỏng)",
    "price_after": 18.63,
-   "essence": "EPS điều chỉnh -$0,66 beat -$0,72, doanh thu $228M đúng kỳ vọng; AI Cloud $200M (+182% QoQ, 88% doanh thu), EBITDA điều chỉnh $66M — nhưng mục tiêu ARR $4B dời sang đầu 2027; giá sau giờ $18,63 vẫn dưới xa vùng Sổ 3 $24,50–26,50 và dưới cắt $23."
+   "essence": "EPS điều chỉnh -$0,66 beat -$0,72, doanh thu $228M đúng kỳ vọng; AI Cloud $200M (+182% QoQ, 88% doanh thu), EBITDA điều chỉnh $66M — nhưng mục tiêu ARR $4B dời sang đầu 2027; giá sau giờ $18,63 vẫn dưới xa vùng Sổ 3 $24,50–26,50 và dưới cắt $23.",
+   "audio": "earnings-iren-2026-11-05.mp3"
   },
   {
    "ticker": "IONQ",
@@ -207,7 +217,8 @@
    "guidance": "Nâng doanh thu FY26 lên $505–515M (từ $450–460M); backlog $1,2B; mảng quantum computing kỳ vọng +110% YoY.",
    "reaction_pct": "+1,70% sau giờ lên $26,88 (Yahoo 15:40 PT 5/11, từ đóng $26,43; thanh khoản mỏng)",
    "price_after": 26.88,
-   "essence": "Doanh thu kỷ lục $173,8M (+336% YoY, beat $141,2M), EPS điều chỉnh -$0,29 beat -$0,38; nâng guidance cả năm lên $505–515M, backlog $1,2B — nhưng giá sau giờ $26,88 vẫn dưới cắt Sổ 3 $28,50, vùng đã vô hiệu từ 2/11."
+   "essence": "Doanh thu kỷ lục $173,8M (+336% YoY, beat $141,2M), EPS điều chỉnh -$0,29 beat -$0,38; nâng guidance cả năm lên $505–515M, backlog $1,2B — nhưng giá sau giờ $26,88 vẫn dưới cắt Sổ 3 $28,50, vùng đã vô hiệu từ 2/11.",
+   "audio": "earnings-ionq-2026-11-05.mp3"
   },
   {
    "ticker": "AAOI",
@@ -225,7 +236,8 @@
    "guidance": "Q4/2026: doanh thu $385–420M, EPS non-GAAP $0,48–0,63 — guide mạnh, gấp rưỡi Q3.",
    "reaction_pct": "−14,46% sau giờ về $40,11 (Yahoo 15:40 PT 5/11, từ đóng $46,89; thanh khoản mỏng)",
    "price_after": 40.11,
-   "essence": "EPS non-GAAP $0,17 beat $0,14, doanh thu kỷ lục $269,9M (quý kỷ lục thứ 6 liên tiếp), trở lại lãi GAAP $0,07; guide Q4 $385–420M vượt xa kỳ vọng — nhưng cổ phiếu bị xả tiếp sau giờ −14,5% (số beat mà giá vẫn bị bán). Vùng Sổ 3 cũ ($70–78) đã vô hiệu từ 2/11, giá vẫn dưới cắt $64."
+   "essence": "EPS non-GAAP $0,17 beat $0,14, doanh thu kỷ lục $269,9M (quý kỷ lục thứ 6 liên tiếp), trở lại lãi GAAP $0,07; guide Q4 $385–420M vượt xa kỳ vọng — nhưng cổ phiếu bị xả tiếp sau giờ −14,5% (số beat mà giá vẫn bị bán). Vùng Sổ 3 cũ ($70–78) đã vô hiệu từ 2/11, giá vẫn dưới cắt $64.",
+   "audio": "earnings-aaoi-2026-11-05.mp3"
   },
   {
    "ticker": "ABNB",
@@ -242,7 +254,8 @@
    "verdict": "BEAT",
    "reaction_pct": "+10,53% sau giờ về $187,88 (MarketBeat 5/11 16:14 ET, tính từ đóng $169,98; thanh khoản mỏng)",
    "price_after": 187.88,
-   "essence": "EPS $3,16 beat kỳ vọng $2,85 (+$0,31); doanh thu $4,87B beat $4,75B — beat cả hai, cổ phiếu +10,5% sau giờ, chạm chốt $187."
+   "essence": "EPS $3,16 beat kỳ vọng $2,85 (+$0,31); doanh thu $4,87B beat $4,75B — beat cả hai, cổ phiếu +10,5% sau giờ, chạm chốt $187.",
+   "audio": "earnings-abnb-2026-11-05.mp3"
   },
   {
    "ticker": "AXON",
@@ -260,7 +273,8 @@
    "guidance": "Q4 doanh thu $990M–$1,01B, Adj EBITDA $245–250M; cả năm loại ~$130M doanh thu Dedrone liên bang bị lùi.",
    "reaction_pct": "−8,94% sau giờ về $348,37 (Yahoo 15:40 PT 5/11, từ đóng $382,56; thanh khoản mỏng)",
    "price_after": 348.37,
-   "essence": "EPS non-GAAP $1,72 hụt $1,89; doanh thu $909M hụt $934,3M do 3 hợp đồng liên bang Dedrone ~$130M bị lùi; đầu tư thêm $1,2B vào Skydio (nắm 37%)."
+   "essence": "EPS non-GAAP $1,72 hụt $1,89; doanh thu $909M hụt $934,3M do 3 hợp đồng liên bang Dedrone ~$130M bị lùi; đầu tư thêm $1,2B vào Skydio (nắm 37%).",
+   "audio": "earnings-axon-2026-11-05.mp3"
   },
   {
    "ticker": "KTOS",
@@ -277,7 +291,8 @@
    "verdict": "BEAT",
    "reaction_pct": "-0,95% sau giờ về $32,86 (MarketBeat 5/11 16:13 ET, tính từ đóng $33,18; thanh khoản mỏng)",
    "price_after": 32.86,
-   "essence": "EPS $0,24 beat $0,2075; doanh thu $471,8M vừa đủ beat $471,4M — beat mỏng cả hai nhưng giá sau giờ -0,95% về $32,86, vẫn dưới cắt $35,50."
+   "essence": "EPS $0,24 beat $0,2075; doanh thu $471,8M vừa đủ beat $471,4M — beat mỏng cả hai nhưng giá sau giờ -0,95% về $32,86, vẫn dưới cắt $35,50.",
+   "audio": "earnings-ktos-2026-11-05.mp3"
   },
   {
    "ticker": "TMDX",
@@ -294,7 +309,8 @@
    "verdict": "BEAT",
    "reaction_pct": "+11,63% sau giờ về $77,00 (Yahoo 15:40 PT 5/11, từ đóng $68,98; thanh khoản mỏng)",
    "price_after": 77.0,
-   "essence": "EPS $0,51 beat mạnh $0,30 (+71%); doanh thu $203M beat $178M (+14%) — beat lớn cả hai sau 2 quý miss lợi nhuận liên tiếp, cổ phiếu +11,6% sau giờ."
+   "essence": "EPS $0,51 beat mạnh $0,30 (+71%); doanh thu $203M beat $178M (+14%) — beat lớn cả hai sau 2 quý miss lợi nhuận liên tiếp, cổ phiếu +11,6% sau giờ.",
+   "audio": "earnings-tmdx-2026-11-05.mp3"
   },
   {
    "ticker": "VST",
@@ -711,7 +727,7 @@
   }
  ],
  "playlist": {
-  "file": "playlist-earnings-2026-11-04.mp3",
-  "label": "🎵 PLAYLIST EARNINGS tối 2026-11-04 — 15 mã, ~45 phút"
+  "file": "playlist-earnings-2026-11-05.mp3",
+  "label": "🎵 PLAYLIST EARNINGS tối 2026-11-05 — 16 mã, ~38 phút"
  }
 }
