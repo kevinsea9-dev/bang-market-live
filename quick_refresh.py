@@ -5759,12 +5759,10 @@ def _unified_veh(t, prices, zones):
                         else [_vs])
     except Exception:
         vehs = set(COMP_MAP.values())
-    if t in vehs:
-        return (f'<div class="noveh">↳ {t} là xe đòn bẩy — không '
-                f'gắn thêm xe phái sinh</div>')
-    if t in zones:
-        return (f'<div class="noveh">↳ {t} không có xe 2x thật đã kiểm '
-                f'chứng — không gắn dòng xe</div>')
+    if t in vehs or t in zones:
+        # Luật Tom 06/11 07:31: mã không có xe 2x thật -> ĐÚNG 1 ghi chú
+        # ngắn "Không có xe 2x", không gắn dòng xe, không tính thiếu.
+        return '<div class="noveh">↳ Không có xe 2x</div>'
     return ""
 
 
@@ -5951,8 +5949,7 @@ def _unified_rebuild(full, t, prices, zones):
             veh = (f'<div class="noveh">↳ XE X2 của {t}: {_v} — số dịch '
                    f'chờ giá tươi, chưa gắn trong khối này</div>')
         else:
-            veh = (f'<div class="noveh">↳ {t} không có xe 2x thật đã '
-                   f'kiểm chứng — không gắn dòng xe</div>')
+            veh = '<div class="noveh">↳ Không có xe 2x</div>'
     out = open_tag + extras + hdr + veh
     if inner:
         out += inner
@@ -5995,6 +5992,31 @@ def normalize_unified_blocks(h, prices):
                     return full
                 t = _unified_subject(full)
                 if not t:
+                    # Khối không header (không data-achip/zchip — vd khối
+                    # UAL sót từ writer cũ, _unified_rebuild không dựng
+                    # lại được): nếu khối mang ghi chú xe thì ép về ĐÚNG
+                    # 1 ghi chú ngắn theo luật Tom 06/11 — gỡ mọi .noveh
+                    # cũ (bản dài/xếp chồng), chèn 1 bản ngắn ở vị trí
+                    # ghi chú đầu tiên.
+                    if 'noveh' in full and 'levcomp' not in full:
+                        parts = re.split(
+                            r'(<div class="noveh">.*?</div>)', full,
+                            flags=re.S)
+                        if len(parts) > 1:
+                            out, placed = [], False
+                            for p in parts:
+                                if p.startswith('<div class="noveh">'):
+                                    if not placed:
+                                        out.append(
+                                            '<div class="noveh">'
+                                            '↳ Không có xe 2x</div>')
+                                        placed = True
+                                else:
+                                    out.append(p)
+                            new = ''.join(out)
+                            if new != full:
+                                n[0] += 1
+                            return new
                     return full
                 new = _unified_rebuild(full, t, prices, zones)
                 if new != full:
@@ -6110,6 +6132,16 @@ def _veh_census_missing(h):
             am = re.search(r'data-achip="([A-Z0-9.]{1,6})"', blk)
             if am and 'levcomp' not in blk and 'noveh' not in blk:
                 miss.append((sec, am.group(1), 'noveh'))
+            elif am and blk.count('class="noveh"') > 1:
+                # Luật Tom 06/11: mã không xe chỉ ĐÚNG 1 ghi chú/khối.
+                miss.append((sec, am.group(1), 'noveh-dup'))
+            elif not am and 'levcomp' not in blk and (
+                    blk.count('class="noveh"') > 1
+                    or 'không có xe 2x thật' in blk):
+                # Khối không header mang ghi chú dài/xếp chồng (sót từ
+                # writer cũ) — cổng vẫn phải bắt được để normalize ép
+                # về đúng 1 ghi chú ngắn.
+                miss.append((sec, 'HEADLESS', 'noveh-dup'))
     return miss
 
 
