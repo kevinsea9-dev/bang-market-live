@@ -1,6 +1,116 @@
 {
  "entries": [
   {
+   "ticker": "VST",
+   "name": "Vistra Corp.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.98,
+   "rev_est": "$6.03B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: mã điện Tom đang canh vẽ lại vùng — đóng 4/11 $120,29 đã gãy cắt $132, vùng cũ vô hiệu, chờ dựng nền; số đẹp + guidance nhu cầu điện AI/hạt nhân là cơ hội dựng nền đầu tiên. Dao động kỳ vọng ±5,2%."
+  },
+  {
+   "ticker": "OKLO",
+   "name": "Oklo Inc.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.27,
+   "rev_est": "$1.03M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: chưa có doanh thu thương mại (DT kỳ vọng chỉ mang tính hình thức) — nhìn tiền mặt còn lại + tiến độ lò Aurora + giấy phép NRC. Dao động kỳ vọng ±12,3%, chất Sổ 3 nhị phân; vùng cũ $25,50–28 đã vô hiệu từ 2/11."
+  },
+  {
+   "ticker": "HUM",
+   "name": "Humana Inc.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": -1.0,
+   "rev_est": "$40.87B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: kỳ vọng LỖ quý này — nhìn tỷ lệ chi phí y tế mảng Medicare Advantage. Dao động kỳ vọng ±9,4%."
+  },
+  {
+   "ticker": "MRNA",
+   "name": "Moderna Inc.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": -1.1,
+   "rev_est": "$890M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: doanh thu vaccine COVID/RSV còn sụt tới đâu + tốc độ đốt tiền và pipeline mới."
+  },
+  {
+   "ticker": "CHTR",
+   "name": "Charter Communications",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 9.5,
+   "rev_est": "$13.52B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: thuê bao broadband còn rỉ máu không + sức mua lại cổ phiếu (ngày/giờ đã xác nhận BMO)."
+  },
+  {
+   "ticker": "BAM",
+   "name": "Brookfield Asset Management",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.46,
+   "rev_est": "$1.60B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: lợi nhuận từ phí quản lý tài sản + tốc độ huy động vốn mới (số Finviz)."
+  },
+  {
+   "ticker": "UI",
+   "name": "Ubiquiti Inc.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 4.25,
+   "rev_est": "$977M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: nhu cầu thiết bị mạng doanh nghiệp + biên lãi gộp vốn rất cao của hãng này."
+  },
+  {
+   "ticker": "WULF",
+   "name": "TeraWulf Inc.",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.18,
+   "rev_est": "$62.5M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: nhóm đào coin — đọc xuyên sang IREN (vị thế Tom ra số tối 5/11): sản lượng đào + hợp đồng điện cho AI/HPC."
+  },
+  {
+   "ticker": "BEN",
+   "name": "Franklin Resources",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.77,
+   "rev_est": "$1.86B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (consensus). Điểm nhìn: AUM + dòng tiền ròng các quỹ."
+  },
+  {
+   "ticker": "ENB",
+   "name": "Enbridge",
+   "date": "2026-11-06",
+   "when": "T6 6/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.36,
+   "rev_est": "$9.62B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (MarketBeat consensus; Zacks ghi DT $10,32B). Điểm nhìn: chi phí tài chính cao có đè lợi nhuận không; backlog dự án ~C$41B + cổ tức ~5,7%. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "WBD",
    "name": "Warner Bros. Discovery",
    "date": "2026-11-05",
@@ -311,116 +421,6 @@
    "price_after": 77.0,
    "essence": "EPS $0,51 beat mạnh $0,30 (+71%); doanh thu $203M beat $178M (+14%) — beat lớn cả hai sau 2 quý miss lợi nhuận liên tiếp, cổ phiếu +11,6% sau giờ.",
    "audio": "earnings-tmdx-2026-11-05.mp3"
-  },
-  {
-   "ticker": "VST",
-   "name": "Vistra Corp.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 2.98,
-   "rev_est": "$6.03B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: mã điện Tom đang canh vẽ lại vùng — đóng 4/11 $120,29 đã gãy cắt $132, vùng cũ vô hiệu, chờ dựng nền; số đẹp + guidance nhu cầu điện AI/hạt nhân là cơ hội dựng nền đầu tiên. Dao động kỳ vọng ±5,2%."
-  },
-  {
-   "ticker": "OKLO",
-   "name": "Oklo Inc.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.27,
-   "rev_est": "$1.03M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: chưa có doanh thu thương mại (DT kỳ vọng chỉ mang tính hình thức) — nhìn tiền mặt còn lại + tiến độ lò Aurora + giấy phép NRC. Dao động kỳ vọng ±12,3%, chất Sổ 3 nhị phân; vùng cũ $25,50–28 đã vô hiệu từ 2/11."
-  },
-  {
-   "ticker": "HUM",
-   "name": "Humana Inc.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": -1.0,
-   "rev_est": "$40.87B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: kỳ vọng LỖ quý này — nhìn tỷ lệ chi phí y tế mảng Medicare Advantage. Dao động kỳ vọng ±9,4%."
-  },
-  {
-   "ticker": "MRNA",
-   "name": "Moderna Inc.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": -1.1,
-   "rev_est": "$890M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: doanh thu vaccine COVID/RSV còn sụt tới đâu + tốc độ đốt tiền và pipeline mới."
-  },
-  {
-   "ticker": "CHTR",
-   "name": "Charter Communications",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 9.5,
-   "rev_est": "$13.52B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: thuê bao broadband còn rỉ máu không + sức mua lại cổ phiếu (ngày/giờ đã xác nhận BMO)."
-  },
-  {
-   "ticker": "BAM",
-   "name": "Brookfield Asset Management",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.46,
-   "rev_est": "$1.60B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: lợi nhuận từ phí quản lý tài sản + tốc độ huy động vốn mới (số Finviz)."
-  },
-  {
-   "ticker": "UI",
-   "name": "Ubiquiti Inc.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 4.25,
-   "rev_est": "$977M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: nhu cầu thiết bị mạng doanh nghiệp + biên lãi gộp vốn rất cao của hãng này."
-  },
-  {
-   "ticker": "WULF",
-   "name": "TeraWulf Inc.",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.18,
-   "rev_est": "$62.5M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 4/11 (consensus). Điểm nhìn: nhóm đào coin — đọc xuyên sang IREN (vị thế Tom ra số tối 5/11): sản lượng đào + hợp đồng điện cho AI/HPC."
-  },
-  {
-   "ticker": "BEN",
-   "name": "Franklin Resources",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.77,
-   "rev_est": "$1.86B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (consensus). Điểm nhìn: AUM + dòng tiền ròng các quỹ."
-  },
-  {
-   "ticker": "ENB",
-   "name": "Enbridge",
-   "date": "2026-11-06",
-   "when": "T6 6/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.36,
-   "rev_est": "$9.62B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 5/11 (MarketBeat consensus; Zacks ghi DT $10,32B). Điểm nhìn: chi phí tài chính cao có đè lợi nhuận không; backlog dự án ~C$41B + cổ tức ~5,7%. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "UBER",
