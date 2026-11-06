@@ -1898,7 +1898,11 @@ def update_alert_chips(h, prices):
 SYNC_SECS = ("sec-daytrade", "sec-swing", "sec-longterm", "sec-so2",
              "sec-so3", "sec-leverage", "sec-special", "sec-topfocus",
              "sec-plan", "sec-hot", "sec-watch", "sec-steelnet",
-             "sec-etf", "sec-etf16", "sec-dram", "sec-ahshark")
+             "sec-etf", "sec-etf16", "sec-dram")
+# 06/11: sec-ahshark BỊ LOẠI khỏi SYNC_SECS — pass sync dùng giá phiên
+# chính (tính % vs đóng hôm trước) đã ghi đè khối AH status của afterhours
+# hunt (% vs đóng HÔM NAY), tự mâu thuẫn ngay trong khối (vụ 13:30 06/11).
+# Khối AH do AH hunt viết lại mỗi 10 phút buổi tối, là nguồn duy nhất.
 _STATUS_LAB = {"IN": "🟢 TRONG VÙNG", "ABOVE": "⚪ TRÊN VÙNG",
                "BELOW": "🟡 DƯỚI VÙNG",
                "BROKEN": "🔴 GÃY VÙNG — THỦNG CẮT"}
