@@ -966,6 +966,78 @@
    "promise": "FY26 doanh thu 764–774 triệu đô la (tăng trưởng 26–28%), gồm ~14 triệu đô la từ PAD Aviation",
    "due": "FY26",
    "status": "open"
+  },
+  {
+   "ticker": "BEN",
+   "who": "Jenny Johnson (CEO Franklin Resources)",
+   "said_on": "2026-11-06",
+   "source": "BEN fiscal Q4 2026 call — Zolmax/TradingKey 6/11",
+   "promise": "Mục tiêu tài khóa 2029: huy động vốn thị trường tư nhân 150 tỷ đô la; tài sản quỹ hoán đổi danh mục 200 tỷ đô la; nền tảng Canvas 100 tỷ đô la",
+   "due": "2029",
+   "status": "open"
+  },
+  {
+   "ticker": "VST",
+   "who": "Jim Burke (CEO Vistra)",
+   "said_on": "2026-11-06",
+   "source": "VST Q3 2026 call — PRNewswire/MarketBeat 6/11",
+   "promise": "Guidance 2027 EBITDA 7,7–8,5 tỷ đô la; dòng tiền tự do trước tăng trưởng trên mỗi cổ phiếu khoảng 24 đô la vào năm 2030",
+   "due": "2027 (EBITDA) / 2030 (FCF/cổ phiếu)",
+   "status": "open"
+  },
+  {
+   "ticker": "OKLO",
+   "who": "Jake DeWitte (CEO Oklo)",
+   "said_on": "2026-11-06",
+   "source": "OKLO Q3 2026 call — Barron's/MarketBeat 6/11",
+   "promise": "Lò thương mại Aurora đầu tiên vận hành sớm nhất 2028; nhà máy Ohio 1,2 GW cho Meta bắt đầu phát điện năm 2030",
+   "due": "2028 (Aurora) / 2030 (Ohio)",
+   "status": "open"
+  },
+  {
+   "ticker": "HUM",
+   "who": "Jim Rechtin (CEO Humana)",
+   "said_on": "2026-11-06",
+   "source": "HUM Q3 2026 call — AlphaStreet/Becker's 6/11",
+   "promise": "Biên lợi nhuận trước thuế mảng Medicare Advantage cá nhân trên 3% vào năm 2028; số thành viên tăng trong năm 2027",
+   "due": "2027 (thành viên) / 2028 (biên 3%)",
+   "status": "open"
+  },
+  {
+   "ticker": "MRNA",
+   "who": "Stéphane Bancel (CEO Moderna)",
+   "said_on": "2026-11-06",
+   "source": "MRNA Q3 2026 call — Watchlist News/Newswire 6/11",
+   "promise": "Nộp hồ sơ xin cấp phép intismeran (u hắc tố) trong năm 2026, hy vọng phê duyệt năm 2027; tăng trưởng doanh thu cả năm 2026 đạt 15–25%",
+   "due": "2026 (nộp hồ sơ) / 2027 (phê duyệt, kiểm chứng tại earnings Q4)",
+   "status": "open"
+  },
+  {
+   "ticker": "CHTR",
+   "who": "Charter (ban lãnh đạo, call Q3 2026)",
+   "said_on": "2026-11-06",
+   "source": "CHTR Q3 2026 call — Zacks/TheDesk 6/11",
+   "promise": "Tiết kiệm 2 tỷ đô la chi phí vận hành mỗi năm trong 18 tháng; hơn 1 tỷ đô la hiệp đồng Cox, 90% đạt trong 24 tháng",
+   "due": "2028-H1 (tiết kiệm 2 tỷ) / 2028 (hiệp đồng Cox)",
+   "status": "open"
+  },
+  {
+   "ticker": "WULF",
+   "who": "TeraWulf (ban lãnh đạo, call Q3 2026)",
+   "said_on": "2026-11-06",
+   "source": "WULF Q3 2026 call — Motley Fool/QuantAbundance 6/11",
+   "promise": "Tòa CB-4 thu tiền thuê từ quý 4/2026, CB-5 từ đầu 2027; tốc độ doanh thu năm hóa 700 triệu đô la khi thoát quý 1/2027; khu Justified sẵn sàng cuối 2027–quý 2/2028",
+   "due": "2027-Q1 (run-rate 700 triệu) / 2028-Q2 (Justified)",
+   "status": "open"
+  },
+  {
+   "ticker": "ENB",
+   "who": "Greg Ebel (CEO Enbridge)",
+   "said_on": "2026-11-06",
+   "source": "ENB Q3 2026 call — Motley Fool/Minichart 6/11",
+   "promise": "Dự án mở rộng Pony Express PXP2 vận hành cuối 2027; đạt guidance 2026 (EBITDA 20,2–20,8 tỷ đô la Canada) — năm thứ 21 liên tiếp đạt mục tiêu",
+   "due": "2026 (guidance) / 2027 (PXP2)",
+   "status": "open"
   }
  ]
 }
