@@ -1656,6 +1656,53 @@ def _zones_local():
     return zones, excluded
 
 
+def _heal_chip_placement(seg, t):
+    """VÁ 09/11 — GOM LẠI KHỐI BỊ XÉ: hàng data của mã nằm ở đầu bảng (do
+    ensure_zone_rows chèn sau header) trong khi zchip-row của nó rơi ở vị
+    trí khác trong mục (vụ URA/KLAC/LRCX 09/11: chip + chân nằm giữa mục,
+    hàng data trơ trọi trên cùng — các pass sau đều giữ nguyên tại chỗ nên
+    xé là VĨNH VIỄN). Hàm này dời zchip về ngay trên hàng data và blkfoot
+    về ngay dưới hàng data của ĐÚNG mã đó. Khối đã đúng mẫu (chip ngay
+    trên data, hoặc chip trên levcomp ngay trên data) thì không đụng.
+    Mã không có hàng data hoặc chưa có chip thì bỏ qua (pass chip lo)."""
+    row_m = re.search(r"<tr><td><b>" + re.escape(t) + r"</b></td>.*?</tr>",
+                      seg, re.S)
+    if not row_m:
+        return seg
+    chip_m = re.search(r'<tr class="zchip-row" data-t="' + re.escape(t)
+                       + r'">.*?</tr>', seg, re.S)
+    if not chip_m:
+        return seg
+    if chip_m.end() <= row_m.start():
+        # chip ở trên hàng data: chỉ đúng mẫu khi dính sát (hoặc cách
+        # đúng 1 dòng levcomp) — có khối khác chen giữa là khối đã xé.
+        between = seg[chip_m.end():row_m.start()]
+        if between.strip() == "" or re.fullmatch(
+                r'\s*<tr class="levcomp-row">.*?</tr>\s*', between, re.S):
+            return seg
+    # chip nằm DƯỚI hàng data (hàng data bị đẩy lên đầu bảng, chip ở
+    # giữa mục) cũng là khối xé — rơi xuống đây để gom lại.
+    chip_html = chip_m.group(0)
+    foot_m = re.search(r'<tr class="blkfoot-row" data-t="' + re.escape(t)
+                       + r'">.*?</tr>', seg, re.S)
+    foot_html = foot_m.group(0) if foot_m else None
+    spans = [(chip_m.start(), chip_m.end())]
+    if foot_m:
+        spans.append((foot_m.start(), foot_m.end()))
+    for a, b in sorted(spans, reverse=True):
+        seg = seg[:a] + seg[b:]
+    row_m = re.search(r"<tr><td><b>" + re.escape(t) + r"</b></td>.*?</tr>",
+                      seg, re.S)
+    if not row_m:
+        return seg
+    seg = seg[:row_m.start()] + chip_html + seg[row_m.start():]
+    if foot_html:
+        row_m = re.search(r"<tr><td><b>" + re.escape(t)
+                          + r"</b></td>.*?</tr>", seg, re.S)
+        seg = seg[:row_m.end()] + foot_html + seg[row_m.end():]
+    return seg
+
+
 def update_zone_chips(h, prices):
     """KHUNG CHỚP ĐẦU HÀNG cho bảng Sổ 1/2/3 (Tom chốt 30/10 08:51 — áp
     khuôn khung LONG TERM cho mọi mục): mỗi mã có vùng có 1 hàng khung
@@ -1686,6 +1733,7 @@ def update_zone_chips(h, prices):
                                  + r"</b></td>")
             if not row_pat.search(seg):
                 continue
+            seg = _heal_chip_placement(seg, t)
             px = prices[t][0]
             chip = _zone_chip_row(t, px, _zone_state_of(z, px), z,
                                   colspan=colspan)
