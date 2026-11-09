@@ -391,6 +391,17 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
+   "ticker": "VIV",
+   "name": "Telefonica Brasil S.A.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.24,
+   "rev_est": "$3.10B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (Nasdaq calendar EPS $0,24 · doanh thu kỳ vọng MarketBeat/Zacks)."
+  },
+  {
    "ticker": "SE",
    "name": "Sea Ltd",
    "date": "2026-11-10",
