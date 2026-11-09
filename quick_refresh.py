@@ -3177,6 +3177,58 @@ def steel_net_update(h, prices, highs52, pm=False):
         if -95 <= d <= -40 and (t in ZONES or t in STEEL_QUALITY):
             deals.append((t, d, px, h52, pc))
     deals.sort(key=lambda x: x[1])
+    # 09/11 ~09:30 — GUARD CHỐNG RỚT DÒNG (vụ URA 09/11): steelnet dựng lại
+    # từ prices của lượt này — mã nào fetch trượt là mất dòng, dù đang IN
+    # vùng. Mã IN/BELOW/BROKEN mà thiếu giá thì GIỮ dòng cũ bằng giá tốt
+    # cuối trong zone_state.json (update_zone_badges giữ nguyên entry cũ
+    # khi thiếu giá: new_state = dict(old)). Dòng giữ lại mang giờ cũ
+    # (⏳ giá cũ HH:MM DD/MM) — tuyệt đối không giả vờ tươi. Mã không có
+    # zone state thì vẫn rớt bình thường (không có gì để giữ).
+    kept = {}  # t -> "HH:MM DD/MM" (giờ cũ, hiển thị trong dòng)
+    try:
+        _zs_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "zone_state.json")
+        _zs = json.load(open(_zs_path)) if os.path.exists(_zs_path) else {}
+        # Đỉnh 52w dự phòng: lấy từ dòng cũ trên bảng khi fetch lượt này thiếu.
+        _old_h52 = {}
+        _m = re.search(r'id="sec-steelnet">(.*?)<!-- /STEELNET-AUTO -->', h, re.S)
+        if _m:
+            for _rm in re.finditer(
+                    r"<tr><td><b>([A-Z]{2,6})</b></td><td>\$?([\d,]+\.?\d*)</td>"
+                    r"<td[^>]*><b>(-?\d+)%</b></td><td>\$?([\d,]+\.?\d*)</td>",
+                    _m.group(1)):
+                try:
+                    _old_h52[_rm.group(1)] = float(_rm.group(4).replace(",", ""))
+                except Exception:
+                    pass
+        for _t, _e in _zs.items():
+            if _t in prices or _t in _ex:
+                continue
+            if not isinstance(_e, dict) or _e.get("state") not in ("IN", "BELOW", "BROKEN"):
+                continue
+            _px = _e.get("price")
+            if not isinstance(_px, (int, float)) or _px <= 0:
+                continue
+            _h52 = (highs52 or {}).get(_t) or _old_h52.get(_t)
+            if not _h52 or _h52 <= 0:
+                continue
+            _d = (_px - _h52) / _h52 * 100
+            if not (-95 <= _d <= -40):
+                continue
+            if _t not in ZONES and _t not in STEEL_QUALITY:
+                continue
+            try:
+                _dt = datetime.fromisoformat(str(_e.get("time", "")).replace("Z", "+00:00"))
+                _ts_old = _dt.strftime("%H:%M %d/%m")
+            except Exception:
+                _ts_old = str(_e.get("time", ""))[:16] or "không rõ giờ"
+            deals.append((_t, _d, _px, _h52, 0.0))
+            kept[_t] = _ts_old
+        if kept:
+            deals.sort(key=lambda x: x[1])
+            print(f"  lưới thép: giữ dòng giá cũ cho {', '.join(sorted(kept))}", flush=True)
+    except Exception as _ge:
+        print(f"  ! steelnet guard skip ({_ge})", file=sys.stderr)
     bait = _fresh_bait_all()
     ts = now_pt().strftime("%H:%M")
     if deals:
@@ -3214,10 +3266,12 @@ def steel_net_update(h, prices, highs52, pm=False):
                 zinfo = "chờ vẽ vùng (watch-only)"
             b = bait.get(t)
             brow = f"<br>🎣 Mồi: {'; '.join(b)}" if b else ""
+            stale = (f' <span style="color:#f0b429">⏳ giá cũ {kept[t]}</span>'
+                     if t in kept else "")
             rows.append(
                 f'<tr><td><b>{t}</b></td><td>{fmt_price(px)}</td>'
                 f'<td style="color:#e05252"><b>{d:.0f}%</b></td>'
-                f'<td>{fmt_price(h52)}</td><td>{zinfo}{brow}</td></tr>')
+                f'<td>{fmt_price(h52)}</td><td>{zinfo}{stale}{brow}</td></tr>')
         body = ('<table class="tbl"><tr><th>Mã</th><th>Giá</th><th>Onsale</th>'
                 '<th>Đỉnh 52w</th><th>Vùng / Mồi</th></tr>' +
                 "".join(rows) + "</table>")
@@ -3225,7 +3279,8 @@ def steel_net_update(h, prices, highs52, pm=False):
         body = '<div class="alert">Chưa có mã đạt chuẩn onsale 40–95% lúc này.</div>'
     block = (f'<div class="sec" id="sec-steelnet"><h2>🕸️ LƯỚI THÉP — ONSALE 40–95% (tự động)</h2>'
              f'<div class="note">Mã đạt chuẩn tự vào lưới mỗi lượt 5 phút • có vùng duyệt mới lên mâm • '
-             f'mọi lệnh đều có cắt cứng • cập nhật {ts} PT{" • giá premarket, thanh khoản mỏng" if pm else ""}</div>'
+             f'mọi lệnh đều có cắt cứng • cập nhật {ts} PT{" • giá premarket, thanh khoản mỏng" if pm else ""}'
+             f'{" • ⏳ " + str(len(kept)) + " mã giữ giá cũ (giờ cũ trong dòng)" if kept else ""}</div>'
              f"<!-- STEELNET-AUTO -->{body}<!-- /STEELNET-AUTO --></div>\n")
     if 'id="sec-steelnet"' in h:
         h = re.sub(r'<div class="sec" id="sec-steelnet">.*?</div>\n',
@@ -3237,7 +3292,8 @@ def steel_net_update(h, prices, highs52, pm=False):
     if 'muc.html?s=sec-steelnet' not in h:
         h = re.sub(r'(href="#sec-sancm">🔪 Săn CM</a>)',
                    r'\1<a href="muc.html?s=sec-steelnet">🕸️ Lưới Thép</a>', h, count=1)
-    return h, f"lưới thép: {len(deals)} mã onsale"
+    return h, (f"lưới thép: {len(deals)} mã onsale"
+                 + (f" (giữ giá cũ: {', '.join(sorted(kept))})" if kept else ""))
 SHARK_FOCUS = [
     ("NVDA", "🦈🦈🦈", "Bullish premium $23.88M 12/10 (lớn nhất nhóm) · đơn TQ >$35B (Reuters 20/10), giá chưa bật"),
     ("TSM", "🦈🦈🦈", "$23.2M calendar spread $450 của desk pro (20/10) — gom dài hạn sau −11.7%/12 phiên"),
