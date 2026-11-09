@@ -2649,23 +2649,46 @@ BOOK_SEC = {"Sổ 1": "sec-longterm", "Sổ 2": "sec-so2", "Sổ 3": "sec-so3"}
 
 def ensure_zone_rows(h, prices, state_path):
     """LƯỚI THÉP — Tom 19/10: mã có vùng (IN/BROKEN) mà thiếu dòng bảng thì TỰ TẠO dòng.
-    Vá lỗ hổng COHR/ENTG/CRML/VLO: tín hiệu vùng bắn nhưng bảng không có dòng để xem."""
+    Vá lỗ hổng COHR/ENTG/CRML/VLO: tín hiệu vùng bắn nhưng bảng không có dòng để xem.
+    VÁ GỐC 09/11 (vụ URA — Tom bắt lỗi "URA không thấy trong Sổ 1"): điều kiện
+    "đã có dòng" phải soi TRONG ĐÚNG MỤC SỔ của mã. Bản cũ soi TOÀN CỤC cả
+    file nên dòng ở sec-steelnet/sec-etf/sec-watch đè mất dòng Sổ: URA có dòng
+    Lưới Thép (IN vùng) mà mục Sổ 1 trống trơn, không lượt nào tự tạo được."""
     try:
         state = json.load(open(state_path)) if os.path.exists(state_path) else {}
     except Exception:
         state = {}
+    try:
+        _rawz = json.load(open(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "zones.json"),
+            encoding="utf-8"))
+        excluded = set(_rawz.get("_excluded", []))
+    except Exception:
+        excluded = set()
     created = []
     for t, z in ZONES.items():
-        if t not in prices:
+        if t in excluded or t not in prices:
+            continue
+        if not z.get("entry"):
             continue
         st = (state.get(t) or {}).get("state")
         if st not in ("IN", "BROKEN"):
             continue
-        if re.search(r"<b>" + re.escape(t) + r"</b></td>", h):
+        sec = BOOK_SEC.get(z.get("book", ""), "sec-watch")
+        # --- soi dòng TRONG ĐÚNG MỤC SỔ của mã (không phải toàn cục) ---
+        m = re.search(r'<div class="sec" id="' + sec + r'"[^>]*>', h)
+        if not m:
+            print(f"  ! lưới thép: không tìm thấy section {sec} cho {t}",
+                  file=sys.stderr)
+            continue
+        s0 = m.start()
+        nxt = h.find('<div class="sec"', s0 + 10)
+        s1 = nxt if nxt != -1 else len(h)
+        seg = h[s0:s1]
+        if re.search(r"<b>" + re.escape(t) + r"</b></td>", seg):
             continue
         px, pc = prices[t]
         lo, hi = z["entry"]
-        sec = BOOK_SEC.get(z.get("book", ""), "sec-watch")
         dir_cls = "up" if pc >= 0 else "down"
         zone_txt = f"Vào ${lo:g}–${hi:g}"
         if z.get("targets"):
@@ -2687,13 +2710,13 @@ def ensure_zone_rows(h, prices, state_path):
                f'<td><span class="zone">{zone_txt}</span></td>'
                f'<td><span class="badge {badge_class(st)}">{badge_text(st)}</span> '
                f'<span class="badge b-new">MỚI</span></td></tr>\n')
-        pat = re.compile(r'(<div class="sec" id="' + sec + r'">.*?<table>.*?<tr><th>.*?</tr>)', re.S)
-        h2, c = pat.subn(lambda m: m.group(1) + "\n    " + row, h, count=1)
+        pat = re.compile(r'(<table>.*?<tr><th>.*?</tr>)', re.S)
+        seg2, c = pat.subn(lambda mm: mm.group(1) + "\n    " + row, seg, count=1)
         if c:
-            h = h2
+            h = h[:s0] + seg2 + h[s1:]
             created.append(t)
         else:
-            print(f"  ! lưới thép: không tìm thấy section {sec} cho {t}", file=sys.stderr)
+            print(f"  ! lưới thép: không tìm thấy bảng trong {sec} cho {t}", file=sys.stderr)
     if created:
         print(f"lưới thép: tự tạo dòng bảng cho {', '.join(created)}", flush=True)
     return h
@@ -7647,7 +7670,8 @@ def main():
 
     # 🕸️ LƯỚI THÉP (bổ sung dòng còn thiếu) — CHẠY SAU steel_net_update (fix 21/10, xem NOTE ở trên):
     # mã IN/BROKEN mà steelnet vừa rớt (vd STX vào vùng nên discount <40%), hoặc chưa có
-    # dòng ở bất kỳ đâu → tự tạo dòng ở mục Sổ đúng book. Không trùng (skip khi đã có dòng).
+    # dòng ở bất kỳ đâu → tự tạo dòng ở mục Sổ đúng book. VÁ 09/11: "đã có dòng"
+    # soi TRONG ĐÚNG MỤC SỔ — dòng ở steelnet/etf KHÔNG còn đè mất dòng Sổ (vụ URA).
     if a.mode in ("full", "close"):
         h = ensure_zone_rows(h, prices, os.path.join(a.repo_dir, "zone_state.json"))
 
