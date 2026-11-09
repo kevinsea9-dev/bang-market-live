@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "FERG",
-   "name": "Ferguson Enterprises",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.37,
-   "rev_est": "$8.91B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: nhà phân phối vật liệu xây dựng lớn — đọc sức khỏe xây dựng Mỹ. [05:42 PT 9/11: chưa ra số — CoinCodex chưa có số thật, chưa có lệnh premarket; kiểm tra lại lượt sau.]"
-  },
-  {
    "ticker": "OXY",
    "name": "Occidental Petroleum",
    "date": "2026-11-09",
@@ -100,17 +89,6 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: tài chính Peru — EPS danh nghĩa cao $25,59."
   },
   {
-   "ticker": "PLUG",
-   "name": "Plug Power",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "PENDING",
-   "eps_est": -0.07,
-   "rev_est": "$198.36M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; SA DT $193,33M). Điểm nhìn: hydro — công ty đã báo trước DT Q3 tăng >10% YoY (sàn ~$194,8M); lỗ thu hẹp còn -$0,07."
-  },
-  {
    "ticker": "ACHR",
    "name": "Archer Aviation",
    "date": "2026-11-09",
@@ -131,6 +109,24 @@
    "rev_est": "$6.5M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp 9/11 (Zacks 2/11: EPS -$0,19, DT $6,5M). Điểm nhìn: Sổ 3 $9,20–9,65/Chốt $10,30→$10,80/Cắt <$8,85 — đóng 6/11 $8,23 đã dưới cắt; báo cáo đầu tiên dưới CEO mới (từ 1/10) — đọc mốc bán nam châm đầu tiên cuối 2026 + Stillwater 600 tấn/năm."
+  },
+  {
+   "ticker": "FERG",
+   "name": "Ferguson Enterprises",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "DONE",
+   "eps_est": 3.37,
+   "rev_est": "$8.91B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: nhà phân phối vật liệu xây dựng lớn — đọc sức khỏe xây dựng Mỹ. [05:42 PT 9/11: chưa ra số — CoinCodex chưa có số thật, chưa có lệnh premarket; kiểm tra lại lượt sau.]",
+   "eps_act": 3.43,
+   "rev_act": "$9.03B",
+   "verdict": "BEAT",
+   "guidance": "Nâng guidance tăng trưởng doanh thu cả năm 2026 lên ~7% (từ mid-single-digit); biên lợi nhuận hoạt động điều chỉnh 9,6%–9,8%; cổ tức $0,89/quý",
+   "reaction_pct": 11.2,
+   "price_after": 259.78,
+   "essence": "EPS điều chỉnh $3,43 vượt kỳ vọng $3,37; DT $9,03B +9,5% YoY nhờ mảng phi dân cư +15% và tăng trưởng hữu cơ 7%; nâng guidance cả năm lên ~7%. Giá đóng phiên 9/11 $259,78 (+11,2% so với đóng 6/11 $233,70) — báo cáo BMO nên phản ứng tính theo phiên thường."
   },
   {
    "ticker": "CEG",
@@ -249,6 +245,24 @@
    "reaction_pct": -0.5,
    "price_after": 59.5,
    "essence": "EPS $0,35 vượt kỳ vọng $0,28; DT $259,9M +61% YoY; BRIUMVI Mỹ $232,6M +52% YoY; lãi ròng $55,5M; mua lại ~$100M cổ phiếu trong quý. Giá premarket 05:42 PT, thanh khoản mỏng."
+  },
+  {
+   "ticker": "PLUG",
+   "name": "Plug Power",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": -0.07,
+   "rev_est": "$198.36M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; SA DT $193,33M). Điểm nhìn: hydro — công ty đã báo trước DT Q3 tăng >10% YoY (sàn ~$194,8M); lỗ thu hẹp còn -$0,07.",
+   "eps_act": 0.07,
+   "rev_act": "$201M",
+   "verdict": "BEAT",
+   "guidance": "Giữ guidance tăng trưởng DT 2026 15%–16%; mục tiêu EBITDAS dương Q4 2026; đốt tiền ròng Q4 dự kiến đi ngang",
+   "reaction_pct": 2.7,
+   "price_after": 1.54,
+   "essence": "DT ~$201M +13% YoY, vượt kỳ vọng $198,36M; EPS GAAP ~$0,07 nhờ lãi mark-to-market ~$192M (~$0,12) — EPS điều chỉnh ~-$0,05, vẫn trên kỳ vọng -$0,07; biên gộp cải thiện lên ~(3%) từ ~(68%); đốt tiền ròng kỷ lục thấp ~$28M (-54% QoQ). Giá after-hours ~$1,54 lúc 13:14 PT (+2,7% so với đóng $1,50), thanh khoản mỏng."
   }
  ],
  "playlist": {
