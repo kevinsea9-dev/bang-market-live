@@ -319,10 +319,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 AMC",
    "status": "PENDING",
-   "eps_est": -1.18,
+   "eps_est": -1.45,
    "rev_est": "$3.62B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: GPU cloud cho AI — đọc backlog + đốt tiền; mã Tom đang theo dõi sát."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "PBR",
@@ -330,10 +330,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 AMC",
    "status": "PENDING",
-   "eps_est": 0.56,
+   "eps_est": 1.38,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus AltIndex 9/11; FI Handbook ghi EPS $1,38 — chưa thống nhất, kiểm tra lại khi có số thật). Điểm nhìn: dầu quốc doanh Brazil — đọc giá dầu + cổ tức."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "GO",
@@ -341,10 +341,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 AMC",
    "status": "PENDING",
-   "eps_est": 0.16,
+   "eps_est": 0.11,
    "rev_est": "$1.20B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: bán lẻ giá rẻ — đọc sức mua người tiêu dùng."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "REZI",
@@ -352,10 +352,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 AMC",
    "status": "PENDING",
-   "eps_est": 0.7,
+   "eps_est": 0.4,
    "rev_est": "$1.04B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: nhà thông minh + HVAC — đọc nhu cầu sửa nhà."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "BV",
@@ -363,10 +363,32 @@
    "date": "2026-11-10",
    "when": "T3 10/11 AMC",
    "status": "PENDING",
-   "eps_est": 0.26,
+   "eps_est": 0.22,
    "rev_est": "$745.8M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: cảnh quan thương mại — đọc backlog hợp đồng."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "ALC",
+   "name": "Alcon Inc.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.89,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "EC",
+   "name": "Ecopetrol S.A.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.62,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "SE",
@@ -374,10 +396,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 BMO",
    "status": "PENDING",
-   "eps_est": 0.82,
+   "eps_est": 0.79,
    "rev_est": "$8.29B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: Shopee/Garena/SeaMoney — đọc sức mua ĐNÁ + game."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "TDG",
@@ -385,10 +407,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 BMO",
    "status": "PENDING",
-   "eps_est": 12.33,
+   "eps_est": 11.43,
    "rev_est": "$2.98B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: phụ tùng hàng không độc quyền — đọc nhu cầu MRO + quốc phòng."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "VG",
@@ -396,21 +418,10 @@
    "date": "2026-11-10",
    "when": "T3 10/11 BMO",
    "status": "PENDING",
-   "eps_est": 0.51,
+   "eps_est": 0.5,
    "rev_est": "$4.83B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: LNG — đọc giá khí + hợp đồng xuất khẩu."
-  },
-  {
-   "ticker": "BN",
-   "name": "Brookfield",
-   "date": "2026-11-10",
-   "when": "T3 10/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.75,
-   "rev_est": "$1.85B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
   },
   {
    "ticker": "ONON",
@@ -418,10 +429,21 @@
    "date": "2026-11-10",
    "when": "T3 10/11 BMO",
    "status": "PENDING",
-   "eps_est": 0.4,
+   "eps_est": 0.42,
    "rev_est": "$948M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus el-fondo 9/11). Điểm nhìn: giày chạy bộ — đọc tăng trưởng DTC + biên."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "BN",
+   "name": "Brookfield",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.72,
+   "rev_est": "$1.85B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
   }
  ],
  "playlist": {
