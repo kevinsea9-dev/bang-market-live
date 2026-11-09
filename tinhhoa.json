@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "ASTS",
-   "name": "AST SpaceMobile",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "PENDING",
-   "eps_est": -0.42,
-   "rev_est": "$45.73M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; Zacks DT $44,4M). Điểm nhìn: Sổ 3 $37–41 đã thủng cắt $35 (giá ~$32,3 ngày 6/11) — chỉ tham chiếu; DT kỳ vọng +210% YoY nhờ hợp đồng chính phủ. [13:42 PT 9/11: chưa có số trên wire — call 5:00 PM ET (14:00 PT) vừa bắt đầu; Cú Đêm kiểm tra lại.]"
-  },
-  {
    "ticker": "BAP",
    "name": "Credicorp",
    "date": "2026-11-09",
@@ -20,18 +9,7 @@
    "eps_est": 25.59,
    "rev_est": "$6.71B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: tài chính Peru — EPS danh nghĩa cao $25,59. [13:42 PT 9/11: chưa có số trên wire — call vào sáng mai 10/11 9:30 AM ET; Cú Đêm kiểm tra lại.]"
-  },
-  {
-   "ticker": "USAR",
-   "name": "USA Rare Earth",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "PENDING",
-   "eps_est": -0.19,
-   "rev_est": "$6.5M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp 9/11 (Zacks 2/11: EPS -$0,19, DT $6,5M). Điểm nhìn: Sổ 3 $9,20–9,65/Chốt $10,30→$10,80/Cắt <$8,85 — đóng 6/11 $8,23 đã dưới cắt; báo cáo đầu tiên dưới CEO mới (từ 1/10) — đọc mốc bán nam châm đầu tiên cuối 2026 + Stillwater 600 tấn/năm. [13:42 PT 9/11: chưa có số trên wire dù call 4:30 PM ET đã qua; Cú Đêm kiểm tra lại.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: tài chính Peru — EPS danh nghĩa cao $25,59. [13:42 PT 9/11: chưa có số trên wire — call vào sáng mai 10/11 9:30 AM ET; Cú Đêm kiểm tra lại.] [15:40 PT 9/11: vẫn chưa có số.]"
   },
   {
    "ticker": "FERG",
@@ -64,9 +42,9 @@
    "rev_act": "$9.55B",
    "verdict": "BEAT",
    "guidance": "Nâng + thu hẹp guidance EPS điều chỉnh cả năm 2026 lên $12,50–12,80 (lần nâng thứ 2 trong năm)",
-   "reaction_pct": 2.1,
-   "price_after": 255.26,
-   "essence": "EPS điều chỉnh $5,06 vượt xa kỳ vọng $3,89 (+30%); DT $9,55B +45% YoY nhờ Calpine; ký thêm PPA 20 năm với Amazon (690 MW) và Google (~890 MW). Giá premarket 05:42 PT, thanh khoản mỏng — đã vượt lên trên vùng $238–250."
+   "reaction_pct": 10.4,
+   "price_after": 275.88,
+   "essence": "EPS điều chỉnh $5,06 vượt xa kỳ vọng $3,89 (+30%); DT $9,55B +45% YoY nhờ Calpine; ký thêm PPA 20 năm với Amazon (690 MW) và Google (~890 MW). Giá AH $275,88 lúc 15:39 PT (+10,4% so với đóng 6/11 $249,95; đóng phiên $276,09) — đã chạm chốt 1 Sổ 3 $272."
   },
   {
    "ticker": "KKR",
@@ -98,9 +76,9 @@
    "rev_act": "$9.47B",
    "verdict": "BEAT",
    "guidance": "Giữ guidance 2026 (EBITDA điều chỉnh $5,325–5,825B; EPS $7,90–9,90) + mở guidance 2027 (EBITDA $5,5–6B; EPS $8,05–10,05); bán 4,9 GW điện khí cho LS Power $4B tiền mặt",
-   "reaction_pct": 6.1,
-   "price_after": 93.69,
-   "essence": "EPS điều chỉnh $4,68 vượt xa kỳ vọng $3,03 (+54%); DT $9,47B; lãi GAAP $561M gấp hơn 3 lần cùng kỳ. Giá premarket 05:42 PT, thanh khoản mỏng — đã vượt lên trên vùng $80–86, tiệm cận chốt $96."
+   "reaction_pct": 9.9,
+   "price_after": 97.0,
+   "essence": "EPS điều chỉnh $4,68 vượt xa kỳ vọng $3,03 (+54%); DT $9,47B; lãi GAAP $561M gấp hơn 3 lần cùng kỳ. Giá AH $97,00 lúc 15:10 PT (+9,9% so với đóng 6/11 $88,29; đóng phiên $97,40) — đã chạm chốt 1 Sổ 3 $96."
   },
   {
    "ticker": "MNDY",
@@ -115,9 +93,9 @@
    "rev_act": "$377.54M",
    "verdict": "MIXED",
    "guidance": "Q4: DT $380–382M (dưới kỳ vọng ~$386M), tăng trưởng chậm lại ~14%; cả năm DT $1,473–1,475B; chuyển đổi AI-first gây sức ép ngắn hạn",
-   "reaction_pct": -9.6,
-   "price_after": 79.5,
-   "essence": "EPS điều chỉnh $2,14 vượt xa kỳ vọng $1,41 (+52%); DT $377,5M +19% YoY — nhưng guidance Q4 yếu lấn át, cổ phiếu rơi premarket. Giá premarket 05:42 PT $79,50, thanh khoản mỏng; AI ARR $36M."
+   "reaction_pct": -8.1,
+   "price_after": 80.79,
+   "essence": "EPS điều chỉnh $2,14 vượt xa kỳ vọng $1,41 (+52%); DT $377,5M +19% YoY — nhưng guidance Q4 yếu lấn át, cổ phiếu rơi. Giá AH $80,79 lúc 14:54 PT (-8,1% so với đóng 6/11 $87,93; đóng phiên $79,93), thanh khoản mỏng; AI ARR $36M."
   },
   {
    "ticker": "CNH",
@@ -132,9 +110,9 @@
    "rev_act": "$4.35B",
    "verdict": "MIXED",
    "guidance": "Nâng guidance EPS điều chỉnh cả năm lên $0,44–0,48 (từ $0,41–0,46); thỏa thuận với Kobelco về mảng Construction",
-   "reaction_pct": 1.3,
-   "price_after": 11.705,
-   "essence": "EPS điều chỉnh $0,16 vượt kỳ vọng $0,10; DT $4,35B — trên ước tính Tapeboard $4,20B nhưng dưới consensus SA/MarketBeat ~$4,52B; lãi ròng GAAP chỉ $35M do khoản dự phòng thuế $156M. Giá premarket, print cuối 04:57 PT, giao dịch mỏng."
+   "reaction_pct": 11.4,
+   "price_after": 12.883,
+   "essence": "EPS điều chỉnh $0,16 vượt kỳ vọng $0,10; DT $4,35B — trên ước tính Tapeboard $4,20B nhưng dưới consensus SA/MarketBeat ~$4,52B; lãi ròng GAAP chỉ $35M do khoản dự phòng thuế $156M. Giá AH $12,88 lúc 14:57 PT (+11,4% so với đóng 6/11 $11,56; đóng phiên $12,82), giao dịch mỏng."
   },
   {
    "ticker": "B",
@@ -149,9 +127,9 @@
    "rev_act": "$5.07B",
    "verdict": "MIXED",
    "guidance": "Giữ guidance sản lượng vàng cả năm 2,90–3,25 triệu oz, đồng 190–220 nghìn tấn; AISC vàng $1.760–1.950/oz (giả định giá vàng $4.500/oz)",
-   "reaction_pct": 2.7,
-   "price_after": 41.67,
-   "essence": "EPS điều chỉnh $0,82 vượt kỳ vọng $0,78; DT $5,07B +22% YoY nhờ giá vàng thực nhận $4.243/oz (+23%) — nhưng DT hụt nhẹ kỳ vọng $5,10B và AISC tăng 24% lên $1.911/oz, chi phí đè lợi nhuận; cổ tức $0,175. Giá premarket 05:42 PT, thanh khoản mỏng."
+   "reaction_pct": 4.5,
+   "price_after": 42.38,
+   "essence": "EPS điều chỉnh $0,82 vượt kỳ vọng $0,78; DT $5,07B +22% YoY nhờ giá vàng thực nhận $4.243/oz (+23%) — nhưng DT hụt nhẹ kỳ vọng $5,10B và AISC tăng 24% lên $1.911/oz, chi phí đè lợi nhuận; cổ tức $0,175. Giá AH $42,38 lúc 15:40 PT (+4,5% so với đóng 6/11 $40,56; đóng phiên $42,27)."
   },
   {
    "ticker": "TGTX",
@@ -165,9 +143,45 @@
    "rev_act": "$259.9M",
    "verdict": "BEAT",
    "guidance": "Nâng guidance DT cả năm 2026 lên ~$1B (từ ~$950M); BRIUMVI Mỹ $915–920M (từ $890–905M)",
-   "reaction_pct": -0.5,
-   "price_after": 59.5,
-   "essence": "EPS $0,35 vượt kỳ vọng $0,28; DT $259,9M +61% YoY; BRIUMVI Mỹ $232,6M +52% YoY; lãi ròng $55,5M; mua lại ~$100M cổ phiếu trong quý. Giá premarket 05:42 PT, thanh khoản mỏng."
+   "reaction_pct": 5.5,
+   "price_after": 63.11,
+   "essence": "EPS $0,35 vượt kỳ vọng $0,28; DT $259,9M +61% YoY; BRIUMVI Mỹ $232,6M +52% YoY; lãi ròng $55,5M; mua lại ~$100M cổ phiếu trong quý. Giá AH $63,11 lúc 15:16 PT (+5,5% so với đóng 6/11 $59,83; đóng phiên $63,38), thanh khoản mỏng."
+  },
+  {
+   "ticker": "ASTS",
+   "name": "AST SpaceMobile",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": -0.42,
+   "rev_est": "$45.73M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; Zacks DT $44,4M). Điểm nhìn: Sổ 3 $37–41 đã thủng cắt $35 (giá ~$32,3 ngày 6/11) — chỉ tham chiếu; DT kỳ vọng +210% YoY nhờ hợp đồng chính phủ. [13:42 PT 9/11: chưa có số trên wire — call 5:00 PM ET (14:00 PT) vừa bắt đầu; Cú Đêm kiểm tra lại.]",
+   "eps_act": -0.44,
+   "rev_act": "$42.32M",
+   "verdict": "MISS",
+   "guidance": "Giữ mục tiêu DT 2026 $150–200M; công bố tài trợ $1,0B từ Nhật Bản cho vệ tinh midband + tên lửa Blacklift",
+   "reaction_pct": 0.2,
+   "price_after": 36.97,
+   "essence": "EPS -$0,44 hụt nhẹ kỳ vọng -$0,42; DT $42,32M +187% YoY nhưng hụt kỳ vọng $45,73M; DT 9 tháng $88,6M. Cổ phiếu đã +14,1% trong phiên thường lên $36,89 trước giờ báo cáo; AH $36,97 lúc 15:40 PT (+0,2% so với đóng, thanh khoản mỏng) — sát mép dưới vùng Sổ 3 $37–41, còn thiếu $0,03."
+  },
+  {
+   "ticker": "USAR",
+   "name": "USA Rare Earth",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": -0.19,
+   "rev_est": "$6.5M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp 9/11 (Zacks 2/11: EPS -$0,19, DT $6,5M). Điểm nhìn: Sổ 3 $9,20–9,65/Chốt $10,30→$10,80/Cắt <$8,85 — đóng 6/11 $8,23 đã dưới cắt; báo cáo đầu tiên dưới CEO mới (từ 1/10) — đọc mốc bán nam châm đầu tiên cuối 2026 + Stillwater 600 tấn/năm. [13:42 PT 9/11: chưa có số trên wire dù call 4:30 PM ET đã qua; Cú Đêm kiểm tra lại.]",
+   "eps_act": -0.44,
+   "rev_act": "$3.0M",
+   "verdict": "MISS",
+   "guidance": "Q4: bán Serra Verde ≥325 tấn TREO, giá rổ $43–97/kg; lần đầu có DT bán nam châm NdFeB",
+   "reaction_pct": -3.7,
+   "price_after": 8.44,
+   "essence": "EPS điều chỉnh -$0,44 hụt xa kỳ vọng -$0,19 (EPS GAAP -$0,02 nhờ lãi khác); DT $3,0M hụt kỳ vọng $6,5M (-54%), lỗ hoạt động $141,4M do chi phí leo thang Serra Verde; tiền mặt $1,2B. AH $8,44 lúc 15:39 PT (-3,7% so với đóng $8,76), dưới cắt Sổ 3 $8,85."
   },
   {
    "ticker": "OXY",
@@ -219,9 +233,9 @@
    "rev_act": "$267.83M",
    "verdict": "MIXED",
    "guidance": "Q4: DT $270–290M (trên kỳ vọng $265M), lỗ EBITDA $14–20M; Neutron vẫn lùi sang 2027",
-   "reaction_pct": -4.5,
-   "price_after": 56.24,
-   "essence": "DT kỷ lục $268M +73% YoY, backlog vọt lên $3,6B (từ $2,4B) nhờ hơn $1B đơn mới; nhưng lỗ EPS -$0,12 sâu hơn kỳ vọng -$0,07 — cổ phiếu -4,5% AH dù đã +10,9% trong phiên (thanh khoản mỏng)."
+   "reaction_pct": -6.6,
+   "price_after": 55.0,
+   "essence": "DT kỷ lục $268M +73% YoY, backlog vọt lên $3,6B (từ $2,4B) nhờ hơn $1B đơn mới; nhưng lỗ EPS -$0,12 sâu hơn kỳ vọng -$0,07 — AH $55,00 lúc 15:40 PT (-6,6% so với đóng phiên $58,86; thanh khoản mỏng) — rơi vào vùng Sổ 3 $50–55 (sát mép trên)."
   },
   {
    "ticker": "HIMS",
@@ -255,9 +269,9 @@
    "rev_act": "$736M",
    "verdict": "BEAT",
    "guidance": "Q4: DT ~$755M (điểm giữa), trên kỳ vọng $692M; HĐQT bổ sung $731M mua lại cp (tổng $1B)",
-   "reaction_pct": 21.8,
-   "price_after": 18.3,
-   "essence": "DT $736M đi ngang YoY nhưng vượt kỳ vọng $651M tới 13%; EPS điều chỉnh $0,33 vượt $0,25; EBITDA $266M vượt xa kỳ vọng — AH +21,8% lên ~$18,30 (thanh khoản mỏng)."
+   "reaction_pct": 2.8,
+   "price_after": 15.35,
+   "essence": "DT $736M đi ngang YoY nhưng vượt kỳ vọng $651M tới 13%; EPS điều chỉnh $0,33 vượt $0,25; EBITDA $266M vượt xa kỳ vọng — AH $15,35 lúc 15:40 PT (+2,8% so với đóng phiên $14,93; đã hạ nhiệt mạnh từ đỉnh AH +21,8% ~$18,30 đầu phiên AH, thanh khoản mỏng)."
   },
   {
    "ticker": "JBS",
@@ -269,13 +283,13 @@
    "rev_est": "$23.22B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: doanh thu kỳ vọng lớn nhất ngày — thịt bò/heo toàn cầu.",
-   "eps_act": null,
+   "eps_act": 0.15,
    "rev_act": "$22.74B",
    "verdict": "MISS",
    "guidance": "",
-   "reaction_pct": "+4,5% phiên thường (trước giờ báo cáo); AH chưa có giá",
-   "price_after": 13.05,
-   "essence": "Lợi nhuận ròng $164M (giảm >70% YoY) hụt xa consensus $256M; EBITDA điều chỉnh $1,18B (kỳ vọng $1,32B) -36% YoY dù mảng bò Mỹ cải thiện; DT $22,74B gần sát kỳ vọng. EPS/cp chưa xác minh từ nguồn cùng ngày — Cú Đêm bổ sung."
+   "reaction_pct": -7.3,
+   "price_after": 12.16,
+   "essence": "EPS $0,15 (điều chỉnh $0,16, kỳ vọng FactSet $0,21); lợi nhuận ròng $164M (giảm >70% YoY) hụt xa consensus $256M; EBITDA điều chỉnh $1,18B (kỳ vọng $1,32B) -36% YoY dù mảng bò Mỹ cải thiện; DT $22,74B gần sát kỳ vọng. Đóng phiên $13,12 (+5,1%); AH $12,16 lúc 15:11 PT (-7,3%, thanh khoản mỏng)."
   },
   {
    "ticker": "ACHR",
@@ -291,9 +305,9 @@
    "rev_act": "$5.10M",
    "verdict": "MIXED",
    "guidance": "Q4: DT $5–6M, lỗ EBITDA điều chỉnh $185–205M",
-   "reaction_pct": "+8,3% phiên thường; AH sau call 14:00 PT chưa chốt (thanh khoản mỏng)",
-   "price_after": 4.81,
-   "essence": "DT $5,1M vượt kỳ vọng $3,57M; lỗ ròng $274,6M, EBITDA điều chỉnh -$178,5M (đầu thuận của guidance); nhận chứng chỉ FAA Market Survey mở vận hành LA + thương vụ Boeing sắp đóng; tiền mặt $1,4B."
+   "reaction_pct": -5.0,
+   "price_after": 4.57,
+   "essence": "DT $5,1M vượt kỳ vọng $3,57M; lỗ ròng $274,6M, EBITDA điều chỉnh -$178,5M (đầu thuận của guidance); nhận chứng chỉ FAA Market Survey mở vận hành LA + thương vụ Boeing sắp đóng; tiền mặt $1,4B. AH $4,57 lúc 15:39 PT (-5,0% so với đóng phiên $4,81), thanh khoản mỏng."
   },
   {
    "ticker": "PLUG",
@@ -309,9 +323,9 @@
    "rev_act": "$201M",
    "verdict": "BEAT",
    "guidance": "Giữ guidance tăng trưởng DT 2026 15%–16%; mục tiêu EBITDAS dương Q4 2026; đốt tiền ròng Q4 dự kiến đi ngang",
-   "reaction_pct": 2.7,
-   "price_after": 1.54,
-   "essence": "DT ~$201M +13% YoY, vượt kỳ vọng $198,36M; EPS GAAP ~$0,07 nhờ lãi mark-to-market ~$192M (~$0,12) — EPS điều chỉnh ~-$0,05, vẫn trên kỳ vọng -$0,07; biên gộp cải thiện lên ~(3%) từ ~(68%); đốt tiền ròng kỷ lục thấp ~$28M (-54% QoQ). Giá after-hours ~$1,54 lúc 13:14 PT (+2,7% so với đóng $1,50), thanh khoản mỏng."
+   "reaction_pct": 0.0,
+   "price_after": 1.5,
+   "essence": "DT ~$201M +13% YoY, vượt kỳ vọng $198,36M; EPS GAAP ~$0,07 nhờ lãi mark-to-market ~$192M (~$0,12) — EPS điều chỉnh ~-$0,05, vẫn trên kỳ vọng -$0,07; biên gộp cải thiện lên ~(3%) từ ~(68%); đốt tiền ròng kỷ lục thấp ~$28M (-54% QoQ). Giá AH $1,50 lúc 15:40 PT (đi ngang so với đóng $1,50), thanh khoản mỏng."
   },
   {
    "ticker": "CRWV",
