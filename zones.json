@@ -499,14 +499,15 @@
  "NVDA": {
   "book": "Sổ 2",
   "entry": [
-   205,
-   218
+   168,
+   178
   ],
   "targets": [
-   243,
-   280
+   205,
+   220
   ],
-  "cut": 200
+  "cut": 164,
+  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 09/11 theo lệnh Tom, thay vùng $205–218/cắt $200 (gãy đóng 05/11 $181,60). Neo kệ hỗ trợ thật $164–180 (đáy lặp lại 11/2025–03/2026: $169,55 · $170,31 · $171,03 · $174,64 · đáy 52 tuần $164,27 ngày 30/03/2026) + đáy capitulation 05/11 $181,46. Premarket 09/11 ~$176,7 (−5,3%) — đang chọc vào kệ. KT: nền ≥3 phiên đóng không thủng đáy nhịp rơi + đóng lấy lại $185 (đáy vùng gom LT). Cắt = ĐÓNG <$164 (thủng đáy 52 tuần). Chốt $205 (MA200 $204,67) → $220 (MA50 $219,81). −27% vs đỉnh 52 tuần $243,37. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. Khung gom LT $185–205/cắt đóng <$175 giữ riêng ở job tsla-spcx-nvda-long-watch. 🔴 mốc canh/tham chiếu."
  },
  "SPCX": {
   "book": "Sổ 3",
