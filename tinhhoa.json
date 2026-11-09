@@ -1,6 +1,83 @@
 {
  "entries": [
   {
+   "ticker": "CEG",
+   "name": "Constellation Energy",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 3.89,
+   "rev_est": "$9.47B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: Sổ 3 VÙNG CHỜ CÓ ĐIỀU KIỆN $238–250/Chốt $272→$302/Cắt đóng <$228 (vẽ lại 06/11, neo đáy capitulation $231,30) — mã điện hạt nhân Tom đang canh; nhu cầu điện AI. Đóng 06/11 $249,95 ngay mép trên vùng."
+  },
+  {
+   "ticker": "KKR",
+   "name": "KKR & Co",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.58,
+   "rev_est": "$2.66B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat/Zacks 6/11). Điểm nhìn: vốn hóa lớn ~$91B, tài chính PE; cổ phiếu -24% trong 52 tuần."
+  },
+  {
+   "ticker": "FERG",
+   "name": "Ferguson Enterprises",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 3.37,
+   "rev_est": "$8.91B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: nhà phân phối vật liệu xây dựng lớn — đọc sức khỏe xây dựng Mỹ."
+  },
+  {
+   "ticker": "NRG",
+   "name": "NRG Energy",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 3.03,
+   "rev_est": "$9.29B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Seeking Alpha preview 6/11). Điểm nhìn: điện — cùng nhóm với CEG/VST; kỳ vọng EPS +9% YoY."
+  },
+  {
+   "ticker": "MNDY",
+   "name": "monday.com",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.41,
+   "rev_est": "$369.17M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; Zacks $1,43). Điểm nhìn: phần mềm — cổ phiếu -53% trong 1 năm; beat 7/8 quý gần nhất."
+  },
+  {
+   "ticker": "CNH",
+   "name": "CNH Industrial",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.1,
+   "rev_est": "$4.20B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: máy nông nghiệp/công nghiệp — đọc sức khỏe nông nghiệp."
+  },
+  {
+   "ticker": "B",
+   "name": "Barrick Mining",
+   "date": "2026-11-09",
+   "when": "T2 9/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.78,
+   "rev_est": "$5.10B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11). Điểm nhìn: vàng — hưởng lợi giá vàng cao; EPS kỳ vọng $0,78."
+  },
+  {
    "ticker": "OXY",
    "name": "Occidental Petroleum",
    "date": "2026-11-09",
@@ -120,83 +197,6 @@
    "rev_est": "$3.57M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11). Điểm nhìn: eVTOL — chưa có doanh thu đáng kể; đọc tiến độ chứng nhận/thương mại hóa."
-  },
-  {
-   "ticker": "CEG",
-   "name": "Constellation Energy",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.89,
-   "rev_est": "$9.47B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: Sổ 3 VÙNG CHỜ CÓ ĐIỀU KIỆN $238–250/Chốt $272→$302/Cắt đóng <$228 (vẽ lại 06/11, neo đáy capitulation $231,30) — mã điện hạt nhân Tom đang canh; nhu cầu điện AI. Đóng 06/11 $249,95 ngay mép trên vùng."
-  },
-  {
-   "ticker": "KKR",
-   "name": "KKR & Co",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.58,
-   "rev_est": "$2.66B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat/Zacks 6/11). Điểm nhìn: vốn hóa lớn ~$91B, tài chính PE; cổ phiếu -24% trong 52 tuần."
-  },
-  {
-   "ticker": "FERG",
-   "name": "Ferguson Enterprises",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.37,
-   "rev_est": "$8.91B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: nhà phân phối vật liệu xây dựng lớn — đọc sức khỏe xây dựng Mỹ."
-  },
-  {
-   "ticker": "NRG",
-   "name": "NRG Energy",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.03,
-   "rev_est": "$9.29B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Seeking Alpha preview 6/11). Điểm nhìn: điện — cùng nhóm với CEG/VST; kỳ vọng EPS +9% YoY."
-  },
-  {
-   "ticker": "MNDY",
-   "name": "monday.com",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.41,
-   "rev_est": "$369.17M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11; Zacks $1,43). Điểm nhìn: phần mềm — cổ phiếu -53% trong 1 năm; beat 7/8 quý gần nhất."
-  },
-  {
-   "ticker": "CNH",
-   "name": "CNH Industrial",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.1,
-   "rev_est": "$4.20B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: máy nông nghiệp/công nghiệp — đọc sức khỏe nông nghiệp."
-  },
-  {
-   "ticker": "B",
-   "name": "Barrick Mining",
-   "date": "2026-11-09",
-   "when": "T2 9/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.78,
-   "rev_est": "$5.10B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat 6/11). Điểm nhìn: vàng — hưởng lợi giá vàng cao; EPS kỳ vọng $0,78."
   }
  ],
  "playlist": {
