@@ -3981,11 +3981,25 @@ def fetch_pm_prices(tickers):
             prev = closes[-2] if last_day == today_et and len(closes) >= 2 else closes[-1]
             px = None
             ah_print = False
+            # ⚠️ VÁ GỐC 10/11 06:12 PT — fallback meta gây NHIỄM GIÁ ĐÓNG:
+            # khi request 1m prepost THẤT BẠI (timeout/429 lúc Yahoo chậm),
+            # code cũ rơi xuống `d["meta"]["regularMarketPrice"]` của nến
+            # NGÀY = giá ĐÓNG HÔM QUA, rồi trả về như giá sống. Sáng 10/11
+            # chính fallback này đã nhiễm cache (SPY $752,69 · SNDK $886,51
+            # toàn giá đóng 09/11) rồi nhiễm cả prices.json 06:08:18.
+            # Phân biệt 2 trường hợp: (a) request 1m THÀNH CÔNG nhưng chưa
+            # có nến nào (mã chưa giao dịch premarket) -> meta = đóng cửa,
+            # HIỂN THỊ ĐÚNG, giữ fallback; (b) request 1m THẤT BẠI (không
+            # biết giá thật) -> TRẢ None (bỏ mã), TUYỆT ĐỐI không bịa giá
+            # đóng làm giá hiện tại.
+            m_ok = False
             try:
                 url2 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
                         "?interval=1m&range=1d&includePrePost=true")
                 with urlopen(Request(url2, headers=UA), timeout=10) as r:
                     m = json.load(r)["chart"]["result"][0]
+                if isinstance(m, dict) and m.get("indicators"):
+                    m_ok = True
                 qc = m["indicators"]["quote"][0]["close"]
                 ts1 = m.get("timestamp") or []
                 last_i = None
@@ -4013,6 +4027,9 @@ def fetch_pm_prices(tickers):
             if session_done and not ah_print:
                 px = closes[-1]
             if px is None:
+                if not m_ok:
+                    # Không biết giá thật -> bỏ mã, không bịa giá đóng.
+                    return t, None
                 px = float(d["meta"]["regularMarketPrice"])
             return t, (round(float(px), 2), round((px - prev) / prev * 100, 2))
         except Exception as e:
