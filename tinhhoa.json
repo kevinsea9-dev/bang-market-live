@@ -1,6 +1,149 @@
 {
  "entries": [
   {
+   "ticker": "SE",
+   "name": "Sea Ltd",
+   "date": "2026-11-10",
+   "when": "T3 10/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.79,
+   "rev_est": "$8.29B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "TDG",
+   "name": "TransDigm",
+   "date": "2026-11-10",
+   "when": "T3 10/11 BMO",
+   "status": "PENDING",
+   "eps_est": 11.43,
+   "rev_est": "$2.98B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "VG",
+   "name": "Venture Global",
+   "date": "2026-11-10",
+   "when": "T3 10/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.5,
+   "rev_est": "$4.83B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "ONON",
+   "name": "On Holding",
+   "date": "2026-11-10",
+   "when": "T3 10/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.42,
+   "rev_est": "$948M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": -1.45,
+   "rev_est": "$3.62B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "PBR",
+   "name": "Petrobras",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.38,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "GO",
+   "name": "Grocery Outlet",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.11,
+   "rev_est": "$1.20B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "REZI",
+   "name": "Resideo",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.4,
+   "rev_est": "$1.04B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "BV",
+   "name": "BrightView",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.22,
+   "rev_est": "$745.8M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "ALC",
+   "name": "Alcon Inc.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.89,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "EC",
+   "name": "Ecopetrol S.A.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.62,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+  },
+  {
+   "ticker": "VIV",
+   "name": "Telefonica Brasil S.A.",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.24,
+   "rev_est": "$3.10B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (Nasdaq calendar EPS $0,24 · doanh thu kỳ vọng MarketBeat/Zacks)."
+  },
+  {
+   "ticker": "BN",
+   "name": "Brookfield",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.72,
+   "rev_est": "$1.85B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
+  },
+  {
    "ticker": "FERG",
    "name": "Ferguson Enterprises",
    "date": "2026-11-09",
@@ -387,149 +530,6 @@
    "price_after": 205.83,
    "essence": "DT kỷ lục $409,75M +88% YoY vượt kỳ vọng $392M; EPS điều chỉnh $2,44 vượt $2,30. Cổ phiếu đã +12% trong phiên thường lên $194,04 rồi +6% AH lên $205,83 lúc 20:00 ET (MarketBeat), thanh khoản mỏng.",
    "note": "Thêm mới Cú Đêm 1 17:37 PT 9/11 (MarketBeat + Finnhub)."
-  },
-  {
-   "ticker": "CRWV",
-   "name": "CoreWeave",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": -1.45,
-   "rev_est": "$3.62B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "PBR",
-   "name": "Petrobras",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.38,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "GO",
-   "name": "Grocery Outlet",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.11,
-   "rev_est": "$1.20B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "REZI",
-   "name": "Resideo",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.4,
-   "rev_est": "$1.04B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "BV",
-   "name": "BrightView",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.22,
-   "rev_est": "$745.8M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "ALC",
-   "name": "Alcon Inc.",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.89,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "EC",
-   "name": "Ecopetrol S.A.",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.62,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "VIV",
-   "name": "Telefonica Brasil S.A.",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.24,
-   "rev_est": "$3.10B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (Nasdaq calendar EPS $0,24 · doanh thu kỳ vọng MarketBeat/Zacks)."
-  },
-  {
-   "ticker": "SE",
-   "name": "Sea Ltd",
-   "date": "2026-11-10",
-   "when": "T3 10/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.79,
-   "rev_est": "$8.29B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "TDG",
-   "name": "TransDigm",
-   "date": "2026-11-10",
-   "when": "T3 10/11 BMO",
-   "status": "PENDING",
-   "eps_est": 11.43,
-   "rev_est": "$2.98B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "VG",
-   "name": "Venture Global",
-   "date": "2026-11-10",
-   "when": "T3 10/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.5,
-   "rev_est": "$4.83B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "ONON",
-   "name": "On Holding",
-   "date": "2026-11-10",
-   "when": "T3 10/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.42,
-   "rev_est": "$948M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "BN",
-   "name": "Brookfield",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.72,
-   "rev_est": "$1.85B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
   }
  ],
  "playlist": {
