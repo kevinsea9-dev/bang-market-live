@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "BAP",
-   "name": "Credicorp",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "PENDING",
-   "eps_est": 25.59,
-   "rev_est": "$6.71B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: tài chính Peru — EPS danh nghĩa cao $25,59. [13:42 PT 9/11: chưa có số trên wire — call vào sáng mai 10/11 9:30 AM ET; Cú Đêm kiểm tra lại.] [15:40 PT 9/11: vẫn chưa có số.]"
-  },
-  {
    "ticker": "FERG",
    "name": "Ferguson Enterprises",
    "date": "2026-11-09",
@@ -154,6 +143,24 @@
    "price_after": 63.11,
    "essence": "EPS $0,35 vượt kỳ vọng $0,28; DT $259,9M +61% YoY; BRIUMVI Mỹ $232,6M +52% YoY; lãi ròng $55,5M; mua lại ~$100M cổ phiếu trong quý. Giá AH $63,11 lúc 15:16 PT (+5,5% so với đóng 6/11 $59,83; đóng phiên $63,38), thanh khoản mỏng.",
    "audio": "earnings-tgtx-2026-11-09.mp3"
+  },
+  {
+   "ticker": "BAP",
+   "name": "Credicorp",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": 7.25,
+   "rev_est": "$1.92B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: tài chính Peru — EPS danh nghĩa cao $25,59. [13:42 PT 9/11: chưa có số trên wire — call vào sáng mai 10/11 9:30 AM ET; Cú Đêm kiểm tra lại.] [15:40 PT 9/11: vẫn chưa có số.] [17:37 PT 9/11 Cú Đêm 1: đã có số — EPS USD $7,06 vs $7,25 (FiscalAI/MarketBeat); AP $7,19 vs Zacks $7,51; DT $2,00B vs $1,92B. Call 10/11 9:30 AM ET.]",
+   "eps_act": 7.06,
+   "rev_act": "$2.00B",
+   "verdict": "MIXED",
+   "guidance": "",
+   "reaction_pct": 2.29,
+   "price_after": 355.9,
+   "essence": "EPS $7,06 hụt kỳ vọng $7,25 (AP: $7,19 vs Zacks $7,51); DT $2,00B vượt $1,92B; lợi nhuận ròng $570,8M; ROE 20,5%. Giá đóng phiên $355,90 (+2,29% so với đóng 6/11 $347,93) — số ra sau giờ đóng cửa, chưa có giá AH xác minh. Kỳ vọng nạp trước theo PEN ($25,59 / $6,71B) đã quy đổi sang USD để đồng đơn vị."
   },
   {
    "ticker": "ASTS",
@@ -344,6 +351,42 @@
    "price_after": 1.5,
    "essence": "DT ~$201M +13% YoY, vượt kỳ vọng $198,36M; EPS GAAP ~$0,07 nhờ lãi mark-to-market ~$192M (~$0,12) — EPS điều chỉnh ~-$0,05, vẫn trên kỳ vọng -$0,07; biên gộp cải thiện lên ~(3%) từ ~(68%); đốt tiền ròng kỷ lục thấp ~$28M (-54% QoQ). Giá AH $1,50 lúc 15:40 PT (đi ngang so với đóng $1,50), thanh khoản mỏng.",
    "audio": "earnings-plug-2026-11-09.mp3"
+  },
+  {
+   "ticker": "ZETA",
+   "name": "Zeta Global",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.28,
+   "rev_est": "$483.7M",
+   "implied": null,
+   "eps_act": 0.38,
+   "rev_act": "$492.7M",
+   "verdict": "BEAT",
+   "guidance": "Q4: DT ~$523M (điểm giữa), trên kỳ vọng; nâng guidance EBITDA cả năm",
+   "reaction_pct": -5.0,
+   "price_after": 30.73,
+   "essence": "DT $492,7M +46% YoY vượt kỳ vọng $483,7M; EPS điều chỉnh $0,38 vượt $0,28; billings $498,9M +48%; Q4 guide trên kỳ vọng — nhưng cổ phiếu vẫn -5% AH ($30,73 lúc 19:50 ET, MarketBeat) sau khi đã +4,5% trong phiên lên $32,42, thanh khoản mỏng.",
+   "note": "Thêm mới Cú Đêm 1 17:37 PT 9/11 (StockStory + MarketBeat)."
+  },
+  {
+   "ticker": "ONTO",
+   "name": "Onto Innovation",
+   "date": "2026-11-09",
+   "when": "T2 9/11 AMC",
+   "status": "DONE",
+   "eps_est": 2.3,
+   "rev_est": "$392.08M",
+   "implied": null,
+   "eps_act": 2.44,
+   "rev_act": "$409.75M",
+   "verdict": "BEAT",
+   "guidance": "",
+   "reaction_pct": 6.0,
+   "price_after": 205.83,
+   "essence": "DT kỷ lục $409,75M +88% YoY vượt kỳ vọng $392M; EPS điều chỉnh $2,44 vượt $2,30. Cổ phiếu đã +12% trong phiên thường lên $194,04 rồi +6% AH lên $205,83 lúc 20:00 ET (MarketBeat), thanh khoản mỏng.",
+   "note": "Thêm mới Cú Đêm 1 17:37 PT 9/11 (MarketBeat + Finnhub)."
   },
   {
    "ticker": "CRWV",
