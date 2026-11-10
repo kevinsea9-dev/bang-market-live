@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "CRWV",
-   "name": "CoreWeave",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": -1.45,
-   "rev_est": "$3.62B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
    "ticker": "PBR",
    "name": "Petrobras",
    "date": "2026-11-10",
@@ -20,29 +9,7 @@
    "eps_est": 1.38,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "GO",
-   "name": "Grocery Outlet",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.11,
-   "rev_est": "$1.20B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
-  },
-  {
-   "ticker": "REZI",
-   "name": "Resideo",
-   "date": "2026-11-10",
-   "when": "T3 10/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.4,
-   "rev_est": "$1.04B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11)."
+   "note": "⏳ Đã báo cáo sau giờ 10/11 (cổ phiếu +0,3% AH ~$18,29) — chưa xác minh được EPS/DT thật trên wire lúc 13:45 PT, Cú Đêm điền."
   },
   {
    "ticker": "BV",
@@ -161,6 +128,148 @@
    "essence": "EPS điều chỉnh $0,66 vượt kỳ vọng Zacks $0,50 (+32%); DT $1,15B vượt ~1%; doanh thu thuần CHF 931,4M +17,2% YoY, kỷ lục quý; lợi nhuận ròng CHF 162,8M +36,9%. Dù beat, cổ phiếu rớt vì triển vọng biên lợi nhuận (trừ hoàn thuế quan) chỉ nhích nhẹ. Giá premarket ~05:58 PT $35,29 (−6,0% so với đóng 9/11 $37,53; Bloomberg: rớt tới −5,9% premarket; thanh khoản mỏng)."
   },
   {
+   "ticker": "CRWV",
+   "name": "CoreWeave",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "DONE",
+   "eps_est": -1.45,
+   "rev_est": "$3.62B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11).",
+   "eps_act": -0.95,
+   "rev_act": "$3.66B",
+   "verdict": "BEAT",
+   "guidance": "Nâng guidance DT cả năm 2026 lên $13,0–13,3B (từ $12,4–13,2B); backlog kỷ lục $132,5B (từ $104B cuối Q2); mục tiêu run-rate cuối năm $20–21B",
+   "reaction_pct": 2.4,
+   "price_after": 49.92,
+   "essence": "DT Q3 $3,66B +168% YoY, vượt kỳ vọng $3,54B (FactSet); EPS GAAP -$0,95 vượt kỳ vọng -$1,45; lỗ điều chỉnh $1,27/cp đúng kỳ vọng; lãi vay $846M nuốt trọn lợi nhuận vận hành điều chỉnh $379M; backlog $132,5B. Giá AH ~13:41 PT $49,92 (+2,4% so với đóng $48,73; thanh khoản mỏng)."
+  },
+  {
+   "ticker": "GO",
+   "name": "Grocery Outlet",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.11,
+   "rev_est": "$1.20B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11).",
+   "eps_act": 0.13,
+   "rev_act": "$1.18B",
+   "verdict": "MIXED",
+   "guidance": "Nâng dự báo DT cả năm lên $4,70–4,72B (từ $4,60–4,72B); thu hẹp dự báo EPS điều chỉnh cả năm còn $0,52–0,55 (từ $0,51–0,55)",
+   "reaction_pct": -8.8,
+   "price_after": 12.79,
+   "essence": "EPS GAAP $0,13 vượt kỳ vọng $0,11 (EPS điều chỉnh $0,16, ngang kỳ vọng $0,1555); DT $1,18B +0,9% YoY, hụt kỳ vọng $1,20B; doanh số cửa hàng tương đương +0,5%; biên gộp 30,0% (từ 30,4%). Thị trường phạt vì DT hụt + biên co. Giá AH ~13:34 PT $12,79 (−8,8% so với đóng $14,02; thanh khoản mỏng)."
+  },
+  {
+   "ticker": "REZI",
+   "name": "Resideo",
+   "date": "2026-11-10",
+   "when": "T3 10/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.4,
+   "rev_est": "$713M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Nasdaq calendar 10/11).",
+   "eps_act": 0.52,
+   "rev_act": "$727M",
+   "verdict": "BEAT",
+   "guidance": "Cập nhật triển vọng 2026: DT Q4 $710–730M; EPS điều chỉnh độc lập cả năm $1,92–1,98",
+   "reaction_pct": -4.8,
+   "price_after": 18.51,
+   "essence": "EPS điều chỉnh $0,52 vượt kỳ vọng $0,40 (+8% YoY); DT hoạt động tiếp tục $727M +3% YoY, vượt consensus hiện tại ~$713M (số $1,04B nạp trước là ước tính cũ trước khi tách mảng ADI); biên gộp 40,4%, quý thứ 14 liên tiếp mở rộng; EPS GAAP $0,14, giảm 71% YoY do chi phí tách mảng. Giá AH ~13:29 PT $18,51 (−4,8% so với đóng $19,45; thanh khoản mỏng)."
+  },
+  {
+   "ticker": "FNV",
+   "name": "Franco-Nevada Corporation",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.77,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: hãng royalty vàng lớn nhất — giá vàng kỷ lục kéo royalty lên, xem dòng tiền + cổ tức."
+  },
+  {
+   "ticker": "VYLR",
+   "name": "Vylor Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": -0.44,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật."
+  },
+  {
+   "ticker": "TTEK",
+   "name": "Tetra Tech, Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.47,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang."
+  },
+  {
+   "ticker": "CAE",
+   "name": "CAE Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.19,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng."
+  },
+  {
+   "ticker": "CTVA",
+   "name": "Corteva, Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.09,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối."
+  },
+  {
+   "ticker": "GIB",
+   "name": "CGI Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.64,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ."
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco Systems, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.32,
+   "rev_est": "$18.11B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đơn hàng AI networking + guidance Q2; EPS $1,32 là non-GAAP (một số lịch ghi $1,15 GAAP). Vùng Sổ 3 $100–104 / Chốt $113→$119 / Cắt <$97."
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 4.06,
+   "rev_est": "$10.30B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
+  },
+  {
    "ticker": "BN",
    "name": "Brookfield",
    "date": "2026-11-12",
@@ -170,6 +279,17 @@
    "rev_est": "$1.85B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
+  },
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.61,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: neocloud AI — báo cáo ngay sau CRWV, so sánh tăng trưởng/backlog. Vùng Sổ 3 $136–148 / Chốt $179→$204 / Cắt <$130."
   },
   {
    "ticker": "FERG",
