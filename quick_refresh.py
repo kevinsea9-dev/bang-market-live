@@ -1375,6 +1375,23 @@ def prune_old_alerts(h):
     today = now.strftime("%d/%m")
     removed = [0]
 
+    # VÁ 10/11 ~07:05 PT (gốc vụ mất mục AI 36 2 lần trong ngày 10/11 — thí
+    # nghiệm tái hiện: prune xóa cả 15 khối sec-ai36 vì chứa ngày 09/11;
+    # ngày trong khối là ngày nghiên cứu/vẽ vùng, không phải ngày hết hạn
+    # của alert): sec-ai36 là mục NGHIÊN CỨU — KHÔNG BAO GIỜ quét theo
+    # ngày/dedup (miễn trừ cùng họ boom-item/lta-row đã có). Tách cả mục ra
+    # khỏi mọi lượt quét trong hàm này rồi gắn lại nguyên vẹn trước khi trả.
+    _ai_s = h.find('<div class="sec" id="sec-ai36">')
+    _ai_seg = ''
+    if _ai_s != -1:
+        _ai_e = h.find('<div class="sec" id=', _ai_s + 10)
+        if _ai_e == -1:
+            _ai_e = h.find('<div class="footer"', _ai_s + 10)
+        if _ai_e == -1:
+            _ai_e = len(h)
+        _ai_seg = h[_ai_s:_ai_e]
+        h = h[:_ai_s] + '@@SEC-AI36-KEEP@@' + h[_ai_e:]
+
     def check_alert(full, inner):
         # 💥 MÃ SẮP BUNG: khối sự kiện nhị phân do boom_block.py sở hữu —
         # KHÔNG quét theo ngày (ngày trong thân là ngày SỰ KIỆN tương lai,
@@ -1519,6 +1536,8 @@ def prune_old_alerts(h):
 
     h = re.sub(r'(<div class="sec"[^>]*>\s*<h2>🌙 CÚ ĐÊM.*?</h2>)(.*?)(?=<div class="sec"|<div class="footer")',
                trim_cudem, h, flags=re.S)
+    if _ai_seg:
+        h = h.replace('@@SEC-AI36-KEEP@@', _ai_seg, 1)
     return h, removed[0]
 
 
