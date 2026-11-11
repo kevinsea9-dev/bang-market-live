@@ -5456,7 +5456,13 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
            # (b) xe MỚI tìm được 11/11 (chưa từng có trong hệ):
            "BEX": "BE", "BEG": "BE", "CATG": "CAT", "SNOU": "SNOW",
            "PANG": "PANW", "CRWG": "CRWV", "CWVX": "CRWV", "CRWU": "CRWV",
-           "FIXX": "FIX", "OCNL": "DOCN", "SOFA": "SOFI"}
+           "FIXX": "FIX", "OCNL": "DOCN", "SOFA": "SOFI",
+           # (c) đợt 2 11/11 ~09:33 — mở rộng sector (crypto miners,
+           # quantum, hạt nhân, fintech; kiểm chứng chart meta 11/11):
+           "MRAL": "MARA", "CLSX": "CLSK", "CIFG": "CIFR", "RGTU": "RGTI",
+           "QBTX": "QBTS", "QUBX": "QUBT", "BAIG": "BBAI", "SMU": "SMR",
+           "TEMT": "TEM", "AFRU": "AFRM", "UPSX": "UPST", "PLUL": "PLUG",
+           "SPOG": "SPOT", "SHPU": "SHOP", "RBLU": "RBLX"}
 
 
 # --- XE X2 COMPANION (Tom 30/10 12:48): mẫu mục ĐÒN BẨY áp cho các mục khác.
@@ -5477,6 +5483,12 @@ COMP_MAP = {
     # 11/11: xe MỚI (Tom lệnh săn x2) — BE/CAT/SNOW/PANW/CRWV/FIX/DOCN/SOFI
     "BE": "BEX", "CAT": "CATG", "SNOW": "SNOU", "PANW": "PANG",
     "CRWV": "CRWG", "FIX": "FIXX", "DOCN": "OCNL", "SOFI": "SOFA",
+    # 11/11 đợt 2 (mở rộng sector — kiểm chứng Yahoo chart meta 11/11,
+    # tên quỹ khớp "2X Long <gốc>", nến 11/11 giao dịch thật):
+    "MARA": "MRAL", "CLSK": "CLSX", "CIFR": "CIFG", "RGTI": "RGTU",
+    "QBTS": "QBTX", "QUBT": "QUBX", "BBAI": "BAIG", "SMR": "SMU",
+    "TEM": "TEMT", "AFRM": "AFRU", "UPST": "UPSX", "PLUG": "PLUL",
+    "SPOT": "SPOG", "SHOP": "SHPU", "RBLX": "RBLU",
     "NVDA": "NVDL", "GOOGL": "GGLL", "AVGO": "AVGX", "TSM": "TSMX",
     "MSFT": "MSFU", "ORCL": "ORCU", "AMD": "AMDL", "META": "METU",
     "AMZN": "AMZU", "TSLA": "TSLL", "SNDK": "SNXX", "MU": "MUU",
@@ -5521,6 +5533,9 @@ COMP_MAP = {
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "SOFA": "⚠️ vol mỏng ~14k cp/ngày (11/11) — chia lệnh nhỏ, tránh giờ mỏng",
+    "CIFG": "🚨 giá xe chỉ ~$0,57 (11/11) — xe dưới $1, spread/phí nuốt biên lớn, cân nhắc",
+    "SPOG": "⚠️ vol rất mỏng ~4k cp/ngày (11/11) — gần như không giao dịch được",
+    "BAIG": "⚠️ vol mỏng ~13k cp/ngày (11/11) — chia lệnh nhỏ, tránh giờ mỏng",
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
     "VSTL": "⚠️ vol mỏng ~91k",
     "AVXX": "⚠️ vol mỏng ~39k",
