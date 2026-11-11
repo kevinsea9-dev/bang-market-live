@@ -1,24 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "GIB",
-   "name": "CGI Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 BMO",
-   "status": "DONE",
-   "eps_est": 1.64,
-   "rev_est": "$2.90B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ. [DT kỳ vọng MarketBeat $2,90B (Seeking Alpha ghi $2,95B).] [05:37 PT 11/11: đã ra số — BEAT nhẹ, EPS 1,65 USD vs 1,64 kv.]",
-   "eps_act": 1.65,
-   "rev_act": "$4.15B CAD (~$2.96B)",
-   "verdict": "BEAT",
-   "guidance": "Không công bố guidance số cho FY2027; tăng cổ tức 8,8%; backlog 32,07 tỷ CAD (1,9x DT năm); book-to-bill Q4 109,2%",
-   "reaction_pct": -0.2,
-   "price_after": 82.43,
-   "essence": "EPS điều chỉnh 2,31 CAD (~1,65 USD) vượt kỳ vọng 1,64 USD (+0,01); DT 4,15 tỷ CAD (+3,3% YoY, ~2,96 tỷ USD) vượt kỳ vọng 2,90 tỷ USD; lợi nhuận ròng 460,7 triệu CAD (+20,8%), EPS GAAP pha loãng 2,24 CAD (+30,2%); bookings 4,53 tỷ CAD, book-to-bill 109,2%. Giá premarket ~05:37 PT $82,43 (−0,2% so với đóng 10/11 $82,51; thanh khoản mỏng)."
-  },
-  {
    "ticker": "FNV",
    "name": "Franco-Nevada Corporation",
    "date": "2026-11-11",
@@ -72,6 +54,24 @@
    "rev_est": "$1.77B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối. [DT kỳ vọng Zacks/MarketBeat $1,77B (Tapeboard $1,80B).]"
+  },
+  {
+   "ticker": "GIB",
+   "name": "CGI Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 BMO",
+   "status": "DONE",
+   "eps_est": 1.64,
+   "rev_est": "$2.90B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ. [DT kỳ vọng MarketBeat $2,90B (Seeking Alpha ghi $2,95B).] [05:37 PT 11/11: đã ra số — BEAT nhẹ, EPS 1,65 USD vs 1,64 kv.]",
+   "eps_act": 1.65,
+   "rev_act": "$4.15B CAD (~$2.96B)",
+   "verdict": "BEAT",
+   "guidance": "Không công bố guidance số cho FY2027; tăng cổ tức 8,8%; backlog 32,07 tỷ CAD (1,9x DT năm); book-to-bill Q4 109,2%",
+   "reaction_pct": -0.2,
+   "price_after": 82.43,
+   "essence": "EPS điều chỉnh 2,31 CAD (~1,65 USD) vượt kỳ vọng 1,64 USD (+0,01); DT 4,15 tỷ CAD (+3,3% YoY, ~2,96 tỷ USD) vượt kỳ vọng 2,90 tỷ USD; lợi nhuận ròng 460,7 triệu CAD (+20,8%), EPS GAAP pha loãng 2,24 CAD (+30,2%); bookings 4,53 tỷ CAD, book-to-bill 109,2%. Giá premarket ~05:37 PT $82,43 (−0,2% so với đóng 10/11 $82,51; thanh khoản mỏng)."
   },
   {
    "ticker": "BN",
