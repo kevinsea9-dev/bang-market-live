@@ -1392,6 +1392,22 @@ def prune_old_alerts(h):
         _ai_seg = h[_ai_s:_ai_e]
         h = h[:_ai_s] + '@@SEC-AI36-KEEP@@' + h[_ai_e:]
 
+    # VÁ 11/11 ~09:57 PT (mục 💥 SẮP BÙNG NỔ — Tom lệnh 09:54 PT: pick nhanh
+    # mã + xe x2 có khả năng bùng nổ, lên web): sec-boom là mục PICK theo
+    # CATALYST — ngày trong khối là ngày sự kiện TƯƠNG LAI (earnings/PDUFA),
+    # không phải ngày hết hạn của alert — miễn trừ quét theo ngày như
+    # sec-ai36: tách cả mục ra khỏi lượt quét rồi gắn lại nguyên vẹn.
+    _bm_s = h.find('<div class="sec" id="sec-boom">')
+    _bm_seg = ''
+    if _bm_s != -1:
+        _bm_e = h.find('<div class="sec" id=', _bm_s + 10)
+        if _bm_e == -1:
+            _bm_e = h.find('<div class="footer"', _bm_s + 10)
+        if _bm_e == -1:
+            _bm_e = len(h)
+        _bm_seg = h[_bm_s:_bm_e]
+        h = h[:_bm_s] + '@@SEC-BOOM-KEEP@@' + h[_bm_e:]
+
     def check_alert(full, inner):
         # 💥 MÃ SẮP BUNG: khối sự kiện nhị phân do boom_block.py sở hữu —
         # KHÔNG quét theo ngày (ngày trong thân là ngày SỰ KIỆN tương lai,
@@ -1538,6 +1554,8 @@ def prune_old_alerts(h):
                trim_cudem, h, flags=re.S)
     if _ai_seg:
         h = h.replace('@@SEC-AI36-KEEP@@', _ai_seg, 1)
+    if _bm_seg:
+        h = h.replace('@@SEC-BOOM-KEEP@@', _bm_seg, 1)
     return h, removed[0]
 
 
