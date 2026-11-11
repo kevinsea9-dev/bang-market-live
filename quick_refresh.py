@@ -5442,7 +5442,21 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
            # 06/11: KMLI ĐÃ GỠ — KraneShares 2x Long MELI thanh lý cuối
            # 10/2026 (nến ngày cuối 29/10 $8,93, không còn giao dịch);
            # MELI hiện KHÔNG có xe 2x thật — khối MELI ghi "Không có xe 2x".
-           "HIMZ": "HIMS", "MRNX": "MRNA", "UBRL": "UBER"}
+           "HIMZ": "HIMS", "MRNX": "MRNA", "UBRL": "UBER",
+           # bổ sung 11/11 (Tom lệnh 09:22 PT — săn xe x2 cho AI 36 +
+           # mã đang soi; mọi mã đã kiểm chứng trên Yahoo: tên quỹ khớp
+           # "2X Long <gốc>" + nến ngày 11/11 còn giao dịch):
+           # (a) nâng từ COMP_MAP (đã có dòng companion, nay thêm khối cặp):
+           "ARMG": "ARM", "GEVX": "GEV", "APLX": "APLD", "NETG": "NET",
+           "MSTX": "MSTR", "IRE": "IREN", "AMAU": "AMAT", "APPX": "APP",
+           "BABX": "BABA", "BMNU": "BMNR", "CRCG": "CRCL", "CRMX": "CRML",
+           "ENTL": "ENTG", "GFSG": "GFS", "MNSX": "MNST", "NFXL": "NFLX",
+           "NVOX": "NVO", "QCMU": "QCOM", "USAX": "USAR", "WULX": "WULF",
+           "BOEU": "BA",
+           # (b) xe MỚI tìm được 11/11 (chưa từng có trong hệ):
+           "BEX": "BE", "BEG": "BE", "CATG": "CAT", "SNOU": "SNOW",
+           "PANG": "PANW", "CRWG": "CRWV", "CWVX": "CRWV", "CRWU": "CRWV",
+           "FIXX": "FIX", "OCNL": "DOCN", "SOFA": "SOFI"}
 
 
 # --- XE X2 COMPANION (Tom 30/10 12:48): mẫu mục ĐÒN BẨY áp cho các mục khác.
@@ -5460,6 +5474,9 @@ LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
 # sec-tinhhoa) · nhãn xe XANH DA TRỜI #7dd3fc (như sec-leverage) · 🌙 24H
 # chỉ khi xe nằm trong LEV_24H (snapshot Robinhood đã kiểm chứng).
 COMP_MAP = {
+    # 11/11: xe MỚI (Tom lệnh săn x2) — BE/CAT/SNOW/PANW/CRWV/FIX/DOCN/SOFI
+    "BE": "BEX", "CAT": "CATG", "SNOW": "SNOU", "PANW": "PANG",
+    "CRWV": "CRWG", "FIX": "FIXX", "DOCN": "OCNL", "SOFI": "SOFA",
     "NVDA": "NVDL", "GOOGL": "GGLL", "AVGO": "AVGX", "TSM": "TSMX",
     "MSFT": "MSFU", "ORCL": "ORCU", "AMD": "AMDL", "META": "METU",
     "AMZN": "AMZU", "TSLA": "TSLL", "SNDK": "SNXX", "MU": "MUU",
@@ -5503,6 +5520,7 @@ COMP_MAP = {
     "HIMS": "HIMZ", "MRNA": "MRNX", "UBER": "UBRL",
 }
 COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
+    "SOFA": "⚠️ vol mỏng ~14k cp/ngày (11/11) — chia lệnh nhỏ, tránh giờ mỏng",
     "CRWC": "⚠️ vol cực mỏng ~5,8k cp/ngày — gần như không giao dịch được",
     "VSTL": "⚠️ vol mỏng ~91k",
     "AVXX": "⚠️ vol mỏng ~39k",
