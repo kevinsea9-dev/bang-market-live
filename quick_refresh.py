@@ -5402,6 +5402,10 @@ def close_headers(h):
 LEV_MAP = {"SOXL": "SOXL", "SNXX": "SNDK", "MUU": "MU", "CONL": "COIN",
            "CIEG": "CIEN", "DRAM": "DRAM", "RAM": "DRAM", "NVDL": "NVDA",
            "GGLL": "GOOGL", "AVGX": "AVGO", "TQQQ": "QQQ", "AMZU": "AMZN",
+           "QLD": "QQQ", "SSO": "SPY",
+           # 11/11 (Tom lệnh 06:21 PT): QLD = ProShares Ultra QQQ x2,
+           # SSO = ProShares Ultra S&P 500 x2 — đưa vào mục ĐÒN BẨY
+           # (khối cặp QQQ/SPY). TSMX đã có sẵn trong map này (TSMX->TSM).
            "TSLL": "TSLA", "TNA": "IWM", "SPCH": "SPCX", "VSTL": "VST",
            "METU": "META", "SKUU": "SKHY", "AMDL": "AMD", "ORCU": "ORCL",
            "MSFU": "MSFT", "TSMX": "TSM", "RKLX": "RKLB", "CRWC": "CRWD",
