@@ -23,28 +23,6 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật. [DT kỳ vọng FundSpec $903,7tr. ⚠️ EPS kỳ vọng lệch nguồn >10%: giữ -$0,44 theo FI Handbook; nguồn khác ghi -$0,50 tới -$0,53 — chưa đổi số cũ.]"
   },
   {
-   "ticker": "TTEK",
-   "name": "Tetra Tech, Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.47,
-   "rev_est": "$1.15B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang. [DT kỳ vọng MarketBeat/Finviz $1,15B (Tapeboard $1,17B).]"
-  },
-  {
-   "ticker": "CAE",
-   "name": "CAE Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.19,
-   "rev_est": "$888.95M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng. [DT kỳ vọng Finviz $888,95tr (Zacks ghi $907,7tr).]"
-  },
-  {
    "ticker": "CTVA",
    "name": "Corteva, Inc.",
    "date": "2026-11-11",
@@ -72,6 +50,42 @@
    "reaction_pct": -0.2,
    "price_after": 82.43,
    "essence": "EPS điều chỉnh 2,31 CAD (~1,65 USD) vượt kỳ vọng 1,64 USD (+0,01); DT 4,15 tỷ CAD (+3,3% YoY, ~2,96 tỷ USD) vượt kỳ vọng 2,90 tỷ USD; lợi nhuận ròng 460,7 triệu CAD (+20,8%), EPS GAAP pha loãng 2,24 CAD (+30,2%); bookings 4,53 tỷ CAD, book-to-bill 109,2%. Giá premarket ~05:37 PT $82,43 (−0,2% so với đóng 10/11 $82,51; thanh khoản mỏng)."
+  },
+  {
+   "ticker": "TTEK",
+   "name": "Tetra Tech, Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.47,
+   "rev_est": "$1.15B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang. [DT kỳ vọng MarketBeat/Finviz $1,15B (Tapeboard $1,17B).] [13:49 PT 11/11: đã ra số — BEAT, EPS điều chỉnh 0,49 vs 0,47 kv; DT 1,34 tỷ vs 1,15 tỷ kv (Nexqual, từ thông cáo công ty 16:00 ET).]",
+   "eps_act": 0.49,
+   "rev_act": "$1.34B",
+   "verdict": "BEAT",
+   "guidance": "Q1 FY2027 EPS $0,36–0,38; FY2027 EPS $1,65–1,80",
+   "reaction_pct": 10.6,
+   "price_after": 41.61,
+   "essence": "EPS điều chỉnh $0,49 vượt kỳ vọng $0,47 (+4,6%); DT $1,34 tỷ vượt kỳ vọng $1,15 tỷ (+16,4%) nhưng gần như đi ngang YoY (+0,7% so với $1,33 tỷ); guidance FY2027 EPS $1,65–1,80. Cổ phiếu rớt −7,5% trong phiên trước giờ ra số (đóng $37,61, vol 11,4 triệu — gấp ~4x TB), bật lại +10,6% AH lên $41,61 lúc 13:47 PT (thanh khoản mỏng)."
+  },
+  {
+   "ticker": "CAE",
+   "name": "CAE Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.19,
+   "rev_est": "$888.95M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng. [DT kỳ vọng Finviz $888,95tr (Zacks ghi $907,7tr).] [13:49 PT 11/11: đã ra số — MIXED (EPS điều chỉnh vượt, DT hụt), EPS điều chỉnh 0,33 CAD vs 0,19 kv; DT 1.204,7 triệu CAD (thông cáo công ty, newswire.ca).]",
+   "eps_act": 0.33,
+   "rev_act": "$1.20B CAD (~$860M)",
+   "verdict": "MIXED",
+   "guidance": "Nâng guidance FY2027: EPS điều chỉnh 1,28–1,35 CAD (từ 1,21–1,28); biên lợi nhuận đoạn điều chỉnh 14,9–15,4% (từ 14,6–15,1%)",
+   "reaction_pct": 1.5,
+   "price_after": 27.8,
+   "essence": "EPS điều chỉnh 0,33 CAD (+17,9% YoY) vượt kỳ vọng $0,19; EPS GAAP 0,18 CAD; DT 1.204,7 triệu CAD (−2,6% YoY, ~860 triệu USD) hụt kỳ vọng 888,95 triệu USD; Quốc phòng tăng trưởng mạnh (lợi nhuận đoạn +43,3%), Dân dụng yếu; nâng guidance FY2027; bán Flightscape 500 triệu USD; mua lại 3,0 triệu cp. AH +1,5% lên $27,80 lúc 13:47 PT (thanh khoản mỏng, dao động $27,39–28,75)."
   },
   {
    "ticker": "CSCO",
@@ -129,6 +143,17 @@
    "when": "T5 12/11 (giờ chưa công bố)"
   },
   {
+   "ticker": "STN",
+   "name": "Stantec Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.24,
+   "rev_est": "$1.86B CAD",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/Finnhub). Điểm nhìn: backlog hạ tầng + biên lợi nhuận. [Số báo cáo bằng CAD: EPS ~1,80 CAD, DT ~1,86 tỷ CAD — ước tính USD ~$1,24.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "BN",
    "name": "Brookfield",
    "date": "2026-11-12",
@@ -171,6 +196,28 @@
    "status": "PENDING",
    "ticker": "ONDS",
    "when": "T5 12/11 BMO"
+  },
+  {
+   "ticker": "HBM",
+   "name": "Hudbay Minerals Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.35,
+   "rev_est": "$733.97M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đồng/vàng — DT kỳ vọng tăng >100% YoY nhờ giá kim loại; xem sản lượng + chi phí. [Zacks ghi DT $815,74tr — khác nguồn, không dùng.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "TWST",
+   "name": "Twist Bioscience Corporation",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.38,
+   "rev_est": "$123.55M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: DT theo guidance công ty $123–124tr (+~25% YoY); mốc hòa vốn EBITDA điều chỉnh — lỗ thu hẹp hay không. [Zacks/FI Handbook ghi EPS -$0,44/-$0,43 — khác nguồn.] Giá 11/11 $122,59 (−7,2% trong phiên, biến động mạnh trước giờ ra số). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "SE",
@@ -671,63 +718,6 @@
    "price_after": 55.0,
    "essence": "DT kỷ lục $268M +73% YoY, backlog vọt lên $3,6B (từ $2,4B) nhờ hơn $1B đơn mới; nhưng lỗ EPS -$0,12 sâu hơn kỳ vọng -$0,07 — AH $55,00 lúc 15:40 PT (-6,6% so với đóng phiên $58,86; thanh khoản mỏng) — rơi vào vùng Sổ 3 $50–55 (sát mép trên).",
    "audio": "earnings-rklb-2026-11-09.mp3"
-  },
-  {
-   "ticker": "HIMS",
-   "name": "Hims & Hers Health",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": 0.06,
-   "rev_est": "$892.88M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus MarketBeat/Finviz 6/11; giờ AMC — TipRanks ghi BMO là thiểu số). Điểm nhìn: Sổ 3 $27–28,50/Chốt $32,43→$33,67/Cắt <$26 — khung Tom kích hoạt 5/11; quý trước lỗ -$0,37, kỳ này kỳ vọng lãi nhẹ.",
-   "eps_act": 0.028,
-   "rev_act": "$890.37M",
-   "verdict": "MISS",
-   "guidance": "FY2026: DT $3,13–3,15B, dưới kỳ vọng phố Wall $3,21B",
-   "reaction_pct": -2.4,
-   "price_after": 22.39,
-   "essence": "EPS $0,028 hụt kỳ vọng $0,06; DT $890M +49% YoY gần sát kỳ vọng; lỗ ròng $33M, biên gộp sụt 74%→57%; guidance cả năm nhẹ hơn phố Wall — AH -2,4% (thanh khoản mỏng). Giá AH $22,39 đã thủng cắt Sổ 3 $26.",
-   "audio": "earnings-hims-2026-11-09.mp3"
-  },
-  {
-   "ticker": "TTD",
-   "name": "The Trade Desk",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": 0.26,
-   "rev_est": "$650.7M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (EPS điều chỉnh consensus Zacks 6/11; MarketBeat $0,04 là EPS GAAP — không dùng). Điểm nhìn: adtech — DT dự kiến GIẢM 12% YoY, EPS -42% YoY; cổ phiếu đã rớt sâu về ~$13.",
-   "eps_act": 0.33,
-   "rev_act": "$736M",
-   "verdict": "BEAT",
-   "guidance": "Q4: DT ~$755M (điểm giữa), trên kỳ vọng $692M; HĐQT bổ sung $731M mua lại cp (tổng $1B)",
-   "reaction_pct": 2.8,
-   "price_after": 15.35,
-   "essence": "DT $736M đi ngang YoY nhưng vượt kỳ vọng $651M tới 13%; EPS điều chỉnh $0,33 vượt $0,25; EBITDA $266M vượt xa kỳ vọng — AH $15,35 lúc 15:40 PT (+2,8% so với đóng phiên $14,93; đã hạ nhiệt mạnh từ đỉnh AH +21,8% ~$18,30 đầu phiên AH, thanh khoản mỏng).",
-   "audio": "earnings-ttd-2026-11-09.mp3"
-  },
-  {
-   "ticker": "JBS",
-   "name": "JBS",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": 0.29,
-   "rev_est": "$23.22B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Tapeboard 6/11). Điểm nhìn: doanh thu kỳ vọng lớn nhất ngày — thịt bò/heo toàn cầu.",
-   "eps_act": 0.15,
-   "rev_act": "$22.74B",
-   "verdict": "MISS",
-   "guidance": "",
-   "reaction_pct": -7.3,
-   "price_after": 12.16,
-   "essence": "EPS $0,15 (điều chỉnh $0,16, kỳ vọng FactSet $0,21); lợi nhuận ròng $164M (giảm >70% YoY) hụt xa consensus $256M; EBITDA điều chỉnh $1,18B (kỳ vọng $1,32B) -36% YoY dù mảng bò Mỹ cải thiện; DT $22,74B gần sát kỳ vọng. Đóng phiên $13,12 (+5,1%); AH $12,16 lúc 15:11 PT (-7,3%, thanh khoản mỏng).",
-   "audio": "earnings-jbs-2026-11-09.mp3"
   }
  ],
  "playlist": {
