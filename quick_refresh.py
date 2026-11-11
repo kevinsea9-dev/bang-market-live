@@ -2772,7 +2772,15 @@ def ensure_zone_rows(h, prices, state_path):
         if not z.get("entry"):
             continue
         st = (state.get(t) or {}).get("state")
-        if st not in ("IN", "BROKEN"):
+        # 11/11 (vá gốc vụ SNDK/ANET/AVGO mất dòng Sổ vĩnh viễn): trước đây
+        # chỉ IN/BROKEN mới được tạo lại dòng. Mã ABOVE/BELOW bị xóa dòng
+        # trong các cửa sổ _excluded ô nhiễm (auto_cleanup xóa <tr><td><b>
+        # + _compact_excluded_rows xóa zchip) thì KHÔNG pass nào tạo lại:
+        # update_zone_chips đòi có sẵn dòng data, companion đòi có nhóm —
+        # chỉ còn blkfoot mồ côi, census báo thiếu dòng xe vĩnh viễn.
+        # Bảng Sổ vốn liệt kê đủ 4 trạng thái nên tạo lại cho cả 4; mã
+        # excluded / không entry / không giá vẫn bị chặn ở các cổng trên.
+        if st not in ("IN", "BROKEN", "ABOVE", "BELOW"):
             continue
         sec = BOOK_SEC.get(z.get("book", ""), "sec-watch")
         # --- soi dòng TRONG ĐÚNG MỤC SỔ của mã (không phải toàn cục) ---
@@ -6967,17 +6975,64 @@ def update_companion_lines(h, prices):
                 _ob = _sec_bounds(h_orig, _sec_id)
                 _nb = _sec_bounds(h, _sec_id)
                 if _ob and _nb:
-                    _ocnt = h_orig[_ob[0]:_ob[1]].count('<div class="levcomp')
-                    _ncnt = h[_nb[0]:_nb[1]].count('<div class="levcomp')
+                    # 11/11 (vá gốc vụ census xe kẹt vĩnh viễn): guard phải
+                    # so ĐỘ PHỦ MÃ (distinct baseflash) chứ không so số
+                    # div thô. Segment cũ tích lũy dòng TRÙNG (23 mã x2
+                    # dòng ở sec-so3 do nhiều writer gắn chồng) -> baseline
+                    # phồng 61 trong khi pass chuẩn chỉ tạo 45 dòng/45 mã
+                    # -> guard khôi phục segment cũ MỖI LƯỢT, 10 mã thiếu
+                    # dòng xe không bao giờ được chữa (AMAT/COIN/SNDK...).
+                    # So distinct: cũ 38 mã < mới 45 mã -> pass thắng,
+                    # trùng tự sạch qua strip, thiếu được gắn thật.
+                    def _bases(_seg):
+                        _out = set()
+                        for _mm in re.finditer(r'<div class="levcomp', _seg):
+                            _bm = re.search(
+                                r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})'
+                                r'</span>', _seg[_mm.start():_mm.start()+600])
+                            if _bm:
+                                _out.add(_bm.group(1))
+                        return _out
+                    _oseg = h_orig[_ob[0]:_ob[1]]
+                    _nseg = h[_nb[0]:_nb[1]]
+                    # Độ phủ chỉ tính cho mã CÒN ĐƯỢC TRÌNH BÀY trong
+                    # mục (cùng ngữ nghĩa census): dòng xe mồ côi của mã
+                    # đã bị rút khỏi mục (vd MU/SNDK sót lại ở topfocus
+                    # sau khi alert bị xoay đi) không phải độ phủ — giữ
+                    # chúng làm baseline khiến guard veto cả pass gắn
+                    # được CRWV (11/11).
+                    def _presented(_seg):
+                        _p = set()
+                        _p.update(re.findall(
+                            r'data-achip="([A-Z0-9.]{1,6})"', _seg))
+                        _p.update(re.findall(
+                            r'data-t="([A-Z0-9.]{1,6})"', _seg))
+                        _p.update(re.findall(
+                            r'<tr><td><b>([A-Z]{2,6})</b></td>', _seg))
+                        _p.update(re.findall(
+                            r'id="lta-row-([A-Z]+)"', _seg))
+                        _p.update(re.findall(
+                            r'<div class="lt">([A-Z]{2,6})', _seg))
+                        _p.update(re.findall(
+                            r"class='tk'>([A-Z0-9.]{1,8})<", _seg))
+                        return _p
+                    _obases = _bases(_oseg) & _presented(_oseg)
+                    _nbases = _bases(_nseg) & _presented(_nseg)
+                    _ocnt = len(_obases)
+                    _ncnt = len(_nbases)
                     # 06/11: tụt do xe BỊ GỠ KHỎI COMP_MAP có chủ đích
                     # (vd KMLI thanh lý) thì KHÔNG khôi phục — đếm số
-                    # dòng levcomp gốc mà xe của nó không còn trong
-                    # COMP_MAP.values() và trừ khỏi kỳ vọng.
+                    # MÃ GỐC mà xe trong dòng cũ của nó không còn nằm
+                    # trong COMP_MAP.values() và trừ khỏi kỳ vọng.
                     _allowed = 0
-                    for _chunk in h_orig[_ob[0]:_ob[1]].split(
-                            '<div class="levcomp')[1:]:
-                        _m = re.search(r'data-px="([A-Z]{2,6})"', _chunk)
-                        if _m and _m.group(1) not in COMP_MAP.values():
+                    for _mm in re.finditer(r'<div class="levcomp', _oseg):
+                        _chunk = _oseg[_mm.start():_mm.start()+1200]
+                        _bm = re.search(
+                            r'class="baseflash"[^>]*>([A-Z0-9.]{1,6})'
+                            r'</span>', _chunk)
+                        _vm = re.search(r'data-px="([A-Z]{2,6})"', _chunk)
+                        if _bm and _vm and _vm.group(1) \
+                                not in COMP_MAP.values():
                             _allowed += 1
                     if _ncnt < _ocnt - _allowed:
                         h = (h[:_nb[0]] + h_orig[_ob[0]:_ob[1]]
