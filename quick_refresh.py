@@ -7754,6 +7754,21 @@ def main():
         return 1
 
     h = open(a.html, encoding="utf-8").read()
+    # CHẶN DẢI SOCIAL TÁI XUẤT (lệnh gỡ của Tom 10/11/2026, nhắc lại 11/11):
+    # dải trắng mạng xã hội (Instagram/Threads/Facebook + @paulvu2211 +
+    # @chandatravel) đã bị job plan-midday-check (bước 1f cũ) và các lượt
+    # ghi đè từ bản chụp cũ đưa trở lại bảng 2 lần. Mọi lượt refresh tự gỡ
+    # sạch nếu nó xuất hiện — chặn tái diễn ở cổng pipeline, không dọn tay.
+    h, _nsoc = re.subn(
+        r"<!-- SOCIAL-LAYER-START -->.*?<!-- SOCIAL-LAYER-END -->\n?", "",
+        h, flags=re.S)
+    if "socialstrip" in h:
+        h, _nsoc2 = re.subn(r'<div class="socialstrip".*?</div>\n?', "",
+                            h, flags=re.S)
+        _nsoc += _nsoc2
+    if _nsoc:
+        print(f"  social strip: đã gỡ {_nsoc} khối theo lệnh Tom 10/11",
+              flush=True)
     # header ngày của cột giá theo đúng hôm nay (fix 14/10: kẹt "Giá 13/10")
     h = re.sub(r"<th>Giá \d{2}/\d{2}</th>",
                f"<th>Giá {now_pt().strftime('%d/%m')}</th>", h)
