@@ -788,9 +788,14 @@ def zone_tp_line(t):
     if not z or not isinstance(z, dict):
         return ""
     parts = []
+    ent = z.get("entry")
+    if ent:
+        parts.append(f"Vùng mua ${ent[0]:g}–${ent[1]:g}")
     tg = z.get("targets") or []
-    if tg:
-        parts.append("Chốt $" + "→$".join(f"{x:g}" for x in tg))
+    if len(tg) >= 2:
+        parts.append(f"Bán ${tg[0]:g} · Target ${tg[0]:g}→${tg[1]:g}")
+    elif len(tg) == 1:
+        parts.append(f"Bán ${tg[0]:g} · Target ${tg[0]:g}")
     cut = z.get("cut")
     if cut:
         parts.append(f"Cắt <${cut:g}")
@@ -1633,14 +1638,17 @@ def _zone_chip_text(t, px, st, z, bare=False):
         # treo vẫn phải đủ bộ 3 THAM CHIẾU — nhánh cũ nuốt mất Vùng/Chốt/
         # Cắt dù zones.json còn đủ số (vụ STX/MRVL/SOXL). Số lấy từ chính
         # entry của mã, ghi rõ là vùng cũ chỉ tham chiếu.
-        _ref = [f"{t} · ⏸️ VÙNG TẠM TREO — CHỜ DỰNG NỀN",
+        _ref = [f'<span class="ai36tk">{t}</span> · ⏸️ VÙNG TẠM TREO — '
+                f'CHỜ DỰNG NỀN',
                 f"Giá {_lt_money(px)}",
                 f"Vùng tham chiếu {_lt_money(lo)}–{_lt_money(hi)}"]
         _tg = z.get("targets") or z.get("tp") or []
         if len(_tg) >= 2:
-            _ref.append(f"Chốt {_lt_money(_tg[0])}→{_lt_money(_tg[1])}")
+            _ref.append(f"Bán {_lt_money(_tg[0])} · Target "
+                        f"{_lt_money(_tg[0])}→{_lt_money(_tg[1])}")
         elif len(_tg) == 1:
-            _ref.append(f"Chốt {_lt_money(_tg[0])}")
+            _ref.append(f"Bán {_lt_money(_tg[0])} · Target "
+                        f"{_lt_money(_tg[0])}")
         if z.get("cut"):
             _ref.append(f"Cắt <{_lt_money(z['cut'])}")
         return ("zchip-n", " · ".join(_ref)
@@ -1648,14 +1656,19 @@ def _zone_chip_text(t, px, st, z, bare=False):
     lab = badge_text(st)
     if st == "BROKEN":
         lab = "🔴 GÃY VÙNG — THỦNG CẮT"
-    parts = [t, lab, f"Giá {_lt_money(px)}"]
+    # LUẬT HIGHLIGHT ĐỦ BỘ (Tom 11/11): mã gốc = chip VÀNG ai36tk như AI 36;
+    # dải đủ 4 nhãn Vùng mua · Bán · Target · Cắt ngay tại khối (trước đây
+    # Target chìm trong chuỗi "Chốt $A→$B", không nhãn riêng).
+    parts = [f'<span class="ai36tk">{t}</span>', lab, f"Giá {_lt_money(px)}"]
     if not bare:
-        parts.append(f"Vùng {_lt_money(lo)}–{_lt_money(hi)}")
+        parts.append(f"Vùng mua {_lt_money(lo)}–{_lt_money(hi)}")
         tg = z.get("targets") or []
         if len(tg) >= 2:
-            parts.append(f"Chốt {_lt_money(tg[0])}→{_lt_money(tg[1])}")
+            parts.append(f"Bán {_lt_money(tg[0])} · Target "
+                         f"{_lt_money(tg[0])}→{_lt_money(tg[1])}")
         elif len(tg) == 1:
-            parts.append(f"Chốt {_lt_money(tg[0])}")
+            parts.append(f"Bán {_lt_money(tg[0])} · Target "
+                         f"{_lt_money(tg[0])}")
         if z.get("cut"):
             parts.append(f"Cắt <{_lt_money(z['cut'])}")
         if st == "BELOW":
@@ -2798,7 +2811,7 @@ def ensure_zone_rows(h, prices, state_path):
         px, pc = prices[t]
         lo, hi = z["entry"]
         dir_cls = "up" if pc >= 0 else "down"
-        zone_txt = f"Vào ${lo:g}–${hi:g}"
+        zone_txt = f"Vùng mua ${lo:g}–${hi:g}"
         if z.get("targets"):
             # 06/11: zones 1 chốt (MCD [342], MNST [50], ...) là hợp lệ —
             # không unpack 2 giá trị (ValueError khi MNST mới IN).
@@ -2806,11 +2819,12 @@ def ensure_zone_rows(h, prices, state_path):
             if isinstance(tg, (int, float)):
                 tg = [tg]
             if len(tg) >= 2:
-                zone_txt += f" • Chốt ${tg[0]:g}→${tg[1]:g}"
+                zone_txt += (f" • Bán ${tg[0]:g} · Target "
+                             f"${tg[0]:g}→${tg[1]:g}")
             elif tg:
-                zone_txt += f" • Chốt ${tg[0]:g}"
+                zone_txt += f" • Bán ${tg[0]:g} · Target ${tg[0]:g}"
         if z.get("cut"):
-            zone_txt += f' • <span class="cut">Cắt dưới ${z["cut"]:g}</span>'
+            zone_txt += f' • <span class="cut">Cắt <${z["cut"]:g}</span>'
         if z.get("note"):
             zone_txt += f" — {z['note']}"
         row = (f'<tr><td><b>{t}</b></td><td>{fmt_price(px)} '
@@ -6017,7 +6031,8 @@ def _unified_header(t, prices, zones):
     if z and z.get("entry"):
         cls, txt = _zone_chip_text(t, px[0], _zone_state_of(z, px[0]), z)
         return f'<div class="zchip {cls}" data-achip="{t}">{txt}</div>'
-    return (f'<div class="zchip zchip-n" data-achip="{t}">{t} · '
+    return (f'<div class="zchip zchip-n" data-achip="{t}">'
+            f'<span class="ai36tk">{t}</span> · '
             f'👁️ WATCH-ONLY · Giá {_lt_money(px[0])} · '
             f'⚪ Chưa có vùng duyệt — chỉ theo dõi, không lên mâm</div>')
 
@@ -7769,6 +7784,15 @@ def main():
     if _nsoc:
         print(f"  social strip: đã gỡ {_nsoc} khối theo lệnh Tom 10/11",
               flush=True)
+    # NHÃN TARGET RIÊNG (luật HIGHLIGHT ĐỦ BỘ — Tom 11/11): khối ghi tay /
+    # writer ngoài còn dùng mẫu cũ "Chốt $A→$B" (Target chìm trong chuỗi
+    # Chốt, không nhãn riêng) → chuẩn hoá tại cổng: "Bán $A · Target $A→$B".
+    # Chip do pipeline sinh ra đã mang mẫu mới từ _zone_chip_text nên lượt
+    # này chỉ chạm phần ghi tay; chạy lại vô hại (không còn "Chốt $" khớp).
+    h = re.sub(r"Chốt \$([\d.,]+)→\$([\d.,]+)",
+               r"Bán $\1 · Target $\1→$\2", h)
+    h = re.sub(r"Chốt \$([\d.,]+)(?![\d.,→])",
+               r"Bán $\1 · Target $\1", h)
     # header ngày của cột giá theo đúng hôm nay (fix 14/10: kẹt "Giá 13/10")
     h = re.sub(r"<th>Giá \d{2}/\d{2}</th>",
                f"<th>Giá {now_pt().strftime('%d/%m')}</th>", h)
@@ -8054,6 +8078,15 @@ def main():
     # CỔNG DÒNG XE (6/11): đo + tự chữa dòng xe trên output CUỐI —
     # pass cuối cùng trước validate/ghi file, sau mọi pass khác.
     h = vehicle_gate(h, {**prices, **nhip_extra}, a.mode)
+    # NHÃN TARGET RIÊNG — CHỐT CUỐI (luật HIGHLIGHT ĐỦ BỘ, Tom 11/11):
+    # các generator chạy SAU điểm chuẩn hoá đầu main() (ensure_zone_rows,
+    # dải xe dịch, leverage, ltalloc...) vẫn phát mẫu cũ "Chốt $A→$B" —
+    # chuẩn hoá lần nữa trên output cuối để MỌI dải đều có nhãn Bán +
+    # Target riêng. Idempotent: mẫu mới không còn "Chốt $" để khớp.
+    h = re.sub(r"Chốt \$([\d.,]+)→\$([\d.,]+)",
+               r"Bán $\1 · Target $\1→$\2", h)
+    h = re.sub(r"Chốt \$([\d.,]+)(?![\d.,→])",
+               r"Bán $\1 · Target $\1", h)
     ok, why = validate(h)
     if not ok:
         print(f"VALIDATE FAIL: {why}", file=sys.stderr)
