@@ -1220,9 +1220,18 @@ def sweep_stale_tickers(h, repo_dir):
                 recent_sig.add(t)
         except Exception:
             recent_sig.add(t)
-    excluded = zones.get("_excluded", [])
+    excluded = list(zones.get("_excluded", []))
+    _orig_excl = list(excluded)  # snapshot trước khi sweep append (11/11)
     for t, v in zs.items():
         if t in protected or t in excluded:
+            tracker.pop(t, None)
+            continue
+        # 11/11 (vụ ô nhiễm _excluded tái diễn 2 lần trong ngày — MU/SNDK/RKLB/
+        # AVGO/ANET/BE/DOCN bị sweep tự loại vì chạy ABOVE vùng >15%): mã CÓ
+        # VÙNG DUYỆT trong zones.json KHÔNG BAO GIỜ tự vào _excluded. Chạy xa
+        # vùng = đang ở dải chốt, không phải mã chết. Loại mã có vùng chỉ do
+        # Tom lệnh tay. Sweep chỉ còn áp cho mã KHÔNG có vùng duyệt.
+        if (zones.get(t) or {}).get("entry"):
             tracker.pop(t, None)
             continue
         state = v.get("state")
@@ -1253,7 +1262,13 @@ def sweep_stale_tickers(h, repo_dir):
         else:
             tracker.pop(t, None)
     if removed:
-        zones["_excluded"] = excluded
+        # Chốt chặn cuối (11/11): chỉ lọc các mã MỚI THÊM lượt này — mã có
+        # vùng duyệt không được bị sweep thêm vào. Các mã Tom đã loại TAY từ
+        # trước (vẫn nằm trong _excluded gốc, kể cả mã còn entry zones.json
+        # như SKHY/ABNB) GIỮ NGUYÊN, sweep không có quyền gỡ lệnh của Tom.
+        _added = [t for t in excluded if t not in _orig_excl]
+        zones["_excluded"] = _orig_excl + [
+            t for t in _added if not (zones.get(t) or {}).get("entry")]
         json.dump(zones, open(os.path.join(repo_dir, "zones.json"), "w"), indent=1)
     json.dump(tracker, open(tracker_path, "w"))
     return h, removed
