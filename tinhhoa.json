@@ -195,9 +195,9 @@
    "when": "T4 11/11 AMC",
    "status": "PENDING",
    "eps_est": 1.77,
-   "rev_est": null,
+   "rev_est": "$568.44M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: hãng royalty vàng lớn nhất — giá vàng kỷ lục kéo royalty lên, xem dòng tiền + cổ tức."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: hãng royalty vàng lớn nhất — giá vàng kỷ lục kéo royalty lên, xem dòng tiền + cổ tức. [DT kỳ vọng MarketBeat/Finviz $568,44tr, khớp EPS $1,77. (Finnhub ghi bộ khác: EPS $1,96 · DT $593,7tr — khác định nghĩa, không dùng.)]"
   },
   {
    "ticker": "VYLR",
@@ -206,9 +206,9 @@
    "when": "T4 11/11 AMC",
    "status": "PENDING",
    "eps_est": -0.44,
-   "rev_est": null,
+   "rev_est": "$903.7M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật. [DT kỳ vọng FundSpec $903,7tr. ⚠️ EPS kỳ vọng lệch nguồn >10%: giữ -$0,44 theo FI Handbook; nguồn khác ghi -$0,50 tới -$0,53 — chưa đổi số cũ.]"
   },
   {
    "ticker": "TTEK",
@@ -217,9 +217,9 @@
    "when": "T4 11/11 AMC",
    "status": "PENDING",
    "eps_est": 0.47,
-   "rev_est": null,
+   "rev_est": "$1.15B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang. [DT kỳ vọng MarketBeat/Finviz $1,15B (Tapeboard $1,17B).]"
   },
   {
    "ticker": "CAE",
@@ -228,9 +228,9 @@
    "when": "T4 11/11 AMC",
    "status": "PENDING",
    "eps_est": 0.19,
-   "rev_est": null,
+   "rev_est": "$888.95M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng. [DT kỳ vọng Finviz $888,95tr (Zacks ghi $907,7tr).]"
   },
   {
    "ticker": "CTVA",
@@ -239,9 +239,9 @@
    "when": "T4 11/11 AMC",
    "status": "PENDING",
    "eps_est": 0.09,
-   "rev_est": null,
+   "rev_est": "$1.77B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối. [DT kỳ vọng Zacks/MarketBeat $1,77B (Tapeboard $1,80B).]"
   },
   {
    "ticker": "GIB",
@@ -250,9 +250,9 @@
    "when": "T4 11/11 BMO",
    "status": "PENDING",
    "eps_est": 1.64,
-   "rev_est": null,
+   "rev_est": "$2.90B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ. [DT kỳ vọng MarketBeat $2,90B (Seeking Alpha ghi $2,95B).]"
   },
   {
    "ticker": "CSCO",
