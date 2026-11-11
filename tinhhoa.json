@@ -1,6 +1,116 @@
 {
  "entries": [
   {
+   "ticker": "GIB",
+   "name": "CGI Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.64,
+   "rev_est": "$2.90B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ. [DT kỳ vọng MarketBeat $2,90B (Seeking Alpha ghi $2,95B).]"
+  },
+  {
+   "ticker": "FNV",
+   "name": "Franco-Nevada Corporation",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.77,
+   "rev_est": "$568.44M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: hãng royalty vàng lớn nhất — giá vàng kỷ lục kéo royalty lên, xem dòng tiền + cổ tức. [DT kỳ vọng MarketBeat/Finviz $568,44tr, khớp EPS $1,77. (Finnhub ghi bộ khác: EPS $1,96 · DT $593,7tr — khác định nghĩa, không dùng.)]"
+  },
+  {
+   "ticker": "VYLR",
+   "name": "Vylor Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": -0.44,
+   "rev_est": "$903.7M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật. [DT kỳ vọng FundSpec $903,7tr. ⚠️ EPS kỳ vọng lệch nguồn >10%: giữ -$0,44 theo FI Handbook; nguồn khác ghi -$0,50 tới -$0,53 — chưa đổi số cũ.]"
+  },
+  {
+   "ticker": "TTEK",
+   "name": "Tetra Tech, Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.47,
+   "rev_est": "$1.15B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang. [DT kỳ vọng MarketBeat/Finviz $1,15B (Tapeboard $1,17B).]"
+  },
+  {
+   "ticker": "CAE",
+   "name": "CAE Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.19,
+   "rev_est": "$888.95M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng. [DT kỳ vọng Finviz $888,95tr (Zacks ghi $907,7tr).]"
+  },
+  {
+   "ticker": "CTVA",
+   "name": "Corteva, Inc.",
+   "date": "2026-11-11",
+   "when": "T4 11/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.09,
+   "rev_est": "$1.77B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối. [DT kỳ vọng Zacks/MarketBeat $1,77B (Tapeboard $1,80B).]"
+  },
+  {
+   "ticker": "BN",
+   "name": "Brookfield",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.72,
+   "rev_est": "$1.85B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
+  },
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.61,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: neocloud AI — báo cáo ngay sau CRWV, so sánh tăng trưởng/backlog. Vùng Sổ 3 $136–148 / Chốt $179→$204 / Cắt <$130."
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco Systems, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.32,
+   "rev_est": "$18.11B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đơn hàng AI networking + guidance Q2; EPS $1,32 là non-GAAP (một số lịch ghi $1,15 GAAP). Vùng Sổ 3 $100–104 / Chốt $113→$119 / Cắt <$97."
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 4.06,
+   "rev_est": "$10.30B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
+  },
+  {
    "ticker": "SE",
    "name": "Sea Ltd",
    "date": "2026-11-10",
@@ -241,116 +351,6 @@
    "reaction_pct": -6.75,
    "price_after": 11.33,
    "essence": "DT Q3 chỉ $1,41M, hụt ~57% so với kỳ vọng $3,52M và −28% YoY; lỗ $0,06/cp hụt nhẹ kỳ vọng −$0,05; guidance FY26 ~$20M dưới kỳ vọng $22,9M; tiền mặt $497,1M, không nợ. Giá AH 20:00 ET $11,33 (−6,8% so với đóng $12,15; thanh khoản mỏng)."
-  },
-  {
-   "ticker": "FNV",
-   "name": "Franco-Nevada Corporation",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.77,
-   "rev_est": "$568.44M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: hãng royalty vàng lớn nhất — giá vàng kỷ lục kéo royalty lên, xem dòng tiền + cổ tức. [DT kỳ vọng MarketBeat/Finviz $568,44tr, khớp EPS $1,77. (Finnhub ghi bộ khác: EPS $1,96 · DT $593,7tr — khác định nghĩa, không dùng.)]"
-  },
-  {
-   "ticker": "VYLR",
-   "name": "Vylor Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": -0.44,
-   "rev_est": "$903.7M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: vốn hóa ~$48B, chờ số thật. [DT kỳ vọng FundSpec $903,7tr. ⚠️ EPS kỳ vọng lệch nguồn >10%: giữ -$0,44 theo FI Handbook; nguồn khác ghi -$0,50 tới -$0,53 — chưa đổi số cũ.]"
-  },
-  {
-   "ticker": "TTEK",
-   "name": "Tetra Tech, Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.47,
-   "rev_est": "$1.15B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: backlog hạ tầng nước + tác động cắt giảm chi tiêu liên bang. [DT kỳ vọng MarketBeat/Finviz $1,15B (Tapeboard $1,17B).]"
-  },
-  {
-   "ticker": "CAE",
-   "name": "CAE Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.19,
-   "rev_est": "$888.95M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: nhu cầu đào tạo phi công + hợp đồng quốc phòng. [DT kỳ vọng Finviz $888,95tr (Zacks ghi $907,7tr).]"
-  },
-  {
-   "ticker": "CTVA",
-   "name": "Corteva, Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.09,
-   "rev_est": "$1.77B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: giá nông sản + tồn kho kênh phân phối. [DT kỳ vọng Zacks/MarketBeat $1,77B (Tapeboard $1,80B).]"
-  },
-  {
-   "ticker": "GIB",
-   "name": "CGI Inc.",
-   "date": "2026-11-11",
-   "when": "T4 11/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.64,
-   "rev_est": "$2.90B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook). Điểm nhìn: biên lợi nhuận + backlog hợp đồng chính phủ. [DT kỳ vọng MarketBeat $2,90B (Seeking Alpha ghi $2,95B).]"
-  },
-  {
-   "ticker": "CSCO",
-   "name": "Cisco Systems, Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.32,
-   "rev_est": "$18.11B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đơn hàng AI networking + guidance Q2; EPS $1,32 là non-GAAP (một số lịch ghi $1,15 GAAP). Vùng Sổ 3 $100–104 / Chốt $113→$119 / Cắt <$97."
-  },
-  {
-   "ticker": "AMAT",
-   "name": "Applied Materials, Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 AMC",
-   "status": "PENDING",
-   "eps_est": 4.06,
-   "rev_est": "$10.30B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
-  },
-  {
-   "ticker": "BN",
-   "name": "Brookfield",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.72,
-   "rev_est": "$1.85B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
-  },
-  {
-   "ticker": "NBIS",
-   "name": "Nebius Group N.V.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.61,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: neocloud AI — báo cáo ngay sau CRWV, so sánh tăng trưởng/backlog. Vùng Sổ 3 $136–148 / Chốt $179→$204 / Cắt <$130."
   },
   {
    "ticker": "FERG",
