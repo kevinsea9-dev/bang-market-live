@@ -1040,136 +1040,289 @@
    "status": "open"
   },
   {
-    "ticker": "B",
-    "who": "Mark Hill (CEO Barrick Mining)",
-    "said_on": "2026-11-09",
-    "source": "B Q3 2026 call 9/11 — Motley Fool transcript / Kitco / Zolmax",
-    "promise": "IPO mảng vàng Bắc Mỹ — nộp hồ sơ trong tháng 11/2026, hoàn tất cuối năm 2026 hoặc đầu 2027; sản lượng vàng Q4 cao hơn Q3 một chút, cả năm quanh điểm giữa guidance hoặc cao hơn một chút",
-    "due": "2026-11 (nộp hồ sơ) / 2027-Q1 (hoàn tất)",
-    "status": "open"
+   "ticker": "B",
+   "who": "Mark Hill (CEO Barrick Mining)",
+   "said_on": "2026-11-09",
+   "source": "B Q3 2026 call 9/11 — Motley Fool transcript / Kitco / Zolmax",
+   "promise": "IPO mảng vàng Bắc Mỹ — nộp hồ sơ trong tháng 11/2026, hoàn tất cuối năm 2026 hoặc đầu 2027; sản lượng vàng Q4 cao hơn Q3 một chút, cả năm quanh điểm giữa guidance hoặc cao hơn một chút",
+   "due": "2026-11 (nộp hồ sơ) / 2027-Q1 (hoàn tất)",
+   "status": "open"
   },
   {
-    "ticker": "TGTX",
-    "who": "Michael Weiss (CEO TG Therapeutics)",
-    "said_on": "2026-11-09",
-    "source": "TGTX Q3 2026 release 9/11 — Business Wire / Morningstar",
-    "promise": "Công bố kết quả topline Phase 3 BRIUMVI dạng tiêm dưới da — cuối 2026 hoặc Q1 2027; trên đà vượt $1 tỷ doanh thu toàn cầu 2026 (guidance vừa nâng lần 3 trong năm)",
-    "due": "2027-Q1",
-    "status": "open"
+   "ticker": "TGTX",
+   "who": "Michael Weiss (CEO TG Therapeutics)",
+   "said_on": "2026-11-09",
+   "source": "TGTX Q3 2026 release 9/11 — Business Wire / Morningstar",
+   "promise": "Công bố kết quả topline Phase 3 BRIUMVI dạng tiêm dưới da — cuối 2026 hoặc Q1 2027; trên đà vượt $1 tỷ doanh thu toàn cầu 2026 (guidance vừa nâng lần 3 trong năm)",
+   "due": "2027-Q1",
+   "status": "open"
   },
   {
-    "ticker": "ASTS",
-    "said_on": "2026-11-09",
-    "source": "ASTS Q3 2026 release 9/11 — Business Wire",
-    "promise": "~45 vệ tinh BlueBird trên quỹ đạo vào giữa 2027; dịch vụ toàn quốc ban đầu ở thị trường chính vào cuối 2026; tên lửa Blacklift bắt đầu phóng từ cuối 2028 (mỗi lần tối đa 5 vệ tinh)",
-    "due": "2026-Q4 / 2027-H1 / 2028-Q4",
-    "status": "open"
+   "ticker": "ASTS",
+   "said_on": "2026-11-09",
+   "source": "ASTS Q3 2026 release 9/11 — Business Wire",
+   "promise": "~45 vệ tinh BlueBird trên quỹ đạo vào giữa 2027; dịch vụ toàn quốc ban đầu ở thị trường chính vào cuối 2026; tên lửa Blacklift bắt đầu phóng từ cuối 2028 (mỗi lần tối đa 5 vệ tinh)",
+   "due": "2026-Q4 / 2027-H1 / 2028-Q4",
+   "status": "open"
   },
   {
-    "ticker": "USAR",
-    "said_on": "2026-11-09",
-    "source": "USAR Q3 2026 release 9/11 — GlobeNewswire / Morningstar",
-    "promise": "Q4 2026: bán Serra Verde tối thiểu 325 tấn TREO, giá rổ $43–97/kg; Giai đoạn 2 Serra Verde bổ sung +2.400 tấn/năm vào cuối 2027",
-    "due": "2026-Q4 / 2027-Q4",
-    "status": "open"
+   "ticker": "USAR",
+   "said_on": "2026-11-09",
+   "source": "USAR Q3 2026 release 9/11 — GlobeNewswire / Morningstar",
+   "promise": "Q4 2026: bán Serra Verde tối thiểu 325 tấn TREO, giá rổ $43–97/kg; Giai đoạn 2 Serra Verde bổ sung +2.400 tấn/năm vào cuối 2027",
+   "due": "2026-Q4 / 2027-Q4",
+   "status": "open"
   },
   {
-    "ticker": "TTWO",
-    "who": "Strauss Zelnick (CEO Take-Two)",
-    "said_on": "2026-11-09",
-    "source": "TTWO Q2 FY27 release/call 9/11 — GameBeacon / KuCoin",
-    "promise": "GTA VI ra mắt 19/11/2026 trên PS5 và Xbox Series X|S (khẳng định lại, không dời); Q3 FY27 net bookings $3,35–3,50B; giữ guidance cả năm FY27 net bookings $8,0–8,2B",
-    "due": "2026-11-19 (GTA VI) / FY27",
-    "status": "open"
+   "ticker": "TTWO",
+   "who": "Strauss Zelnick (CEO Take-Two)",
+   "said_on": "2026-11-09",
+   "source": "TTWO Q2 FY27 release/call 9/11 — GameBeacon / KuCoin",
+   "promise": "GTA VI ra mắt 19/11/2026 trên PS5 và Xbox Series X|S (khẳng định lại, không dời); Q3 FY27 net bookings $3,35–3,50B; giữ guidance cả năm FY27 net bookings $8,0–8,2B",
+   "due": "2026-11-19 (GTA VI) / FY27",
+   "status": "open"
   },
   {
-    "ticker": "RKLB",
-    "who": "Peter Beck (CEO Rocket Lab)",
-    "said_on": "2026-11-09",
-    "source": "RKLB Q3 2026 call 9/11",
-    "promise": "Chuyến bay đầu tiên của Neutron vào năm 2027; xong chế tạo + kiểm tra vòm trước bình nhiên liệu trước Q1/2027, rồi lắp ráp tầng một + thử thủy tĩnh + thử đông lạnh trong Q1/2027",
-    "due": "2027",
-    "status": "open"
+   "ticker": "RKLB",
+   "who": "Peter Beck (CEO Rocket Lab)",
+   "said_on": "2026-11-09",
+   "source": "RKLB Q3 2026 call 9/11",
+   "promise": "Chuyến bay đầu tiên của Neutron vào năm 2027; xong chế tạo + kiểm tra vòm trước bình nhiên liệu trước Q1/2027, rồi lắp ráp tầng một + thử thủy tĩnh + thử đông lạnh trong Q1/2027",
+   "due": "2027",
+   "status": "open"
   },
   {
-    "ticker": "ACHR",
-    "who": "Adam Goldstein (CEO Archer Aviation)",
-    "said_on": "2026-11-09",
-    "source": "ACHR Q3 2026 release 9/11",
-    "promise": "Vận hành có phi công tại Los Angeles trong vài tuần tới, chuẩn bị chở khách trong chương trình eIPP + Thế vận hội LA28; cột mốc chuyến bay chuyển đổi có phi công trước cuối năm 2026",
-    "due": "2026-Q4",
-    "status": "open"
+   "ticker": "ACHR",
+   "who": "Adam Goldstein (CEO Archer Aviation)",
+   "said_on": "2026-11-09",
+   "source": "ACHR Q3 2026 release 9/11",
+   "promise": "Vận hành có phi công tại Los Angeles trong vài tuần tới, chuẩn bị chở khách trong chương trình eIPP + Thế vận hội LA28; cột mốc chuyến bay chuyển đổi có phi công trước cuối năm 2026",
+   "due": "2026-Q4",
+   "status": "open"
   },
   {
-    "ticker": "PLUG",
-    "who": "Jose Luis Crespo (CEO Plug Power)",
-    "said_on": "2026-11-09",
-    "source": "PLUG Q3 2026 release/call 9/11",
-    "promise": "Mục tiêu EBITDAS dương Q4 2026; giữ guidance tăng trưởng doanh thu cả năm 15–16%; giải phóng khoảng $62M tiền bị hạn chế trước cuối Q1/2027; hội nghị Plug Symposium 19/11/2026",
-    "due": "2026-Q4 / 2027-Q1 / 2026-11-19",
-    "status": "open"
+   "ticker": "PLUG",
+   "who": "Jose Luis Crespo (CEO Plug Power)",
+   "said_on": "2026-11-09",
+   "source": "PLUG Q3 2026 release/call 9/11",
+   "promise": "Mục tiêu EBITDAS dương Q4 2026; giữ guidance tăng trưởng doanh thu cả năm 15–16%; giải phóng khoảng $62M tiền bị hạn chế trước cuối Q1/2027; hội nghị Plug Symposium 19/11/2026",
+   "due": "2026-Q4 / 2027-Q1 / 2026-11-19",
+   "status": "open"
   },
   {
-    "ticker": "CEG",
-    "said_on": "2026-11-09",
-    "source": "CEG Q3 2026 release 9/11",
-    "promise": "Guidance EPS điều chỉnh cả năm 2026 lên $12,50–12,80 (lần nâng thứ hai trong năm); hợp đồng Google — đợt nâng công suất hạt nhân đầu tiên dự kiến 2028; mở rộng Calvert Cliffs 190 MW dự kiến vận hành 2030–2032; hợp đồng Peak+ 270 MW bắt đầu 2028; mua trung tâm năng lượng Rhode Island 609 MW giá $715M (chờ phê duyệt)",
-    "due": "2028 / 2030–2032",
-    "status": "open"
+   "ticker": "CEG",
+   "said_on": "2026-11-09",
+   "source": "CEG Q3 2026 release 9/11",
+   "promise": "Guidance EPS điều chỉnh cả năm 2026 lên $12,50–12,80 (lần nâng thứ hai trong năm); hợp đồng Google — đợt nâng công suất hạt nhân đầu tiên dự kiến 2028; mở rộng Calvert Cliffs 190 MW dự kiến vận hành 2030–2032; hợp đồng Peak+ 270 MW bắt đầu 2028; mua trung tâm năng lượng Rhode Island 609 MW giá $715M (chờ phê duyệt)",
+   "due": "2028 / 2030–2032",
+   "status": "open"
   },
   {
-    "ticker": "NRG",
-    "who": "Robert Gaudette (CEO NRG Energy)",
-    "said_on": "2026-11-09",
-    "source": "NRG Q3 2026 call 9/11",
-    "promise": "Bán 4,9 GW điện khí cho LS Power giá $4B tiền mặt, dự kiến hoàn tất Q2/2027; guidance 2027: EPS $8,05–10,05, EBITDA $5,5–6B; tăng cổ tức thường niên 8% lên $2,05/cp cho năm 2027",
-    "due": "2027-Q2 / 2027",
-    "status": "open"
+   "ticker": "NRG",
+   "who": "Robert Gaudette (CEO NRG Energy)",
+   "said_on": "2026-11-09",
+   "source": "NRG Q3 2026 call 9/11",
+   "promise": "Bán 4,9 GW điện khí cho LS Power giá $4B tiền mặt, dự kiến hoàn tất Q2/2027; guidance 2027: EPS $8,05–10,05, EBITDA $5,5–6B; tăng cổ tức thường niên 8% lên $2,05/cp cho năm 2027",
+   "due": "2027-Q2 / 2027",
+   "status": "open"
   },
   {
-    "ticker": "KKR",
-    "who": "Joseph Bae & Scott Nuttall (đồng CEO KKR)",
-    "said_on": "2026-11-09",
-    "source": "KKR Q3 2026 call 9/11",
-    "promise": "Bán USI dự kiến hoàn tất Q4/2026, cộng khoảng $2B lợi nhuận điều chỉnh; trả lại khách hàng hơn $40B trong năm 2026; kỳ vọng Q4 là quý thứ ba liên tiếp đạt lợi nhuận điều chỉnh kỷ lục trên mỗi cổ phiếu",
-    "due": "2026-Q4",
-    "status": "open"
+   "ticker": "KKR",
+   "who": "Joseph Bae & Scott Nuttall (đồng CEO KKR)",
+   "said_on": "2026-11-09",
+   "source": "KKR Q3 2026 call 9/11",
+   "promise": "Bán USI dự kiến hoàn tất Q4/2026, cộng khoảng $2B lợi nhuận điều chỉnh; trả lại khách hàng hơn $40B trong năm 2026; kỳ vọng Q4 là quý thứ ba liên tiếp đạt lợi nhuận điều chỉnh kỷ lục trên mỗi cổ phiếu",
+   "due": "2026-Q4",
+   "status": "open"
   },
   {
-    "ticker": "FERG",
-    "who": "Kevin Murphy (CEO Ferguson)",
-    "said_on": "2026-11-09",
-    "source": "FERG Q1 FY27 call 9/11 — Business Wire",
-    "promise": "Nâng guidance doanh thu cả năm 2026 lên khoảng 7%, biên lợi nhuận hoạt động điều chỉnh 9,6–9,8%; cổ tức $0,89/cp mỗi quý",
-    "due": "FY2026",
-    "status": "open"
+   "ticker": "FERG",
+   "who": "Kevin Murphy (CEO Ferguson)",
+   "said_on": "2026-11-09",
+   "source": "FERG Q1 FY27 call 9/11 — Business Wire",
+   "promise": "Nâng guidance doanh thu cả năm 2026 lên khoảng 7%, biên lợi nhuận hoạt động điều chỉnh 9,6–9,8%; cổ tức $0,89/cp mỗi quý",
+   "due": "FY2026",
+   "status": "open"
   },
   {
-    "ticker": "CNH",
-    "who": "Gerrit Marx (CEO CNH Industrial)",
-    "said_on": "2026-11-09",
-    "source": "CNH Q3 2026 call 9/11",
-    "promise": "Liên doanh với Kobelco (bán 70% mảng Xây dựng, thu $700M tiền mặt), dự kiến hoàn tất cuối năm 2027, CNH giữ 30% ít nhất 3 năm; guidance EPS điều chỉnh cả năm $0,44–0,48; dòng tiền tự do công nghiệp $300–450M",
-    "due": "2027-Q4",
-    "status": "open"
+   "ticker": "CNH",
+   "who": "Gerrit Marx (CEO CNH Industrial)",
+   "said_on": "2026-11-09",
+   "source": "CNH Q3 2026 call 9/11",
+   "promise": "Liên doanh với Kobelco (bán 70% mảng Xây dựng, thu $700M tiền mặt), dự kiến hoàn tất cuối năm 2027, CNH giữ 30% ít nhất 3 năm; guidance EPS điều chỉnh cả năm $0,44–0,48; dòng tiền tự do công nghiệp $300–450M",
+   "due": "2027-Q4",
+   "status": "open"
   },
   {
-    "ticker": "JBS",
-    "who": "Gilberto Tomazoni (CEO JBS)",
-    "said_on": "2026-11-09",
-    "source": "JBS Q3 2026 release 9/11 — Reuters/WSJ",
-    "promise": "Wesley Batista Filho lên làm tổng giám đốc toàn cầu từ tháng 1/2027; mảng bò Bắc Mỹ + Brazil hướng tới diễn biến thị trường thuận lợi hơn trong Q4/2026",
-    "due": "2027-01",
-    "status": "open"
+   "ticker": "JBS",
+   "who": "Gilberto Tomazoni (CEO JBS)",
+   "said_on": "2026-11-09",
+   "source": "JBS Q3 2026 release 9/11 — Reuters/WSJ",
+   "promise": "Wesley Batista Filho lên làm tổng giám đốc toàn cầu từ tháng 1/2027; mảng bò Bắc Mỹ + Brazil hướng tới diễn biến thị trường thuận lợi hơn trong Q4/2026",
+   "due": "2027-01",
+   "status": "open"
   },
   {
-    "ticker": "HIMS",
-    "who": "Yemi Okupe (CFO Hims & Hers)",
-    "said_on": "2026-11-09",
-    "source": "HIMS Q3 2026 call 9/11 — Stocktwits",
-    "promise": "Q4 2026: doanh thu $875–895M; cả năm 2026: doanh thu $3,13–3,15B; vài đợt mở rộng nền tảng trong Q4/2026",
-    "due": "2026-Q4",
-    "status": "open"
+   "ticker": "HIMS",
+   "who": "Yemi Okupe (CFO Hims & Hers)",
+   "said_on": "2026-11-09",
+   "source": "HIMS Q3 2026 call 9/11 — Stocktwits",
+   "promise": "Q4 2026: doanh thu $875–895M; cả năm 2026: doanh thu $3,13–3,15B; vài đợt mở rộng nền tảng trong Q4/2026",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "SE",
+   "who": "Forrest Li (CEO Sea)",
+   "said_on": "2026-11-10",
+   "source": "SE Q3 2026 call — TradingKey/Dolphin Research 10/11",
+   "promise": "Monee niêm yết độc lập (spin-off) trong 1–3 năm (2027–2029), tùy thị trường/vĩ mô/quy định",
+   "due": "2027–2029",
+   "status": "open"
+  },
+  {
+   "ticker": "SE",
+   "who": "Sea leadership",
+   "said_on": "2026-11-10",
+   "source": "SE Q3 2026 call — TradingKey 10/11",
+   "promise": "Shopee cả năm 2026: GMV +~25%, EBITDA điều chỉnh ~$1 tỷ",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "TDG",
+   "who": "Mike Lisman (CEO TransDigm)",
+   "said_on": "2026-11-10",
+   "source": "TDG Q4 FY26 release — PR Newswire 10/11",
+   "promise": "FY27: doanh thu $11,95–12,15B; EPS điều chỉnh $47,09–47,94; EBITDA ~$6,27B",
+   "due": "2027-09-30",
+   "status": "open"
+  },
+  {
+   "ticker": "VG",
+   "who": "Mike Sabel (CEO Venture Global)",
+   "said_on": "2026-11-10",
+   "source": "VG Q3 2026 press release 10/11",
+   "promise": "CP2 bắt đầu sản xuất LNG giữa 2027; CP2 mở rộng FID đầu 2027, LNG đầu tiên cuối 2028; Plaquemines Phase 2 COD giữa 2027",
+   "due": "2027-H1 (CP2/PLQ2) / 2028-H2 (CP2 mở rộng)",
+   "status": "open"
+  },
+  {
+   "ticker": "VG",
+   "who": "Mike Sabel (CEO Venture Global)",
+   "said_on": "2026-11-10",
+   "source": "VG Q3 2026 press release 10/11",
+   "promise": "AI utility off-grid: bắt đầu giao công suất tính toán cuối 2028, mở rộng tới ~5 GW vào cuối 2031",
+   "due": "2028-Q4 (giao đầu) / 2031-Q4 (5 GW)",
+   "status": "open"
+  },
+  {
+   "ticker": "ONON",
+   "who": "Caspar Coppetti (Co-CEO On)",
+   "said_on": "2026-11-10",
+   "source": "ONON Q3 2026 call — Motley Fool transcript 10/11",
+   "promise": "Ra mắt bóng đá + golf năm 2027; gần như toàn bộ dòng giày chạy hiệu năng dùng bọt siêu tới hạn mới trước cuối 2027; kích hoạt 4 địa điểm sản xuất LightSpray giữa 2027",
+   "due": "2027-H2",
+   "status": "open"
+  },
+  {
+   "ticker": "ONON",
+   "who": "On leadership",
+   "said_on": "2026-11-10",
+   "source": "ONON Q3 2026 call — Motley Fool transcript 10/11",
+   "promise": "Tăng gấp 3 lần doanh thu trang phục (apparel) trong 3 năm tới (đến 2029)",
+   "due": "2029",
+   "status": "open"
+  },
+  {
+   "ticker": "BV",
+   "who": "BrightView leadership",
+   "said_on": "2026-11-10",
+   "source": "BV Q4 FY26 press release 10/11",
+   "promise": "FY2027: doanh thu $2,535–2,720B; EBITDA điều chỉnh $335–355M; dòng tiền tự do $110–130M",
+   "due": "2027-09-30",
+   "status": "open"
+  },
+  {
+   "ticker": "CRWV",
+   "who": "Michael Intrator (CEO CoreWeave)",
+   "said_on": "2026-11-10",
+   "source": "CRWV Q3 2026 release — AIStockWire/CNBC 10/11",
+   "promise": "Doanh thu cả năm 2026 $13,0–13,3B; run-rate doanh thu năm hóa $20–21B khi rời khỏi 2026; ~$9B tiền trả trước/đặt cọc khách hàng trong 3 tháng tới",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "CRWV",
+   "who": "Nitin Agrawal (CFO CoreWeave)",
+   "said_on": "2026-11-10",
+   "source": "CRWV Q3 2026 call — CNBC via AIStockWire 10/11",
+   "promise": "Không phát hành thêm trái phiếu không đảm bảo cấp công ty mẹ đến hết 2027 (ở mức lợi suất hiện tại)",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "GO",
+   "who": "Grocery Outlet leadership",
+   "said_on": "2026-11-10",
+   "source": "GO Q3 2026 release — GlobeNewswire 10/11",
+   "promise": "Kế hoạch tối ưu: các hành động vận hành và tác động tài chính cơ bản hoàn tất vào Q4 FY2027; FY26: doanh thu $4,70–4,72B, EPS điều chỉnh $0,52–0,55",
+   "due": "2027-Q4 (tối ưu) / 2026-Q4 (FY26)",
+   "status": "open"
+  },
+  {
+   "ticker": "REZI",
+   "who": "Tom Surran (CEO Resideo)",
+   "said_on": "2026-11-10",
+   "source": "REZI Q3 2026 press release — PR Newswire 10/11",
+   "promise": "Q4 2026: doanh thu $710–730M, EPS điều chỉnh $0,42–0,48; cả năm 2026: EPS điều chỉnh $1,92–1,98, dòng tiền hoạt động ít nhất $165M",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "BAP",
+   "who": "Gianfranco Ferrari (CEO Credicorp)",
+   "said_on": "2026-11-10",
+   "source": "BAP Q3 2026 call — Stock Observer/Seeking Alpha 10/11",
+   "promise": "Giữ nguyên guidance cả năm 2026: ROE ~19,5%; mục tiêu trung hạn ROE ~22%; cập nhật chiến lược ngày 17/11/2026",
+   "due": "2026-Q4 (ROE) / 2026-11-17 (strategic update)",
+   "status": "open"
+  },
+  {
+   "ticker": "ZETA",
+   "who": "David Steinberg (CEO Zeta)",
+   "said_on": "2026-11-09",
+   "source": "ZETA Q3 2026 release — Morningstar/BusinessWire 09/11; Zacks 10/11",
+   "promise": "Nâng guidance FY2026: doanh thu $1,853–1,857B; EBITDA điều chỉnh ~$414,6M; FCF ~$271M; Q4 doanh thu $521–525M",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "ZETA",
+   "who": "David Steinberg (CEO Zeta)",
+   "said_on": "2026-11-09",
+   "source": "ZETA Q3 2026 call — Zacks 10/11",
+   "promise": "AthenaOS phát hành rộng rãi (GA) quý 1/2027; beta cho khách chọn lọc trong 2026",
+   "due": "2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "ONTO",
+   "who": "Brian Roberts (CFO Onto)",
+   "said_on": "2026-11-09",
+   "source": "ONTO Q3 2026 call — Motley Fool transcript 09/11",
+   "promise": "Q4 2026: doanh thu $430–450M, EPS non-GAAP $2,59–2,79; cả năm 2026 doanh thu ~$1,485B (+45%+); tăng trưởng nối tiếp ít nhất tới hết H1 2027",
+   "due": "2026-Q4 / 2027-H1",
+   "status": "open"
+  },
+  {
+   "ticker": "ONTO",
+   "who": "Michael Plisinski (CEO Onto)",
+   "said_on": "2026-11-09",
+   "source": "ONTO Q3 2026 call — Motley Fool transcript 09/11",
+   "promise": "Analyst Day / Investor Day tháng 12/2026 (17/12/2026)",
+   "due": "2026-12-17",
+   "status": "open"
   }
  ]
 }
