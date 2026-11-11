@@ -4432,7 +4432,7 @@ def ensure_share_gate(html):
     return html
 
 YAHOO_LIVE_SNIPPET = """
-<!-- YAHOO-LIVE-V10 -->
+<!-- YAHOO-LIVE-V11 -->
 <script>
 (function(){
 function fmtP(x){var s=x.toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2});if(s.slice(-3)===',00')s=s.slice(0,-3);else if(s.indexOf(',')>=0&&s.slice(-1)==='0')s=s.slice(0,-1);return '$'+s;}
@@ -4445,8 +4445,8 @@ fetch('prices.json?cb='+Date.now()).then(function(r){return r.json();}).then(fun
 var q=j.q||{};
 function wsf(t){return window.__wsFresh&&window.__wsFresh[t]&&(Date.now()-window.__wsFresh[t]<90000);}
 document.querySelectorAll('[data-lchip]').forEach(function(e){var t=e.getAttribute('data-lchip'),d=q[t];if(!d||wsf(t))return;e.textContent=e.textContent.replace(/^\\S+ \\$[\\d.,]+ \\([^)]*\\)/,function(){return t+' '+fmtP(d[0])+' ('+fmtPc(d[1])+')';});});
-document.querySelectorAll('[data-achip],[data-fchip]').forEach(function(e){var t=e.getAttribute('data-achip')||e.getAttribute('data-fchip'),d=q[t];if(!d||wsf(t))return;e.textContent=e.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
-document.querySelectorAll('tr.zchip-row').forEach(function(tr){var _t=tr.getAttribute('data-t'),d=q[_t];if(!d||wsf(_t))return;var c=tr.querySelector('.zchip');if(!c)return;c.textContent=c.textContent.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
+document.querySelectorAll('[data-achip],[data-fchip]').forEach(function(e){var t=e.getAttribute('data-achip')||e.getAttribute('data-fchip'),d=q[t];if(!d||wsf(t))return;e.innerHTML=e.innerHTML.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
+document.querySelectorAll('tr.zchip-row').forEach(function(tr){var _t=tr.getAttribute('data-t'),d=q[_t];if(!d||wsf(_t))return;var c=tr.querySelector('.zchip');if(!c)return;c.innerHTML=c.innerHTML.replace(/(Giá )\\$[\\d.,]+/,function(m,g){return g+fmtP(d[0]);});});
 document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]+/);if(!mt)return;var d=q[mt[0]];if(!d||wsf(mt[0]))return;lp.textContent=fmtUS(d[0]);if(lc){var up=d[1]>=0;lc.textContent=(up?'▲ ':'▼ ')+Math.abs(d[1]).toFixed(2)+'%';lc.className='lc '+(up?'up':'down');}});
 document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b)return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\\$)?)[\\d,]+(?:\\.\\d+)?(\\s*<span class=")(down|up)(">)[^<]*(<\\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d[0])+m[2]+(d[1]<0?'down':'up')+m[4]+fmtPct1(d[1])+m[5];}else if(/^\\s*~?\\$[\\d,]+(?:\\.\\d+)?\\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\\d,]+(?:\\.\\d+)?/,fmtUS(d[0]));}});
 document.querySelectorAll('b').forEach(function(b){if(!b.closest('#sec-etf,#sec-ltalloc,#sec-lt9'))return;var t=b.textContent.trim();if(!/^[A-Z]{1,6}$/.test(t))return;var d=q[t];if(!d||wsf(t))return;var ns=b.nextSibling;if(!ns||ns.nodeType!==3)return;if(/^\\s*—\\s*\\$[\\d.,]+ \\([^)]*\\)/.test(ns.textContent)){ns.textContent=ns.textContent.replace(/^(\\s*—\\s*)\\$[\\d.,]+ \\([^)]*\\)/,function(m,g){return g+fmtP(d[0])+' ('+fmtPc(d[1])+')';});}});
@@ -4468,7 +4468,7 @@ def ensure_yahoo_live(html):
     tren cac chip moi 30 giay tu prices.json cung nguon (Yahoo chan CORS
     nhung truc tiep nen phai qua cau noi nay — xem yahoo_live.py).
     Tu gan lai snippet + den LIVE neu generator lam mat."""
-    if 'YAHOO-LIVE-V10' not in html:
+    if 'YAHOO-LIVE-V11' not in html:
         i = html.find('<!-- YAHOO-LIVE')
         if i != -1:
             j = html.find('</script>', i)
@@ -4490,7 +4490,7 @@ def ensure_yahoo_live(html):
 
 
 WS_LIVE_SNIPPET = r"""
-<!-- YAHOO-WS-V4 -->
+<!-- YAHOO-WS-V5 -->
 <script>
 (function(){
 if(window.__wsStarted)return;window.__wsStarted=true;
@@ -4513,11 +4513,11 @@ document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.ma
 var pending={},flushT=null,lampT=0;
 function apply(id,d){
 document.querySelectorAll('[data-lchip="'+id+'"]').forEach(function(e){e.textContent=e.textContent.replace(/^\S+ \$[\d.,]+ \([^)]*\)/,function(){return id+' '+fmtP(d.price)+' ('+fmtPc(d.cp||0)+')';});});
-document.querySelectorAll('[data-achip="'+id+'"],[data-fchip="'+id+'"]').forEach(function(e){e.textContent=e.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
+document.querySelectorAll('[data-achip="'+id+'"],[data-fchip="'+id+'"]').forEach(function(e){e.innerHTML=e.innerHTML.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
 var lc=document.getElementById('lta-chip-'+id);if(lc){lc.textContent=lc.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});}
 document.querySelectorAll('[data-px="'+id+'"]').forEach(function(e){e.textContent=id+' '+mf(d.price);});
 document.querySelectorAll('[data-pct="'+id+'"]').forEach(function(e){var c=d.cp||0;e.textContent='('+(c>0?'+':'')+c.toFixed(2).replace('.',',')+'%)';});
-document.querySelectorAll('tr.zchip-row[data-t="'+id+'"]').forEach(function(tr){var c=tr.querySelector('.zchip');if(c)c.textContent=c.textContent.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
+document.querySelectorAll('tr.zchip-row[data-t="'+id+'"]').forEach(function(tr){var c=tr.querySelector('.zchip');if(c)c.innerHTML=c.innerHTML.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
 document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b||b.textContent.trim()!==id)return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\$)?)[\d,]+(?:\.\d+)?(\s*<span class=")(down|up)(">)[^<]*(<\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d.price)+m[2]+((d.cp||0)<0?'down':'up')+m[4]+fmtPct1(d.cp||0)+m[5];}else if(/^\s*~?\$[\d,]+(?:\.\d+)?\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\d,]+(?:\.\d+)?/,fmtUS(d.price));}});
 document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(!mt||mt[0]!==id)return;lp.textContent=d.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(lc){var cp=d.cp||0;lc.textContent=(cp>=0?'▲ ':'▼ ')+Math.abs(cp).toFixed(2)+'%';lc.className='lc '+(cp>=0?'up':'down');}});
 
@@ -4546,7 +4546,7 @@ def ensure_ws_live(html):
     khóa wsf() trong poller cũ chặn ghi đè mã đang có tick tươi <90s.
     BTC-USD chỉ làm nhịp tim giữ đèn ⚡ (giá crypto vẫn do CoinGecko lo,
     % 24h thật). Tự gắn lại snippet nếu generator làm mất."""
-    if 'YAHOO-WS-V4' not in html and '</body>' in html:
+    if 'YAHOO-WS-V5' not in html and '</body>' in html:
         i = html.find('<!-- YAHOO-WS')
         if i != -1:
             j = html.find('</script>', i)
