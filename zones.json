@@ -561,7 +561,8 @@
   "NET",
   "RKLB",
   "ANET",
-  "BE"
+  "BE",
+  "DOCN"
  ],
  "_excluded_note": "Tom 15/10: m\u00e3 trung l\u1eadp, x\u00f3a kh\u1ecfi b\u1ea3ng. Zone data backup \u1edf zones_excluded_backup.json. Mu\u1ed1n hi\u1ec7n l\u1ea1i th\u00ec x\u00f3a kh\u1ecfi _excluded.",
  "AXON": {
