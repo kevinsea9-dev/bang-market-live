@@ -7313,6 +7313,40 @@ def update_leverage_pairs(h, prices):
                     "<br>· CỔ PHIẾU THƯỜNG (Sổ 1) — Tom xếp canh chung "
                     'mục này<br><span class="t">Giá trực tiếp', 1)
             blocks.append(blk)
+        # GUARD ĐƠN ĐIỆU (11/11 — vụ QLD/SSO/NVDA/TSM mất khỏi mục Đòn
+        # Bẩy dù LEV_MAP có đủ): fetch hụt 1 lượt (Yahoo 429 khi nhiều
+        # writer chạy song song) làm mã gốc rớt khỏi px -> khối cặp biến
+        # mất khỏi bảng, mà guard companion không phủ sec-leverage nên
+        # không pass nào khôi phục. Khối cũ của mã thiếu giá lượt này
+        # được GIỮ NGUYÊN (số cũ 1 nhịp còn hơn mất hẳn khối).
+        try:
+            _old = re.search(r"<!-- LEV-PAIRS -->(.*?)<!-- /LEV-PAIRS -->",
+                             seg, re.S)
+            if _old:
+                _have = {r[1] for r in rows}
+                _kept = []
+
+                def _collect(full, inner):
+                    _t = None
+                    _m = re.search(r'data-achip="([A-Z]{2,6})"', full)
+                    if _m:
+                        _t = _m.group(1)
+                    else:
+                        _m = re.search(r'baseflash[^>]*>([A-Z]{2,6})<', full)
+                        if _m:
+                            _t = _m.group(1)
+                    if _t and _t not in _have:
+                        _kept.append(full)
+                    return full
+
+                sub_balanced_alerts(_old.group(1), _collect)
+                if _kept:
+                    blocks.extend(_kept)
+                    print(f"  leverage pairs guard: giữ {len(_kept)} khối "
+                          f"cũ (thiếu giá lượt này)", file=sys.stderr)
+        except Exception as _ge:
+            print(f"  ! leverage pairs guard skip ({_ge})",
+                  file=sys.stderr)
         inner = "".join(blocks) + LEV_PAIR_JS
         rendered = "<!-- LEV-PAIRS -->" + inner + "<!-- /LEV-PAIRS -->"
         if "<!-- LEV-PAIRS -->" in seg:
