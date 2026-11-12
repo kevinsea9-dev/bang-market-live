@@ -5638,7 +5638,16 @@ COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  # sec-news trong update_companion_lines). Trước 6/11
                  # mục này không pass nào sở hữu -> khối mã trong tin
                  # không bao giờ có dòng xe (block_census bắt VST).
-                 "sec-news")
+                 "sec-news",
+                 # 12/11: sec-boom VÀO diện phủ — boom_build render dòng
+                 # xe nhưng companion pass strip toàn bảng rồi chỉ gắn lại
+                 # trong COMP_SECTIONS; thiếu sec-boom = dòng xe boom chết
+                 # ngay chu kỳ refresh đầu tiên (Tom báo 09:52 12/11).
+                 # CSCO→CSCL đã có sẵn trong COMP_MAP + cảnh báo vol mỏng
+                 # (COMP_WARN) nên gắn như các mục khác; boom_picks.json
+                 # đã sửa CSCO vehicle=null → CSCL cho khớp, khỏi mâu
+                 # thuẫn "Không có xe 2x" + dòng CSCL cùng lúc.
+                 "sec-boom")
 _COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
                    "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
 
