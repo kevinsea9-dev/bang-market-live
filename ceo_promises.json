@@ -1323,6 +1323,141 @@
    "promise": "Analyst Day / Investor Day tháng 12/2026 (17/12/2026)",
    "due": "2026-12-17",
    "status": "open"
+  },
+  {
+   "ticker": "GIB",
+   "who": "Tim Hurlebaus (CEO CGI)",
+   "said_on": "2026-11-11",
+   "source": "CGI Q4 FY2026 release — cgi.com/newswire.ca 11/11",
+   "promise": "Tăng cổ tức quý 8,8% lên 0,185 đô la Canada/cp, trả ngày 18/12/2026",
+   "due": "2026-12-18",
+   "status": "open"
+  },
+  {
+   "ticker": "FNV",
+   "who": "Paul Brink (CEO Franco-Nevada)",
+   "said_on": "2026-11-11",
+   "source": "Franco-Nevada Q3 2026 release — PR Newswire 11/11",
+   "promise": "Đi đúng khoảng giữa guidance cả năm 2026",
+   "due": "FY2026",
+   "status": "open"
+  },
+  {
+   "ticker": "VYLR",
+   "who": "Chuck Magro (CEO Vylor)",
+   "said_on": "2026-11-11",
+   "source": "Vylor Q3 2026 release — PR Newswire 11/11",
+   "promise": "FY2026: EBITDA điều chỉnh ~2,8 tỷ đô la, EPS điều chỉnh 2,25–2,35 đô la",
+   "due": "FY2026",
+   "status": "open"
+  },
+  {
+   "ticker": "VYLR",
+   "who": "Chuck Magro (CEO Vylor)",
+   "said_on": "2026-11-11",
+   "source": "Vylor Q3 2026 release — PR Newswire 11/11",
+   "promise": "Mua lại cổ phiếu 3 tỷ đô la (chương trình đa năm, không hạn cuối)",
+   "due": "đa năm",
+   "status": "open"
+  },
+  {
+   "ticker": "CTVA",
+   "who": "Luke Kissam (CEO Corteva)",
+   "said_on": "2026-11-11",
+   "source": "Corteva Q3 2026 release — PR Newswire 11/11",
+   "promise": "FY2026: EBITDA điều chỉnh 1,1–1,125 tỷ đô la, EPS điều chỉnh 0,76–0,80 đô la",
+   "due": "FY2026",
+   "status": "open"
+  },
+  {
+   "ticker": "TTEK",
+   "who": "Roger Argus (CEO Tetra Tech)",
+   "said_on": "2026-11-11",
+   "source": "Tetra Tech Q4 FY2026 release — Business Wire 11/11",
+   "promise": "FY2027: EPS 1,65–1,80 đô la",
+   "due": "FY2027",
+   "status": "open"
+  },
+  {
+   "ticker": "TTEK",
+   "who": "Roger Argus (CEO Tetra Tech)",
+   "said_on": "2026-11-11",
+   "source": "Tetra Tech Q4 FY2026 release — Business Wire 11/11",
+   "promise": "Q1 FY2027: EPS 0,36–0,38 đô la",
+   "due": "Q1 FY2027",
+   "status": "open"
+  },
+  {
+   "ticker": "CAE",
+   "who": "Matthew Bromberg (CEO CAE)",
+   "said_on": "2026-11-11",
+   "source": "CAE Q2 FY2027 release — PR Newswire 11/11",
+   "promise": "FY2027: EPS điều chỉnh 1,28–1,35 đô la Canada, biên lợi nhuận đoạn điều chỉnh 14,9–15,4%",
+   "due": "FY2027",
+   "status": "open"
+  },
+  {
+   "ticker": "CAE",
+   "who": "Matthew Bromberg (CEO CAE)",
+   "said_on": "2026-11-11",
+   "source": "CAE Q2 FY2027 release — PR Newswire 11/11",
+   "promise": "Ngày Nhà đầu tư và Phân tích 25/02/2027 — công bố chi tiết chiến lược/chuyển đổi/tăng trưởng",
+   "due": "2027-02-25",
+   "status": "open"
+  },
+  {
+   "ticker": "PBR",
+   "who": "Magda Chambriard (CEO Petrobras)",
+   "said_on": "2026-11-10",
+   "source": "Petrobras Q3 2026 — agencia.petrobras.com.br 10/11",
+   "promise": "Sản lượng dầu khí trung bình 2026 đạt 3,3–3,4 triệu thùng quy đổi/ngày (từ 3,1 triệu)",
+   "due": "2026",
+   "status": "open"
+  },
+  {
+   "ticker": "PBR",
+   "who": "Magda Chambriard (CEO Petrobras)",
+   "said_on": "2026-11-10",
+   "source": "Petrobras Q3 2026 — Bloomberg/TradingView 10–11/11",
+   "promise": "Công bố kế hoạch kinh doanh 5 năm mới vào cuối tháng 11/2026",
+   "due": "2026-11-30",
+   "status": "open"
+  },
+  {
+   "ticker": "ALC",
+   "who": "David Endicott (CEO Alcon)",
+   "said_on": "2026-11-10",
+   "source": "Alcon Q3 2026 call — Motley Fool transcript 11/11",
+   "promise": "2026: tăng trưởng doanh thu ~6% (tiền tệ không đổi), tăng trưởng EPS lõi 12–14%",
+   "due": "FY2026",
+   "status": "open"
+  },
+  {
+   "ticker": "VIV",
+   "who": "Christian Gebara (CEO Telefônica Brasil)",
+   "said_on": "2026-11-10",
+   "source": "Telefônica Brasil 3Q26 release — Newsfile 10/11",
+   "promise": "Phân phối ít nhất 100% lợi nhuận ròng FY26 cho cổ đông",
+   "due": "FY2026",
+   "status": "open"
+  },
+  {
+   "ticker": "RGTI",
+   "who": "Subodh Kulkarni (CEO Rigetti)",
+   "said_on": "2026-11-10",
+   "source": "Rigetti Q3 2026 — company release/Barron's 10–11/11",
+   "promise": "FY2026: doanh thu ~20 triệu đô la, phụ thuộc nghiệm thu hệ thống C-DAC trong Q4",
+   "due": "Q4 2026",
+   "status": "open"
+  },
+  {
+   "ticker": "RGTI",
+   "who": "Subodh Kulkarni (CEO Rigetti)",
+   "said_on": "2026-11-10",
+   "source": "Rigetti Q3 2026 — Barron's/Stocktwits 10–11/11",
+   "promise": "Thương mại hóa máy tính lượng tử thực sự trong khoảng 3 năm",
+   "due": "~2029",
+   "status": "open"
   }
  ]
 }
