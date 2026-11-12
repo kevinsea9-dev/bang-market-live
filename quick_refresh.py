@@ -7606,7 +7606,15 @@ def merge_fresh_sections(h, path):
                          # sáng. Cùng luật "bản tươi đầy đủ hơn thì giữ":
                          # swing đếm 'Vùng mua', boom đếm 'levcomp'.
                          ("sec-swing", "Vùng mua"),
-                         ("sec-boom", "levcomp")):
+                         ("sec-boom", "levcomp"),
+                         # 12/11 (Tom lệnh đưa CSCL vào Đòn Bẩy, soi ra
+                         # mục chỉ còn 75/105 khối): sec-leverage do
+                         # update_leverage_pairs dựng lại mỗi lượt nhưng
+                         # lượt đọc-stale ghi đè vẫn làm RỚT khối cặp
+                         # (CSCO/SNDK/AMD/QCOM mất dù LEV_MAP + giá đủ).
+                         # Cùng luật: bản tươi nhiều khối hơn thì giữ —
+                         # marker = 1 data-achip mỗi khối cặp.
+                         ("sec-leverage", "data-achip=")):
         try:
             fb = _sec_bounds(fresh, sid)
             hb = _sec_bounds(h, sid)
