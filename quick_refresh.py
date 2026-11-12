@@ -7415,11 +7415,41 @@ def update_leverage_pairs(h, prices):
         need = set(groups) | {v for vs in groups.values() for v in vs}
         need.add("LNT")
         px = dict(prices)
+        # Fallback chống mất khối cặp (Tom bắt lỗi 12/11 — SNDK/SKHY/STX/
+        # META/AMD/NVDA biến khỏi mục Đòn Bẩy dù LEV_MAP có đủ xe): mã gốc
+        # nào fetch Yahoo hụt trong lượt (429/timeout khi nhiều writer chạy
+        # song song) là mất luôn khối cặp lượt đó; guard bên dưới chỉ giữ
+        # được khối còn trong segment, nên 1 lượt writer cũ đè segment là
+        # mất hẳn. Lấy giá từ prices.json trên đĩa TRƯỚC (bơm giá 3 phút
+        # có đủ 331 mã gồm cả xe — cùng mẫu companion 5/11), Yahoo chỉ
+        # còn là đường bổ sung cho mã thật sự thiếu.
+        _disk_missing = [t for t in sorted(need) if t not in px]
+        if _disk_missing:
+            try:
+                _pj = json.load(open(os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)),
+                    "prices.json")))
+                for _t in _disk_missing:
+                    if _t in _pj.get("q", {}):
+                        px[_t] = _pj["q"][_t]
+            except Exception as _e:
+                print(f"  ! leverage pairs prices.json fallback: {_e}",
+                      file=sys.stderr)
         missing = [t for t in need if t not in px]
         if missing:
             try:
                 got, _l, _h52 = fetch_prices(sorted(missing))
                 px.update(got)
+            except Exception:
+                pass
+        # Mã GỐC còn thiếu sau fetch lớn → fetch lại batch nhỏ ≤6 mã
+        # (batch lớn hay rớt lẻ khi Yahoo 429 — cùng bài học companion;
+        # thiếu mã gốc = mất cả khối, thiếu xe chỉ mất 1 dòng trong khối).
+        _base_missing = [t for t in sorted(groups) if t not in px]
+        for _i in range(0, len(_base_missing), 6):
+            try:
+                _g, _l2, _h2 = fetch_prices(_base_missing[_i:_i + 6])
+                px.update(_g)
             except Exception:
                 pass
         order = {"IN": 0, "BELOW": 1, "ABOVE": 2, "PAUSED": 3,
