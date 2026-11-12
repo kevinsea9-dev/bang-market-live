@@ -5598,7 +5598,6 @@ COMP_WARN = {  # tem cảnh báo tĩnh, số vol đã verify 30/10
     "AMDL": "🚨 AMD earnings 3/11 — cấm ôm xe qua số",
     "LRCU": "⚠️ vol vừa ~140–200k cp/ngày, AUM ~$39tr — chia lệnh nhỏ, tránh giờ mỏng",
     "COHX": "🚨 COHR earnings 4/11 — cấm ôm xe qua số",
-    "SMCX": "🚨 SMCI earnings CHIỀU NAY 3/11 — cấm ôm xe qua số",
     "KLAG": "⚠️ vol mỏng ~22k cp/ngày (3/11), AUM ~$11tr — chia lệnh nhỏ, tránh giờ mỏng",
     "LITX": "🚨 LITE earnings 5/11 AMC — cấm ôm xe qua số",
     "CSCL": "⚠️ vol cực mỏng ~6–11k cp/ngày, AUM ~$10tr — gần như không giao dịch được, chia lệnh nhỏ",
