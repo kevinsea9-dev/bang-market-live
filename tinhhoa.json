@@ -1,6 +1,138 @@
 {
  "entries": [
   {
+   "ticker": "BN",
+   "name": "Brookfield",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.72,
+   "rev_est": "$1.85B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
+  },
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.61,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: neocloud AI — báo cáo ngay sau CRWV, so sánh tăng trưởng/backlog. Vùng Sổ 3 $136–148 / Chốt $179→$204 / Cắt <$130."
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": 1.13,
+   "implied": null,
+   "name": "Ascendis Pharma A/S",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11: lịch Nasdaq từng xếp nhầm 11/11, thông cáo công ty xác nhận T5 12/11 BMO. Điểm nhìn: doanh thu Yorvipath/Skytrofa + đường ống TransCon. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "ASND",
+   "when": "T5 12/11 BMO"
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": -0.13,
+   "implied": null,
+   "name": "Ondas Inc",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Vùng Sổ 3 ĐK $4,40–4,90 / Chốt $5,80→$6,90 / Cắt đóng <$4,20 — ĐÃ KÍCH HOẠT ở đóng 10/11; giá 11/11 ~$5,78 đã sát Chốt 1, earnings là phép thử giữ nền trên cắt.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "ONDS",
+   "when": "T5 12/11 BMO"
+  },
+  {
+   "ticker": "HBM",
+   "name": "Hudbay Minerals Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.35,
+   "rev_est": "$733.97M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đồng/vàng — DT kỳ vọng tăng >100% YoY nhờ giá kim loại; xem sản lượng + chi phí. [Zacks ghi DT $815,74tr — khác nguồn, không dùng.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "TWST",
+   "name": "Twist Bioscience Corporation",
+   "date": "2026-11-12",
+   "when": "T5 12/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.38,
+   "rev_est": "$123.55M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: DT theo guidance công ty $123–124tr (+~25% YoY); mốc hòa vốn EBITDA điều chỉnh — lỗ thu hẹp hay không. [Zacks/FI Handbook ghi EPS -$0,44/-$0,43 — khác nguồn.] Giá 11/11 $122,59 (−7,2% trong phiên, biến động mạnh trước giờ ra số). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco Systems, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.32,
+   "rev_est": "$18.11B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đơn hàng AI networking + guidance Q2; EPS $1,32 là non-GAAP (một số lịch ghi $1,15 GAAP). Vùng Sổ 3 $100–104 / Chốt $113→$119 / Cắt <$97."
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials, Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 4.06,
+   "rev_est": "$10.30B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": -0.03,
+   "implied": null,
+   "name": "Lithium Americas Corp.",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq/Stocktwits ghi 12/11, công ty chưa chốt giờ chính thức). Vùng chờ ĐK Sổ 3 $1,70–1,85 / Chốt $2,05→$2,25 / Cắt đóng <$1,60. 11/11 capitulation: đáy $1,70 = đáy 52 tuần sau tin nâng chi phí Thacker Pass Phase 1 lên ~$3,83 tỷ; kích hoạt cần nền ≥3 phiên đóng không thủng $1,70 + đóng lấy lại $1,90.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "LAC",
+   "when": "T5 12/11 (giờ chưa công bố)"
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": -0.13,
+   "implied": null,
+   "name": "Cerebras Systems Inc.",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Điểm nhìn: chip AI wafer-scale, cùng tối CSCO/AMAT — đối chứng tâm lý nhóm AI. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "CBRS",
+   "when": "T5 12/11 AMC"
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": 0.22,
+   "implied": null,
+   "name": "Nu Holdings Ltd.",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq, giờ ra số chưa ghi rõ). Điểm nhìn: tăng trưởng khách hàng + chất lượng tín dụng LatAm. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "rev_est": null,
+   "status": "PENDING",
+   "ticker": "NU",
+   "when": "T5 12/11 (giờ chưa công bố)"
+  },
+  {
+   "ticker": "STN",
+   "name": "Stantec Inc.",
+   "date": "2026-11-12",
+   "when": "T5 12/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.24,
+   "rev_est": "$1.86B CAD",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/Finnhub). Điểm nhìn: backlog hạ tầng + biên lợi nhuận. [Số báo cáo bằng CAD: EPS ~1,80 CAD, DT ~1,86 tỷ CAD — ước tính USD ~$1,24.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "GIB",
    "name": "CGI Inc.",
    "date": "2026-11-11",
@@ -113,138 +245,6 @@
    "price_after": 27.52,
    "essence": "EPS điều chỉnh 0,33 CAD (+17,9% YoY) vượt kỳ vọng $0,19; EPS GAAP 0,18 CAD; DT 1.204,7 triệu CAD (−2,6% YoY, ~860 triệu USD) hụt kỳ vọng 888,95 triệu USD; Quốc phòng tăng trưởng mạnh (lợi nhuận đoạn +43,3%), Dân dụng yếu; nâng guidance FY2027; bán Flightscape 500 triệu USD; mua lại 3,0 triệu cp. AH +0,5% lên $27,52 lúc 13:50 PT (thanh khoản mỏng — hạ nhiệt từ $27,80 lúc 13:47 PT).",
    "audio": "earnings-cae-2026-11-11.mp3"
-  },
-  {
-   "ticker": "CSCO",
-   "name": "Cisco Systems, Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.32,
-   "rev_est": "$18.11B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đơn hàng AI networking + guidance Q2; EPS $1,32 là non-GAAP (một số lịch ghi $1,15 GAAP). Vùng Sổ 3 $100–104 / Chốt $113→$119 / Cắt <$97."
-  },
-  {
-   "ticker": "AMAT",
-   "name": "Applied Materials, Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 AMC",
-   "status": "PENDING",
-   "eps_est": 4.06,
-   "rev_est": "$10.30B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": -0.03,
-   "implied": null,
-   "name": "Lithium Americas Corp.",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq/Stocktwits ghi 12/11, công ty chưa chốt giờ chính thức). Vùng chờ ĐK Sổ 3 $1,70–1,85 / Chốt $2,05→$2,25 / Cắt đóng <$1,60. 11/11 capitulation: đáy $1,70 = đáy 52 tuần sau tin nâng chi phí Thacker Pass Phase 1 lên ~$3,83 tỷ; kích hoạt cần nền ≥3 phiên đóng không thủng $1,70 + đóng lấy lại $1,90.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "LAC",
-   "when": "T5 12/11 (giờ chưa công bố)"
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": -0.13,
-   "implied": null,
-   "name": "Cerebras Systems Inc.",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Điểm nhìn: chip AI wafer-scale, cùng tối CSCO/AMAT — đối chứng tâm lý nhóm AI. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "CBRS",
-   "when": "T5 12/11 AMC"
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": 0.22,
-   "implied": null,
-   "name": "Nu Holdings Ltd.",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq, giờ ra số chưa ghi rõ). Điểm nhìn: tăng trưởng khách hàng + chất lượng tín dụng LatAm. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "NU",
-   "when": "T5 12/11 (giờ chưa công bố)"
-  },
-  {
-   "ticker": "STN",
-   "name": "Stantec Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.24,
-   "rev_est": "$1.86B CAD",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/Finnhub). Điểm nhìn: backlog hạ tầng + biên lợi nhuận. [Số báo cáo bằng CAD: EPS ~1,80 CAD, DT ~1,86 tỷ CAD — ước tính USD ~$1,24.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "BN",
-   "name": "Brookfield",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.72,
-   "rev_est": "$1.85B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 9/11 (consensus Tapeboard 9/11). Điểm nhìn: quản lý tài sản — đọc dòng tiền vào quỹ + lãi suất."
-  },
-  {
-   "ticker": "NBIS",
-   "name": "Nebius Group N.V.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.61,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: neocloud AI — báo cáo ngay sau CRWV, so sánh tăng trưởng/backlog. Vùng Sổ 3 $136–148 / Chốt $179→$204 / Cắt <$130."
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": 1.13,
-   "implied": null,
-   "name": "Ascendis Pharma A/S",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11: lịch Nasdaq từng xếp nhầm 11/11, thông cáo công ty xác nhận T5 12/11 BMO. Điểm nhìn: doanh thu Yorvipath/Skytrofa + đường ống TransCon. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "ASND",
-   "when": "T5 12/11 BMO"
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": -0.13,
-   "implied": null,
-   "name": "Ondas Inc",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Vùng Sổ 3 ĐK $4,40–4,90 / Chốt $5,80→$6,90 / Cắt đóng <$4,20 — ĐÃ KÍCH HOẠT ở đóng 10/11; giá 11/11 ~$5,78 đã sát Chốt 1, earnings là phép thử giữ nền trên cắt.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "ONDS",
-   "when": "T5 12/11 BMO"
-  },
-  {
-   "ticker": "HBM",
-   "name": "Hudbay Minerals Inc.",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.35,
-   "rev_est": "$733.97M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: đồng/vàng — DT kỳ vọng tăng >100% YoY nhờ giá kim loại; xem sản lượng + chi phí. [Zacks ghi DT $815,74tr — khác nguồn, không dùng.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "TWST",
-   "name": "Twist Bioscience Corporation",
-   "date": "2026-11-12",
-   "when": "T5 12/11 BMO",
-   "status": "PENDING",
-   "eps_est": -0.38,
-   "rev_est": "$123.55M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: DT theo guidance công ty $123–124tr (+~25% YoY); mốc hòa vốn EBITDA điều chỉnh — lỗ thu hẹp hay không. [Zacks/FI Handbook ghi EPS -$0,44/-$0,43 — khác nguồn.] Giá 11/11 $122,59 (−7,2% trong phiên, biến động mạnh trước giờ ra số). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "SE",
