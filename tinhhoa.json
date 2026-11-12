@@ -16,11 +16,17 @@
    "name": "Applied Materials, Inc.",
    "date": "2026-11-12",
    "when": "T5 12/11 AMC",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 4.06,
    "rev_est": "$10.30B",
    "implied": "±8.8%",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 10/11 (lịch earnings tuần 9/11, FI Handbook/MarketBeat). Điểm nhìn: nhu cầu thiết bị bán dẫn (WFE) + triển vọng 2027 là tâm điểm — số Q4 gần như đã khớp guidance $10,25B/$4,02. Vùng Sổ 3 $390–415 / Chốt $480→$550 / Cắt <$368.",
+   "eps_act": 4.16,
+   "rev_act": "$10.41B",
+   "verdict": "BEAT",
+   "reaction_pct": -0.72,
+   "price_after": 378.22,
+   "essence": "Q4 FY26: doanh thu kỷ lục $10,41 tỷ (+53% YoY), EPS non-GAAP kỷ lục $4,16 — vượt cả hai kỳ vọng (EPS $4,06 / DT $10,30 tỷ); cổ phiếu −0,7% AH (thanh khoản mỏng)."
   },
   {
    "date": "2026-11-12",
@@ -29,9 +35,15 @@
    "name": "Lithium Americas Corp.",
    "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq/Stocktwits ghi 12/11, công ty chưa chốt giờ chính thức). Vùng chờ ĐK Sổ 3 $1,70–1,85 / Chốt $2,05→$2,25 / Cắt đóng <$1,60. 11/11 capitulation: đáy $1,70 = đáy 52 tuần sau tin nâng chi phí Thacker Pass Phase 1 lên ~$3,83 tỷ; kích hoạt cần nền ≥3 phiên đóng không thủng $1,70 + đóng lấy lại $1,90.",
    "rev_est": null,
-   "status": "PENDING",
+   "status": "DONE",
    "ticker": "LAC",
-   "when": "T5 12/11 (giờ chưa công bố)"
+   "when": "T5 12/11 (giờ chưa công bố)",
+   "eps_act": 0.12,
+   "rev_act": null,
+   "verdict": "BEAT",
+   "reaction_pct": 0.62,
+   "price_after": 1.64,
+   "essence": "Q3: EPS điều chỉnh +$0,12/cp, vượt kỳ vọng lỗ −$0,03 — nhờ lãi đánh giá lại warrant/nợ chuyển đổi, không phải doanh thu vận hành (chưa có doanh thu, Thacker Pass đang xây); chi phí Phase 1 $3,83 tỷ, tiền mặt ~$1,3 tỷ. Đóng $1,63, AH $1,64 (+0,6%, thanh khoản mỏng)."
   },
   {
    "date": "2026-11-12",
