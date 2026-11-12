@@ -7596,7 +7596,17 @@ def merge_fresh_sections(h, path):
               file=sys.stderr)
         return h
     for sid, marker in (("sec-crypto", '<div class="alert'),
-                         ("sec-ltalloc", "lta-ret-")):
+                         ("sec-ltalloc", "lta-ret-"),
+                         # 12/11 (vụ Swing rỗng + Boom mất xe, Tom báo
+                         # 09:52): sec-swing do writer swing sở hữu,
+                         # sec-boom do boom_build sở hữu — quick_refresh
+                         # chỉ là kẻ qua đường (price pass). Lượt refresh
+                         # đọc-stale (chạy 5–9 phút vì pm overlay) ghi đè
+                         # đã xóa sạch 7 khối swing 2 lần trong 1 buổi
+                         # sáng. Cùng luật "bản tươi đầy đủ hơn thì giữ":
+                         # swing đếm 'Vùng mua', boom đếm 'levcomp'.
+                         ("sec-swing", "Vùng mua"),
+                         ("sec-boom", "levcomp")):
         try:
             fb = _sec_bounds(fresh, sid)
             hb = _sec_bounds(h, sid)
