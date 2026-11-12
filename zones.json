@@ -2,15 +2,15 @@
  "AMD": {
   "book": "Sổ 2",
   "entry": [
-   430,
-   455
+   525,
+   555
   ],
   "targets": [
-   498,
-   535
+   600,
+   650
   ],
-  "cut": 420,
-  "note": "VÙNG CHỜ CÓ ĐIỀU KIỆN — vẽ lại 06/11 theo lệnh Tom, thay vùng $498–512/cắt $488 (gãy đóng 05/11 $404,40). Neo đáy capitulation 05/11 $402,10 (vol 2,7x); 06/11 đóng $449,04 +11,0% vol 1,7x, đáy $433,30 giữ xa đáy. KT: giữ ĐÓNG không thủng $402,10 đủ 3 phiên (đã 2/3) + đóng lấy lại $463 (qua kệ $451–463). Cắt = ĐÓNG <$420. Chốt $498 (vùng cũ) → $535. −32% vs đỉnh 3 tháng $658,52. 🔴 mốc canh/tham chiếu."
+  "cut": 515,
+  "note": "VÙNG MỚI vẽ 12/11 theo lệnh Tom — AMD pullback từ ĐỈNH KÉP $578–579 (cao 28/10 $579,18 + cao 12/11 $578,78). Neo: mép trên $555 = đáy phiên 12/11 $554,90 + MA50 $552,49; đáy vùng $525 nằm trên đáy 11/11 $522,65. Cắt = ĐÓNG <$515 (dưới MA20 $517,49 + nến đóng 10/11 $515,21). Chốt $600 (qua đỉnh kép) → $650 (BofA PT $700; William Blair nâng Outperform 12/11). Vùng cũ $430–455 / chốt $498→$535 ĐÃ HOÀN THÀNH (giá xuyên cả 2 chốt 11–12/11), giữ làm mốc sâu. 🔴 mốc canh/tham chiếu, phán quyết ở nến đóng."
  },
  "AMZN": {
   "book": "Sổ 2",
