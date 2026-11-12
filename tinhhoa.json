@@ -1,28 +1,6 @@
 {
  "entries": [
   {
-   "date": "2026-11-12",
-   "eps_est": -0.13,
-   "implied": null,
-   "name": "Cerebras Systems Inc.",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Điểm nhìn: chip AI wafer-scale, cùng tối CSCO/AMAT — đối chứng tâm lý nhóm AI. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "CBRS",
-   "when": "T5 12/11 AMC"
-  },
-  {
-   "date": "2026-11-12",
-   "eps_est": 0.22,
-   "implied": null,
-   "name": "Nu Holdings Ltd.",
-   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq, giờ ra số chưa ghi rõ). Điểm nhìn: tăng trưởng khách hàng + chất lượng tín dụng LatAm. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
-   "rev_est": null,
-   "status": "PENDING",
-   "ticker": "NU",
-   "when": "T5 12/11 (giờ chưa công bố)"
-  },
-  {
    "ticker": "STN",
    "name": "Stantec Inc.",
    "date": "2026-11-12",
@@ -31,7 +9,7 @@
    "eps_est": 1.24,
    "rev_est": "$1.86B CAD",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/Finnhub). Điểm nhìn: backlog hạ tầng + biên lợi nhuận. [Số báo cáo bằng CAD: EPS ~1,80 CAD, DT ~1,86 tỷ CAD — ước tính USD ~$1,24.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 11/11 (lịch earnings tuần 9/11, FI Handbook/Finnhub). Điểm nhìn: backlog hạ tầng + biên lợi nhuận. [Số báo cáo bằng CAD: EPS ~1,80 CAD, DT ~1,86 tỷ CAD — ước tính USD ~$1,24.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:45 PT 12/11: chưa có số trên wire — call 08:00 ET 13/11; để Cú Đêm hứng.]"
   },
   {
    "ticker": "BN",
@@ -142,6 +120,42 @@
    "essence": "DT Q4 $126,6tr (+28% YoY) vượt kv $123,55tr; EPS GAAP -$0,32 hẹp hơn kv -$0,38; EBITDA điều chỉnh +$2,2tr lần đầu dương; DT FY2026 $459,4tr (+22%). Nhưng giá premarket rớt mạnh −16,2% về $102,75 lúc 05:48 PT (thanh khoản mỏng), sau khi đã −7,2% trong phiên 11/11 — thị trường bán dù số beat."
   },
   {
+   "date": "2026-11-12",
+   "eps_est": -0.13,
+   "implied": null,
+   "name": "Cerebras Systems Inc.",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq). Điểm nhìn: chip AI wafer-scale, cùng tối CSCO/AMAT — đối chứng tâm lý nhóm AI. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:45 PT 12/11: đã ra số — EPS hụt sâu nhưng DT lõi beat + nâng guidance + ký Microsoft; AH $108,79 (+11,3%).]",
+   "rev_est": null,
+   "status": "DONE",
+   "ticker": "CBRS",
+   "when": "T5 12/11 AMC",
+   "eps_act": -0.67,
+   "rev_act": "$230.9M",
+   "verdict": "MIXED",
+   "guidance": "Nâng DT lõi 2026 lên $940–960tr (từ $880–890tr); Q4 DT lõi $310–330tr, biên gộp lõi 47–49%; ký Microsoft làm khách hàng mới; kỳ vọng DT 2027 gấp 3 lần",
+   "reaction_pct": 11.3,
+   "price_after": 108.79,
+   "essence": "Lỗ -$0,67/cp, hụt sâu kv -$0,13; doanh thu lõi $230,9tr (+70% YoY) vượt kv $214,7tr nhờ cloud lõi +272% (DT GAAP $210,8tr, dưới kv ~$219tr); nâng guidance cả năm + ký Microsoft → cổ phiếu +11,3% AH về $108,79 lúc ~13:45 PT (thanh khoản mỏng)."
+  },
+  {
+   "date": "2026-11-12",
+   "eps_est": 0.22,
+   "implied": null,
+   "name": "Nu Holdings Ltd.",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp bổ sung 11/11 (lịch Nasdaq, giờ ra số chưa ghi rõ). Điểm nhìn: tăng trưởng khách hàng + chất lượng tín dụng LatAm. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:45 PT 12/11: đã ra số — lợi nhuận đúng kv, DT $6,26 tỷ; EPS/cp + giá AH chưa có trên wire, Cú Đêm bổ sung.]",
+   "rev_est": null,
+   "status": "DONE",
+   "ticker": "NU",
+   "when": "T5 12/11 (giờ chưa công bố)",
+   "eps_act": null,
+   "rev_act": "$6.26B",
+   "verdict": "MIXED",
+   "guidance": "Nâng triển vọng efficiency ratio 2026 xuống 19–19,5% (từ ~20%) nhờ AI làm chậm tuyển dụng; không đưa guidance DT/EPS chính thức",
+   "reaction_pct": null,
+   "price_after": null,
+   "essence": "Lợi nhuận ròng $1,09 tỷ (+31% YoY, tiền tệ không đổi) đúng kỳ vọng Visible Alpha; DT $6,26 tỷ (+37% YoY) vượt kv $5,96 tỷ (MarketBeat) — Reuters ghi \"in line\"; nợ quá hạn 90 ngày tăng 6,7%→7,3%; hơn 140 triệu khách hàng. EPS/cp và giá AH chưa có trên wire lúc 13:45 PT (đóng 12/11 $11,83, −4,0%)."
+  },
+  {
    "ticker": "CSCO",
    "name": "Cisco Systems, Inc.",
    "date": "2026-11-12",
@@ -192,6 +206,39 @@
    "reaction_pct": 0.62,
    "price_after": 1.64,
    "essence": "Q3: EPS điều chỉnh +$0,12/cp, vượt kỳ vọng lỗ −$0,03 — nhờ lãi đánh giá lại warrant/nợ chuyển đổi, không phải doanh thu vận hành (chưa có doanh thu, Thacker Pass đang xây); chi phí Phase 1 $3,83 tỷ, tiền mặt ~$1,3 tỷ. Đóng $1,63, AH $1,64 (+0,6%, thanh khoản mỏng)."
+  },
+  {
+   "ticker": "MUFG",
+   "name": "Mitsubishi UFJ Financial Group, Inc.",
+   "date": "2026-11-13",
+   "when": "T6 13/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.45,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "SMFG",
+   "name": "Sumitomo Mitsui Financial Group, Inc.",
+   "date": "2026-11-13",
+   "when": "T6 13/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.24,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "MFG",
+   "name": "Mizuho Financial Group, Inc.",
+   "date": "2026-11-13",
+   "when": "T6 13/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.21,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "GIB",
@@ -754,63 +801,6 @@
    "price_after": 8.44,
    "essence": "EPS điều chỉnh -$0,44 hụt xa kỳ vọng -$0,19 (EPS GAAP -$0,02 nhờ lãi khác); DT $3,0M hụt kỳ vọng $6,5M (-54%), lỗ hoạt động $141,4M do chi phí leo thang Serra Verde; tiền mặt $1,2B. AH $8,44 lúc 15:39 PT (-3,7% so với đóng $8,76), dưới cắt Sổ 3 $8,85.",
    "audio": "earnings-usar-2026-11-09.mp3"
-  },
-  {
-   "ticker": "OXY",
-   "name": "Occidental Petroleum",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": 1.43,
-   "rev_est": "$6.73B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Zacks 5/11). Điểm nhìn: dầu — EPS kỳ vọng tăng mạnh YoY; theo dõi giá dầu + guidance.",
-   "eps_act": 1.91,
-   "rev_act": "$6.77B",
-   "verdict": "MIXED",
-   "guidance": "",
-   "reaction_pct": -0.2,
-   "price_after": 55.7,
-   "essence": "EPS điều chỉnh $1,91 vượt xa kỳ vọng $1,46 nhờ giá dầu cao hơn; DT $6,77B gần sát kỳ vọng $6,80B (hụt nhẹ -0,4%); AH gần như đi ngang ~$55,70 (thanh khoản mỏng).",
-   "audio": "earnings-oxy-2026-11-09.mp3"
-  },
-  {
-   "ticker": "TTWO",
-   "name": "Take-Two Interactive",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": 0.9,
-   "rev_est": "$1.66B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Zacks 6/11). Điểm nhìn: GTA VI là catalyst lớn — đọc số đặt trước + guidance cả năm.",
-   "eps_act": 0.99,
-   "rev_act": "$1.5B",
-   "verdict": "MIXED",
-   "guidance": "Q3 FY27: EPS điều chỉnh $3,90, net bookings $3,43B; giữ nguyên guidance cả năm FY27 net bookings $8,0–8,2B (dưới kỳ vọng phố Wall $8,62B); nâng triển vọng DT cả năm lên $7,98–8,18B",
-   "reaction_pct": 3.7,
-   "price_after": 215.12,
-   "essence": "Lỗ GAAP thu hẹp còn -$0,29 (kỳ vọng -$0,86); net bookings $1,6B hơi hụt $1,62B do NBA 2K27 yếu; mọi mắt đổ về GTA VI ra mắt 19/11 — preorder ~7,7 triệu bản, ~$751M (Sensor Tower).",
-   "audio": "earnings-ttwo-2026-11-09.mp3"
-  },
-  {
-   "ticker": "RKLB",
-   "name": "Rocket Lab",
-   "date": "2026-11-09",
-   "when": "T2 9/11 AMC",
-   "status": "DONE",
-   "eps_est": -0.07,
-   "rev_est": "$257.2M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 6/11 (consensus Equibles/TipRanks 6/11; giờ AMC theo Nasdaq calendar — TipRanks ghi BMO là thiểu số). Điểm nhìn: Sổ 3 $50–55 đã gãy cắt (đóng 5/11 $45,99) — trong 🔴 chỉ tham chiếu; DT kỳ vọng trong guide công ty $250–265M.",
-   "eps_act": -0.12,
-   "rev_act": "$267.83M",
-   "verdict": "MIXED",
-   "guidance": "Q4: DT $270–290M (trên kỳ vọng $265M), lỗ EBITDA $14–20M; Neutron vẫn lùi sang 2027",
-   "reaction_pct": -6.6,
-   "price_after": 55.0,
-   "essence": "DT kỷ lục $268M +73% YoY, backlog vọt lên $3,6B (từ $2,4B) nhờ hơn $1B đơn mới; nhưng lỗ EPS -$0,12 sâu hơn kỳ vọng -$0,07 — AH $55,00 lúc 15:40 PT (-6,6% so với đóng phiên $58,86; thanh khoản mỏng) — rơi vào vùng Sổ 3 $50–55 (sát mép trên).",
-   "audio": "earnings-rklb-2026-11-09.mp3"
   }
  ],
  "playlist": {
