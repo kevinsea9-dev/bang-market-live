@@ -7467,6 +7467,13 @@ def update_leverage_pairs(h, prices):
         for u, vehs in list(groups.items()) + [("LNT", [])]:
             if u not in px:
                 continue
+            # 13/11 (Tom lệnh đưa AMDL vào Đòn Bẩy — dựng lại phát hiện
+            # builder KHÔNG lọc _excluded: APP/CRML/MRNA/NET sẽ quay lại
+            # thành khối riêng. Mã trong _excluded không được dựng khối
+            # riêng; SKHY là ngoại lệ đã ghi — vùng Sổ 3 còn hiệu lực,
+            # hiển thị cố ý trong Đòn Bẩy, xem healthcheck check 5).
+            if u in _excl and u != "SKHY":
+                continue
             upx, upct = px[u]
             z = zones.get(u)
             paused = False
