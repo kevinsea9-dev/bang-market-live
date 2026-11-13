@@ -1458,6 +1458,240 @@
    "promise": "Thương mại hóa máy tính lượng tử thực sự trong khoảng 3 năm",
    "due": "~2029",
    "status": "open"
+  },
+  {
+   "ticker": "BN",
+   "who": "Bruce Flatt (CEO Brookfield) / Nick Goodman (President)",
+   "said_on": "2026-11-12",
+   "source": "Brookfield Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Hoàn tất đơn giản hóa cấu trúc công ty ngày 01/12/2026",
+   "due": "2026-12-01",
+   "status": "open"
+  },
+  {
+   "ticker": "BN",
+   "who": "Nick Goodman (President Brookfield)",
+   "said_on": "2026-11-12",
+   "source": "Brookfield Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Lợi nhuận chia sẻ (carried interest) tăng tốc, bước nhảy đáng kể trong 2027",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "BN",
+   "who": "Brookfield Wealth Solutions",
+   "said_on": "2026-11-12",
+   "source": "Brookfield Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Đường ống bán niên kim cố định mang lại hơn $30 tỷ doanh số mỗi năm vào cuối 2027",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "NBIS",
+   "who": "Arkady Volozh (CEO Nebius)",
+   "said_on": "2026-11-12",
+   "source": "Nebius Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Doanh thu 2027 đạt $12–13 tỷ (gấp ~4 lần 2026)",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "NBIS",
+   "who": "Arkady Volozh (CEO Nebius)",
+   "said_on": "2026-11-12",
+   "source": "Nebius Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Hòa vốn trước thuế vào quý 4/2027",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "NBIS",
+   "who": "Arkady Volozh (CEO Nebius)",
+   "said_on": "2026-11-12",
+   "source": "Nebius Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Capex 2027 $40–45 tỷ (gấp đôi 2026)",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "ASND",
+   "who": "Jan Mikkelsen (CEO Ascendis)",
+   "said_on": "2026-11-12",
+   "source": "Ascendis Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Quyết định cuối của Ủy ban châu Âu cho TransCon CNP trong Q4/2026; ra mắt đầu tiên tại Đức Q1/2027",
+   "due": "2027-03-31",
+   "status": "open"
+  },
+  {
+   "ticker": "ASND",
+   "who": "Ascendis Pharma",
+   "said_on": "2026-11-12",
+   "source": "Ascendis Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Dòng tiền hoạt động FY2026 ít nhất €600 triệu",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "ONDS",
+   "who": "Eric Brock (CEO Ondas)",
+   "said_on": "2026-11-12",
+   "source": "Ondas Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Doanh thu FY2026 ≥$550 triệu; FY2027 ≥$1,1 tỷ",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "ONDS",
+   "who": "Eric Brock (CEO Ondas)",
+   "said_on": "2026-11-12",
+   "source": "Ondas Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "EBITDA điều chỉnh dương toàn công ty quý 3/2027 (kéo sớm 1 quý)",
+   "due": "2027-09-30",
+   "status": "open"
+  },
+  {
+   "ticker": "ONDS",
+   "who": "Eric Brock (CEO Ondas)",
+   "said_on": "2026-11-12",
+   "source": "Ondas Q3 2026 — Motley Fool transcript 12/11",
+   "promise": "Doanh thu Q4/2026 ≥$250 triệu",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "HBM",
+   "who": "Peter Kukielski (CEO Hudbay)",
+   "said_on": "2026-11-12",
+   "source": "Hudbay Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Đạt mục tiêu sản lượng đồng cả năm 2026 — năm thứ 12 liên tiếp; vàng năm thứ 6 liên tiếp",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "HBM",
+   "who": "Hudbay Minerals / Mitsubishi",
+   "said_on": "2026-11-12",
+   "source": "Hudbay Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Copper World sản xuất đầu tiên nửa cuối 2029, ~102.000 tấn đồng/năm trong 10 năm đầu",
+   "due": "2029-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "TWST",
+   "who": "Emily Leproust (CEO Twist)",
+   "said_on": "2026-11-12",
+   "source": "Twist Q4 FY26 — Motley Fool transcript 12/11",
+   "promise": "Doanh thu FY2027 $550–560 triệu; EBITDA điều chỉnh dương cả năm",
+   "due": "2027-09-30",
+   "status": "open"
+  },
+  {
+   "ticker": "TWST",
+   "who": "Emily Leproust (CEO Twist)",
+   "said_on": "2026-11-12",
+   "source": "Twist Q4 FY26 — Motley Fool transcript 12/11",
+   "promise": "Doanh thu Q1 FY2027 $130–132 triệu",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "STN",
+   "who": "Susan Reisbord (CEO Stantec)",
+   "said_on": "2026-11-12",
+   "source": "Stantec Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Biên EBITDA điều chỉnh 2026 18,3–18,5%; tăng trưởng EPS điều chỉnh 17–19%",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CBRS",
+   "who": "Andrew Feldman (CEO Cerebras)",
+   "said_on": "2026-11-12",
+   "source": "Cerebras Q3 2026 — GlobeNewswire/WSJ 12/11",
+   "promise": "Doanh thu tăng gấp 3 lần trong 2027 so với mức hiện tại",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CBRS",
+   "who": "Cerebras Systems",
+   "said_on": "2026-11-12",
+   "source": "Cerebras Q3 2026 — GlobeNewswire 12/11",
+   "promise": "Doanh thu lõi FY2026 $940–960 triệu; Q4 $310–330 triệu",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CBRS",
+   "who": "Cerebras Systems",
+   "said_on": "2026-11-12",
+   "source": "Cerebras Q3 2026 — GlobeNewswire/WSJ 12/11",
+   "promise": "Doanh thu từ khách hàng mới Microsoft bắt đầu Q1/2027",
+   "due": "2027-03-31",
+   "status": "open"
+  },
+  {
+   "ticker": "NU",
+   "who": "David Vélez (CEO Nu Holdings)",
+   "said_on": "2026-11-12",
+   "source": "Nu Holdings Q3 2026 — press release 12/11",
+   "promise": "Tỷ lệ chi phí hoạt động (efficiency ratio) FY2026 19–19,5%",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CSCO",
+   "who": "Chuck Robbins (CEO Cisco)",
+   "said_on": "2026-11-12",
+   "source": "Cisco Q1 FY27 — press release 12/11",
+   "promise": "Doanh thu FY27 $74,8–75,8 tỷ; EPS non-GAAP $5,47–5,53",
+   "due": "2027-07-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CSCO",
+   "who": "Chuck Robbins (CEO Cisco)",
+   "said_on": "2026-11-12",
+   "source": "Cisco Q1 FY27 — press release 12/11",
+   "promise": "Doanh thu hạ tầng AI từ hyperscaler ~$9 tỷ FY27 (gấp hơn đôi)",
+   "due": "2027-07-31",
+   "status": "open"
+  },
+  {
+   "ticker": "CSCO",
+   "who": "Cisco",
+   "said_on": "2026-11-12",
+   "source": "Cisco Q1 FY27 — press release 12/11",
+   "promise": "Q2 FY27: doanh thu $18,0–18,2 tỷ, EPS non-GAAP $1,34–1,36",
+   "due": "2027-01-31",
+   "status": "open"
+  },
+  {
+   "ticker": "AMAT",
+   "who": "Gary Dickerson (CEO Applied Materials)",
+   "said_on": "2026-11-12",
+   "source": "Applied Materials Q4 FY26 — GlobeNewswire 12/11",
+   "promise": "Q1 FY27: doanh thu ~$11,1 tỷ, EPS non-GAAP ~$4,35",
+   "due": "2027-01-31",
+   "status": "open"
+  },
+  {
+   "ticker": "AMAT",
+   "who": "Gary Dickerson (CEO Applied Materials)",
+   "said_on": "2026-11-12",
+   "source": "Applied Materials Q4 FY26 — GlobeNewswire 12/11",
+   "promise": "Nhu cầu thiết bị sản xuất tấm bán dẫn (WFE) tăng hơn 30% trong 2027; mảng Semi Systems tăng hơn 40% trong CY2026",
+   "due": "2027-12-31",
+   "status": "open"
+  },
+  {
+   "ticker": "LAC",
+   "who": "Jonathan Evans (CEO Lithium Americas)",
+   "said_on": "2026-11-12",
+   "source": "Lithium Americas Q3 2026 — BusinessWire 12/11",
+   "promise": "Thacker Pass hoàn thành cơ khí cuối 2027, tăng dần công suất trong 2028",
+   "due": "2028-12-31",
+   "status": "open"
   }
  ]
 }
