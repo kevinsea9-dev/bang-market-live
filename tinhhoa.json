@@ -9,14 +9,14 @@
    "eps_est": 0.24,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,50 BEAT kv $0,24; DT $8,4 tỷ; nâng dự báo cả năm lên ¥1,9 nghìn tỷ + buyback ¥400 tỷ.]",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,50 BEAT kv $0,24; DT $8,4 tỷ; nâng dự báo cả năm lên ¥1,9 nghìn tỷ + buyback ¥400 tỷ.] [05:40 PT 13/11: ADR premarket RẢI RÁC $23,35–$25,07 (Yahoo 1m chỉ 5 phút có giao dịch; stockanalysis $24,69 lúc 03:27 PT) — thanh khoản mỏng, chưa xác minh được giá phản ứng đáng tin; giữ trống, chờ giá mở cửa.]",
    "eps_act": 0.5,
    "rev_act": "$8.4B",
    "verdict": "BEAT",
    "guidance": "Nâng dự báo cả năm lên ¥1,9 nghìn tỷ (từ ¥1,7 nghìn tỷ); mở rộng buyback thêm ¥220 tỷ → tổng ¥400 tỷ",
    "reaction_pct": null,
    "price_after": null,
-   "essence": "EPS $0,50 (AP) vượt kv FI Handbook $0,24 (kv MarketBeat $0,51 — gần bằng); DT $8,4 tỷ; lãi ròng $3,15 tỷ; lãi ròng quý ¥501,8 tỷ (−10% YoY do cùng kỳ có lãi bán cổ phần Kotak). Nâng dự báo cả năm + mở rộng buyback. ADR premarket chưa có giá xác minh lúc 01:37 PT — chờ lượt sau điền."
+   "essence": "EPS $0,50 (AP) vượt kv FI Handbook $0,24 (kv MarketBeat $0,51 — gần bằng); DT $8,4 tỷ; lãi ròng $3,15 tỷ; lãi ròng quý ¥501,8 tỷ (−10% YoY do cùng kỳ có lãi bán cổ phần Kotak). Nâng dự báo cả năm + mở rộng buyback. ADR premarket rải rác $23,35–$25,07 lúc 05:40 PT 13/11 (chỉ 5 phút có giao dịch, thanh khoản mỏng) — chưa xác minh được giá phản ứng, chờ giá mở cửa."
   },
   {
    "ticker": "MFG",
@@ -27,14 +27,14 @@
    "eps_est": 0.21,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,22 BEAT kv $0,21; DT ¥2.358 tỷ; nâng dự báo cả năm lên ¥1,6 nghìn tỷ + buyback ¥400 tỷ.]",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,22 BEAT kv $0,21; DT ¥2.358 tỷ; nâng dự báo cả năm lên ¥1,6 nghìn tỷ + buyback ¥400 tỷ.] [05:40 PT 13/11: premarket $10,34 (+2,2% so với đóng 12/11 $10,12; giá cuối 05:07 PT, Yahoo 1m, thanh khoản mỏng).]",
    "eps_act": 0.22,
    "rev_act": null,
    "verdict": "BEAT",
    "guidance": "Nâng dự báo cả năm lên ¥1,6 nghìn tỷ (từ ¥1,4 nghìn tỷ); tăng gấp đôi buyback lên ¥400 tỷ",
-   "reaction_pct": null,
-   "price_after": null,
-   "essence": "EPS $0,22 (AltIndex) vượt kv $0,21 (kv $0,17 theo screener khác); DT ¥2.358 tỷ (+17,3% YoY); lãi ròng quý ¥473,6 tỷ (+19% YoY). Nâng dự báo cả năm + buyback gấp đôi. Cổ phiếu Tokyo đóng ¥8.020 (−1,7%); ADR premarket chưa có giá xác minh lúc 01:37 PT — chờ lượt sau điền."
+   "reaction_pct": 2.2,
+   "price_after": 10.34,
+   "essence": "EPS $0,22 (AltIndex) vượt kv $0,21 (kv $0,17 theo screener khác); DT ¥2.358 tỷ (+17,3% YoY); lãi ròng quý ¥473,6 tỷ (+19% YoY). Nâng dự báo cả năm + buyback gấp đôi. Cổ phiếu Tokyo đóng ¥8.020 (−1,7%); ADR premarket $10,34 lúc 05:07 PT 13/11 (+2,2% so với đóng 12/11 $10,12, thanh khoản mỏng)."
   },
   {
    "ticker": "MUFG",
@@ -45,14 +45,14 @@
    "eps_est": 0.45,
    "rev_est": null,
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,46 BEAT kv $0,45; DT $10,02 tỷ; nâng dự báo cả năm lên ¥2,8 nghìn tỷ.]",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 12/11 (lịch FI Handbook/TickerOn). Điểm nhìn: kết quả nửa đầu năm tài chính sau khi BoJ nâng lãi suất lên 1,25%; đọc biên lãi ròng + chất lượng tín dụng. [EPS ước tính USD; DT chưa xác minh được → để trống, không bịa số.] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [01:37 PT 13/11: đã ra số — EPS $0,46 BEAT kv $0,45; DT $10,02 tỷ; nâng dự báo cả năm lên ¥2,8 nghìn tỷ.] [05:40 PT 13/11: premarket $21,90 (+0,7% so với đóng 12/11 $21,75; Yahoo 05:34 PT $21,89 + stockanalysis 03:20 PT $21,90 — 2 nguồn khớp; thanh khoản mỏng).]",
    "eps_act": 0.46,
    "rev_act": "$10.02B",
    "verdict": "BEAT",
    "guidance": "Nâng dự báo lợi nhuận cả năm lên ¥2,8 nghìn tỷ (từ ¥2,7 nghìn tỷ); lợi nhuận quý +10% lên ¥821,5 tỷ; lợi nhuận H1 kỷ lục ¥1.292,9 tỷ",
-   "reaction_pct": null,
-   "price_after": null,
-   "essence": "EPS $0,46 (AP) vượt kv $0,45; DT $10,02 tỷ; lãi ròng $5,16 tỷ. Nâng dự báo cả năm lên ¥2,8 nghìn tỷ; H1 kỷ lục. ADR premarket chưa có giá xác minh lúc 01:37 PT (thanh khoản mỏng) — chờ lượt sau điền."
+   "reaction_pct": 0.7,
+   "price_after": 21.9,
+   "essence": "EPS $0,46 (AP) vượt kv $0,45; DT $10,02 tỷ; lãi ròng $5,16 tỷ. Nâng dự báo cả năm lên ¥2,8 nghìn tỷ; H1 kỷ lục. ADR premarket $21,90 lúc 05:34 PT 13/11 (+0,7% so với đóng 12/11 $21,75, thanh khoản mỏng)."
   },
   {
    "ticker": "BN",
