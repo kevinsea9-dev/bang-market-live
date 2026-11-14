@@ -131,8 +131,38 @@ def fetch_close_map(tickers):
             dc = fetch_daily_closes(t)
             if len(dc) < 1:
                 return t, None
-            price = dc[-1][1]
-            prev = dc[-2][1] if len(dc) >= 2 else price
+            n = now_pt()
+            today = n.date()
+            closed_today = n.weekday() < 5 and (n.hour, n.minute) >= (13, 5)
+            if closed_today and dc[-1][0] < today:
+                # VÁ GỐC 13/11 17:30 PT — NẾN HÔM NAY CLOSE=None: Yahoo
+                # trả nến ngày hôm nay với close null sau giờ đóng (nến
+                # 13/11 còn số lúc 16:46, null từ ~17:08; cả query1 +
+                # query2), fetch_daily_closes bỏ qua nến null nên dc[-1]
+                # lùi về HÔM QUA — map âm thầm ghi giá đóng hôm qua làm
+                # giá đóng hôm nay (NVDA $166,19 thay vì $162,85; AMD
+                # $585,30 thay vì $534,06; cả file 335 mã nhiễm). Sửa:
+                # lấy regularMarketPrice từ chart range=1d — sau 13:00 PT
+                # đây CHÍNH LÀ giá đóng chính thức; % tính vs dc[-1]
+                # (đóng hôm qua). TUYỆT ĐỐI không dùng chartPreviousClose
+                # (stale — NVDA 186,64). Fetch hụt -> None để writer lấp
+                # bằng fetch_prices, không đoán giá.
+                prev = dc[-1][1]
+                try:
+                    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
+                           f"?interval=1d&range=1d")
+                    req = Request(url, headers=UA)
+                    with urlopen(req, timeout=15) as r:
+                        meta = json.load(r)["chart"]["result"][0]["meta"]
+                    rmp = meta.get("regularMarketPrice")
+                    if not rmp:
+                        return t, None
+                    price = float(rmp)
+                except Exception:
+                    return t, None
+            else:
+                price = dc[-1][1]
+                prev = dc[-2][1] if len(dc) >= 2 else price
             pct = (price - prev) / prev * 100 if prev else 0.0
             return t, (round(price, 2), round(pct, 2))
         except Exception:
