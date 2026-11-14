@@ -117,6 +117,35 @@ def fetch_prices(tickers):
     return out, lows, highs
 
 
+def fetch_close_map(tickers):
+    """Bản đồ giá ĐÓNG chính thức {ticker: (giá đóng, %)} từ nến ngày đã
+    hoàn tất — xây trên fetch_daily_closes(ticker) có sẵn (luật 23/10:
+    sau 13:05 PT nến hôm nay đã là giá đóng cuối cùng, tính luôn).
+    % so với nến ngày trước đó; KHÔNG dùng meta chartPreviousClose
+    (stale, bài học 19/10) và KHÔNG dính giá AH.
+    Dùng cho CỔNG ĐÓNG CỬA 13:00 PT (vá gốc 13/11): sau giờ đóng cửa,
+    prices.json phải giữ giá đóng, không ghi giá AH — giá AH chỉ sống
+    trong mục After Hours (AH hunt fetch trực tiếp, không qua file này)."""
+    def one(t):
+        try:
+            dc = fetch_daily_closes(t)
+            if len(dc) < 1:
+                return t, None
+            price = dc[-1][1]
+            prev = dc[-2][1] if len(dc) >= 2 else price
+            pct = (price - prev) / prev * 100 if prev else 0.0
+            return t, (round(price, 2), round(pct, 2))
+        except Exception:
+            return t, None
+
+    out = {}
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        for t, v in ex.map(one, tickers):
+            if v:
+                out[t] = v
+    return out
+
+
 def fmt_price(p):
     return f"${p:,.2f}"
 
