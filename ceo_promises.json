@@ -1692,6 +1692,30 @@
    "promise": "Thacker Pass hoàn thành cơ khí cuối 2027, tăng dần công suất trong 2028",
    "due": "2028-12-31",
    "status": "open"
+  },
+  {
+   "ticker": "SMFG",
+   "said_on": "2026-11-13",
+   "source": "SMFG H1 FY2027 results 13/11/2026 — company disclosure via Reuters/fxnews.ai",
+   "promise": "Mục tiêu lợi nhuận cả năm tài chính kết thúc 31/03/2027 đạt 1,9 nghìn tỷ yên (nâng từ 1,7 nghìn tỷ); mua lại cổ phiếu tổng 400 tỷ yên trong năm",
+   "due": "2027-03-31",
+   "status": "open"
+  },
+  {
+   "ticker": "MFG",
+   "said_on": "2026-11-13",
+   "source": "Mizuho H1 FY2027 results 13/11/2026 — company disclosure via Reuters/Capital Times",
+   "promise": "Mục tiêu lợi nhuận cả năm tài chính kết thúc 31/03/2027 đạt 1,6 nghìn tỷ yên (nâng từ 1,4 nghìn tỷ); mua lại tổng 400 tỷ yên; cổ tức cả năm 200 yên/cổ phiếu",
+   "due": "2027-03-31",
+   "status": "open"
+  },
+  {
+   "ticker": "MUFG",
+   "said_on": "2026-11-13",
+   "source": "MUFG H1 FY2027 results 13/11/2026 — company disclosure via Dow Jones/Morningstar",
+   "promise": "Mục tiêu lợi nhuận cả năm tài chính kết thúc 31/03/2027 đạt 2,8 nghìn tỷ yên (nâng từ 2,7 nghìn tỷ); mua lại tối đa 200 tỷ yên đến cuối 01/2027; cổ tức cả năm 100 yên/cổ phiếu",
+   "due": "2027-03-31",
+   "status": "open"
   }
  ]
 }
