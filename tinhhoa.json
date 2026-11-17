@@ -1,15 +1,103 @@
 {
  "entries": [
   {
+   "ticker": "BRC",
+   "name": "Brady Corporation",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.51,
+   "rev_est": "$713.76M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "HD",
+   "name": "The Home Depot, Inc.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 3.84,
+   "rev_est": "$42.81B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (TipRanks/Zacks 16/11: EPS $3,84, DT $42,81 tỷ; Zacks $3,81–3,86). Điểm nhìn: doanh số so sánh + biên lợi nhuận; Zelman hạ xuống Underperform trong ngày 16/11. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "DIS",
+   "name": "Walt Disney Co.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.69,
+   "rev_est": "$25.19B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat/FactSet: EPS $1,69, DT $25,19 tỷ; Zacks $1,67). Điểm nhìn: streaming có lãi + công viên; EPS kỳ vọng +52% YoY. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "JD",
+   "name": "JD.com, Inc.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.88,
+   "rev_est": "$46.42B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (Seeking Alpha 16/11: EPS non-GAAP $0,88, DT $46,42 tỷ; MarketBeat $0,878/$46,04 tỷ). Điểm nhìn: bán lẻ TQ hồi phục + lỗ mảng giao đồ ăn. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "VIK",
+   "name": "Viking Holdings Ltd",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.27,
+   "rev_est": "$2.21B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,27, DT $2,21 tỷ; call 08:00 ET). Điểm nhìn: đặt chỗ du thuyền hạng sang + giá vé. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "PENDING",
+   "eps_est": 2.47,
+   "rev_est": "$108.84B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11."
+  },
+  {
+   "ticker": "ZTO",
+   "name": "ZTO Express (Cayman) Inc.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.4665,
+   "rev_est": "$2.08B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "SQM",
+   "name": "Sociedad Quimica y Minera de Chile S.A.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.97,
+   "rev_est": "$2.19B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "TCOM",
    "name": "Trip.com Group Limited",
-   "date": "2026-11-16",
-   "when": "T2 16/11 AMC",
+   "date": "2026-11-23",
+   "when": "T2 23/11 AMC",
    "status": "PENDING",
    "eps_est": 1.07,
    "rev_est": "$2.82B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 16/11 (Nasdaq ghi 16/11, vốn hóa $27,2B ≥ $20B; call 19:00 ET). Điểm nhìn: đặt phòng/du lịch TQ + biên lợi nhuận; kỳ vọng EPS $1,07 (Nasdaq) — MarketBeat/Zacks ghi $1,23, DT $2,82 tỷ. [13:55 PT 16/11: CHƯA RA SỐ — tới 16:53 ET vẫn chưa có bản tin Q3 trên IR/PR Newswire; call 19:00 ET chưa xác nhận được (MarketBeat ghi call 23/11 — mâu thuẫn chưa rõ); TipRanks ghi 23/11 đã xác nhận — nếu tối nay không ra số thì dời sang 23/11. Đóng 16/11 $44,27 (+1,58%), AH ~$44,28 (+0,02%, thanh khoản mỏng, các nguồn chênh nhau).] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:45 PT 16/11: VẪN CHƯA RA SỐ — MarketBeat vẫn N/A, call 19:00 ET (~15 phút nữa); AH ~$44,03 (Finnhub 16:36 ET), gần như đứng yên.] [17:37 PT 16/11: VẪN CHƯA RA SỐ — sau call 19:00 ET vẫn không có bản tin Q3 trên MarketBeat/Finnhub (EPS vẫn N/A); TipRanks ghi 23/11 đã xác nhận — nhiều khả năng dời sang 23/11. Giữ PENDING, chờ xác nhận sáng mai.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 16/11 (Nasdaq ghi 16/11, vốn hóa $27,2B ≥ $20B; call 19:00 ET). Điểm nhìn: đặt phòng/du lịch TQ + biên lợi nhuận; kỳ vọng EPS $1,07 (Nasdaq) — MarketBeat/Zacks ghi $1,23, DT $2,82 tỷ. [13:55 PT 16/11: CHƯA RA SỐ — tới 16:53 ET vẫn chưa có bản tin Q3 trên IR/PR Newswire; call 19:00 ET chưa xác nhận được (MarketBeat ghi call 23/11 — mâu thuẫn chưa rõ); TipRanks ghi 23/11 đã xác nhận — nếu tối nay không ra số thì dời sang 23/11. Đóng 16/11 $44,27 (+1,58%), AH ~$44,28 (+0,02%, thanh khoản mỏng, các nguồn chênh nhau).] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:45 PT 16/11: VẪN CHƯA RA SỐ — MarketBeat vẫn N/A, call 19:00 ET (~15 phút nữa); AH ~$44,03 (Finnhub 16:36 ET), gần như đứng yên.] [17:37 PT 16/11: VẪN CHƯA RA SỐ — sau call 19:00 ET vẫn không có bản tin Q3 trên MarketBeat/Finnhub (EPS vẫn N/A); TipRanks ghi 23/11 đã xác nhận — nhiều khả năng dời sang 23/11. Giữ PENDING, chờ xác nhận sáng mai.] [01:40 PT 17/11: ĐÃ XÁC MINH — 16/11 KHÔNG ra số: MarketBeat EPS/DT vẫn N/A, Finnhub không có giá trị thực, không có bản tin Q3 trên IR/PR Newswire; TipRanks xác nhận ngày mới 23/11 — dời entry sang 23/11 AMC, giữ PENDING.]"
   },
   {
    "ticker": "ARMK",
@@ -216,94 +304,6 @@
    "reaction_pct": "-1,4% AH → $7,88 (Finnhub 19:38 ET 16/11, thanh khoản mỏng)",
    "price_after": 7.88,
    "essence": "Beat EPS nhẹ (+4,9%) nhưng doanh thu hụt 0,6% — thị trường gần như không phản ứng (AH −1,4%): kết quả tốt về hoạt động nhưng áp lực lãi suất vĩ mô Brazil vẫn đè."
-  },
-  {
-   "ticker": "NVDA",
-   "name": "NVIDIA Corporation",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 2.47,
-   "rev_est": "$108.84B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11."
-  },
-  {
-   "ticker": "ZTO",
-   "name": "ZTO Express (Cayman) Inc.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.4665,
-   "rev_est": "$2.08B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "SQM",
-   "name": "Sociedad Quimica y Minera de Chile S.A.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.97,
-   "rev_est": "$2.19B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "BRC",
-   "name": "Brady Corporation",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.51,
-   "rev_est": "$713.76M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "HD",
-   "name": "The Home Depot, Inc.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 3.84,
-   "rev_est": "$42.81B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (TipRanks/Zacks 16/11: EPS $3,84, DT $42,81 tỷ; Zacks $3,81–3,86). Điểm nhìn: doanh số so sánh + biên lợi nhuận; Zelman hạ xuống Underperform trong ngày 16/11. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "DIS",
-   "name": "Walt Disney Co.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.69,
-   "rev_est": "$25.19B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat/FactSet: EPS $1,69, DT $25,19 tỷ; Zacks $1,67). Điểm nhìn: streaming có lãi + công viên; EPS kỳ vọng +52% YoY. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "JD",
-   "name": "JD.com, Inc.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 0.88,
-   "rev_est": "$46.42B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (Seeking Alpha 16/11: EPS non-GAAP $0,88, DT $46,42 tỷ; MarketBeat $0,878/$46,04 tỷ). Điểm nhìn: bán lẻ TQ hồi phục + lỗ mảng giao đồ ăn. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "VIK",
-   "name": "Viking Holdings Ltd",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.27,
-   "rev_est": "$2.21B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,27, DT $2,21 tỷ; call 08:00 ET). Điểm nhìn: đặt chỗ du thuyền hạng sang + giá vé. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   }
  ],
  "playlist": {
