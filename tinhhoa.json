@@ -1,28 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "BRC",
-   "name": "Brady Corporation",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.51,
-   "rev_est": "$713.76M",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.]"
-  },
-  {
-   "ticker": "NVDA",
-   "name": "NVIDIA Corporation",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 2.47,
-   "rev_est": "$108.84B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11."
-  },
-  {
    "ticker": "ZTO",
    "name": "ZTO Express (Cayman) Inc.",
    "date": "2026-11-17",
@@ -31,7 +9,7 @@
    "eps_est": 0.4665,
    "rev_est": "$2.08B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số — call 19:30 ET tối nay; Cú Đêm điền sau.]"
   },
   {
    "ticker": "SQM",
@@ -42,7 +20,18 @@
    "eps_est": 1.97,
    "rev_est": "$2.19B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.]"
+  },
+  {
+   "ticker": "BRC",
+   "name": "Brady Corporation",
+   "date": "2026-11-17",
+   "when": "T3 17/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.51,
+   "rev_est": "$713.76M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.]"
   },
   {
    "ticker": "ESLT",
@@ -133,6 +122,79 @@
    "reaction_pct": "-0.3% premarket → $90,00 (Finnhub 08:18 ET 17/11, thanh khoản mỏng)",
    "price_after": 90.0,
    "essence": "EPS $1,11 hụt kỳ vọng $1,27, doanh thu $2,18 tỷ hụt $2,21 tỷ; lợi nhuận giảm do mực nước sông thấp ở châu Âu gián đoạn tàu sông, dù doanh thu vẫn +9,2%."
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "DONE",
+   "eps_est": 2.47,
+   "rev_est": "$108.84B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 13:37 PT 17/11: GlobeNewswire/wallsti).",
+   "eps_act": 2.68,
+   "rev_act": "$115.8B",
+   "verdict": "BEAT",
+   "guidance": "Q4 FY27 DT $130 tỷ ±3% (trên kỳ vọng ~$124,8–125,3 tỷ); biên gộp Q4 71–72%; không tính DT data center TQ; HĐQT tăng ủy quyền mua lại thêm $150 tỷ (T9/2026).",
+   "reaction_pct": "+2.2% AH → $158,88 (Finnhub 16:24 ET 17/11, thanh khoản mỏng; wallsti 16:39 ET ghi +2.9%)",
+   "price_after": 158.88,
+   "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH ~$158,88 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu."
+  },
+  {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.97,
+   "rev_est": "$3.31B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat/Zacks 17/11: EPS $0,97, DT $3,31 tỷ; vốn hóa ~$259 tỷ; 8/8 kỳ gần nhất beat; implied move ±11,5%). Vùng Sổ 2 (nháp chờ Tom duyệt) $310–325 / Chốt $365→$390 / Cắt <$300. Điểm nhìn: platformization + ARR; Jefferies hạ PT $450→$400 (12/11)."
+  },
+  {
+   "ticker": "P",
+   "name": "Everpure, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.77,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (wallsti 17/11: EPS $0,77, 19 ước tính; DT kỳ vọng chưa xác minh được → để trống, không bịa; vốn hóa ~$34,5 tỷ; typical move ±16,7%). Vùng Sổ 3 (AI36, nháp chờ Tom duyệt) $90–97 / Chốt $113→$120 / Cắt <$85. Điểm nhìn: nhu cầu lưu trữ flash cho AI."
+  },
+  {
+   "ticker": "TJX",
+   "name": "The TJX Companies, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.34,
+   "rev_est": "$15.82B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $1,34, DT $15,82 tỷ; vốn hóa ~$144 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: doanh số cùng cửa hàng + biên bán lẻ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "LOW",
+   "name": "Lowe's Companies, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.88,
+   "rev_est": "$22.40B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,88, DT $22,40 tỷ; vốn hóa ~$126 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu sửa nhà + khách pro. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "TGT",
+   "name": "Target Corporation",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.08,
+   "rev_est": "$26.50B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,08, DT $26,50 tỷ; vốn hóa ~$73 tỷ; typical move ±6,7%). Vùng Sổ 3 $140–147 / Chốt $160→$170 / Cắt đóng <$137 — giá sau báo cáo lọt vùng = 💎 BÁU VẬT. Điểm nhìn: traffic + biên."
   },
   {
    "ticker": "TCOM",
