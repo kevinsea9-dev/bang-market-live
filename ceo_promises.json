@@ -1716,6 +1716,69 @@
    "promise": "Mục tiêu lợi nhuận cả năm tài chính kết thúc 31/03/2027 đạt 2,8 nghìn tỷ yên (nâng từ 2,7 nghìn tỷ); mua lại tối đa 200 tỷ yên đến cuối 01/2027; cổ tức cả năm 100 yên/cổ phiếu",
    "due": "2027-03-31",
    "status": "open"
+  },
+  {
+   "ticker": "ARMK",
+   "who": "John Zillmer (CEO Aramark)",
+   "said_on": "2026-11-16",
+   "source": "ARMK Q4 FY26 call — Motley Fool transcript + Seeking Alpha 16/11",
+   "promise": "Aramark Nexus: doanh thu khoảng $500 triệu trong FY27; FY27: doanh thu hữu cơ +9–10%, EPS điều chỉnh +20–25%",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "BIDU",
+   "who": "Robin Li (CEO Baidu)",
+   "said_on": "2026-11-16",
+   "source": "Baidu Q3 2026 release + Reuters 16/11",
+   "promise": "Trả cổ tức lần đầu trước cuối 2026 (chờ HĐQT duyệt); chip Kunlunxin M100 sản xuất hàng loạt vào cuối 2026",
+   "due": "2026-12",
+   "status": "open"
+  },
+  {
+   "ticker": "HTHT",
+   "who": "H World Group",
+   "said_on": "2026-11-16",
+   "source": "HTHT Q3 2026 release — GlobeNewswire 16/11",
+   "promise": "FY26: doanh thu tập đoàn +9–10% (từ 4–8%), Trung Quốc +13–14%, nhượng quyền +22–23%",
+   "due": "2026",
+   "status": "open"
+  },
+  {
+   "ticker": "IQ",
+   "who": "Yu Gong (CEO iQIYI)",
+   "said_on": "2026-11-16",
+   "source": "IQ Q3 2026 call — Motley Fool transcript 16/11",
+   "promise": "190 tựa phim ngắn chia sẻ doanh thu ra mắt trong 2026",
+   "due": "2026",
+   "status": "open"
+  },
+  {
+   "ticker": "TSN",
+   "who": "Tyson Foods",
+   "said_on": "2026-11-16",
+   "source": "TSN Q4 FY26 release — SEC/talk business 16/11",
+   "promise": "FY27: mảng bò lỗ $300tr đến lãi $100tr (từ lỗ $654tr FY26); doanh thu -3,5% đến -5,5%; lợi nhuận HĐ điều chỉnh $1,7–2,15 tỷ",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "XPEV",
+   "who": "He Xiaopeng (CEO XPeng)",
+   "said_on": "2026-11-16",
+   "source": "XPEV Q3 2026 call — Motley Fool transcript + CnEVPost 16/11",
+   "promise": "Q4 2026: bàn giao 169.000–174.000 xe, doanh thu RMB30,4–31,8 tỷ; doanh số tháng 11 vượt 60.000 xe; doanh số nước ngoài cả năm 2026 vượt 100.000 xe",
+   "due": "2026-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "ACM",
+   "who": "Troy Rudd (CEO AECOM)",
+   "said_on": "2026-11-16",
+   "source": "ACM Q4 FY26 release — BusinessWire 16/11",
+   "promise": "FY27: EPS điều chỉnh $6,15–6,35; NSR hữu cơ +4–6%; FCF ~$300tr; cổ tức quý $0,34/cp trả 22/01/2027",
+   "due": "FY27",
+   "status": "open"
   }
  ]
 }
