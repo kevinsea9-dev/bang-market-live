@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "ZTO",
-   "name": "ZTO Express (Cayman) Inc.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.4665,
-   "rev_est": "$2.08B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số — call 19:30 ET tối nay; Cú Đêm điền sau.]"
-  },
-  {
    "ticker": "SQM",
    "name": "Sociedad Quimica y Minera de Chile S.A.",
    "date": "2026-11-17",
@@ -20,7 +9,7 @@
    "eps_est": 1.97,
    "rev_est": "$2.19B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.] [15:37 PT 17/11: chưa ra số (MarketBeat/stockinvest vẫn N/A); call T4 18/11 10:00 ET. Đóng 17/11 $51,59 (+0,90%). Cú Đêm điền sau.]"
   },
   {
    "ticker": "BRC",
@@ -31,7 +20,7 @@
    "eps_est": 1.51,
    "rev_est": "$713.76M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.]"
   },
   {
    "ticker": "ESLT",
@@ -42,13 +31,13 @@
    "eps_est": 3.85,
    "rev_est": "$2.29B",
    "implied": null,
-   "note": "✅ ĐÃ RA SỐ 17/11 — MIXED. Nạp bổ sung lượt chốt 05:37 PT 17/11 (vốn hóa $31,7 tỷ ≥ $20 tỷ, bị sót ở lượt nạp trước). Điểm nhìn: backlog kỷ lục $33 tỷ + biên cải thiện. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "note": "✅ ĐÃ RA SỐ 17/11 — MIXED. Nạp bổ sung lượt chốt 05:37 PT 17/11 (vốn hóa $31,7 tỷ ≥ $20 tỷ, bị sót ở lượt nạp trước). Điểm nhìn: backlog kỷ lục $33 tỷ + biên cải thiện. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:37 PT 17/11: cập nhật giá AH $720,00 (đóng $720,53, +5,9% so với đóng 16/11 $680,74); premarket sáng $734,99 đã hạ nhiệt.]",
    "eps_act": 4.36,
    "rev_act": "$2.25B",
    "verdict": "MIXED",
    "guidance": "Backlog kỷ lục $33 tỷ; cổ tức $1/cp trả 4/1/2027; CEO: tăng công suất sản xuất, ứng dụng AI nâng năng suất.",
-   "reaction_pct": "+8.0% premarket → $734,99 (Finnhub 07:06 ET 17/11, thanh khoản mỏng)",
-   "price_after": 734.99,
+   "reaction_pct": "+5,9% trong phiên → đóng $720,53; AH $720,00 (Yahoo 16:36 ET 17/11, thanh khoản mỏng)",
+   "price_after": 720.0,
    "essence": "EPS non-GAAP $4,36 thắng kỳ vọng ~$3,85–3,97 (+10–13%), doanh thu $2,25 tỷ hụt nhẹ ~-1,3% (Zacks); backlog kỷ lục $33 tỷ, doanh thu +17%, biên hoạt động lên 10,3%."
   },
   {
@@ -96,13 +85,13 @@
    "eps_est": 0.88,
    "rev_est": "$46.42B",
    "implied": null,
-   "note": "✅ ĐÃ RA SỐ 17/11 — MISS. ⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (Seeking Alpha 16/11: EPS non-GAAP $0,88, DT $46,42 tỷ; MarketBeat $0,878/$46,04 tỷ). Điểm nhìn: bán lẻ TQ hồi phục + lỗ mảng giao đồ ăn. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "note": "✅ ĐÃ RA SỐ 17/11 — MISS. ⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (Seeking Alpha 16/11: EPS non-GAAP $0,88, DT $46,42 tỷ; MarketBeat $0,878/$46,04 tỷ). Điểm nhìn: bán lẻ TQ hồi phục + lỗ mảng giao đồ ăn. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:37 PT 17/11: cập nhật giá AH $25,66 (đóng $25,43, -7,7% so với đóng 16/11 $27,54); premarket sáng $26,45.]",
    "eps_act": 0.88,
    "rev_act": "$46.45B",
    "verdict": "MISS",
    "guidance": "Không có guidance mới đáng chú ý trong bản tin sáng 17/11; CEO: quý 3 trở lại tăng trưởng doanh thu dương, tăng tốc tăng trưởng lợi nhuận.",
-   "reaction_pct": "-4.0% premarket → $26,45 (Finnhub 08:28 ET 17/11, thanh khoản mỏng)",
-   "price_after": 26.45,
+   "reaction_pct": "-6,8% AH so với đóng 16/11 → $25,66 (Yahoo 18:37 ET 17/11, thanh khoản mỏng)",
+   "price_after": 25.66,
    "essence": "EPS non-GAAP/ADS $0,88 đúng kỳ vọng, nhưng doanh thu 309,6 tỷ NDT ($46,45 tỷ) và lợi nhuận ròng điều chỉnh 8,3 tỷ NDT đều hụt ước tính LSEG do tiêu dùng Trung Quốc yếu."
   },
   {
@@ -114,14 +103,32 @@
    "eps_est": 1.27,
    "rev_est": "$2.21B",
    "implied": null,
-   "note": "✅ ĐÃ RA SỐ 17/11 — MISS. ⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,27, DT $2,21 tỷ; call 08:00 ET). Điểm nhìn: đặt chỗ du thuyền hạng sang + giá vé. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "note": "✅ ĐÃ RA SỐ 17/11 — MISS. ⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,27, DT $2,21 tỷ; call 08:00 ET). Điểm nhìn: đặt chỗ du thuyền hạng sang + giá vé. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:37 PT 17/11: cập nhật giá AH $94,28 (đóng $94,28, +4,4% so với đóng 16/11 $90,28); premarket sáng $90,00 đã đảo chiều xanh.]",
    "eps_act": 1.11,
    "rev_act": "$2.18B",
    "verdict": "MISS",
    "guidance": "Đã bán 93% sức chứa mùa 2026 và 68% mùa 2027 (tới 8/11); mực nước sông châu Âu thấp làm mất ~$100 triệu doanh thu; EBITDA điều chỉnh -4,3%.",
-   "reaction_pct": "-0.3% premarket → $90,00 (Finnhub 08:18 ET 17/11, thanh khoản mỏng)",
-   "price_after": 90.0,
+   "reaction_pct": "+4,4% trong phiên → đóng $94,28; AH $94,28 (Yahoo 17:27 ET 17/11, thanh khoản mỏng)",
+   "price_after": 94.28,
    "essence": "EPS $1,11 hụt kỳ vọng $1,27, doanh thu $2,18 tỷ hụt $2,21 tỷ; lợi nhuận giảm do mực nước sông thấp ở châu Âu gián đoạn tàu sông, dù doanh thu vẫn +9,2%."
+  },
+  {
+   "ticker": "ZTO",
+   "name": "ZTO Express (Cayman) Inc.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.4665,
+   "rev_est": "$2.08B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $0,4665, DT $2,08 tỷ; call 19:30 ET). Điểm nhìn: khối lượng bưu kiện TQ + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số — call 19:30 ET tối nay; Cú Đêm điền sau.] ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 15:37 PT 17/11: PRNewswire 17/11 + Seeking Alpha 17:02 ET).",
+   "eps_act": 0.48,
+   "rev_act": "$2.14B",
+   "verdict": "BEAT",
+   "guidance": "Không có guidance mới trong bản tin Q3; call 19:30 ET tối nay 17/11. Thị phần bưu kiện lên 20,1%.",
+   "reaction_pct": "-3,3% AH → $19,85 (Yahoo/Finnhub 17:55–17:56 ET 17/11, thanh khoản mỏng)",
+   "price_after": 19.85,
+   "essence": "EPS non-GAAP $0,48 thắng nhẹ kỳ vọng $0,4665, DT $2,14 tỷ thắng $2,08 tỷ (+21% YoY); khối lượng bưu kiện +7% lên 10,2 tỷ, thị phần 20,1%; lợi nhuận ròng điều chỉnh chỉ +2,6% — tăng chậm hơn doanh thu, giá AH vẫn đỏ -3,3% dù BEAT."
   },
   {
    "ticker": "NVDA",
@@ -132,14 +139,14 @@
    "eps_est": 2.47,
    "rev_est": "$108.84B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 13:37 PT 17/11: GlobeNewswire/wallsti).",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 13:37 PT 17/11: GlobeNewswire/wallsti). [15:37 PT 17/11: AH lên $162,48 (+4,5% so với đóng $155,46; lúc 16:24 ET mới +2,2% → $158,88). Vẫn dưới vùng chờ $168–178, chỉ là mốc tham chiếu.]",
    "eps_act": 2.68,
    "rev_act": "$115.8B",
    "verdict": "BEAT",
    "guidance": "Q4 FY27 DT $130 tỷ ±3% (trên kỳ vọng ~$124,8–125,3 tỷ); biên gộp Q4 71–72%; không tính DT data center TQ; HĐQT tăng ủy quyền mua lại thêm $150 tỷ (T9/2026).",
-   "reaction_pct": "+2.2% AH → $158,88 (Finnhub 16:24 ET 17/11, thanh khoản mỏng; wallsti 16:39 ET ghi +2.9%)",
-   "price_after": 158.88,
-   "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH ~$158,88 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu."
+   "reaction_pct": "+4,5% AH so với đóng 17/11 $155,46 → $162,48 (Yahoo 18:40 ET 17/11, thanh khoản mỏng)",
+   "price_after": 162.48,
+   "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH $162,48 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu."
   },
   {
    "ticker": "PANW",
