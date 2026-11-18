@@ -1,28 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "PANW",
-   "name": "Palo Alto Networks, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.97,
-   "rev_est": "$3.31B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat/Zacks 17/11: EPS $0,97, DT $3,31 tỷ; vốn hóa ~$259 tỷ; 8/8 kỳ gần nhất beat; implied move ±11,5%). Vùng Sổ 2 (nháp chờ Tom duyệt) $310–325 / Chốt $365→$390 / Cắt <$300. Điểm nhìn: platformization + ARR; Jefferies hạ PT $450→$400 (12/11)."
-  },
-  {
-   "ticker": "P",
-   "name": "Everpure, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.77,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (wallsti 17/11: EPS $0,77, 19 ước tính; DT kỳ vọng chưa xác minh được → để trống, không bịa; vốn hóa ~$34,5 tỷ; typical move ±16,7%). Vùng Sổ 3 (AI36, nháp chờ Tom duyệt) $90–97 / Chốt $113→$120 / Cắt <$85. Điểm nhìn: nhu cầu lưu trữ flash cho AI."
-  },
-  {
    "ticker": "TJX",
    "name": "The TJX Companies, Inc.",
    "date": "2026-11-18",
@@ -77,6 +55,42 @@
    "essence": "EPS $2,65 thắng mạnh kỳ vọng $2,08 (+27%), doanh thu $27,07 tỷ thắng $26,50 tỷ; doanh số cùng cửa hàng +5,6% (traffic +5,0%) — tăng nhanh nhất ~5 năm; nhưng $0,50 EPS là tiền hoàn thuế quan, giá premarket gần như đứng yên."
   },
   {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.97,
+   "rev_est": "$3.31B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat/Zacks 17/11: EPS $0,97, DT $3,31 tỷ; vốn hóa ~$259 tỷ; 8/8 kỳ gần nhất beat; implied move ±11,5%). Vùng Sổ 2 (nháp chờ Tom duyệt) $310–325 / Chốt $365→$390 / Cắt <$300. Điểm nhìn: platformization + ARR; Jefferies hạ PT $450→$400 (12/11). [13:15 PT 18/11: ĐÃ RA SỐ — BEAT.]",
+   "eps_act": 1.05,
+   "rev_act": "$3.44B",
+   "verdict": "BEAT",
+   "guidance": "Nâng mạnh cả năm: DT FY27 $14,52–14,57 tỷ, EPS non-GAAP $4,26–4,30; Q2 DT $3,53–3,55 tỷ, EPS $1,01–1,03; NGS ARR Q1 $9,73 tỷ (+66%).",
+   "reaction_pct": "+9,0% after-hours lúc ~13:15 PT (thanh khoản mỏng)",
+   "price_after": 370.66,
+   "essence": "EPS non-GAAP $1,05 thắng kỳ vọng $0,97, doanh thu $3,44 tỷ thắng $3,31 tỷ (+39% YoY); NGS ARR $9,73 tỷ (+66%); nâng mạnh guidance cả năm + công bố ý định mua Applied Compute."
+  },
+  {
+   "ticker": "P",
+   "name": "Everpure, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.77,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (wallsti 17/11: EPS $0,77, 19 ước tính; DT kỳ vọng chưa xác minh được → để trống, không bịa; vốn hóa ~$34,5 tỷ; typical move ±16,7%). Vùng Sổ 3 (AI36, nháp chờ Tom duyệt) $90–97 / Chốt $113→$120 / Cắt <$85. Điểm nhìn: nhu cầu lưu trữ flash cho AI. [13:15 PT 18/11: ĐÃ RA SỐ — BEAT.]",
+   "eps_act": 0.86,
+   "rev_act": "$1.46B",
+   "verdict": "BEAT",
+   "guidance": "Nâng FY27 lần 3 liên tiếp: DT $5,20–5,21 tỷ (từ $5,03–5,07 tỷ); Q4 DT $1,50–1,52 tỷ.",
+   "reaction_pct": "+3,3% after-hours lúc ~13:15 PT (thanh khoản mỏng)",
+   "price_after": 104.09,
+   "essence": "EPS non-GAAP $0,86 thắng kỳ vọng $0,77, doanh thu $1,46 tỷ thắng ~$1,33 tỷ (+51% YoY); doanh thu sản phẩm +77%; thắng thầu hyperscaler lớn thứ 2 + nâng guidance cả năm."
+  },
+  {
    "ticker": "TCOM",
    "name": "Trip.com Group Limited",
    "date": "2026-11-23",
@@ -90,13 +104,13 @@
   {
    "ticker": "BRC",
    "name": "Brady Corporation",
-   "date": "2026-11-17",
-   "when": "T3 17/11 BMO",
+   "date": "2026-12-08",
+   "when": "T3 08/12 BMO",
    "status": "PENDING",
    "eps_est": 1.51,
    "rev_est": "$713.76M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [01:37 PT 18/11 (Cú Đêm 3): vẫn chưa ra số — MarketBeat vẫn N/A (EPS thực tế chưa có), Stocks.News: Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [05:37 PT 18/11 (Cú Sáng): vẫn chưa ra số — MarketBeat vẫn N/A, ngày báo cáo tiếp theo hiển thị N/A, Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [01:37 PT 18/11 (Cú Đêm 3): vẫn chưa ra số — MarketBeat vẫn N/A (EPS thực tế chưa có), Stocks.News: Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [05:37 PT 18/11 (Cú Sáng): vẫn chưa ra số — MarketBeat vẫn N/A, ngày báo cáo tiếp theo hiển thị N/A, Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [13:15 PT 18/11: CHƯA RA SỐ — Brady thông báo (GlobeNewswire 18/11) dời ngày báo cáo Q1 FY27 sang T3 08/12/2026, giữ PENDING.]"
   },
   {
    "ticker": "ESLT",
