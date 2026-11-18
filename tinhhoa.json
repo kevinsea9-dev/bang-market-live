@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "SQM",
-   "name": "Sociedad Quimica y Minera de Chile S.A.",
-   "date": "2026-11-17",
-   "when": "T3 17/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.97,
-   "rev_est": "$2.19B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.] [15:37 PT 17/11: chưa ra số (MarketBeat/stockinvest vẫn N/A); call T4 18/11 10:00 ET. Đóng 17/11 $51,59 (+0,90%). Cú Đêm điền sau.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub dời lịch sang 18/11); AH $51,21 (-0,74%, Finnhub 19:07 ET). Chờ sáng mai.]"
-  },
-  {
    "ticker": "BRC",
    "name": "Brady Corporation",
    "date": "2026-11-17",
@@ -20,7 +9,7 @@
    "eps_est": 1.51,
    "rev_est": "$713.76M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.]"
   },
   {
    "ticker": "ESLT",
@@ -116,6 +105,24 @@
    "price_after": 94.28,
    "essence": "EPS $1,11 hụt kỳ vọng $1,27, doanh thu $2,18 tỷ hụt $2,21 tỷ; lợi nhuận giảm do mực nước sông thấp ở châu Âu gián đoạn tàu sông, dù doanh thu vẫn +9,2%.",
    "audio": "earnings-vik-2026-11-17.mp3"
+  },
+  {
+   "ticker": "SQM",
+   "name": "Sociedad Quimica y Minera de Chile S.A.",
+   "date": "2026-11-17",
+   "when": "T3 17/11 AMC",
+   "status": "DONE",
+   "eps_est": 1.97,
+   "rev_est": "$2.19B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.] [15:37 PT 17/11: chưa ra số (MarketBeat/stockinvest vẫn N/A); call T4 18/11 10:00 ET. Đóng 17/11 $51,59 (+0,90%). Cú Đêm điền sau.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub dời lịch sang 18/11); AH $51,21 (-0,74%, Finnhub 19:07 ET). Chờ sáng mai.] [20:37 PT 17/11 (Cú Đêm 2): ĐÃ RA SỐ — EPS $1,91 vs $1,97, DT $2,11 tỷ vs $2,19 tỷ (MarketBeat/Reuters); LN ròng $544,2tr +205% YoY; call sáng T4 18/11 10:00 ET.]",
+   "eps_act": 1.91,
+   "rev_act": "$2.11B",
+   "verdict": "MISS",
+   "guidance": "Mục tiêu ~300.000 tấn lithium/năm 2027 tại Chile; capex ~$3 tỷ giai đoạn 2026–28.",
+   "reaction_pct": -0.74,
+   "price_after": 51.21,
+   "essence": "Lợi nhuận +205% nhờ lượng bán lithium tăng vọt (+151% doanh thu lithium) dù giá lithium -10% so với quý trước; EPS và doanh thu đều hụt kỳ vọng."
   },
   {
    "ticker": "ZTO",
