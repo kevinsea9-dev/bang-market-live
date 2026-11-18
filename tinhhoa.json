@@ -1,6 +1,72 @@
 {
  "entries": [
   {
+   "ticker": "TJX",
+   "name": "The TJX Companies, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.34,
+   "rev_est": "$15.82B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $1,34, DT $15,82 tỷ; vốn hóa ~$144 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: doanh số cùng cửa hàng + biên bán lẻ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "LOW",
+   "name": "Lowe's Companies, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.88,
+   "rev_est": "$22.40B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,88, DT $22,40 tỷ; vốn hóa ~$126 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu sửa nhà + khách pro. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "TGT",
+   "name": "Target Corporation",
+   "date": "2026-11-18",
+   "when": "T4 18/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.08,
+   "rev_est": "$26.50B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,08, DT $26,50 tỷ; vốn hóa ~$73 tỷ; typical move ±6,7%). Vùng Sổ 3 $140–147 / Chốt $160→$170 / Cắt đóng <$137 — giá sau báo cáo lọt vùng = 💎 BÁU VẬT. Điểm nhìn: traffic + biên."
+  },
+  {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.97,
+   "rev_est": "$3.31B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat/Zacks 17/11: EPS $0,97, DT $3,31 tỷ; vốn hóa ~$259 tỷ; 8/8 kỳ gần nhất beat; implied move ±11,5%). Vùng Sổ 2 (nháp chờ Tom duyệt) $310–325 / Chốt $365→$390 / Cắt <$300. Điểm nhìn: platformization + ARR; Jefferies hạ PT $450→$400 (12/11)."
+  },
+  {
+   "ticker": "P",
+   "name": "Everpure, Inc.",
+   "date": "2026-11-18",
+   "when": "T4 18/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.77,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (wallsti 17/11: EPS $0,77, 19 ước tính; DT kỳ vọng chưa xác minh được → để trống, không bịa; vốn hóa ~$34,5 tỷ; typical move ±16,7%). Vùng Sổ 3 (AI36, nháp chờ Tom duyệt) $90–97 / Chốt $113→$120 / Cắt <$85. Điểm nhìn: nhu cầu lưu trữ flash cho AI."
+  },
+  {
+   "ticker": "TCOM",
+   "name": "Trip.com Group Limited",
+   "date": "2026-11-23",
+   "when": "T2 23/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.07,
+   "rev_est": "$2.82B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 16/11 (Nasdaq ghi 16/11, vốn hóa $27,2B ≥ $20B; call 19:00 ET). Điểm nhìn: đặt phòng/du lịch TQ + biên lợi nhuận; kỳ vọng EPS $1,07 (Nasdaq) — MarketBeat/Zacks ghi $1,23, DT $2,82 tỷ. [13:55 PT 16/11: CHƯA RA SỐ — tới 16:53 ET vẫn chưa có bản tin Q3 trên IR/PR Newswire; call 19:00 ET chưa xác nhận được (MarketBeat ghi call 23/11 — mâu thuẫn chưa rõ); TipRanks ghi 23/11 đã xác nhận — nếu tối nay không ra số thì dời sang 23/11. Đóng 16/11 $44,27 (+1,58%), AH ~$44,28 (+0,02%, thanh khoản mỏng, các nguồn chênh nhau).] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:45 PT 16/11: VẪN CHƯA RA SỐ — MarketBeat vẫn N/A, call 19:00 ET (~15 phút nữa); AH ~$44,03 (Finnhub 16:36 ET), gần như đứng yên.] [17:37 PT 16/11: VẪN CHƯA RA SỐ — sau call 19:00 ET vẫn không có bản tin Q3 trên MarketBeat/Finnhub (EPS vẫn N/A); TipRanks ghi 23/11 đã xác nhận — nhiều khả năng dời sang 23/11. Giữ PENDING, chờ xác nhận sáng mai.] [01:40 PT 17/11: ĐÃ XÁC MINH — 16/11 KHÔNG ra số: MarketBeat EPS/DT vẫn N/A, Finnhub không có giá trị thực, không có bản tin Q3 trên IR/PR Newswire; TipRanks xác nhận ngày mới 23/11 — dời entry sang 23/11 AMC, giữ PENDING.]"
+  },
+  {
    "ticker": "BRC",
    "name": "Brady Corporation",
    "date": "2026-11-17",
@@ -9,7 +75,7 @@
    "eps_est": 1.51,
    "rev_est": "$713.76M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [01:37 PT 18/11 (Cú Đêm 3): vẫn chưa ra số — MarketBeat vẫn N/A (EPS thực tế chưa có), Stocks.News: Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Sáng 18/11 bắt tiếp.]"
   },
   {
    "ticker": "ESLT",
@@ -161,72 +227,6 @@
    "price_after": 162.95,
    "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH $162,95 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu.",
    "audio": "earnings-nvda-2026-11-17.mp3"
-  },
-  {
-   "ticker": "PANW",
-   "name": "Palo Alto Networks, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.97,
-   "rev_est": "$3.31B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat/Zacks 17/11: EPS $0,97, DT $3,31 tỷ; vốn hóa ~$259 tỷ; 8/8 kỳ gần nhất beat; implied move ±11,5%). Vùng Sổ 2 (nháp chờ Tom duyệt) $310–325 / Chốt $365→$390 / Cắt <$300. Điểm nhìn: platformization + ARR; Jefferies hạ PT $450→$400 (12/11)."
-  },
-  {
-   "ticker": "P",
-   "name": "Everpure, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.77,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (wallsti 17/11: EPS $0,77, 19 ước tính; DT kỳ vọng chưa xác minh được → để trống, không bịa; vốn hóa ~$34,5 tỷ; typical move ±16,7%). Vùng Sổ 3 (AI36, nháp chờ Tom duyệt) $90–97 / Chốt $113→$120 / Cắt <$85. Điểm nhìn: nhu cầu lưu trữ flash cho AI."
-  },
-  {
-   "ticker": "TJX",
-   "name": "The TJX Companies, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 BMO",
-   "status": "PENDING",
-   "eps_est": 1.34,
-   "rev_est": "$15.82B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $1,34, DT $15,82 tỷ; vốn hóa ~$144 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: doanh số cùng cửa hàng + biên bán lẻ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "LOW",
-   "name": "Lowe's Companies, Inc.",
-   "date": "2026-11-18",
-   "when": "T4 18/11 BMO",
-   "status": "PENDING",
-   "eps_est": 2.88,
-   "rev_est": "$22.40B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,88, DT $22,40 tỷ; vốn hóa ~$126 tỷ; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu sửa nhà + khách pro. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "TGT",
-   "name": "Target Corporation",
-   "date": "2026-11-18",
-   "when": "T4 18/11 BMO",
-   "status": "PENDING",
-   "eps_est": 2.08,
-   "rev_est": "$26.50B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 17/11 (MarketBeat 17/11: EPS $2,08, DT $26,50 tỷ; vốn hóa ~$73 tỷ; typical move ±6,7%). Vùng Sổ 3 $140–147 / Chốt $160→$170 / Cắt đóng <$137 — giá sau báo cáo lọt vùng = 💎 BÁU VẬT. Điểm nhìn: traffic + biên."
-  },
-  {
-   "ticker": "TCOM",
-   "name": "Trip.com Group Limited",
-   "date": "2026-11-23",
-   "when": "T2 23/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.07,
-   "rev_est": "$2.82B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 16/11 (Nasdaq ghi 16/11, vốn hóa $27,2B ≥ $20B; call 19:00 ET). Điểm nhìn: đặt phòng/du lịch TQ + biên lợi nhuận; kỳ vọng EPS $1,07 (Nasdaq) — MarketBeat/Zacks ghi $1,23, DT $2,82 tỷ. [13:55 PT 16/11: CHƯA RA SỐ — tới 16:53 ET vẫn chưa có bản tin Q3 trên IR/PR Newswire; call 19:00 ET chưa xác nhận được (MarketBeat ghi call 23/11 — mâu thuẫn chưa rõ); TipRanks ghi 23/11 đã xác nhận — nếu tối nay không ra số thì dời sang 23/11. Đóng 16/11 $44,27 (+1,58%), AH ~$44,28 (+0,02%, thanh khoản mỏng, các nguồn chênh nhau).] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:45 PT 16/11: VẪN CHƯA RA SỐ — MarketBeat vẫn N/A, call 19:00 ET (~15 phút nữa); AH ~$44,03 (Finnhub 16:36 ET), gần như đứng yên.] [17:37 PT 16/11: VẪN CHƯA RA SỐ — sau call 19:00 ET vẫn không có bản tin Q3 trên MarketBeat/Finnhub (EPS vẫn N/A); TipRanks ghi 23/11 đã xác nhận — nhiều khả năng dời sang 23/11. Giữ PENDING, chờ xác nhận sáng mai.] [01:40 PT 17/11: ĐÃ XÁC MINH — 16/11 KHÔNG ra số: MarketBeat EPS/DT vẫn N/A, Finnhub không có giá trị thực, không có bản tin Q3 trên IR/PR Newswire; TipRanks xác nhận ngày mới 23/11 — dời entry sang 23/11 AMC, giữ PENDING.]"
   },
   {
    "ticker": "ARMK",
