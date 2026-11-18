@@ -91,6 +91,105 @@
    "essence": "EPS non-GAAP $0,86 thắng kỳ vọng $0,77, doanh thu $1,46 tỷ thắng ~$1,33 tỷ (+51% YoY); doanh thu sản phẩm +77%; thắng thầu hyperscaler lớn thứ 2 + nâng guidance cả năm."
   },
   {
+   "ticker": "INTU",
+   "name": "Intuit Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "PENDING",
+   "eps_est": 2.46,
+   "rev_est": "$4.30B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $2,46, DT $4,30 tỷ; vốn hóa ~$86 tỷ). Điểm nhìn: TurboTax/QuickBooks + AI agent. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "ROST",
+   "name": "Ross Stores, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "PENDING",
+   "eps_est": 1.87,
+   "rev_est": "$6.25B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $1,87, DT $6,25 tỷ; vốn hóa ~$70 tỷ). Điểm nhìn: traffic giá rẻ + biên khi người tiêu dùng thắt chặt. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "KEYS",
+   "name": "Keysight Technologies, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "PENDING",
+   "eps_est": 3.37,
+   "rev_est": "$1.95B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $3,37, DT $1,95 tỷ; vốn hóa ~$48 tỷ; công ty tự guide EPS $3,34–3,40; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu thiết bị đo kiểm cho bán dẫn/AI + guidance Q1 FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "CPRT",
+   "name": "Copart, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.4,
+   "rev_est": "$1.19B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $0,40, DT $1,19 tỷ). Điểm nhìn: khối lượng xe salvage + giá đấu giá. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "WMT",
+   "name": "Walmart Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.64,
+   "rev_est": "$187.27B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $0,64, DT $187,27 tỷ; vốn hóa ~$1.000 tỷ). Điểm nhìn: sức mua tiêu dùng Mỹ + biên bán lẻ — chỉ báo vĩ mô quan trọng nhất tuần. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "BABA",
+   "name": "Alibaba Group Holding Limited",
+   "date": "2026-11-19",
+   "when": "T5 19/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.62,
+   "rev_est": "$40.23B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $1,62, DT $40,23 tỷ; vốn hóa ~$210 tỷ; call 7:30 ET). Vùng Sổ 3 $100–110 / Chốt $130→$145 / Cắt <$94 — giá sau báo cáo lọt vùng = 💎 BÁU VẬT. Điểm nhìn: thương mại điện tử + cloud AI TQ."
+  },
+  {
+   "ticker": "PDD",
+   "name": "PDD Holdings Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.77,
+   "rev_est": "$17.17B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $2,77, DT $17,17 tỷ; vốn hóa ~$110 tỷ; 6/8 kỳ gần nhất beat; Morgan Stanley hạ Equal-Weight 9/11; công ty đã xác nhận ngày, call 7:30 ET). Điểm nhìn: tăng trưởng Temu + chi tiêu hệ sinh thái. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "NTES",
+   "name": "NetEase, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.43,
+   "rev_est": "$4.50B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (Tradytics 18/11: EPS $2,43, DT $4,50 tỷ; FI Handbook ghi $2,40). Điểm nhìn: mảng game + Youdao AI. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "WSM",
+   "name": "Williams-Sonoma, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.18,
+   "rev_est": "$2.00B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11, đã xác nhận: EPS $2,18, DT $2,00 tỷ; vốn hóa ~$29,5 tỷ). Điểm nhìn: nhu cầu đồ gia dụng cao cấp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "TCOM",
    "name": "Trip.com Group Limited",
    "date": "2026-11-23",
