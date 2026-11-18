@@ -9,7 +9,7 @@
    "eps_est": 1.97,
    "rev_est": "$2.19B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.] [15:37 PT 17/11: chưa ra số (MarketBeat/stockinvest vẫn N/A); call T4 18/11 10:00 ET. Đóng 17/11 $51,59 (+0,90%). Cú Đêm điền sau.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (MarketBeat 16/11: EPS $1,97, DT $2,19 tỷ; call sáng T4 18/11 10:00 ET). Điểm nhìn: giá lithium + khối lượng bán. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 17/11: chưa ra số (call T4 18/11 10:00 ET); AH $51,08 (-0,99%, Finnhub 16:22 ET). Cú Đêm điền sau.] [15:37 PT 17/11: chưa ra số (MarketBeat/stockinvest vẫn N/A); call T4 18/11 10:00 ET. Đóng 17/11 $51,59 (+0,90%). Cú Đêm điền sau.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub dời lịch sang 18/11); AH $51,21 (-0,74%, Finnhub 19:07 ET). Chờ sáng mai.]"
   },
   {
    "ticker": "BRC",
@@ -20,7 +20,7 @@
    "eps_est": 1.51,
    "rev_est": "$713.76M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.]"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.]"
   },
   {
    "ticker": "ESLT",
@@ -145,14 +145,14 @@
    "eps_est": 2.47,
    "rev_est": "$108.84B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 13:37 PT 17/11: GlobeNewswire/wallsti). [15:37 PT 17/11: AH lên $162,48 (+4,5% so với đóng $155,46; lúc 16:24 ET mới +2,2% → $158,88). Vẫn dưới vùng chờ $168–178, chỉ là mốc tham chiếu.]",
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 16/11 (SentiSense 14/11: EPS $2,47, DT $108,84 tỷ; LSEG ~$109 tỷ; công ty tự guide DT $108,0 tỷ ±2%). Điểm nhìn: kỳ earnings ĐẦU TIÊN dưới CEO tạm quyền Kress — guide Q4 quan trọng hơn số quý; vùng chờ Sổ 2 $168–178 ĐÃ GÃY cắt $164 (đóng 13/11 $162,85) nên chỉ là mốc tham chiếu. ⚠️ Nhị phân: earnings 17/11 AMC + điều trần Hạ viện 18/11. ✅ ĐÃ RA SỐ 17/11 AMC — BEAT (lượt 13:37 PT 17/11: GlobeNewswire/wallsti). [15:37 PT 17/11: AH lên $162,48 (+4,5% so với đóng $155,46; lúc 16:24 ET mới +2,2% → $158,88). Vẫn dưới vùng chờ $168–178, chỉ là mốc tham chiếu.] [17:37 PT 17/11: AH $162,95 (+4,8%, Finnhub 20:00 ET); vẫn dưới vùng chờ $168–178. Chủ tịch HĐQT Harvey Jones: HĐQT không có ý định đưa Huang trở lại làm CEO (Reuters).]",
    "eps_act": 2.68,
    "rev_act": "$115.8B",
    "verdict": "BEAT",
    "guidance": "Q4 FY27 DT $130 tỷ ±3% (trên kỳ vọng ~$124,8–125,3 tỷ); biên gộp Q4 71–72%; không tính DT data center TQ; HĐQT tăng ủy quyền mua lại thêm $150 tỷ (T9/2026).",
-   "reaction_pct": "+4,5% AH so với đóng 17/11 $155,46 → $162,48 (Yahoo 18:40 ET 17/11, thanh khoản mỏng)",
-   "price_after": 162.48,
-   "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH $162,48 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu.",
+   "reaction_pct": "+4,8% AH so với đóng 17/11 $155,46 → $162,95 (Finnhub 20:00 ET 17/11, thanh khoản mỏng)",
+   "price_after": 162.95,
+   "essence": "EPS non-GAAP $2,68 (GAAP $2,70) thắng kỳ vọng $2,47 (+8,4%), DT kỷ lục $115,8 tỷ (+103% y/y; data center $107,6 tỷ, +110%); guide Q4 $130 tỷ vượt kỳ vọng — kỳ earnings đầu tiên dưới CEO tạm quyền Kress. Giá AH $162,95 vẫn dưới vùng chờ Sổ 2 $168–178 (đã gãy cắt $164 từ đóng 13/11) nên chỉ là mốc tham chiếu.",
    "audio": "earnings-nvda-2026-11-17.mp3"
   },
   {
