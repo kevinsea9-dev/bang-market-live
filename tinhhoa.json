@@ -1,39 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "ROST",
-   "name": "Ross Stores, Inc.",
-   "date": "2026-11-19",
-   "when": "T5 19/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.87,
-   "rev_est": "$6.25B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $1,87, DT $6,25 tỷ; vốn hóa ~$70 tỷ). Điểm nhìn: traffic giá rẻ + biên khi người tiêu dùng thắt chặt. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "KEYS",
-   "name": "Keysight Technologies, Inc.",
-   "date": "2026-11-19",
-   "when": "T5 19/11 AMC",
-   "status": "PENDING",
-   "eps_est": 3.37,
-   "rev_est": "$1.95B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $3,37, DT $1,95 tỷ; vốn hóa ~$48 tỷ; công ty tự guide EPS $3,34–3,40; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu thiết bị đo kiểm cho bán dẫn/AI + guidance Q1 FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
-   "ticker": "CPRT",
-   "name": "Copart, Inc.",
-   "date": "2026-11-19",
-   "when": "T5 19/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.4,
-   "rev_est": "$1.19B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $0,40, DT $1,19 tỷ). Điểm nhìn: khối lượng xe salvage + giá đấu giá. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
    "ticker": "WMT",
    "name": "Walmart Inc.",
    "date": "2026-11-19",
@@ -124,6 +91,42 @@
    "essence": "EPS non-GAAP $2,19 thắng nhẹ kỳ vọng $2,18 (+11,7% YoY); doanh thu $1,99 tỷ hụt nhẹ $2,00 tỷ; comp +5,1%; giữ nguyên outlook cả năm — thị trường phạt nặng premarket."
   },
   {
+   "ticker": "ROST",
+   "name": "Ross Stores, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "DONE",
+   "eps_est": 1.87,
+   "rev_est": "$6.25B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $1,87, DT $6,25 tỷ; vốn hóa ~$70 tỷ). Điểm nhìn: traffic giá rẻ + biên khi người tiêu dùng thắt chặt. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 19/11: ĐÃ RA SỐ — BEAT.]",
+   "eps_act": 1.91,
+   "rev_act": "$6.26B",
+   "verdict": "BEAT",
+   "guidance": "Nâng EPS cả năm FY26 lên $8,75–8,84 (gồm ~$0,60 hoàn thuế quan IEEPA một lần, Q2); Q4 EPS $2,16–2,25, comp sales +4–5% (thấp hơn Q3 +8%)",
+   "reaction_pct": "-5,40% AH so với đóng 19/11 $219,88 → $208 (Finnhub 16:24 ET, thanh khoản mỏng)",
+   "price_after": 208,
+   "essence": "EPS $1,91 thắng kỳ vọng $1,87, doanh thu $6,26 tỷ thắng $6,25 tỷ, comp sales +8% nhờ traffic, biên 12,3% — nhưng cổ phiếu vẫn rớt AH vì outlook Q4 (comp +4–5%) mềm hơn đà Q3."
+  },
+  {
+   "ticker": "KEYS",
+   "name": "Keysight Technologies, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "DONE",
+   "eps_est": 3.37,
+   "rev_est": "$1.95B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (MarketBeat 18/11: EPS $3,37, DT $1,95 tỷ; vốn hóa ~$48 tỷ; công ty tự guide EPS $3,34–3,40; 8/8 kỳ gần nhất beat). Điểm nhìn: nhu cầu thiết bị đo kiểm cho bán dẫn/AI + guidance Q1 FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 19/11: ĐÃ RA SỐ — BEAT.]",
+   "eps_act": 3.61,
+   "rev_act": "$1.99B",
+   "verdict": "BEAT",
+   "guidance": "Q1 FY27: doanh thu $2,04–2,06 tỷ, EPS non-GAAP $3,63–3,69 — vượt kỳ vọng $3,16; đơn hàng Q4 kỷ lục",
+   "reaction_pct": "-1,22% AH so với đóng 19/11 $281,42 → $278 (Finnhub 16:24 ET, thanh khoản mỏng)",
+   "price_after": 278,
+   "essence": "EPS non-GAAP $3,61 thắng $3,37 (+$0,24), doanh thu $1,99 tỷ thắng $1,95 tỷ; doanh thu cả năm FY26 $7,16 tỷ (+33% YoY), FCF $1,75 tỷ — guide Q1 FY27 cao hơn kỳ vọng, cổ phiếu vẫn hạ nhẹ AH sau phiên đã rớt -1,70%."
+  },
+  {
    "ticker": "INTU",
    "name": "Intuit Inc.",
    "date": "2026-11-19",
@@ -141,6 +144,105 @@
    "essence": "EPS non-GAAP $2,91 thắng kỳ vọng $2,46 (+18%), doanh thu $4,4 tỷ thắng $4,30 tỷ (+12% YoY); GAAP EPS $2,59 (+63%); đồng thời công bố thỏa thuận bán Mailchimp cho Bending Spoons — cổ phiếu vẫn rớt AH dù beat."
   },
   {
+   "ticker": "KT",
+   "name": "KT Corp",
+   "date": "2026-11-20",
+   "when": "T6 20/11 AMC",
+   "status": "PENDING",
+   "eps_est": null,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (FI Handbook 19/11: báo cáo sau đóng cửa 20/11; vốn hóa ~$8,5 tỷ; kỳ vọng EPS/doanh thu chưa xác minh được — không ghi số). Điểm nhìn: viễn thông Hàn Quốc + AI/data center. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "BJ",
+   "name": "BJ's Wholesale Club Holdings, Inc.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 1.29,
+   "rev_est": "$6.14B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tapeboard 19/11: EPS $1,29, DT $6,14 tỷ; vốn hóa ~$14 tỷ). Điểm nhìn: comp sales + phí thành viên, sức mua hộ gia đình. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "BSP",
+   "name": "Bending Spoons S.p.A.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.32,
+   "rev_est": "$753.1M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tapeboard 19/11: EPS $0,32, DT $753,1 triệu; vốn hóa ~$29,7 tỷ). Điểm nhìn: vừa mua Mailchimp từ INTU (công bố 19/11) + tăng trưởng app. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "MOG.A",
+   "name": "Moog Inc.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.77,
+   "rev_est": "$1.15B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tapeboard 19/11: EPS $2,77, DT $1,15 tỷ; vốn hóa ~$10,6 tỷ). Điểm nhìn: backlog quốc phòng/hàng không. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "FRO",
+   "name": "Frontline Plc",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.32,
+   "rev_est": "$736.6M",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tapeboard 19/11: EPS $2,32, DT $736,6 triệu; vốn hóa ~$9,9 tỷ). Điểm nhìn: giá cước tanker + đội tàu. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "IESC",
+   "name": "IES Holdings, Inc.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 2.87,
+   "rev_est": "$1.17B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tapeboard 19/11: EPS $2,87, DT $1,17 tỷ; vốn hóa ~$6,8 tỷ). Điểm nhìn: backlog xây lắp điện + biên. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "BKE",
+   "name": "Buckle, Inc. (The)",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.88,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tickergate/Kalkine 19/11: EPS $0,88; công ty đã công bố doanh số Q3 $329,2 triệu +2,6% trước báo cáo, nên chỉ còn EPS/biên là điểm nhìn). ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "RLX",
+   "name": "RLX Technology Inc.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": 0.03,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tickergate 19/11: EPS $0,03; Tapeboard ghi $0,23/DT $1,77 tỷ — CHƯA THỐNG NHẤT giữa các lịch, chỉ tham chiếu, không ghi doanh thu). Điểm nhìn: doanh số thuốc lá điện tử tại Trung Quốc. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "WRD",
+   "name": "WeRide Inc.",
+   "date": "2026-11-20",
+   "when": "T6 20/11 BMO",
+   "status": "PENDING",
+   "eps_est": -0.11,
+   "rev_est": null,
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (Tickergate 19/11: EPS -$0,11; vốn hóa ~$1,2 tỷ; kỳ vọng doanh thu chưa xác minh được — không ghi số). Điểm nhìn: tăng trưởng đội robotaxi + đốt tiền R&D. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
    "ticker": "TCOM",
    "name": "Trip.com Group Limited",
    "date": "2026-11-23",
@@ -150,6 +252,17 @@
    "rev_est": "$2.82B",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 16/11 (Nasdaq ghi 16/11, vốn hóa $27,2B ≥ $20B; call 19:00 ET). Điểm nhìn: đặt phòng/du lịch TQ + biên lợi nhuận; kỳ vọng EPS $1,07 (Nasdaq) — MarketBeat/Zacks ghi $1,23, DT $2,82 tỷ. [13:55 PT 16/11: CHƯA RA SỐ — tới 16:53 ET vẫn chưa có bản tin Q3 trên IR/PR Newswire; call 19:00 ET chưa xác nhận được (MarketBeat ghi call 23/11 — mâu thuẫn chưa rõ); TipRanks ghi 23/11 đã xác nhận — nếu tối nay không ra số thì dời sang 23/11. Đóng 16/11 $44,27 (+1,58%), AH ~$44,28 (+0,02%, thanh khoản mỏng, các nguồn chênh nhau).] ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [15:45 PT 16/11: VẪN CHƯA RA SỐ — MarketBeat vẫn N/A, call 19:00 ET (~15 phút nữa); AH ~$44,03 (Finnhub 16:36 ET), gần như đứng yên.] [17:37 PT 16/11: VẪN CHƯA RA SỐ — sau call 19:00 ET vẫn không có bản tin Q3 trên MarketBeat/Finnhub (EPS vẫn N/A); TipRanks ghi 23/11 đã xác nhận — nhiều khả năng dời sang 23/11. Giữ PENDING, chờ xác nhận sáng mai.] [01:40 PT 17/11: ĐÃ XÁC MINH — 16/11 KHÔNG ra số: MarketBeat EPS/DT vẫn N/A, Finnhub không có giá trị thực, không có bản tin Q3 trên IR/PR Newswire; TipRanks xác nhận ngày mới 23/11 — dời entry sang 23/11 AMC, giữ PENDING.]"
+  },
+  {
+   "ticker": "CPRT",
+   "name": "Copart, Inc.",
+   "date": "2026-12-01",
+   "when": "T3 01/12 AMC",
+   "status": "PENDING",
+   "eps_est": 0.4,
+   "rev_est": "$1.19B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — DỜI LỊCH: công ty xác nhận báo cáo 01/12 (StockDecider 19/11: ngày đổi từ 19/11 → 01/12; MarketBeat: 01/12 Confirmed). Điểm nhìn: khối lượng xe salvage + giá đấu giá. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "BRC",
