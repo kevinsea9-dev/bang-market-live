@@ -9285,8 +9285,13 @@ function shareBoard(){
   var v=''; try{var m=document.querySelector('meta[name="board-v"]'); if(m) v=m.getAttribute('content');}catch(e){}
   var url='https://kevinsea9-dev.github.io/bang-market-live/'+(v?('?v='+v):'');
   var data={title:'📊 Bảng Market Live — Iggy × Tom',text:'Bảng market live: tin tức, vùng giá, tín hiệu vùng — cập nhật 10 lần/ngày',url:url};
-  if(navigator.share){navigator.share(data).catch(function(){showShareLink(url);}); return;}
-  fallbackCopy(url);
+  showShareLink(url);
+  try{
+    if(navigator.share){
+      var p=navigator.share(data);
+      if(p && p.then){p.then(function(){var b=document.getElementById('shareLinkBox'); if(b) b.style.display='none';}).catch(function(){});}
+    }
+  }catch(e){}
 }
 function fallbackCopy(url){
   if(navigator.clipboard && navigator.clipboard.writeText){
