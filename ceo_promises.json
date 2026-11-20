@@ -1881,6 +1881,78 @@
    "promise": "Sản lượng lithium vượt 300.000 tấn trong 2027; chi tiêu vốn khoảng 3 tỷ đô la giai đoạn 2026–28; nhu cầu lithium toàn cầu đạt gần 2,5 triệu tấn trong 2027",
    "due": "2027",
    "status": "open"
+  },
+  {
+   "ticker": "BABA",
+   "who": "Eddie Wu (CEO Alibaba)",
+   "said_on": "2026-11-19",
+   "source": "BABA Q2 FY27 call — WEEX/TranscriptDaily 19/11",
+   "promise": "Chip AI tự phát triển Zhenwu V900 sản xuất hàng loạt quý 1/2027; lộ trình M890 2026, V900 2027, J900 2028 vào sản xuất quy mô lớn",
+   "due": "2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "BABA",
+   "who": "Eddie Wu (CEO Alibaba)",
+   "said_on": "2026-11-19",
+   "source": "BABA Q2 FY27 call — TranscriptDaily/WEEX 19/11",
+   "promise": "Doanh thu cloud tăng 30–45% sang năm, trên 50% vào 2028; mục tiêu 100 tỷ đô la doanh thu cloud ngoài vào 2030, biên trên 20%",
+   "due": "2030 (kiểm chứng từng năm)",
+   "status": "open"
+  },
+  {
+   "ticker": "NTES",
+   "who": "William Ding (CEO NetEase)",
+   "said_on": "2026-11-19",
+   "source": "NTES Q3 2026 release — PR Newswire 19/11",
+   "promise": "Game Ananta ra mắt toàn cầu ngày 15/01/2027 trên PC, PlayStation 5 và di động",
+   "due": "2027-01-15",
+   "status": "open"
+  },
+  {
+   "ticker": "KEYS",
+   "who": "Satish Dhanasekaran (CEO Keysight)",
+   "said_on": "2026-11-19",
+   "source": "KEYS Q4 FY26 call — MarketBeat/AlphaStreet 19/11",
+   "promise": "Kịch bản cơ sở FY27: doanh thu tăng 20%; quang học đóng gói chung có chuyển động rõ rệt trong 2027, bước ngoặt lớn hơn 2028",
+   "due": "2027 (FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "KEYS",
+   "who": "Ban lãnh đạo Keysight",
+   "said_on": "2026-11-19",
+   "source": "KEYS Q4 FY26 — BusinessWire 19/11",
+   "promise": "Jason Kary nhậm chức CFO từ 18/12/2026, kế nhiệm Neil Dougherty",
+   "due": "2026-12-18",
+   "status": "open"
+  },
+  {
+   "ticker": "INTU",
+   "who": "Sasan Goodarzi (CEO Intuit)",
+   "said_on": "2026-11-19",
+   "source": "INTU Q1 FY27 release — BusinessWire 19/11",
+   "promise": "Hoàn tất bán Mailchimp cho Bending Spoons (3,68 tỷ đô la) đầu năm dương lịch 2027; toàn bộ tiền mặt dùng mua lại cổ phiếu trong FY27",
+   "due": "2027-H1",
+   "status": "open"
+  },
+  {
+   "ticker": "ROST",
+   "who": "Ban lãnh đạo Ross Stores",
+   "said_on": "2026-11-19",
+   "source": "ROST Q3 FY27 call — Reuters 19/11",
+   "promise": "Q4 FY26: comp sales +4–5%, EPS 2,16–2,25 đô la; EPS cả năm FY26 8,75–8,84 đô la",
+   "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
+   "status": "open"
+  },
+  {
+   "ticker": "WMT",
+   "who": "Ban lãnh đạo Walmart",
+   "said_on": "2026-11-19",
+   "source": "WMT Q3 FY27 release — Zacks/PPC Land 19/11",
+   "promise": "FY27: EPS điều chỉnh 2,84–2,89 đô la; tăng trưởng doanh số thuần 4,9–5,2%; thu nhập hoạt động điều chỉnh +8–8,6%",
+   "due": "2027-02 (kiểm chứng tại báo cáo Q4)",
+   "status": "open"
   }
  ]
 }
