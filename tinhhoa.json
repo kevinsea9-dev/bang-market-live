@@ -32,8 +32,8 @@
    "rev_act": "$780M",
    "verdict": "BEAT",
    "guidance": "Nâng DT FY26 lên $3,07–3,09 tỷ (cũ $2,78–2,82 tỷ); Q4 DT $984 triệu–$1,0 tỷ, trên kỳ vọng $865,74 triệu.",
-   "reaction_pct": "+6,5% AH → $44,40 lúc 16:44 ET 19/11 (StockAnalysis); Morningstar ghi +11% lên $46,25 sau giờ",
-   "price_after": 44.4,
+   "reaction_pct": "+6,5% AH → $44,40 lúc 16:44 ET 19/11 (StockAnalysis); Morningstar ghi +11% lên $46,25 sau giờ | Cập nhật 15:38 PT: -1,56% vs đóng 19/11 $41,70 → $41,05 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng) — đà tăng AH tối qua (+6,5% lên $44,40) đã bốc hơi hết trong phiên hôm nay",
+   "price_after": 41.05,
    "essence": "EPS điều chỉnh $0,42 thắng kỳ vọng $0,32 (FactSet), doanh thu $780 triệu thắng ~$746 triệu (+125% YoY, chủ yếu do M&A); mua Mailchimp từ INTU, giá trị doanh nghiệp $3,68 tỷ + phát hành 32,5 triệu cp huy động $1,3 tỷ; tăng trưởng hữu cơ chỉ +3%."
   },
   {
@@ -50,8 +50,8 @@
    "rev_act": "$1.25B",
    "verdict": "BEAT",
    "guidance": "FY27: EPS điều chỉnh $12,36 ± $0,25 (đi ngang so với FY26 $12,36); doanh thu kỷ lục FY26 $4,52 tỷ (+17%).",
-   "reaction_pct": "+4,86% premarket → $344,01 lúc 08:18 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 344.01,
+   "reaction_pct": "+4,86% premarket → $344,01 lúc 08:18 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: +1,95% vs đóng 19/11 $328,07 → $334,48 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 334.48,
    "essence": "EPS điều chỉnh Q4 $3,37 thắng kỳ vọng $2,77, doanh thu $1,254 tỷ thắng $1,154 tỷ (+20% YoY); kỷ lục cả 4 mảng về doanh thu quý; FCF cả năm $307 triệu — nhưng guide FY27 đi ngang nên đà premarket có thể hạ nhiệt."
   },
   {
@@ -68,8 +68,8 @@
    "rev_act": "$921.26M",
    "verdict": "BEAT",
    "guidance": "Cổ tức Q3 $2,38/cp; TCE VLCC spot $148.500/ngày; bán 2 VLCC 2017 giá $270 triệu; tái cấp vốn $731,8 triệu, biên lãi giảm còn 118bps.",
-   "reaction_pct": "-0,34% premarket → $44,60 lúc 08:16 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 44.6,
+   "reaction_pct": "-0,34% premarket → $44,60 lúc 08:16 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: +2,12% vs đóng 19/11 $44,75 → $45,70 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 45.7,
    "essence": "EPS non-GAAP $2,38 thắng kỳ vọng ~$2,26–2,32, doanh thu $921,26 triệu thắng xa $736,64 triệu (+112,9% YoY) nhờ giá cước tanker cao; lợi nhuận $641,4 triệu, cổ tức $2,38/cp — giá premarket gần như đứng yên sau khi đã +105% từ đầu năm."
   },
   {
@@ -86,8 +86,8 @@
    "rev_act": "$1.39B",
    "verdict": "BEAT",
    "guidance": "FY27: tăng trưởng hữu cơ mạnh ở 3 mảng (Communications, Commercial & Industrial, Infrastructure); backlog $4,96 tỷ (+109%), DBM Global thêm $2,6 tỷ backlog; HĐQT thêm $350 triệu mua lại cp.",
-   "reaction_pct": "-1,08% premarket → $165,10 lúc 08:16 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 165.1,
+   "reaction_pct": "-1,08% premarket → $165,10 lúc 08:16 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: -4,25% vs đóng 19/11 $166,90 → $159,81 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 159.81,
    "essence": "EPS điều chỉnh $4,07 thắng xa kỳ vọng $2,87, doanh thu $1,39 tỷ thắng $1,17 tỷ (+55% YoY); backlog gần gấp đôi nhờ nhu cầu điện cho data center — nhưng mảng Residential yếu (doanh thu -7%) và giá premarket vẫn đỏ nhẹ."
   },
   {
@@ -104,8 +104,8 @@
    "rev_act": "$329.2M",
    "verdict": "MIXED",
    "guidance": "Không có guidance mới trong bản tin sáng; webcast 10:00 ET hôm nay.",
-   "reaction_pct": "+3,52% premarket → $43,25 lúc 07:55 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 43.25,
+   "reaction_pct": "+3,52% premarket → $43,25 lúc 07:55 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: +5,67% vs đóng 19/11 $41,78 → $44,15 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 44.15,
    "essence": "EPS GAAP $0,94 thắng kỳ vọng $0,84, nhưng doanh thu $329,2 triệu hụt ~$7,95 triệu so với kỳ vọng (Seeking Alpha); lợi nhuận ròng $48,0 triệu giảm nhẹ so với $48,7 triệu cùng kỳ dù doanh số +2,6% — comp store sales chỉ +0,6%."
   },
   {
@@ -122,8 +122,8 @@
    "rev_act": "$285.9M",
    "verdict": "MIXED",
    "guidance": "Không có guidance mới trong bản tin sáng; tiền mặt + đầu tư ~RMB13,48 tỷ (~$2,01 tỷ) tính tới 30/9.",
-   "reaction_pct": "-2,74% premarket → $1,42 lúc 08:02 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 1.42,
+   "reaction_pct": "-2,74% premarket → $1,42 lúc 08:02 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: -5,48% vs đóng 19/11 $1,46 → $1,38 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 1.38,
    "essence": "EPS non-GAAP/ADS $0,03 đúng kỳ vọng, doanh thu $285,9 triệu thắng ~$262 triệu (+69,7% YoY nhờ hợp nhất thực thể châu Âu mua tháng 7) — nhưng biên gộp tuột 31,2%→23,3% và lợi nhuận ròng non-GAAP giảm. Lưu ý: số $0,23/DT $1,77 tỷ trên một số lịch là số RMB ghi nhầm đơn vị USD."
   },
   {
@@ -140,8 +140,8 @@
    "rev_act": "$47.95M",
    "verdict": "MIXED",
    "guidance": "Lần đầu đưa guidance doanh thu cả năm: ~RMB1,1 tỷ (~$164,9 triệu); R&D +47,1% YoY, lỗ điều chỉnh vẫn widen.",
-   "reaction_pct": "+3,52% premarket → $3,38 lúc 08:20 ET (Finnhub), thanh khoản mỏng",
-   "price_after": 3.38,
+   "reaction_pct": "+3,52% premarket → $3,38 lúc 08:20 ET (Finnhub), thanh khoản mỏng | Cập nhật 15:38 PT: -8,12% vs đóng 19/11 $3,265 → $3,00 AH lúc 18:38 ET (Yahoo chart 1m, thanh khoản mỏng)",
+   "price_after": 3.0,
    "essence": "EPS GAAP -$0,15 hụt kỳ vọng -$0,05, nhưng doanh thu $47,95 triệu thắng ~$40,45 triệu (+88–100% YoY); doanh thu robotaxi lần đầu vượt RMB100 triệu (+204%), biên gộp 43,0% (+10,1 điểm); đội xe L4 ~4.100 xe, đối tác robotaxi lớn nhất của Uber ngoài Mỹ."
   },
   {
