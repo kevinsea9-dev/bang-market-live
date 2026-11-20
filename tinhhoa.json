@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "KT",
-   "name": "KT Corp",
-   "date": "2026-11-20",
-   "when": "T6 20/11 AMC",
-   "status": "PENDING",
-   "eps_est": null,
-   "rev_est": null,
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (FI Handbook 19/11: báo cáo sau đóng cửa 20/11; vốn hóa ~$8,5 tỷ; kỳ vọng EPS/doanh thu chưa xác minh được — không ghi số). Điểm nhìn: viễn thông Hàn Quốc + AI/data center. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
    "ticker": "BJ",
    "name": "BJ's Wholesale Club Holdings, Inc.",
    "date": "2026-11-20",
@@ -154,6 +143,24 @@
    "reaction_pct": "+3,52% premarket → $3,38 lúc 08:20 ET (Finnhub), thanh khoản mỏng",
    "price_after": 3.38,
    "essence": "EPS GAAP -$0,15 hụt kỳ vọng -$0,05, nhưng doanh thu $47,95 triệu thắng ~$40,45 triệu (+88–100% YoY); doanh thu robotaxi lần đầu vượt RMB100 triệu (+204%), biên gộp 43,0% (+10,1 điểm); đội xe L4 ~4.100 xe, đối tác robotaxi lớn nhất của Uber ngoài Mỹ."
+  },
+  {
+   "ticker": "KT",
+   "name": "KT Corp",
+   "date": "2026-11-20",
+   "when": "T6 20/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.574,
+   "rev_est": "$5.12B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 19/11 (FI Handbook 19/11: báo cáo sau đóng cửa 20/11; vốn hóa ~$8,5 tỷ; kỳ vọng EPS/doanh thu chưa xác minh được — không ghi số). Điểm nhìn: viễn thông Hàn Quốc + AI/data center. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:12 PT 20/11 (làn nhanh): ĐÃ RA SỐ — nhưng KHÔNG phải hôm nay: KT đã báo cáo Q3 từ T2 09/11 (MarketBeat: EPS $0,4954 vs $0,574) / call T3 10/11 (Fool/Nasdaq/SEC 6-K) — ngày 20/11 AMC trong entry là sai (FI Handbook 19/11). Verdict MIXED (EPS hụt, DT thắng). Đóng 10/11 $18,78 (-2,03% vs 9/11). Hôm nay KT đóng $16,06 (nến Yahoo 20/11) — KHÔNG phải phản ứng earnings, là đà giảm cả tuần (18/11 $17,61 → 19/11 $16,88).]",
+   "eps_act": 0.4954,
+   "rev_act": "$5.23B",
+   "verdict": "MIXED",
+   "price_after": 18.78,
+   "reaction_pct": "-2,03% phiên 10/11 (ngày call) so với đóng 9/11 $19,17 — KHÔNG phải phản ứng hôm nay",
+   "guidance": "Doanh thu AI infra bắt đầu ghi nhận từ Q4; 6 trung tâm dữ liệu AI thêm 2027–2029; cổ tức tối thiểu KRW 2.400 cả năm FY26; mua lại cổ phiếu KRW 250 tỷ đã xong T9.",
+   "essence": "EPS $0,4954 hụt kỳ vọng $0,574; doanh thu 6.997,5 tỷ won (~$5,23 tỷ) thắng nhẹ ~$5,12 tỷ — lợi nhuận bị ép bởi chi phí bồi thường vụ hack + đầu tư AI, nhưng đơn hàng B2B/AI tăng >20% và doanh thu AX +11,9% YoY."
   },
   {
    "ticker": "TCOM",
