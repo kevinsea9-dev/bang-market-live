@@ -109,8 +109,8 @@
    "rev_act": "$6.26B",
    "verdict": "BEAT",
    "guidance": "Nâng EPS cả năm FY26 lên $8,75–8,84 (gồm ~$0,60 hoàn thuế quan IEEPA một lần, Q2); Q4 EPS $2,16–2,25, comp sales +4–5% (thấp hơn Q3 +8%)",
-   "reaction_pct": "-6,57% AH so với đóng 19/11 $219,88 → $205,43 (MarketBeat extended 16:37 ET, thanh khoản mỏng)",
-   "price_after": 205.43,
+   "reaction_pct": "-5,16% AH so với đóng 19/11 $219,88 → $208,53 lúc 19:57 ET (Finnhub, thanh khoản mỏng); đáy AH $205,43 lúc 16:37 ET",
+   "price_after": 208.53,
    "essence": "EPS $1,91 thắng kỳ vọng $1,87, doanh thu $6,26 tỷ thắng $6,25 tỷ, comp sales +8% nhờ traffic, biên 12,3% — nhưng cổ phiếu vẫn rớt AH vì outlook Q4 (comp +4–5%) mềm hơn đà Q3.",
    "audio": "earnings-rost-2026-11-19.mp3"
   },
@@ -128,9 +128,9 @@
    "rev_act": "$1.99B",
    "verdict": "BEAT",
    "guidance": "Q1 FY27: doanh thu $2,04–2,06 tỷ, EPS non-GAAP $3,63–3,69 — vượt kỳ vọng $3,16; đơn hàng Q4 kỷ lục",
-   "reaction_pct": "+1,31% AH so với đóng 19/11 $281,42 → $285,11 lúc 18:39 ET (Yahoo chart 1m, thanh khoản mỏng)",
-   "price_after": 285.11,
-   "essence": "EPS non-GAAP $3,61 thắng $3,37 (+$0,24), doanh thu $1,99 tỷ thắng $1,95 tỷ; doanh thu cả năm FY26 $7,16 tỷ (+33% YoY), FCF $1,75 tỷ — guide Q1 FY27 cao hơn kỳ vọng, cổ phiếu vẫn hạ nhẹ AH sau phiên đã rớt -1,70%.",
+   "reaction_pct": "+0,31% AH so với đóng 19/11 $281,42 → $282,30 lúc 19:59 ET (Finnhub, thanh khoản mỏng); đỉnh AH $285,11 lúc 18:39 ET",
+   "price_after": 282.3,
+   "essence": "EPS non-GAAP $3,61 thắng $3,37 (+$0,24), doanh thu $1,99 tỷ thắng $1,95 tỷ; doanh thu cả năm FY26 $7,16 tỷ (+33% YoY), FCF $1,75 tỷ — guide Q1 FY27 cao hơn kỳ vọng, cổ phiếu chỉ nhích nhẹ AH sau phiên đã rớt -1,70%.",
    "audio": "earnings-keys-2026-11-19.mp3"
   },
   {
@@ -151,6 +151,25 @@
    "essence": "EPS $2,91 thắng kỳ vọng $2,46, doanh thu $4,35 tỷ thắng $4,30 tỷ — nhưng cổ phiếu rớt -13% AH vì hạ triển vọng doanh thu cả năm FY27 (Credit Karma yếu) + bán Mailchimp cho Bending Spoons $3,68 tỷ, tiền về mua lại cổ phiếu.",
    "guidance": "Hạ triển vọng doanh thu FY27 xuống $23,08–23,37 tỷ (từ $23,28–23,51 tỷ), toàn bộ do Credit Karma (chỉ còn +3–7% thay vì +11–13%); giữ EPS điều chỉnh $22,88–23,12; Q2 EPS $3,20/DT $4,94 tỷ",
    "audio": "earnings-intu-2026-11-19.mp3"
+  },
+  {
+   "ticker": "GAP",
+   "name": "Gap, Inc.",
+   "date": "2026-11-19",
+   "when": "T5 19/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.78,
+   "rev_est": "$4.01B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 18/11 (Earnings Whispers 18/11: EPS $0,78, DT $4,01 tỷ; vốn hóa ~$7 tỷ). Điểm nhìn: sức mua tiêu dùng + biên bán lẻ giá rẻ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [17:37 PT 19/11: ĐÃ RA SỐ — BEAT.]",
+   "eps_act": 0.82,
+   "rev_act": "$4.01B",
+   "verdict": "BEAT",
+   "guidance": "Hạ EPS điều chỉnh FY26 còn $2,29–2,34; Q4 doanh thu ngang tới -1% (~$4,2 tỷ), dưới kỳ vọng $4,37 tỷ.",
+   "reaction_pct": "+3,61% AH so với đóng 19/11 $18,79 → $19,47 lúc 20:00 ET (Finnhub, thanh khoản mỏng)",
+   "price_after": 19.47,
+   "essence": "EPS điều chỉnh $0,82 thắng kỳ vọng $0,78, doanh thu $4,01 tỷ đúng kỳ vọng; Gap brand +11%, Athleta -14% — nhưng hạ outlook cả năm nên chỉ hồi nhẹ AH sau phiên rớt -5,29%.",
+   "audio": null
   },
   {
    "ticker": "KT",
