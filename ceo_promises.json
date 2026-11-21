@@ -1953,6 +1953,51 @@
    "promise": "FY27: EPS điều chỉnh 2,84–2,89 đô la; tăng trưởng doanh số thuần 4,9–5,2%; thu nhập hoạt động điều chỉnh +8–8,6%",
    "due": "2027-02 (kiểm chứng tại báo cáo Q4)",
    "status": "open"
+  },
+  {
+   "ticker": "BJ",
+   "who": "Ban lãnh đạo BJ's Wholesale Club",
+   "said_on": "2026-11-20",
+   "source": "BJ Q3 FY26 release — 20/11",
+   "promise": "EPS điều chỉnh FY26 5,10–5,30 đô la (nâng từ 4,60–4,80); comp sales trừ xăng +2,5–3,0%",
+   "due": "2027-01 (kiểm chứng tại báo cáo Q4)",
+   "status": "open"
+  },
+  {
+   "ticker": "BSP",
+   "who": "Ban lãnh đạo Bending Spoons",
+   "said_on": "2026-11-20",
+   "source": "BSP Q3 2026 release — 20/11",
+   "promise": "Doanh thu FY26 3,07–3,09 tỷ đô la (nâng từ 2,78–2,82 tỷ); Q4 doanh thu 984 triệu–1,0 tỷ đô la",
+   "due": "2027-02 (kiểm chứng tại báo cáo Q4)",
+   "status": "open"
+  },
+  {
+   "ticker": "MOG.A",
+   "who": "Ban lãnh đạo Moog",
+   "said_on": "2026-11-20",
+   "source": "Moog Q4 FY26 release — 20/11",
+   "promise": "FY27 EPS điều chỉnh 12,36 ± 0,25 đô la (đi ngang so với FY26 12,36 đô la)",
+   "due": "2027-09 (kiểm chứng tại báo cáo Q4 FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "IESC",
+   "who": "Ban lãnh đạo IES Holdings",
+   "said_on": "2026-11-20",
+   "source": "IESC Q4 FY26 release — 20/11",
+   "promise": "FY27 tăng trưởng hữu cơ mạnh ở 3 mảng Communications, Commercial & Industrial, Infrastructure; backlog 4,96 tỷ đô la",
+   "due": "2027-09 (kiểm chứng tại báo cáo Q4 FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "WRD",
+   "who": "Ban lãnh đạo WeRide",
+   "said_on": "2026-11-20",
+   "source": "WeRide Q3 2026 release — 20/11",
+   "promise": "Doanh thu cả năm 2026 khoảng 1,1 tỷ nhân dân tệ (~164,9 triệu đô la) — guidance lần đầu",
+   "due": "2027-03 (kiểm chứng tại báo cáo Q4)",
+   "status": "open"
   }
  ]
 }
