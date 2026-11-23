@@ -1487,6 +1487,24 @@ def prune_old_alerts(h):
         _bm_seg = h[_bm_s:_bm_e]
         h = h[:_bm_s] + '@@SEC-BOOM-KEEP@@' + h[_bm_e:]
 
+    # VÁ 23/11 ~09:00 PT (vụ sec-dividend mất 32/38 khối lúc 06:42 —
+    # prune ăn sạch vì khối chứa "trả 3/6/9/12"/ex-div + mô tả dài ≥200 ký
+    # tự; chỉ 6 khối chứa "NAV" sống sót nhờ miễn trừ _STRUCT_KEEP):
+    # sec-dividend là mục NGHIÊN CỨU tĩnh (giá = ảnh tĩnh đóng 20/11) —
+    # ngày trong khối là ngày trả cổ tức, KHÔNG phải ngày hết hạn của
+    # alert — miễn trừ quét theo ngày như sec-ai36/sec-boom: tách cả mục
+    # ra khỏi lượt quét rồi gắn lại nguyên vẹn.
+    _dv_s = h.find('<div class="sec" id="sec-dividend">')
+    _dv_seg = ''
+    if _dv_s != -1:
+        _dv_e = h.find('<div class="sec" id=', _dv_s + 10)
+        if _dv_e == -1:
+            _dv_e = h.find('<div class="footer"', _dv_s + 10)
+        if _dv_e == -1:
+            _dv_e = len(h)
+        _dv_seg = h[_dv_s:_dv_e]
+        h = h[:_dv_s] + '@@SEC-DIVIDEND-KEEP@@' + h[_dv_e:]
+
     def check_alert(full, inner):
         # 💥 MÃ SẮP BUNG: khối sự kiện nhị phân do boom_block.py sở hữu —
         # KHÔNG quét theo ngày (ngày trong thân là ngày SỰ KIỆN tương lai,
@@ -1635,6 +1653,8 @@ def prune_old_alerts(h):
         h = h.replace('@@SEC-AI36-KEEP@@', _ai_seg, 1)
     if _bm_seg:
         h = h.replace('@@SEC-BOOM-KEEP@@', _bm_seg, 1)
+    if _dv_seg:
+        h = h.replace('@@SEC-DIVIDEND-KEEP@@', _dv_seg, 1)
     return h, removed[0]
 
 
@@ -7676,7 +7696,12 @@ def merge_fresh_sections(h, path):
                          # (CSCO/SNDK/AMD/QCOM mất dù LEV_MAP + giá đủ).
                          # Cùng luật: bản tươi nhiều khối hơn thì giữ —
                          # marker = 1 data-achip mỗi khối cặp.
-                         ("sec-leverage", "data-achip=")):
+                         ("sec-leverage", "data-achip="),
+                         # 23/11 (vụ sec-dividend mất 32/38 khối 06:42 —
+                         # prune_old_alerts ăn khối nghiên cứu tĩnh; đã
+                         # miễn trừ prune ở trên, thêm lớp chống ghi đè
+                         # race ở đây): marker = số dải vàng divhl.
+                         ("sec-dividend", "divhl")):
         try:
             fb = _sec_bounds(fresh, sid)
             hb = _sec_bounds(h, sid)
