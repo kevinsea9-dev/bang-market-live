@@ -163,6 +163,48 @@ def fetch_close_map(tickers):
             else:
                 price = dc[-1][1]
                 prev = dc[-2][1] if len(dc) >= 2 else price
+                if len(dc) >= 2 and (dc[-1][0] - dc[-2][0]).days > 3:
+                    # VÁ GỐC 23/11 (SNDK — ngày tách cp 20/11): nến ngày
+                    # trước có close=None (có timestamp nhưng không có giá
+                    # đóng), fetch_daily_closes bỏ qua nến null nên dc[-2]
+                    # lùi về ngày xa hơn, % tính sai cả dấu (-7,08% thay
+                    # vì +10,69%). Chỉ kích hoạt khi khoảng cách nến >3
+                    # ngày (thứ Hai thường = 3 ngày) — kiểm tra nến ngày
+                    # ngay trước dc[-1] trong series 5d; nếu close null,
+                    # lấy đóng cửa từ nến 1m cuối phiên thường của ngày đó.
+                    # Lỗi mạng/dữ liệu -> giữ prev cũ, không đoán giá.
+                    try:
+                        url5 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
+                                f"?interval=1d&range=5d")
+                        with urlopen(Request(url5, headers=UA), timeout=15) as r5:
+                            res5 = json.load(r5)["chart"]["result"][0]
+                        ts5 = res5["timestamp"]
+                        cl5 = res5["indicators"]["quote"][0]["close"]
+                        ny = ZoneInfo("America/New_York")
+                        idx = None
+                        for k, tsx in enumerate(ts5):
+                            if datetime.fromtimestamp(tsx, ny).date() == dc[-1][0]:
+                                idx = k
+                                break
+                        if idx is not None and idx >= 1 and cl5[idx - 1] is None:
+                            dprev = datetime.fromtimestamp(ts5[idx - 1], ny).date()
+                            url1 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
+                                    f"?interval=1m&range=5d")
+                            with urlopen(Request(url1, headers=UA), timeout=15) as r1:
+                                res1 = json.load(r1)["chart"]["result"][0]
+                            ts1 = res1["timestamp"]
+                            cl1 = res1["indicators"]["quote"][0]["close"]
+                            last = None
+                            for tsx, cx in zip(ts1, cl1):
+                                if cx is None:
+                                    continue
+                                dt1 = datetime.fromtimestamp(tsx, ny)
+                                if dt1.date() == dprev and (dt1.hour, dt1.minute) < (16, 0):
+                                    last = float(cx)
+                            if last:
+                                prev = last
+                    except Exception:
+                        pass
             pct = (price - prev) / prev * 100 if prev else 0.0
             return t, (round(price, 2), round(pct, 2))
         except Exception:
