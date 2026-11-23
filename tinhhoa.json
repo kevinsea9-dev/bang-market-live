@@ -47,13 +47,13 @@
   {
    "ticker": "DKS",
    "name": "Dick's Sporting Goods, Inc.",
-   "date": "2026-11-23",
-   "when": "T2 23/11 BMO",
+   "date": "2026-11-24",
+   "when": "T3 24/11 BMO",
    "status": "PENDING",
    "eps_est": 1.42,
    "rev_est": "$5.14B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 20/11 (Tapeboard 20/11: EPS $1,42, DT $5,14 tỷ; vốn hóa ~$17 tỷ). Điểm nhìn: sức mua tiêu dùng + mùa mua sắm lễ, comp sales. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 20/11 (Tapeboard 20/11: EPS $1,42, DT $5,14 tỷ; vốn hóa ~$17 tỷ). Điểm nhìn: sức mua tiêu dùng + mùa mua sắm lễ, comp sales. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [23/11 ~03:59 PT: ĐÍNH CHÍNH ngày — DKS báo cáo sáng T3 24/11 (công ty xác nhận 02/11, PR Newswire), không phải 23/11; đã dời entry sang 24/11.]"
   },
   {
    "ticker": "CPRT",
