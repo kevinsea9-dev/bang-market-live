@@ -7736,6 +7736,38 @@ def merge_fresh_sections(h, path):
                       flush=True)
     except Exception as e:
         print(f"  ! merge fresh dayPlan: {e}", file=sys.stderr)
+    # VÁ 23/11 ~10:40 PT (vụ 20 rule .divg-* màu nhóm sec-dividend bị lượt
+    # đọc-stale ghi đè mất: lượt full 18:20 đọc file TRƯỚC khi sửa tay
+    # 18:21, lúc ghi lại merge này chỉ giữ SECTION tươi (divhl 44 > 38)
+    # mà giữ nguyên <style> trong bộ nhớ → CSS bay sạch, chip về vàng mặc
+    # định; muc.html không bị vì pipeline không viết lại nó): giữ lại các
+    # rule CSS tay thêm trong <style> tươi mà bản trong bộ nhớ thiếu.
+    # CHỈ giữ selector thuộc KEEP_CSS_PREFIXES (hiện chỉ .divg- — màu nhóm
+    # sec-dividend, Tom 23/11); KHÔNG hợp nhất toàn bộ style (lượt chạy tự
+    # xóa @keyframes basePulse/levPulse có chủ đích — hợp nhất mù sẽ hồi
+    # sinh chúng). Rule nào đã có trong bản nhớ (so theo selector) thì bỏ qua.
+    try:
+        fm = re.search(r'<style>(.*?)</style>', fresh, re.S)
+        hm = re.search(r'<style>(.*?)</style>', h, re.S)
+        if fm and hm:
+            fresh_css, mem_css = fm.group(1), hm.group(1)
+            # (bỏ comment /* */ trước khi tách rule — không thì rule đầu
+            # tiên sau comment bị nuốt cả comment vào selector và trượt lọc)
+            fresh_nocom = re.sub(r'/\*.*?\*/', '', fresh_css, flags=re.S)
+            keep = []
+            for rule in re.findall(r'[^{}]*\{[^{}]*\}', fresh_nocom):
+                sel = rule.split('{', 1)[0].strip()
+                if any(sel.startswith(p) for p in ('.divg-',)):
+                    if sel not in mem_css:
+                        keep.append(rule.strip())
+            if keep:
+                add = ('\n/* giữ rule CSS tay thêm (merge_fresh_sections 23/11) */\n'
+                       + '\n'.join(keep))
+                h = h[:hm.start(1)] + mem_css + add + h[hm.end(1):]
+                print(f"  merge fresh: giữ {len(keep)} rule CSS (.divg-) bản tươi",
+                      flush=True)
+    except Exception as e:
+        print(f"  ! merge fresh CSS: {e}", file=sys.stderr)
     return h
 
 
