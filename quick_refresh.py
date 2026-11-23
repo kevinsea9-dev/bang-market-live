@@ -7874,6 +7874,18 @@ def main():
         except Exception as _ge:
             print(f"lite premarket: vehicle gate skip ({_ge})",
                   file=sys.stderr)
+        # TỰ CHỮA 23/11: cùng pass board_fix_2311 như nhánh chính (xem cuối
+        # main) — giữ sec-ai36/sec-dram đúng ở cả lượt lite, fail-soft.
+        try:
+            import sys as _sys2311
+            _bd2311 = os.path.dirname(os.path.abspath(__file__))
+            if _bd2311 not in _sys2311.path:
+                _sys2311.path.insert(0, _bd2311)
+            import board_fix_2311 as _bf2311
+            h = _bf2311.fix_all(h, _chip_px)
+        except Exception as _e2311:
+            print(f"lite: board_fix_2311 skip ({_e2311})",
+                  file=sys.stderr)
         ok, why = validate(h)
         if not ok:
             print(f"VALIDATE FAIL: {why}", file=sys.stderr)
@@ -8230,6 +8242,20 @@ def main():
                r"Bán $\1 · Target $\1→$\2", h)
     h = re.sub(r"Chốt \$([\d.,]+)(?![\d.,→])",
                r"Bán $\1 · Target $\1", h)
+    # TỰ CHỮA 23/11 (audit toàn bảng — lệnh Tom "chỗ nào sai sửa hết"):
+    # sec-ai36 giá tĩnh slide 09/11 + mã _excluded còn sót dòng giao dịch;
+    # sec-dram bị các pass dọn dẹp ăn hết hàng mà không writer nào dựng lại.
+    # board_fix_2311 chạy CUỐI pipeline (sau auto_cleanup + mọi pass giá),
+    # fail-soft, chỉ sửa đúng 2 mục đó.
+    try:
+        import sys as _sys2311
+        _bd2311 = os.path.dirname(os.path.abspath(__file__))
+        if _bd2311 not in _sys2311.path:
+            _sys2311.path.insert(0, _bd2311)
+        import board_fix_2311 as _bf2311
+        h = _bf2311.fix_all(h, {**prices, **nhip_extra})
+    except Exception as _e2311:
+        print(f"  board_fix_2311 skip ({_e2311})", file=sys.stderr)
     ok, why = validate(h)
     if not ok:
         print(f"VALIDATE FAIL: {why}", file=sys.stderr)
