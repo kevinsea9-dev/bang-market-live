@@ -23,17 +23,6 @@
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 20/11 (MarketBeat 20/11: EPS $1,28, DT $14,41 tỷ; Tapeboard ghi $1,29/$14,55 tỷ; vốn hóa ~$28 tỷ). Điểm nhìn: doanh thu AI server + mảng networking, guide Q1 FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
-   "ticker": "A",
-   "name": "Agilent Technologies, Inc.",
-   "date": "2026-11-23",
-   "when": "T2 23/11 AMC",
-   "status": "PENDING",
-   "eps_est": 1.73,
-   "rev_est": "$1.99B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 20/11 (MarketBeat 20/11: EPS $1,73, DT $1,99 tỷ; Tapeboard ghi $1,76/$2,03 tỷ; vốn hóa ~$30 tỷ). Điểm nhìn: nhu cầu thiết bị đo lường khoa học/life sciences + guide FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
    "ticker": "ZM",
    "name": "Zoom Communications, Inc.",
    "date": "2026-11-23",
@@ -54,6 +43,24 @@
    "rev_est": null,
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp lượt chốt 05:37 23/11 (Nasdaq 23/11: EPS $0,08, vốn hóa $20,1B ≥ $20B — vừa đủ ngưỡng). Điểm nhìn: tăng trưởng doanh thu + backlog hệ thống tự động hóa kho, guide quý tới. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+  },
+  {
+   "ticker": "A",
+   "name": "Agilent Technologies, Inc.",
+   "date": "2026-11-23",
+   "when": "T2 23/11 AMC",
+   "status": "DONE",
+   "eps_est": 1.73,
+   "rev_est": "$1.99B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 20/11 (MarketBeat 20/11: EPS $1,73, DT $1,99 tỷ; Tapeboard ghi $1,76/$2,03 tỷ; vốn hóa ~$30 tỷ). Điểm nhìn: nhu cầu thiết bị đo lường khoa học/life sciences + guide FY27. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:12 PT 23/11 (lượt nhanh): ĐÃ RA SỐ — PR Agilent/Business Wire 23/11: non-GAAP EPS $1,86 vs kỳ vọng $1,73, DT $2,04 tỷ vs $1,99 tỷ (GAAP EPS $1,59); AH ~$187,82 (+6,7% lúc 16:07 ET, Finnhub, thanh khoản mỏng); đóng 23/11 $176,04 (+3,32%).]",
+   "eps_act": 1.86,
+   "rev_act": "$2.04B",
+   "verdict": "BEAT",
+   "reaction_pct": "+6,7% → ~$187,82 (AH 16:07 ET 23/11, thanh khoản mỏng)",
+   "price_after": 187.82,
+   "guidance": "FY27: doanh thu $8,00–8,15 tỷ (+6–8% báo cáo); đã mở guidance Q1 FY27 (chi tiết lượt 13:37)",
+   "essence": "Q4 vượt cả EPS lẫn doanh thu, biên non-GAAP nới lên 30,0% (có lợi hoàn thuế quan $0,07/EPS), pharma tăng 12%; mở guidance FY27."
   },
   {
    "ticker": "DKS",
