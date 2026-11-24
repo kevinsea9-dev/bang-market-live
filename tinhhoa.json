@@ -1,17 +1,6 @@
 {
  "entries": [
   {
-   "ticker": "HPQ",
-   "name": "HP Inc.",
-   "date": "2026-11-24",
-   "when": "T3 24/11 AMC",
-   "status": "PENDING",
-   "eps_est": 0.74,
-   "rev_est": "$15.42B",
-   "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 23/11 (Nasdaq/MarketBeat 23/11: EPS $0,74, DT $15,42 tỷ; vốn hóa ~$25 tỷ). Điểm nhìn: nhu cầu PC có giữ được không + khủng hoảng chip nhớ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
-  },
-  {
    "ticker": "DKS",
    "name": "Dick's Sporting Goods, Inc.",
    "date": "2026-11-24",
@@ -126,6 +115,25 @@
    "bracket": "[05:37 PT 24/11: ĐÃ RA SỐ — PR SJM/PR Newswire 24/11: EPS adj $3,20 vs kỳ vọng $2,57 (GAAP $2,32), DT $2,28 tỷ vs $2,27 tỷ; DT -2% YoY.]"
   },
   {
+   "ticker": "HPQ",
+   "name": "HP Inc.",
+   "date": "2026-11-24",
+   "when": "T3 24/11 AMC",
+   "status": "DONE",
+   "eps_est": 0.74,
+   "rev_est": "$15.42B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 23/11 (Nasdaq/MarketBeat 23/11: EPS $0,74, DT $15,42 tỷ; vốn hóa ~$25 tỷ). Điểm nhìn: nhu cầu PC có giữ được không + khủng hoảng chip nhớ. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 24/11: ĐÃ RA SỐ — PR HP/GlobeNewswire 24/11 (8-K SEC): EPS non-GAAP $0,83 vs kỳ vọng $0,74 (GAAP $0,84), DT $16,00 tỷ vs $15,42 tỷ; PS $11,75 tỷ +14%, Print $4,25 tỷ -1%.]",
+   "eps_act": 0.83,
+   "rev_act": "$16.00B",
+   "verdict": "BEAT",
+   "price_after": 28.3,
+   "guidance": "Q1 FY27 EPS non-GAAP $0,66–0,76; FY27 EPS non-GAAP $3,15–3,45, FCF $2,9–3,1 tỷ; tăng cổ tức quý lên $0,31/cp (trả 06/01/2027).",
+   "reaction_pct": "+1,29% → ~$28,30 (AH 16:45 ET 24/11, Yahoo; thanh khoản mỏng — AH biến động mạnh lúc mới ra số)",
+   "essence": "DT $16,0 tỷ +9,3% YoY, EPS non-GAAP $0,83 vượt kỳ vọng $0,74 (có $0,15 hoàn thuế quan), PS thương mại +23% — nhưng EPS giảm 10,8% YoY, guide FY27 thận trọng.",
+   "bracket": "[13:37 PT 24/11: ĐÃ RA SỐ — PR HP/GlobeNewswire 24/11 (8-K SEC): EPS non-GAAP $0,83 vs kỳ vọng $0,74 (GAAP $0,84), DT $16,00 tỷ vs $15,42 tỷ; PS $11,75 tỷ +14%, Print $4,25 tỷ -1%.]"
+  },
+  {
    "ticker": "DELL",
    "name": "Dell Technologies Inc.",
    "date": "2026-11-24",
@@ -181,6 +189,17 @@
    "reaction_pct": "-4,59% → ~$171,00 (after-hours 16:12 ET 24/11, Finnhub; thanh khoản mỏng)",
    "essence": "EPS non-GAAP $2,82 vượt $2,75, DT $2,705 tỷ (+11,2%), AI mới ACV ~$150M (gấp 3 lần năm ngoái) + nâng guide — nhưng sau giờ vẫn -4,6% (thanh khoản mỏng).",
    "bracket": "[13:19 PT 24/11: ĐÃ RA SỐ — PR WDAY/PR Newswire 24/11: EPS non-GAAP $2,82 vs kỳ vọng $2,75 (GAAP $0,96), DT $2,705 tỷ vs $2,69 tỷ; DT thuê bao $2,532 tỷ (+12,8%); nâng guide FY27. Sau giờ -4,59% → ~$171,00, dưới vùng Sổ 2 $173–183 (chờ duyệt), trên cắt $164.]"
+  },
+  {
+   "ticker": "DE",
+   "name": "Deere & Company",
+   "date": "2026-11-25",
+   "when": "T4 25/11 BMO",
+   "status": "PENDING",
+   "eps_est": 4.03,
+   "rev_est": "$10.38B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 24/11 (MarketBeat/TradingView 24/11: EPS $4,03, DT $10,38 tỷ; vốn hóa ~$171 tỷ). Điểm nhìn: guide FY27 + nhu cầu máy nông nghiệp phục hồi hay chưa; cùng ngày có PCE tháng 10 + Beige Book. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "TCOM",
