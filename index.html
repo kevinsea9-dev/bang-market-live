@@ -349,7 +349,7 @@ li{margin-bottom:6px}
 .divg-ltco .divhl{background:#D9F2F0;color:#111;border-left-color:#0E7C7B}
 .divg-ltco .grp-head{background:#0E7C7B;color:#fff;border-left-color:#084C4B}
 .divg-ltco .grp-sub{background:#D9F2F0;color:#111}</style>
-<meta name="board-v" content="20261124195324">
+<meta name="board-v" content="20261124200125">
 <script>/* (c) Tom — KHOA TEN MIEN: chi bang goc kevinsea9-dev.github.io moi mo duoc */(function(){try{if(location.hostname!=="kevinsea9-dev.github.io"){document.addEventListener("DOMContentLoaded",function(){document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0c0f14;color:#e8ecf3;font-family:sans-serif;text-align:center;padding:24px"><div><div style="font-size:44px">🦈</div><div style="font-size:20px;font-weight:700;color:#f5c86e;margin:10px 0">© BẢN QUYỀN CỦA TOM</div><div>Đây là BẢN SAO không hợp lệ của Bảng Live gốc.<br>Đang chuyển về bảng gốc…</div><div style="margin-top:16px"><a href="https://kevinsea9-dev.github.io/bang-market-live/" style="color:#7cc4ff">Tới Bảng Live gốc ngay</a></div></div></div>';setTimeout(function(){location.href="https://kevinsea9-dev.github.io/bang-market-live/"},3500);});}}catch(e){}})();</script>
 
 <style id="compact-css">
@@ -47215,7 +47215,7 @@ if(chgEl){if(k==='TNX')chgEl.textContent=sgn(chg*100,1)+'bp';else if(k==='DJI')c
 function flush(){var k;for(k in pending)apply(k,pending[k]);pending={};var now=Date.now();if(now-lampT>4000){lampT=now;var lamp=document.getElementById('yhLiveWhen');if(lamp)lamp.textContent='· ⚡ REALTIME '+new Date().toLocaleTimeString('en-GB');}}
 function onTick(d){if(!d.id||d.price===undefined)return;window.__wsFresh[d.id]=Date.now();window.__wsLast=Date.now();if(d.id==='BTC-USD')return;pending[d.id]=d;if(!flushT)flushT=setTimeout(function(){flushT=null;flush();},250);}
 var ws=null,backoff=3000,ka=null;
-function subscribe(){if(!ws||ws.readyState!==1)return;var all=syms.concat(['BTC-USD']);for(var i=0;i<all.length;i+=60){try{ws.send(JSON.stringify({subscribe:all.slice(i,i+60)}));}catch(e){}}}
+function subscribe(){if(!ws||ws.readyState!==1)return;var all=syms.concat(['BTC-USD']);try{ws.send(JSON.stringify({subscribe:['SPY','QQQ','^DJI','^VIX','^TNX']}));}catch(e){}for(var i=0;i<all.length;i+=60){try{ws.send(JSON.stringify({subscribe:all.slice(i,i+60)}));}catch(e){}}}
 function connect(){try{ws=new WebSocket('wss://streamer.finance.yahoo.com/?version=2');}catch(e){retry();return;}
 ws.onopen=function(){backoff=3000;subscribe();if(ka)clearInterval(ka);ka=setInterval(subscribe,25000);};
 ws.onmessage=function(ev){try{var b64=null;try{var j=JSON.parse(ev.data);if(j&&j.message)b64=j.message;}catch(e){}if(!b64)b64=ev.data;onTick(dec(b64b(b64)));}catch(e){}};
