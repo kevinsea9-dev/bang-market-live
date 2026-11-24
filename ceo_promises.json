@@ -1998,6 +1998,69 @@
    "promise": "Doanh thu cả năm 2026 khoảng 1,1 tỷ nhân dân tệ (~164,9 triệu đô la) — guidance lần đầu",
    "due": "2027-03 (kiểm chứng tại báo cáo Q4)",
    "status": "open"
+  },
+  {
+   "ticker": "HPE",
+   "who": "Antonio Neri (CEO HPE)",
+   "said_on": "2026-11-23",
+   "source": "HPE Q4 FY26 release + WSJ 23/11/2026",
+   "promise": "FY27: doanh thu $59,4–63,1 tỷ (+27–35%), EPS non-GAAP $5,05–5,35, dòng tiền tự do ít nhất $5,5 tỷ",
+   "due": "FY27 (kiểm chứng tại earnings Q4 FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "HPE",
+   "who": "Antonio Neri (CEO HPE)",
+   "said_on": "2026-11-23",
+   "source": "WSJ phỏng vấn Neri 23/11/2026",
+   "promise": "Thiếu hụt linh kiện trung tâm dữ liệu (bộ nhớ, flash, mạng) kéo dài tới nửa cuối 2028",
+   "due": "2028-H2",
+   "status": "open"
+  },
+  {
+   "ticker": "ZM",
+   "who": "Eric Yuan (CEO Zoom)",
+   "said_on": "2026-11-23",
+   "source": "ZM Q3 FY27 release 23/11/2026",
+   "promise": "Cổ tức tiền mặt quý $0,25/cổ phiếu, trả ngày 17/12/2026 cho cổ đông chốt danh sách 03/12/2026",
+   "due": "2026-12-17",
+   "status": "open"
+  },
+  {
+   "ticker": "ZM",
+   "who": "Eric Yuan (CEO Zoom)",
+   "said_on": "2026-11-23",
+   "source": "ZM Q3 FY27 release 23/11/2026",
+   "promise": "FY27: doanh thu $5,100–5,105 tỷ, EPS non-GAAP $6,24–6,25",
+   "due": "FY27 (kiểm chứng tại earnings Q4 FY27)",
+   "status": "open"
+  },
+  {
+   "ticker": "SYM",
+   "who": "Rick Cohen (CEO Symbotic)",
+   "said_on": "2026-11-23",
+   "source": "SYM Q4 FY26 call transcript 23/11/2026 (StockNow)",
+   "promise": "Thỏa thuận mở rộng với Walmart cộng thêm gần $7 tỷ vào lượng đơn hàng tồn đọng trong Q1 FY27",
+   "due": "2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "SYM",
+   "who": "Izzy Martins (CFO Symbotic)",
+   "said_on": "2026-11-23",
+   "source": "SYM Q4 FY26 release 23/11/2026",
+   "promise": "Q1 FY27: doanh thu $805–825 triệu, EBITDA điều chỉnh $110–120 triệu; tăng trưởng doanh thu tăng tốc, backlog mở rộng mạnh",
+   "due": "2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "A",
+   "who": "Padraig McDonnell (CEO Agilent)",
+   "said_on": "2026-11-23",
+   "source": "Agilent Q4 FY26 release 23/11/2026",
+   "promise": "FY27: doanh thu $8,00–8,15 tỷ (+6–8%), EPS non-GAAP $6,73–6,86, biên lợi nhuận khoảng 27,5%",
+   "due": "FY27 (kiểm chứng tại earnings Q4 FY27)",
+   "status": "open"
   }
  ]
 }
