@@ -1050,17 +1050,17 @@
     "note": "TAM VO HIEU 30/10 — ⏸️ CHỜ DỰNG NỀN. Vùng cũ $48–52/cắt $45 BROKEN 30/10 (đóng ~$44,30, đáy ngày $44,11 = đáy 6 tháng mới, đóng sát đáy, vol ~1,97x nhưng không rút chân). Chuỗi đáy hạ dần từ 14/10 ($50,01) — chưa có nền. Kệ quan sát: $44,11 (đáy 30/10). Kích hoạt: ≥2–3 phiên không thủng $44,11 + đóng trên $47, hoặc capitulation rút chân vol ≥1,5x."
   },
   "TGT": {
-    "book": "Sổ 3",
+    "book": "Sổ 1",
     "entry": [
-      140,
-      147
+      156,
+      165
     ],
     "targets": [
-      160,
-      170
+      172,
+      186
     ],
-    "cut": 137,
-    "note": "Vẽ 26/10 theo lệnh Tom để ý TGT: kệ hỗ trợ tháng 8 $145.5–147.5, trên MA200 $133; PT đồng thuận ~$160–163 (Hold); earnings 18/11 BMO; dưới MA50 → Sổ 3"
+    "cut": 148,
+    "note": "Vẽ LẠI 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco, thay vùng cũ $140–147 (giá đã chạy xa, kệ cũ hết hiệu lực). Đóng 23/11 $168,19; kệ tháng 11 low $156,14 + MA50 $157,02; nền 07/10–03/11 low $145,32. Vùng $156–165 neo kệ tháng 11/MA50. Chốt $172 = đỉnh 52w ($171,91) → $186 = mở rộng ×1,08. Cắt = ĐÓNG <$148. Cổ tức lợi tức 2,81%."
   },
   "HOOD": {
     "book": "Sổ 3",
@@ -2124,5 +2124,187 @@
     "cut_basis": "close",
     "status": "conditional",
     "note": "VẼ MỚI 11/11 theo lệnh trực tiếp của Tom (theo dõi LAC). VÙNG CHỜ CÓ ĐIỀU KIỆN — chưa kích hoạt, nền CHƯA dựng, đếm nền từ đóng 11/11. CAPITULATION 11/11: đáy $1,70 = ĐÁY 52 TUẦN MỚI (đỉnh 52w $6,96, −76%), phát hiện 06:35 PT rớt −10,3% rồi ngóc +4,7% từ đáy, vol trong phiên 2,6–5,1x TB20; đóng 10/11 $1,89 (nến ngày). Giá dưới cả MA20 $2,04 / MA50 $2,45 / MA200 $3,79 — xu hướng xuống chưa gãy, KHÔNG bắt dao rơi. KÍCH HOẠT: nền ≥3 phiên ĐÓNG không thủng $1,70 VÀ ĐÓNG lấy lại $1,90. Chốt: $2,05 ≈ MA20 $2,04 · $2,25 ≈ cụm đỉnh T10 $2,19–2,22. Cắt: ĐÓNG <$1,60 (dưới đáy capitulation ~6%). LAC = Lithium Americas (mỏ Thacker Pass, Nevada), chưa có doanh thu, rủi ro cao — Sổ 3, size nhỏ. Chế độ 🔴: mốc canh/tham chiếu, không phải tín hiệu vào lệnh."
+  },
+  "ABBV": {
+    "book": "Sổ 1",
+    "entry": [
+      279,
+      296
+    ],
+    "targets": [
+      303,
+      327
+    ],
+    "cut": 265,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $288,45; MA50 $279,54; nền tích lũy 27/10–23/11 low $279,88. Vùng $279–296 neo đáy nền/MA50. Chốt $303 = đỉnh 52w ($302,93) → $327 = mở rộng ×1,08. Cắt = ĐÓNG <$265 (dưới vùng ×0,95). Cổ tức $6,92/năm, lợi tức 2,40%."
+  },
+  "MO": {
+    "book": "Sổ 1",
+    "entry": [
+      72,
+      76
+    ],
+    "targets": [
+      80,
+      86
+    ],
+    "cut": 68,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $73,80; MA50 $73,05; nền 27/10–23/11 low $72,30. Vùng $72–76 neo đáy nền. Chốt $80 = đỉnh 52w ($79,97) → $86 = mở rộng ×1,08. Cắt = ĐÓNG <$68. Cổ tức $4,44/năm, lợi tức 6,02%."
+  },
+  "PEP": {
+    "book": "Sổ 1",
+    "entry": [
+      130,
+      138
+    ],
+    "targets": [
+      148,
+      171
+    ],
+    "cut": 123,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $140,21, dưới MA200 $145,12 (−3,4%); nền 19/10–13/11 low $130,27. Vùng $130–138 neo đáy nền. Chốt $148 = đỉnh 3 tháng ($148,25) → $171 = đỉnh 52w ($171,48). Cắt = ĐÓNG <$123. Cổ tức $5,92/năm, lợi tức 4,22%."
+  },
+  "CVX": {
+    "book": "Sổ 1",
+    "entry": [
+      200,
+      212
+    ],
+    "targets": [
+      223,
+      236
+    ],
+    "cut": 190,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $206,17; nền 18/9–15/10 low $200,78. Vùng $200–212 neo đáy nền. Chốt $223 = đỉnh nền ($223,46) → $236 = đỉnh 52w ($236,48). Cắt = ĐÓNG <$190. Cổ tức $7,12/năm, lợi tức 3,45%."
+  },
+  "XOM": {
+    "book": "Sổ 1",
+    "entry": [
+      155,
+      164
+    ],
+    "targets": [
+      173,
+      188
+    ],
+    "cut": 147,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $156,90 ngay MA200 $156,88; nền 15/9–12/10 low $155,85. Vùng $155–164 neo MA200/đáy nền. Chốt $173 = đỉnh nền ($172,55) → $188 = đỉnh 52w ($188,50). Cắt = ĐÓNG <$147. Cổ tức $4,28/năm, lợi tức 2,73%."
+  },
+  "KMB": {
+    "book": "Sổ 1",
+    "entry": [
+      104,
+      110
+    ],
+    "targets": [
+      113,
+      117
+    ],
+    "cut": 99,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $107,72; MA50/MA200 ~$103,6; nền 27/10–23/11 low $104,42. Vùng $104–110 neo đáy nền. Chốt $113 = đỉnh 3 tháng ($112,91) → $117 = đỉnh 52w ($116,82). Cắt = ĐÓNG <$99. Cổ tức $5,12/năm, lợi tức 4,75%."
+  },
+  "GPC": {
+    "book": "Sổ 1",
+    "entry": [
+      117,
+      124
+    ],
+    "targets": [
+      130,
+      152
+    ],
+    "cut": 111,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $120,27; MA200 $118,61; nền 27/10–23/11 low $117,31. Vùng $117–124 neo đáy nền/MA200. Chốt $130 = đỉnh nền ($129,84) → $152 = đỉnh 52w ($151,57). Cắt = ĐÓNG <$111. Cổ tức $4,26/năm, lợi tức 3,54%."
+  },
+  "ES": {
+    "book": "Sổ 1",
+    "entry": [
+      67,
+      71
+    ],
+    "targets": [
+      73,
+      77
+    ],
+    "cut": 64,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $71,45; nền 27/10–23/11 low $66,68. Vùng $67–71 neo đáy nền. Chốt $73 = đỉnh 3 tháng ($73,05) → $77 = đỉnh 52w ($76,57). Cắt = ĐÓNG <$64. Cổ tức $3,15/năm, lợi tức 4,41%."
+  },
+  "NNN": {
+    "book": "Sổ 1",
+    "entry": [
+      40,
+      42
+    ],
+    "targets": [
+      47,
+      50
+    ],
+    "cut": 38,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $40,94, dưới MA200 $44,20; nền hẹp 27/10–23/11 $39,97–42,39. Vùng $40–42 neo đáy nền. Chốt $47 = đỉnh 3 tháng ($46,77) → $50 = đỉnh 52w ($50,00). Cắt = ĐÓNG <$38. Cổ tức $2,48/năm, lợi tức 6,06%."
+  },
+  "CL": {
+    "book": "Sổ 1",
+    "entry": [
+      90,
+      95
+    ],
+    "targets": [
+      102,
+      110
+    ],
+    "cut": 85,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $97,93; nền 19/10–13/11 low $90,47; MA50 $92,26. Vùng $90–95 neo đáy nền. Chốt $102 = đỉnh 52w ($101,81) → $110 = mở rộng ×1,08. Cắt = ĐÓNG <$85. Cổ tức lợi tức 2,17% (dưới sàn 2,3% — giữ có gắn cờ theo nghiên cứu)."
+  },
+  "PFE": {
+    "book": "Sổ 1",
+    "entry": [
+      26.8,
+      28.4
+    ],
+    "targets": [
+      31,
+      34
+    ],
+    "cut": 25,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $27,40 ngay MA200 $27,03; dao động 3 tháng $27,12–31,44, giá đang ở đáy biên; 3 phiên cuối phẳng quanh $27,40. Vùng $26,80–28,40 neo MA200/đáy biên. Chốt $31 = đỉnh biên ($31,44, cũng là đỉnh 52w) → $34 = mở rộng ×1,08. Cắt = ĐÓNG <$25. Cổ tức $1,72/năm, lợi tức 6,28%. ⚠️ GAAP payout 242%/FCF 83% — cờ theo nghiên cứu."
+  },
+  "TRP": {
+    "book": "Sổ 1",
+    "entry": [
+      60,
+      64
+    ],
+    "targets": [
+      65,
+      71
+    ],
+    "cut": 57,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $61,77; MA50 $61,60; nền 27/10–23/11 low $60,78. Vùng $60–64 neo đáy nền. Chốt $65 = đỉnh nền ($65,10) → $71 = đỉnh 52w ($71,47). Cắt = ĐÓNG <$57. Cổ tức lợi tức ~3,8–4,0%."
+  },
+  "ARCC": {
+    "book": "Sổ 1",
+    "entry": [
+      18.3,
+      19.4
+    ],
+    "targets": [
+      20.2,
+      21.15
+    ],
+    "cut": 17.4,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $18,76; MA200 $18,93; nền 27/10–23/11 $18,32–19,70. Vùng $18,30–19,40 neo đáy nền/MA200. Chốt $20,20 = đỉnh 3 tháng ($20,23) → $21,15 = đỉnh 52w ($21,14). Cắt = ĐÓNG <$17,40. Cổ tức $0,48/quý, lợi tức 10,23%. ⚠️ EPS lõi Q3 chỉ phủ ~96% cổ tức — cờ theo nghiên cứu."
+  },
+  "GIS": {
+    "book": "Sổ 1",
+    "entry": [
+      32,
+      34
+    ],
+    "targets": [
+      42,
+      50
+    ],
+    "cut": 30,
+    "note": "Vẽ 24/11 (Sổ 1, dài hạn) — cổ tức dài hạn nhóm divg-ltco. Đóng 23/11 $35,07; đáy 52w $31,18 (đã qua >10 phiên); nền 07/10–03/11 low $31,68; giá bật từ đáy, trên MA50 $34,04. Vùng $32–34 neo đáy nền. Chốt $42 = đỉnh 3 tháng ($42,20) → $50 = đỉnh 52w ($49,59). Cắt = ĐÓNG <$30. Cổ tức $2,44/năm, lợi tức 6,96%. ⚠️ Lợi tức phình vì giá rơi −27%/năm — cờ theo nghiên cứu."
   }
 }
