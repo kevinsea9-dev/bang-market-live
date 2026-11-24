@@ -7989,7 +7989,16 @@ def main():
             open(repo_html, "w", encoding="utf-8").write(h)
         h = boom_reapply(h)
         h = dash_top_merge(h)
-        h, _ = stamp_version(h, a.repo_dir)
+        h, _v = stamp_version(h, a.repo_dir)
+        # Đồng bộ version.json cạnh file canon (bản Files) — stamp_version chỉ ghi
+        # repo_dir; bản Files kẹt version.json cũ gây lệch cặp meta≠version.json
+        # (reload-loop) — vụ 24/11: files/version.json kẹt 20261124144110 từ 06:41 PT.
+        try:
+            _hd = os.path.dirname(os.path.abspath(a.html))
+            if os.path.abspath(_hd) != os.path.abspath(a.repo_dir):
+                json.dump({"v": _v}, open(os.path.join(_hd, "version.json"), "w"))
+        except Exception as e:
+            print(f"  ! canon version.json: {e}", file=sys.stderr)
         open(a.html, "w", encoding="utf-8").write(h)
         if os.path.abspath(a.html) != os.path.abspath(repo_html):
             open(repo_html, "w", encoding="utf-8").write(h)
@@ -8363,7 +8372,14 @@ def main():
     # đóng dấu version để bảng tự phát hiện bản mới (fix kẹt cache — Tom 15/10)
     h = boom_reapply(h)
     h = dash_top_merge(h)
-    h, _ = stamp_version(h, a.repo_dir)
+    h, _v = stamp_version(h, a.repo_dir)
+    # Đồng bộ version.json cạnh file canon (bản Files) — xem chú thích ở lượt stamp trên.
+    try:
+        _hd = os.path.dirname(os.path.abspath(a.html))
+        if os.path.abspath(_hd) != os.path.abspath(a.repo_dir):
+            json.dump({"v": _v}, open(os.path.join(_hd, "version.json"), "w"))
+    except Exception as e:
+        print(f"  ! canon version.json: {e}", file=sys.stderr)
     open(a.html, "w", encoding="utf-8").write(h)
     if os.path.abspath(a.html) != os.path.abspath(repo_html):
         open(repo_html, "w", encoding="utf-8").write(h)
