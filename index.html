@@ -349,7 +349,7 @@ li{margin-bottom:6px}
 .divg-ltco .divhl{background:#D9F2F0;color:#111;border-left-color:#0E7C7B}
 .divg-ltco .grp-head{background:#0E7C7B;color:#fff;border-left-color:#084C4B}
 .divg-ltco .grp-sub{background:#D9F2F0;color:#111}</style>
-<meta name="board-v" content="20261124193008">
+<meta name="board-v" content="20261124193146">
 <script>/* (c) Tom — KHOA TEN MIEN: chi bang goc kevinsea9-dev.github.io moi mo duoc */(function(){try{if(location.hostname!=="kevinsea9-dev.github.io"){document.addEventListener("DOMContentLoaded",function(){document.body.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0c0f14;color:#e8ecf3;font-family:sans-serif;text-align:center;padding:24px"><div><div style="font-size:44px">🦈</div><div style="font-size:20px;font-weight:700;color:#f5c86e;margin:10px 0">© BẢN QUYỀN CỦA TOM</div><div>Đây là BẢN SAO không hợp lệ của Bảng Live gốc.<br>Đang chuyển về bảng gốc…</div><div style="margin-top:16px"><a href="https://kevinsea9-dev.github.io/bang-market-live/" style="color:#7cc4ff">Tới Bảng Live gốc ngay</a></div></div></div>';setTimeout(function(){location.href="https://kevinsea9-dev.github.io/bang-market-live/"},3500);});}}catch(e){}})();</script>
 
 <style id="compact-css">
@@ -8012,6 +8012,7 @@ function initUI1911(){
     if(!strip||!j)return;var q=j.q||{},cg=j.cg||{};
     var keys=['SPY','QQQ','DJI','VIX','TNX','BTC'];
     keys.forEach(function(k){
+      if(k!=='BTC'&&window.__wsFresh){var _sym=(k==='DJI'?'^DJI':k==='VIX'?'^VIX':k==='TNX'?'^TNX':k);if(window.__wsFresh[_sym]&&(Date.now()-window.__wsFresh[_sym]<90000))return;}
       var cell=strip.querySelector('[data-mkt="'+k+'"]');if(!cell)return;
       var pctEl=cell.querySelector('[data-mktpct]'),pxEl=cell.querySelector('[data-mktpx]'),chgEl=cell.querySelector('[data-mktchg]');
       var px=null,pct=null;
@@ -47051,7 +47052,7 @@ document.querySelectorAll('tr').forEach(function(e){var b=e.querySelector('td b'
 document.querySelectorAll('[id^="lta-chip-"]').forEach(function(e){var t=e.id.replace('lta-chip-','');if(/^[A-Z]{1,6}$/.test(t)&&!seen[t]){seen[t]=1;syms.push(t);}});
 document.querySelectorAll('.livechip').forEach(function(e){var lt=e.querySelector('.lt');if(!lt)return;var m=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(m&&!seen[m[0]]){seen[m[0]]=1;syms.push(m[0]);}});
 document.querySelectorAll('.levcomp').forEach(function(e){var m=e.textContent.match(/: ([A-Z]{2,6}) /);if(m&&!seen[m[1]]){seen[m[1]]=1;syms.push(m[1]);}});
-['SPY','QQQ'].forEach(function(t){if(!seen[t]){seen[t]=1;syms.push(t);}});
+['SPY','QQQ','^DJI','^VIX','^TNX'].forEach(function(t){if(!seen[t]){seen[t]=1;syms.push(t);}});
 var pending={},flushT=null,lampT=0;
 function apply(id,d){
 document.querySelectorAll('[data-lchip="'+id+'"]').forEach(function(e){e.textContent=e.textContent.replace(/^\S+ \$[\d.,]+ \([^)]*\)/,function(){return id+' '+fmtP(d.price)+' ('+fmtPc(d.cp||0)+')';});});
@@ -47062,7 +47063,21 @@ document.querySelectorAll('[data-pct="'+id+'"]').forEach(function(e){var c=d.cp|
 document.querySelectorAll('tr.zchip-row[data-t="'+id+'"]').forEach(function(tr){var c=tr.querySelector('.zchip');if(c)c.innerHTML=c.innerHTML.replace(/(Giá )\$[\d.,]+/,function(m,g){return g+fmtP(d.price);});});
 document.querySelectorAll('tr').forEach(function(tr){var b=tr.querySelector('td b');if(!b||b.textContent.trim()!==id)return;var td=tr.children[1];if(!td)return;var m=td.innerHTML.match(/^((?:~?\$)?)[\d,]+(?:\.\d+)?(\s*<span class=")(down|up)(">)[^<]*(<\/span>)/);if(m){td.innerHTML=m[1]+fmtUS(d.price)+m[2]+((d.cp||0)<0?'down':'up')+m[4]+fmtPct1(d.cp||0)+m[5];}else if(/^\s*~?\$[\d,]+(?:\.\d+)?\s*$/.test(td.textContent)){td.textContent=td.textContent.replace(/[\d,]+(?:\.\d+)?/,fmtUS(d.price));}});
 document.querySelectorAll('.livechip').forEach(function(c){var lt=c.querySelector('.lt'),lp=c.querySelector('.lp'),lc=c.querySelector('.lc');if(!lt||!lp)return;var mt=lt.textContent.trim().match(/^[A-Z]{1,6}/);if(!mt||mt[0]!==id)return;lp.textContent=d.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(lc){var cp=d.cp||0;lc.textContent=(cp>=0?'▲ ':'▼ ')+Math.abs(cp).toFixed(2)+'%';lc.className='lc '+(cp>=0?'up':'down');}});
-
+paintStripWs(id,d);
+}
+function paintStripWs(id,d){
+var KEY={'SPY':'SPY','QQQ':'QQQ','^DJI':'DJI','^VIX':'VIX','^TNX':'TNX'};var k=KEY[id];if(!k)return;
+var strip=document.getElementById('mktStrip');if(!strip)return;var cell=strip.querySelector('[data-mkt="'+k+'"]');if(!cell)return;
+var px=d.price,cp=d.cp||0;if(px===undefined||px===null)return;
+function fvi(x,dec){return x.toLocaleString('vi-VN',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function sgn(x,dec){return (x<0?'−':x>0?'+':'')+fvi(Math.abs(x),dec);}
+function sgnD(x,dec){return (x<0?'−$':x>0?'+$':'$')+fvi(Math.abs(x),dec);}
+var pxEl=cell.querySelector('[data-mktpx]'),pctEl=cell.querySelector('[data-mktpct]'),chgEl=cell.querySelector('[data-mktchg]');
+if(pctEl)pctEl.textContent=fmtPc(cp);
+cell.classList.toggle('up',cp>0);cell.classList.toggle('dn',cp<0);
+var chg=px-px/(1+cp/100);
+if(pxEl){if(k==='DJI')pxEl.textContent=fvi(px,0);else if(k==='TNX')pxEl.textContent=fvi(px,2)+'%';else if(k==='SPY'||k==='QQQ')pxEl.textContent='$'+fvi(px,2);else pxEl.textContent=fvi(px,2);}
+if(chgEl){if(k==='TNX')chgEl.textContent=sgn(chg*100,1)+'bp';else if(k==='DJI')chgEl.textContent=sgn(chg,0);else if(k==='VIX')chgEl.textContent=sgn(chg,2);else chgEl.textContent=sgnD(chg,2);}
 }
 function flush(){var k;for(k in pending)apply(k,pending[k]);pending={};var now=Date.now();if(now-lampT>4000){lampT=now;var lamp=document.getElementById('yhLiveWhen');if(lamp)lamp.textContent='· ⚡ REALTIME '+new Date().toLocaleTimeString('en-GB');}}
 function onTick(d){if(!d.id||d.price===undefined)return;window.__wsFresh[d.id]=Date.now();window.__wsLast=Date.now();if(d.id==='BTC-USD')return;pending[d.id]=d;if(!flushT)flushT=setTimeout(function(){flushT=null;flush();},250);}
