@@ -5533,6 +5533,22 @@ def stamp_version(h, repo_dir):
         json.dump({"v": v}, open(os.path.join(repo_dir, "version.json"), "w"))
     except Exception as e:
         print(f"  ! version.json: {e}", file=sys.stderr)
+    # 24/11 ~12:30 — ĐỒNG BỘ version.json CẢ BẢN FILES NGAY TRONG stamp_version:
+    # đây là hàm dùng chung của MỌI điểm stamp (quick_refresh ×2, deploy
+    # highlight_guard, yahoo_news --insert, breaking_bar render); các vá lẻ
+    # trước đây (2 điểm quick_refresh 12:10 + highlight_guard 12:19) vẫn để
+    # lọt breaking_bar/yahoo_news — chúng stamp meta cả 2 bản HTML nhưng chỉ
+    # ghi version.json vào repo, bản Files kẹt version.json cũ → lệch cặp
+    # meta≠version.json (reload-loop). Chỉ đồng bộ khi repo_dir là repo sản
+    # xuất, tránh test stamp trong /tmp ghi đè version.json thật.
+    try:
+        _prod = os.path.abspath(os.path.expanduser("~/workspace/market-board"))
+        if os.path.abspath(repo_dir) == _prod:
+            _canon_dir = os.path.expanduser(
+                "~/workspace/goals/watchlist-l-t-s-ng-h-ng-ng-y/files")
+            json.dump({"v": v}, open(os.path.join(_canon_dir, "version.json"), "w"))
+    except Exception as e:
+        print(f"  ! canon version.json: {e}", file=sys.stderr)
     if '<meta name="board-v"' in h:
         h = re.sub(r'<meta name="board-v" content="[^"]*">',
                    f'<meta name="board-v" content="{v}">', h, count=1)
