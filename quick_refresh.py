@@ -1702,6 +1702,10 @@ def prune_old_alerts(h):
 
 def zone_state(t, px):
     z = ZONES[t]
+    if not z.get("entry"):
+        # 24/11: watch-only (chỉ có obs, không entry) -> WATCH, không crash
+        # (vụ merge 19 watch entry 08:34 làm mọi lượt refresh gãy KeyError).
+        return "WATCH"
     lo, hi = z["entry"]
     if z.get("cut") and px < z["cut"]:
         return "BROKEN"
@@ -1732,6 +1736,9 @@ def update_zone_badges(h, prices, state_path):
             continue
         px, pc = prices[t]
         st = zone_state(t, px)
+        if st == "WATCH":
+            # Mã watch-only: không badge, không event, không ghi state.
+            continue
         new_state[t] = {"state": st, "price": px, "time": now_pt().isoformat()}
         prev = (old.get(t) or {}).get("state")
         if prev and prev != st:
@@ -1752,6 +1759,12 @@ def _zone_chip_text(t, px, st, z, bare=False):
     mẫu khối 🔥 HOT áp toàn bảng): sec-special KHÔNG còn bare — khung
     đầu khối ghi ĐỦ Vùng/Chốt/Cắt như mọi mục; tham số giữ cho tương
     thích, không caller nào truyền True nữa."""
+    if not z or not z.get("entry"):
+        # 24/11: watch-only (không entry) -> chip chờ dựng nền, không crash.
+        _obs = z.get("obs") if isinstance(z, dict) else None
+        _obstr = f" · Quan sát ${_obs:g}" if _obs else ""
+        return ("zchip-n", f'<span class="ai36tk">{t}</span> · ⏳ CHỜ DỰNG NỀN'
+                f' · Giá {_lt_money(px)}{_obstr}')
     lo, hi = z["entry"]
     note = (z.get("note") or "").upper()
     if "TAM VO HIEU" in note or "TEMP-INVALID" in note:
@@ -1795,7 +1808,7 @@ def _zone_chip_text(t, px, st, z, bare=False):
         if st == "BELOW":
             parts.append(f"Còn +{_lt_pct1((lo / px - 1) * 100)} tới vùng")
     cls = {"IN": "zchip-g", "BROKEN": "zchip-r",
-           "BELOW": "zchip-y", "ABOVE": "zchip-n"}[st]
+           "BELOW": "zchip-y", "ABOVE": "zchip-n", "WATCH": "zchip-n"}[st]
     return cls, " · ".join(parts)
 
 
@@ -1806,6 +1819,9 @@ def _zone_chip_row(t, px, st, z, colspan=4):
 
 
 def _zone_state_of(z, px):
+    if not z or not z.get("entry"):
+        # 24/11: watch-only -> WATCH (mọi caller đã guard, đây là lưới cuối).
+        return "WATCH"
     lo, hi = z["entry"]
     if z.get("cut") and px < z["cut"]:
         return "BROKEN"
@@ -2138,7 +2154,7 @@ SYNC_SECS = ("sec-daytrade", "sec-swing", "sec-longterm", "sec-so2",
 # hunt (% vs đóng HÔM NAY), tự mâu thuẫn ngay trong khối (vụ 13:30 06/11).
 # Khối AH do AH hunt viết lại mỗi 10 phút buổi tối, là nguồn duy nhất.
 _STATUS_LAB = {"IN": "🟢 TRONG VÙNG", "ABOVE": "⚪ TRÊN VÙNG",
-               "BELOW": "🟡 DƯỚI VÙNG",
+               "BELOW": "🟡 DƯỚI VÙNG", "WATCH": "⏳ CHỜ DỰNG NỀN",
                "BROKEN": "🔴 GÃY VÙNG — THỦNG CẮT"}
 _ZONE_PHRASES = [
     "🔴 GÃY VÙNG — THỦNG CẮT", "Vượt lên trên vùng", "vượt lên trên vùng",
@@ -2966,12 +2982,14 @@ def ensure_zone_rows(h, prices, state_path):
 
 
 def badge_class(st):
-    return {"IN": "b-in", "BELOW": "b-near", "BROKEN": "b-cut", "ABOVE": "b-out"}[st]
+    return {"IN": "b-in", "BELOW": "b-near", "BROKEN": "b-cut", "ABOVE": "b-out",
+            "WATCH": "b-watch"}[st]
 
 
 def badge_text(st):
     return {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
-            "BROKEN": "🔴 GÃY VÙNG", "ABOVE": "⚪ TRÊN VÙNG"}[st]
+            "BROKEN": "🔴 GÃY VÙNG", "ABOVE": "⚪ TRÊN VÙNG",
+            "WATCH": "⏳ CHỜ DỰNG NỀN"}[st]
 
 
 DRAM_TICKERS = {"MU", "SNDK", "WDC", "STX"}
@@ -5766,7 +5784,8 @@ COMP_SECTIONS = ("sec-daytrade", "sec-swing", "sec-so2", "sec-so3",
                  # thuẫn "Không có xe 2x" + dòng CSCL cùng lúc.
                  "sec-boom")
 _COMP_STATE_LAB = {"IN": "🟢 TRONG VÙNG", "BELOW": "🟡 DƯỚI VÙNG",
-                   "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG"}
+                   "ABOVE": "⚪ TRÊN VÙNG", "BROKEN": "🔴 GÃY VÙNG",
+                   "WATCH": "⏳ CHỜ DỰNG NỀN"}
 
 
 def _levcomp_balanced_end(h, start):
