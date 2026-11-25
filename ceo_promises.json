@@ -2061,6 +2061,182 @@
    "promise": "FY27: doanh thu $8,00–8,15 tỷ (+6–8%), EPS non-GAAP $6,73–6,86, biên lợi nhuận khoảng 27,5%",
    "due": "FY27 (kiểm chứng tại earnings Q4 FY27)",
    "status": "open"
+  },
+  {
+   "ticker": "DKS",
+   "said_on": "2026-11-24",
+   "source": "DKS Q3 FY26 call — Motley Fool transcript + WSJ 24/11",
+   "promise": "GameChanger (nền tảng thể thao trẻ) doanh thu tiến tới $200M trong FY26, từ gần $150M FY25",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "DKS",
+   "said_on": "2026-11-24",
+   "source": "DKS Q3 FY26 call — Watchlist News 24/11",
+   "promise": "Dọn sạch hàng tồn dư Foot Locker qua giảm giá/trả hàng/hủy đơn, kéo dài tới hết 2027, không xả hàng ồ ạt",
+   "due": "2027",
+   "status": "open"
+  },
+  {
+   "ticker": "ADI",
+   "said_on": "2026-11-24",
+   "source": "ADI Q4 FY26 call — Mitrade transcript 24/11",
+   "promise": "Chi tiêu vốn FY27 $1,6–1,9 tỷ để mở rộng phòng sạch và năng lực đóng gói (packaging đang là điểm nghẽn)",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "ADI",
+   "said_on": "2026-11-24",
+   "source": "ADI Q4 FY26 call — Mitrade transcript 24/11",
+   "promise": "Báo cáo Data Center thành mảng riêng bắt đầu từ Q1 FY27",
+   "due": "2027-Q1",
+   "status": "open"
+  },
+  {
+   "ticker": "MDT",
+   "said_on": "2026-11-24",
+   "source": "MDT Q2 FY27 call — MarketBeat transcript 24/11",
+   "promise": "Ngày Nhà đầu tư 10–11/12 trình bày triển vọng dài hạn, động lực tăng trưởng và chiến lược mở rộng biên lợi nhuận",
+   "due": "2026-12-11",
+   "status": "open"
+  },
+  {
+   "ticker": "DLTR",
+   "said_on": "2026-11-24",
+   "source": "DLTR Q3 FY26 PR — RTTNews 24/11",
+   "promise": "Mở khoảng 400 cửa hàng mới và đóng 75 cửa hàng trong FY26",
+   "due": "FY26",
+   "status": "open"
+  },
+  {
+   "ticker": "BBY",
+   "said_on": "2026-11-24",
+   "source": "BBY Q3 FY27 PR — investors.bestbuy.com 24/11",
+   "promise": "FY27 doanh số cùng cửa hàng tăng 3,4–4,0% (nâng từ 1,9–3,0%)",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "SJM",
+   "said_on": "2026-11-24",
+   "source": "SJM Q2 FY27 call — Motley Fool transcript 24/11",
+   "promise": "Uncrustables tăng trưởng doanh thu khoảng 10% cả năm FY27, dù bị giới hạn bởi công suất nửa cuối năm",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "SJM",
+   "said_on": "2026-11-24",
+   "source": "SJM Q2 FY27 call — Motley Fool transcript 24/11",
+   "promise": "Đẩy nhanh giai đoạn 2 nhà máy McCalla để mở rộng công suất Uncrustables",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "HPQ",
+   "said_on": "2026-11-24",
+   "source": "HP Q4 FY26 PR — hp.com 24/11",
+   "promise": "Emma Walmsley làm CEO từ 04/01/2027",
+   "due": "2027-01-04",
+   "status": "open"
+  },
+  {
+   "ticker": "HPQ",
+   "said_on": "2026-11-24",
+   "source": "HP Q4 FY26 PR — hp.com 24/11",
+   "promise": "Cổ tức quý $0,31/cp, trả ngày 06/01/2027 (chốt sổ 09/12/2026)",
+   "due": "2027-01-06",
+   "status": "open"
+  },
+  {
+   "ticker": "DELL",
+   "said_on": "2026-11-24",
+   "source": "DELL Q3 FY27 call — Reuters + Dell PR 24/11",
+   "promise": "Doanh thu máy chủ AI $78 tỷ trong FY27 (nâng từ $74 tỷ); nhu cầu hạ tầng vẫn vượt cung, khoảng cách rộng hơn trong 2027",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "DELL",
+   "said_on": "2026-11-24",
+   "source": "DELL Q3 FY27 PR — Dell 24/11",
+   "promise": "Q4 FY27 doanh thu khoảng $56,3 tỷ (+69%), EPS điều chỉnh khoảng $8,40 (+~115%)",
+   "due": "2027-Q4",
+   "status": "open"
+  },
+  {
+   "ticker": "ADSK",
+   "said_on": "2026-11-24",
+   "source": "ADSK Q3 FY27 PR — Morningstar/PR Newswire 24/11",
+   "promise": "FY27 billings $8,60–8,65 tỷ; dòng tiền tự do $2,725–2,750 tỷ",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "ADSK",
+   "said_on": "2026-11-24",
+   "source": "ADSK Q3 FY27 call — StockNow transcript 24/11",
+   "promise": "Mua lại $1,5 tỷ cổ phiếu trong FY27",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "WDAY",
+   "said_on": "2026-11-24",
+   "source": "WDAY Q3 FY27 PR — 24/11",
+   "promise": "FY28: tăng trưởng doanh thu thuê bao khoảng 11%, biên lợi nhuận điều chỉnh ít nhất 33%",
+   "due": "FY28",
+   "status": "open"
+  },
+  {
+   "ticker": "WDAY",
+   "said_on": "2026-11-24",
+   "source": "WDAY Q3 FY27 PR — 24/11",
+   "promise": "Đưa thêm tác tử AI vào sản xuất thực tế, giúp khách hàng thấy giá trị sản phẩm AI nhanh hơn",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "J",
+   "said_on": "2026-11-23",
+   "source": "J Q4 FY26 call — Jacobs PR 23/11",
+   "promise": "FY27 EPS điều chỉnh $8,05–8,45, tăng trưởng 10–15% (hai chữ số thấp đến giữa)",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "J",
+   "said_on": "2026-11-23",
+   "source": "J Q4 FY26 call — Panabee 23/11",
+   "promise": "$12,7 tỷ trong đơn tồn đọng $28,7 tỷ sẽ chuyển thành doanh thu trong FY27",
+   "due": "FY27",
+   "status": "open"
+  },
+  {
+   "ticker": "SMTC",
+   "said_on": "2026-11-23",
+   "source": "SMTC Q3 FY27 call — Zacks 24/11",
+   "promise": "Doanh thu trung tâm dữ liệu vượt $1 tỷ trong FY28, gấp đôi mức ~$520M của FY27",
+   "due": "FY28",
+   "status": "open"
+  },
+  {
+   "ticker": "SMTC",
+   "said_on": "2026-11-23",
+   "source": "SMTC Q3 FY27 call — The Markets Daily 24/11",
+   "promise": "Doanh thu ban đầu từ quang học đóng gói gần (near-packaged optics) trong nửa cuối FY28; ứng dụng cân bằng tuyến tính trên bo mạch tạo doanh thu nửa đầu FY28",
+   "due": "2028-H2",
+   "status": "open"
+  },
+  {
+   "ticker": "SMTC",
+   "said_on": "2026-11-23",
+   "source": "SMTC Q3 FY27 call — The Markets Daily 24/11",
+   "promise": "Mở rộng công suất quang tử gấp 3–4 lần vào cuối năm nay, thêm 3–4 lần nữa vào cuối năm sau; mục tiêu dài hạn biên lợi nhuận gộp 70%",
+   "due": "2027",
+   "status": "open"
   }
  ]
 }
