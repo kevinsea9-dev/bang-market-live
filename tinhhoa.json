@@ -5,11 +5,18 @@
    "name": "Deere & Company",
    "date": "2026-11-25",
    "when": "T4 25/11 BMO",
-   "status": "PENDING",
+   "status": "DONE",
    "eps_est": 4.03,
    "rev_est": "$10.38B",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 24/11 (MarketBeat/TradingView 24/11: EPS $4,03, DT $10,38 tỷ; vốn hóa ~$171 tỷ). Điểm nhìn: guide FY27 + nhu cầu máy nông nghiệp phục hồi hay chưa; cùng ngày có PCE tháng 10 + Beige Book. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 24/11 (MarketBeat/TradingView 24/11: EPS $4,03, DT $10,38 tỷ; vốn hóa ~$171 tỷ). Điểm nhìn: guide FY27 + nhu cầu máy nông nghiệp phục hồi hay chưa; cùng ngày có PCE tháng 10 + Beige Book. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm.",
+   "eps_act": 3.89,
+   "rev_act": "$10.51B",
+   "verdict": "MIXED",
+   "guidance": "FY27 lãi ròng dự báo $4,50–5,25 tỷ (FY26: $4,86 tỷ).",
+   "reaction_pct": "-4,25% premarket (thanh khoản mỏng)",
+   "price_after": 587.7,
+   "essence": "EPS $3,89 hụt kỳ vọng $4,03; doanh thu ròng $10,51 tỷ vượt $10,38 tỷ. Mảng máy nông nghiệp lớn doanh số −15% (nông dân thắt chi), Small Ag +10% và Xây dựng +12% đỡ lại. ⚪ Chưa có vùng duyệt — chỉ theo dõi, không lên mâm."
   },
   {
    "ticker": "TCOM",
