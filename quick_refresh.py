@@ -7865,8 +7865,17 @@ def main():
     # Yahoo = đóng cửa hôm trước → scanner bắn tín hiệu "tươi" GIẢ từ dữ
     # liệu cũ (sự cố 22/10: banner REBOUND TOÀN MARKET giả giữa premarket
     # ngày dump). Giá trên bảng giữ nguyên số đóng cửa tới khi mở phiên.
+    # 26/11/2026: NGÀY LỄ thị trường Mỹ (Thanksgiving) cũng đi nhánh LITE
+    # dù trong khung 06:30–13:00 — không có phiên, dữ liệu Yahoo = đóng
+    # cửa hôm trước, scanner full-path sẽ bắn tín hiệu GIẢ (cùng lỗi
+    # gap-scan sáng nay: 8 gap giả ≥9%). Danh sách lễ đồng bộ với
+    # gap_scan.py + bounce_radar.py + check 8c board_healthcheck.py.
     _hm = now_pt().hour * 60 + now_pt().minute
-    if a.mode != "close" and not (6 * 60 + 30 <= _hm < 13 * 60):
+    _HOL = {"2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18",
+            "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+            "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"}
+    _is_hol = now_pt().strftime("%Y-%m-%d") in _HOL
+    if a.mode != "close" and (not (6 * 60 + 30 <= _hm < 13 * 60) or _is_hol):
         h = open(a.html, encoding="utf-8").read()
         h = ensure_gate_css(h)
         h, _nvix, _vix_num = fear_gauge(h)
