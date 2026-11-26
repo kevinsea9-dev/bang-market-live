@@ -4181,6 +4181,21 @@ def fetch_pm_prices(tickers):
     Dùng cho các khối 'sống' ngoài giờ phiên (FOCUS cá mập) — sửa lỗi
     22/10: ngoài giờ, fetch_one trả đóng cửa hôm trước nên trạng thái vùng
     trên bảng sai hẳn so với premarket thật."""
+    # 26/11/2026 — VÁ GỐC NGÀY LỄ: không có phiên premarket; nến 1m
+    # prepost của Yahoo trả giá phiên QUA ĐÊM (SPY $720,43 thay vì đóng
+    # $716,70 · QQQ $636,62 thay vì $633,93 · MU $615,26 thay vì $601,25)
+    # → mọi khối dùng fetch_pm_prices (chips LITE, FOCUS, steelnet, xe,
+    # prices.json qua yahoo_live.py) đều nhiễm giá qua đêm, chip vùng
+    # hiện sai cả trạng thái cắt (SPY $720,43 trên cắt $720 trong khi đóng
+    # $716,70 đã dưới cắt). Ngày lễ = trả giá đóng nến ngày như
+    # fetch_close_map (cùng shape {ticker: (giá, %)}). Danh sách lễ đồng
+    # bộ gap_scan.py + bounce_radar.py + quick_refresh.py main() +
+    # trigger_watch.py + price_pump.py + ma20_reclaim_watch.py.
+    _HOL_PM = {"2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18",
+               "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+               "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"}
+    if datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d") in _HOL_PM:
+        return {t: v for t, v in fetch_close_map(tickers).items() if v}
     et = ZoneInfo("America/New_York")
     today_et = datetime.now(et).date()
 
