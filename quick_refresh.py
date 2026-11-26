@@ -380,7 +380,7 @@ def _lt_chip_html(t, px, glo, ghi, tlo, thi):
     else:
         cls, lab = "lta-chip-g", "🟢 MUA ĐỊNH KỲ"
     return (f'<div class="lta-chip {cls}" id="lta-chip-{t}">'
-            f'{t} · {lab} · Giá {px_s} · Vùng gom {glo_s}–{ghi_s} '
+            f'<span class="ai36tk">{t}</span> · {lab} · Giá {px_s} · Vùng gom {glo_s}–{ghi_s} '
             f'· Bán bớt {tlo_s}–{thi_s}</div>')
 
 
