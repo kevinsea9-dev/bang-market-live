@@ -4242,6 +4242,23 @@ def fetch_pm_prices(tickers):
                         lt = datetime.fromtimestamp(ts1[last_i], et)
                         if lt.date() == today_et and (lt.hour, lt.minute) >= (16, 0):
                             ah_print = True
+                        # 27/11/2026 — VÁ GỐC NẾN 1M CŨ (healthcheck 01:34 PT):
+                        # sau ngày nghỉ, Yahoo chưa có nến 1m nào của HÔM NAY
+                        # (premarket 01:00 PT mới mở / chưa có giao dịch) nên
+                        # nến 1m cuối là print AH của PHIÊN TRƯỚC (SPY $720,43
+                        # tối 25/11 thay vì đóng $716,70 · MU $615,26 thay vì
+                        # $601,25 · STX $484,12 thay vì $472,33) → chip
+                        # prices.json nhiễm giá qua đêm y hệt vụ lễ 26/11,
+                        # nhưng 27/11 là ngày giao dịch nên guard lễ không
+                        # chặn được. Nến 1m cuối không phải hôm nay = không
+                        # có giá sống → trả giá đóng nến ngày gần nhất
+                        # (closes[-1]) với % so với closes[-2], như
+                        # fetch_close_map. Khi premarket thật có nến hôm nay,
+                        # nhánh này tự tắt (lt.date() == today_et).
+                        elif lt.date() != today_et:
+                            px = closes[-1]
+                            if len(closes) >= 2:
+                                prev = closes[-2]
             except Exception:
                 pass
             # 06/11 (vá gốc — kiểm số 13:45 phát hiện 31 xe lệch 0,5–2,7%):
