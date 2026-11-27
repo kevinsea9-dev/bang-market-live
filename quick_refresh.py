@@ -4207,6 +4207,43 @@ def fetch_pm_prices(tickers):
             closes = [c for c in d["indicators"]["quote"][0]["close"] if c]
             last_day = datetime.fromtimestamp(d["timestamp"][-1], et).date()
             prev = closes[-2] if last_day == today_et and len(closes) >= 2 else closes[-1]
+            # 27/11/2026 — VÁ GỐC NẾN NGÀY STALE SAU SPLIT (drift-watch 04:30 PT):
+            # SNDK split 8:1 ngày 20/11 nhưng nến ngày Yahoo thiếu hẳn
+            # 20–25/11, closes[-1] còn là $94,39 tiền-split (11/19) trong
+            # khi giá đóng thật 25/11 là $73,61. Dấu hiệu: chỉ còn ≤1 nến
+            # ngày có giá trong 5 ngày VÀ nến đó đã quá 4 ngày. Khi đó
+            # lấy prev từ nến 1m cuối phiên thường gần nhất (≤16:00 ET
+            # ngày giao dịch trước đó) thay vì nến ngày stale.
+            _ts_list = d.get("timestamp") or []
+            _cl_list = d["indicators"]["quote"][0]["close"] or []
+            _last_close_i = None
+            for _i in range(len(_cl_list) - 1, -1, -1):
+                if _cl_list[_i]:
+                    _last_close_i = _i
+                    break
+            if (_last_close_i is not None and len(closes) <= 1
+                    and (today_et - datetime.fromtimestamp(
+                        _ts_list[_last_close_i], et).date()).days > 4):
+                try:
+                    url3 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
+                            "?interval=1m&range=5d&includePrePost=true")
+                    with urlopen(Request(url3, headers=UA), timeout=10) as r3:
+                        m3 = json.load(r3)["chart"]["result"][0]
+                    qc3 = m3["indicators"]["quote"][0]["close"]
+                    ts3 = m3.get("timestamp") or []
+                    _best = None
+                    for _s3, _c3 in zip(ts3, qc3):
+                        if not _c3:
+                            continue
+                        _lt3 = datetime.fromtimestamp(_s3, et)
+                        if (_lt3.date() < today_et
+                                and (_lt3.hour, _lt3.minute) <= (16, 0)
+                                and (_best is None or _s3 > _best[0])):
+                            _best = (_s3, _c3)
+                    if _best is not None:
+                        prev = _best[1]
+                except Exception:
+                    pass
             px = None
             ah_print = False
             # ⚠️ VÁ GỐC 10/11 06:12 PT — fallback meta gây NHIỄM GIÁ ĐÓNG:
@@ -4222,8 +4259,20 @@ def fetch_pm_prices(tickers):
             # đóng làm giá hiện tại.
             m_ok = False
             try:
+                # 27/11/2026 — VÁ GỐC CỬA SỔ 1M (drift-watch 04:30 PT):
+                # range=1d neo vào phiên HOÀN TẤT gần nhất (25/11) nên
+                # sáng sớm premarket KHÔNG thấy nến hôm nay dù Yahoo đã
+                # có nến premarket — guard 01:45 tưởng "chưa có giá
+                # sống" và trả giá đóng, bảng lệch ~2% so với premarket
+                # thật (SPY $716,70 vs $728,21). Dùng cửa sổ period
+                # quanh "now" như drift_watch yahoo_at() để lấy đúng
+                # nến 1m premarket hôm nay. Cửa sổ 6h: phủ trọn phiên
+                # premarket (01:00 PT) mà không chạm tới AH hôm qua
+                # (kết thúc 17:00 PT).
+                _now_ep = int(time.time())
                 url2 = (f"https://query1.finance.yahoo.com/v8/finance/chart/{t}"
-                        "?interval=1m&range=1d&includePrePost=true")
+                        f"?period1={_now_ep - 21600}&period2={_now_ep + 180}"
+                        "&interval=1m&includePrePost=true")
                 with urlopen(Request(url2, headers=UA), timeout=10) as r:
                     m = json.load(r)["chart"]["result"][0]
                 if isinstance(m, dict) and m.get("indicators"):
