@@ -1,23 +1,15 @@
 {
  "entries": [
   {
-   "ticker": "DE",
-   "name": "Deere & Company",
-   "date": "2026-11-25",
-   "when": "T4 25/11 BMO",
-   "status": "DONE",
-   "eps_est": 4.03,
-   "rev_est": "$10.38B",
+   "ticker": "RBRK",
+   "name": "Rubrik, Inc.",
+   "date": "2026-11-30",
+   "when": "T2 30/11 AMC",
+   "status": "PENDING",
+   "eps_est": 0.08,
+   "rev_est": "$430.43M",
    "implied": null,
-   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 24/11 (MarketBeat/TradingView 24/11: EPS $4,03, DT $10,38 tỷ; vốn hóa ~$171 tỷ). Điểm nhìn: guide FY27 + nhu cầu máy nông nghiệp phục hồi hay chưa; cùng ngày có PCE tháng 10 + Beige Book. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 25/11: cập nhật giá đóng — DE mở $588,00, đóng $641,02 (+4,44% vs đóng 24/11 $613,76); premarket -4,25% đã bị phiên chính xóa hoàn toàn.]",
-   "eps_act": 3.89,
-   "rev_act": "$10.51B",
-   "verdict": "MIXED",
-   "guidance": "FY27 lãi ròng dự báo $4,50–5,25 tỷ (FY26: $4,86 tỷ).",
-   "reaction_pct": "+4,44% → $641,02 (đóng phiên 25/11, Finnhub/stockanalysis; thanh khoản mỏng — đảo chiều mạnh từ premarket -4,25% ~$587,70)",
-   "price_after": 641.02,
-   "essence": "EPS $3,89 hụt kỳ vọng $4,03; doanh thu ròng $10,51 tỷ vượt $10,38 tỷ. Mảng máy nông nghiệp lớn doanh số −15% (nông dân thắt chi), Small Ag +10% và Xây dựng +12% đỡ lại. ⚪ Chưa có vùng duyệt — chỉ theo dõi, không lên mâm.",
-   "audio": "earnings-de-2026-11-25.mp3"
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 27/11 (MarketBeat 27/11: EPS $0,08, DT $430,43 triệu; Tapeboard ghi $439,0 triệu — chênh nguồn, lấy MarketBeat làm chuẩn; ngày đã xác nhận AMC; biến động kỳ vọng ±12,7% — Flashalpha). Điểm nhìn: Q3 FY2027, mảng bảo mật dữ liệu/AI — xem tăng trưởng doanh thu đăng ký + biên lợi nhuận vận hành. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm."
   },
   {
    "ticker": "TCOM",
@@ -51,6 +43,25 @@
    "rev_est": "$713.76M",
    "implied": null,
    "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 13/11 (lịch MarketBeat 13/11). [13:55 PT 16/11: KHÔNG BÁO CÁO hôm nay — IR Brady không có bản tin Q1 FY27, wire/Finnhub/MarketBeat vẫn N/A; ngày dời sang 17/11 BMO theo Stocktwits/Yahoo (Brady chưa xác nhận ngày mới trên IR). Đóng 16/11 $79,66 (-3,69%).] Điểm nhìn: đơn hàng công nghiệp + biên lợi nhuận. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [05:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (MarketBeat vẫn N/A) — giữ PENDING, Cú Đêm điền sau.] [13:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR Brady/wire (StockAnalysis/MarketBeat/wallsti vẫn N/A); ngày báo cáo chưa được Brady xác nhận. Đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [15:37 PT 17/11: vẫn chưa thấy bản tin Q1 FY27 trên IR/wire (Stocks.News: Brady chưa xác nhận ngày mới); đóng 17/11 $76,90 (-3,46%). Cú Đêm bắt tiếp.] [17:37 PT 17/11: vẫn chưa ra số (MarketBeat vẫn N/A; Finnhub/TipRanks không còn lịch Q1 FY27 trong tuần này, ngày báo cáo chưa được Brady xác nhận). Đóng 17/11 $76,90 (-3,46%). Giữ PENDING.] [20:37 PT 17/11 (Cú Đêm 2): vẫn chưa ra số — Brady chưa xác nhận ngày báo cáo Q1 FY27 trên IR/wire; giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [01:37 PT 18/11 (Cú Đêm 3): vẫn chưa ra số — MarketBeat vẫn N/A (EPS thực tế chưa có), Stocks.News: Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Sáng 18/11 bắt tiếp.] [05:37 PT 18/11 (Cú Sáng): vẫn chưa ra số — MarketBeat vẫn N/A, ngày báo cáo tiếp theo hiển thị N/A, Brady chưa xác nhận ngày mới; đóng 17/11 $76,90 (-3,46%). Giữ PENDING, Cú Đêm bắt tiếp.] [13:15 PT 18/11: CHƯA RA SỐ — Brady thông báo (GlobeNewswire 18/11) dời ngày báo cáo Q1 FY27 sang T3 08/12/2026, giữ PENDING.]"
+  },
+  {
+   "ticker": "DE",
+   "name": "Deere & Company",
+   "date": "2026-11-25",
+   "when": "T4 25/11 BMO",
+   "status": "DONE",
+   "eps_est": 4.03,
+   "rev_est": "$10.38B",
+   "implied": null,
+   "note": "⏳ CHỜ KẾT QUẢ — nạp trước tối 24/11 (MarketBeat/TradingView 24/11: EPS $4,03, DT $10,38 tỷ; vốn hóa ~$171 tỷ). Điểm nhìn: guide FY27 + nhu cầu máy nông nghiệp phục hồi hay chưa; cùng ngày có PCE tháng 10 + Beige Book. ⚪ Chưa có vùng duyệt — chỉ theo dõi kết quả, không lên mâm. [13:37 PT 25/11: cập nhật giá đóng — DE mở $588,00, đóng $641,02 (+4,44% vs đóng 24/11 $613,76); premarket -4,25% đã bị phiên chính xóa hoàn toàn.]",
+   "eps_act": 3.89,
+   "rev_act": "$10.51B",
+   "verdict": "MIXED",
+   "guidance": "FY27 lãi ròng dự báo $4,50–5,25 tỷ (FY26: $4,86 tỷ).",
+   "reaction_pct": "+4,44% → $641,02 (đóng phiên 25/11, Finnhub/stockanalysis; thanh khoản mỏng — đảo chiều mạnh từ premarket -4,25% ~$587,70)",
+   "price_after": 641.02,
+   "essence": "EPS $3,89 hụt kỳ vọng $4,03; doanh thu ròng $10,51 tỷ vượt $10,38 tỷ. Mảng máy nông nghiệp lớn doanh số −15% (nông dân thắt chi), Small Ag +10% và Xây dựng +12% đỡ lại. ⚪ Chưa có vùng duyệt — chỉ theo dõi, không lên mâm.",
+   "audio": "earnings-de-2026-11-25.mp3"
   },
   {
    "ticker": "DKS",
